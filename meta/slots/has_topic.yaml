@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: has_topic
+# ==============================================================================
+# Specific subject, category, or theme addressed by content or discussion
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                              |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------|
+# | **DCTerms**   | `dcterms:subject`     | dcterms.rdf:1968-1988| close   | "A topic of the resource." Broader — subject        |
+# |               |                       |                      |         | encompasses any topic, theme, or classification.    |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_topic
+name: has_topic
+title: has_topic
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_topic:
+    name: has_topic
+    description: >-
+      The specific subject, category, or theme that a content item, message,
+      or discussion addresses.
+    alt_descriptions:
+      nl: >-
+        Het specifieke onderwerp, de categorie of het thema dat een
+        inhoudelijk item, bericht of discussie behandelt.
+      de: >-
+        Das spezifische Thema, die Kategorie oder das Themengebiet, das ein
+        Inhaltselement, eine Nachricht oder eine Diskussion behandelt.
+      fr: >-
+        Le sujet spécifique, la catégorie ou le thème qu'un élément de contenu,
+        un message ou une discussion aborde.
+      ar: >-
+        الموضوع المحدد أو الفئة أو المحور الذي يتناوله عنصر محتوى أو رسالة
+        أو نقاش.
+      id: >-
+        Subjek, kategori, atau tema spesifik yang dibahas oleh suatu item
+        konten, pesan, atau diskusi.
+      zh: >-
+        内容项目、消息或讨论所涉及的具体主题、类别或议题。
+      es: >-
+        El tema específico, la categoría o el asunto que un elemento de contenido,
+        mensaje o discusión aborda.
+    structured_aliases:
+      - literal_form: Onderwerp
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Thema
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Sujet
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موضوع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Topik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 主题
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Tema
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasTopic
+    range: string
+    aliases:
+      - has_or_had_topic
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_topic for conciseness."
+    close_mappings:
+      - dcterms:subject  # dcterms.rdf:1968-1988 — "A topic of the resource." Broader than topic — subject encompasses any topic, theme, or classification.
+    annotations:
+      custodian_types: '["*"]'

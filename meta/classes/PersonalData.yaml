@@ -1,0 +1,45 @@
+id: https://nde.nl/ontology/hc/class/PersonalData
+name: PersonalData
+title: Personal Data
+description: Data relating to an identified or identifiable natural person (GDPR). MIGRATED from gdpr_relevant slot. Follows schema:Thing.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_sensitivity_level
+default_prefix: hc
+classes:
+  PersonalData:
+    class_uri: schema:Thing
+    description: Data relating to an identified or identifiable natural person.
+    alt_descriptions:
+      nl: Gegevens over een geidentificeerde of identificeerbare natuurlijke persoon.
+      de: Daten die sich auf eine identifizierte oder identifizierbare natuerliche Person beziehen.
+      fr: Donnees relatives a une personne physique identifiee ou identifiable.
+      es: Datos relativos a una persona fisica identificada o identificable.
+      ar: بيانات تتعلق بشخص طبيعي محدد أو قابل للتحديد.
+      id: Data yang berkaitan dengan orang alami yang teridentifikasi atau dapat diidentifikasi.
+      zh: 与已识别或可识别自然人相关的数据。
+    structured_aliases:
+    - {literal_form: persoonsgegevens, in_language: nl}
+    - {literal_form: personenbezogene Daten, in_language: de}
+    - {literal_form: donnees personnelles, in_language: fr}
+    - {literal_form: datos personales, in_language: es}
+    - {literal_form: بيانات شخصية, in_language: ar}
+    - {literal_form: data pribadi, in_language: id}
+    - {literal_form: 个人数据, in_language: zh}
+    slots:
+    - has_sensitivity_level
+    - has_description
+    slot_usage:
+      has_sensitivity_level:
+        range: SensitivityLevel
+        required: true
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

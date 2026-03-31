@@ -1,0 +1,141 @@
+id: https://nde.nl/ontology/hc/class/StorageUnit
+name: storage_unit_class
+title: Storage Unit Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  wd: http://www.wikidata.org/entity/
+  aat: http://vocab.getty.edu/aat/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/CapacityTypeEnum
+- ../enums/StorageUnitTypeEnum
+- ../slots/has_quantity
+- ../slots/has_capacity
+- ../slots/has_description
+- ../slots/has_drawer
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/part_of
+- ../slots/has_shelf_mark
+- ../slots/store
+- ../slots/temporal_extent
+classes:
+  StorageUnit:
+    class_uri: hc:StorageUnit
+    alt_descriptions:
+      nl: Individuele opslageenheid zoals plank
+      de: Individuelle Lagereinheit wie Regal
+      fr: Unite de stockage individuelle (etagere
+      es: Unidad de almacenamiento individual (estante
+      ar: وحدة تخزين فردية مثل رف أو خزانة أو درج أو صندوق تُوضع فيها المواد فعليًا.
+      id: Unit penyimpanan individual seperti rak/lemari/laci/kotak tempat objek disimpan secara fisik.
+      zh: 用于实际放置藏品的单元存储位置，如货架、柜体、抽屉或档案盒。
+    structured_aliases:
+    - literal_form: opslageenheid
+      in_language: nl
+    - literal_form: Lagereinheit
+      in_language: de
+    - literal_form: unite de stockage
+      in_language: fr
+    - literal_form: unidad de almacenamiento
+      in_language: es
+    - literal_form: وحدة تخزين
+      in_language: ar
+    - literal_form: unit penyimpanan
+      in_language: id
+    - literal_form: 存储单元
+      in_language: zh
+    description: >-
+      Individual storage compartment, shelf, cabinet, drawer, or box where
+      heritage objects are physically placed.
+    close_mappings:
+    - aat:300038892
+    - wd:Q1186447
+    broad_mappings:
+    - crm:E27_Site
+    related_mappings:
+    - hc:StorageFacility
+    - hc:EnvironmentalZone
+    - schema:Place
+    slots:
+    - identified_by
+    - has_capacity
+    - has_quantity
+    - has_drawer
+    - part_of
+    - has_shelf_mark
+    - store
+    - has_score
+    - has_description
+    - has_label
+    - has_type
+    - temporal_extent
+    slot_usage:
+      identified_by:
+        multivalued: true
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/unit/na-depot-a-r12-b3-s4
+        - value: BOX-2024-00145
+      has_type:
+        range: StorageUnitTypeEnum
+        required: true
+      has_shelf_mark:
+        range: integer
+      has_drawer:
+        range: Drawer
+        multivalued: true
+        inlined: true
+      has_capacity:
+        range: Capacity
+        multivalued: true
+        inlined_as_list: true
+      has_quantity:
+        range: integer
+      part_of:
+        required: false
+      store:
+        range: HeritageObject
+        multivalued: true
+        inlined_as_list: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+    comments:
+    - Lowest practical spatial level for object placement
+    - Typically nested within zone/facility structures
+    - Supports local row/bay/shelf conventions via identifiers and shelf marks
+    see_also:
+    - https://nde.nl/ontology/hc/StorageUnit
+    - http://vocab.getty.edu/aat/300038892
+    - https://www.wikidata.org/wiki/Q1186447
+    examples:
+    - value:
+        identified_by:
+        - https://nde.nl/ontology/hc/unit/na-depot-a-r12-b3-s4
+        - BOX-2024-00145
+        has_type: ARCHIVE_BOX
+        has_shelf_mark: 4
+    - value:
+        identified_by:
+        - https://nde.nl/ontology/hc/unit/rm-depot-ff-042
+        - FF-MAPS-042
+        has_type: FLAT_FILE_DRAWER
+        has_quantity: 38
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        StorageUnit models where objects are actually placed (drawer/shelf/box level).
+
+        Distinguish from Storage (facility-level) and EnvironmentalZone (zone-level).

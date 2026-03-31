@@ -1,0 +1,156 @@
+id: https://nde.nl/ontology/hc/class/StorageLocation
+name: storage_location_class
+title: Storage Location Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score    # was: template_specificity
+- ../slots/has_type
+- ../slots/has_url
+classes:
+  StorageLocation:
+    class_uri: premis:StorageLocation
+    description: >-
+      Physical or digital placement reference identifying where managed holdings are stored for preservation and access.
+    alt_descriptions:
+      nl: >-
+        Fysieke of digitale plaatsingsverwijzing die aangeeft waar beheerde bezittingen worden opgeslagen voor behoud en toegang.
+      de: >-
+        Physische oder digitale Platzierungsreferenz, die angibt, wo verwaltete Bestände für Erhaltung und Zugang gelagert werden.
+      fr: >-
+        Référence de placement physique ou numérique identifiant où les fonds gérés sont stockés pour la conservation et l'accès.
+      es: >-
+        Referencia de ubicación física o digital que identifica dónde se almacenan las existencias gestionadas para preservación y acceso.
+      ar: >-
+        مرجع وضع فعلي أو رقمي يحدد مكان تخزين الممتلكات المُدارة للحفظ والوصول.
+      id: >-
+        Referensi penempatan fisik atau digital yang mengidentifikasi di mana holding yang dikelola disimpan untuk pelestarian dan akses.
+      zh: >-
+        标识受管藏品存储位置以供保存和访问的物理或数字放置参考。
+    structured_aliases:
+    - literal_form: opslaglocatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Speicherort
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: lieu de stockage
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: ubicación de almacenamiento
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: موقع التخزين
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: lokasi penyimpanan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 存储位置
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - premis:StorageLocation
+    close_mappings:
+    - schema:Place
+    - crm:E53_Place
+    related_mappings:
+    - premis:StorageMedium
+    - schema:DataCatalog
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    - has_url
+    - has_score    # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    slot_usage:
+      identified_by:
+      has_score:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/storage-location/rijksmuseum-depot-a
+        - value: https://nde.nl/ontology/hc/storage-location/dans-vault
+      has_label:
+#         range: string
+        required: true
+        examples:
+        - value: Depot Amersfoort - Vault A
+        - value: AWS S3 eu-west-1
+        - value: DANS Data Archive
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: "Climate-controlled vault for photographic materials. -18°C, 30% RH."
+        - value: "DANS is a trusted digital repository for Dutch research data."
+      has_type:
+#         range: string
+        required: false
+        examples:
+        - value: PHYSICAL_DEPOT
+        - value: CLOUD_STORAGE
+        - value: DIGITAL_REPOSITORY
+        - value: TRUSTED_ARCHIVE
+
+      has_url:
+        range: uri
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/aux-place/rijksmuseum-depot-amersfoort
+        - value: https://easy.dans.knaw.nl/
+        - value: https://archive.org/
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Storage locations apply to all custodian types.
+      custodian_types_primary:
+      specificity_score: 0.55
+      specificity_rationale: Moderately specific - relevant for preservation and storage contexts.
+      migration_date: "2026-01-15"
+      replaces_slot_range: "storage_location (was uri range, now structured class)"
+    comments:
+    - "Unifies physical and digital storage location concepts"
+    - "PREMIS StorageLocation provides core semantics"
+    - "For detailed physical location info, reference AuxiliaryPlace via has_url"
+    - "Storage (facility) links here via stored_at slot"
+    - 'Preserved from prior description: A location where heritage materials are stored, either physical or digital. **PREMIS Alignment**: `premis:StorageLocation` - "Information needed to retrieve a physical item from its physical storage location or a file from the storage system, or to access a bitstream within a file." **Purpose**: StorageLocation provides a unified model for: 1. **Physical storage** - References to AuxiliaryPlace instances (depots, vaults, shelves, cabinets) 2. **Digital storage** - Cloud infrastructure, repositories, archive services (AWS S3, DANS, Internet Archive) **RELATIONSHIP TO OTHER CLASSES**: ``` Storage (facility) └── stored_at → StorageLocation (THIS CLASS) ├── physical_location → AuxiliaryPlace (for physical) └── storage_url (for digital infrastructure) DigitalObject └── stored_at → StorageLocation └── storage_url → "s3://bucket/path" ``` **Use Cases**: 1. **Physical Collection Storage**: - Reference to depot building (AuxiliaryPlace) - Shelf/cabinet location identifier 2. **Digital Preservation Infrastructure**: - Cloud storage (AWS S3, Azure Blob) - Trusted digital repository (DANS, Portico) - Third-party preservation service (Internet Archive) **Slot Migration** (2026-01-15): This class supports the migration of `storage_location` slot to `stored_at` with structured StorageLocation range.'
+    see_also:
+    - http://www.loc.gov/premis/rdf/v3/StorageLocation
+    - https://www.loc.gov/standards/premis/
+
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage-location/rijksmuseum-depot-vault-a
+        has_label: Rijksmuseum Depot Amersfoort - Vault A
+        has_description: "Climate-controlled art storage vault. 18-22°C, 45-55% RH."
+        has_type: PHYSICAL_DEPOT
+        has_url: https://nde.nl/ontology/hc/aux-place/rijksmuseum-depot-amersfoort
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage-location/dans-archive
+        has_label: DANS Data Archive
+        has_description: "DANS is a Dutch trusted digital repository for research data and cultural heritage collections."
+        has_type: TRUSTED_ARCHIVE
+        has_url: https://easy.dans.knaw.nl/
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage-location/aws-s3-heritage
+        has_label: AWS S3 Heritage Bucket (eu-west-1)
+        has_description: "Cloud storage for digitized heritage materials. Amsterdam region for GDPR compliance."
+        has_type: CLOUD_STORAGE
+        has_url: s3://heritage-custodian-archive/

@@ -1,0 +1,113 @@
+# ==============================================================================
+# LinkML Slot Definition: provide_to
+# ==============================================================================
+# Identifies the recipient, beneficiary, or destination that receives a
+# service, resource, or information from a provider.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                       | File/Line                        | Mapping | Notes                                                                |
+# |------------|--------------------------------|----------------------------------|---------|----------------------------------------------------------------------|
+# | **Schema** | `schema:recipient`             | schemaorg.owl:32274-32293        | close   | "Participant at receiving end of action." Domain: Send/Give/etc.     |
+# | **Schema** | `schema:audience`              | schemaorg.owl:9151-9170          | related | "Intended audience." About target group, not direct provision.       |
+# | **CRM**    | `crm:P22_transferred_title_to` | CIDOC_CRM_v7.1.3.rdf:1681-1696  | related | "Actor acquiring legal ownership via Acquisition." Title transfer.   |
+# | **CRM**    | `crm:P29_custody_received_by`  | CIDOC_CRM_v7.1.3.rdf:1875-1890  | related | "Actor receiving custody in Transfer of Custody." Physical custody.  |
+#
+# No external property captures the general "provide to" relationship across
+# services, resources, and information; slot_uri remains hc:provideTo.
+#
+# CREATED: 2026-01-19
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/provide_to
+name: provide_to
+title: Provide To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  provide_to:
+    slot_uri: hc:provideTo
+    description: >-
+      Identifies the recipient, beneficiary, or destination that receives a
+      service, resource, or information from a provider. In heritage custodian
+      contexts this captures which institutions, researchers, communities, or
+      public audiences are served by a custodian's programmes, loans,
+      digitisation services, or access provisions. The relationship is
+      directional: the subject provides to the object.
+    alt_descriptions:
+      nl: >-
+        Identificeert de ontvanger, begunstigde of bestemming die een dienst,
+        bron of informatie ontvangt van een aanbieder.
+      de: >-
+        Identifiziert den Empfänger, Begünstigten oder das Ziel, das eine
+        Dienstleistung, Ressource oder Information von einem Anbieter erhält.
+      fr: >-
+        Identifie le destinataire, le bénéficiaire ou la destination qui
+        reçoit un service, une ressource ou une information d'un fournisseur.
+      ar: >-
+        يحدد المتلقي أو المستفيد أو الوجهة التي تتلقى خدمة أو موردًا أو
+        معلومات من مزود.
+      id: >-
+        Mengidentifikasi penerima, penerima manfaat, atau tujuan yang
+        menerima layanan, sumber daya, atau informasi dari penyedia.
+      zh: >-
+        标识从提供者接收服务、资源或信息的接收者、受益者或目的地。
+      es: >-
+        Identifica al destinatario, beneficiario o destino que recibe un
+        servicio, recurso o información de un proveedor.
+    structured_aliases:
+      - literal_form: verstrekken aan
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bereitstellen für
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fournir à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يقدم إلى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menyediakan kepada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 提供给
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: proporcionar a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:recipient  # schemaorg.owl:32274-32293 - "Participant at receiving end of action." Domain: Send/Give/Donate/etc.
+    related_mappings:
+      - schema:audience  # schemaorg.owl:9151-9170 - "Intended audience, group for whom something was created"
+      - crm:P22_transferred_title_to  # CIDOC_CRM_v7.1.3.rdf:1681-1696 - "Actor acquiring legal ownership via Acquisition"
+      - crm:P29_custody_received_by  # CIDOC_CRM_v7.1.3.rdf:1875-1890 - "Actor receiving custody in Transfer of Custody"
+    aliases:
+      - provides_or_provided_to
+    examples:
+      - value: "hc:national-research-council"
+        description: >-
+          A national archive provides digitised census records to the
+          national research council for demographic studies.
+      - value: "hc:local-school-district"
+        description: >-
+          A museum provides educational outreach programmes to the local
+          school district as part of its community engagement mandate.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Classes may narrow the range in slot_usage to reference specific
+        recipient types (e.g., Organization, Person, Community).
+      - >-
+        The inverse relationship (who provides the resource) can be expressed
+        through the provided_by slot.

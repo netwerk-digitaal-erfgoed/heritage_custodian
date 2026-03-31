@@ -1,0 +1,57 @@
+id: https://nde.nl/ontology/hc/class/CollectionContent
+name: CollectionContent
+title: Collection Content
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_type
+classes:
+  CollectionContent:
+    class_uri: hc:CollectionContent
+    description: >-
+      Structured holding profile that records material categories represented in a curated aggregation.
+    alt_descriptions:
+      nl: Gestructureerd holdingsprofiel dat materiaalcategorieen vastlegt binnen een beheerde samenstelling.
+      de: Strukturiertes Bestandsprofil zur Erfassung von Materialkategorien in einer kuratierten Zusammenstellung.
+      fr: Profil structuré des fonds consignant les catégories de matériaux présentes dans un ensemble organisé.
+      es: Perfil estructurado de fondos que registra categorias de materiales presentes en un conjunto curado.
+      ar: ملف مقتنيات منظم يسجل فئات المواد الموجودة ضمن تجميعة منسقة.
+      id: Profil kepemilikan terstruktur yang mencatat kategori material dalam himpunan terkurasi.
+      zh: 用于记录策展聚合体中材料类别的结构化馆藏画像。
+    structured_aliases:
+    - literal_form: holdingsprofiel
+      in_language: nl
+    - literal_form: Bestandsprofil
+      in_language: de
+    - literal_form: profil des fonds
+      in_language: fr
+    - literal_form: perfil de fondos
+      in_language: es
+    - literal_form: ملف المقتنيات
+      in_language: ar
+    - literal_form: profil kepemilikan
+      in_language: id
+    - literal_form: 馆藏画像
+      in_language: zh
+    broad_mappings:
+    - rico:RecordResource
+    close_mappings:
+    - dcterms:BibliographicResource
+    slots:
+    - has_type
+    slot_usage:
+      has_type:
+        multivalued: true
+        inlined: false
+    examples:
+    - value:
+        has_type:
+        - ArchivalCollectionContent
+        - LibraryCollectionContent
+    comments:
+    - Replaces legacy string-valued categorization with typed structure

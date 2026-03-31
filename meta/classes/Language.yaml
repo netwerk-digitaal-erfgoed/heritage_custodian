@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/Language
+name: Language
+title: Language
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_text
+- ../slots/has_label
+classes:
+  Language:
+    class_uri: dcterms:LinguisticSystem
+    description: >-
+      Linguistic system entity used to express language identity and optionally
+      associate in-language text content.
+    alt_descriptions:
+      nl: Taalentiteit voor het identificeren van een taal en optioneel het koppelen van tekstinhoud in die taal.
+      de: Spracheinheit zur Identifikation einer Sprache und optionalen Zuordnung von Textinhalten in dieser Sprache.
+      fr: Entite de langue permettant d identifier une langue et d associer eventuellement un contenu textuel dans cette langue.
+      es: Entidad de idioma para identificar una lengua y opcionalmente asociar contenido textual en ese idioma.
+      ar: كيان لغوي لتحديد اللغة وربط محتوى نصي بهذه اللغة اختياريا.
+      id: Entitas bahasa untuk mengidentifikasi bahasa dan (opsional) mengaitkan konten teks dalam bahasa tersebut.
+      zh: 用于标识语言并可选关联该语言文本内容的语言实体。
+    structured_aliases:
+    - {literal_form: taal, in_language: nl}
+    - {literal_form: Sprache, in_language: de}
+    - {literal_form: langue, in_language: fr}
+    - {literal_form: idioma, in_language: es}
+    - {literal_form: لغة, in_language: ar}
+    - {literal_form: bahasa, in_language: id}
+    - {literal_form: 语言, in_language: zh}
+    slots:
+    - has_code
+    - has_text
+    - has_label
+    slot_usage:
+      has_label:
+        description: Human-readable name of the language (e.g., "English", "Dutch", "French").
+        required: false
+      has_text:
+        description: Optional text content bundled with the language identifier.
+        required: false
+    exact_mappings:
+    - dcterms:LinguisticSystem
+    close_mappings:
+    - schema:Language
+    comments:
+    - Supports bundling a language identifier with language-tagged text values for multilingual data.
+    - Intended to support migration from language-specific text slots to a unified Language object pattern.
+    examples:
+    - value:
+        has_code: fr
+        has_label: French
+        has_text: archives universitaires
+      description: Language-tagged text (code + label + text)
+    - value:
+        has_code: en
+        has_label: English
+      description: Language identifier without text content
+    - value:
+        has_code: nl
+        has_label: Dutch
+        has_text: universitair archief
+      description: Language-tagged text for multilingual label
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

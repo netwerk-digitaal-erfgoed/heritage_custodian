@@ -1,0 +1,100 @@
+id: https://nde.nl/ontology/hc/class/AdvertisingRadioArchiveRecordSetType
+name: AdvertisingRadioArchiveRecordSetType
+title: Advertising Radio Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  wd: http://www.wikidata.org/entity/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/related_to
+- ../slots/has_label
+- ../slots/has_description
+classes:
+  AdvertisingRadioArchiveRecordSetType:
+    description: >-
+      Record set type classification for advertising radio production collections.
+    alt_descriptions:
+      nl: "Recordsettype-classificatie voor collecties van radioadvertentieproducties."
+      de: "Bestandstyp-Klassifikation für Sammlungen von Werbefunkproduktionen."
+      fr: "Classification du type de fonds pour les collections de productions publicitaires radio."
+      es: "Clasificación de tipo de conjunto documental para colecciones de producciones publicitarias de radio."
+      ar: "تصنيف نوع مجموعة السجلات لمجموعات إنتاج إعلانات الراديو."
+      id: "Klasifikasi tipe set rekaman untuk koleksi produksi iklan radio."
+      zh: "广播广告制作收藏的记录集类型分类。"
+    examples:
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: Radio Advertisement Collection
+        has_description: Collection of radio commercial recordings
+      description: Collection of radio commercials
+    is_a: CollectionType
+    class_uri: rico:RecordSetType
+    broad_mappings:
+    - skos:Concept
+    - rico:RecordSetType
+    related_mappings:
+    - wd:Q60658673
+    structured_aliases:
+    - literal_form: reclameradioarchief-recordsettype
+      in_language: nl
+    - literal_form: Werbefunkarchiv-Bestandstyp
+      in_language: de
+    - literal_form: type de fonds d'archives publicitaires radio
+      in_language: fr
+    - literal_form: tipo de conjunto de archivo de publicidad radiofónica
+      in_language: es
+    - literal_form: نوع مجموعة سجلات أرشيف إعلانات الراديو
+      in_language: ar
+    - literal_form: tipe set rekaman arsip iklan radio
+      in_language: id
+    - literal_form: 广播广告档案记录集类型
+      in_language: zh
+    keywords:
+    - record set type
+    - advertising radio
+    - radio commercials
+    - jingles
+    - campaign documentation
+    - archival classification
+    slots:
+    - has_type
+    - has_score
+    - related_to
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+      has_label:
+        required: false
+        examples:
+        - value: Radio Advertisement Collection
+        - value: Campaign Documentation Series
+      has_description:
+        required: false
+        examples:
+        - value: Collection of radio commercial recordings from advertising agencies
+    annotations:
+      specificity_score: "0.50"
+      specificity_rationale: "Specialized record set type for advertising radio archives - a specific subset of archival classifications."
+      custodian_types: "['AdvertisingRadioArchive']"
+      wikidata_note: "Q60658673 is the archive organization type, not the record set type - used as related_mapping"
+    comments:
+    - Specialized record set type for advertising radio archive collections
+    - Part of dual-class pattern: AdvertisingRadioArchive (custodian) + this class (holdings)
+    - Subclasses include RadioAdvertisementCollection, CampaignDocumentationSeries
+    - Q60658673 is related_mapping (archive organization), not exact_mapping (this is a classification)
+    - 'Preserved from prior description: Record set type classification for advertising radio production collections. Specialized rico:RecordSetType for classifying collections of advertising radio productions, commercials, and related documentation within heritage institutions. Distinguishes different organizational levels and content types held by advertising radio archives.'
+    see_also:
+    - AdvertisingRadioArchive
+    - AdvertisingRadioArchiveRecordSetTypes
+    - rico:RecordSetType

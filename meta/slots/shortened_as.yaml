@@ -1,0 +1,125 @@
+# ==============================================================================
+# LinkML Slot Definition: shortened_as
+# ==============================================================================
+# The abbreviated or contracted form of a name, term, or phrase.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                        | File/Line                        | Mapping | Notes                                                              |
+# |-------------|---------------------------------|----------------------------------|---------|--------------------------------------------------------------------|
+# | **HC**      | `hc:shortenedAs`                | —                                | slot_uri| Custom property specifically for abbreviated/contracted forms.      |
+# | **SKOS**    | `skos:altLabel`                 | skos.rdf:135-149                 | broad   | "An alternative lexical label for a resource." Explicitly mentions  |
+# |             |                                 |                                  |         | acronyms and abbreviations but also covers spelling variants and   |
+# |             |                                 |                                  |         | irregular forms — broader than abbreviation-specific.              |
+# | **Schema**  | `schema:alternateName`          | schemaorg.owl:7757-7777          | broad   | "An alias for the item." Covers any alias including abbreviations  |
+# |             |                                 |                                  |         | but not limited to them. Domain: Thing.                            |
+# | **DCTerms** | `dcterms:alternative`           | dcterms.rdf:885-911              | broad   | "An alternative name for the resource." Commonly used for          |
+# |             |                                 |                                  |         | abbreviated titles in library/metadata contexts.                   |
+# | **CIDOC**   | `crm:P139_has_alternative_form` | CIDOC_CRM_v7.1.3.rdf:4184-4197  | related | "has alternative form" — directed relationship between E41         |
+# |             |                                 |                                  |         | Appellation instances. Can be typed as abbreviation via P139.1     |
+# |             |                                 |                                  |         | has type. Different modeling approach (appellation-to-appellation). |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/shortened_as
+name: shortened_as
+title: Shortened As
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  shortened_as:
+    slot_uri: hc:shortenedAs
+    description: >-
+      The abbreviated, contracted, or commonly used short form of a longer
+      name, phrase, or term. This includes acronyms, initialisms, postal
+      abbreviations, and standard short codes. In heritage custodian
+      contexts this is used primarily for address component values where
+      data sources provide both a full form and an abbreviated form, but
+      it applies to any entity where a recognised short form exists.
+      The value may equal the full form when no standard abbreviation
+      exists.
+    alt_descriptions:
+      nl: >-
+        De afgekorte, samengetrokken of gangbare korte vorm van een langere
+        naam, uitdrukking of term.
+      de: >-
+        Die abgekürzte, zusammengezogene oder gebräuchliche Kurzform eines
+        längeren Namens, einer Redewendung oder eines Begriffs.
+      fr: >-
+        La forme abrégée, contractée ou couramment utilisée d'un nom, d'une
+        expression ou d'un terme plus long.
+      ar: >-
+        الشكل المختصر أو المتقلص أو المستخدم بشكل شائع لاسم أو عبارة أو
+        مصطلح أطول.
+      id: >-
+        Bentuk singkatan, kontraksi, atau bentuk pendek yang umum digunakan
+        dari nama, frasa, atau istilah yang lebih panjang.
+      zh: >-
+        较长名称、短语或术语的缩写、缩略或常用简称形式。
+      es: >-
+        La forma abreviada, contraída o de uso común de un nombre, frase
+        o término más largo.
+    structured_aliases:
+      - literal_form: afgekort als
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgekürzt als
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: abrégé en
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مختصر بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disingkat menjadi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 缩写为
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: abreviado como
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - skos:altLabel  # skos.rdf:135-149 - "An alternative lexical label for a resource." Explicitly mentions acronyms and abbreviations but also covers spelling variants — broader than abbreviation-specific.
+      - schema:alternateName  # schemaorg.owl:7757-7777 - "An alias for the item." Covers any alias, not just abbreviations.
+      - dcterms:alternative  # dcterms.rdf:885-911 - "An alternative name for the resource." Commonly used for abbreviated titles in library contexts.
+    related_mappings:
+      - crm:P139_has_alternative_form  # CIDOC_CRM_v7.1.3.rdf:4184-4197 - "has alternative form" directed E41 Appellation → E41 Appellation. Can be typed as abbreviation via P139.1 has type. Different modeling approach.
+    aliases:
+      - short_name
+    examples:
+      - value: "NL"
+        description: "ISO 3166-1 alpha-2 country code for Netherlands."
+      - value: "NH"
+        description: "Dutch province abbreviation for Noord-Holland."
+      - value: "Amsterdam"
+        description: "Same as full form — no standard abbreviation exists."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Used in AddressComponent contexts where data sources (ISIL registries,
+        KvK, website scraping, API responses) often provide both a full form
+        and an abbreviated form. Paired with a long_name slot that holds the
+        unabbreviated version.
+      - >-
+        When no standard abbreviation exists, the shortened_as value may equal
+        the full form (e.g. 'Amsterdam' / 'Amsterdam').
+      - >-
+        CIDOC-CRM's P139 has alternative form (CIDOC_CRM_v7.1.3.rdf:4184-4197)
+        offers a more structured approach via appellation-to-appellation links
+        with P139.1 has type to qualify the derivation (e.g. 'abbreviation',
+        'transliteration'). Our slot flattens this into a direct string value
+        for practical use.

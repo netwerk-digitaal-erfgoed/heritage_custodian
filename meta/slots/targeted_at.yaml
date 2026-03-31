@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: targeted_at
+# ==============================================================================
+# Indicates the specific audience, demographic, or objective that something
+# is aimed at.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:audience`     | schemaorg.owl:9151-9154    | close   | "Intended audience for something"  |
+# | **Schema.org**| `schema:targetPopulation`| schemaorg.owl:37405-37408| close   | Health-specific target population  |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual, schema:audience as close mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/targeted_at
+name: targeted_at
+title: Targeted At
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  targeted_at:
+    slot_uri: hc:targetedAt
+    description: >-
+      To be aimed, directed, or intended for a specific audience, demographic,
+      objective, or outcome.
+    alt_descriptions:
+      nl: >-
+        Gericht, bestemd of bedoeld voor een specifieke doelgroep, demografische
+        groep, doelstelling of resultaat.
+      de: >-
+        Auf ein bestimmtes Publikum, eine demografische Gruppe, ein Ziel oder
+        ein Ergebnis ausgerichtet, gerichtet oder bestimmt zu sein.
+      fr: >-
+        Être destiné, dirigé ou prévu pour un public, un groupe démographique,
+        un objectif ou un résultat spécifique.
+      ar: >-
+        أن يكون موجهًا أو مقصودًا لجمهور أو فئة ديموغرافية أو هدف أو نتيجة محددة.
+      id: >-
+        Ditujukan, diarahkan, atau dimaksudkan untuk audiens, demografi,
+        tujuan, atau hasil tertentu.
+      zh: >-
+        针对特定受众、人口统计群体、目标或结果进行瞄准、定向或意图。
+      es: >-
+        Estar dirigido, orientado o destinado a una audiencia, grupo demográfico,
+        objetivo o resultado específico.
+    structured_aliases:
+      - literal_form: gericht op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ausgerichtet auf
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: ciblé sur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موجه إلى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ditargetkan pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 针对
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: dirigido a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_targeted_at
+    close_mappings:
+      - schema:audience  # schemaorg.owl:9151-9154 - "Intended audience for something"
+      - schema:targetPopulation  # schemaorg.owl:37405-37408 - Target population
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/OrganizationalUnitType
+name: OrganizationalUnitType
+title: Organizational Unit Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  OrganizationalUnitType:
+    class_uri: skos:Concept
+    description: Abstract classification type for organizational units within an institution.
+    alt_descriptions:
+      nl: Abstract classificatietype voor organisatie-eenheden binnen een instelling.
+      de: Abstrakter Klassifikationstyp fuer Organisationseinheiten innerhalb einer Einrichtung.
+      fr: Type de classification abstrait pour les unites organisationnelles d une institution.
+      es: Tipo de clasificacion abstracto para unidades organizativas dentro de una institucion.
+      ar: نوع تصنيف مجرد لوحدات تنظيمية داخل مؤسسة.
+      id: Tipe klasifikasi abstrak untuk unit organisasi dalam suatu institusi.
+      zh: 机构内部组织单元的抽象分类类型。
+    structured_aliases:
+    - {literal_form: type organisatie-eenheid, in_language: nl}
+    - {literal_form: Typ Organisationseinheit, in_language: de}
+    - {literal_form: type d unite organisationnelle, in_language: fr}
+    - {literal_form: tipo de unidad organizativa, in_language: es}
+    - {literal_form: نوع وحدة تنظيمية, in_language: ar}
+    - {literal_form: tipe unit organisasi, in_language: id}
+    - {literal_form: 组织单元类型, in_language: zh}
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - org:OrganizationalUnit
+    related_mappings:
+    - schema:Organization
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/unit-type/[a-z-]+$
+      has_code:
+#         range: string
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Abstract base class for organizational unit type classifications.\n\n**DEFINITION**:\n\nOrganizationalUnitType represents CATEGORIES of organizational units/divisions\nwithin heritage institutions. Each subclass defines the typical functions,\nresponsibilities, and hierarchical position of a unit type.\n\n**CATEGORY STRUCTURE**:\n\n1. **ADMINISTRATIVE**: Management and support\n   - DIRECTORATE, SECRETARIAT, ADMINISTRATION\n   \n2. **COLLECTION**: Collection-focused units\n   - DEPARTMENT, DIVISION, SECTION\n   \n3. **FUNCTIONAL**: Specialized functions\n   - CONSERVATION_LAB, DIGITIZATION_UNIT, EDUCATION\n   \n4. **FACILITY**: Site-based units\n   - BRANCH, READING_ROOM, STORAGE_FACILITY\n\n**ONTOLOGY ALIGNMENT**:\n\n- **W3C Organization Ontology**: org:OrganizationalUnit\n- **SKOS Concept**: Type classification vocabulary\n- **Schema.org**: Department concepts\n\n**REPLACES**: unit_type slot with string values\n"
+    annotations:
+      specificity_score: '0.50'
+      specificity_rationale: Moderately specific - organizational structure metadata.
+      has_score:
+      replaces_slot: unit_type
+      migration_date: '2026-01-13'
+      custodian_types: "['*']"
+    comments:
+    - Abstract base class - use specific subclasses
+    - Replaces unit_type slot with class hierarchy
+    - Follows Type/Types naming convention (Rule 0b)

@@ -1,0 +1,126 @@
+id: https://nde.nl/ontology/hc/class/ReconstructionAgent
+name: reconstruction_agent_class
+title: ReconstructionAgent Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  cpov: http://data.europa.eu/m8g/
+  pico: https://personsincontext.org/model#
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+imports:
+- linkml:types
+- ../enums/AgentTypeEnum
+- ../metadata
+- ../slots/has_contact_details
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_type
+classes:
+  ReconstructionAgent:
+    class_uri: prov:Agent
+    description: >-
+      Actor responsible for performing entity resolution, data enrichment, or
+      knowledge reconstruction activities within heritage workflows.
+    alt_descriptions:
+      nl: >-
+        Actor verantwoordelijk voor het uitvoeren van entiteitsresolutie, gegevensverrijking
+        of kennisreconstructie-activiteiten binnen erfgoedworkflows.
+      de: >-
+        Akteur, der für die Durchführung von Entitätsauflösung, Datenanreicherung
+        oder Wissensrekonstruktionsaktivitäten in Heritage-Workflows verantwortlich ist.
+      fr: >-
+        Acteur responsable de la résolution d'entités, de l'enrichissement des données
+        ou des activités de reconstruction des connaissances dans les flux patrimoniaux.
+      es: >-
+        Actor responsable de realizar resolución de entidades, enriquecimiento de datos
+        o actividades de reconstrucción del conocimiento en flujos patrimoniales.
+      ar: >-
+        فاعل مسؤول عن تنفيذ حل الكيانات أو إثراء البيانات
+        أو أنشطة إعادة بناء المعرفة في سير عمل التراث.
+      id: >-
+        Aktor yang bertanggung jawab untuk melakukan resolusi entitas, pengayaan data,
+        atau aktivitas rekonstruksi pengetahuan dalam alur kerja warisan.
+      zh: >-
+        负责在遗产工作流中执行实体解析、数据丰富或知识重建活动的行动者。
+    structured_aliases:
+    - literal_form: reconstructieactor
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Rekonstruktionsakteur
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: agent de reconstruction
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: agente de reconstrucción
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: وكيل إعادة البناء
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: agen rekonstruksi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 重建代理
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - prov:Agent
+    close_mappings:
+    - foaf:Agent
+    - rico:Agent
+    - dcterms:Agent
+    - schema:Person
+    - schema:Organization
+    - org:Organization
+    - rico:CorporateBody
+    - cpov:PublicOrganisation
+    narrow_mappings:
+    - prov:SoftwareAgent
+    related_mappings:
+    - schema:SoftwareApplication
+    - pico:Agent
+    - tooi:Overheidsorganisatie
+    slots:
+    - has_label
+    - has_type
+    - has_contact_details
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+      has_type:
+        range: AgentTypeEnum
+        required: false
+      has_contact_details:
+    comments:
+    - Common roles include researchers, curators, and data scientists performing entity resolution.
+    - Ontology alignment references PROV-O, FOAF, RiC-O, CPOV, Schema.org, W3C ORG, PiCo, and TOOI.
+    - 'Preserved from prior description: Agent (person, organization, or software) responsible for reconstruction activities.'
+    notes:
+    - |
+      Ontology alignment:
+      - PROV-O: Core provenance agent model
+      - FOAF: Social web agent identification
+      - RiC-O: Archival domain agent model (ICA standard)
+      - CPOV: EU Core Public Organisation Vocabulary (for public sector heritage agents)
+      - Schema.org: Web semantics for persons and organizations
+      - W3C Org: Organizational structures
+      - PiCo: Person observation/reconstruction agents
+      - TOOI: Dutch government organizational ontology
+    keywords:
+    - entity resolution
+    - data enrichment
+    - knowledge reconstruction
+    - provenance agent
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

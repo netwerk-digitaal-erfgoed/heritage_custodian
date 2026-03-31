@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: exposed_through
+# ==============================================================================
+# Links an entity to the channel or platform through which it is published.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line              | Mapping | Notes                                |
+# |----------------|-----------------------|------------------------|---------|--------------------------------------|
+# | **Schema.org** | `schema:distribution` | schemaorg.owl:15369-90 | close   | "A downloadable form of this dataset"|
+# |                |                       |                        |         | - specific to datasets               |
+# | **DCAT**       | `dcat:accessURL`      | dcat3.ttl:543-600      | close   | URL providing access to distribution |
+# | **DCAT**       | `dcat:endpointURL`    | dcat3.ttl:1008-1032    | close   | Root location of service endpoint    |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description, added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/exposed_through
+name: exposed_through
+title: Exposed Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  oa: http://www.w3.org/ns/oa#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  exposed_through:
+    slot_uri: hc:exposedThrough
+    description: >-
+      To be made accessible, visible, or published through a specific channel, 
+      medium, interface, or mechanism.
+    alt_descriptions:
+      nl: >-
+        Toegankelijk, zichtbaar of gepubliceerd gemaakt via een specifiek 
+        kanaal, medium, interface of mechanisme.
+      de: >-
+        Über einen bestimmten Kanal, ein Medium, eine Schnittstelle oder 
+        einen Mechanismus zugänglich, sichtbar oder veröffentlicht gemacht 
+        zu werden.
+      fr: >-
+        Être rendu accessible, visible ou publié via un canal, un média, 
+        une interface ou un mécanisme spécifique.
+      ar: >-
+        أن يتم جعله متاحًا أو مرئيًا أو منشورًا من خلال قناة أو وسيط 
+        أو واجهة أو آلية محددة.
+      id: >-
+        Dibuat dapat diakses, terlihat, atau dipublikasikan melalui saluran, 
+        media, antarmuka, atau mekanisme tertentu.
+      zh: >-
+        通过特定渠道、媒介、接口或机制使其可访问、可见或已发布。
+      es: >-
+        Ser hecho accesible, visible o publicado a través de un canal, 
+        medio, interfaz o mecanismo específico.
+    structured_aliases:
+      - literal_form: ontsloten via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bereitgestellt über
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: exposé via
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متاح عبر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diekspos melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...公开
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: expuesto a través de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - schema:distribution  # schemaorg.owl:15369-15390 - specific to datasets
+      - dcat:accessURL  # dcat3.ttl:543-600 - URL providing access
+      - dcat:endpointURL  # dcat3.ttl:1008-1032 - Service endpoint URL
+    aliases:
+      - is_or_was_exposed_via
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to indicate the platform, portal, API endpoint, 
+        or channel through which an entity (such as a collection or dataset) 
+        is made accessible to users.
+      - |
+        **MIGRATION NOTE (2026-02-03)**: Renamed from `is_or_was_exposed_via` 
+        for conciseness.

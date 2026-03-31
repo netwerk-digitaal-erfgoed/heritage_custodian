@@ -1,0 +1,133 @@
+# ==============================================================================
+# LinkML Slot Definition: has_portfolio
+# ==============================================================================
+# The collection of service types offered by a heritage custodian institution.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line                    | Mapping  | Notes                                                                             |
+# |----------------|---------------------------|------------------------------|----------|-----------------------------------------------------------------------------------|
+# | **HC**         | `hc:hasPortfolio`         | —                            | slot_uri | No external property captures "portfolio of service types offered by a custodian." |
+# | **Schema.org** | `schema:serviceType`      | schemaorg.owl:35075-35096    | close    | "The type of service being offered" Service→Text/GovernmentBenefitsType.           |
+# | **Schema.org** | `schema:hasOfferCatalog`  | schemaorg.owl:20356-20379    | related  | "Indicates an OfferCatalog listing" Org/Person/Service→OfferCatalog.              |
+# | **Schema.org** | `schema:makesOffer`       | schemaorg.owl:25353-25376    | related  | "A pointer to products or services offered" Org/Person→Offer.                     |
+# | **W3C Org**    | `org:purpose`             | org.rdf:730-742              | related  | "Indicates the purpose of this Organization" Organization→open range.             |
+# | **DC Terms**   | `dcterms:type`            | dcterms.rdf:2055-2075        | broad    | "The nature or genre of the resource." Very generic typing property.              |
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_portfolio
+name: has_portfolio
+title: Has Portfolio
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_portfolio:
+    slot_uri: hc:hasPortfolio
+    description: >-
+      The collection of service types offered by a heritage custodian institution.
+      Enumerates user-facing services such as archival research consultations,
+      museum exhibitions, library reference assistance, educational programs,
+      research fellowships, digital collection access, public engagement events,
+      and conservation services. A service portfolio demonstrates whether an
+      institution truly operates as a mixed-type custodian spanning multiple
+      heritage domains.
+    alt_descriptions:
+      nl: >-
+        De verzameling diensttypen die door een erfgoedinstelling worden aangeboden,
+        zoals archiefonderzoek, tentoonstellingen, bibliotheekreferentie, educatieve
+        programma's, onderzoeksbeurzen, digitale collectietoegang, publieksevenementen
+        en conserveringsdiensten.
+      de: >-
+        Die Sammlung von Dienstleistungstypen, die von einer Kulturerbe-Einrichtung
+        angeboten werden, wie Archivforschung, Ausstellungen, Bibliotheksauskunft,
+        Bildungsprogramme, Forschungsstipendien, digitaler Sammlungszugang,
+        öffentliche Veranstaltungen und Konservierungsdienste.
+      fr: >-
+        L'ensemble des types de services offerts par une institution patrimoniale,
+        tels que la recherche archivistique, les expositions, l'assistance en
+        bibliothèque, les programmes éducatifs, les bourses de recherche, l'accès
+        numérique aux collections, les événements publics et les services de
+        conservation.
+      ar: >-
+        مجموعة أنواع الخدمات التي تقدمها مؤسسة حفظ التراث، مثل البحث الأرشيفي
+        والمعارض والمساعدة المكتبية والبرامج التعليمية والمنح البحثية والوصول
+        الرقمي للمجموعات والفعاليات العامة وخدمات الحفظ والصيانة.
+      id: >-
+        Kumpulan jenis layanan yang ditawarkan oleh lembaga pemelihara warisan
+        budaya, seperti penelitian arsip, pameran, bantuan perpustakaan, program
+        pendidikan, beasiswa penelitian, akses koleksi digital, acara publik,
+        dan layanan konservasi.
+      zh: >-
+        遗产保管机构提供的服务类型集合，包括档案研究、展览、图书馆参考服务、教育项目、
+        研究奖学金、数字馆藏访问、公共活动和文物保护服务。
+      es: >-
+        El conjunto de tipos de servicios ofrecidos por una institución custodio
+        del patrimonio, como investigación archivística, exposiciones, asistencia
+        bibliotecaria, programas educativos, becas de investigación, acceso digital
+        a colecciones, eventos públicos y servicios de conservación.
+    structured_aliases:
+      - literal_form: dienstportfolio
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Dienstleistungsportfolio
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: portefeuille de services
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: محفظة الخدمات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: portofolio layanan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 服务组合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cartera de servicios
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:serviceType  # schemaorg.owl:35075-35096 - "The type of service being offered" Service→Text/GovernmentBenefitsType; types individual services, not a portfolio
+    broad_mappings:
+      - dcterms:type  # dcterms.rdf:2055-2075 - "The nature or genre of the resource"; very generic typing property
+    related_mappings:
+      - schema:hasOfferCatalog  # schemaorg.owl:20356-20379 - "Indicates an OfferCatalog listing" Org/Person/Service→OfferCatalog; catalog of offers is analogous but commercially scoped
+      - schema:makesOffer  # schemaorg.owl:25353-25376 - "A pointer to products or services offered" Org/Person→Offer; commercially scoped
+      - org:purpose  # org.rdf:730-742 - "Indicates the purpose of this Organization"; service portfolio reflects organizational purpose
+    aliases:
+      - service_portfolio
+      - site_portfolio
+    examples:
+      - value: "Archival research, Public exhibitions, Educational programs, Digitization lab"
+        description: "Mixed archive-museum with digitization capability"
+      - value: "Museum exhibitions, Library reference, Research fellowships, Conservation lab"
+        description: "Combined museum-library-research institution"
+      - value: "Document access, Gallery tours, Lecture series, Online database"
+        description: "Archive with public engagement and digital services"
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        slot_uri is hc:hasPortfolio because no external ontology property captures the
+        concept of a portfolio (collection) of service types offered by an organization.
+        schema:serviceType (close_mapping) types individual services on a Service entity,
+        not a collection on an Organization.
+      - >-
+        The service categories (archival, museum, library, educational, research, digital,
+        public programs, conservation) are drawn from typical GLAM institution operations
+        and help determine whether an institution operates as a mixed-type custodian.
+      - >-
+        Values should enumerate the user-facing services offered, using controlled
+        vocabulary terms where available.

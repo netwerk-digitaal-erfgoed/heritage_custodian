@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: has_branch
+# ==============================================================================
+# Indicates a branch or sub-unit of the organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **ORG**       | `org:hasUnit`         | org.rdf:510-528            | exact   | "Indicates a unit which is part of this Organization" |
+# | **Schema.org**| `schema:subOrganization`| schemaorg.owl:36756-36760| close   | "A relationship between two organizations where the first includes the second" |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Rewrote alt_descriptions to faithful translations, added file:line refs
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_branch
+name: has_branch
+title: Has Branch
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_branch:
+    slot_uri: org:hasUnit
+    description: >-
+      To possess or maintain a subsidiary division, local office, or offshoot location that is part of the larger organization.
+    alt_descriptions:
+      nl: >-
+        Een dochterafdeling, lokaal kantoor of nevenvestiging bezitten of onderhouden die deel uitmaakt van de grotere organisatie.
+      de: >-
+        Eine Nebenabteilung, lokale Niederlassung oder Zweigstelle besitzen oder unterhalten, die Teil der größeren Organisation ist.
+      fr: >-
+        Posséder ou maintenir une division subsidiaire, un bureau local ou un emplacement annexe qui fait partie de l'organisation plus large.
+      ar: >-
+        امتلاك أو الحفاظ على قسم فرعي أو مكتب محلي أو موقع تابع يشكل جزءًا من المنظمة الأكبر.
+      id: >-
+        Memiliki atau memelihara divisi anak, kantor lokal, atau lokasi cabang yang merupakan bagian dari organisasi yang lebih besar.
+      zh: >-
+        拥有或维护作为更大组织一部分的附属部门、地方办事处或分支机构。
+      es: >-
+        Poseer o mantener una división subsidiaria, oficina local o ubicación derivada que forma parte de la organización más grande.
+    structured_aliases:
+      - literal_form: heeft filiaal
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Zweigstelle
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une succursale
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه فرع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki cabang
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有分支
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene sucursal
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_branch
+    exact_mappings:
+    close_mappings:
+      - schema:subOrganization  # schemaorg.owl:36756-36760 - "A relationship between two organizations where the first includes the second"
+    annotations:
+      custodian_types: '["*"]'

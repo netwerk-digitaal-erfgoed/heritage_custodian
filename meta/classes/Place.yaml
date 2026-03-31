@@ -1,0 +1,59 @@
+id: https://nde.nl/ontology/hc/classes/Place
+name: Place
+title: Place
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  gn: http://www.geonames.org/ontology#
+  locn: http://www.w3.org/ns/locn#
+imports:
+- ../slots/has_label
+- linkml:types
+# default_range: string
+classes:
+  Place:
+    description: >-
+      A geographic or administrative place used for containment relationships.
+      Distinguished from Location which is for precise physical locations.
+    alt_descriptions:
+      nl: Een geografische of administratieve plaats voor insluitrelaties.
+      de: Ein geografischer oder administrativer Ort für Einschließungsbeziehungen.
+      fr: Un lieu géographique ou administratif pour les relations de contenance.
+      es: Un lugar geográfico o administrativo para relaciones de contención.
+      ar: مكان جغرافي أو إداري لعلاقات الاحتواء.
+      id: Tempat geografis atau administratif untuk hubungan penahanan.
+      zh: 用于包含关系的地理或行政地点。
+    structured_aliases:
+    - literal_form: plaats
+      in_language: nl
+    - literal_form: Ort
+      in_language: de
+    - literal_form: lieu
+      in_language: fr
+    - literal_form: lugar
+      in_language: es
+    comments:
+    - Use for administrative/geographic containment (city within province).
+    - Location is for precise physical locations (address, coordinates).
+    class_uri: schema:Place
+    broad_mappings:
+    - schema:Place
+    close_mappings:
+    - gn:Feature
+    - locn:Location
+    related_mappings:
+    - schema:AdministrativeArea
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Place references applicable to all custodian types.
+      custodian_types_primary: '*'
+      specificity_score: 0.2
+      specificity_rationale: Low specificity - universal geographic concept.
+    examples:
+    - value: "Place:\n  place_name: \"Amsterdam\"\n  place_type: \"settlement\"\n  geonames_id: 2759794\n  iso_code: \"AMS\"\n  parent_place:\n    place_name: \"Noord-Holland\"\n    place_type: \"region\"\n    iso_code: \"NL-NH\"\n"
+      description: Amsterdam as a settlement within Noord-Holland.
+    - value: "Place:\n  place_name: \"Netherlands\"\n  place_type: \"country\"\n  iso_code: \"NL\"\n  geonames_id: 2750405\n"
+      description: Country-level place reference.
+    slots:
+    - has_label

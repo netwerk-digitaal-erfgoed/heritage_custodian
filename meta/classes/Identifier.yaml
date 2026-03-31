@@ -1,0 +1,91 @@
+id: https://nde.nl/ontology/hc/class/Identifier
+name: Identifier
+title: Identifier
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  adms: http://www.w3.org/ns/adms#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_schema
+- ../slots/has_score
+- ../slots/has_standard
+- ../slots/has_type
+- ../slots/has_value
+- ../slots/identified_by
+- ../slots/allocated_by
+- ../slots/allocated_through
+classes:
+  Identifier:
+    class_uri: schema:PropertyValue
+    description: >-
+      Generic scheme-and-value identification artifact used to uniquely denote
+      entities across systems.
+    alt_descriptions:
+      nl: Generiek identificatie-object met schema en waarde om entiteiten systeemoverstijgend eenduidig aan te duiden.
+      de: Generisches Identifikationsartefakt aus Schema und Wert zur eindeutigen Bezeichnung von Entitaeten ueber Systeme hinweg.
+      fr: Artefact d'identification generique compose d'un schema et d'une valeur pour designer de facon unique des entites entre systemes.
+      es: Artefacto generico de identificacion con esquema y valor para denotar entidades de forma unica entre sistemas.
+      ar: كيان تعريفي عام يتكون من مخطط وقيمة لتمييز الكيانات بشكل فريد عبر الأنظمة.
+      id: Artefak identifikasi umum berbasis skema dan nilai untuk menunjuk entitas secara unik lintas sistem.
+      zh: 由方案与取值组成、用于跨系统唯一标识实体的通用标识对象。
+    structured_aliases:
+    - literal_form: identificatie
+      in_language: nl
+    - literal_form: Kennung
+      in_language: de
+    - literal_form: identifiant
+      in_language: fr
+    - literal_form: identificador
+      in_language: es
+    - literal_form: معرّف
+      in_language: ar
+    - literal_form: pengenal
+      in_language: id
+    - literal_form: 标识符
+      in_language: zh
+    slots:
+    - has_schema
+    - has_value
+    - has_type
+    - has_standard
+    - has_score
+    close_mappings:
+    - dcterms:identifier
+    - adms:Identifier
+    - skos:notation
+
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      A generic identifier consisting of a scheme and value pair.
+      **Purpose**:
+      Base identifier class for any entity (not just heritage custodians).
+      Used when a simple scheme + value identifier is needed.
+      **For heritage custodian identifiers**: Use `CustodianIdentifier` which
+      extends this class with provenance tracking (allocation agency, standard, etc.)
+      **Schema.org Alignment**:
+      Maps to schema:PropertyValue which represents a property-value pair.
+      - propertyID → identifier_scheme
+      - value → identifier_value
+    broad_mappings:
+    - schema:PropertyValue
+  CustodianIdentifier:
+    is_a: Identifier
+    class_uri: crm:E42_Identifier
+    description: >-
+      Identifier assigned to a heritage custodian with allocation provenance,
+      issuing context, and governance traceability.
+    slots:
+    - allocated_by
+    - allocated_through
+    - identified_by
+    close_mappings:
+    - schema:identifier
+    - adms:Identifier

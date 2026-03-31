@@ -1,0 +1,118 @@
+id: https://nde.nl/ontology/hc/class/ArchiveScope
+name: ArchiveScope
+title: Archive Scope Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label
+  - ../slots/has_description
+  - ../slots/has_code
+classes:
+  ArchiveScope:
+    class_uri: skos:Concept
+    description: >-
+      Geographic or functional scope of an archive organization's collecting
+      and custodial activities, such as national, regional, local, or
+      subject-specific focus.
+    alt_descriptions:
+      nl: >-
+        Geografisch of functioneel bereik van de verzamel- en bewaaractiviteiten
+        van een archieforganisatie, zoals nationaal, regionaal, lokaal of
+        onderwerpsspecifiek.
+      de: >-
+        Geografischer oder funktioneller Umfang der Sammel- und Verwahrungsaktivitaten
+        einer Archivorganisation, wie national, regional, lokal oder themenspezifisch.
+      fr: >-
+        Portee geographique ou fonctionnelle des activites de collecte et de
+        garde d'une organisation d'archives, comme nationale, regionale, locale
+        ou specifique a un sujet.
+      es: >-
+        Alcance geografico o funcional de las actividades de coleccion y custodia
+        de una organizacion de archivos, como nacional, regional, local o
+        enfocado en un tema especifico.
+      ar: >-
+        النطاق الجغرافي أو الوظيفي لأنشطة جمع وحفظ منظمة الأرشيف، مثل
+        الوطني أو الإقليمي أو المحلي أو التركيز على موضوع محدد.
+      id: >-
+        Cakupan geografis atau fungsional dari aktivitas pengumpulan dan
+        pengawasan organisasi arsip, seperti nasional, regional, lokal,
+        atau fokus spesifik subjek.
+      zh: >-
+        档案组织收集和保管活动的地理或职能范围，如国家、区域、地方
+        或特定主题重点。
+    structured_aliases:
+    - literal_form: archiefbereik
+      in_language: nl
+    - literal_form: Archivumfang
+      in_language: de
+    - literal_form: portee d'archives
+      in_language: fr
+    - literal_form: alcance de archivo
+      in_language: es
+    - literal_form: نطاق الأرشيف
+      in_language: ar
+    - literal_form: cakupan arsip
+      in_language: id
+    - literal_form: 档案范围
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - rico:Scope
+    slots:
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      has_label:
+        required: true
+        equals_string_in:
+        - "National"
+        - "Regional"
+        - "Local"
+        - "Municipal"
+        - "Corporate"
+        - "Institutional"
+        - "Subject-Specific"
+      has_code:
+        required: true
+    comments:
+    - Classification for archive collecting scope
+    - Values: National, Regional, Local, Municipal, Corporate, Institutional, Subject-Specific
+    - Used for collection development policy documentation
+    see_also:
+    - ArchiveOrganizationType
+    examples:
+    - value:
+        has_code: "NATIONAL"
+        has_label: "National"
+        has_description: "Archive with nation-wide collecting scope"
+      description: National scope archive
+    - value:
+        has_code: "REGIONAL"
+        has_label: "Regional"
+        has_description: "Archive serving a specific geographic region"
+      description: Regional scope archive
+    - value:
+        has_code: "CORPORATE"
+        has_label: "Corporate"
+        has_description: "Archive preserving records of a single business entity"
+      description: Corporate scope archive
+    keywords:
+    - archive scope
+    - collecting scope
+    - geographic scope
+    - national
+    - regional
+    - local
+    - corporate
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Classification for archive collecting scope
+      custodian_types: "['*']"

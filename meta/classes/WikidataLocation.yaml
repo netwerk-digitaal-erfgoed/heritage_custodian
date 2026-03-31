@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/classes/WikidataLocation
+name: WikidataLocation
+title: Wikidata Location Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+  locn: http://www.w3.org/ns/locn#
+imports:
+  - linkml:types
+  - ../slots/in_country
+  - ../slots/has_coordinates
+  - ../slots/has_postal_code
+  - ../slots/located_at
+classes:
+  WikidataLocation:
+    description: >-
+      Extracted geospatial and administrative place statements for institution
+      addressing and positioning.
+    alt_descriptions:
+      nl: >-
+        Locatie-eigenschappen uit Wikidata inclusief land (P17), hoofdkantoorlocatie (P159),
+        coördinaten (P625), administratieve entiteit (P131) en postcode (P281).
+      de: >-
+        Standorteigenschaften aus Wikidata einschließlich Land (P17), Hauptsitz (P159),
+        Koordinaten (P625), Verwaltungseinheit (P131) und Postleitzahl (P281).
+      fr: >-
+        Propriétés de localisation de Wikidata incluant pays (P17), siège social (P159),
+        coordonnées (P625), entité administrative (P131) et code postal (P281).
+      es: >-
+        Propiedades de ubicación de Wikidata incluyendo país (P17), sede central (P159),
+        coordenadas (P625), entidad administrativa (P131) y código postal (P281).
+      ar: >-
+        خصائص الموقع من ويكي بيانات تشمل الدولة (P17) وموقع المقر (P159)
+        والإحداثيات (P625) والكيان الإداري (P131) والرمز البريدي (P281).
+      id: >-
+        Properti lokasi dari Wikidata termasuk negara (P17), lokasi kantor pusat (P159),
+        koordinat (P625), entitas administratif (P131), dan kode pos (P281).
+      zh: >-
+        来自维基数据的位置属性，包括国家(P17)、总部位置(P159)、
+        坐标(P625)、行政实体(P131)和邮政编码(P281)。
+    broad_mappings:
+      - schema:Place
+    close_mappings:
+      - locn:Address
+    related_mappings:
+      - geo:SpatialThing
+      - prov:Location
+    slots:
+      - in_country
+      - has_coordinates
+      - has_postal_code
+      - located_at
+    comments:
+      - Describes geographic place properties from Wikidata
+      - Captures structured location information for heritage institutions
+    keywords:
+      - wikidata
+      - location
+      - country
+      - coordinates
+      - address
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class for location extraction
+      custodian_types: "['*']"
+      wikidata_property_ids: '["P17","P159","P625","P131","P281"]'
+    structured_aliases:
+      - literal_form: wikidata-locatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wikidata-Standort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: localisation Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ubicación Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: موقع ويكي بيانات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: lokasi Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 维基数据地点信息
+        predicate: EXACT_SYNONYM
+        in_language: zh

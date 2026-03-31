@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: outbound_to
+# ==============================================================================
+# Identifies the destination or target of a movement, transmission, or link.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line                     | Mapping | Notes                                                         |
+# |----------------|----------------------|-------------------------------|---------|---------------------------------------------------------------|
+# | **Schema.org** | `schema:toLocation`  | schemaorg.owl:38043-38068     | close   | "toLocation" subProp of location; final location after action.|
+# | **CIDOC-CRM**  | `crm:P26_moved_to`  | CIDOC_CRM_v7.1.3.rdf:1792-1810 | related | E9 Move→E53 Place; physical move destination only.           |
+#
+# schema:toLocation is close but restricted to ExerciseAction, InsertAction,
+# MoveAction, TransferAction domains. Our slot is more general, covering any
+# outbound direction including shipments, links, and data transmissions.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/outbound_to
+name: outbound_to
+title: Outbound To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  outbound_to:
+    slot_uri: hc:outboundTo
+    description: >-
+      Identifies the specific destination, target, or recipient of a movement,
+      transmission, shipment, or link originating from the subject entity.
+      Records where objects, loans, or data are sent from a heritage custodian
+      to another institution or location.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke bestemming, het doel of de ontvanger van een
+        verplaatsing, verzending, zending of link die uitgaat van de
+        onderwerp-entiteit.
+      de: >-
+        Identifiziert das spezifische Ziel, den Empfänger einer Bewegung,
+        Übertragung, Sendung oder Verknüpfung, die von der Subjektentität
+        ausgeht.
+      fr: >-
+        Identifie la destination, la cible ou le destinataire spécifique d'un
+        mouvement, d'une transmission, d'un envoi ou d'un lien provenant de
+        l'entité sujet.
+      ar: >-
+        يحدد الوجهة أو الهدف أو المستلم المحدد لحركة أو إرسال أو شحنة أو
+        رابط صادر من الكيان الموضوع.
+      id: >-
+        Mengidentifikasi tujuan, target, atau penerima spesifik dari
+        perpindahan, transmisi, pengiriman, atau tautan yang berasal dari
+        entitas subjek.
+      zh: >-
+        标识从主体实体发出的移动、传输、运送或链接的特定目的地、目标或接收者。
+      es: >-
+        Identifica el destino, objetivo o destinatario específico de un
+        movimiento, transmisión, envío o enlace que se origina desde la
+        entidad sujeto.
+    structured_aliases:
+      - literal_form: uitgaand naar
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ausgehend an
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: sortant vers
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: صادر إلى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: keluar ke
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 出站至
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: saliente a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:toLocation  # schemaorg.owl:38043-38068 - final location after action; narrower domain
+    related_mappings:
+      - crm:P26_moved_to  # CIDOC_CRM_v7.1.3.rdf:1792-1810 - E9 Move→E53 Place; physical move only
+    aliases: []
+    examples:
+      - value: "British Museum"
+        description: >-
+          An outbound loan is sent to the British Museum for a temporary
+          exhibition.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Used in loan management, object movement tracking, and data
+        transmission contexts. Companion slot to inbound_from for the
+        reverse direction.

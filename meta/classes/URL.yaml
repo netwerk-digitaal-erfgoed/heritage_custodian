@@ -1,0 +1,103 @@
+id: https://nde.nl/ontology/hc/class/URL
+name: URL
+title: URL Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+  - ./URLType
+  - ../metadata
+  - ../slots/has_score  # was: template_specificity
+  - ../slots/has_type      # was: url_type
+  - ../slots/has_url       # was: url_value
+  - ../slots/in_language
+classes:
+  URL:
+    class_uri: schema:URL
+    description: >-
+      Web address value with optional classification and language context for
+      reuse across reference, access, and provenance links.
+    alt_descriptions:
+      nl: Webadres met optionele typering en taalcontext voor hergebruik in referentie-, toegangs- en herkomstkoppelingen.
+      de: Webadresse mit optionaler Typisierung und Sprachkontext zur Wiederverwendung in Referenz-, Zugriffs- und Provenienzlinks.
+      fr: Adresse web avec typage optionnel et contexte linguistique pour reutilisation dans des liens de reference, d acces et de provenance.
+      es: Direccion web con tipificacion opcional y contexto linguistico para reutilizacion en enlaces de referencia, acceso y procedencia.
+      ar: عنوان ويب مع تصنيف اختياري وسياق لغوي لإعادة الاستخدام في روابط الإحالة والوصول والمنشأ.
+      id: Alamat web dengan klasifikasi opsional dan konteks bahasa untuk dipakai ulang pada tautan referensi, akses, dan provenans.
+      zh: 带可选类型与语言上下文的网络地址值，可复用于引用、访问与来源链接。
+    structured_aliases:
+    - literal_form: webadres
+      in_language: nl
+    - literal_form: Webadresse
+      in_language: de
+    - literal_form: adresse web
+      in_language: fr
+    - literal_form: direccion web
+      in_language: es
+    - literal_form: عنوان ويب
+      in_language: ar
+    - literal_form: alamat web
+      in_language: id
+    - literal_form: 网址
+      in_language: zh
+    keywords:
+    - website
+    - api endpoint
+    - archived link
+    exact_mappings:
+      - schema:URL
+    
+    close_mappings:
+      - dcterms:URI
+    
+    related_mappings:
+      - prov:Entity
+    
+    slots:
+      - has_url         # was: url_value - migrated 2026-01-16 per Rule 53
+      - has_type        # was: url_type - migrated 2026-01-16 per Rule 53
+      - in_language
+      - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    
+    slot_usage:
+      has_url:  # was: url_value - migrated 2026-01-16 per Rule 53
+        range: uri
+        required: true
+      has_type:  # was: url_type - migrated 2026-01-16 per Rule 53
+        range: URLType
+        required: false
+      has_score:
+#         range: string
+        required: false
+      in_language:
+#         range: string
+        required: false
+        pattern: "^[a-z]{2}(-[A-Z]{2})?$"
+    
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: URLs apply to all heritage custodian types.
+      custodian_types_primary: null
+      specificity_score: 0.15
+      specificity_rationale: Generic URL class applicable across all contexts.
+    
+    examples:
+      - value: |
+          has_url: "https://www.rijksmuseum.nl/"
+          has_type: website
+          in_language: nl
+      - value: |
+          has_url: "https://api.rijksmuseum.nl/api/nl/collection"
+          has_type: api
+          in_language: nl
+      - value: |
+          has_url: "https://web.archive.org/web/20240101/https://example.org/"
+          has_type: webarchive

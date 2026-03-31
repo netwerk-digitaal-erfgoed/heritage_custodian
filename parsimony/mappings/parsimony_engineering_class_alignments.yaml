@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/parsimony/mappings/parsimony-engineering-class-alignments
+name: parsimony_engineering_class_alignments
+title: Semantic to Engineering Class Alignments
+description: >-
+  Detailed class-level bridge between semantic hypernyms and engineering
+  realizations.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../classes/CustodialEntity
+  - ../classes/Holding
+  - ../classes/Observation
+  - ../classes/SourceResource
+  - ../classes/PlaceContext
+  - ../classes/Designation
+  - ../classes/Classification
+  - ../classes/LegalStatus
+  - ../classes/EncompassingBody
+  - ../../../modules/classes/Custodian
+  - ../../../modules/classes/CustodianCollection
+  - ../../../modules/classes/CustodianObservation
+  - ../../../modules/classes/CustodianPlace
+  - ../../../modules/classes/CustodianLegalStatus
+  - ../../../modules/classes/CustodianNameConsensus
+  - ../../../modules/classes/CustodianSourceFile
+  - ../../../modules/classes/EncompassingBody
+comments:
+  - >-
+    CLASS ALIGNMENT: CustodialEntity -> Custodian is a narrow mapping. The
+    semantic node stands above the engineering hub plus narrower institutional
+    archive and custodian subtypes such as CustodianArchive, NationalArchives,
+    MunicipalArchive, UniversityArchive, ChurchArchive, BankArchive,
+    CompanyArchives, and CommunityArchive.
+  - >-
+    CLASS ALIGNMENT: Holding -> CustodianCollection is a narrow mapping.
+    The semantic node also absorbs engineering type hubs and narrower record-set
+    realizations such as RecordSetTypes, CustodianArchiveRecordSetType,
+    MuseumArchiveRecordSetType, FilmArchiveRecordSetType, and
+    ProvincialArchiveRecordSetType.
+  - >-
+    CLASS ALIGNMENT: Observation -> CustodianObservation is a narrow mapping,
+    but the engineering realization is split across the abstract Observation class
+    and concrete evidence classes such as CustodianObservation, PersonObservation,
+    and WebObservation. Observation now directly indicates semantic targets via
+    the indicates predicate, absorbing the former Reconstruction hub. Engineering
+    reconstruction products (CustodianLegalStatus, CustodianNameConsensus,
+    CustodianPlace, CustodianLegalNameClaim) are what observations indicate.
+  - >-
+    CLASS ALIGNMENT: LegalStatus -> CustodianLegalStatus is a narrow mapping.
+    The semantic node captures formal legal standing and statutory classification,
+    while the engineering class adds operational fields like legal form,
+    jurisdiction, and scores.
+  - >-
+    CLASS ALIGNMENT: EncompassingBody -> engineering EncompassingBody is a narrow
+    mapping. The semantic node captures the concept of external organizations
+    that frame or coordinate custodians, while the engineering abstract class
+    adds operational subtypes (UmbrellaOrganisation, NetworkOrganisation, etc.)
+    and detailed governance slots.
+  - >-
+    CLASS ALIGNMENT: SourceResource -> CustodianSourceFile is a narrow mapping.
+    The engineering class acts as a root source bundle, while the semantic class
+    remains a broader documentary carrier concept also used with engineering
+    source-bearing slots such as has_source and has_publisher.
+  - >-
+    CLASS ALIGNMENT: Agent is only partly realized through standalone engineering
+    classes. In the current engineering ontology, agent semantics are concentrated
+    in Custodian plus role-bearing slots and provenance-bearing classes rather than
+    a large dedicated agent taxonomy.
+  - >-
+    CLASS ALIGNMENT: Activity is currently realized most clearly through
+    WebObservation and through provenance slots that connect activities to
+    observations and their indicated targets. The semantic layer keeps one broader
+    activity node rather than mirroring several workflow-specific engineering forms.
+  - >-
+    CLASS ALIGNMENT: PlaceContext -> CustodianPlace is a narrow mapping. The
+    engineering model adds reconstruction provenance and locality detail absent from
+    the semantic layer.
+  - >-
+    CLASS ALIGNMENT: Designation bridges to engineering identifier-bearing
+    structures through CustodianName, CustodianLegalNameClaim, and slots such as
+    identified_by rather than through a single exact engineering class.
+  - >-
+    CLASS ALIGNMENT: Classification bridges to engineering type classes and enums,
+    including CustodianType, ArchiveOrganizationType, CollectionType,
+    RecordSetTypes, DigitalPlatformTypes, and LibraryType.

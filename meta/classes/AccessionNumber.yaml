@@ -1,0 +1,98 @@
+id: https://nde.nl/ontology/hc/class/AccessionNumber
+name: AccessionNumber
+title: Accession Number
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/Identifier
+  - ../slots/has_description
+  - ../slots/has_label
+classes:
+  AccessionNumber:
+    description: >-
+      Unique identifier assigned to an object or record upon formal incorporation
+      into a heritage institution's collection, following institutional numbering
+      conventions (e.g., year.sequence, donor.collection.item).
+    alt_descriptions:
+      nl: >-
+        Unieke identificator die wordt toegekend aan een object of record bij de
+        formele opname in de collectie van een erfgoedinstelling, volgens
+        institutionele nummeringsconventies.
+      de: >-
+        Eindeutiger Identifikator, der einem Objekt oder Dokument bei der formalen
+        Aufnahme in die Sammlung einer Kulturerbeeinrichtung zugewiesen wird,
+        gemaess institutionellen Nummerierungskonventionen.
+      fr: >-
+        Identifiant unique attribue a un objet ou document lors de son incorporation
+        formelle dans la collection d'une institution patrimoniale, selon les
+        conventions de numerotation institutionnelles.
+      es: >-
+        Identificador unico asignado a un objeto o documento al incorporarse
+        formalmente a la coleccion de una institucion patrimonial, siguiendo las
+        convenciones de numeracion institucionales.
+      ar: >-
+        معرف فريد يخصص لشيء أو سجل عند إدماجه رسميًا في مجموعة مؤسسة تراثية،
+        وفقًا لاتفاقيات الترقيم المؤسسية.
+      id: >-
+        Pengenal unik yang ditetapkan untuk objek atau rekod saat dimasukkan secara
+        formal ke dalam koleksi lembaga warisan, mengikuti konvensi penomoran
+        institusional.
+      zh: >-
+        物品或记录正式纳入遗产机构馆藏时分配的唯一标识符，遵循机构编号惯例。
+    examples:
+    - value:
+        has_label: "2024.001.001"
+        has_description: First item in first accession of 2024
+      description: Year-based accession numbering
+    - value:
+        has_label: "MS-1234"
+        has_description: Manuscript collection identifier
+      description: Collection-based accession numbering
+    - value:
+        has_label: "DON.2023.SMITH.005"
+        has_description: Fifth item from Smith donation in 2023
+      description: Donor-based accession numbering
+    is_a: Identifier
+    class_uri: rico:Identifier
+    slots:
+    - has_label
+    - has_description
+    structured_aliases:
+    - literal_form: inventarisnummer
+      in_language: nl
+    - literal_form: Zugangsnummer
+      in_language: de
+    - literal_form: numero d'accession
+      in_language: fr
+    - literal_form: numero de adquisicion
+      in_language: es
+    - literal_form: رقم الإدخال
+      in_language: ar
+    - literal_form: nomor akses
+      in_language: id
+    - literal_form: 入藏编号
+      in_language: zh
+    keywords:
+    - inventory number
+    - catalog number
+    - object ID
+    - collection identifier
+    - registration number
+    broad_mappings:
+    - crm:E42_Identifier
+    - skos:Concept
+    - rico:Identifier
+    comments:
+    - Migrated from has_accession_number slot per Rule 53
+    - Format varies by institution (year-sequence, donor-collection, etc.)
+    - Key to provenance tracking and collection management
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to accession identifiers
+      custodian_types: "['*']"

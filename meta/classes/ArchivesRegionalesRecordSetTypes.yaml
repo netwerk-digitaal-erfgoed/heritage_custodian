@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/ArchivesRegionalesRecordSetTypes
+name: ArchivesRegionalesRecordSetTypes
+title: Archives Régionales Record Set Types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./ArchivesRegionalesRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  RegionalAdministrationFonds:
+    is_a: ArchivesRegionalesRecordSetType
+    class_uri: hc:RegionalAdministrationFonds
+    description: >-
+      Provenance-based aggregation of subnational public-authority documentation
+      in France, including council deliberations, planning files, and policy records.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie van subnationale
+        publieke autoriteiten in Frankrijk, inclusief raadsbesluiten,
+        planningsdossiers en beleidsarchieven.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen subnationaler
+        oeffentlicher Behoerden in Frankreich, einschliesslich
+        Ratsberatungen, Planungsunterlagen und Politikdokumenten.
+      fr: >-
+        Agregation fondee sur la provenance de documentation d'autorites
+        publiques infranationales en France, comprenant deliberations du conseil,
+        dossiers de planification et archives de politique publique.
+      es: >-
+        Agregacion basada en procedencia de documentacion de autoridades
+        publicas subnacionales en Francia, incluida la deliberacion del consejo,
+        expedientes de planificacion y registros de politicas.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق سلطات عامة دون وطنية في فرنسا،
+        بما في ذلك مداولات المجلس وملفات التخطيط وسجلات السياسات.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi otoritas publik
+        subnasional di Prancis, termasuk deliberasi dewan,
+        berkas perencanaan, dan catatan kebijakan.
+      zh: >-
+        基于来源原则聚合法国次国家公共机构形成的文献，包括议会审议、规划档案与政策记录。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    structured_aliases:
+      - literal_form: regionaal-bestuursfonds
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Regionalverwaltungsfonds
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds d'administration regionale
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de administracion regional
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: صندوق الإدارة الإقليمية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds administrasi regional
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 地区行政档案
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - regional administration
+      - government records
+      - fonds
+      - france
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:RegionalAdministrationFonds
+      has_custodian:
+        equals_string: hc:ArchivesRegionales
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ArchivesRegionales custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Fonds organizational principle
+      - Primary fonds type for French regional government records
+      - Note preserved: Earlier modeling allowed hc:ArchiveOrganizationType as a fallback has_type value.
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific fonds type for French regional administration
+      custodian_types: "['ArchivesRegionales']"

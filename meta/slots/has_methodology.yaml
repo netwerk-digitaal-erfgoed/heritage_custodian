@@ -1,0 +1,122 @@
+# ==============================================================================
+# LinkML Slot Definition: has_methodology
+# ==============================================================================
+# To be guided by or based upon a comprehensive theoretical framework or system
+# of principles that determines the methods and practices applied in a specific
+# discipline or project.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:hadPlan`        | prov.ttl:658-660     | exact   | Plan adopted by Agent in Activity  |
+#
+# HIERARCHY: prov:hadPlan has no rdfs:subPropertyOf declaration
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Changed slot_uri from hc:hasMethodology to prov:hadPlan (exact mapping)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_methodology
+name: has_methodology
+title: Has Methodology
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  has_methodology:
+    description: >-
+      To be guided by or based upon a comprehensive theoretical framework or
+      system of principles that determines the methods and practices applied
+      in a specific discipline or project.
+    alt_descriptions:
+      nl: >-
+        Om geleid of gebaseerd te zijn op een uitgebreid theoretisch kader of
+        systeem van principes dat de methoden en praktijken bepaalt die worden
+        toegepast in een specifieke discipline of project.
+      de: >-
+        Sich von einem umfassenden theoretischen Rahmen oder Prinzipiensystem
+        leiten zu lassen oder darauf zu basieren, das die in einer bestimmten
+        Disziplin oder einem Projekt angewandten Methoden und Praktiken bestimmt.
+      fr: >-
+        Être guidé par ou basé sur un cadre théorique complet ou un système de
+        principes qui détermine les méthodes et pratiques appliquées dans une
+        discipline ou un projet spécifique.
+      ar: >-
+        أن يسترشد أو يستند إلى إطار نظري شامل أو نظام مبادئ يحدد الأساليب
+        والممارسات المطبقة في تخصص أو مشروع معين.
+      id: >-
+        Dipandu oleh atau berdasarkan kerangka teoritis komprehensif atau
+        sistem prinsip yang menentukan metode dan praktik yang diterapkan
+        dalam disiplin atau proyek tertentu.
+      zh: >-
+        以确定特定学科或项目中应用的方法和实践的综合理论框架或原则体系为指导或基础。
+      es: >-
+        Estar guiado por o basado en un marco teórico integral o sistema de
+        principios que determina los métodos y prácticas aplicados en una
+        disciplina o proyecto específico.
+    structured_aliases:
+      - literal_form: methodologie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Methodik
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: méthodologie
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منهجية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: metodologi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 方法论
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: metodología
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    # range: Methodology
+    slot_uri: prov:hadPlan
+    exact_mappings:
+    annotations:
+      rule_53_compliant: true
+      link_branch: 2
+      migration_source: unique_object_count, unique_face_count
+      custodian_types: '["*"]'
+    aliases:
+    - has_or_had_methodology
+    examples:
+    - value: hc:Methodology/entity-resolution
+      description: Entity resolution methodology for face clustering
+    - value: hc:Methodology/manual-count
+      description: Manual counting methodology by human annotator
+    comments:
+      - |
+        **PROV-O ALIGNMENT**:
+        Maps to `prov:hadPlan` which indicates "The optional Plan adopted by
+        an Agent in Association with some Activity."
+      - |
+        **WHY THIS MATTERS**:
+        A "unique face count" of 15 has different meanings depending on methodology:
+        - ENTITY_RESOLUTION: 15 distinct individuals identified via face clustering
+        - OBJECT_TRACKING: 15 tracked face instances (may include same person)
+        - MANUAL_COUNT: 15 faces counted by human annotator
+      - |
+        **RULE 53 COMPLIANT**: Created for unique_object_count and unique_face_count
+        migration per slot_fixes.yaml revision (lines 1951-1994).
+      - |
+        **RULE 39 COMPLIANT**: RiC-O style temporal naming (has_or_had_*) in alias.

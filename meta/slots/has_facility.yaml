@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: has_facility
+# ==============================================================================
+# To possess or provide access to a specific physical infrastructure, amenity,
+# building, or dedicated space designed to serve a particular function or
+# purpose.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line               | Mapping | Notes                                           |
+# |----------------|---------------------------|-------------------------|---------|-------------------------------------------------|
+# | **Schema.org** | `schema:amenityFeature`   | schemaorg.owl:7869-7893 | related | Accommodation-specific characteristic/service   |
+#
+# schema:amenityFeature is about characteristics or services of an Accommodation
+# (domain: Place/LodgingBusiness/Accommodation/FloorPlan). A "facility" is a
+# specific physical infrastructure or dedicated space, which is semantically
+# different from an amenity feature.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, demoted amenityFeature exact→related
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_facility
+name: has_facility
+title: has_facility
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_facility:
+    name: has_facility
+    title: has_facility
+    description: >-
+      To possess or provide access to a specific physical infrastructure,
+      amenity, building, or dedicated space designed to serve a particular
+      function or purpose.
+    alt_descriptions:
+      nl: >-
+        Een specifieke fysieke infrastructuur, voorziening, gebouw of
+        toegewijde ruimte bezitten of toegang bieden tot, ontworpen om een
+        bepaalde functie of doel te dienen.
+      de: >-
+        Eine spezifische physische Infrastruktur, Einrichtung, ein Gebäude
+        oder einen dedizierten Raum besitzen oder Zugang dazu bieten, der
+        dazu bestimmt ist, eine bestimmte Funktion oder einen bestimmten
+        Zweck zu erfüllen.
+      fr: >-
+        Posséder ou fournir l'accès à une infrastructure physique spécifique,
+        une commodité, un bâtiment ou un espace dédié conçu pour remplir une
+        fonction ou un objectif particulier.
+      ar: >-
+        امتلاك أو توفير الوصول إلى بنية تحتية مادية محددة أو مرفق أو مبنى أو
+        مساحة مخصصة مصممة لخدمة وظيفة أو غرض معين.
+      id: >-
+        Memiliki atau menyediakan akses ke infrastruktur fisik tertentu,
+        fasilitas, bangunan, atau ruang khusus yang dirancang untuk melayani
+        fungsi atau tujuan tertentu.
+      zh: >-
+        拥有或提供对特定物理基础设施、设施、建筑物或专用空间的访问，
+        该设施旨在服务于特定功能或目的。
+      es: >-
+        Poseer o proporcionar acceso a una infraestructura física específica,
+        instalación, edificio o espacio dedicado diseñado para cumplir una
+        función o propósito particular.
+    structured_aliases:
+      - literal_form: faciliteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Einrichtung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: installation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مرفق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fasilitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 设施
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: instalación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasFacility
+    range: string # uriorcurie
+    # range: Facility
+    multivalued: true
+    aliases:
+      - has_or_had_facility
+      - has_or_had_hands_on_facility
+      - has_hands_on_facility
+      - contains_storage
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7893 - Accommodation-specific characteristic/service

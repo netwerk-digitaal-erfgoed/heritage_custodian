@@ -1,0 +1,255 @@
+id: https://nde.nl/ontology/hc/class/DigitalArchiveRecordSetTypes
+name: DigitalArchiveRecordSetTypes
+title: DigitalArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./DigitalArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  DigitalObjectCollection:
+    is_a: DigitalArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of born-native electronic files and associated
+      technical metadata captured from creation or transfer workflows.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van born-native elektronische bestanden
+        en bijbehorende technische metadata uit creatie- of overdrachtsprocessen.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus born-nativen elektronischen Dateien
+        und zugehoerigen technischen Metadaten aus Erstellungs- oder Transferablaeufen.
+      fr: >-
+        Ensemble documentaire reuni de fichiers electroniques nes-numeriques
+        et de metadonnees techniques associees issues de creation ou de transfert.
+      es: >-
+        Cuerpo documental reunido de archivos electronicos nativos
+        y metadatos tecnicos asociados de flujos de creacion o transferencia.
+      ar: >-
+        جسم وثائقي مُجمع من ملفات إلكترونية مولودة رقمياً وبيانات وصفية
+        تقنية مرتبطة ناتجة عن مسارات الإنشاء أو النقل.
+      id: >-
+        Kumpulan dokumenter terhimpun dari berkas elektronik lahir-native
+        dan metadata teknis terkait dari alur pembuatan atau transfer.
+      zh: >-
+        汇集数字原生电子文件及其技术元数据的文献整体，来自创建或移交流程。
+    structured_aliases:
+      - literal_form: born-native bestandenverzameling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung born-nativer Dateien
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de fichiers nes-numeriques
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de archivos nativos
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة ملفات رقمية أصلية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi berkas lahir-native
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 数字原生文件汇编
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Scope includes both content files and preservation-critical technical metadata.
+    keywords:
+      - born-native files
+      - technical metadata
+      - transfer workflow
+      - electronic records
+    examples:
+      - value:
+          has_type: hc:DigitalObjectCollection
+          has_custodian: hc:DigitalArchive
+          has_note: Email exports with attachments and header metadata.
+        description: Born-native electronic files assembled with capture metadata.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DigitalObjectCollection
+      has_custodian:
+        equals_string: hc:DigitalArchive
+
+  DigitizedCollection:
+    is_a: DigitalArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of electronic surrogates produced by converting
+      analog carriers, including derived files and capture metadata.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van elektronische surrogaten verkregen
+        door conversie van analoge dragers, inclusief afgeleide bestanden en capture-metadata.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus elektronischen Surrogaten aus der
+        Konversion analoger Traeger, einschliesslich Derivaten und Erfassungsmetadaten.
+      fr: >-
+        Ensemble documentaire reuni de substituts electroniques issus de la
+        conversion de supports analogiques, avec derives et metadonnees de capture.
+      es: >-
+        Cuerpo documental reunido de sustitutos electronicos obtenidos por
+        conversion de soportes analogicos, con derivados y metadatos de captura.
+      ar: >-
+        جسم وثائقي مُجمع من بدائل إلكترونية ناتجة عن تحويل حوامل تناظرية،
+        بما في ذلك الملفات المشتقة وبيانات الالتقاط الوصفية.
+      id: >-
+        Kumpulan dokumenter terhimpun dari surrogate elektronik hasil konversi
+        media analog, termasuk turunan berkas dan metadata perekaman.
+      zh: >-
+        汇集由模拟载体转换生成的电子替代件及其衍生文件与采集元数据的文献整体。
+    structured_aliases:
+      - literal_form: collectie digitale surrogaten
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung digitaler Surrogate
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de substituts electroniques
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de sustitutos electronicos
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة بدائل رقمية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi surrogate elektronik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 电子替代件汇编
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Derived files (e.g., access copies) may be kept alongside master surrogates.
+    keywords:
+      - analog conversion
+      - electronic surrogate
+      - capture metadata
+      - derived file
+    examples:
+      - value:
+          has_type: hc:DigitizedCollection
+          has_custodian: hc:DigitalArchive
+          has_note: Scans of paper registers with OCR derivatives.
+        description: Converted-from-analog surrogates assembled for access and preservation.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DigitizedCollection
+      has_custodian:
+        equals_string: hc:DigitalArchive
+
+  WebArchiveCollection:
+    is_a: DigitalArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of harvested online-site snapshots,
+      including crawl outputs, capture metadata, and replay derivatives.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van geoogste website-snapshots,
+        inclusief crawl-uitvoer, capture-metadata en replay-afgeleiden.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus geernteten Website-Snapshots,
+        einschliesslich Crawl-Ausgaben, Erfassungsmetadaten und Replay-Derivaten.
+      fr: >-
+        Ensemble documentaire reuni de captures de sites en ligne,
+        incluant sorties de moissonnage, metadonnees de capture et derives de relecture.
+      es: >-
+        Cuerpo documental reunido de instantaneas de sitios en linea,
+        con salidas de rastreo, metadatos de captura y derivados de reproduccion.
+      ar: >-
+        جسم وثائقي مُجمع من لقطات لمواقع عبر الإنترنت، بما في ذلك
+        مخرجات الزحف وبيانات الالتقاط الوصفية ومشتقات العرض.
+      id: >-
+        Kumpulan dokumenter terhimpun dari snapshot situs daring,
+        termasuk keluaran crawl, metadata tangkapan, dan turunan pemutaran.
+      zh: >-
+        汇集采集的在线站点快照文献整体，包含抓取输出、采集元数据与回放衍生物。
+    structured_aliases:
+      - literal_form: collectie website-oogst
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung von Website-Snapshots
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de captures de sites
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de capturas de sitios
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة لقطات مواقع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi snapshot situs
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 站点快照汇编
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Replay derivatives may be generated to support access without altering capture outputs.
+    keywords:
+      - site snapshot
+      - crawl output
+      - capture metadata
+      - replay derivative
+    examples:
+      - value:
+          has_type: hc:WebArchiveCollection
+          has_custodian: hc:DigitalArchive
+          has_note: Periodic crawls of public websites with replay packages.
+        description: Harvested online-site snapshots assembled with crawl metadata.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:WebArchiveCollection
+      has_custodian:
+        equals_string: hc:DigitalArchive

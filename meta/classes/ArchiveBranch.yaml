@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/ArchiveBranch
+name: ArchiveBranch
+title: Archive Branch Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label
+  - ../slots/has_description
+  - ../slots/branch_of
+  - ../slots/has_type
+classes:
+  ArchiveBranch:
+    class_uri: org:OrganizationalUnit
+    description: >-
+      Decentralized or satellite location of an archive organization,
+      operating as part of a larger archival institution while serving
+      specific geographic or functional communities.
+    alt_descriptions:
+      nl: >-
+        Gedecentraliseerde of satellietlocatie van een archieforganisatie,
+        die opereert als onderdeel van een grotere archiefinstelling en
+        specifieke geografische of functionele gemeenschappen bedient.
+      de: >-
+        Dezentraler oder Satellitenstandort einer Archivorganisation, der
+        als Teil einer größeren Archivinstitution arbeitet und spezifische
+        geografische oder funktionale Gemeinschaften bedient.
+      fr: >-
+        Emplacement decentra ou satellite d'une organisation d'archives,
+        fonctionnant comme partie d'une institution archivistique plus grande
+        tout en servant des communautes geographiques ou fonctionnelles specifiques.
+      es: >-
+        Ubicacion descentralizada o satelite de una organizacion de archivos,
+        que opera como parte de una institucion archivistica mas grande mientras
+        sirve a comunidades geograficas o funcionales especificas.
+      ar: >-
+        موقع لامركزي أو تابع لمنظمة أرشيف، يعمل كجزء من مؤسسة أرشيفية
+        أكبر بينما يخدم مجتمعات جغرافية أو وظيفية محددة.
+      id: >-
+        Lokasi terdesentralisasi atau satelit dari organisasi arsip, yang
+        beroperasi sebagai bagian dari institusi arsip yang lebih besar
+        sambil melayani komunitas geografis atau fungsional tertentu.
+      zh: >-
+        档案组织的分散或卫星位置，作为较大档案机构的一部分运营，
+        同时服务特定的地理或功能社区。
+    structured_aliases:
+    - literal_form: archiefvestiging
+      in_language: nl
+    - literal_form: Archivzweigstelle
+      in_language: de
+    - literal_form: succursale d'archives
+      in_language: fr
+    - literal_form: sucursal de archivo
+      in_language: es
+    - literal_form: فرع الأرشيف
+      in_language: ar
+    - literal_form: cabang arsip
+      in_language: id
+    - literal_form: 档案分馆
+      in_language: zh
+    close_mappings:
+    - schema:ArchiveOrganization
+    - rico:CorporateBody
+    broad_mappings:
+    - skos:Concept
+    - org:OrganizationalUnit
+    slots:
+    - has_label
+    - has_description
+    - branch_of
+    - has_type
+    slot_usage:
+      branch_of:
+        range: ArchiveOrganizationType
+        required: true
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+    comments:
+    - Represents satellite or regional branches of archive organizations
+    - Uses W3C ORG ontology OrganizationalUnit pattern
+    - Always linked to parent archive via branch_of
+    - May have distinct holdings or serve specific communities
+    see_also:
+    - ArchiveOrganizationType
+    - ArchivalLibrary
+    examples:
+    - value:
+        has_label: "Regional Archive Branch"
+        branch_of: hc:NationalArchive
+        has_type: hc:ArchiveOrganizationType
+      description: Regional branch of a national archive
+    keywords:
+    - archive branch
+    - satellite location
+    - regional archive
+    - organizational unit
+    - decentralized
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Specific to archive organizational branches
+      custodian_types: "['Archive']"

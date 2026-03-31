@@ -1,0 +1,287 @@
+id: https://nde.nl/ontology/hc/class/ScientificArchiveRecordSetTypes
+name: ScientificArchiveRecordSetTypes
+title: ScientificArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./ScientificArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  ResearchProjectFonds:
+    is_a: ScientificArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation generated in structured
+      inquiry programs, including planning, execution, and reporting traces.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie uit gestructureerde
+        onderzoeksprogramma's, inclusief planning, uitvoering en rapportage.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen aus strukturierten
+        Forschungsvorhaben, einschliesslich Planung, Durchfuehrung und Berichten.
+      fr: >-
+        Agrégation fondée sur la provenance des documents produits dans des
+        programmes d'enquête structurés, avec planification, exécution et rapports.
+      es: >-
+        Agregación basada en procedencia de documentación generada en programas
+        de investigación estructurados, con planificación, ejecución e informes.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق ناتجة عن برامج بحث منهجية، بما يشمل
+        التخطيط والتنفيذ ومسارات إعداد التقارير.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi dari program penelitian
+        terstruktur, termasuk perencanaan, pelaksanaan, dan pelaporan.
+      zh: >-
+        基于来源原则聚合结构化研究项目形成的文献，涵盖规划、实施与报告环节。
+    comments:
+    - RiC-O alignment note preserved: specialized rico:RecordSetType following rico-rst:Fonds organization principle.
+    - Includes grant files, work plans, progress logs, and final reporting outputs.
+    - Preserves the originating inquiry program as the primary organizing principle.
+    - 'Preserved from prior description: Fonds containing scientific research project records.'
+    keywords:
+    - project documentation
+    - inquiry workflow
+    - grant administration
+    - research reporting
+    examples:
+    - value:
+        has_type: hc:ResearchProjectFonds
+        has_custodian: hc:ScientificArchive
+        has_note: Grant proposals, protocol revisions, and final deliverables.
+      description: Documentation of a complete inquiry program grouped by provenance
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - ScientificArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ResearchProjectFonds
+      has_custodian:
+        equals_string: hc:ScientificArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ScientificArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    structured_aliases:
+    - literal_form: onderzoeksprogrammafonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Forschungsvorhabenfonds
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds de programme de recherche
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo de programa de investigacion
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رصيد برنامج بحثي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds program penelitian
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 研究项目全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  ScientistPapersCollection:
+    is_a: ScientificArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of personal and professional manuscripts,
+      correspondence, and working files created by individual investigators.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van persoonlijke en professionele
+        manuscripten, correspondentie en werkdossiers van individuele onderzoekers.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus persoenlichen und beruflichen
+        Manuskripten, Korrespondenz und Arbeitsunterlagen einzelner Forschender.
+      fr: >-
+        Ensemble documentaire réuni de manuscrits personnels et professionnels,
+        de correspondances et de dossiers de travail de chercheurs individuels.
+      es: >-
+        Cuerpo documental reunido de manuscritos personales y profesionales,
+        correspondencia y expedientes de trabajo de investigadores individuales.
+      ar: >-
+        جسم وثائقي مُجمع يضم مخطوطات شخصية ومهنية ومراسلات وملفات عمل
+        أنشأها باحثون أفراد.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi manuskrip pribadi dan profesional,
+        korespondensi, serta berkas kerja yang dibuat peneliti perorangan.
+      zh: >-
+        汇集个体研究者形成的个人与职业手稿、往来函件及工作档案的文献整体。
+    comments:
+    - RiC-O alignment note preserved: specialized rico:RecordSetType following rico-rst:Collection organization principle.
+    - May combine born-digital and analog material from multiple career stages.
+    - Frequently arranged by subject themes, correspondents, or publication history.
+    - "Preserved from prior description: Collection of scientists' personal papers."
+    keywords:
+    - personal manuscripts
+    - professional correspondence
+    - investigator papers
+    - working files
+    examples:
+    - value:
+        has_type: hc:ScientistPapersCollection
+        has_custodian: hc:ScientificArchive
+        has_note: Draft articles, correspondence with collaborators, and lecture notes.
+      description: Assembled personal-professional documentation of an individual investigator
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - ScientificArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ScientistPapersCollection
+      has_custodian:
+        equals_string: hc:ScientificArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ScientificArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    structured_aliases:
+    - literal_form: verzameling onderzoekerpapieren
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlung von Forschernachlaessen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection de papiers de chercheur
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: coleccion de papeles de investigacion personal
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مجموعة أوراق باحث فردي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi dokumen pribadi peneliti
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 科研人员文书汇编
+      predicate: EXACT_SYNONYM
+      in_language: zh
+  LaboratoryRecordSeries:
+    is_a: ScientificArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of bench logs, measurement traces,
+      instrument output, and procedural observations from experimental work.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van labjournaals, meetsporen,
+        instrumentuitvoer en procedurele observaties uit experimenteel werk.
+      de: >-
+        Geordnete Dokumentationsfolge aus Laborjournalen, Messspuren,
+        Instrumentausgaben und prozeduralen Beobachtungen experimenteller Arbeit.
+      fr: >-
+        Sequence documentaire ordonnee de journaux de paillasse, traces de
+        mesure, sorties instrumentales et observations procedurales experimentales.
+      es: >-
+        Secuencia documental ordenada de cuadernos de laboratorio, trazas de
+        medicion, salidas instrumentales y observaciones de procedimiento.
+      ar: >-
+        تسلسل وثائقي منظم لسجلات المختبر وآثار القياس ومخرجات الأجهزة
+        والملاحظات الإجرائية الناتجة عن العمل التجريبي.
+      id: >-
+        Urutan dokumenter teratur dari log laboratorium, jejak pengukuran,
+        keluaran instrumen, dan observasi prosedural pekerjaan eksperimen.
+      zh: >-
+        由实验工作形成的实验记录、测量轨迹、仪器输出与流程观察构成的有序文献序列。
+    comments:
+    - RiC-O alignment note preserved: specialized rico:RecordSetType following rico-rst:Series organization principle.
+    - Captures repeated method execution and supports reproducibility auditing.
+    - Often arranged chronologically by run, sample batch, or instrument session.
+    - 'Preserved from prior description: Series containing laboratory notebooks and experimental data.'
+    keywords:
+    - bench logs
+    - measurement trace
+    - instrument output
+    - reproducibility evidence
+    examples:
+    - value:
+        has_type: hc:LaboratoryRecordSeries
+        has_custodian: hc:ScientificArchive
+        has_note: Notebook pages linked to instrument run exports and sample IDs.
+      description: Chronological experimental workflow documentation sequence
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - ScientificArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:LaboratoryRecordSeries
+      has_custodian:
+        equals_string: hc:ScientificArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ScientificArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    structured_aliases:
+    - literal_form: reeks laboratoriumwerkdocumentatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Folge experimenteller Laborunterlagen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: sequence de documentation experimentale de laboratoire
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: secuencia de documentacion experimental de laboratorio
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة توثيق العمل المخبري التجريبي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: urutan dokumentasi kerja laboratorium eksperimen
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 实验室流程记录序列
+      predicate: EXACT_SYNONYM
+      in_language: zh

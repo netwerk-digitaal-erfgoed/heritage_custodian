@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: has_flag
+# ==============================================================================
+# Boolean indicator of whether an entity is associated with a particular type
+# of vexillological symbol (flag, banner, or standard).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                  | File/Line                      | Mapping         | Notes                                                              |
+# |-------------|---------------------------|--------------------------------|-----------------|--------------------------------------------------------------------|
+# | **CRM**     | `crm:P65_shows_visual_item` | CIDOC_CRM_v7.1.3.rdf:2684-2687 | related_mapping | Links physical thing to visual symbol (E36). Object property.     |
+#
+# No standard ontology defines a boolean property for flag/banner association.
+# CIDOC-CRM P65 is the closest conceptual match but has a fundamentally
+# different range (E36 Visual Item vs boolean). Keeping hc: namespace.
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_flag
+name: has_flag
+title: Has Flag
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_flag:
+    slot_uri: hc:hasFlag
+    description: >-
+      Boolean indicator of whether an entity such as a country, region,
+      organization, building, or heritage object is associated with a
+      particular type of vexillological symbol — a flag, banner, or standard
+      that serves as its visual identifier. Used in heritage contexts to
+      record the presence or historical use of specific flags.
+    alt_descriptions:
+      nl: >-
+        Booleaanse indicator die aangeeft of een entiteit geassocieerd is met
+        een bepaald type vlag, banier of standaard als visueel symbool.
+      de: >-
+        Boolescher Indikator, ob eine Entität mit einer bestimmten Art von
+        Flagge, Banner oder Standarte als visuellem Symbol verbunden ist.
+      fr: >-
+        Indicateur booléen indiquant si une entité est associée à un type
+        particulier de drapeau, bannière ou étendard servant de symbole visuel.
+      ar: >-
+        مؤشر منطقي يحدد ما إذا كان كيان ما مرتبطًا بنوع معين من الأعلام أو
+        الرايات أو المعايير كرمز بصري.
+      id: >-
+        Indikator boolean yang menunjukkan apakah suatu entitas dikaitkan dengan
+        jenis bendera, panji, atau standar tertentu sebagai simbol visual.
+      zh: >-
+        布尔指示器，表示某实体是否与特定类型的旗帜、旗帜或标准作为其视觉
+        标识相关联。
+      es: >-
+        Indicador booleano que señala si una entidad está asociada con un tipo
+        particular de bandera, estandarte o insignia como símbolo visual.
+    structured_aliases:
+      - literal_form: heeft vlag
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Flagge
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un drapeau
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له علم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki bendera
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有旗帜
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene bandera
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    related_mappings:
+      - crm:P65_shows_visual_item  # CIDOC_CRM_v7.1.3.rdf:2684-2687 - "links physical thing to recognisable visual symbol (E36 Visual Item)"
+    aliases:
+      - nazi_era_flag
+    examples:
+      - value: "true"
+        description: >-
+          A heritage building that historically displayed a national or
+          organizational flag.
+      - value: "false"
+        description: >-
+          An institution with no known flag or banner association.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This is a boolean indicator, not a reference to the flag itself. To
+        store the actual flag image or design, use a separate slot such as
+        has_image or has_url.
+      - >-
+        The alias nazi_era_flag specifically tracks whether a heritage entity
+        was associated with National Socialist-era vexillological symbols,
+        relevant for provenance research and historical documentation.

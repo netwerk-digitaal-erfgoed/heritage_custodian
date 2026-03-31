@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: has_media_type
+# ==============================================================================
+# General category, format, or medium used to convey information or content.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                  | Mapping  | Notes                                          |
+# |---------------|-------------------------|----------------------------|----------|--------------------------------------------|
+# | **DCAT**      | `dcat:mediaType`        | dcat3.ttl:1306-1340        | narrow   | "The media type of the distribution as     |
+# |               |                         |                            |          | defined by IANA." Domain: Distribution.    |
+# |               |                         |                            |          | Digital MIME types only; this slot is wider.|
+# | **Schema.org**| `schema:encodingFormat` | schemaorg.owl:16697-16720  | narrow   | "Media type typically expressed using a     |
+# |               |                         |                            |          | MIME format." Domain: MediaObject/Creative |
+# |               |                         |                            |          | Work. Technical encoding, not general media.|
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_media_type
+name: has_media_type
+title: has_media_type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_media_type:
+    name: has_media_type
+    slot_uri: hc:hasMediaType
+    description: >-
+      To specify the general category, format, or medium used to convey information or content (e.g., newspaper, radio broadcast, pamphlet, or digital file), distinct from specific technical file encoding.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de algemene categorie, het formaat of het medium dat wordt gebruikt om informatie of inhoud over te brengen (bijv. krant, radio-uitzending, pamflet of digitaal bestand), te onderscheiden van specifieke technische bestandscodering.
+      de: >-
+        Angabe der allgemeinen Kategorie, des Formats oder des Mediums, das zur Uebermittlung von Informationen oder Inhalten verwendet wird (z. B. Zeitung, Radiosendung, Flugblatt oder digitale Datei), im Unterschied zur spezifischen technischen Dateikodierung.
+      fr: >-
+        Specifier la categorie generale, le format ou le support utilise pour transmettre des informations ou du contenu (par ex. journal, emission de radio, brochure ou fichier numerique), distinct de l'encodage technique specifique des fichiers.
+      ar: >-
+        تحديد الفئة العامة أو الشكل أو الوسيط المستخدم لنقل المعلومات أو المحتوى (مثل الصحيفة أو البث الإذاعي أو المنشور أو الملف الرقمي)، وتمييزه عن الترميز التقني المحدد للملفات.
+      id: >-
+        Menentukan kategori umum, format, atau media yang digunakan untuk menyampaikan informasi atau konten (misalnya, surat kabar, siaran radio, pamflet, atau file digital), berbeda dari pengodean file teknis tertentu.
+      zh: >-
+        指定用于传达信息或内容的一般类别、格式或媒介（例如报纸、广播、小册子或数字文件），区别于具体的技术文件编码。
+      es: >-
+        Especificar la categoria general, el formato o el medio utilizado para transmitir informacion o contenido (p. ej., periodico, emision de radio, folleto o archivo digital), distinto de la codificacion tecnica especifica de archivos.
+    structured_aliases:
+      - literal_form: mediatype
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Medientyp
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: type de media
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نوع الوسائط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: jenis media
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 媒体类型
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tipo de medio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_media_type
+    narrow_mappings:
+      - dcat:mediaType  # dcat3.ttl:1306-1340 - IANA MIME types only; this slot covers broader media categories.
+      - schema:encodingFormat  # schemaorg.owl:16697-16720 - Technical encoding format; this slot covers broader media categories.
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_media_type for conciseness (2026-02-03).
+    annotations:
+      custodian_types: '["*"]'

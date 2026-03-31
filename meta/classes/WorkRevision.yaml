@@ -1,0 +1,68 @@
+id: https://nde.nl/ontology/hc/class/WorkRevision
+name: WorkRevision
+title: Work Revision
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/revision_of
+- ../slots/identified_by
+- ../slots/updated_at
+classes:
+  WorkRevision:
+    class_uri: prov:Entity
+    description: >-
+      Versioned update record capturing lineage and update time for a revised
+      document entity.
+    alt_descriptions:
+      nl: Herziening van een werk of document, het volgen van versieveranderingen, update-tijdstempels en revisie-opmerkingen voor documentversiebeheer en record-updates.
+      de: Überarbeitung eines Werks oder Dokuments, Verfolgung von Versionsänderungen, Aktualisierungszeitstempeln und Überarbeitungshinweisen für Dokumentversionierung und Datensatzaktualisierungen.
+      fr: Révision d'une œuvre ou d'un document, suivant les changements de version, les horodatages de mise à jour et les notes de révision pour le versionnage de documents et les mises à jour d'enregistrements.
+      es: Revisión de una obra o documento, rastreando cambios de versión, marcas de tiempo de actualización y notas de revisión para versionamiento de documentos y actualizaciones de registros.
+      ar: مراجعة لعمل أو مستند، وتتبع تغييرات الإصدار وطوابع وقت التحديث وملاحظات المراجعة لإدارة إصدارات المستندات وتحديثات السجلات.
+      id: Revisi karya atau dokumen, melacak perubahan versi, timestamp pembaruan, dan catatan revisi untuk penerapan versi dokumen dan pembaruan catatan.
+      zh: 作品或文档的修订，跟踪版本更改、更新时间戳和修订说明， 用于文档版本控制和记录更新。
+    slots:
+    - revision_of
+    - identified_by
+    - updated_at
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:CreativeWork
+    structured_aliases:
+    - literal_form: werkherziening
+      in_language: nl
+    - literal_form: Werksüberarbeitung
+      in_language: de
+    - literal_form: révision d'œuvre
+      in_language: fr
+    - literal_form: revisión de obra
+      in_language: es
+    - literal_form: مراجعة العمل
+      in_language: ar
+    - literal_form: revisi karya
+      in_language: id
+    - literal_form: 作品修订
+      in_language: zh
+    comments:
+    - Used for document revisions, record updates, and version tracking
+    keywords:
+    - revision
+    - version control
+    - document update
+    - versioning
+    examples:
+    - value:
+        revision_number: '2.0'
+        revision_date: '2025-01-14T10:30:00Z'
+        revision_notes: Updated metadata fields
+      description: Second revision of a document
+    annotations:
+      specificity_score: '0.40'
+      specificity_rationale: Moderately specific - revisions common in documentation.
+      custodian_types: "['*']"

@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: mandatory
+# ==============================================================================
+# Whether an action, data field, or condition is compulsory and cannot be omitted.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line                | Mapping | Notes                                                    |
+# |---------------|------------------------|--------------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:valueRequired` | schemaorg.owl:39624-39637| related | "Whether the property must be filled in." Boolean flag    |
+# |               |                        |                          |         | for form completion — different domain (form fields vs    |
+# |               |                        |                          |         | eligibility requirements).                                |
+#
+# No exact match — retains hc:mandatory.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/mandatory
+name: mandatory
+title: Mandatory
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  mandatory:
+    slot_uri: hc:mandatory
+    description: >-
+      Signifies that a specific action, data field, or condition is compulsory, required by rule, law,
+      or system logic, and cannot be omitted or ignored.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een specifieke actie, gegevensveld of voorwaarde verplicht is, vereist door regel,
+        wet of systeemlogica, en niet kan worden weggelaten of genegeerd.
+      de: >-
+        Kennzeichnet, dass eine bestimmte Aktion, ein Datenfeld oder eine Bedingung verpflichtend ist,
+        durch Regel, Gesetz oder Systemlogik vorgeschrieben und nicht ausgelassen oder ignoriert werden kann.
+      fr: >-
+        Indique qu'une action, un champ de données ou une condition spécifique est obligatoire, exigé par
+        une règle, une loi ou une logique système, et ne peut être omis ni ignoré.
+      ar: >-
+        يشير إلى أن إجراءً أو حقل بيانات أو شرطًا محددًا إلزامي، مطلوب بموجب قاعدة أو قانون
+        أو منطق نظام، ولا يمكن حذفه أو تجاهله.
+      id: >-
+        Menandakan bahwa tindakan, bidang data, atau kondisi tertentu bersifat wajib, diwajibkan oleh
+        aturan, hukum, atau logika sistem, dan tidak dapat dihilangkan atau diabaikan.
+      zh: >-
+        表示特定操作、数据字段或条件是强制性的，由规则、法律或系统逻辑要求，不能省略或忽略。
+      es: >-
+        Indica que una acción, campo de datos o condición específica es obligatoria, requerida por regla,
+        ley o lógica del sistema, y no puede ser omitida ni ignorada.
+    structured_aliases:
+      - literal_form: Verplicht
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Verpflichtend
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Obligatoire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: إلزامي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Wajib
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 强制性
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Obligatorio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    comments:
+      - "Defaults to true — most requirements are mandatory."
+      - "Original description also noted: 'or preferred/optional (false)' for the inverse case."
+    related_mappings:
+      - schema:valueRequired  # schemaorg.owl:39624-39637 — "Whether the property must be filled in to complete the action." Boolean required-flag but for form fields, not eligibility.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_mandatory

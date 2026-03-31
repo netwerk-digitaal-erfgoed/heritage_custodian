@@ -1,0 +1,81 @@
+# ==============================================================================
+# LinkML Slot Definition: restricted_by
+# ==============================================================================
+# Rule, law, agent, permission setting, or mechanism that imposes limitations,
+# constraints, or access controls on an entity or process.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property               | File/Line              | Mapping | Notes                                                     |
+# |----------|------------------------|------------------------|---------|---------------------------------------------------------  |
+# | DCTerms  | `dcterms:accessRights` | dcterms.rdf:786-810    | close   | "Information about who access the resource or an           |
+# |          |                        |                        |         | indication of its security status." Resource access only.  |
+#
+# dcterms:accessRights is close but specifically about resource access rights.
+# This slot is broader: any restriction (legal, physical, policy) on any entity.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/restricted_by
+name: restricted_by
+title: restricted by
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  restricted_by:
+    slot_uri: hc:restrictedBy
+    description: >-
+      Identifies the rule, law, agent, permission setting, or mechanism that imposes limitations, constraints, or access controls on an entity or process.
+    alt_descriptions:
+      nl: >-
+        Identificeert de regel, wet, actor, toestemmingsinstelling of het mechanisme dat beperkingen, restricties of toegangscontroles oplegt aan een entiteit of proces.
+      de: >-
+        Identifiziert die Regel, das Gesetz, den Akteur, die Berechtigungseinstellung oder den Mechanismus, der Einschränkungen, Beschränkungen oder Zugriffskontrollen für eine Entität oder einen Prozess auferlegt.
+      fr: >-
+        Identifie la règle, la loi, l'agent, le paramètre d'autorisation ou le mécanisme qui impose des limitations, des contraintes ou des contrôles d'accès à une entité ou un processus.
+      ar: >-
+        يحدد القاعدة أو القانون أو الجهة أو إعداد الإذن أو الآلية التي تفرض قيوداً أو ضوابط وصول على كيان أو عملية.
+      id: >-
+        Mengidentifikasi aturan, hukum, agen, pengaturan izin, atau mekanisme yang memberlakukan batasan, kendala, atau kontrol akses pada entitas atau proses.
+      zh: >-
+        标识对实体或过程施加限制、约束或访问控制的规则、法律、代理人、权限设置或机制。
+      es: >-
+        Identifica la regla, ley, agente, configuración de permisos o mecanismo que impone limitaciones, restricciones o controles de acceso a una entidad o proceso.
+    structured_aliases:
+      - literal_form: Beperking
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Einschränkung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Restriction
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تقييد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pembatasan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 限制
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Restricción
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_restriction
+      - has_embargo_reason
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_restriction for conciseness."
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:accessRights  # dcterms.rdf:786-810 - "Information about who access the resource or an indication of its security status."

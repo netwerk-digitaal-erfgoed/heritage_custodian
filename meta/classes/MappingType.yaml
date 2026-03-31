@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/MappingType
+name: MappingType
+title: Mapping Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_description
+- ../slots/has_code
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/has_score
+classes:
+  MappingType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomy node for categorizing semantic relationship degrees
+      between concepts in different vocabularies or ontologies.
+    alt_descriptions:
+      nl: >-
+        Abstract taxonomieknooppunt voor het categoriseren van semantische relatiegraden
+        tussen concepten in verschillende vocabulaires of ontologieën.
+      de: >-
+        Abstrakter Taxonomieknoten zur Kategorisierung semantischer Beziehungsgrade
+        zwischen Konzepten in verschiedenen Vokabularen oder Ontologien.
+      fr: >-
+        Nœud taxonomique abstrait pour catégoriser les degrés de relation sémantique
+        entre concepts dans différents vocabulaires ou ontologies.
+      es: >-
+        Nodo taxonómico abstracto para categorizar grados de relación semántica
+        entre conceptos en diferentes vocabularios u ontologías.
+      ar: >-
+        عقدة تصنيفية مجردة لتصنيف درجات العلاقة الدلالية بين المفاهيم في المفردات أو الأنطولوجيات المختلفة.
+      id: >-
+        Simpul taksonomi abstrak untuk mengkategorikan derajat hubungan semantik
+        antara konsep dalam kosakata atau ontologi yang berbeda.
+      zh: >-
+        用于对不同词汇表或本体中概念之间的语义关系程度进行分类的抽象分类法节点。
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_code:
+        required: true
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      "Abstract base class for semantic mapping type classifications.\n\n**DEFINITION**:\n\nMappingType represents CATEGORIES of semantic mapping relationships\nbetween concepts in different vocabularies or ontologies. Each subclass\ndefines a specific degree of semantic equivalence.\n\n**CRITICAL: TYPE vs INSTANCE**\n\n| Aspect | MappingType (This Class) | Mapping (Instance) |\n|--------|-------------------------|-------------------|\n| **Nature** | Classification/category | Individual mapping |\n| **Examples** | EXACT, CLOSE, BROAD | \"Q190804 \u2192 Rijksmuseum\" |\n| **Properties** | Category semantics | Source, target URIs |\n| **Cardinality** | ~6 types | Many instances |\n\n**SKOS ALIGNMENT**:\n\nThis taxonomy aligns with SKOS mapping properties:\n\n| MappingType | SKOS Property | Semantics |\n|-------------|---------------|-----------|\n| EXACT | skos:exactMatch | Interchangeable concepts |\n| CLOSE | skos:closeMatch | Similar but not identical |\n| BROAD | skos:broadMatch\
+    annotations:
+      specificity_score: 0.5
+      specificity_rationale: Ontology-alignment taxonomy backbone for mapping semantics.
+      custodian_types: '["*"]'
+    comments:
+    - 'Preserved from prior description: Controlled concept describing semantic relationship type between mapped terms.'

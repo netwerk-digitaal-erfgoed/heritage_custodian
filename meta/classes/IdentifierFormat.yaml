@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/IdentifierFormat
+name: IdentifierFormat
+title: IdentifierFormat
+description: >-
+  Format profile describing how an identifier is represented for storage,
+  validation, display, or exchange.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  IdentifierFormat:
+    class_uri: schema:PropertyValue
+    description: >-
+      Format profile describing how an identifier is represented for storage,
+      validation, display, or exchange.
+    alt_descriptions:
+      nl: Formaatprofiel dat beschrijft hoe een identificator wordt weergegeven voor opslag validatie presentatie of uitwisseling.
+      de: Formatprofil zur Darstellung eines Identifikators fuer Speicherung Validierung Anzeige oder Austausch.
+      fr: Profil de format decrivant la representation d un identifiant pour stockage validation affichage ou echange.
+      es: Perfil de formato que describe como se representa un identificador para almacenamiento validacion visualizacion o intercambio.
+      ar: ملف تنسيق يصف كيفية تمثيل المعرّف للتخزين أو التحقق أو العرض أو التبادل.
+      id: Profil format yang menjelaskan bagaimana pengenal direpresentasikan untuk penyimpanan validasi tampilan atau pertukaran.
+      zh: 描述标识符在存储、校验、展示或交换中表示方式的格式配置。
+    structured_aliases:
+    - {literal_form: identificatorformaat, in_language: nl}
+    - {literal_form: Identifikatorformat, in_language: de}
+    - {literal_form: format d identifiant, in_language: fr}
+    - {literal_form: formato de identificador, in_language: es}
+    - {literal_form: تنسيق معرّف, in_language: ar}
+    - {literal_form: format pengenal, in_language: id}
+    - {literal_form: 标识符格式, in_language: zh}
+    broad_mappings:
+    - schema:PropertyValue
+    slots:
+    - has_label
+    - has_score
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Purpose
+
+        Many identifier standards allow multiple representation variants.
+        This class captures format variants and supports choosing a canonical
+        form for storage versus a display form.
+
+        Examples (illustrative)
+
+        - ISNI:
+          - "0000 0000 0000 0000" (display, spaced)
+          - "0000000000000000" (canonical, compact)
+          - "http://isni.org/isni/0000000000000000" (URI form)
+
+        - ISIL:
+          - "NL-AmUvA" (full form)
+          - "AmUvA" (local part)
+
+        - Wikidata:
+          - "Q12345" (short form)
+          - "http://www.wikidata.org/entity/Q12345" (full URI)
+
+        Usage
+
+        - Store in canonical form when possible.
+        - Use a display-appropriate format when presenting to humans.

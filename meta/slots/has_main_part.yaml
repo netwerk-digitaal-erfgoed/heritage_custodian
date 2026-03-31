@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_main_part
+# ==============================================================================
+# The primary, principal, or central component of a complex entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property            | File/Line                  | Mapping | Notes                                              |
+# |---------------|---------------------|----------------------------|---------|----------------------------------------------------|
+# | **Schema.org**| `schema:hasPart`    | schemaorg.owl:20403-20429  | close   | "Indicates an item or CreativeWork that is part of  |
+# |               |                     |                            |         | this item." Any part, not specifically the main one.|
+# |               |                     |                            |         | Domain: CreativeWork.                              |
+# | **DCTerms**   | `dcterms:hasPart`   | dcterms.rdf:1347-1368      | close   | "A related resource that is included... in the     |
+# |               |                     |                            |         | described resource." Any part, not the main one.   |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_main_part
+name: has_main_part
+title: has_main_part
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_main_part:
+    name: has_main_part
+    slot_uri: hc:hasMainPart
+    description: >-
+      To specify the primary, principal, or central component of a complex entity, distinct from secondary, dependent, or accessory parts.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van het primaire, voornaamste of centrale onderdeel van een complexe entiteit, te onderscheiden van secundaire, afhankelijke of bijkomende onderdelen.
+      de: >-
+        Angabe des primaeren, wesentlichen oder zentralen Bestandteils einer komplexen Entitaet, im Unterschied zu sekundaeren, abhaengigen oder ergaenzenden Teilen.
+      fr: >-
+        Specifier le composant primaire, principal ou central d'une entite complexe, distinct des parties secondaires, dependantes ou accessoires.
+      ar: >-
+        تحديد المكون الأساسي أو الرئيسي أو المركزي لكيان معقد، وتمييزه عن الأجزاء الثانوية أو التابعة أو الفرعية.
+      id: >-
+        Menentukan komponen utama, pokok, atau sentral dari suatu entitas kompleks, berbeda dari bagian sekunder, dependen, atau pelengkap.
+      zh: >-
+        指定复杂实体的主要、首要或核心组成部分，区别于次要、从属或附属部分。
+      es: >-
+        Especificar el componente primario, principal o central de una entidad compleja, distinto de las partes secundarias, dependientes o accesorias.
+    structured_aliases:
+      - literal_form: hoofdonderdeel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Hauptbestandteil
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: partie principale
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الجزء الرئيسي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: bagian utama
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 主要部分
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: parte principal
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    inlined: false
+    aliases:
+      - has_or_had_main_part
+    close_mappings:
+      - schema:hasPart  # schemaorg.owl:20403-20429 - "Indicates an item or CreativeWork that is part of this item." Any part, not specifically the main/principal one. Domain: CreativeWork.
+      - dcterms:hasPart  # dcterms.rdf:1347-1368 - "A related resource that is included either physically or logically in the described resource." Any part, not the main one.
+    comments:
+      - |
+        **USAGE**: Capital budget (primary budget allocation), primary collection holdings, main organizational unit.
+      - |
+        **MIGRATION**: Renamed from has_or_had_main_part for conciseness (2026-02-03).
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Main parts are universal across organizational contexts

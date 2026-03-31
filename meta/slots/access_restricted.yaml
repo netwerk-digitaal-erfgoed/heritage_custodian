@@ -1,0 +1,121 @@
+# ==============================================================================
+# LinkML Slot Definition: access_restricted
+# ==============================================================================
+# Boolean indicator for access restrictions on resources.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:accessRights`     | dcterms.rdf:786-810  | close   | Access rights information          |
+# | **Schema.org**| `schema:conditionsOfAccess`| schemaorg.owl        | close   | Conditions for access              |
+# | **RiC-O**     | `rico:conditionsOfAccess`  | RiC-O_1-1.rdf:21022  | related | Conditions of access (datatype)  |
+#
+# HIERARCHY: dcterms:accessRights rdfs:subPropertyOf dcterms:rights
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/access_restricted
+name: access_restricted
+title: Access Restricted
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  access_restricted:
+    slot_uri: hc:accessRestricted
+    description: >-
+      To be subject to specific limitations, conditions, or prohibitions
+      regarding availability, viewing, or usage, often due to legal, privacy,
+      or security concerns.
+    alt_descriptions:
+      nl: >-
+        Onderworpen zijn aan specifieke beperkingen, voorwaarden of verboden
+        met betrekking tot beschikbaarheid, inzage of gebruik, vaak vanwege
+        juridische, privacy- of veiligheidsoverwegingen.
+      de: >-
+        Spezifischen Einschränkungen, Bedingungen oder Verboten hinsichtlich
+        Verfügbarkeit, Einsicht oder Nutzung unterliegen, oft aufgrund
+        rechtlicher, datenschutzrechtlicher oder sicherheitsrelevanter Gründe.
+      fr: >-
+        Être soumis à des limitations, conditions ou interdictions spécifiques
+        concernant la disponibilité, la consultation ou l'utilisation, souvent
+        pour des raisons juridiques, de confidentialité ou de sécurité.
+      ar: >-
+        أن يخضع لقيود أو شروط أو محظورات محددة تتعلق بالتوفر أو العرض أو
+        الاستخدام، غالباً لأسباب قانونية أو تتعلق بالخصوصية أو الأمان.
+      id: >-
+        Tunduk pada batasan, kondisi, atau larangan tertentu mengenai
+        ketersediaan, tampilan, atau penggunaan, sering karena masalah
+        hukum, privasi, atau keamanan.
+      zh: >-
+        受到关于可用性、查看或使用的特定限制、条件或禁止，通常由于法律、隐私或安全方面的考虑。
+      es: >-
+        Estar sujeto a limitaciones, condiciones o prohibiciones específicas
+        respecto a la disponibilidad, visualización o uso, a menudo debido a
+        preocupaciones legales, de privacidad o seguridad.
+    structured_aliases:
+      - literal_form: toegang beperkt
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zugang eingeschränkt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: accès restreint
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: وصول مقيد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: akses dibatasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 访问受限
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: acceso restringido
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    close_mappings:
+      - dcterms:accessRights  # dcterms.rdf:786-810 - Access rights information
+      - schema:conditionsOfAccess  # Conditions for accessing the item
+    related_mappings:
+      - rico:conditionsOfAccess  # RiC-O_1-1.rdf:21022 - conditions of access (datatype property)
+      - dcterms:rights  # General rights statement
+    aliases:
+      - is_or_was_access_restricted
+      - restricted
+      - has_access_restriction
+    examples:
+      - value: "true"
+        description: Resource has access restrictions (e.g., privacy embargo)
+      - value: "false"
+        description: Resource is publicly accessible
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**:
+        Boolean flag to quickly indicate if a resource has any access restrictions.
+        For detailed access conditions, use has_access_policy or related slots.
+      - |
+        **COMMON RESTRICTION REASONS**:
+        - Privacy protection (personal data)
+        - Security classification
+        - Legal embargo period
+        - Copyright restrictions
+        - Conservation concerns (fragile materials)

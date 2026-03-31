@@ -1,0 +1,85 @@
+id: https://nde.nl/ontology/hc/class/EntityReconstruction
+name: EntityReconstruction
+title: Entity Reconstruction
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_score
+classes:
+  EntityReconstruction:
+    class_uri: hc:EntityReconstruction
+    abstract: true
+    description: >-
+      Provenance-traceable representation synthesized from multiple source
+      observations to express a consolidated interpretation.
+    alt_descriptions:
+      nl: Herleidbare representatie die uit meerdere bronwaarnemingen wordt samengesteld voor een geconsolideerde interpretatie.
+      de: Provenienzfaehige Darstellung, die aus mehreren Quellbeobachtungen zu einer konsolidierten Interpretation zusammengefuehrt wird.
+      fr: Representation tracable en provenance, synthetisee a partir de plusieurs observations sources pour exprimer une interpretation consolidee.
+      es: Representacion trazable en procedencia, sintetizada a partir de multiples observaciones de origen para expresar una interpretacion consolidada.
+      ar: تمثيل قابل للتتبع من حيث المصدر يُركَّب من ملاحظات متعددة للتعبير عن تفسير موحّد.
+      id: Representasi yang dapat ditelusuri provenansinya, disintesis dari beberapa observasi sumber untuk menyatakan interpretasi terpadu.
+      zh: 由多项来源观测综合形成、可追溯来源的统一解释表达。
+    structured_aliases:
+      - literal_form: gereconstrueerde entiteit
+        in_language: nl
+      - literal_form: rekonstruierte Entitaet
+        in_language: de
+      - literal_form: entite reconstituee
+        in_language: fr
+      - literal_form: entidad reconstruida
+        in_language: es
+      - literal_form: كيان مُعاد بناؤه
+        in_language: ar
+      - literal_form: entitas rekonstruksi
+        in_language: id
+      - literal_form: 重建实体
+        in_language: zh
+    slots:
+      - has_score
+    broad_mappings:
+      - prov:Entity
+    close_mappings:
+      - crm:E73_Information_Object
+    comments:
+      - Abstract superclass for reconstructed legal status, naming, and place assertions.
+    examples:
+      - value: |
+          CustodianObservation[]
+              │
+              └── refers_or_referred_to → EntityReconstruction
+                                              │
+                                              └── (subtypes: CustodianLegalStatus, 
+                                                             CustodianName, 
+                                                             CustodianPlace)
+    notes:
+      - |
+        Preserved from prior description (commit ee5e8e5a):
+
+        Abstract base class for reconstructed formal entities derived from observations.
+
+        **Purpose**:
+        EntityReconstruction represents the result of analyzing multiple observations
+        to reconstruct a formal entity (legal status, name, place).
+
+        **Relationship to Observations**:
+
+        **PROV-O Semantics**:
+        - `prov:Entity`: Base class for things with provenance
+        - Links TO observations via inverse (has_derived_observation)
+        - Links FROM observations via refers_or_referred_to
+
+        **Subtypes**:
+        - CustodianLegalStatus - Reconstructed legal entity
+        - CustodianName - Reconstructed emic/etic name
+        - CustodianPlace - Reconstructed place designation
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Reconstruction pattern is reusable across all domains.
+      specificity_score: "0.5"
+      specificity_rationale: Mid-level abstraction for synthesized entity representations.

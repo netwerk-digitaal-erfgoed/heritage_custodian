@@ -1,0 +1,293 @@
+id: https://nde.nl/ontology/hc/class/Address
+name: address_class
+title: Address Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  vcard: http://www.w3.org/2006/vcard/ns#
+  schema: http://schema.org/
+  locn: http://www.w3.org/ns/locn#
+  gleif_base: https://www.gleif.org/ontology/Base/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- ./ReconstructionActivity
+- ./AddressType
+- ./HouseNumber
+- linkml:types
+- ../slots/in_country
+- ../slots/has_label
+- ../slots/has_section
+- ../slots/has_type
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/located_in
+- ../slots/has_latitude
+- ../slots/has_locality
+- ../slots/has_longitude
+- ../slots/has_postal_code
+- ../slots/has_geographic_subdivision
+classes:
+  Address:
+    class_uri: vcard:Address
+    description: >-
+      Physical or postal address for heritage custodians and related entities.
+    alt_descriptions:
+      nl: "Fysiek of postadres voor erfgoedbeheerders en gerelateerde entiteiten."
+      de: "Physische oder Postadresse für Kulturgüterverwalter und verwandte Entitäten."
+      fr: "Adresse physique ou postale pour les dépositaires du patrimoine et entités connexes."
+      es: "Dirección física o postal para custodios del patrimonio y entidades relacionadas."
+      ar: "عنوان فعلي أو بريدي لأمناء التراث والكيانات ذات الصلة."
+      id: "Alamat fisik atau pos untuk pengelola warisan dan entitas terkait."
+      zh: "遗产保管人及相关实体的物理或邮政地址。"
+    examples:
+    - value: |
+        Address
+        ├── has_section (e.g., "1", "221B", "25-27")
+        ├── has_label  (street name as Label, e.g., "Museumstraat")
+        ├── postal_code       (e.g., "1071 XX")
+        ├── locality          (e.g., "Amsterdam")
+        ├── region            (e.g., "Noord-Holland", "NL-NH")
+        ├── country_name      (e.g., "Netherlands", "NL")
+        └── has_label  (formatted address as Label)
+    - value: |
+        # Simple address with formatted string
+        has_address:
+        - address_formatted: "Museumstraat 1, 1071 XX Amsterdam, Netherlands"
+          address_type: HEADQUARTERS
+        # Structured address with components
+        has_address:
+        - has_label:
+            - has_label: "Museumstraat"
+              language: "nl"
+          has_section:
+            - has_value: "1"
+          postal_code: "1071 XX"
+          locality: "Amsterdam"
+          region: "Noord-Holland"
+          country_name: "NL"
+          address_type: HEADQUARTERS
+          latitude: 52.3600
+          longitude: 4.8852
+          geonames_id: 2759794
+    - value:
+        has_section:
+        - has_value: "1"
+        has_label:
+        - has_label: Museumstraat
+          language: nl
+        - has_label: Museumstraat 1, 1071 XX Amsterdam, Netherlands
+          language: nl
+        has_postal_code: "1071 XX"
+        has_locality: Amsterdam
+        has_geographic_subdivision: Noord-Holland
+        in_country: NL
+        has_latitude: 52.36
+        has_longitude: 4.8852
+        has_type: HeadquartersAddress
+      description: Rijksmuseum headquarters address with structured components
+    - value:
+        has_label:
+        - has_label: 1600 Pennsylvania Avenue NW, Washington, DC 20500, USA
+          language: en
+        has_locality: Washington
+        has_geographic_subdivision: DC
+        in_country: US
+      description: Simple formatted address for US location
+    exact_mappings:
+    - vcard:Address
+    close_mappings:
+    - schema:PostalAddress
+    - locn:Address
+    - gleif_base:PhysicalAddress
+    related_mappings:
+    - org:siteAddress
+    - schema:address
+    structured_aliases:
+    - literal_form: adres
+      in_language: nl
+    - literal_form: postadres
+      in_language: nl
+    - literal_form: Adresse
+      in_language: de
+    - literal_form: Postanschrift
+      in_language: de
+    - literal_form: adresse
+      in_language: fr
+    - literal_form: adresse postale
+      in_language: fr
+    - literal_form: dirección
+      in_language: es
+    - literal_form: dirección postal
+      in_language: es
+    - literal_form: عنوان
+      in_language: ar
+    - literal_form: عنوان بريدي
+      in_language: ar
+    - literal_form: alamat
+      in_language: id
+    - literal_form: alamat pos
+      in_language: id
+    - literal_form: 地址
+      in_language: zh
+    - literal_form: 邮政地址
+      in_language: zh
+    keywords:
+    - address
+    - location
+    - street
+    - postal code
+    - city
+    - country
+    - headquarters
+    - visiting address
+    - storage address
+    slots:
+    - has_section
+    - has_postal_code
+    - has_locality
+    - located_in
+    - has_geographic_subdivision
+    - in_country
+    - has_label
+    - has_type
+    - has_latitude
+    - has_longitude
+    - derive_from
+    - generated_by
+    slot_usage:
+      has_section:
+        range: HouseNumber
+        required: false
+        examples:
+        - value:
+            has_value: "1"
+        - value:
+            has_value: "221B"
+      has_postal_code:
+        required: false
+        examples:
+        - value: "1071 XX"
+      has_locality:
+        required: false
+        examples:
+        - value: Amsterdam
+      located_in:
+        required: false
+        inlined: false
+        examples:
+        - value:
+            settlement_name: Amsterdam
+            country: NL
+      has_geographic_subdivision:
+        required: false
+        examples:
+        - value: Noord-Holland
+        - value: NL-NH
+      in_country:
+        required: false
+        examples:
+        - value: Netherlands
+        - value: NL
+      has_label:
+        multivalued: true
+        inlined: false
+        inlined_as_list: false
+        required: false
+        examples:
+        - value:
+          - has_label: Museumstraat
+            language: nl
+          - has_label: Museumstraat 1, 1071 XX Amsterdam, Netherlands
+            language: nl
+      has_type:
+        range: AddressType
+        required: false
+        multivalued: false
+        examples:
+        - value: HeadquartersAddress
+      has_latitude:
+        range: float
+        required: false
+        examples:
+        - value: 52.36
+      has_longitude:
+        range: float
+        required: false
+        examples:
+        - value: 4.8852
+      derived_from:
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    notes:
+    - |
+      Preserved from prior description (commit d356aa77):
+
+      Preserved from prior description (commit d356aa77):
+
+      Physical or postal address for heritage custodians and related entities.
+      **ONTOLOGY ALIGNMENT**:
+      This class aligns with multiple established address ontologies:
+      | Ontology | Class | Notes |
+      |----------|-------|-------|
+      | **vCard** | `vcard:Address` | RFC6350 ADR property components |
+      | **Schema.org** | `schema:PostalAddress` | Web semantics |
+      | **LOCN** | `locn:Address` | EU Location Core Vocabulary |
+      | **GLEIF** | `gleif_base:PhysicalAddress` | Legal entity addresses |
+      **COMPONENT STRUCTURE**:
+      An address consists of hierarchical components:
+
+      NOTE: street_name slot migrated to has_label + Label (2026-01-17, Rule 53/56)
+      NOTE: street_address slot removed - was redundant string; use house_number + has_label (2026-01-17, Rule 53/56)
+      **ADDRESS TYPES FOR HERITAGE CUSTODIANS**:
+      | Type | Use Case |
+      |------|----------|
+      | `HEADQUARTERS` | Main organizational address |
+      | `LEGAL` | Registered legal/business address |
+      | `VISITING` | Public visitor entrance |
+      | `MAILING` | Correspondence/postal address |
+      | `STORAGE` | Depot, warehouse, off-site storage |
+      | `BRANCH` | Branch office location |
+      **USAGE EXAMPLES**:
+
+      **RELATIONSHIP TO OTHER CLASSES**:
+      - `AuxiliaryPlace`: Uses Address for structured address data
+      - `CustodianPlace`: May reference Address for place location
+      - `ContactPoint`: Uses Address for contact location
+      - `Settlement`/`Subregion`/`Country`: Hierarchical geographic entities
+      **PROVENANCE**:
+      Address data may be extracted from various sources (websites, Google Maps, 
+      registries). Track provenance with:
+      - `was_derived_from`: Link to source observation
+      - `generated_by`: Link to extraction activity
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: "Address is broadly applicable to all heritage custodian types and many other entities. Universal across domains."
+      custodian_types: "['*']"
+      custodian_types_rationale: "All heritage custodians have physical addresses - museums, archives, libraries, etc."
+      address_types: "HEADQUARTERS, LEGAL, VISITING, MAILING, STORAGE, BRANCH, READING_ROOM"
+      ontology_alignment_vcard: "RFC6350 ADR property components"
+      ontology_alignment_schema: "Web semantics"
+      ontology_alignment_locn: "EU Location Core Vocabulary"
+      ontology_alignment_gleif: "Legal entity addresses"
+    comments:
+    - vCard Address is the primary ontology class (RFC6350 standard)
+    - Use structured components when available, formatted string as fallback
+    - Multiple addresses supported via has_address slot (multivalued, Rule 39 compliant)
+    - Address types distinguish headquarters, legal, visiting, mailing, storage
+    - Coordinates (lat/lon) optional but recommended for visualization/mapping
+    - street_name migrated to has_label + Label (2026-01-17, Rule 53/56)
+    - street_address removed - use house_number + has_label instead
+    - 'Preserved from prior description: Physical or postal address for heritage custodians and related entities. Structured representation of location data following vCard (RFC6350), Schema.org, and EU Location Core Vocabulary standards. Supports both formatted string representation and component-based structured data.'
+    see_also:
+    - https://www.w3.org/TR/vcard-rdf/#d4e936
+    - https://schema.org/PostalAddress
+    - https://www.w3.org/ns/locn#Address
+    - https://www.gleif.org/ontology/Base/PhysicalAddress
+    - AddressType
+    - AddressTypes
+    - AddressComponent

@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: appended_with
+# ==============================================================================
+# Content, attachment, or addendum added to the end of the original entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **DCTerms**   | `dcterms:hasPart`     | dcterms.rdf:1347     | broad   | Part-whole relationship - more generic                   |
+# | **Schema.org**| `schema:hasPart`      | schemaorg.owl:20403  | broad   | Part relationship - doesn't specify appending            |
+#
+# SEMANTIC NOTES:
+# - Appending implies addition at the end, unlike general part relationships
+# - Common for documents with addenda, attachments, supplements
+# - Custom hc: URI is appropriate for this specific append semantic
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, related_mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/appended_with
+name: appended_with
+title: Appended With
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  appended_with:
+    slot_uri: hc:appendedWith
+    description: >-
+      To be supplemented or extended by the addition of specific content, such as an 
+      attachment or addendum, at the end of the original entity.
+    alt_descriptions:
+      nl: >-
+        Aangevuld of uitgebreid door de toevoeging van specifieke inhoud, zoals een 
+        bijlage of addendum, aan het einde van de oorspronkelijke entiteit.
+      de: >-
+        Ergänzt oder erweitert durch das Hinzufügen von spezifischem Inhalt, wie einem 
+        Anhang oder Nachtrag, am Ende der ursprünglichen Entität.
+      fr: >-
+        Complété ou étendu par l'ajout de contenu spécifique, tel qu'une pièce jointe 
+        ou un addendum, à la fin de l'entité originale.
+      ar: >-
+        أن يتم تكميله أو توسيعه بإضافة محتوى معين، مثل مرفق أو ملحق، 
+        في نهاية الكيان الأصلي.
+      id: >-
+        Dilengkapi atau diperluas dengan penambahan konten tertentu, seperti lampiran 
+        atau adendum, di akhir entitas asli.
+      zh: >-
+        通过在原始实体末尾添加特定内容（如附件或附录）来补充或扩展。
+      es: >-
+        Complementado o extendido mediante la adición de contenido específico, como 
+        un anexo o adenda, al final de la entidad original.
+    structured_aliases:
+      - literal_form: aangevuld met
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ergänzt mit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: complété par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملحق بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dilampirkan dengan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 附加了
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: adjuntado con
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347 - part-whole relationship (more general than appending)
+      - schema:hasPart  # schemaorg.owl:20403 - part relationship (more general than appending)
+    aliases:
+      - is_or_was_appended_with
+    annotations:
+      custodian_types: '["*"]'

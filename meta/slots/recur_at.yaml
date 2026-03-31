@@ -1,0 +1,79 @@
+# ==============================================================================
+# LinkML Slot Definition: recur_at
+# ==============================================================================
+# Time interval, frequency, or spatial location of repeated occurrence.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                | Mapping  | Notes                                                      |
+# |---------------|-----------------------------|--------------------------|----------|------------------------------------------------------------|
+# | **Schema.org**| `schema:repeatFrequency`    | schemaorg.owl:33007-33030| narrow   | "Frequency at which Events occur according to a Schedule." |
+# | **DCTerms**   | `dcterms:accrualPeriodicity`| dcterms.rdf:837-860      | related  | "Frequency with which items are added to a collection."    |
+# | **Schema.org**| `schema:eventSchedule`      | schemaorg.owl:17365-17384| related  | "Associates an Event with a Schedule."                     |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/recur_at
+name: recur_at
+title: Recur At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  recur_at:
+    slot_uri: hc:recurAt
+    description: >-
+      Specifies the time interval, frequency, or spatial location where a specific event, pattern, or error appears repeatedly.
+    alt_descriptions:
+      nl: >-
+        Geeft het tijdsinterval, de frequentie of de ruimtelijke locatie aan waar een specifieke gebeurtenis, patroon of fout herhaaldelijk optreedt.
+      de: >-
+        Gibt das Zeitintervall, die Häufigkeit oder den räumlichen Ort an, an dem ein bestimmtes Ereignis, Muster oder ein Fehler wiederholt auftritt.
+      fr: >-
+        Spécifie l'intervalle de temps, la fréquence ou l'emplacement spatial où un événement, un motif ou une erreur spécifique apparaît de manière répétée.
+      ar: >-
+        يحدد الفاصل الزمني أو التكرار أو الموقع المكاني الذي يظهر فيه حدث أو نمط أو خطأ معين بشكل متكرر.
+      id: >-
+        Menentukan interval waktu, frekuensi, atau lokasi spasial di mana suatu peristiwa, pola, atau kesalahan tertentu muncul secara berulang.
+      zh: >-
+        指定特定事件、模式或错误重复出现的时间间隔、频率或空间位置。
+      es: >-
+        Especifica el intervalo de tiempo, la frecuencia o la ubicación espacial donde un evento, patrón o error específico aparece de forma repetida.
+    structured_aliases:
+      - literal_form: Herhaling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wiederholung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Récurrence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تكرار
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pengulangan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 重复
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Recurrencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_recurring
+    narrow_mappings:
+      - schema:repeatFrequency  # schemaorg.owl:33007-33030 - "Frequency at which Events occur according to a Schedule." Schedule domain only.
+    related_mappings:
+      - dcterms:accrualPeriodicity  # dcterms.rdf:837-860 - "Frequency with which items are added to a collection." Collection growth only.
+      - schema:eventSchedule  # schemaorg.owl:17365-17384 - "Associates an Event with a Schedule." Links Event to Schedule object.

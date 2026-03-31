@@ -1,0 +1,98 @@
+id: https://nde.nl/ontology/hc/class/AvailabilityStatus
+name: availability_status_class
+title: AvailabilityStatus Class
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+classes:
+  AvailabilityStatus:
+    class_uri: hc:AvailabilityStatus
+    broad_mappings:
+    - schema:ItemAvailability
+    description: >-
+      Availability state of a resource, service, or feature, indicating whether
+      something is currently available for use with optional temporal validity
+      and descriptive context.
+    alt_descriptions:
+      nl: Beschikbaarheidsstatus van een bron, dienst of functie, die aangeeft of iets momenteel beschikbaar is voor gebruik met optionele temporele geldigheid en beschrijvende context.
+      de: Verfügbarkeitsstatus einer Ressource, eines Dienstes oder einer Funktion, der angibt, ob etwas derzeit zur Nutzung verfügbar ist, mit optionaler zeitlicher Gültigkeit und beschreibendem Kontext.
+      fr: État de disponibilité d'une ressource, d'un service ou d'une fonction, indiquant si quelque chose est actuellement disponible à l'utilisation avec une validité temporelle et un contexte descriptif optionnels.
+      es: Estado de disponibilidad de un recurso, servicio o característica, que indica si algo está actualmente disponible para su uso con validez temporal y contexto descriptivo opcionales.
+      ar: حالة توفر مورد أو خدمة أو ميزة، تشير إلى ما إذا كان شيء ما متاحًا حاليًا للاستخدام مع صلاحية زمنية وسياق وصفي اختياريين.
+      id: Status ketersediaan sumber daya, layanan, atau fitur, yang menunjukkan apakah sesuatu saat ini tersedia untuk digunakan dengan validitas temporal dan konteks deskriptif opsional.
+      zh: 资源、服务或功能的可用性状态，指示某物当前是否可供使用， 具有可选的时间有效性和描述性上下文。
+    exact_mappings:
+    - schema:Availability
+    close_mappings:
+    - dcat:DataService
+    related_mappings:
+    - dcterms:available
+    slots:
+    - has_label
+    - has_description
+    - temporal_extent
+    slot_usage:
+      has_label:
+        required: false
+        examples:
+        - value: API Available
+        - value: Service Unavailable
+      has_description:
+        examples:
+        - value: REST API available with JSON responses
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: '2015-01-01'
+        - value:
+            begin_of_the_begin: '2015-06-01'
+            end_of_the_end: '2020-12-31'
+    structured_aliases:
+    - literal_form: beschikbaarheidsstatus
+      in_language: nl
+    - literal_form: Verfügbarkeitsstatus
+      in_language: de
+    - literal_form: état de disponibilité
+      in_language: fr
+    - literal_form: estado de disponibilidad
+      in_language: es
+    - literal_form: حالة التوفر
+      in_language: ar
+    - literal_form: status ketersediaan
+      in_language: id
+    - literal_form: 可用性状态
+      in_language: zh
+    comments:
+    - Generic availability status class replacing domain-specific boolean flags
+    - Supports temporal validity for tracking when availability changed
+    - Aligns with Schema.org Availability enumeration pattern
+    keywords:
+    - availability
+    - status
+    - service state
+    - operational
+    - temporal validity
+    see_also:
+    - https://schema.org/Availability
+    - https://www.w3.org/TR/vocab-dcat-2/#Class:DataService
+    examples:
+    - value:
+        has_label: API Available
+        has_description: REST API with JSON responses available for collection metadata access
+      description: API availability status
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

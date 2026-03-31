@@ -1,0 +1,125 @@
+# ==============================================================================
+# LinkML Slot Definition: store
+# ==============================================================================
+# What a storage unit, facility, or environment contains or is designed to hold
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                             | File/Line                       | Mapping | Notes                                                  |
+# |---------------|--------------------------------------|---------------------------------|---------|---------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P55i_currently_holds`           | CIDOC_CRM_v7.1.3.rdf:2565-2576 | close   | Place → Physical Object. Current holdings only; our slot also covers historical and design intent. |
+# | **CIDOC-CRM** | `crm:P54_has_current_permanent_location` | CIDOC_CRM_v7.1.3.rdf:2523-2535 | related | "Foreseen permanent location." Domain: Physical Object, Range: Place. Inverted direction. |
+# | **Schema.org** | `schema:containedInPlace`            | schemaorg.owl:12688-12699       | related | "Basic containment relation between a place and one that contains it." Domain/Range: Place. About spatial containment of places, not object storage. |
+#
+# REMOVED:
+# - crm:P55_has_former_or_current_keeper — WRONG PROPERTY NAME. P55 is "has current
+#   location" (CIDOC_CRM_v7.1.3.rdf:2549-2563, Domain: E19_Physical_Object, Range:
+#   E53_Place). The "keeper" properties are P49 (2383-2396, custody by actors) and
+#   P50 (2410+, current custody). None match "storing objects."
+# - rico:hasOrHadSubject (RiC-O_1-1.rdf:8231-8241) — "Connects a Record Resource to
+#   a Thing that is or was its subject." About record subject matter, not physical
+#   storage containment.
+# - schema:containedIn (schemaorg.owl:12665-12687) — Superseded by containedInPlace.
+#   About place-in-place spatial containment, wrong direction, not object storage.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/store
+name: store
+title: Store
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  store:
+    slot_uri: hc:store
+    description: >-
+      To place, keep, or accumulate data, objects, or resources in a specific
+      repository, location, or memory for preservation, security, or future retrieval.
+    alt_descriptions:
+      nl: >-
+        Het plaatsen, bewaren of verzamelen van gegevens, objecten of hulpbronnen in
+        een specifieke opslagplaats, locatie of geheugen voor bewaring, beveiliging of
+        toekomstige raadpleging.
+      de: >-
+        Das Ablegen, Aufbewahren oder Ansammeln von Daten, Objekten oder Ressourcen
+        in einem bestimmten Speicher, Standort oder Gedächtnis zur Erhaltung,
+        Sicherheit oder zukünftigen Wiederauffindung.
+      fr: >-
+        Placer, conserver ou accumuler des données, des objets ou des ressources dans
+        un dépôt, un emplacement ou une mémoire spécifique à des fins de préservation,
+        de sécurité ou de consultation future.
+      ar: >-
+        وضع أو حفظ أو تجميع البيانات أو الأشياء أو الموارد في مستودع أو موقع أو
+        ذاكرة محددة بغرض الحفظ أو الأمان أو الاسترجاع المستقبلي.
+      id: >-
+        Menempatkan, menyimpan, atau mengumpulkan data, objek, atau sumber daya di
+        repositori, lokasi, atau memori tertentu untuk pelestarian, keamanan, atau
+        pengambilan di masa depan.
+      zh: >-
+        将数据、物品或资源放置、保存或积累在特定的存储库、位置或存储器中，以便保存、
+        保护或将来检索。
+      es: >-
+        Colocar, conservar o acumular datos, objetos o recursos en un repositorio,
+        ubicación o memoria específica para su preservación, seguridad o recuperación
+        futura.
+    structured_aliases:
+      - literal_form: Opslag
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Lagerung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Stockage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تخزين
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penyimpanan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 存储
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Almacenamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    required: false
+    multivalued: true
+    aliases:
+      - stores_or_stored
+      - contents_description
+    close_mappings:
+      - crm:P55i_currently_holds  # CIDOC_CRM_v7.1.3.rdf:2565-2576 - "Place currently holds Physical Object." Inverse of P55_has_current_location. Our slot is broader (covers data, historical, design intent).
+    related_mappings:
+      - hc:targetMaterials  # Internal alias from target_material migration
+      - crm:P54_has_current_permanent_location  # CIDOC_CRM_v7.1.3.rdf:2523-2535 - "Foreseen permanent location." Domain: Physical Object → Place. Inverted direction from our slot.
+      - schema:containedInPlace  # schemaorg.owl:12688-12699 - "Basic containment relation between places." Domain/Range: Place. Spatial containment, not object storage.
+    comments:
+      - "The relationship may be current (objects presently in this storage unit), historical (objects formerly stored here), or design intent (materials this storage is designed for)."
+      - "Range is uriorcurie per Rule 55 to allow class-level slot_usage to narrow: HeritageObject for actual stored items, Material for design specifications."
+      - "Migrated from stores_object and target_material slots (2026-01-15). Range broadened from HeritageObject to uriorcurie (2026-01-16) to support target_material migration."
+      - "Applicable contexts: storage units (archive boxes, shelves) with HeritageObject range; environmental zones and storage types with Material range for design specs."
+    examples:
+      - value: https://nde.nl/ontology/hc/object/document-123
+        description: Document stored in archive box (HeritageObject range)
+      - value: https://nde.nl/ontology/hc/object/painting-vermeer-001
+        description: Painting in museum storage (HeritageObject range)
+      - value: https://nde.nl/ontology/hc/material/paper
+        description: Storage designed for paper materials (Material range)
+      - value: https://nde.nl/ontology/hc/material/nitrate-film
+        description: Cold storage designed for nitrate film (Material range)
+    annotations:
+      migration_date: '2026-01-15'
+      migrated_from: stores_object, target_material
+      rule_reference: Rule 39 (RiC-O naming), Rule 55 (broaden ranges)
+      range_history: "2026-01-15: uriorcurie → HeritageObject (typed range); 2026-01-16: HeritageObject → uriorcurie (broadened per Rule 55 for target_material migration)"
+      custodian_types: '["*"]'

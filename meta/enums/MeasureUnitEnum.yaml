@@ -1,0 +1,197 @@
+id: https://nde.nl/ontology/hc/enum/MeasureUnitEnum
+name: measure_unit_enum
+title: Measure Unit Enum
+description: >-
+  Enumeration of measurement units for area, length, and related quantities.
+  
+  **RULE 53 COMPLIANT**: Supports the MeasureUnit class for standardized
+  unit representation in Area and other measurement classes.
+  
+  **STANDARDS ALIGNMENT**:
+  - ISO 80000-1 (Quantities and units)
+  - QUDT (Quantities, Units, Dimensions and Types)
+  - UCUM (Unified Code for Units of Measure)
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt_qudt_unit: http://qudt.org/vocab/unit/
+  ucum: http://unitsofmeasure.org/ucum/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  MeasureUnitEnum:
+    description: >-
+      Standard measurement units for heritage custodian facility metrics.
+      
+      Covers area (m², hectares, acres), length (m, km, linear meters),
+      and related quantities for buildings, sites, and collections.
+    permissible_values:
+      # Area units
+      SQUARE_METER:
+        description: Square meter (m²) - SI unit for area
+        meaning: qudt:M2
+        annotations:
+          ucum_code: m2
+          unit_type: area
+          conversion_to_m2: 1.0
+      SQUARE_KILOMETER:
+        description: Square kilometer (km²)
+        meaning: qudt:KiloM2
+        annotations:
+          ucum_code: km2
+          unit_type: area
+          conversion_to_m2: 1000000.0
+      HECTARE:
+        description: Hectare (ha) - 10,000 m²
+        meaning: qudt:HA
+        annotations:
+          ucum_code: har
+          unit_type: area
+          conversion_to_m2: 10000.0
+      ACRE:
+        description: Acre - 4,046.86 m² (imperial)
+        meaning: qudt:AC
+        annotations:
+          ucum_code: "[acr_us]"
+          unit_type: area
+          conversion_to_m2: 4046.8564224
+      SQUARE_FOOT:
+        description: Square foot (ft²) - imperial area unit
+        meaning: qudt:FT2
+        annotations:
+          ucum_code: "[sft_i]"
+          unit_type: area
+          conversion_to_m2: 0.09290304
+
+      # Length units
+      METER:
+        description: Meter (m) - SI unit for length
+        meaning: qudt:M
+        annotations:
+          ucum_code: m
+          unit_type: length
+      KILOMETER:
+        description: Kilometer (km)
+        meaning: qudt:KiloM
+        annotations:
+          ucum_code: km
+          unit_type: length
+      LINEAR_METER:
+        description: Linear meter - for archival shelf measurement
+        meaning: qudt:M
+        annotations:
+          ucum_code: m
+          unit_type: length
+          usage_context: archival_shelving
+      FOOT:
+        description: Foot (ft) - imperial length unit
+        meaning: qudt:FT
+        annotations:
+          ucum_code: "[ft_i]"
+          unit_type: length
+
+      # Special units for heritage context
+      RUNNING_METER:
+        description: Running meter - linear extent of collection material
+        meaning: qudt:M
+        annotations:
+          ucum_code: m
+          unit_type: length
+          usage_context: collection_extent
+      SHELF_METER:
+        description: Shelf meter - archival/library shelving measurement
+        meaning: qudt:M
+        annotations:
+          ucum_code: m
+          unit_type: length
+          usage_context: storage_capacity
+
+      # Count units (Rule 53: link_branch migration for visitor_count, view_count)
+      VISITOR:
+        description: Visitor count unit - for attendance metrics
+        meaning: hc:VisitorUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: visitor_metrics
+      VIEW:
+        description: View count unit - for digital content metrics (videos, pages)
+        meaning: hc:ViewUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: digital_metrics
+      ITEM:
+        description: Item count unit - for collection object counts
+        meaning: hc:ItemUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: collection_metrics
+      FTE:
+        description: Full-time equivalent - for staff measurement
+        meaning: hc:FTEUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: staff_metrics
+      HEADCOUNT:
+        description: Headcount - total number of individuals
+        meaning: hc:HeadcountUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: staff_metrics
+      OBJECT:
+        description: Object count unit - for museum/archive object counts
+        meaning: hc:ObjectUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: collection_metrics
+      FACE:
+        description: Face count unit - for unique faces in photo collections
+        meaning: hc:FaceUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: digital_metrics
+      COMMENT:
+        description: Comment count unit - for social media engagement metrics
+        meaning: hc:CommentUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: engagement_metrics
+      LIKE:
+        description: Like count unit - for social media engagement metrics
+        meaning: hc:LikeUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: engagement_metrics
+      DISLIKE:
+        description: Dislike count unit - for social media engagement metrics
+        meaning: hc:DislikeUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: engagement_metrics
+      FAVORITE:
+        description: Favorite count unit - for social media engagement metrics
+        meaning: hc:FavoriteUnit
+        annotations:
+          ucum_code: "1"
+          unit_type: count
+          usage_context: engagement_metrics
+
+      # Unknown/unspecified
+      UNKNOWN:
+        description: Unit not specified or unknown
+        annotations:
+          unit_type: unknown

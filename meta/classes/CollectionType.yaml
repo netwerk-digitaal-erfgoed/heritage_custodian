@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/CollectionType
+name: collection_type_class
+title: CollectionType Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  bf: http://id.loc.gov/ontologies/bibframe/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_domain
+  - ../slots/has_hypernym
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/equivalent_to
+classes:
+  CollectionType:
+    class_uri: rico:RecordSetType
+    description: >-
+      Taxonomy concept used to classify aggregations by formation logic, archival arrangement, and institutional practice.
+    alt_descriptions:
+      nl: >-
+        Taxonomieconcept voor classificatie van aggregaties op basis van vormingslogica,
+        archiefordening en institutionele praktijk.
+      de: >-
+        Taxonomiekonzept zur Klassifikation von Aggregationen nach Entstehungslogik,
+        archivischer Ordnung und institutioneller Praxis.
+      fr: >-
+        Concept taxonomique servant a classer des agregats selon la logique de
+        formation, l'organisation archivistique et la pratique institutionnelle.
+      es: >-
+        Concepto taxonomico usado para clasificar agregaciones por logica de
+        formacion, orden archivistico y practica institucional.
+      ar: >-
+        مفهوم تصنيفي يُستخدم لتصنيف التجميعات بحسب منطق التكوين والترتيب الأرشيفي
+        والممارسة المؤسسية.
+      id: >-
+        Konsep taksonomi untuk mengklasifikasikan agregasi berdasarkan logika
+        pembentukan, tatanan arsip, dan praktik institusi.
+      zh: >-
+        用于按形成逻辑、档案编排与机构实践对聚合体进行分类的分类学概念。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+    close_mappings:
+      - bf:CollectionType
+      - dcterms:DCMIType
+    slots:
+      - has_hypernym
+      - has_description
+      - identified_by
+      - has_label
+      - has_type
+      - has_domain
+      - equivalent_to
+      - has_score
+    structured_aliases:
+      - literal_form: collectietype
+        in_language: nl
+      - literal_form: Sammlungstyp
+        in_language: de
+      - literal_form: type de collection
+        in_language: fr
+      - literal_form: tipo de coleccion
+        in_language: es
+      - literal_form: نوع المجموعة
+        in_language: ar
+      - literal_form: jenis koleksi
+        in_language: id
+      - literal_form: 馆藏类型
+        in_language: zh
+    examples:
+      - value:
+          has_label: Fonds
+          has_hypernym: rico:RecordSetType
+        description: Top-level archival aggregation maintained under provenance principles
+      - value:
+          has_label: Series
+          has_hypernym: rico:RecordSetType
+        description: Repeating functional grouping formed through recurring activity
+    keywords:
+      - archival arrangement
+      - classification scheme
+      - fonds
+      - series
+      - collection management
+      - record set taxonomy
+    comments:
+      - Captures classification concepts, not custodial organizations.
+      - Use archive organization classes for institutions that hold records.
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_label:
+        required: true
+      has_type:
+        equals_string: CollectionType

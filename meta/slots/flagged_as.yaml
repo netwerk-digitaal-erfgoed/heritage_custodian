@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: flagged_as
+# ==============================================================================
+# To mark an item with a specific status or warning indicator.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property                     | File/Line        | Mapping | Notes                                         |
+# |-----------|------------------------------|------------------|---------|-----------------------------------------------|
+# | **DQV**   | `dqv:hasQualityAnnotation`   | dqv.ttl:168-172  | close   | Quality annotation on datasets (narrower).    |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/flagged_as
+name: flagged_as
+title: flagged as
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dqv: http://www.w3.org/ns/dqv#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  oa: http://www.w3.org/ns/oa#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  flagged_as:
+    name: flagged_as
+    title: flagged as
+    slot_uri: hc:flaggedAs
+    description: >-
+      To mark or designate an item, record, or section of code with a specific
+      status, category, or warning indicator to signal its nature or the need
+      for particular attention or processing.
+    alt_descriptions:
+      nl: >-
+        Het markeren of aanwijzen van een item, record of codesectie met een
+        specifieke status, categorie of waarschuwingsindicator om de aard ervan
+        of de noodzaak van bijzondere aandacht of verwerking aan te geven.
+      de: >-
+        Markieren oder Kennzeichnen eines Elements, Datensatzes oder
+        Codeabschnitts mit einem bestimmten Status, einer Kategorie oder einem
+        Warnhinweis, um dessen Art oder die Notwendigkeit besonderer
+        Aufmerksamkeit oder Verarbeitung zu signalisieren.
+      fr: >-
+        Marquer ou désigner un élément, un enregistrement ou une section de
+        code avec un statut, une catégorie ou un indicateur d'avertissement
+        spécifique pour signaler sa nature ou le besoin d'une attention ou
+        d'un traitement particulier.
+      ar: >-
+        تمييز أو تعيين عنصر أو سجل أو قسم من الشفرة البرمجية بحالة أو فئة
+        أو مؤشر تحذير محدد للإشارة إلى طبيعته أو الحاجة إلى اهتمام أو
+        معالجة خاصة.
+      id: >-
+        Menandai atau menetapkan suatu item, rekaman, atau bagian kode dengan
+        status, kategori, atau indikator peringatan tertentu untuk
+        menandakan sifatnya atau kebutuhan akan perhatian atau pemrosesan
+        khusus.
+      zh: >-
+        用特定的状态、类别或警告标志来标记或指定项目、记录或代码段，以表明其性质或需要特别关注或处理。
+      es: >-
+        Marcar o designar un elemento, registro o sección de código con un
+        estado, categoría o indicador de advertencia específico para señalar
+        su naturaleza o la necesidad de atención o procesamiento particular.
+    structured_aliases:
+      - literal_form: gemarkeerd als
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: markiert als
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: signalé comme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُعلَّم كـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ditandai sebagai
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 标记为
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: marcado como
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_flag
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dqv:hasQualityAnnotation  # dqv.ttl:168-172 — "Refers to a quality annotation." Range: QualityAnnotation. DQV context: quality annotations on datasets/distributions. This slot is broader (any kind of flagging/marking).
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_flag for conciseness.
+      - |
+        **ONTOLOGY NOTE**: `dqv:hasQualityAnnotation` (dqv.ttl:168-172) specifically refers
+        to quality annotations in the DQV context (datasets/distributions). This slot covers
+        general flagging/marking of any item with status or warning indicators. Demoted from
+        exact to close.

@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: has_genre
+# ==============================================================================
+# Classifies a creative work into a specific stylistic category based on shared
+# characteristics, form, or content.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property        | File/Line                | Mapping  | Notes                                                            |
+# |---------------|-----------------|--------------------------|----------|------------------------------------------------------------------|
+# | **Schema.org**| `schema:genre`  | schemaorg.owl:19005-19028| slot_uri | "Genre of the creative work, broadcast channel or group."        |
+# |               |                 |                          |          | Domain: MusicGroup|CreativeWork|BroadcastChannel.                |
+# |               |                 |                          |          | Range: DefinedTerm|Text|URL.                                     |
+#
+# HIERARCHY:
+# - schema:genre → ObjectProperty, broad domain (CreativeWork, MusicGroup, BroadcastChannel)
+# - schema:musicGroupGenre rdfs:subPropertyOf schema:genre (schemaorg.owl:24647)
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10 - Full polish; slot_uri to schema:genre, multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_genre
+name: has_genre
+title: Has Genre
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_genre:
+    slot_uri: schema:genre
+    description: >-
+      Classifies a creative work, such as a musical composition, film, or
+      literary text, into a specific stylistic category based on shared
+      characteristics, form, or content. In the heritage-custodian context,
+      this captures the genre of collection items, exhibitions, performances,
+      or media content associated with a custodian.
+    alt_descriptions:
+      nl: >-
+        Classificeert een creatief werk, zoals een muziekcompositie, film of
+        literaire tekst, in een specifieke stilistische categorie op basis
+        van gedeelde kenmerken, vorm of inhoud.
+      de: >-
+        Klassifiziert ein kreatives Werk wie eine Musikkomposition, einen Film
+        oder einen literarischen Text in eine bestimmte stilistische Kategorie
+        basierend auf gemeinsamen Merkmalen, Form oder Inhalt.
+      fr: >-
+        Classe une œuvre créative, telle qu'une composition musicale, un film
+        ou un texte littéraire, dans une catégorie stylistique spécifique
+        basée sur des caractéristiques, une forme ou un contenu partagés.
+      ar: >-
+        يصنف عملاً إبداعياً، مثل تأليف موسيقي أو فيلم أو نص أدبي، في فئة
+        أسلوبية محددة بناءً على خصائص أو شكل أو محتوى مشترك.
+      id: >-
+        Mengklasifikasikan karya kreatif, seperti komposisi musik, film, atau
+        teks sastra, ke dalam kategori gaya tertentu berdasarkan karakteristik,
+        bentuk, atau konten yang sama.
+      zh: >-
+        根据共同的特征、形式或内容，将创意作品（如音乐作品、电影或文学文本）
+        归类为特定的风格类别。
+      es: >-
+        Clasifica una obra creativa, como una composición musical, película o
+        texto literario, en una categoría estilística específica basada en
+        características, forma o contenido compartidos.
+    structured_aliases:
+      - literal_form: genre
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Genre
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: genre
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نوع أدبي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: genre
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 体裁
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: género
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - music_genre
+      - performance_of
+    examples:
+      - value: "Baroque"
+        description: Genre of a musical collection in a heritage institution
+      - value: "Documentary"
+        description: Genre of a film in a media archive
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        schema:genre covers creative works broadly (music, film, literature,
+        broadcasts). schema:musicGroupGenre is a subproperty for music-specific
+        use (schemaorg.owl:24647).

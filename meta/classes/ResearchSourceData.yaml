@@ -1,0 +1,46 @@
+id: https://nde.nl/ontology/hc/classes/ResearchSourceData
+name: ResearchSourceData
+title: ResearchSourceData
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../slots/expired_at
+classes:
+  ResearchSourceData:
+    description: >-
+      Structured data from WHOIS research sources including domain registrant information,
+      contact details, and domain lifecycle dates.
+    alt_descriptions:
+      nl: Gestructureerde gegevens van WHOIS-onderzoeksbronnen met domeinregistratie-informatie.
+      de: Strukturierte Daten aus WHOIS-Forschungsquellen mit Domain-Registrant-Informationen.
+      fr: Données structurées provenant de sources de recherche WHOIS.
+    structured_aliases:
+    - literal_form: onderzoeksbrongegevens
+      in_language: nl
+    - literal_form: Forschungsquelldaten
+      in_language: de
+    - literal_form: données de source de recherche
+      in_language: fr
+    comments:
+    - Includes domain registrant information (name, address, city, state, country, postal code).
+    - Includes organization, contact details (email, phone).
+    - Includes domain lifecycle dates (creation, update, expiration, registration).
+    - Used for institutional identity verification.
+    class_uri: prov:Entity
+    close_mappings:
+    - schema:Organization
+    related_mappings:
+    - prov:PrimarySource
+    broad_mappings:
+    - prov:Entity
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - expired_at

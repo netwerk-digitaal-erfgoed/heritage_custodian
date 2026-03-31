@@ -1,0 +1,373 @@
+id: https://nde.nl/ontology/hc/class/ArrangementLevelTypes
+name: arrangement_level_types_classes
+title: Arrangement Level Types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ./ArrangementLevel
+classes:
+  FondsLevel:
+    is_a: ArrangementLevel
+    class_uri: hc:FondsLevel
+    description: >-
+      Top hierarchical level representing the entire body of records from a
+      single creator or source, forming the highest level of archival arrangement.
+    alt_descriptions:
+      nl: >-
+        Hoogste hiërarchische niveau dat de volledige hoeveelheid archieven van
+        een enkele maker of bron vertegenwoordigt, het hoogste niveau van
+        archiefordening.
+      de: >-
+        Hoechste hierarchische Ebene, die den gesamten Bestand von Unterlagen
+        eines einzigen Erzeugers oder einer Quelle darstellt, die hoechste
+        Ebene der Archivordnung.
+      fr: >-
+        Niveau hierarchique superieur representant l'ensemble des documents
+        d'un seul createur ou source, formant le niveau le plus eleve de
+        l'arrangement d'archives.
+      es: >-
+        Nivel jerarquico superior que representa todo el cuerpo de registros
+        de un unico creador o fuente, formando el nivel mas alto de ordenacion
+        archivistica.
+      ar: >-
+        أعلى مستوى هرمي يمثل مجموعة السجلات الكاملة من منشئ أو مصدر واحد،
+        ويشكل أعلى مستوى من الترتيب الأرشيفي.
+      id: >-
+        Tingkat hierarki tertinggi yang mewakili seluruh badan catatan dari
+        satu pencipta atau sumber, membentuk tingkat tertinggi pengaturan arsip.
+      zh: >-
+        代表来自单个创建者或来源的全部记录的最高层级，构成档案排列的最高级别。
+    broad_mappings:
+      - skos:Concept
+      - rico-rst:Fonds
+    structured_aliases:
+      - literal_form: archiefniveau
+        in_language: nl
+      - literal_form: Bestandsebene
+        in_language: de
+      - literal_form: niveau de fonds
+        in_language: fr
+      - literal_form: nivel de fondo
+        in_language: es
+      - literal_form: مستوى الأرشيف
+        in_language: ar
+      - literal_form: tingkat fonds
+        in_language: id
+      - literal_form: 全宗级
+        in_language: zh
+    keywords:
+      - fonds
+      - top level
+      - creator
+      - highest level
+    comments:
+      - Highest level in ISAD(G) hierarchy
+      - Represents complete records of a creator
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Core archival hierarchy level
+      custodian_types: "['*']"
+
+  SubfondsLevel:
+    is_a: ArrangementLevel
+    class_uri: hc:SubfondsLevel
+    description: >-
+      Subdivision of a fonds, representing a major organizational unit or
+      functional division within the creator's structure.
+    alt_descriptions:
+      nl: >-
+        Onderverdeling van een archief, die een grote organisatorische eenheid
+        of functionele afdeling binnen de structuur van de maker vertegenwoordigt.
+      de: >-
+        Unterteilung eines Bestands, die eine wichtige Organisationseinheit
+        oder funktionale Abteilung innerhalb der Struktur des Erzeugers darstellt.
+      fr: >-
+        Subdivision d'un fonds, representant une unite organisationnelle majeure
+        ou une division fonctionnelle dans la structure du createur.
+      es: >-
+        Subdivision de un fondo, que representa una unidad organizativa
+        importante o division funcional dentro de la estructura del creador.
+      ar: >-
+        تقسيم فرعي للأرشيف، يمثل وحدة تنظيمية رئيسية أو قسم وظيفي ضمن
+        هيكل المنشئ.
+      id: >-
+        Subdivisi fonds, mewakili unit organisasi utama atau divisi fungsional
+        dalam struktur pencipta.
+      zh: >-
+        全宗的细分，代表创建者结构中的主要组织单位或职能部门。
+    broad_mappings:
+      - skos:Concept
+    structured_aliases:
+      - literal_form: subarchiefniveau
+        in_language: nl
+      - literal_form: Teilbestandsebene
+        in_language: de
+      - literal_form: niveau de sous-fonds
+        in_language: fr
+      - literal_form: nivel de subfondo
+        in_language: es
+      - literal_form: مستوى الأرشيف الفرعي
+        in_language: ar
+      - literal_form: tingkat sub-fonds
+        in_language: id
+      - literal_form: 分全宗级
+        in_language: zh
+    keywords:
+      - subfonds
+      - subdivision
+      - organizational unit
+    comments:
+      - Optional level between fonds and series
+      - Used for large or complex fonds
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Core archival hierarchy level
+      custodian_types: "['*']"
+
+  SeriesLevel:
+    is_a: ArrangementLevel
+    class_uri: hc:SeriesLevel
+    description: >-
+      Hierarchical level grouping files that relate to a particular function,
+      activity, or subject, maintaining the original order of the creator.
+    alt_descriptions:
+      nl: >-
+        Hiërarchisch niveau dat dossiers groepeert die betrekking hebben op een
+        bepaalde functie, activiteit of onderwerp, waarbij de oorspronkelijke
+        ordening van de maker behouden blijft.
+      de: >-
+        Hierarchische Ebene, die Akten zusammenfasst, die sich auf eine bestimmte
+        Funktion, Taetigkeit oder ein Thema beziehen, wobei die urspruengliche
+        Ordnung des Erzeugers beibehalten wird.
+      fr: >-
+        Niveau hierarchique regroupant les dossiers lies a une fonction, une
+        activite ou un sujet particulier, preservant l'ordre original du
+        createur.
+      es: >-
+        Nivel jerarquico que agrupa expedientes relacionados con una funcion,
+        actividad o tema particular, manteniendo el orden original del creador.
+      ar: >-
+        مستوى هرمي يجمع الملفات المتعلقة بوظيفة أو نشاط أو موضوع معين،
+        مع الحفاظ على الترتيب الأصلي للمنشئ.
+      id: >-
+        Tingkat hierarki yang mengelompokkan berkas yang terkait dengan fungsi,
+        aktivitas, atau subjek tertentu, mempertahankan urutan asli pencipta.
+      zh: >-
+        将与特定职能、活动或主题相关的文件分组的层级，保持创建者的原始顺序。
+    broad_mappings:
+      - skos:Concept
+      - rico-rst:Series
+    structured_aliases:
+      - literal_form: serieniveau
+        in_language: nl
+      - literal_form: Serienebene
+        in_language: de
+      - literal_form: niveau de serie
+        in_language: fr
+      - literal_form: nivel de serie
+        in_language: es
+      - literal_form: مستوى السلسلة
+        in_language: ar
+      - literal_form: tingkat seri
+        in_language: id
+      - literal_form: 系列级
+        in_language: zh
+    keywords:
+      - series
+      - function
+      - activity
+      - grouping
+    comments:
+      - Key organizational level in archival hierarchy
+      - Files within series share common characteristics
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Core archival hierarchy level
+      custodian_types: "['*']"
+
+  SubseriesLevel:
+    is_a: ArrangementLevel
+    class_uri: hc:SubseriesLevel
+    description: >-
+      Subdivision of a series, representing a narrower functional or subject
+      grouping within the broader series.
+    alt_descriptions:
+      nl: >-
+        Onderverdeling van een serie, die een smallere functionele of
+        onderwerpgroepering binnen de bredere serie vertegenwoordigt.
+      de: >-
+        Unterteilung einer Serie, die eine engere funktionale oder thematische
+        Gruppierung innerhalb der breiteren Serie darstellt.
+      fr: >-
+        Subdivision d'une serie, representant un regroupement fonctionnel ou
+        thematique plus etroit dans la serie plus large.
+      es: >-
+        Subdivision de una serie, que representa una agrupacion funcional o
+        tematica mas estrecha dentro de la serie mas amplia.
+      ar: >-
+        تقسيم فرعي لسلسلة، يمثل تجميعًا وظيفيًا أو موضوعيًا أضيق ضمن
+        السلسلة الأوسع.
+      id: >-
+        Subdivisi seri, mewakili pengelompokan fungsional atau subjek yang lebih
+        sempit dalam seri yang lebih luas.
+      zh: >-
+        系列的细分，代表更广泛系列中更狭窄的职能或主题分组。
+    broad_mappings:
+      - skos:Concept
+    structured_aliases:
+      - literal_form: subserieniveau
+        in_language: nl
+      - literal_form: Unterserienebene
+        in_language: de
+      - literal_form: niveau de sous-serie
+        in_language: fr
+      - literal_form: nivel de subserie
+        in_language: es
+      - literal_form: مستوى السلسلة الفرعية
+        in_language: ar
+      - literal_form: tingkat sub-seri
+        in_language: id
+      - literal_form: 子系列级
+        in_language: zh
+    keywords:
+      - subseries
+      - subdivision
+      - narrower grouping
+    comments:
+      - Optional level for complex series
+      - Provides additional granularity when needed
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Core archival hierarchy level
+      custodian_types: "['*']"
+
+  FileLevel:
+    is_a: ArrangementLevel
+    class_uri: hc:FileLevel
+    description: >-
+      Hierarchical level representing an organized unit of documents grouped
+      together for ease of reference, handling, or because of subject or
+      functional relationship.
+    alt_descriptions:
+      nl: >-
+        Hiërarchisch niveau dat een georganiseerde eenheid van documenten
+        vertegenwoordigt die zijn gegroepeerd voor gemakkelijke raadpleging,
+        behandeling of vanwege onderwerpelijke of functionele relatie.
+      de: >-
+        Hierarchische Ebene, die eine organisierte Einheit von Dokumenten
+        darstellt, die zur einfacheren Bezugnahme, Handhabung oder aufgrund
+        inhaltlicher oder funktionaler Beziehung zusammengefasst sind.
+      fr: >-
+        Niveau hierarchique representant une unite organises de documents
+        regroupes pour faciliter la reference, la manipulation ou en raison
+        d'une relation thematique ou fonctionnelle.
+      es: >-
+        Nivel jerarquico que representa una unidad organizada de documentos
+        agrupados para facilitar la referencia, manejo o debido a una relacion
+        tematica o funcional.
+      ar: >-
+        مستوى هرمي يمثل وحدة منظمة من الوثائق مجمعة معًا لتسهيل المرجعية
+        أو المعالجة أو بسبب العلاقة الموضوعية أو الوظيفية.
+      id: >-
+        Tingkat hierarki yang mewakili unit terorganisir dari dokumen yang
+        dikelompokkan untuk kemudahan referensi, penanganan, atau karena
+        hubungan subjek atau fungsional.
+      zh: >-
+        代表为便于参考、处理或因主题或职能关系而分组的有组织文件单元的层级。
+    broad_mappings:
+      - skos:Concept
+      - rico-rst:File
+    structured_aliases:
+      - literal_form: dossierniveau
+        in_language: nl
+      - literal_form: Aktebene
+        in_language: de
+      - literal_form: niveau de dossier
+        in_language: fr
+      - literal_form: nivel de expediente
+        in_language: es
+      - literal_form: مستوى الملف
+        in_language: ar
+      - literal_form: tingkat berkas
+        in_language: id
+      - literal_form: 文件级
+        in_language: zh
+    keywords:
+      - file
+      - dossier
+      - document unit
+      - grouping
+    comments:
+      - Standard archival unit of arrangement
+      - Contains related documents
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Core archival hierarchy level
+      custodian_types: "['*']"
+
+  ItemLevel:
+    is_a: ArrangementLevel
+    class_uri: hc:ItemLevel
+    description: >-
+      Lowest hierarchical level representing the smallest intellectually
+      indivisible archival unit, such as a single document, photograph, or
+      letter.
+    alt_descriptions:
+      nl: >-
+        Laagste hiërarchische niveau dat de kleinste intellectueel ondeelbare
+        archiefschaal vertegenwoordigt, zoals een enkel document, foto of brief.
+      de: >-
+        Niedrigste hierarchische Ebene, die die kleinste intellektuell unteilbare
+        Archiveinheit darstellt, wie ein einzelnes Dokument, Foto oder Brief.
+      fr: >-
+        Niveau hierarchique le plus bas representant la plus petite unite
+        archivistique intellectuellement indivisible, comme un seul document,
+        photographie ou lettre.
+      es: >-
+        Nivel jerarquico mas bajo que representa la unidad archivistica mas
+        pequena intelectualmente indivisible, como un solo documento, fotografia
+        o carta.
+      ar: >-
+        أدنى مستوى هرمي يمثل أصغر وحدة أرشيفية غير قابلة للتجزئة فكريًا،
+        مثل وثيقة واحدة أو صورة أو رسالة.
+      id: >-
+        Tingkat hierarki terendah yang mewakili unit arsip terkecil yang tidak
+        dapat dibagi secara intelektual, seperti satu dokumen, foto, atau surat.
+      zh: >-
+        最低层级，代表在智力上不可分割的最小档案单元，如单份文件、照片或信件。
+    broad_mappings:
+      - skos:Concept
+      - rico-rst:Item
+    structured_aliases:
+      - literal_form: stukniveau
+        in_language: nl
+      - literal_form: Einzeleben
+        in_language: de
+      - literal_form: niveau de piece
+        in_language: fr
+      - literal_form: nivel de item
+        in_language: es
+      - literal_form: مستوى العنصر
+        in_language: ar
+      - literal_form: tingkat item
+        in_language: id
+      - literal_form: 条目级
+        in_language: zh
+    keywords:
+      - item
+      - document
+      - lowest level
+      - indivisible unit
+    comments:
+      - Lowest level in archival hierarchy
+      - Most granular descriptive unit
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Core archival hierarchy level
+      custodian_types: "['*']"

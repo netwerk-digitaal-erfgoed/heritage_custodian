@@ -1,0 +1,598 @@
+id: https://nde.nl/ontology/hc/class/RequirementTypes
+name: requirement_types_classes
+title: Requirement Types Concrete Classes
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- ./RequirementType
+- linkml:types
+classes:
+  EligibilityRequirementCategory:
+    is_a: RequirementType
+    class_uri: hc:EligibilityRequirementCategory
+    description: Category for eligibility requirements - who can apply.
+    alt_descriptions:
+      nl: Categorie voor geschiktheidseisen - wie kan aanvragen.
+      de: Kategorie für Eligibilitätsanforderungen - wer kann sich bewerben.
+    structured_aliases:
+    - literal_form: geschiktheidscategorie
+      in_language: nl
+    - literal_form: Eligibilitätskategorie
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ELIGIBILITY
+      is_category: 'true'
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  FinancialRequirementCategory:
+    is_a: RequirementType
+    class_uri: hc:FinancialRequirementCategory
+    description: Category for financial requirements - budget and funding constraints.
+    alt_descriptions:
+      nl: Categorie voor financiële vereisten - budget- en financieringsbeperkingen.
+      de: Kategorie für finanzielle Anforderungen - Budget- und Finanzierungsbeschränkungen.
+    structured_aliases:
+    - literal_form: financiële categorie
+      in_language: nl
+    - literal_form: Finanzkategorie
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: FINANCIAL
+      is_category: 'true'
+  PartnershipRequirementCategory:
+    is_a: RequirementType
+    class_uri: hc:PartnershipRequirementCategory
+    description: Category for partnership requirements - consortium rules.
+    alt_descriptions:
+      nl: Categorie voor partnerschapsvereisten - consortiumregels.
+      de: Kategorie für Partnerschaftsanforderungen - Konsortialregeln.
+    structured_aliases:
+    - literal_form: partnerschapscategorie
+      in_language: nl
+    - literal_form: Partnerschaftskategorie
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: PARTNERSHIP
+      is_category: 'true'
+  ThematicRequirementCategory:
+    is_a: RequirementType
+    class_uri: hc:ThematicRequirementCategory
+    description: Category for thematic requirements - topic focus.
+    alt_descriptions:
+      nl: Categorie voor thematische vereisten - thematische focus.
+      de: Kategorie für thematische Anforderungen - Themenschwerpunkt.
+    structured_aliases:
+    - literal_form: thematische categorie
+      in_language: nl
+    - literal_form: Thematische Kategorie
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: THEMATIC
+      is_category: 'true'
+  TechnicalRequirementCategory:
+    is_a: RequirementType
+    class_uri: hc:TechnicalRequirementCategory
+    description: Category for technical requirements - deliverables and outputs.
+    alt_descriptions:
+      nl: Categorie voor technische vereisten - leveringen en outputs.
+      de: Kategorie für technische Anforderungen - Liefergegenstände und Outputs.
+    structured_aliases:
+    - literal_form: technische categorie
+      in_language: nl
+    - literal_form: Technische Kategorie
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: TECHNICAL
+      is_category: 'true'
+  AdministrativeRequirementCategory:
+    is_a: RequirementType
+    class_uri: hc:AdministrativeRequirementCategory
+    description: Category for administrative requirements - registration and documentation.
+    alt_descriptions:
+      nl: Categorie voor administratieve vereisten - registratie en documentatie.
+      de: Kategorie für administrative Anforderungen - Registrierung und Dokumentation.
+    structured_aliases:
+    - literal_form: administratieve categorie
+      in_language: nl
+    - literal_form: Administrative Kategorie
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ADMINISTRATIVE
+      is_category: 'true'
+  GeographicEligibilityRequirement:
+    is_a: EligibilityRequirementCategory
+    class_uri: hc:GeographicEligibilityRequirement
+    description: >-
+      Geographic eligibility constraint on applicant location (e.g., "EU Member States only",
+      "UK-based organisations").
+    alt_descriptions:
+      nl: Geografische geschiktheidsbeperking (bijv. "Alleen EU-lidstaten").
+      de: Geografische Eligibilitätsbeschränkung (z.B. "Nur EU-Mitgliedstaaten").
+    structured_aliases:
+    - literal_form: geografische geschiktheid
+      in_language: nl
+    - literal_form: geografische Eligibilität
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:eligibleRegion
+    annotations:
+      short_code: ELIGIBILITY_GEOGRAPHIC
+      specificity_score: '0.70'
+  OrganizationalEligibilityRequirement:
+    is_a: EligibilityRequirementCategory
+    class_uri: hc:OrganizationalEligibilityRequirement
+    description: >-
+      Eligibility based on organisation type or legal status (e.g., "Non-profit only",
+      "Public bodies", "SMEs").
+    alt_descriptions:
+      nl: Geschiktheid op basis van organisatietype of juridische status.
+      de: Eligibilität basierend auf Organisationstyp oder Rechtsstatus.
+    structured_aliases:
+    - literal_form: organisatorische geschiktheid
+      in_language: nl
+    - literal_form: organisatorische Eligibilität
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - org:Organization
+    annotations:
+      short_code: ELIGIBILITY_ORGANIZATIONAL
+      specificity_score: '0.70'
+  HeritageTypeEligibilityRequirement:
+    is_a: EligibilityRequirementCategory
+    class_uri: hc:HeritageTypeEligibilityRequirement
+    description: >-
+      Eligibility based on type of heritage the applicant manages (e.g., "Museums only",
+      "Archives eligible").
+    alt_descriptions:
+      nl: Geschiktheid op basis van het type erfgoed dat de aanvrager beheert.
+      de: Eligibilität basierend auf der Art des Heritage, den der Antraggeber verwaltet.
+    structured_aliases:
+    - literal_form: erfgoedtype-geschiktheid
+      in_language: nl
+    - literal_form: Heritage-Typ-Eligibilität
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ELIGIBILITY_HERITAGE_TYPE
+      specificity_score: '0.75'
+  ExperienceEligibilityRequirement:
+    is_a: EligibilityRequirementCategory
+    class_uri: hc:ExperienceEligibilityRequirement
+    description: >-
+      Experience or track record requirements (e.g., "Minimum 3 years operating",
+      "Prior EU project experience preferred").
+    alt_descriptions:
+      nl: Ervarings- of trackrecord-vereisten.
+      de: Erfahrungs- oder Trackrecord-Anforderungen.
+    structured_aliases:
+    - literal_form: ervaringseis
+      in_language: nl
+    - literal_form: Erfahrungsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ELIGIBILITY_EXPERIENCE
+      specificity_score: '0.65'
+  RegistrationEligibilityRequirement:
+    is_a: EligibilityRequirementCategory
+    class_uri: hc:RegistrationEligibilityRequirement
+    description: >-
+      Required registrations or certifications (e.g., "PIC registration required",
+      "Must be registered charity").
+    alt_descriptions:
+      nl: Vereiste registraties of certificeringen.
+      de: Erforderliche Registrierungen oder Zertifizierungen.
+    structured_aliases:
+    - literal_form: registratievereiste
+      in_language: nl
+    - literal_form: Registrierungserfordernis
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ELIGIBILITY_REGISTRATION
+      specificity_score: '0.65'
+  CofundingFinancialRequirement:
+    is_a: FinancialRequirementCategory
+    class_uri: hc:CofundingFinancialRequirement
+    description: >-
+      Co-funding or match funding requirements (e.g., "25% match required",
+      "Co-funding from national sources").
+    alt_descriptions:
+      nl: Cofinancierings- of matchfunding-vereisten.
+      de: Co-Finanzierungs- oder Match-Funding-Anforderungen.
+    structured_aliases:
+    - literal_form: cofinancieringseis
+      in_language: nl
+    - literal_form: Co-Finanzierungsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:price
+    annotations:
+      short_code: FINANCIAL_COFUNDING
+      specificity_score: '0.70'
+  MinimumBudgetFinancialRequirement:
+    is_a: FinancialRequirementCategory
+    class_uri: hc:MinimumBudgetFinancialRequirement
+    description: Minimum budget/grant size constraint (e.g., "Projects must request at least €500K").
+    alt_descriptions:
+      nl: Minimum budget-/subsidiegrootte beperking.
+      de: Mindestbudget-/Fördergrößenbeschränkung.
+    structured_aliases:
+    - literal_form: minimumbudget-vereiste
+      in_language: nl
+    - literal_form: Mindestbudgetanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: FINANCIAL_BUDGET_MINIMUM
+      specificity_score: '0.65'
+  MaximumBudgetFinancialRequirement:
+    is_a: FinancialRequirementCategory
+    class_uri: hc:MaximumBudgetFinancialRequirement
+    description: Maximum budget/grant size constraint (e.g., "Maximum €2M per project").
+    alt_descriptions:
+      nl: Maximum budget-/subsidiegrootte beperking.
+      de: Höchstbudget-/Fördergrößenbeschränkung.
+    structured_aliases:
+    - literal_form: maximumbudget-vereiste
+      in_language: nl
+    - literal_form: Höchstbudgetanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: FINANCIAL_BUDGET_MAXIMUM
+      specificity_score: '0.65'
+  FundingRateFinancialRequirement:
+    is_a: FinancialRequirementCategory
+    class_uri: hc:FundingRateFinancialRequirement
+    description: Funding rate or reimbursement percentage (e.g., "80% of eligible costs", "100% for non-profits").
+    alt_descriptions:
+      nl: Financieringspercentage of vergoedingspercentage.
+      de: Förderquote oder Erstattungsprozentsatz.
+    structured_aliases:
+    - literal_form: financieringspercentage-vereiste
+      in_language: nl
+    - literal_form: Förderquotenanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: FINANCIAL_RATE
+      specificity_score: '0.65'
+  EligibleCostsFinancialRequirement:
+    is_a: FinancialRequirementCategory
+    class_uri: hc:EligibleCostsFinancialRequirement
+    description: Types of costs eligible for funding (e.g., "Personnel, travel, equipment", "No infrastructure costs").
+    alt_descriptions:
+      nl: Types kosten die voor financiering in aanmerking komen.
+      de: Arten von förderfähigen Kosten.
+    structured_aliases:
+    - literal_form: subsidiabele kosten vereiste
+      in_language: nl
+    - literal_form: Förderfähige Kostenanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: FINANCIAL_ELIGIBLE_COSTS
+      specificity_score: '0.65'
+  MinimumPartnersPartnershipRequirement:
+    is_a: PartnershipRequirementCategory
+    class_uri: hc:MinimumPartnersPartnershipRequirement
+    description: Minimum number of partners required in consortium (e.g., "At least 3 partners from 3 countries").
+    alt_descriptions:
+      nl: Minimum aantal partners vereist in consortium.
+      de: Mindestanzahl erforderlicher Partner im Konsortium.
+    structured_aliases:
+    - literal_form: minimum partners vereiste
+      in_language: nl
+    - literal_form: Mindestpartneranforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: PARTNERSHIP_MINIMUM_PARTNERS
+      specificity_score: '0.70'
+  CountryDiversityPartnershipRequirement:
+    is_a: PartnershipRequirementCategory
+    class_uri: hc:CountryDiversityPartnershipRequirement
+    description: Geographic diversity requirement for consortium (e.g., "Partners from at least 3 EU countries").
+    alt_descriptions:
+      nl: Geografische diversiteitsvereiste voor consortium.
+      de: Geografische Diversitätsanforderung für Konsortien.
+    structured_aliases:
+    - literal_form: landendiversiteit vereiste
+      in_language: nl
+    - literal_form: Ländervielfaltsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: PARTNERSHIP_COUNTRY_DIVERSITY
+      specificity_score: '0.70'
+  SectorMixPartnershipRequirement:
+    is_a: PartnershipRequirementCategory
+    class_uri: hc:SectorMixPartnershipRequirement
+    description: Required mix of organisation types in consortium (e.g., "Must include academic and non-academic partners").
+    alt_descriptions:
+      nl: Vereiste mix van organisatietypes in consortium.
+      de: Erforderliche Mischung von Organisationstypen im Konsortium.
+    structured_aliases:
+    - literal_form: sectormix vereiste
+      in_language: nl
+    - literal_form: Sektormixanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: PARTNERSHIP_SECTOR_MIX
+      specificity_score: '0.70'
+  CoordinatorPartnershipRequirement:
+    is_a: PartnershipRequirementCategory
+    class_uri: hc:CoordinatorPartnershipRequirement
+    description: Requirements for consortium coordinator/lead partner (e.g., "Lead must be non-profit").
+    alt_descriptions:
+      nl: Vereisten voor consortiumcoördinator/hoofdpartner.
+      de: Anforderungen an Konsortialkoordinator/Lead-Partner.
+    structured_aliases:
+    - literal_form: coördinator vereiste
+      in_language: nl
+    - literal_form: Koordinatorenanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: PARTNERSHIP_COORDINATOR
+      specificity_score: '0.70'
+  FocusAreaThematicRequirement:
+    is_a: ThematicRequirementCategory
+    class_uri: hc:FocusAreaThematicRequirement
+    description: Required thematic or topic focus (e.g., "Climate change impact on heritage", "Digital preservation").
+    alt_descriptions:
+      nl: Vereist thematisch of onderwerp focus.
+      de: Erforderlicher thematischer oder thematischer Schwerpunkt.
+    structured_aliases:
+    - literal_form: focusgebied vereiste
+      in_language: nl
+    - literal_form: Schwerpunktanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - skos:Concept
+    annotations:
+      short_code: THEMATIC_FOCUS_AREA
+      specificity_score: '0.70'
+  HeritageScopeThematicRequirement:
+    is_a: ThematicRequirementCategory
+    class_uri: hc:HeritageScopeThematicRequirement
+    description: Types of heritage to be addressed (e.g., "Tangible and intangible heritage", "Built heritage only").
+    alt_descriptions:
+      nl: Types erfgoed die aan bod moeten komen.
+      de: Zu behandelnde Heritage-Arten.
+    structured_aliases:
+    - literal_form: erfgoedomvang vereiste
+      in_language: nl
+    - literal_form: Heritage-Umfanganforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: THEMATIC_HERITAGE_SCOPE
+      specificity_score: '0.75'
+  GeographicScopeThematicRequirement:
+    is_a: ThematicRequirementCategory
+    class_uri: hc:GeographicScopeThematicRequirement
+    description: Geographic scope of project activities (e.g., "European focus required", "Cross-border regions").
+    alt_descriptions:
+      nl: Geografische reikwijdte van projectactiviteiten.
+      de: Geografischer Umfang der Projektaktivitäten.
+    structured_aliases:
+    - literal_form: geografische reikwijdte vereiste
+      in_language: nl
+    - literal_form: Geografische Umfanganforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: THEMATIC_GEOGRAPHIC_SCOPE
+      specificity_score: '0.65'
+  TimelineThematicRequirement:
+    is_a: ThematicRequirementCategory
+    class_uri: hc:TimelineThematicRequirement
+    description: Required time period or era focus (e.g., "20th century heritage", "Medieval to Renaissance").
+    alt_descriptions:
+      nl: Vereiste tijdperiode of tijdperk focus.
+      de: Erforderlicher Zeitraum oder Epochenfokus.
+    structured_aliases:
+    - literal_form: tijdlijn vereiste
+      in_language: nl
+    - literal_form: Zeitleinenanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: THEMATIC_TIMELINE
+      specificity_score: '0.70'
+  DeliverablesTechnicalRequirement:
+    is_a: TechnicalRequirementCategory
+    class_uri: hc:DeliverablesTechnicalRequirement
+    description: Required project outputs or deliverables (e.g., "Open access publications", "Reusable digital tools").
+    alt_descriptions:
+      nl: Vereiste projectoutput of leveringen.
+      de: Erforderliche Projektergebnisse oder Liefergegenstände.
+    structured_aliases:
+    - literal_form: leveringen vereiste
+      in_language: nl
+    - literal_form: Liefergegenstandsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: TECHNICAL_DELIVERABLES
+      specificity_score: '0.65'
+  OpenAccessTechnicalRequirement:
+    is_a: TechnicalRequirementCategory
+    class_uri: hc:OpenAccessTechnicalRequirement
+    description: Open access or open data requirements (e.g., "Immediate open access mandatory", "Data Management Plan required").
+    alt_descriptions:
+      nl: Open access of open data vereisten.
+      de: Open-Access- oder Open-Data-Anforderungen.
+    structured_aliases:
+    - literal_form: open access vereiste
+      in_language: nl
+    - literal_form: Open-Access-Anforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: TECHNICAL_OPEN_ACCESS
+      specificity_score: '0.65'
+  DurationTechnicalRequirement:
+    is_a: TechnicalRequirementCategory
+    class_uri: hc:DurationTechnicalRequirement
+    description: Project duration constraints (e.g., "24-48 months", "Maximum 3 years").
+    alt_descriptions:
+      nl: Projectduur-beperkingen.
+      de: Projektdauerbeschränkungen.
+    structured_aliases:
+    - literal_form: duur vereiste
+      in_language: nl
+    - literal_form: Dauereanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: TECHNICAL_DURATION
+      specificity_score: '0.60'
+  MethodologyTechnicalRequirement:
+    is_a: TechnicalRequirementCategory
+    class_uri: hc:MethodologyTechnicalRequirement
+    description: Required methodological approaches (e.g., "Citizen science component", "Multi-disciplinary approach").
+    alt_descriptions:
+      nl: Vereiste methodologische benaderingen.
+      de: Erforderliche methodische Ansätze.
+    structured_aliases:
+    - literal_form: methodologie vereiste
+      in_language: nl
+    - literal_form: Methodikanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: TECHNICAL_METHODOLOGY
+      specificity_score: '0.70'
+  RegistrationAdministrativeRequirement:
+    is_a: AdministrativeRequirementCategory
+    class_uri: hc:RegistrationAdministrativeRequirement
+    description: Portal or system registration requirements (e.g., "EU Funding & Tenders registration").
+    alt_descriptions:
+      nl: Portal- of systeemregistratie vereisten.
+      de: Portal- oder Systemregistrierungsanforderungen.
+    structured_aliases:
+    - literal_form: registratie administratief vereiste
+      in_language: nl
+    - literal_form: Registrierungsverwaltungsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ADMINISTRATIVE_REGISTRATION
+      specificity_score: '0.60'
+  DocumentationAdministrativeRequirement:
+    is_a: AdministrativeRequirementCategory
+    class_uri: hc:DocumentationAdministrativeRequirement
+    description: Required documentation for application (e.g., "Annual accounts required", "Governance documents").
+    alt_descriptions:
+      nl: Vereiste documentatie voor aanvraag.
+      de: Erforderliche Dokumentation für die Bewerbung.
+    structured_aliases:
+    - literal_form: documentatie administratief vereiste
+      in_language: nl
+    - literal_form: Dokumentationsverwaltungsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ADMINISTRATIVE_DOCUMENTATION
+      specificity_score: '0.60'
+  LanguageAdministrativeRequirement:
+    is_a: AdministrativeRequirementCategory
+    class_uri: hc:LanguageAdministrativeRequirement
+    description: Language requirements for application (e.g., "English only", "Application in any EU language").
+    alt_descriptions:
+      nl: Taalvereisten voor aanvraag.
+      de: Sprachanforderungen für die Bewerbung.
+    structured_aliases:
+    - literal_form: taal administratief vereiste
+      in_language: nl
+    - literal_form: Sprachverwaltungsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ADMINISTRATIVE_LANGUAGE
+      specificity_score: '0.55'
+  FormatAdministrativeRequirement:
+    is_a: AdministrativeRequirementCategory
+    class_uri: hc:FormatAdministrativeRequirement
+    description: Format or template requirements (e.g., "Use official template", "Page limits apply").
+    alt_descriptions:
+      nl: Formaat- of sjabloonvereisten.
+      de: Format- oder Vorlagenanforderungen.
+    structured_aliases:
+    - literal_form: formaat administratief vereiste
+      in_language: nl
+    - literal_form: Formatverwaltungsanforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: ADMINISTRATIVE_FORMAT
+      specificity_score: '0.55'
+  OtherRequirement:
+    is_a: RequirementType
+    class_uri: hc:OtherRequirement
+    description: Requirements that don't fit other categories. Use extraction_notes to describe the specific requirement.
+    alt_descriptions:
+      nl: Vereisten die niet in andere categorieën passen.
+      de: Anforderungen, die in keine andere Kategorie passen.
+    structured_aliases:
+    - literal_form: overige vereiste
+      in_language: nl
+    - literal_form: Sonstige Anforderung
+      in_language: de
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      short_code: OTHER
+      specificity_score: '0.50'

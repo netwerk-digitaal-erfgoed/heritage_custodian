@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: in_language
+# ==============================================================================
+# Specifies the natural language in which a document or communication is expressed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                 | Mapping | Notes                                                     |
+# |---------------|-----------------------|---------------------------|---------|------------------------------------------------------------|
+# | **Schema.org**| `schema:inLanguage`   | schemaorg.owl:21591-21617 | slot_uri | "The language of the content or performance." IETF BCP 47. |
+# | **DCTerms**   | `dcterms:language`    | dcterms.rdf:1611-1633     | close   | "A language of the resource." Expects LinguisticSystem (non-literal); our slot uses ISO 639-1 string codes. |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_language
+name: in_language
+title: In Language
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_language:
+    slot_uri: schema:inLanguage
+    description: >-
+      Specifies the natural language or linguistic code in which a document, media
+      file, user interface, or communication is expressed.
+    alt_descriptions:
+      nl: >-
+        Specificeert de natuurlijke taal of taalcode waarin een document, mediabestand,
+        gebruikersinterface of communicatie is uitgedrukt.
+      de: >-
+        Gibt die natürliche Sprache oder den Sprachcode an, in der bzw. dem ein
+        Dokument, eine Mediendatei, eine Benutzeroberfläche oder eine Kommunikation
+        verfasst ist.
+      fr: >-
+        Spécifie la langue naturelle ou le code linguistique dans lequel un document,
+        un fichier multimédia, une interface utilisateur ou une communication est
+        exprimé.
+      ar: >-
+        يحدد اللغة الطبيعية أو الرمز اللغوي الذي يُعبَّر به عن مستند أو ملف
+        وسائط أو واجهة مستخدم أو اتصال.
+      id: >-
+        Menentukan bahasa alami atau kode linguistik yang digunakan untuk menyatakan
+        dokumen, berkas media, antarmuka pengguna, atau komunikasi.
+      zh: >-
+        指定文档、媒体文件、用户界面或通信所使用的自然语言或语言代码。
+      es: >-
+        Especifica el idioma natural o el código lingüístico en el que se expresa
+        un documento, archivo multimedia, interfaz de usuario o comunicación.
+    structured_aliases:
+      - literal_form: Taal
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sprache
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Langue
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لغة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Bahasa
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 语言
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Idioma
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    pattern: ^[a-z]{2}$
+    comments:
+      - 'Dublin Core: dcterms:language covers content language (expects LinguisticSystem, non-literal).'
+      - 'ISO 639-1 language code (e.g., "en", "nl", "de").'
+      - Some institutions maintain separate profiles for different languages.
+    close_mappings:
+      - dcterms:language  # dcterms.rdf:1611-1633 — "A language of the resource." Expects LinguisticSystem; our slot uses ISO 639-1 string codes.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - language
+      - name_language
+      - nl
+      - place_language
+      - segment_language

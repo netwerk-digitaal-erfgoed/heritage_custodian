@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_direction
+# ==============================================================================
+# The orientation, course, or path along which an entity moves, points, or faces.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping  | Notes                              |
+# |---------------|-----------------------|----------------------------|----------|------------------------------------|
+# | (none)        | —                     | —                          | —        | schema:direction does NOT exist in schemaorg.owl; no standard match found |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, removed invalid schema:direction
+#   exact_mapping (does not exist in ontology), removed crm:P2_has_type (too generic),
+#   cleaned description (moved usage notes to comments)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_direction
+name: has_direction
+title: Has Direction
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_direction:
+    slot_uri: hc:hasDirection
+    description: >-
+      To specify the orientation, course, or path along which an entity moves, points, or faces.
+    alt_descriptions:
+      nl: >-
+        De oriëntatie, koers of het pad specificeren waarlangs een entiteit beweegt, wijst of gericht is.
+      de: >-
+        Die Ausrichtung, den Kurs oder den Pfad angeben, entlang dessen sich eine Entität bewegt, zeigt oder ausgerichtet ist.
+      fr: >-
+        Spécifier l'orientation, le cours ou le chemin le long duquel une entité se déplace, pointe ou fait face.
+      ar: >-
+        تحديد الاتجاه أو المسار الذي يتحرك أو يشير إليه أو يواجهه كيان ما.
+      id: >-
+        Menentukan orientasi, arah, atau jalur yang dilalui, ditunjuk, atau dihadapi oleh suatu entitas.
+      zh: >-
+        指定实体移动、指向或面对的方位、方向或路径。
+      es: >-
+        Especificar la orientación, el curso o la trayectoria a lo largo de la cual una entidad se mueve, apunta o se orienta.
+    structured_aliases:
+      - literal_form: heeft richting
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Richtung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une direction
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه اتجاه
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki arah
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有方向
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene dirección
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    aliases:
+      - has_or_had_direction
+    comments:
+      - |
+        MIGRATED 2026-02-03: Renamed from has_or_had_direction for conciseness.
+      - |
+        **USAGE**: This is a GENERIC slot intended for reuse across multiple classes.
+        Classes may narrow the range in slot_usage to reference specific Direction classes
+        (e.g., TextDirection for text flow, ReadingDirection for reading order).
+        Common values for TextDirection: LEFT_TO_RIGHT, RIGHT_TO_LEFT, TOP_TO_BOTTOM, BOUSTROPHEDON.
+    annotations:
+      custodian_types: '["L", "A", "M", "R", "H"]'

@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: in_series
+# ==============================================================================
+# The larger set of related, often sequential, works, events, or products to
+# which an entity belongs.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                              |
+# |---------------|-----------------------|--------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:partOfSeries` | schemaorg.owl:29062-29090| close   | "The series to which this episode  |
+# |               |                       |                          |         | or season belongs." Domain:        |
+# |               |                       |                          |         | Episode/Clip/CreativeWorkSeason.   |
+# |               |                       |                          |         | Media-specific; this slot is       |
+# |               |                       |                          |         | broader.                           |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_series
+name: in_series
+title: In Series
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_series:
+    slot_uri: hc:inSeries
+    description: >-
+      The larger set of related, often sequential, works, events, or products
+      to which an entity belongs.
+    alt_descriptions:
+      nl: >-
+        De grotere reeks van gerelateerde, vaak opeenvolgende, werken,
+        evenementen of producten waartoe een entiteit behoort.
+      de: >-
+        Die größere Reihe verwandter, oft aufeinanderfolgender Werke,
+        Veranstaltungen oder Produkte, zu der eine Entität gehört.
+      fr: >-
+        L'ensemble plus large d'œuvres, d'événements ou de produits liés,
+        souvent séquentiels, auquel une entité appartient.
+      ar: >-
+        المجموعة الأكبر من الأعمال أو الأحداث أو المنتجات المترابطة، والتي
+        غالبًا ما تكون متسلسلة، التي ينتمي إليها كيان.
+      id: >-
+        Kumpulan yang lebih besar dari karya, peristiwa, atau produk terkait
+        yang sering berurutan, yang menjadi bagian dari suatu entitas.
+      zh: >-
+        实体所属的更大的一组相关的、通常是连续的作品、事件或产品。
+      es: >-
+        El conjunto más amplio de obras, eventos o productos relacionados,
+        a menudo secuenciales, al que pertenece una entidad.
+    structured_aliases:
+      - literal_form: Reeks
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Reihe
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Série
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: سلسلة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Seri
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 系列
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Serie
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_series
+      - has_series
+    close_mappings:
+      - schema:partOfSeries  # schemaorg.owl:29062-29090 — "The series to which this episode or season belongs." Domain: Episode/Clip/CreativeWorkSeason. Media-specific; this slot is broader.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_series for conciseness."

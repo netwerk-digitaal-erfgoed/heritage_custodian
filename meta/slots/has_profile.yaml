@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: has_profile
+# ==============================================================================
+# A description, digital representation, or account portraying an entity's identity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property                  | File/Line            | Mapping | Notes                                         |
+# |-----------|---------------------------|----------------------|---------|-----------------------------------------------|
+# | **FOAF**  | `foaf:account`            | foaf.ttl:121-128     | close   | Agent→OnlineAccount only; profile is broader. |
+# | **PROV**  | `prov:wasAssociatedWith`  | prov.ttl:1066-1079   | related | Activity→Agent responsibility, not profiles.  |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_profile
+name: has_profile
+title: Has Profile
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_profile:
+    slot_uri: hc:hasProfile
+    description: >-
+      To specify a description, digital representation, or account associated with an entity, including social media pages, user accounts, or technical configurations used to portray identity.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een beschrijving, digitale representatie of account die
+        aan een entiteit is gekoppeld, inclusief sociale-mediapagina's, gebruikersaccounts
+        of technische configuraties die worden gebruikt om identiteit weer te geven.
+      de: >-
+        Zur Angabe einer Beschreibung, digitalen Darstellung oder eines Kontos, das mit
+        einer Entität verbunden ist, einschließlich Social-Media-Seiten, Benutzerkonten
+        oder technischer Konfigurationen zur Darstellung der Identität.
+      fr: >-
+        Spécifier une description, une représentation numérique ou un compte associé à
+        une entité, y compris les pages de réseaux sociaux, les comptes utilisateur ou
+        les configurations techniques utilisées pour représenter l'identité.
+      ar: >-
+        لتحديد وصف أو تمثيل رقمي أو حساب مرتبط بكيان، بما في ذلك صفحات وسائل التواصل
+        الاجتماعي أو حسابات المستخدمين أو التكوينات التقنية المستخدمة لتصوير الهوية.
+      id: >-
+        Untuk menentukan deskripsi, representasi digital, atau akun yang terkait dengan
+        suatu entitas, termasuk halaman media sosial, akun pengguna, atau konfigurasi
+        teknis yang digunakan untuk menampilkan identitas.
+      zh: >-
+        指定与实体关联的描述、数字表示或账户，包括社交媒体页面、用户账户或用于展示身份的技术配置。
+      es: >-
+        Especificar una descripción, representación digital o cuenta asociada con una
+        entidad, incluyendo páginas de redes sociales, cuentas de usuario o configuraciones
+        técnicas utilizadas para representar la identidad.
+    structured_aliases:
+      - literal_form: Profiel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Profil
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Profil
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملف تعريف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Profil
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 个人资料
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Perfil
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    aliases:
+      - has_or_had_profile
+      - has_or_had_organization_profile
+      - has_organization_profile
+      - has_or_had_social_media_profile
+      - has_social_media_profile
+      - linkedin_profile_url
+      - linkedin_url
+    close_mappings:
+      - foaf:account  # foaf.ttl:121-128 - "Indicates an account held by this agent." Domain: foaf:Agent, Range: foaf:OnlineAccount. Narrower: online accounts only; profile is broader (organizational, professional).
+    related_mappings:
+      - prov:wasAssociatedWith  # prov.ttl:1066-1079 - Activity→Agent responsibility, different semantic intent
+    comments:
+      - "MIGRATED 2026-02-03: Renamed from has_or_had_profile for conciseness."
+      - "When used in ConnectionSourceMetadata, represents the profile whose connections were extracted (typically a LinkedIn profile slug)."
+    annotations:
+      custodian_types: '["*"]'

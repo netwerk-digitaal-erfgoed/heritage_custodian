@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/Applicant
+name: Applicant
+title: Applicant Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_type
+classes:
+  Applicant:
+    class_uri: hc:Applicant
+    description: >-
+      Individual or organization submitting a formal request for access,
+      funding, employment, or other opportunities within heritage institution contexts.
+    alt_descriptions:
+      nl: >-
+        Individu of organisatie dat een formeel verzoek indient voor toegang,
+        financiering, werkgelegenheid of andere mogelijkheden binnen de context
+        van erfgoedinstellingen.
+      de: >-
+        Individuum oder Organisation, das einen formellen Antrag fur Zugang,
+        Finanzierung, Beschaftigung oder andere Moglichkeiten im Kontext von
+        Kulturerbeinstitutionen einreicht.
+      fr: >-
+        Individu ou organisation soumettant une demande formelle d'acces,
+        de financement, d'emploi ou d'autres opportunites dans le contexte
+        des institutions patrimoniales.
+      es: >-
+        Individuo u organizacion que presenta una solicitud formal de acceso,
+        financiamiento, empleo u otras oportunidades en el contexto de
+        instituciones patrimoniales.
+      ar: >-
+        فرد أو منظمة تقدم طلبًا رسميًا للوصول أو التمويل أو التوظيف أو
+        الفرص الأخرى في سياق مؤسسات التراث.
+      id: >-
+        Individu atau organisasi yang mengajukan permintaan formal untuk akses,
+        pendanaan, pekerjaan, atau peluang lain dalam konteks lembaga warisan budaya.
+      zh: >-
+        在遗产机构背景下提交访问、资助、就业或其他机会正式请求的个人或组织。
+    structured_aliases:
+    - literal_form: aanvrager
+      in_language: nl
+    - literal_form: Antragsteller
+      in_language: de
+    - literal_form: demandeur
+      in_language: fr
+    - literal_form: solicitante
+      in_language: es
+    - literal_form: مقدم الطلب
+      in_language: ar
+    - literal_form: pemohon
+      in_language: id
+    - literal_form: 申请人
+      in_language: zh
+    broad_mappings:
+    - schema:Person
+    - schema:Organization
+    - foaf:Agent
+    - prov:Agent
+    slots:
+    - has_label
+    - identified_by
+    - has_type
+    slot_usage:
+      has_type:
+        range: ApplicantType
+        required: false
+      identified_by:
+        required: true
+    comments:
+    - Represents the requesting party in application workflows
+    - Can be either a person or an organization
+    - Linked to ApplicantType for classification (Individual, NonProfit, University, etc.)
+    see_also:
+    - ApplicantType
+    - ApplicantRequirement
+    examples:
+    - value:
+        has_label: "Dr. Jane Smith"
+        has_type: hc:IndividualApplicant
+        identified_by: "https://orcid.org/0000-0001-2345-6789"
+      description: Individual researcher applicant
+    - value:
+        has_label: "University of Amsterdam"
+        has_type: hc:UniversityApplicant
+        identified_by: "https://ror.org/020r9kr23"
+      description: Institutional applicant
+    keywords:
+    - applicant
+    - requester
+    - grant applicant
+    - job applicant
+    - access applicant
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Role class for application contexts
+      custodian_types: "['*']"

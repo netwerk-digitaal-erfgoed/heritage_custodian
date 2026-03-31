@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: edited_by
+# ==============================================================================
+# Agent responsible for revising, correcting, or preparing content for publication.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                                           |
+# |---------------|-----------------------|-------------------------|---------|-------------------------------------------------|
+# | **Schema.org**| `schema:editor`       | schemaorg:16017-16038   | exact   | "Specifies the Person who edited the CreativeWork." |
+#
+# NOTE: schema:editor (line 16017-16038) has domain CreativeWork and range Person.
+# Our slot is broader (any agent, not just Person), so it's semantically close 
+# but the mapping is still valid as schema:editor is the standard property.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, verified ontology mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/edited_by
+name: edited_by
+title: Edited By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  edited_by:
+    slot_uri: schema:editor
+    description: >-
+      To be revised, corrected, organized, or prepared for publication by a 
+      specific agent responsible for the modification or curation of the content.
+    alt_descriptions:
+      nl: >-
+        Herzien, gecorrigeerd, georganiseerd of voorbereid voor publicatie door 
+        een specifieke agent die verantwoordelijk is voor de wijziging of curatie 
+        van de inhoud.
+      de: >-
+        Überarbeitet, korrigiert, organisiert oder zur Veröffentlichung vorbereitet 
+        von einem bestimmten Akteur, der für die Änderung oder Kuratierung des 
+        Inhalts verantwortlich ist.
+      fr: >-
+        Être révisé, corrigé, organisé ou préparé pour publication par un agent 
+        spécifique responsable de la modification ou de la curation du contenu.
+      ar: >-
+        أن يتم مراجعته أو تصحيحه أو تنظيمه أو إعداده للنشر من قبل وكيل 
+        محدد مسؤول عن تعديل أو تنظيم المحتوى.
+      id: >-
+        Direvisi, dikoreksi, diorganisir, atau disiapkan untuk publikasi oleh 
+        agen tertentu yang bertanggung jawab atas modifikasi atau kurasi konten.
+      zh: >-
+        由负责修改或策展内容的特定代理人进行修订、更正、组织或准备出版。
+      es: >-
+        Ser revisado, corregido, organizado o preparado para publicación por un 
+        agente específico responsable de la modificación o curaduría del contenido.
+    structured_aliases:
+      - literal_form: bewerkt door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: herausgegeben von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: édité par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: حرره
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diedit oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 编辑者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: editado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - is_or_was_edited_by
+    exact_mappings:
+    comments:
+      - |
+        **USAGE**: Use to identify the person or organization that edited, revised, 
+        or prepared content for publication.
+      - |
+        **NOTE**: Schema.org schema:editor has range Person, but our slot accepts 
+        any agent (including organizations) to accommodate institutional editors.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Person/JanJansen"
+        description: "Publication edited by Jan Jansen"

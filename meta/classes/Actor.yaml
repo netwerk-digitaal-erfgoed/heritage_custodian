@@ -1,0 +1,108 @@
+id: https://nde.nl/ontology/hc/class/Actor
+name: Actor
+title: Actor
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  foaf: http://xmlns.com/foaf/0.1/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_name
+- ../slots/has_role
+classes:
+  Actor:
+    class_uri: prov:Agent
+    description: >-
+      Agent involved in an event, activity, or provenance chain.
+    alt_descriptions:
+      nl: "Agent betrokken bij een gebeurtenis, activiteit of herkomstketen."
+      de: "Akteur, der an einem Ereignis, einer Aktivität oder einer Provenienzkette beteiligt ist."
+      fr: "Agent impliqué dans un événement, une activité ou une chaîne de provenance."
+      es: "Agente involucrado en un evento, actividad o cadena de procedencia."
+      ar: "وكيل مشارك في حدث أو نشاط أو سلسلة أصل."
+      id: "Agen yang terlibat dalam peristiwa, aktivitas, atau rantai provenans."
+      zh: "参与事件、活动或来源链的代理。"
+    examples:
+    - value:
+        has_name: Dr. Maria van der Berg
+        has_role: Conservator
+      description: Person acting as collection conservator
+    - value:
+        has_name: Rijksmuseum Conservation Department
+        has_role: Responsible Department
+      description: Organization acting in conservation activities
+    close_mappings:
+    - crm:E39_Actor
+    - rico:Agent
+    - foaf:Agent
+    broad_mappings:
+    - schema:Thing
+    - prov:Agent
+    structured_aliases:
+    - literal_form: actor
+      in_language: nl
+    - literal_form: agent
+      in_language: nl
+    - literal_form: Akteur
+      in_language: de
+    - literal_form: Agent
+      in_language: de
+    - literal_form: acteur
+      in_language: fr
+    - literal_form: agent
+      in_language: fr
+    - literal_form: actor
+      in_language: es
+    - literal_form: agente
+      in_language: es
+    - literal_form: فاعل
+      in_language: ar
+    - literal_form: وكيل
+      in_language: ar
+    - literal_form: aktor
+      in_language: id
+    - literal_form: agen
+      in_language: id
+    - literal_form: 行为者
+      in_language: zh
+    - literal_form: 代理
+      in_language: zh
+    keywords:
+    - agent
+    - actor
+    - person
+    - organization
+    - provenance
+    - responsibility
+    slots:
+    - has_name
+    - has_role
+    slot_usage:
+      has_name:
+        required: true
+        examples:
+        - value: Dr. Maria van der Berg
+        - value: Rijksmuseum Conservation Department
+      has_role:
+        required: false
+        examples:
+        - value: Conservator
+        - value: Responsible Department
+    annotations:
+      specificity_score: "0.10"
+      specificity_rationale: "Generic utility class - actors are broadly applicable across all provenance contexts."
+      custodian_types: "['*']"
+      actor_types: "Person, Organization, SoftwareAgent"
+    comments:
+    - Base class for all agents in provenance tracking
+    - Specialized by Person, Organization, and SoftwareAgent in PROV-O
+    - Used in Activity.associated_with and Entity.attributed_to relationships
+    - "Preserved from prior description: Agent involved in an event, activity, or provenance chain. Represents any entity that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity. May be a person, organization, or software agent."
+    see_also:
+    - https://www.w3.org/TR/prov-o/#Agent
+    - Activity

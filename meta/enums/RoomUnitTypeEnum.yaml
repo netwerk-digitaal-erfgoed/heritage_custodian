@@ -1,0 +1,135 @@
+# RoomUnitTypeEnum - Types of rooms/spaces for counting
+#
+# Created per slot_fixes.yaml migration for: classroom_count
+# Creation date: 2026-01-19
+#
+# Rule 53 (No Bespoke Slots): Supports RoomUnit class for facility counting
+
+id: https://nde.nl/ontology/hc/enum/RoomUnitTypeEnum
+name: room_unit_type_enum
+title: Room Unit Type Enum
+description: >-
+  Enumeration of room and space types for counting facilities.
+  
+  **RULE 53 COMPLIANT**: Supports RoomUnit class for standardized
+  room counting in heritage facility metrics.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rec: https://w3id.org/rec#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  RoomUnitTypeEnum:
+    description: >-
+      Standard room types for counting heritage facility spaces.
+      
+      Used with RoomUnit class in has_unit slot for facility counting.
+    permissible_values:
+      # Educational spaces
+      CLASSROOM:
+        description: Teaching/learning space for group instruction
+        meaning: rec:Classroom
+        annotations:
+          usage_context: education
+          typical_capacity: "20-40"
+      
+      WORKSHOP_SPACE:
+        description: Hands-on activity area for practical work
+        annotations:
+          usage_context: education
+          typical_capacity: "10-20"
+      
+      SEMINAR_ROOM:
+        description: Discussion/presentation space for smaller groups
+        annotations:
+          usage_context: education
+          typical_capacity: "10-25"
+      
+      LECTURE_HALL:
+        description: Large presentation space for lectures
+        annotations:
+          usage_context: education
+          typical_capacity: "50-300"
+      
+      # Research spaces
+      LABORATORY:
+        description: Scientific or conservation laboratory space
+        annotations:
+          usage_context: research
+          
+      STUDIO:
+        description: Creative or production workspace
+        annotations:
+          usage_context: creative
+      
+      # Library/archive spaces
+      READING_ROOM:
+        description: Research/study area for visitors
+        meaning: hc:ReadingRoom
+        annotations:
+          usage_context: research
+      
+      STUDY_CARREL:
+        description: Individual study booth or station
+        annotations:
+          usage_context: research
+      
+      # Storage spaces
+      STORAGE_ROOM:
+        description: Collection storage space
+        annotations:
+          usage_context: storage
+      
+      VAULT:
+        description: Secure storage for valuable items
+        annotations:
+          usage_context: storage
+          security_level: high
+      
+      # Administrative spaces
+      OFFICE:
+        description: Administrative workspace
+        annotations:
+          usage_context: administrative
+      
+      MEETING_ROOM:
+        description: Conference/meeting space
+        annotations:
+          usage_context: administrative
+      
+      # Public spaces
+      GALLERY:
+        description: Exhibition gallery space
+        meaning: schema:ExhibitionEvent
+        annotations:
+          usage_context: exhibition
+      
+      AUDITORIUM:
+        description: Large performance/presentation venue
+        meaning: schema:EventVenue
+        annotations:
+          usage_context: events
+      
+      # Support spaces
+      RESTROOM:
+        description: Visitor restroom facilities
+        annotations:
+          usage_context: visitor_services
+      
+      CLOAKROOM:
+        description: Coat/bag storage for visitors
+        annotations:
+          usage_context: visitor_services
+      
+      # Unknown
+      UNKNOWN:
+        description: Room type not specified or unknown
+        annotations:
+          usage_context: unspecified

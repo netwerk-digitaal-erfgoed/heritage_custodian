@@ -1,0 +1,70 @@
+id: https://nde.nl/ontology/hc/class/TemplateSpecificityScore
+name: TemplateSpecificityScore
+title: Template Specificity Score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_type
+classes:
+  TemplateSpecificityScore:
+    class_uri: schema:Rating
+    description: >-
+      Numeric relevance rating (0.0-1.0) associating a query pattern category with its domain applicability for RAG retrieval optimization.
+    alt_descriptions:
+      nl: Een enkele templatespecificatiescore die een templatetype koppelt aan een numerieke waarde.
+      de: Eine einzelne Vorlagenspezifitätspunktzahl, die einen Vorlagentyp mit einem numerischen Wert verknüpft.
+      fr: Un score de spécificité de modèle unique associant un type de modèle à une valeur numérique.
+      es: 'Concepto para: Numeric relevance rating (0.0-1.0) associating a query pattern category with its domain applicability for RAG retrieval optimization.'
+      ar: 'مفهوم لـ: Numeric relevance rating (0.0-1.0) associating a query pattern category with its domain applicability for RAG retrieval optimization.'
+      id: 'Konsep untuk: Numeric relevance rating (0.0-1.0) associating a query pattern category with its domain applicability for RAG retrieval optimization.'
+      zh: 用于以下内容的概念：Numeric relevance rating (0.0-1.0) associating a query pattern category with its domain applicability for RAG retrieval optimization.
+    structured_aliases:
+    - literal_form: templatespecificatiescore
+      in_language: nl
+    - literal_form: Vorlagenspezifitätspunktzahl
+      in_language: de
+    - literal_form: score de spécificité de modèle
+      in_language: fr
+    - literal_form: template specificity score
+      in_language: es
+    - literal_form: template specificity score
+      in_language: ar
+    - literal_form: template specificity score
+      in_language: id
+    - literal_form: template specificity score
+      in_language: zh
+    slots:
+    - has_type
+    - has_score
+    slot_usage:
+      has_type:
+        range: TemplateSpecificityType
+        required: true
+      has_score:
+        range: float
+        required: true
+        minimum_value: 0.0
+        maximum_value: 1.0
+    comments:
+    - Purpose (Rule 37): Enables context-aware RAG retrieval by assigning relevance scores (0.0-1.0) to schema classes for different conversation templates
+    - Design Pattern: Replaces previous TemplateSpecificityScores class which had 10 separate score slots
+    - New pattern uses has_type to TemplateSpecificityType and has_score for the relevance score
+    - Score semantics: 0.00-0.20 = Universal, 0.20-0.40 = Broadly useful, 0.40-0.60 = Moderately specific, 0.60-0.80 = Fairly specific, 0.80-1.00 = Highly specific
+    - Old: template_specificity slot with TemplateSpecificityScores class
+    - New: has_score slot with TemplateSpecificityScore class (multivalued)
+    annotations:
+      specificity_score: 0.15
+      specificity_rationale: Low specificity (meta-class) - TemplateSpecificityScore is part of the RAG scoring infrastructure.
+      migration_source: template_specificity
+      migration_date: '2026-01-17'
+      replaces_class: TemplateSpecificityScores
+      rule_compliance: Rules 37, 38, 39, 53, 56 (specificity, slot centralization, RiC-O naming, full migration, semantic consistency)
+      custodian_types: "['*']"
+    examples:
+    - value: "archive_relevance:\n  has_type: ArchiveSearchTemplate\n  has_score: 0.85\n"
+    - value: "museum_relevance:\n  has_type: MuseumSearchTemplate\n  has_score: 0.20\n"
+    - value: "# Multiple scores for a single class\nscores:\n  - has_type: ArchiveSearchTemplate\n    has_score: 0.95\n  - has_type: LibrarySearchTemplate\n    has_score: 0.30\n  - has_type: GeneralHeritageTemplate\n    has_score: 0.45\n"

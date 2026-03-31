@@ -1,0 +1,75 @@
+id: https://nde.nl/ontology/hc/class/DepositArchive
+name: deposit_archive_class
+title: Deposit Archive Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  premis: http://www.loc.gov/premis/rdf/v3/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_service
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/has_roadmap
+classes:
+  DepositArchive:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: >-
+      Repository institution for semi-current records under retention control,
+      pending transfer to permanent custody or authorized disposal.
+    alt_descriptions:
+      nl: Archiefinstelling voor semistatische documenten onder bewaartermijnbeheer in afwachting van overbrenging of geautoriseerde vernietiging.
+      de: Archivinstitution fuer Zwischenarchivgut unter Aufbewahrungssteuerung bis zur Uebernahme in Dauerarchivierung oder zulaessigen Vernichtung.
+      fr: Institution de conservation intermediaire pour des dossiers semi-courants sous controle de retention avant transfert ou elimination autorisee.
+      es: Institucion de archivo intermedio para registros semiactivos bajo control de retencion antes de transferencia o eliminacion autorizada.
+      ar: مؤسسة أرشيف وسيط للسجلات شبه الجارية تحت إدارة مدد الاحتفاظ قبل النقل الدائم أو الإتلاف المصرح به.
+      id: Lembaga arsip simpan antara untuk rekod semiaktif di bawah kendali retensi sebelum transfer permanen atau pemusnahan yang disahkan.
+      zh: 用于保留期管理下半现行档案的中间保管机构，待永久移交或依法处置。
+    structured_aliases:
+    - {literal_form: depotarchief, in_language: nl}
+    - {literal_form: Zwischenarchiv, in_language: de}
+    - {literal_form: archive intermediaire, in_language: fr}
+    - {literal_form: archivo de deposito, in_language: es}
+    - {literal_form: أرشيف وسيط, in_language: ar}
+    - {literal_form: arsip deposito, in_language: id}
+    - {literal_form: 中间档案机构, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    close_mappings:
+    - premis:StorageLocation
+    - wd:Q244904
+    related_mappings:
+    - wd:Q3621648
+    - wd:Q3621673
+    slots:
+    - has_type
+    - has_service
+    - hold_record_set
+    - has_roadmap
+    - has_score
+    - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+      has_roadmap:
+        range: boolean
+    comments:
+    - Organization type for lifecycle phase between active use and permanent custody
+    notes:
+    - |
+      Preserved from prior description (commit 86b9dceb):
+
+      "Archive for intermediate/semi-current records awaiting final disposition.\n\n**Wikidata**: Q244904 (deposit archive / Zwischenarchiv / archive interm\xE9diaire)\n\n**DEFINITION**:\n\nDeposit Archive (also called \"intermediate archive\" or \"records center\")\nmanages records that are:\n- No longer actively used (not current archive)\n- Not yet transferred to permanent archive\n- Awaiting retention period completion or disposition decision\n\n**ARCHIVAL LIFECYCLE POSITION**:\n\n```\nCurrent Archive (active use)\n  \u2193\nDEPOSIT ARCHIVE (semi-current) \u2190 THIS TYPE\n  \u2193\nHistorical Archive (permanent preservation)\n  or\nDestruction (per retention schedule)\n```\n\n**KEY CHARACTERISTICS**:\n\n1. **Custody Without Ownership**: Deposit archives often hold materials \n   deposited by other organizations while ownership remains with depositor\n\n2. **Retention Management**: Tracks retention schedules and triggers \n   disposition actions (transfer or destruction)\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

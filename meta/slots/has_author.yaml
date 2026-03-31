@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_author
+# ==============================================================================
+# The person, agent, or entity that wrote, created, or originated the resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:creator`     | dcterms.rdf:1092-1121      | exact   | "An entity responsible for making the resource." |
+# | **Schema.org**| `schema:author`       | schemaorg.owl:9265-9268    | close   | "The author of this content or rating." (content-specific) |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added full header with file:line refs, removed top-level description, added alt_descriptions and structured_aliases
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_author
+name: has_author
+title: Has Author
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_author:
+    slot_uri: dcterms:creator
+    description: >-
+      To be written, created, or originated by a specific person, agent, or entity.
+    alt_descriptions:
+      nl: >-
+        Geschreven, gecreëerd of voortgebracht zijn door een specifieke persoon, agent of entiteit.
+      de: >-
+        Von einer bestimmten Person, einem Agenten oder einer Entität geschrieben, erstellt oder hervorgebracht worden sein.
+      fr: >-
+        Avoir été écrit, créé ou produit par une personne, un agent ou une entité spécifique.
+      ar: >-
+        أن يكون مكتوبًا أو منشأً أو صادرًا عن شخص أو وكيل أو كيان محدد.
+      id: >-
+        Ditulis, dibuat, atau dihasilkan oleh orang, agen, atau entitas tertentu.
+      zh: >-
+        由特定的人员、代理或实体撰写、创建或发起。
+      es: >-
+        Haber sido escrito, creado u originado por una persona, agente o entidad específica.
+    structured_aliases:
+      - literal_form: heeft auteur
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Autor
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un auteur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه مؤلف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki penulis
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有作者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene autor
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_author
+      - has_or_had_author_name
+      - has_author_name
+    exact_mappings:
+    close_mappings:
+      - schema:author  # schemaorg.owl:9265-9268 - "The author of this content or rating."
+    annotations:
+      custodian_types: '["*"]'

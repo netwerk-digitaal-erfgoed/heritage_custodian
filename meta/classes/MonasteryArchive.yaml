@@ -1,0 +1,61 @@
+id: https://w3id.org/nde/ontology/MonasteryArchive
+name: MonasteryArchive
+title: Monastery Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  MonasteryArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    description: Archive organization governed by a monastic community and responsible for its records stewardship.
+    alt_descriptions:
+      nl: Archieforganisatie onder bestuur van een kloostergemeenschap verantwoordelijk voor het beheer van haar records.
+      de: Von einer Kloostergemeinschaft gefuehrte Archivorganisation mit Verantwortung fuer deren Unterlagenverwaltung.
+      fr: Organisation archivistique geree par une communaute monastique et chargee de la conservation de ses archives.
+      es: Organizacion archivistica gestionada por una comunidad monastica y responsable de la custodia de sus registros.
+      ar: جهة أرشيفية تديرها جماعة رهبانية وتتولى حفظ سجلاتها وإدارتها.
+      id: Organisasi arsip yang dikelola komunitas biara dan bertanggung jawab atas pengelolaan rekamannya.
+      zh: 由修道团体治理并负责其记录保管的档案机构。
+    structured_aliases:
+    - {literal_form: kloosterarchief, in_language: nl}
+    - {literal_form: Klosterarchiv, in_language: de}
+    - {literal_form: archive monastique, in_language: fr}
+    - {literal_form: archivo monastico, in_language: es}
+    - {literal_form: أرشيف ديري, in_language: ar}
+    - {literal_form: arsip biara, in_language: id}
+    - {literal_form: 修道院档案馆, in_language: zh}
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q27030561
+    broad_mappings:
+    - wd:Q166118
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Monastery Archive
+      skos:altLabel: Klosterarchiv, archive monastique
+      subject_domain: religious/monastic
+      institutional_context: religious community
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

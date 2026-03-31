@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_venue
+# ==============================================================================
+# Physical location, facility, or setting where an event or service takes place
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                              |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------|
+# | **Schema.org**| `schema:location`     | schemaorg.owl:25018-25044| close | "The location of, for example, where an event is   |
+# |               |                       |                      |         | happening." Domain: Event/Organization/Action.      |
+# |               |                       |                      |         | Location is broader than venue (any place vs.       |
+# |               |                       |                      |         | specific facility for events/performances).         |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_venue
+name: has_venue
+title: has_venue
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_venue:
+    name: has_venue
+    description: >-
+      The physical location, facility, or setting where an event, meeting,
+      or performance takes place or a service is conducted.
+    alt_descriptions:
+      nl: >-
+        De fysieke locatie, faciliteit of omgeving waar een evenement,
+        vergadering of voorstelling plaatsvindt of een dienst wordt verleend.
+      de: >-
+        Der physische Ort, die Einrichtung oder der Rahmen, an dem eine
+        Veranstaltung, ein Treffen oder eine Aufführung stattfindet oder
+        eine Dienstleistung erbracht wird.
+      fr: >-
+        Le lieu physique, l'installation ou le cadre où un événement, une
+        réunion ou une représentation se déroule ou un service est fourni.
+      ar: >-
+        الموقع الفعلي أو المرفق أو البيئة التي يُقام فيها حدث أو اجتماع
+        أو عرض أو تُقدم فيها خدمة.
+      id: >-
+        Lokasi fisik, fasilitas, atau tempat di mana suatu acara, pertemuan,
+        atau pertunjukan berlangsung atau layanan dilakukan.
+      zh: >-
+        举办活动、会议或演出或提供服务的物理地点、设施或场所。
+      es: >-
+        La ubicación física, instalación o entorno donde tiene lugar un evento,
+        reunión o actuación, o donde se presta un servicio.
+    structured_aliases:
+      - literal_form: Locatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Veranstaltungsort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Lieu
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tempat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 场地
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Lugar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasVenue
+    range: string
+    close_mappings:
+      - schema:location  # schemaorg.owl:25018-25044 — "The location of, for example, where an event is happening." Domain: Event/Organization/Action. Location is broader than venue.
+    aliases:
+      - has_or_had_venue
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_venue for conciseness."
+    annotations:
+      custodian_types: '["*"]'

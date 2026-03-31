@@ -1,0 +1,76 @@
+id: https://nde.nl/ontology/hc/class/Topic
+name: Topic
+title: Subject Topic
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/include
+classes:
+  Topic:
+    class_uri: skos:Concept
+    description: >-
+      Specific subject assignment applied to a heritage resource for discovery and classification purposes.
+    alt_descriptions:
+      nl: Specifieke onderwerptoewijzing toegepast op een erfgoedbron voor ontdekking en classificatie.
+      de: Spezifische Fachgebietszuweisung, die auf ein Kulturerbeobjekt angewendet wird.
+      fr: Attribution de sujet spécifique appliquée à une ressource patrimoniale.
+      es: Asignación de tema específico aplicada a un recurso patrimonial.
+      ar: تعيين موضوع محدد يُطبق على مورد تراثي.
+      id: Penugasan subjek spesifik yang diterapkan pada sumber daya warisan.
+      zh: 应用于遗产资源的特定主题分配。
+    structured_aliases:
+    - literal_form: onderwerp
+      in_language: nl
+    - literal_form: Thema
+      in_language: de
+    - literal_form: sujet
+      in_language: fr
+    - literal_form: tema
+      in_language: es
+    - literal_form: موضوع
+      in_language: ar
+    - literal_form: topik
+      in_language: id
+    - literal_form: 主题
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    - include
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+        multivalued: true
+      has_type:
+      has_score:
+      has_description:
+      include:
+        multivalued: true
+    comments:
+    - Topic represents a SPECIFIC subject assignment (instance) as opposed to TopicType which represents the CATEGORY
+    - Topics are linked to heritage resources via the categorized_as slot
+    - Replaces bespoke topic slot (string list) with structured Topic class
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Subject topics are universal across all heritage custodian types.
+      custodian_types_primary: A
+      specificity_score: 0.45
+      specificity_rationale: >-
+        Broadly applicable - topic instances are common across all
+        heritage resource types for subject classification.

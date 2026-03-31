@@ -1,0 +1,80 @@
+id: https://nde.nl/ontology/hc/class/NetworkAnalysis
+name: network_analysis_class
+title: Network Analysis Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+imports:
+  - linkml:types
+  - ../slots/categorized_as
+  - ../slots/has_percentage
+  - ../slots/has_quantity
+  - ../slots/has_score
+  - ../slots/related_to
+default_prefix: hc
+classes:
+  NetworkAnalysis:
+    class_uri: schema:DataFeedItem
+    description: >-
+      Aggregated metrics characterizing extracted relationship networks and their
+      relevance to heritage domain classification.
+    alt_descriptions:
+      nl: >-
+        Geaggregeerde statistieken die geëxtraheerde relatienetwerken en hun relevantie
+        voor erfgoeddomeinclassificatie karakteriseren.
+      de: >-
+        Aggregierte Metriken, die extrahierte Beziehungsnetzwerke und ihre Relevanz für
+        die Kulturerbe-Domainen-Klassifizierung charakterisieren.
+      fr: >-
+        Métriques agrégées caractérisant les réseaux relationnels extraits et leur
+        pertinence pour la classification du domaine patrimonial.
+      es: >-
+        Métricas agregadas que caracterizan redes de relaciones extraídas y su relevancia
+        para la clasificación del dominio patrimonial.
+      ar: >-
+        مقاييس مجمعة تميز شبكات العلاقات المستخرجة وصلتها بتصنيف مجال التراث.
+      id: >-
+        Metrik agregat yang mengkarakterisasi jaringan hubungan yang diekstrak dan
+        relevansinya untuk klasifikasi domain warisan.
+      zh: >-
+        表征提取的关系网络及其与遗产领域分类相关性的聚合指标。
+    slots:
+    - categorized_as
+    - has_quantity
+    - has_score
+    - related_to
+    - has_percentage
+    slot_usage:
+      has_quantity:
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+        examples:
+        - value: "Quantity:\n  value: 776\n  unit: \"connections\"\n"
+        - value: "Quantity:\n  value: 456\n  unit: \"heritage relevant connections\"\n  related_to: Heritage"
+      has_percentage:
+        range: Percentage
+        inlined: true
+        examples:
+        - value:
+            has_value: 58.8
+            related_to:
+              has_label: Heritage
+      categorized_as:
+        range: HeritageTypeCount
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    comments:
+    - Optional aggregation - can be computed from connections array
+    - Useful for quick heritage sector analysis
+    notes:
+      - |
+        Preserved from prior description (commit 6e634651):
+
+        "Aggregated statistics about the connection network.\n\nProvides summary metrics for quick analysis:\n- Total connections extracted\n- Heritage-relevant count and percentage\n- Breakdown by heritage type (GLAMORCUBESFIXPHDNT)\n\n**Example**:\n```json\n{\n  \"total_connections_extracted\": 776,\n  \"heritage_relevant_count\": 456,\n  \"heritage_relevant_percentage\": 58.8,\n  \"connections_by_heritage_type\": {\n    \"A\": 45,\n    \"M\": 89,\n    \"D\": 112,\n    \"R\": 78\n  }\n}\n```\n"
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

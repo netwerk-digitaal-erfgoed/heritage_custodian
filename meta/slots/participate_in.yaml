@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: participate_in
+# ==============================================================================
+# To take part in, become involved with, or have a share in a specific activity,
+# event, or process.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:hadActivity`    | prov.ttl:641-648     | exact   | Activity involved in generation    |
+# | **CIDOC-CRM** | `crm:P11_had_participant`| CIDOC_CRM          | close   | Participation in event             |
+#
+# CREATED: 2026-01-20
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/participate_in
+name: participate_in
+title: Participate In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  participate_in:
+    slot_uri: prov:hadActivity
+    description: >-
+      To take part in, become involved with, or have a share in a specific
+      activity, event, or process.
+    alt_descriptions:
+      nl: >-
+        Om deel te nemen aan, betrokken te raken bij, of een aandeel te
+        hebben in een specifieke activiteit, gebeurtenis of proces.
+      de: >-
+        An einer bestimmten Aktivität, einem Ereignis oder einem Prozess
+        teilzunehmen, sich zu beteiligen oder einen Anteil daran zu haben.
+      fr: >-
+        Prendre part à, s'impliquer dans ou avoir une part dans une activité,
+        un événement ou un processus spécifique.
+      ar: >-
+        المشاركة في نشاط أو حدث أو عملية محددة أو الانخراط فيها أو
+        الحصول على حصة منها.
+      id: >-
+        Mengambil bagian dalam, terlibat dengan, atau memiliki bagian dalam
+        aktivitas, peristiwa, atau proses tertentu.
+      zh: >-
+        参与、涉及或分享特定活动、事件或过程。
+      es: >-
+        Participar en, involucrarse con o tener una parte en una actividad,
+        evento o proceso específico.
+    structured_aliases:
+      - literal_form: deelnemen aan
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_participate_in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: teilnehmen an
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: participer à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: المشاركة في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berpartisipasi dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 参与
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: participar en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - crm:P11_had_participant
+    aliases:
+      - participates_or_participated_in
+      - is_or_was_participate_in
+      - has_or_had_participated_in
+      - has_participated_in
+      - has_or_had_participated_in
+      - is_or_was_participated_in
+      - participated_in
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: hc:event/exhibition-opening-2025
+        description: Participation in an exhibition opening event
+      - value: hc:activity/conservation-project
+        description: Participation in a conservation project

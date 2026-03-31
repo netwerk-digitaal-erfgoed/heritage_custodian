@@ -1,0 +1,153 @@
+# ==============================================================================
+# LinkML Slot Definition: catalogue
+# ==============================================================================
+# Systematically compile items into an organized register or database for
+# identification and accessibility.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------------|----------------------|---------|------------------------------------|
+# | **CIDOC-CRM** | `crm:P70_documents`         | CIDOC_CRM:2784-2798  | slot_uri| Primary cataloguing property       |
+# | **CIDOC-CRM** | `crm:P67_refers_to`         | CIDOC_CRM:2796       | broad   | P70 is subPropertyOf P67           |
+# | **CIDOC-CRM** | `crm:P71_lists`             | CIDOC_CRM:2812-2825  | close   | Lists in authority document        |
+# | **DCAT**      | `dcat:catalog`              | dcat3.ttl:687-716    | close   | Catalog containment                |
+# | **RiC-O**     | `rico:isOrWasSubjectOf`     | RiC-O_1-1:15293-15325| related | Subject of record resource         |
+# | **CIDOC-CRM** | `crm:P129i_is_subject_of`   | CIDOC_CRM:3981-3989  | related | Subject of propositional object    |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added broad_mappings (crm:P67_refers_to - P70 is subPropertyOf P67)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/catalogue
+name: catalogue
+title: catalogue
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcat: http://www.w3.org/ns/dcat#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  catalogue:
+    slot_uri: crm:P70_documents
+    description: >-
+      To systematically compile items into an organized register or database,
+      recording specific details to ensure identification and accessibility.
+    alt_descriptions:
+      nl: >-
+        Het systematisch samenstellen van items in een georganiseerd register
+        of database, waarbij specifieke details worden vastgelegd om
+        identificatie en toegankelijkheid te waarborgen.
+      de: >-
+        Elemente systematisch in einem organisierten Register oder einer
+        Datenbank zusammenstellen und spezifische Details aufzeichnen,
+        um Identifikation und Zugänglichkeit sicherzustellen.
+      fr: >-
+        Compiler systématiquement des éléments dans un registre ou une base
+        de données organisée, en enregistrant des détails spécifiques pour
+        assurer l'identification et l'accessibilité.
+      ar: >-
+        تجميع العناصر بشكل منهجي في سجل أو قاعدة بيانات منظمة، مع تسجيل
+        تفاصيل محددة لضمان التعريف وإمكانية الوصول.
+      id: >-
+        Menyusun item secara sistematis ke dalam register atau database yang
+        terorganisir, mencatat detail spesifik untuk memastikan identifikasi
+        dan aksesibilitas.
+      zh: >-
+        将项目系统地编入有组织的登记簿或数据库中，记录具体细节以确保识别和可访问性。
+      es: >-
+        Compilar sistemáticamente elementos en un registro o base de datos
+        organizada, registrando detalles específicos para asegurar la
+        identificación y accesibilidad.
+    structured_aliases:
+      - literal_form: catalogiseren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: katalogisieren
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: cataloguer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: فهرسة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengkatalog
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 编目
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: catalogar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+      # CIDOC-CRM P70 documents - Lines 2784-2798 in CIDOC_CRM_v7.1.3.rdf
+      # "This property describes the CRM Entities documented as instances of E31 Document.
+      # Documents may describe any conceivable entity..."
+      # Domain: E31_Document, Range: E1_CRM_Entity
+    broad_mappings:
+      # CIDOC_CRM_v7.1.3.rdf line 2796: P70 rdfs:subPropertyOf P67_refers_to
+      # Broad: P67 is the parent - general reference relation
+      - crm:P67_refers_to  # from CIDOC_CRM - P70 is subPropertyOf P67
+    close_mappings:
+      # CIDOC-CRM P71 lists - Lines 2812-2825 in CIDOC_CRM_v7.1.3.rdf
+      # "This property associates an instance of E32 Authority Document with
+      # an instance of E1 CRM Entity which it lists for reference purposes."
+      - crm:P71_lists
+      # DCAT catalog - Lines 687-716 in dcat3.ttl
+      # "A catalog that is listed in the catalog."
+      # Domain: dcat:Catalog, Range: dcat:Catalog
+      - dcat:catalog
+    related_mappings:
+      # RiC-O isOrWasSubjectOf - Lines 15293-15325 in RiC-O_1-1.rdf
+      # "Inverse of 'has or had subject' object property."
+      # Domain: rico:Thing, Range: rico:RecordResource
+      - rico:isOrWasSubjectOf
+      # CIDOC-CRM P129i is_subject_of - Lines 3981-3989 in CIDOC_CRM_v7.1.3.rdf
+      # "is subject of" - inverse of P129 is_about
+      - crm:P129i_is_subject_of
+    aliases:
+      - catalogues_or_catalogued
+      - is_or_was_catalogued_in
+    examples:
+      - value: https://nde.nl/ontology/hc/collection/correspondence-1900-1920
+        description: >-
+          Catalogues the correspondence collection
+      - value: https://nde.nl/ontology/hc/dataset/inventory-2024
+        description: >-
+          Catalogues the dataset in an institutional inventory
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.65
+      specificity_rationale: >-
+        Moderately specific - applies to heritage institutions that maintain
+        catalogues, registers, or inventories of their holdings.
+    comments:
+      - Updated 2026-02-02 with verified ontology mappings and translations
+      - |
+        **PURPOSE**:
+        Captures the action of systematically organizing and recording items
+        in a catalogue, register, or database. This is fundamental to heritage
+        institutions for managing collections, archives, and library holdings.
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "catalogues_or_catalogued" alias to indicate temporal relationship -
+        the item catalogues something currently or catalogued it in the past.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **CIDOC-CRM** | `crm:P70_documents` | 2784-2798 | slot_uri | Primary cataloguing property |
+        | **CIDOC-CRM** | `crm:P67_refers_to` | 2796 | broad | P70 is subPropertyOf P67 |
+        | **CIDOC-CRM** | `crm:P71_lists` | 2812-2825 | close | Lists in authority document |
+        | **DCAT** | `dcat:catalog` | 687-716 | close | Catalog containment |
+        | **RiC-O** | `rico:isOrWasSubjectOf` | 15293-15325 | related | Subject of record resource |
+        | **CIDOC-CRM** | `crm:P129i_is_subject_of` | 3981-3989 | related | Subject of propositional object |

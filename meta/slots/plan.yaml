@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: plan
+# ==============================================================================
+# Designing or arranging a future course of action before execution.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                     | File/Line                       | Mapping  | Notes                                                            |
+# |-------------|------------------------------|---------------------------------|----------|------------------------------------------------------------------|
+# | **PROV-O**  | `prov:hadPlan`               | prov.ttl:649-659                | related  | "The optional Plan adopted by an Agent in Association with some Activity." Narrow provenance context. |
+# | **CIDOC-CRM**| `crm:P20_had_specific_purpose`| CIDOC_CRM_v7.1.3.rdf:1628-1641 | related | "Relationship between a preparatory activity and the Event it is preparation for." |
+# | **CIDOC-CRM**| `crm:P21_had_general_purpose` | CIDOC_CRM_v7.1.3.rdf:1655-1667 | related | "Intentional relationship between Activity and some general goal." |
+#
+# NOTE: schema:PlanAction ("the act of planning the execution of an event/task")
+#       is semantically closest but is a CLASS, not a property.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/plan
+name: plan
+title: Plan
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  plan:
+    slot_uri: hc:plan
+    description: >-
+      Signifies the act of designing, scheduling, or arranging a future course
+      of action, strategy, or layout before it is executed.
+    alt_descriptions:
+      nl: >-
+        Duidt op de handeling van het ontwerpen, plannen of organiseren van een
+        toekomstige handelswijze, strategie of indeling voordat deze wordt uitgevoerd.
+      de: >-
+        Bezeichnet die Handlung des Entwerfens, Planens oder Anordnens einer
+        zukünftigen Vorgehensweise, Strategie oder Anordnung bevor sie ausgeführt
+        wird.
+      fr: >-
+        Désigne l'acte de concevoir, planifier ou organiser un futur plan d'action,
+        une stratégie ou une disposition avant son exécution.
+      ar: >-
+        يشير إلى فعل تصميم أو جدولة أو ترتيب مسار عمل مستقبلي أو استراتيجية
+        أو تخطيط قبل تنفيذه.
+      id: >-
+        Menandakan tindakan merancang, menjadwalkan, atau mengatur rencana tindakan,
+        strategi, atau tata letak di masa depan sebelum dilaksanakan.
+      zh: >-
+        表示在执行之前设计、安排或规划未来行动方案、策略或布局的行为。
+      es: >-
+        Indica el acto de diseñar, programar u organizar un curso de acción futuro,
+        una estrategia o una disposición antes de que se ejecute.
+    structured_aliases:
+      - literal_form: Plan
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Plan
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Plan
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Rencana
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 计划
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Plan
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    related_mappings:
+      - prov:hadPlan  # prov.ttl:649-659 — "The optional Plan adopted by an Agent in Association with some Activity."
+      - crm:P20_had_specific_purpose  # CIDOC_CRM_v7.1.3.rdf:1628-1641 — "Relationship between preparatory activity and Event it prepares for."
+      - crm:P21_had_general_purpose  # CIDOC_CRM_v7.1.3.rdf:1655-1667 — "Intentional relationship between Activity and general goal."
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - legacy_planning

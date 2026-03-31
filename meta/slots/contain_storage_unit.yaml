@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: contain_storage_unit
+# ==============================================================================
+# Storage units contained within a larger structural container or location.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line              | Mapping | Notes                              |
+# |---------------|-----------------------------|------------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:containsOrContained`  | RiC-O_1-1.rdf:2002-2043| close   | Spatial containment                |
+# | **Schema.org**| `schema:hasPart`            | schemaorg.owl          | broad   | General part-whole                 |
+# | **DC Terms**  | `dcterms:hasPart`           | dcterms.rdf            | broad   | Physical/logical inclusion         |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, cleaned description, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/contain_storage_unit
+name: contain_storage_unit
+title: Contain Storage Unit
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  contain_storage_unit:
+    slot_uri: hc:containStorageUnit
+    description: >-
+      The distinct storage units that are physically housed, included, or held
+      within a larger structural container, building, or location.
+    alt_descriptions:
+      nl: >-
+        De afzonderlijke opslageenheden die fysiek zijn gehuisvest, opgenomen
+        of gehouden binnen een grotere structurele container, gebouw of locatie.
+      de: >-
+        Die einzelnen Lagereinheiten, die physisch in einem größeren
+        strukturellen Behälter, Gebäude oder Standort untergebracht sind.
+      fr: >-
+        Les unités de stockage distinctes qui sont physiquement hébergées,
+        incluses ou contenues dans un conteneur structurel, bâtiment ou emplacement plus grand.
+      ar: >-
+        وحدات التخزين المميزة التي يتم إيواؤها أو تضمينها أو الاحتفاظ بها
+        فعليًا داخل حاوية هيكلية أو مبنى أو موقع أكبر.
+      id: >-
+        Unit penyimpanan yang berbeda yang secara fisik ditempatkan, disertakan,
+        atau ditampung dalam wadah struktural, bangunan, atau lokasi yang lebih besar.
+      zh: >-
+        在较大的结构容器、建筑物或位置内物理存放、包含或持有的独立存储单元。
+      es: >-
+        Las unidades de almacenamiento distintas que están físicamente alojadas,
+        incluidas o contenidas en un contenedor estructural, edificio o ubicación más grande.
+    structured_aliases:
+      - literal_form: bevat opslageenheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: enthält Lagereinheit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: contient unité de stockage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يحتوي على وحدة تخزين
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berisi unit penyimpanan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 包含存储单元
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: contiene unidad de almacenamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - rico:containsOrContained  # RiC-O spatial containment
+    broad_mappings:
+      - schema:hasPart  # General part-whole (more general than spatial containment of storage units)
+      - dcterms:hasPart  # Physical/logical inclusion (more general than spatial containment of storage units)
+    aliases:
+      - contains_or_contained_contains_unit
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MIGRATION NOTE (2026-02-03)**:
+        Migrated from contains_or_contained_contains_unit for conciseness.

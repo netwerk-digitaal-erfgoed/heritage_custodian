@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: cover_country
+# ==============================================================================
+# The sovereign country or nation-state that forms the geographic scope or
+# jurisdiction of a resource, dataset, or policy.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                     | Mapping | Notes                                                                          |
+# |---------------|-----------------------------|-------------------------------|---------|--------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:areaServed`         | schemaorg.owl:8403-8428       | close   | "The geographic area where a service or offered item is provided." Domain      |
+# |               |                             |                               |         |  includes Organization/Service. Range includes AdministrativeArea. Close but    |
+# |               |                             |                               |         |  doesn't specifically require country-level granularity.                       |
+# | **Schema.org**| `schema:addressCountry`     | schemaorg.owl:7260-7283       | close   | "The country." Recommended ISO 3166-1 alpha-2. Domain restricted to            |
+# |               |                             |                               |         |  DefinedRegion|GeoCoordinates|PostalAddress|GeoShape. Identifies which country |
+# |               |                             |                               |         |  an address IS IN, not which country a resource COVERS.                        |
+# | **DCTerms**   | `dcterms:spatial`           | dcterms.rdf:1944-1967         | broad   | "Spatial characteristics of the resource." Range: Location. Any spatial        |
+# |               |                             |                               |         |  characteristic is far broader than identifying the country of coverage.       |
+# | **GeoNames**  | `geonames:parentCountry`    | geonames_ontology.rdf:367-377 | related | "Parent country" of a Feature. ObjectProperty about hierarchical parentage     |
+# |               |                             |                               |         |  of a GeoNames Feature, not about coverage area.                              |
+# | **Schema.org**| `schema:countryOfOrigin`    | schemaorg.owl:13256-13284     | related | "Country of origin of something." Domain restricted to Movie/TVSeries/         |
+# |               |                             |                               |         |  CreativeWork/Product. About where something originates FROM, not what it      |
+# |               |                             |                               |         |  covers.                                                                      |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/cover_country
+name: cover_country
+title: Cover Country
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  geonames: http://www.geonames.org/ontology#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  cover_country:
+    slot_uri: hc:coverCountry
+    description: >-
+      Relates a resource, dataset, or policy to the specific sovereign country or
+      nation-state that forms its geographic scope or jurisdiction.
+    comments:
+      - "Links to Country class with ISO 3166-1 codes."
+    alt_descriptions:
+      nl: >-
+        Relateert een bron, dataset of beleid aan het specifieke soevereine land of
+        de natiestaat die de geografische reikwijdte of jurisdictie ervan vormt.
+      de: >-
+        Verknüpft eine Ressource, einen Datensatz oder eine Richtlinie mit dem
+        spezifischen souveränen Land oder Nationalstaat, der den geografischen
+        Geltungsbereich oder die Zuständigkeit bildet.
+      fr: >-
+        Relie une ressource, un jeu de données ou une politique au pays souverain ou
+        à l'État-nation spécifique qui constitue sa portée géographique ou sa
+        juridiction.
+      ar: >-
+        يربط موردًا أو مجموعة بيانات أو سياسة بالدولة ذات السيادة أو الدولة القومية
+        المحددة التي تشكل نطاقها الجغرافي أو ولايتها القضائية.
+      id: >-
+        Menghubungkan sumber daya, kumpulan data, atau kebijakan dengan negara
+        berdaulat atau negara-bangsa tertentu yang membentuk cakupan geografis atau
+        yurisdiksinya.
+      zh: >-
+        将资源、数据集或政策与构成其地理范围或管辖权的特定主权国家或民族国家相关联。
+      es: >-
+        Relaciona un recurso, conjunto de datos o política con el país soberano o
+        estado-nación específico que constituye su ámbito geográfico o jurisdicción.
+    structured_aliases:
+      - literal_form: Dekkingsland
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Abdeckungsland
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Pays de Couverture
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بلد التغطية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Negara Cakupan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 覆盖国家
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: País de Cobertura
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    # range: Country
+    examples:
+      - value: "https://nde.nl/ontology/hc/country/NL"
+        description: Service area in Netherlands
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:areaServed  # schemaorg.owl:8403-8428 — "The geographic area where a service or offered item is provided." Domain includes Organization. Range includes AdministrativeArea. Close but not country-specific.
+      - schema:addressCountry  # schemaorg.owl:7260-7283 — "The country." Domain restricted to DefinedRegion|GeoCoordinates|PostalAddress|GeoShape. Identifies which country an address IS IN, not which country a resource COVERS.
+    broad_mappings:
+      - dcterms:spatial  # dcterms.rdf:1944-1967 — "Spatial characteristics of the resource." Range: Location. Far broader than country-level coverage identification.
+    related_mappings:
+      - geonames:parentCountry  # geonames_ontology.rdf:367-377 — "Parent country" of a Feature. About hierarchical parentage, not coverage area.
+      - schema:countryOfOrigin  # schemaorg.owl:13256-13284 — "Country of origin of something." Domain restricted to Movie/CreativeWork/Product. About origin, not coverage.
+    aliases:
+      - covers_country

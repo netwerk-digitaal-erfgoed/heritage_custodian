@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: export
+# ==============================================================================
+# The capability of sending data from an internal system to an external destination.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property              | File/Line              | Mapping | Notes                                                                  |
+# |-------------|-----------------------|------------------------|---------|------------------------------------------------------------------------|
+# | **DCAT**    | `dcat:downloadURL`    | dcat3.ttl:896-938      | narrow  | "The URL of the downloadable file in a given format."                  |
+# | **DCTerms** | `dcterms:hasFormat`   | dcterms.rdf:1323-1346  | close   | "A related resource...substantially the same...but in another format." |
+# | **Schema**  | `schema:distribution` | schemaorg.owl:15369-15390 | related | "A downloadable form of this dataset, at a specific location."      |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/export
+name: export
+title: Export
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  export:
+    slot_uri: hc:export
+    description: >-
+      Signifies the process of sending goods, services, or data from an internal source,
+      system, or jurisdiction to an external destination or foreign market.
+    comments:
+      - >-
+        Dublin Core: dcterms:conformsTo can indicate LOD compliance of exported data.
+      - >-
+        Export formats may include RDF/XML, Turtle, JSON-LD, N-Triples.
+    alt_descriptions:
+      nl: >-
+        Duidt op het proces van het verzenden van goederen, diensten of gegevens van een
+        interne bron, systeem of jurisdictie naar een externe bestemming of buitenlandse markt.
+      de: >-
+        Bezeichnet den Prozess des Sendens von Waren, Dienstleistungen oder Daten von einer
+        internen Quelle, einem System oder einer Gerichtsbarkeit an ein externes Ziel oder
+        einen ausländischen Markt.
+      fr: >-
+        Désigne le processus d'envoi de biens, de services ou de données depuis une source
+        interne, un système ou une juridiction vers une destination externe ou un marché étranger.
+      ar: >-
+        يشير إلى عملية إرسال السلع أو الخدمات أو البيانات من مصدر داخلي أو نظام أو ولاية
+        قضائية إلى وجهة خارجية أو سوق أجنبي.
+      id: >-
+        Menandakan proses pengiriman barang, layanan, atau data dari sumber internal, sistem,
+        atau yurisdiksi ke tujuan eksternal atau pasar asing.
+      zh: >-
+        表示将商品、服务或数据从内部来源、系统或管辖区发送到外部目的地或国外市场的过程。
+      es: >-
+        Significa el proceso de envío de bienes, servicios o datos desde una fuente interna,
+        sistema o jurisdicción hacia un destino externo o mercado extranjero.
+    structured_aliases:
+      - literal_form: Export
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Export
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Exportation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تصدير
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Ekspor
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 导出
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Exportación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:hasFormat  # dcterms.rdf:1323-1346 — "A related resource...substantially the same...but in another format."
+    narrow_mappings:
+      - dcat:downloadURL  # dcat3.ttl:896-938 — "The URL of the downloadable file in a given format."
+    related_mappings:
+      - schema:distribution  # schemaorg.owl:15369-15390 — "A downloadable form of this dataset, at a specific location, in a specific format."
+    aliases:
+      - linked_data_export

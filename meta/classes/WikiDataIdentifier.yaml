@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/classes/WikiDataIdentifier
+name: WikiDataIdentifier
+title: WikiData Identifier Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  wikidata: http://www.wikidata.org/entity/
+  schema: http://schema.org/
+  dct: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+classes:
+  WikiDataIdentifier:
+    description: >-
+      Lightweight Q-number pointer used when only external identity is required.
+    alt_descriptions:
+      nl: >-
+        Eenvoudige Wikidata-entiteitsidentificatie (Q-nummer) voor unieke verwijzing naar een entiteit
+        in de Wikidata kennisbank zonder volledige entiteitsgegevens in cache op te slaan.
+      de: >-
+        Einfacher Wikidata-Entitätsbezeichner (Q-Nummer) zur eindeutigen Referenzierung einer Entität
+        in der Wikidata-Wissensdatenbank ohne Zwischenspeicherung vollständiger Entitätsdaten.
+      fr: >-
+        Identifiant simple d'entité Wikidata (numéro Q) pour référencer de manière unique une entité
+        dans la base de connaissances Wikidata sans mettre en cache les données complètes de l'entité.
+      es: >-
+        Identificador simple de entidad Wikidata (número Q) para referenciar de manera única una entidad
+        en la base de conocimientos Wikidata sin almacenar en caché los datos completos de la entidad.
+      ar: >-
+        معرف كيان ويكي بيانات بسيط (رقم Q) للإشارة الفريدة إلى كيان
+        في قاعدة معارف ويكي بيانات دون تخزين بيانات الكيان الكاملة مؤقتًا.
+      id: >-
+        Pengidentifikasi entitas Wikidata sederhana (nomor Q) untuk merujuk secara unik ke entitas
+        dalam basis pengetahuan Wikidata tanpa menyimpan cache data entitas lengkap.
+      zh: >-
+        简单的维基数据实体标识符（Q编号），用于在维基数据知识库中唯一引用实体，
+        而不缓存完整实体数据。
+    broad_mappings:
+      - dct:Identifier
+    close_mappings:
+      - schema:PropertyValue
+    related_mappings:
+      - wikidata:Q43649390
+    slots: []
+    comments:
+      - Use for simple Q-number storage (identifier only)
+      - Use WikiDataEntry when full entity data (label, description, claims) is needed
+      - Format: Q followed by digits (e.g., Q190804 for Rijksmuseum)
+    see_also:
+      - https://www.wikidata.org/
+    examples:
+      - value:
+          qid: "Q190804"
+          url: "https://www.wikidata.org/wiki/Q190804"
+          has_label: "Rijksmuseum"
+        description: Wikidata identifier for the Rijksmuseum
+      - value:
+          qid: "Q1526131"
+          has_label: "Biblioteca Nacional do Brasil"
+        description: Wikidata identifier for the National Library of Brazil
+    keywords:
+      - wikidata
+      - identifier
+      - q-number
+      - qid
+      - unique
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Wikidata identifiers applicable to all custodian types.
+      specificity_score: 0.3
+      specificity_rationale: Low specificity - universal identifier type.
+    structured_aliases:
+      - literal_form: wikidata-identificatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wikidata-Kennung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: identifiant Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: identificador Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: معرّف ويكي بيانات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pengenal Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 维基数据标识符
+        predicate: EXACT_SYNONYM
+        in_language: zh

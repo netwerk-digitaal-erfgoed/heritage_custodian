@@ -1,0 +1,119 @@
+id: https://nde.nl/ontology/hc/class/Department
+name: department_class
+title: Department Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  wd: http://www.wikidata.org/entity/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_contact_point
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_staff
+- ../slots/has_type
+- ../slots/dissolved_by
+- ../slots/established_by
+- ../slots/managed_by
+- ../slots/located_at
+- ../slots/has_mandate
+- ../slots/part_of
+- ../slots/refer_to
+classes:
+  Department:
+    class_uri: org:OrganizationalUnit
+    description: >-
+      Formal organizational unit within a parent institution with defined
+      mandate, responsibilities, and reporting lines.
+    alt_descriptions:
+      nl: Formele organisatorische eenheid binnen een moederinstelling met vastgesteld mandaat taken en rapportagelijnen.
+      de: Formale Organisationseinheit innerhalb einer uebergeordneten Institution mit festgelegtem Mandat Aufgaben und Berichtslinien.
+      fr: Unite organisationnelle formelle au sein d une institution parente avec mandat responsabilites et lignes de reporting definis.
+      es: Unidad organizativa formal dentro de una institucion matriz con mandato responsabilidades y lineas de reporte definidas.
+      ar: وحدة تنظيمية رسمية داخل مؤسسة أم ذات تفويض ومسؤوليات وخطوط إبلاغ محددة.
+      id: Unit organisasi formal dalam institusi induk dengan mandat tanggung jawab dan garis pelaporan yang ditetapkan.
+      zh: 隶属于上级机构、具备明确职责、授权与汇报关系的正式组织单元。
+    structured_aliases:
+    - {literal_form: afdeling, in_language: nl}
+    - {literal_form: Abteilung, in_language: de}
+    - {literal_form: departement interne, in_language: fr}
+    - {literal_form: departamento, in_language: es}
+    - {literal_form: إدارة, in_language: ar}
+    - {literal_form: departemen, in_language: id}
+    - {literal_form: 部门单元, in_language: zh}
+    broad_mappings:
+    - org:OrganizationalUnit
+    close_mappings:
+    - wd:Q2366457
+    - rico:Agent
+    - schema:Organization
+    related_mappings:
+    - crm:E74_Group
+    slots:
+    - has_contact_point
+    - has_label
+    - has_type
+    - has_description
+    - managed_by
+    - identified_by
+    - dissolved_by
+    - located_at
+    - has_mandate
+    - part_of
+    - refer_to
+    - has_staff
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_label:
+        range: Label
+        inlined: true
+        multivalued: true
+        required: true
+      has_type:
+        range: LabelType
+        inlined: true
+        required: false
+      has_description:
+        inlined: false
+        required: false
+      has_mandate:
+        required: false
+      part_of:
+        range: Department
+      managed_by:
+        range: Manager
+        inlined: true
+        required: false
+      has_staff:
+        range: PersonObservation
+        multivalued: true
+        inlined_as_list: true
+      dissolved_by:
+        range: DissolutionEvent
+        inlined: true
+      refer_to:
+        range: Custodian
+        required: true
+    comments:
+    - Formal structural unit, distinct from informal team groupings
+    - Supports hierarchy through part_of and cross-linking to custodian
+    - |
+      Preserved from prior description (commit 86b9dceb):
+
+      "Formal department within a heritage custodian organization.\n\n**DEFINITION**:\n\nDepartment represents a FORMAL organizational unit within a heritage\ninstitution, often with regulatory, legal, or governance significance.\nDepartments typically have:\n- Official mandate or charter\n- Defined responsibilities\n- Budget allocation\n- Reporting structure\n- Staff positions with formal titles\n\n**DISTINCTION FROM OrganizationalStructure**:\n\n| Department | OrganizationalStructure |\n|------------|-------------------------|\n| Formal, often codified | Informal, operational |\n| Legal/regulatory basis | Pragmatic organization |\n| Budget line items | Ad-hoc groupings |\n| Charter/mandate | Flexible scope |\n| \"Archives Department\" | \"Digital Preservation Team\" |\n\nBoth use `org:OrganizationalUnit` but represent different levels of formality.\n\n**ARCHIVE CONTEXT**:\n\nIn archival institutions, \"department\" often refers to:\n- Record groups managed (e.g., \"Colonial\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

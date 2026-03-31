@@ -1,0 +1,53 @@
+id: https://nde.nl/ontology/hc/enum/PaginationMethodEnum
+name: pagination_method_enum
+title: Pagination Method Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  PaginationMethodEnum:
+    description: |
+      Methods for paginating large result sets.
+    permissible_values:
+      OFFSET_LIMIT:
+        description: |
+          Uses offset (or start/from) and limit (or size/count) parameters.
+
+          Example: ?offset=100&limit=20
+
+          Pros: Simple, allows jumping to any page
+          Cons: Inconsistent results if data changes between requests
+      PAGE_NUMBER:
+        description: |
+          Uses page number and page size parameters.
+
+          Example: ?page=5&per_page=20
+
+          Similar to OFFSET_LIMIT but uses page numbers.
+      CURSOR:
+        description: |
+          Uses opaque cursor/token for stateful pagination.
+
+          Example: ?cursor=eyJsYXN0X2lkIjogMTIzfQ==
+
+          Pros: Consistent results, efficient for large datasets
+          Cons: Cannot jump to arbitrary page
+      LINK_HEADER:
+        description: |
+          Uses HTTP Link headers for pagination (RFC 5988).
+
+          Response includes: Link: <url>; rel="next", <url>; rel="prev"
+
+          RESTful approach following HATEOAS principles.
+      SCROLL:
+        description: |
+          Uses scroll/scan API for deep pagination.
+
+          Common in Elasticsearch-based APIs.
+          Maintains search context for consistent results.
+      NONE:
+        description: |
+          No pagination - returns all results at once.
+
+          Only suitable for small result sets.

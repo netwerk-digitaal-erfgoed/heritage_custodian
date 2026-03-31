@@ -1,0 +1,140 @@
+# ==============================================================================
+# LinkML Slot Definition: in_script
+# ==============================================================================
+# Composed or rendered using a specific system of handwriting or distinct
+# character set.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line               | Mapping  | Notes                                    |
+# |----------------|-----------------------|-------------------------|----------|------------------------------------------|
+# | **Schema.org** | `schema:inLanguage`   | schemaorg.owl:21591-21618| close    | "The language of the content or          |
+# |                |                       |                         |          | performance." Language ≠ script but      |
+# |                |                       |                         |          | closely related concepts.                |
+# | **CIDOC-CRM**  | `crm:P72_has_language` | CIDOC_CRM:2839-2852    | related  | "Associates E33 Linguistic Object with   |
+# |                |                       |                         |          | E56 Language." Language context.         |
+# | **RiC-O**      | `rico:hasOrHadLanguage`| RiC-O_1-1.rdf:6716-6761| related  | "Connects Agent, Record or Record Part   |
+# |                |                       |                         |          | to a Language." Language ≠ script, but   |
+# |                |                       |                         |          | "written language" concept overlaps.     |
+#
+# DISTINCTION FROM LANGUAGE:
+# Script refers to the writing system (Latin, Cyrillic, Arabic, Han, etc.)
+# while language refers to the linguistic content (English, Russian, Arabic,
+# etc.). A single language may use multiple scripts (e.g., Serbian: Cyrillic
+# and Latin) and a single script may be used for multiple languages (e.g.,
+# Latin: English, French, German, etc.).
+#
+# ISO 15924 provides standard codes for scripts (Latn, Cyrl, Arab, Hans, etc.)
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 — Added multilingual support, verified ontology mappings.
+# UPDATED: 2026-02-08 — Fixed slot_uri to camelCase; capitalized
+#   structured_aliases; removed duplicate alias without in_language; removed
+#   ontology table from comments (already in header).
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_script
+name: in_script
+title: In Script
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_script:
+    slot_uri: hc:inScript
+    description: >-
+      To be composed or rendered using a specific system of handwriting or
+      distinct character set.
+    alt_descriptions:
+      nl: >-
+        Samengesteld of weergegeven met behulp van een specifiek schriftsysteem
+        of onderscheidende tekenset.
+      de: >-
+        Mit einem bestimmten Schriftsystem oder einem eigenen Zeichensatz
+        verfasst oder dargestellt.
+      fr: >-
+        Composé ou rendu en utilisant un système d'écriture spécifique ou un
+        jeu de caractères distinct.
+      ar: >-
+        مؤلف أو معروض باستخدام نظام كتابة محدد أو مجموعة أحرف مميزة.
+      id: >-
+        Disusun atau dirender menggunakan sistem tulisan tertentu atau
+        rangkaian karakter yang berbeda.
+      zh: >-
+        使用特定的书写系统或独特的字符集编写或呈现。
+      es: >-
+        Compuesto o representado utilizando un sistema de escritura específico
+        o conjunto de caracteres distinto.
+    structured_aliases:
+      - literal_form: Schrift
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Schrift
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Écriture
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Aksara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 文字
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Escritura
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined: false
+    close_mappings:
+      - schema:inLanguage  # schemaorg.owl:21591-21618 — "The language of the content or performance." Language ≠ script but closely related.
+    related_mappings:
+      - crm:P72_has_language  # CIDOC_CRM:2839-2852 — "Associates E33 Linguistic Object with E56 Language."
+      - rico:hasOrHadLanguage  # RiC-O_1-1.rdf:6716-6761 — "Connects Agent, Record or Record Part to a Language."
+    aliases:
+      - has_or_had_writing_system
+      - is_or_was_in_script
+      - script_type
+    examples:
+      - value: |
+          script_code: Latn
+          script_name: Latin
+        description: Latin writing system (ISO 15924)
+      - value: |
+          script_code: Cyrl
+          script_name: Cyrillic
+        description: Cyrillic writing system
+      - value: |
+          script_code: Arab
+          script_name: Arabic
+        description: Arabic writing system
+      - value: |
+          script_code: Hans
+          script_name: Simplified Han
+        description: Simplified Chinese characters
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        USAGE: Used for script type (Latin, Cyrillic, Arabic, etc.), writing
+        direction (LTR, RTL), and historical scripts (Cuneiform,
+        Hieroglyphics).
+      - >-
+        ISO 15924: Standard codes for scripts — Latn (Latin), Cyrl (Cyrillic),
+        Arab (Arabic), Hans (Simplified Han), Hant (Traditional Han), Grek
+        (Greek), Hebr (Hebrew), Deva (Devanagari).
+      - >-
+        DISTINCTION FROM LANGUAGE: Script refers to the writing system while
+        language refers to the linguistic content. Serbian uses both Cyrillic
+        and Latin scripts. Latin script is used for English, French, German,
+        etc.

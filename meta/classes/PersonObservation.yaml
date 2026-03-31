@@ -1,0 +1,238 @@
+id: https://nde.nl/ontology/hc/class/PersonObservation
+name: PersonObservation
+title: Person Observation (Staff Role Context)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  pico: https://personsincontext.org/model#
+  pnv: https://w3id.org/pnv#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  sdo: https://schema.org/
+imports:
+- linkml:types
+- ../slots/begin_of_the_begin
+- ../slots/has_age
+- ../slots/expertise_in
+- ../slots/has_label
+- ../slots/has_provenance
+- ../slots/has_score
+- ../slots/identified_as
+- ../slots/deceased
+- ../slots/affected_by
+- ../slots/affiliated_with
+- ../slots/has_provenance_path
+- ../slots/has_profile
+- ../slots/updated_at
+- ../slots/has_source
+- ../slots/has_occupation
+- ../slots/has_name
+- ../slots/refer_to
+- ../slots/has_religion
+- ../slots/final_of_the_final
+- ../slots/has_title
+- ../slots/has_staff
+classes:
+  PersonObservation:
+    class_uri: pico:PersonObservation
+    alt_descriptions:
+      nl: Bron-gebaseerde observatie van een persoon in een personeelsrol bij een erfgoedinstelling.
+      de: Quellenbasierte Beobachtung einer Person in einer Mitarbeiterrolle bei einer Kultureinrichtung.
+      fr: Observation fondee sur une source d une personne dans un role de personnel au sein d une institution patrimoniale.
+      es: Observacion basada en una fuente de una persona en un rol de personal en una institucion patrimonial.
+      ar: ملاحظة قائمة على مصدر لشخص في دور وظيفي داخل مؤسسة تراثية.
+      id: Observasi berbasis sumber tentang seseorang dalam peran staf di lembaga warisan budaya.
+      zh: 基于来源的人员观察记录，描述其在文化遗产机构中的工作人员角色。
+    structured_aliases:
+    - {literal_form: persoonsobservatie, in_language: nl}
+    - {literal_form: Personenbeobachtung, in_language: de}
+    - {literal_form: observation de personne, in_language: fr}
+    - {literal_form: observacion de persona, in_language: es}
+    - {literal_form: ملاحظة شخص, in_language: ar}
+    - {literal_form: observasi orang, in_language: id}
+    - {literal_form: 人员观察, in_language: zh}
+    description: >-
+      Source-grounded observation describing a person's staff role and
+      affiliation as stated in a particular source and time context.
+    exact_mappings:
+    - pico:PersonObservation
+    close_mappings:
+    - schema:Person
+    - schema:Role
+    - crm:E21_Person
+    - foaf:Person
+    - prov:Agent
+    slots:
+    - begin_of_the_begin
+    - final_of_the_final
+    - updated_at
+    - has_name
+    - has_staff
+    - has_title
+    - affiliated_with
+    - affected_by
+    - has_age
+    - has_occupation
+    - expertise_in
+    - has_religion
+    - deceased
+    - identified_as
+    - has_profile
+    - has_source
+    - has_provenance
+    - has_provenance_path
+    - refer_to
+    - has_label
+    - has_score
+    slot_usage:
+      has_age:
+#         range: string
+        required: false
+      has_occupation:
+#         range: string
+        multivalued: true
+        required: false
+      has_religion:
+#         range: string
+        required: false
+      identified_as:
+#         range: string # uriorcurie
+        # range: Gender
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+        examples:
+        - value:
+            has_label: Female
+        - value:
+            has_label: Male
+      has_staff:
+#         range: string # uriorcurie
+        # range: StaffRole
+        required: true
+      has_title:
+#         range: string
+        required: false
+      affiliated_with:
+#         range: string
+        required: false
+      begin_of_the_begin:
+        range: date
+        required: false
+      final_of_the_final:
+        range: date
+        required: false
+      has_source:
+#         range: string
+        required: false
+      has_provenance_path:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+      affected_by:
+#         range: string # uriorcurie
+        # range: OrganizationalChangeEvent
+        required: false
+      expertise_in:
+#         range: string # uriorcurie
+        # range: ExpertiseArea
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+      has_profile:
+        range: uri
+        required: false
+      updated_at:
+        range: datetime
+    examples:
+    - value:
+        has_name: Dr. Jane Smith
+        has_staff: CONSERVATOR
+        has_title: Senior Paintings Conservator
+        affiliated_with: https://nde.nl/ontology/hc/org-unit/rm-conservation-division
+        begin_of_the_begin: '2013-03-01'
+        refer_to: https://nde.nl/ontology/hc/person/jane-smith
+        has_source:
+        - https://rijksmuseum.nl/staff/jane-smith
+    - value:
+        has_name: Dr. Jane Smith
+        has_staff: CONSERVATOR
+        has_title: Deputy Director, Conservation Division
+        affiliated_with: https://nde.nl/ontology/hc/org-unit/rm-conservation-division
+        begin_of_the_begin: '2013-03-01'
+        affected_by: https://nde.nl/ontology/hc/event/rm-conservation-merger-2013
+        refer_to: https://nde.nl/ontology/hc/person/jane-smith
+    notes:
+    - |
+      Preserved from prior description (commit 6251b84d):
+
+      "An observation of a person serving in a staff role at a heritage custodian institution,\nas documented in a specific source at a specific point in time.\n\n**PiCo Pattern Adaptation**:\nThe PiCo (Persons in Context) ontology distinguishes between:\n- **PersonObservation**: Data about a person as found in a source (evidence-based)\n- **PersonReconstruction**: Aggregated identity from multiple observations (inferred)\n\nFor heritage custodian staff tracking, we adapt this pattern:\n- **PersonObservation**: Staff role as documented in institutional sources\n  (annual reports, org charts, staff directories, archival records)\n- Focus on ROLES and AFFILIATIONS rather than biographical details\n- Temporal validity tracks employment period in specific position\n\n**Key Distinction from General Person Data**:\nThis class models INSTITUTIONAL ROLES, not complete biographical data:\n- Emphasis: Role, title, unit affiliation, employment dates\n- NOT: Full biographical reconstruction\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        This class is intended for source-based statements about a person's role
+        in an institution (e.g., staff directory entries, annual reports, org charts).
+
+        Modeling intent
+
+        - Evidence-first: each observation is tied to a source/context.
+        - Role-focused: emphasizes staff role/title, affiliation, and time span.
+        - Hub pattern: observations point to the Person hub (see Person.yaml).
+
+        Common slot correspondences (preferred canonical slot names)
+
+        - person_name -> has_name
+        - staff_role -> has_staff
+        - role_title -> has_title
+        - role_start_date -> begin_of_the_begin
+        - role_end_date -> final_of_the_final
+        - refers_to_person -> refer_to
+        - affected_by_event -> affected_by
+        - observation_source -> has_source
+      legacy_examples: |
+        The following example blobs were carried over from earlier migrations and
+        are preserved here as legacy documentation (they may include fields not
+        currently modeled as slots on this class).
+
+        Example blob 1
+
+        id: https://nde.nl/ontology/hc/person-obs/nl-nh-ams-m-rm/jane-smith/conservator-2013
+        person_name: Dr. Jane Smith
+        refers_to_person: https://nde.nl/ontology/hc/person/jane-smith
+        staff_role: CONSERVATOR
+        role_title: Deputy Director, Conservation Division
+        affiliated_with: https://nde.nl/ontology/hc/org-unit/rm-conservation-division
+        role_start_date: '2013-03-01'
+        role_end_date: null
+        affected_by_event: https://nde.nl/ontology/hc/event/rm-conservation-merger-2013
+
+        Example blob 2
+
+        id: https://nde.nl/ontology/hc/person-obs/nl-nh-ams-m-rm/taco-dibbits/director-2016
+        person_name: Taco Dibbits
+        refers_to_person: https://nde.nl/ontology/hc/person/taco-dibbits
+        staff_role: DIRECTOR
+        role_title: General Director
+        role_start_date: '2016-09-01'
+        role_end_date: null
+        linkedin_profile_url: https://www.linkedin.com/in/taco-dibbits
+        linkedin_profile_path: data/custodian/person/entity/taco-dibbits_20250115T103000Z.json
+        has_web_claim:
+        - person_claim_type: full_name
+          person_claim_value: Taco Dibbits
+          source_url: https://www.rijksmuseum.nl/en/about-us/organisation
+          person_xpath: /html/body/main/section[2]/div[1]/h2
+          retrieved_on: '2025-01-15T10:30:00Z'
+          retrieval_agent: firecrawl
+          person_xpath_match_score: 1.0
+        - person_claim_type: role_title
+          person_claim_value: General Director
+          source_url: https://www.rijksmuseum.nl/en/about-us/organisation
+          person_xpath: /html/body/main/section[2]/div[1]/p[1]
+          retrieved_on: '2025-01-15T10:30:00Z'
+          retrieval_agent: firecrawl
+          person_xpath_match_score: 1.0

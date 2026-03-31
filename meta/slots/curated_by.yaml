@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: curated_by
+# ==============================================================================
+# The expert, organization, or algorithm responsible for selecting, organizing,
+# and maintaining the content of a collection, exhibition, or dataset.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                              | File/Line                        | Mapping | Notes                                                                |
+# |---------------|---------------------------------------|----------------------------------|---------|----------------------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P109_has_current_or_former_curator`| CIDOC_CRM_v7.1.3.rdf:3639-3653 | close   | "Identifies the Actor who assumed overall curatorial responsibility   |
+# |               |                                       |                                  |         |  for a Curated Holding." Domain: E78_Curated_Holding; our slot also  |
+# |               |                                       |                                  |         |  covers exhibitions and datasets. Range: E39_Actor; our slot also    |
+# |               |                                       |                                  |         |  includes algorithms. SubPropertyOf P49.                             |
+# | **Schema.org**| `schema:maintainer`                   | schemaorg.owl:25330-25352        | related | "A maintainer of a Dataset, software package, or Project."           |
+# |               |                                       |                                  |         |  Maintenance (upkeep/updates) overlaps with but differs from         |
+# |               |                                       |                                  |         |  curation (selection, organization, stewardship). Pending.           |
+# | **PROV-O**    | `prov:wasAttributedTo`                | prov.ttl:1082-1095               | broad   | "Attribution is the ascribing of an entity to an agent." Any         |
+# |               |                                       |                                  |         |  responsibility attribution; curation is one specific form.          |
+# | **RiC-O**     | `rico:hasOrHadManager`                | RiC-O_1-1.rdf:6926-6947         | broad   | "Has or had manager." General administrative oversight is broader    |
+# |               |                                       |                                  |         |  than curation which involves selection and organization.            |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/curated_by
+name: curated_by
+title: Curated By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  curated_by:
+    slot_uri: hc:curatedBy
+    description: >-
+      Relates a specific collection, exhibition, or dataset to the expert,
+      organization, or algorithm responsible for selecting, organizing, and
+      maintaining its content.
+    alt_descriptions:
+      nl: >-
+        Relateert een specifieke collectie, tentoonstelling of dataset aan de expert,
+        organisatie of het algoritme dat verantwoordelijk is voor het selecteren,
+        organiseren en onderhouden van de inhoud.
+      de: >-
+        Verknüpft eine bestimmte Sammlung, Ausstellung oder einen Datensatz mit dem
+        Experten, der Organisation oder dem Algorithmus, der für die Auswahl,
+        Organisation und Pflege des Inhalts verantwortlich ist.
+      fr: >-
+        Relie une collection, exposition ou jeu de données spécifique à l'expert,
+        l'organisation ou l'algorithme responsable de la sélection, l'organisation
+        et la maintenance de son contenu.
+      ar: >-
+        يربط مجموعة أو معرضًا أو مجموعة بيانات محددة بالخبير أو المنظمة أو
+        الخوارزمية المسؤولة عن اختيار محتواها وتنظيمه وصيانته.
+      id: >-
+        Menghubungkan koleksi, pameran, atau kumpulan data tertentu dengan pakar,
+        organisasi, atau algoritma yang bertanggung jawab untuk memilih, mengatur,
+        dan memelihara kontennya.
+      zh: >-
+        将特定的收藏、展览或数据集与负责选择、组织和维护其内容的专家、组织或算法相关联。
+      es: >-
+        Relaciona una colección, exposición o conjunto de datos específico con el
+        experto, organización o algoritmo responsable de seleccionar, organizar y
+        mantener su contenido.
+    structured_aliases:
+      - literal_form: Beheerder
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kurator
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Conservateur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أمين المجموعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kurator
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 策展人
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Curador
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - crm:P109_has_current_or_former_curator  # CIDOC_CRM_v7.1.3.rdf:3639-3653 — "Actor who assumed curatorial responsibility for a Curated Holding." Domain: E78_Curated_Holding; our slot also covers exhibitions/datasets. Range: E39_Actor; ours includes algorithms.
+    related_mappings:
+      - schema:maintainer  # schemaorg.owl:25330-25352 — "A maintainer of a Dataset, software package, or Project." Maintenance overlaps but differs from curation (selection/organization/stewardship). Pending.
+    broad_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1095 — "Attribution is the ascribing of an entity to an agent." General responsibility attribution; curation is one specific form.
+      - rico:hasOrHadManager  # RiC-O_1-1.rdf:6926-6947 — "Has or had manager." General administrative oversight is broader than curation.

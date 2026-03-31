@@ -1,0 +1,283 @@
+id: https://nde.nl/ontology/hc/class/reading-room
+name: reading_room_class
+title: ReadingRoom Class
+imports:
+  - linkml:types
+  - ../enums/ReadingRoomTypeEnum
+  - ../slots/allow
+  - ../slots/has_locker
+  - ../slots/has_microfilm_reader
+  - ../slots/has_accessibility_feature
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_quantity
+  - ../slots/has_score
+  - ../slots/has_access_policy
+  - ../slots/has_wifi
+  - ../slots/derive_from
+  - ../slots/generated_by
+  - ../slots/has_operating_hours
+  - ../slots/has_type
+  - ../slots/require
+  - ../slots/has_capacity
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  aat: http://vocab.getty.edu/aat/
+classes:
+  ReadingRoom:
+    is_a: ReconstructedEntity
+    class_uri: aat:300004051
+    description: >-
+      Primary supervised space within a heritage institution where researchers consult
+      original collection materials, manuscripts, or special collections under controlled conditions.
+    alt_descriptions:
+      nl: >-
+        Primaire ruimte onder toezicht binnen een erfgoedinstelling waar onderzoekers
+        originele collectiematerialen, manuscripten of speciale collecties raadplegen onder gecontroleerde omstandigheden.
+      de: >-
+        Primärer überwachter Raum in einer Kulturerbeeinrichtung, in dem Forscher
+        Originalsammlungsmaterial, Manuskripte oder Spezialsammlungen unter kontrollierten Bedingungen einsehen.
+      fr: >-
+        Espace principal supervisé au sein d'une institution patrimoniale où les chercheurs consultent
+        des documents de collection originaux, des manuscrits ou des collections spéciales dans des conditions contrôlées.
+      es: >-
+        Espacio principal supervisado dentro de una institución patrimonial donde los investigadores
+        consultan materiales de colección originales, manuscritos o colecciones especiales bajo condiciones controladas.
+      ar: >-
+        المساحة الرئيسية تحت الإشراف داخل مؤسسة تراثية حيث يطالع الباحثون
+        مواد المجموعات الأصلية أو المخطوطات أو المجموعات الخاصة في ظروف مضبوطة.
+      id: >-
+        Ruang utama yang diawasi di dalam institusi warisan budaya tempat peneliti
+        mengkaji materi koleksi asli, naskah, atau koleksi khusus dalam kondisi terkendali.
+      zh: >-
+        遗产机构内主要的监督空间，研究人员在受控条件下查阅原始馆藏材料、手稿或特藏。
+    exact_mappings:
+      - aat:300004051
+    close_mappings:
+      - org:Site
+      - schema:Place
+      - schema:Library
+    related_mappings:
+      - aat:300004049
+      - schema:ReadingRoom
+    broad_mappings:
+      - schema:Place
+    keywords:
+      - reading room
+      - research room
+      - study hall
+      - consultation space
+    structured_aliases:
+      - literal_form: studiezaal
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Lesesaal
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: salle de lecture
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: sala de lectura
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: قاعة مطالعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ruang baca
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 阅览室
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    slots:
+    - has_accessibility_feature
+    - allow
+    - has_locker
+    - has_microfilm_reader
+    - has_access_policy
+    - has_wifi
+    - has_opening_hour
+    - has_description
+    - identified_by
+    - has_label
+    - has_type
+    - require
+    - has_capacity
+    - has_score
+    - has_quantity
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/na-studiezaal
+      has_label:
+#         range: string
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            label_text: Nationaal Archief Studiezaal
+        - value:
+            label_text: KB Bijzondere Collecties Leeszaal
+        - value:
+            label_text: Stadsarchief Amsterdam Studiezaal
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Main research room for consulting archival collections. Staff assistance available. Self-service microfilm readers and computer terminals for catalog access.
+      has_type:
+        range: ReadingRoomTypeEnum
+        required: true
+        examples:
+        - value: GENERAL
+        - value: SPECIAL_COLLECTIONS
+      has_capacity:
+        range: integer
+        examples:
+        - value: 80
+        - value: 20
+      has_quantity:
+        range: integer
+        required: false
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_measurement_unit:
+              has_type: TERMINAL
+              has_symbol: terminals
+      has_microfilm_reader:
+        range: boolean
+        examples:
+        - value: true
+      has_wifi:
+        range: boolean
+        examples:
+        - value: true
+      require:
+        range: string
+        multivalued: true
+        examples:
+        - value: Registration required
+        - value: Appointment required
+      allow:
+#         range: string
+        multivalued: true
+        examples:
+        - value: Laptops permitted
+        - value: Photography for personal research
+      has_access_policy:
+        range: boolean
+        examples:
+        - value: true
+      has_locker:
+        range: boolean
+        examples:
+        - value: true
+      has_opening_hour:
+#         range: string
+        examples:
+        - value: Tu-Fr 09:00-17:00, Sa 09:00-13:00
+      has_accessibility_feature:
+#         range: string
+        multivalued: true
+        examples:
+        - value: Wheelchair accessible
+        - value: Screen magnification software
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    comments:
+    - ReadingRoom models primary research/consultation spaces
+    - Getty AAT 300004051 for reading rooms
+    - Distinguished from ReadingRoomAnnex by being primary facility
+    - Key interface between heritage custodians and researchers
+    - Access rules vary by institution and material type
+    - "Modeling note: requirements such as requires_registration and requires_appointment are expressed via the require slot (see slot aliases)."
+    see_also:
+    - http://vocab.getty.edu/aat/300004051
+    - https://schema.org/Library
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/na-studiezaal
+        has_label:
+          label_text: Nationaal Archief Studiezaal
+        has_description:
+          description_text: Main research room for consulting archival collections. Self-service retrieval from open stacks. Staff assistance available.
+        has_type: GENERAL
+        has_capacity: 80
+        has_microfilm_reader: true
+        has_wifi: true
+        allow:
+        - Laptops permitted
+        - Photography for personal research use
+        has_locker: true
+        has_opening_hour: Tu-Fr 09:00-17:00, Sa 09:00-13:00
+        require:
+          - Registration required
+        has_accessibility_feature:
+        - Wheelchair accessible
+        - Adjustable desks
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/kb-bijzondere-collecties
+        has_label:
+          label_text: KB Bijzondere Collecties Leeszaal
+        has_description:
+          description_text: Special collections reading room for rare books, manuscripts, and incunabula. Supervised handling required.
+        has_type: SPECIAL_COLLECTIONS
+        has_capacity: 20
+        require:
+          - Registration required
+          - Appointment required
+        allow:
+        - Photography not permitted - reproduction service available
+        has_locker: true
+        has_opening_hour: Mo-Fr 10:00-16:00
+    notes:
+      - |
+        Preserved from prior description (commit 37852a46):
+
+        "Reading room or research room at a heritage custodian institution.\n\n**DEFINITION**:\n\nA ReadingRoom is a designated space where researchers, scholars, and the\npublic can access and consult collection materials under supervised\nconditions. Reading rooms are the primary interface between heritage\ncustodians and their users for on-site collection access.\n\n**GETTY AAT ALIGNMENT**:\n\n`aat:300004051` (reading rooms) - \"Rooms in libraries, archives, or other\nbuildings where books, periodicals, or other materials may be read or\nstudied, but not normally borrowed.\"\n\n**DISTINCTION FROM ReadingRoomAnnex**:\n\n| Type | Location | Status |\n|------|----------|--------|\n| **ReadingRoom** | Main building | Primary reading facility |\n| ReadingRoomAnnex | Separate location | Overflow/supplementary |\n\n**TYPICAL CHARACTERISTICS**:\n\n- **Supervised access**: Staff oversight for security\n- **Controlled environment**: Climate control for materials\n- **Research support**:\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Definition
+
+        A ReadingRoom is the primary on-site consultation space where users access
+        collection materials under supervision.
+
+        Distinction
+
+        - ReadingRoom: primary facility in the main building.
+        - ReadingRoomAnnex: supplementary/overflow facility at a separate location.
+
+        External alignment
+
+        - Getty AAT aat:300004051 (reading rooms)
+        - Schema.org: schema:Library / schema:Place (close)
+
+      legacy_examples: |
+        Preserved from earlier migration examples; may include fields not currently modeled
+        as slots on this class.
+
+        - reading_room_type, seating_capacity, opening_hours and similar fields were used
+          in legacy examples. Prefer canonical slots: has_type, has_capacity, has_opening_hour.

@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/Setpoint
+name: setpoint_class
+title: Setpoint Class
+description: >-
+  Environmental control setpoint for storage conditions.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  brick: https://brickschema.org/schema/Brick#
+  sosa: http://www.w3.org/ns/sosa/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/MeasureUnitEnum
+- ../enums/SetpointTypeEnum
+- ../slots/has_reference
+- ../slots/maximum_of_maximum
+- ../slots/minimum_of_minimum
+- ../slots/has_level
+- ../slots/has_setpoint
+classes:
+  Setpoint:
+    class_uri: brick:Setpoint
+    description: >-
+      An environmental control setpoint specifying a target value, acceptable range,
+      and tolerance for a measurable property (temperature, humidity, light, etc.).
+    alt_descriptions:
+      nl: Een omgevingscontrole-instelpunt dat een doelwaarde, acceptabele reikwijdte en tolerantie specificeert voor een meetbare eigenschap.
+      de: Ein Umgebungssteuerungs-Sollwert, der einen Zielwert, akzeptablen Bereich und Toleranz für eine messbare Eigenschaft festlegt.
+      fr: Un point de consigne de contrôle environnemental spécifiant une valeur cible, une plage acceptable et une tolérance pour une propriété mesurable.
+    structured_aliases:
+    - literal_form: instelpunt
+      in_language: nl
+    - literal_form: Sollwert
+      in_language: de
+    - literal_form: point de consigne
+      in_language: fr
+    comments:
+    - Brick Schema alignment - brick:Setpoint represents a value for equipment/system guidance.
+    - ISO Standard references include ISO 11799:2015 (Archives), ISO 18911:2010 (Cold storage), ISO 18920:2011 (Photographs).
+    - Created per slot_fixes.yaml migration for temperature and humidity targets (2026-01-18).
+    exact_mappings:
+    - brick:Setpoint
+    broad_mappings:
+    - qudt:Quantity
+    close_mappings:
+    - sosa:ObservableProperty
+    slots:
+    - has_setpoint
+    - minimum_of_minimum
+    - maximum_of_maximum
+    - has_level
+    - has_reference
+    slot_usage:
+      has_setpoint:
+        range: SetpointTypeEnum
+        required: true
+        examples:
+        - value: TEMPERATURE
+        - value: RELATIVE_HUMIDITY
+        - value: LIGHT_LUX
+      minimum_of_minimum:
+        range: float
+        required: false
+        examples:
+        - value: 16.0
+      maximum_of_maximum:
+        range: float
+        required: false
+        examples:
+        - value: 20.0
+      has_level:
+        range: float
+        required: false
+        examples:
+        - value: 2.0
+      has_reference:
+        required: false
+        examples:
+        - value: ISO 11799:2015
+        - value: EN 15757:2010
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "An environmental control setpoint specifying a target value, acceptable range,\nand tolerance for a measurable property (temperature, humidity, light, etc.).\n\n**BRICK SCHEMA ALIGNMENT**:\nbrick:Setpoint - \"A point that represents a value used to guide the \noperation of equipment and/or systems\"\n\n**PRESERVATION CONTEXT**:\nSetpoints define target environmental conditions for heritage preservation.\nHVAC systems maintain conditions around setpoints within tolerance bands.\n\n**ISO STANDARD REFERENCES**:\n- ISO 11799:2015 (Archives): 16-18\xB0C, 30-45% RH\n- ISO 18911:2010 (Cold storage): 0 to +4\xB0C, 30% RH\n- ISO 18920:2011 (Photographs): 15-18\xB0C, 30-40% RH\n- BS 4971:2017 (UK Standard): 13-16\xB0C, 35-60% RH\n- EN 15757:2010 (Climate control): historic climate principle\n"
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

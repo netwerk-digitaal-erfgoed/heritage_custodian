@@ -1,0 +1,85 @@
+id: https://nde.nl/ontology/hc/class/ComponentType
+name: component_type_class
+title: Component Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  locn: http://www.w3.org/ns/locn#
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  ComponentType:
+    class_uri: crm:E55_Type
+    abstract: true
+    description: >-
+      Abstract taxonomy node for categorizing constituent-element roles in
+      structured records.
+    alt_descriptions:
+      nl: Abstract taxonomieknooppunt voor het categoriseren van rollen van constituenten in gestructureerde records.
+      de: Abstrakter Taxonomieknoten zur Kategorisierung von Rollen konstituierender Elemente in strukturierten Datensaetzen.
+      fr: Noeud taxonomique abstrait pour categoriser les roles d elements constitutifs dans des enregistrements structures.
+      es: Nodo taxonomico abstracto para categorizar roles de elementos constituyentes en registros estructurados.
+      ar: عقدة تصنيفية مجردة لتصنيف أدوار العناصر المكوِّنة في السجلات المنظمة.
+      id: Simpul taksonomi abstrak untuk mengategorikan peran elemen penyusun dalam rekaman terstruktur.
+      zh: 用于分类结构化记录中组成要素角色的抽象分类节点。
+    structured_aliases:
+    - {literal_form: type-onderdeel, in_language: nl}
+    - {literal_form: Komponententyp, in_language: de}
+    - {literal_form: type de composant, in_language: fr}
+    - {literal_form: tipo de componente, in_language: es}
+    - {literal_form: نوع مكوّن, in_language: ar}
+    - {literal_form: tipe komponen, in_language: id}
+    - {literal_form: 组件类型, in_language: zh}
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+    broad_mappings:
+    - crm:E55_Type
+    close_mappings:
+    - skos:Concept
+    related_mappings:
+    - locn:Address
+    notes:
+    - |
+      Preserved from prior description (commit 2e1e6e5f):
+
+      Abstract base class for component type classifications.
+
+      **DESIGN PATTERN** (Rule 0b - Type/Types Convention):
+
+      | File | Purpose |
+      |------|---------|
+      | `ComponentType.yaml` (this file) | Abstract base class |
+      | `ComponentTypes.yaml` | Concrete subclasses (StreetNumber, Route, etc.) |
+
+      **Purpose**:
+      Provides type taxonomy for categorizing different kinds of components:
+      - Address components (street_number, route, locality, region, country)
+      - System components
+      - Document components
+
+      **Ontological Alignment**:
+      - **Primary** (`class_uri`): `crm:E55_Type` - CIDOC-CRM type
+      - **Close**: `skos:Concept` - SKOS concept vocabulary
+      - **Related**: `locn:*` - W3C Location Ontology types
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Component typing is applicable across all domains.
+      custodian_types_primary: M
+      specificity_score: 0.35
+      specificity_rationale: Moderately specific - reusable taxonomic layer.
+      design_pattern: Type/Types (Rule 0b)
+      migration_source_slot: component_type
+      migration_date: '2026-01-22'
+      migration_rule: Rule 53
+    comments:
+    - Abstract base class with concrete values in ComponentTypes

@@ -1,0 +1,64 @@
+id: https://nde.nl/ontology/hc/parsimony/mappings/parsimony-engineering-type-bridge
+name: parsimony_engineering_type_bridge
+title: Semantic Type Bridge
+description: >-
+  Bridge from the semantic Classification node to the main engineering type
+  classes, enums, and typing predicates.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../classes/Classification
+  - ../slots/typed_as
+  - ../../../modules/classes/AgentType
+  - ../../../modules/classes/CollectionType
+  - ../../../modules/classes/CustodianType
+  - ../../../modules/classes/ArchiveOrganizationType
+  - ../../../modules/classes/DigitalPlatformTypes
+  - ../../../modules/classes/LibraryType
+  - ../../../modules/classes/RecordSetTypes
+  - ../../../modules/enums/AgentTypeEnum
+  - ../../../modules/slots/has_type
+comments:
+  - >-
+    TYPE BRIDGE: Classification is the semantic hypernym for engineering type
+    assets modeled as SKOS-like classes, enums, and URI-valued typing slots.
+  - >-
+    Classification -> AgentType is a narrow mapping for the abstract engineering
+    taxonomy that categorizes provenance-bearing agents before they are further
+    specialized as organizations, persons, software agents, or organizational units.
+  - >-
+    Classification -> CustodianType is a narrow mapping: the engineering class
+    carries the detailed custodian taxonomy and hierarchy management.
+  - >-
+    Classification -> ArchiveOrganizationType is a further narrow mapping for a
+    domain-specific branch of the engineering type system.
+  - >-
+    Classification -> LibraryType is another narrow branch of the engineering
+    custodian-type taxonomy, showing that semantic classification must bridge
+    beyond archives into sibling GLAM institution families.
+  - >-
+    Classification -> CollectionType and RecordSetTypes show that the engineering
+    ontology also realizes classification as arrangement and holding taxonomies,
+    not only as institution-type hierarchies.
+  - >-
+    Classification -> DigitalPlatformTypes shows that engineering type systems
+    also classify access, discovery, and platform infrastructures associated with
+    heritage custodians and collections.
+  - >-
+    Classification -> AgentTypeEnum is a related mapping rather than exact mapping,
+    because the engineering enum is provenance-scoped and closed-world, while the
+    semantic concept remains open and cross-domain.
+  - >-
+    typed_as -> has_type is a close mapping: both express classification, but the
+    engineering slot supports many specialized aliases, enum-backed values, and
+    CRM-oriented operational patterns.
+  - >-
+    Engineering guidance: prefer class-backed type systems such as CustodianType,
+    ArchiveOrganizationType, CollectionType, LibraryType, and DigitalPlatformTypes
+    when semantic hierarchy, external mappings, or subtype governance matter.
+    Preserve enums such as AgentTypeEnum for bounded operational vocabularies.

@@ -1,0 +1,76 @@
+id: https://nde.nl/ontology/hc/class/Percentage
+name: percentage_class
+title: Percentage Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  qudt: http://qudt.org/schema/qudt/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../metadata
+default_prefix: hc
+classes:
+  Percentage:
+    class_uri: hc:Percentage
+    description: Structured percentage value, optionally including a range and display formatting.
+    alt_descriptions:
+      nl: Gestructureerde procentwaarde eventueel met bereik en weergaveformattering.
+      de: Strukturierter Prozentwert optional mit Bereich und Anzeigeformat.
+      fr: Valeur en pourcentage structuree avec eventuellement une plage et un format d affichage.
+      es: Valor porcentual estructurado opcionalmente con rango y formato de presentacion.
+      ar: قيمة نسبة مئوية منظمة، مع نطاق اختياري وتنسيق للعرض.
+      id: Nilai persentase terstruktur opsional termasuk rentang dan format tampilan.
+      zh: 结构化百分比数值，可选包含区间与显示格式。
+    structured_aliases:
+    - {literal_form: procentwaarde, in_language: nl}
+    - {literal_form: Prozentwert, in_language: de}
+    - {literal_form: valeur en pourcentage, in_language: fr}
+    - {literal_form: valor porcentual, in_language: es}
+    - {literal_form: قيمة نسبة مئوية, in_language: ar}
+    - {literal_form: nilai persentase, in_language: id}
+    - {literal_form: 百分比值, in_language: zh}
+    close_mappings:
+    - qudt:QuantityValue
+    - schema:QuantitativeValue
+    examples:
+    - value:
+        percentage_value: 50
+        percentage_display: 50%
+        percentage_context: commission
+      description: Simple 50% commission
+    - value:
+        percentage_value: 45
+        percentage_min: 40
+        percentage_max: 50
+        percentage_display: 40-50%
+        percentage_context: commission
+      description: Variable commission range (40-50%)
+    - value:
+        percentage_value: 15.5
+        percentage_display: 15.5%
+        percentage_context: secondary_market
+      description: Decimal percentage for secondary market
+    comments:
+    - Created 2026-01-22 from commission_rate migration (Rule 53)
+    - Supports single values and ranges
+    - Preserves original display formatting
+    - Common parsing patterns include single value ("50%") and range ("40-50%").
+    see_also:
+    - http://qudt.org/schema/qudt/QuantityValue
+    - https://schema.org/QuantitativeValue
+    annotations:
+      migration_source_slot: commission_rate
+      supports_range: true
+      preserves_display_format: true
+      custodian_types: '["*"]'
+      specificity_score: '0.30'
+      specificity_rationale: Broadly useful - percentages appear in many contexts.
+    slots: []

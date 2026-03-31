@@ -1,0 +1,113 @@
+# ==============================================================================
+# LinkML Slot Definition: cover_place
+# ==============================================================================
+# Service, jurisdiction, or administrative coverage extending to specific places.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                                           |
+# |---------------|-----------------------|-------------------------|---------|-------------------------------------------------|
+# | **Schema.org**| `schema:containsPlace`| schemaorg.owl:12711-12733| close   | Spatial containment; our slot is service scope. |
+# | **DC Terms**  | `dcterms:coverage`    | -                       | related | Broader coverage (temporal + spatial).          |
+# | **RiC-O**     | `rico:hasOrHadSubject`| -                       | related | Subject coverage, not service area.             |
+#
+# NOTE: schema:containsPlace is "basic containment relation between a place and 
+# another that it contains" (spatial). Our slot is about SERVICE/JURISDICTION 
+# coverage extending to settlements - semantically close but not exact.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, corrected mapping to close
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/cover_place
+name: cover_place
+title: Cover Place
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  cover_place:
+    slot_uri: hc:coverPlace
+    description: >-
+      To include or extend service, jurisdiction, or administrative coverage to specific 
+      settlements or populated places, such as cities, towns, or villages.
+    alt_descriptions:
+      nl: >-
+        Het opnemen of uitbreiden van dienstverlening, jurisdictie of administratieve dekking 
+        naar specifieke nederzettingen of bewoonde plaatsen, zoals steden, dorpen of gehuchten.
+      de: >-
+        Die Einbeziehung oder Erweiterung von Dienstleistungen, Zuständigkeiten oder 
+        administrativer Abdeckung auf bestimmte Siedlungen oder bewohnte Orte wie Städte, 
+        Gemeinden oder Dörfer.
+      fr: >-
+        Inclure ou étendre la couverture de service, de juridiction ou administrative à des 
+        établissements ou lieux habités spécifiques, tels que des villes ou des villages.
+      ar: >-
+        تضمين أو توسيع تغطية الخدمة أو الولاية القضائية أو الإدارية لتشمل مستوطنات 
+        أو أماكن مأهولة محددة، مثل المدن أو البلدات أو القرى.
+      id: >-
+        Untuk menyertakan atau memperluas cakupan layanan, yurisdiksi, atau administratif 
+        ke permukiman atau tempat berpenduduk tertentu, seperti kota, kota kecil, atau desa.
+      zh: >-
+        将服务、管辖或行政覆盖范围纳入或扩展到特定的定居点或人口聚居地，
+        如城市、城镇或村庄。
+      es: >-
+        Incluir o extender la cobertura de servicio, jurisdicción o administrativa a 
+        asentamientos o lugares poblados específicos, como ciudades, pueblos o aldeas.
+    structured_aliases:
+      - literal_form: dekt plaats
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgedeckter Ort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: couvre lieu
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يغطي مكان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mencakup tempat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 覆盖地点
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cubre lugar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    aliases:
+      - contains_or_contained_covers_settlement
+    close_mappings:
+      - schema:containsPlace  # schemaorg.owl:12711-12733 - spatial containment; ours is service coverage
+    related_mappings:
+      - dcterms:coverage  # broader coverage concept
+    comments:
+      - |
+        **USAGE**: Use when service area covers specific municipalities (not entire province),
+        municipal archive serving one or more cities, or regional archive with defined list 
+        of served settlements.
+      - |
+        **IMPLEMENTATION**: Links to Settlement class with GeoNames identifiers. GeoNames IDs 
+        disambiguate settlements with same name (e.g., multiple towns named "Springfield").
+      - |
+        **MIGRATION**: Renamed 2026-02-03 from contains_or_contained_covers_settlement for conciseness.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/settlement/2755003"
+        description: "Haarlem - GeoNames ID 2755003"
+      - value: "https://nde.nl/ontology/hc/settlement/2754669"
+        description: "Heemskerk - GeoNames ID 2754669"

@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/SocialNetworkMember
+name: SocialNetworkMember
+title: Social Network Member
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_profile
+classes:
+  SocialNetworkMember:
+    class_uri: foaf:Person
+    description: >-
+      Participant account representing an individual or entity within an online social networking context for relationship analysis.
+    alt_descriptions:
+      nl: >-
+        Deelnemersaccount dat een individu of entiteit vertegenwoordigt binnen een online sociaalnetwerkcontext voor relatiesanalyse.
+      de: >-
+        Teilnehmerkonto, das eine Einzelperson oder Entität in einem Online-Social-Network-Kontext für Beziehungsanalysen repräsentiert.
+      fr: >-
+        Compte de participant représentant un individu ou une entité dans un contexte de réseau social en ligne pour l'analyse des relations.
+      es: >-
+        Cuenta de participante que representa a un individuo o entidad dentro de un contexto de red social en línea para análisis de relaciones.
+      ar: >-
+        حساب مشارك يمثل فردًا أو كيانًا ضمن سياق شبكة اجتماعية عبر الإنترنت لتحليل العلاقات.
+      id: >-
+        Akun peserta yang mewakili individu atau entitas dalam konteks jejaring sosial daring untuk analisis hubungan.
+      zh: >-
+        在在线社交网络语境中代表个人或实体用于关系分析的参与者账户。
+    structured_aliases:
+    - literal_form: sociaalnetwerk-lid
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Social-Network-Mitglied
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: membre de réseau social
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: miembro de red social
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: عضو الشبكة الاجتماعية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: anggota jejaring sosial
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 社交网络成员
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - foaf:Person
+    close_mappings:
+    - schema:Person
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_profile
+    slot_usage: {}
+    comments:
+    - "Base class for network members - PersonConnection extends this"
+    - "Created 2026-01-22 per slot_fixes.yaml connection migration"
+    - "Enables heritage sector network analysis"
+    - 'Preserved from prior description: A member in a social or professional network. **DEFINITION**: SocialNetworkMember represents a person who is part of a professional network (LinkedIn, ORCID, etc.) in the context of heritage sector network analysis. **RELATIONSHIP TO PersonConnection**: `PersonConnection` is a subclass/specialization that includes additional metadata about the connection relationship (degree, heritage relevance, etc.). `SocialNetworkMember` is the base class for any network member. **USE CASES**: 1. LinkedIn connection network analysis 2. Heritage sector professional mapping 3. Cross-institutional collaboration discovery 4. Alumni and association network analysis **SEMANTIC PATTERN**: ``` ConnectionNetwork │ └── has_member → SocialNetworkMember (THIS CLASS) ├── identified_by: LinkedIn URL ├── has_label: Person name └── (subclasses add connection-specific metadata) ``` Created as part of connection migration per slot_fixes.yaml (Rule 53).'
+    keywords:
+    - social network participant
+    - network analysis
+    - relationship entity
+    - community member
+    examples:
+    - value:
+        has_label:
+        - Jan de Vries
+        has_profile: "https://www.linkedin.com/in/jan-de-vries-heritage/"
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Network members can be associated with any heritage type.
+      specificity_score: 0.60
+      specificity_rationale: Specialized class for social network analysis.

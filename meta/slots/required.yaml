@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: required
+# ==============================================================================
+# Boolean indicating whether something is required or mandatory.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line               | Mapping | Notes                              |
+# |---------------|----------------------------|-------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:valueRequired`     | schemaorg.owl:39624-39635| close   | "Whether the property must be      |
+# |               |                            |                         |         | filled in to complete the action." |
+# | **Hydra**     | `hydra:required`           | hydra_cg.jsonld:209-212 | close   | "True if the property is required."|
+#
+# schema:valueRequired is specific to PropertyValueSpecification context;
+# this slot is more general, hence close mapping.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added multilingual, file:line refs, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/required
+name: required
+title: Required
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  required:
+    slot_uri: hc:required
+    description: >-
+      To be mandatory, essential, or obligatory for a specific purpose,
+      function, validity, or compliance.
+    alt_descriptions:
+      nl: >-
+        Verplicht, essentieel of noodzakelijk voor een specifiek doel,
+        functie, geldigheid of naleving.
+      de: >-
+        Obligatorisch, wesentlich oder verpflichtend für einen bestimmten
+        Zweck, eine Funktion, Gültigkeit oder Einhaltung.
+      fr: >-
+        Obligatoire, essentiel ou impératif pour un objectif, une fonction,
+        une validité ou une conformité spécifique.
+      ar: >-
+        إلزامي أو أساسي أو ضروري لغرض أو وظيفة أو صلاحية أو امتثال محدد.
+      id: >-
+        Wajib, esensial, atau diperlukan untuk tujuan, fungsi, validitas,
+        atau kepatuhan tertentu.
+      zh: >-
+        对于特定目的、功能、有效性或合规性而言是强制性的、必要的或必需的。
+      es: >-
+        Obligatorio, esencial o imprescindible para un propósito, función,
+        validez o cumplimiento específico.
+    structured_aliases:
+      - literal_form: vereist
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erforderlich
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: requis
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مطلوب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diperlukan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 必需的
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: requerido
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    close_mappings:
+      - schema:valueRequired  # schemaorg.owl:39624-39635 - PropertyValueSpecification context
+    aliases:
+      - is_or_was_required
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.3
+      specificity_rationale: General-purpose boolean slot.

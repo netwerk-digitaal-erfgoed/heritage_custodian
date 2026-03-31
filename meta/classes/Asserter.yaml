@@ -1,0 +1,166 @@
+id: https://nde.nl/ontology/hc/class/Asserter
+name: Asserter
+title: Asserter Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../enums/AsserterTypeEnum
+- ../slots/has_contact_point
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_version
+default_prefix: hc
+classes:
+  Asserter:
+    class_uri: hc:Asserter
+    description: >-
+      Agent responsible for making an assertion about a heritage entity.
+    alt_descriptions:
+      nl: "Agent verantwoordelijk voor het doen van een bewering over een erfgoedentiteit."
+      de: "Akteur, der für eine Behauptung über eine Kulturgüterentität verantwortlich ist."
+      fr: "Agent responsable d'une assertion sur une entité patrimoniale."
+      es: "Agente responsable de hacer una afirmación sobre una entidad patrimonial."
+      ar: "وكيل مسؤول عن إصدار تأكيد حول كيان تراثي."
+      id: "Agen yang bertanggung jawab atas pernyataan tentang entitas warisan."
+      zh: "负责对遗产实体做出断言的代理。"
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/asserter/claude-opus-4
+        has_label: Claude Opus 4
+        has_type: AI_AGENT
+        has_description: Anthropic Claude AI model used for heritage data assertions
+        has_version: claude-opus-4-20250514
+      description: AI agent asserter
+    - value:
+        identified_by: https://nde.nl/ontology/hc/asserter/jane-doe-nde
+        has_label: Dr. Jane Doe
+        has_type: HUMAN_ANALYST
+        has_description: Senior digital heritage analyst at NDE
+        has_contact_point: jane.doe@nde.nl
+      description: Human analyst asserter
+    - value:
+        identified_by: https://nde.nl/ontology/hc/asserter/primary-presence-classifier
+        has_label: primary-presence-classifier
+        has_type: AUTOMATED_SYSTEM
+        has_description: Automated system for classifying primary digital presence
+        has_version: 1.0.0
+      description: Automated system asserter
+    close_mappings:
+    - foaf:Agent
+    - dcterms:Agent
+    broad_mappings:
+    - prov:Agent
+    related_mappings:
+    - schema:Person
+    - schema:Organization
+    structured_aliases:
+    - literal_form: bevestiger
+      in_language: nl
+    - literal_form: beweringmaker
+      in_language: nl
+    - literal_form: Asserent
+      in_language: de
+    - literal_form: Assertionsteller
+      in_language: de
+    - literal_form: asserteur
+      in_language: fr
+    - literal_form: déclarant
+      in_language: fr
+    - literal_form: asertor
+      in_language: es
+    - literal_form: afirmante
+      in_language: es
+    - literal_form: مؤكد
+      in_language: ar
+    - literal_form: مصرح
+      in_language: ar
+    - literal_form: penegas
+      in_language: id
+    - literal_form: pembuat pernyataan
+      in_language: id
+    - literal_form: 断言者
+      in_language: zh
+    - literal_form: 声明者
+      in_language: zh
+    keywords:
+    - asserter
+    - assertion
+    - attribution
+    - provenance
+    - agent
+    - claim source
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    - has_version
+    - has_contact_point
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/asserter/claude-opus-4
+        - value: https://nde.nl/ontology/hc/asserter/jane-doe-nde
+      has_label:
+        required: true
+        examples:
+        - value: Claude Opus 4
+        - value: Dr. Jane Doe
+        - value: primary-presence-classifier
+      has_description:
+        required: false
+        examples:
+        - value: Anthropic Claude AI model used for heritage data assertions
+        - value: Senior digital heritage analyst at NDE
+      has_type:
+        range: AsserterTypeEnum
+        required: true
+        examples:
+        - value: AI_AGENT
+        - value: HUMAN_ANALYST
+        - value: AUTOMATED_SYSTEM
+        - value: ORGANIZATION
+      has_version:
+        required: false
+        examples:
+        - value: claude-opus-4-20250514
+        - value: 1.2.3
+      has_contact_point:
+        required: false
+        examples:
+        - value: jane.doe@nde.nl
+        - value: heritage-team@museum.nl
+    comments:
+    - Asserter models the agent responsible for making assertions
+    - Supports tracking of human, automated, and AI-based assertions
+    - Uses PROV-O Agent as primary ontology mapping
+    - Version tracking particularly important for AI/ML agents
+    - Asserter types: HUMAN_ANALYST, AUTOMATED_SYSTEM, AI_AGENT, ORGANIZATION
+    - 'Preserved from prior description: Agent responsible for making an assertion about a heritage entity. Represents a person, organization, or system that bears responsibility for claims made about heritage data, enabling attribution tracking, provenance chains, and quality assessment.'
+    see_also:
+    - https://www.w3.org/TR/prov-o/#Agent
+    - https://xmlns.com/foaf/spec/#term_Agent
+    - Assertor
+    notes:
+    - |
+      Preserved from prior description (commit 1fe1d1ad):
+
+      "An agent (person, organization, or system) responsible for making an assertion about a heritage entity.\n**PROV-O ALIGNMENT**:\nMaps to `prov:Agent` - \"An agent is something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity.\"\n**TYPES OF ASSERTERS**:\n| Type | Description | Example | |------|-------------|---------| | HUMAN_ANALYST | Expert making judgment | \"jane.doe@nde.nl\" | | AUTOMATED_SYSTEM | Software system | \"primary-presence-classifier/1.0\" | | AI_AGENT | AI/ML model | \"claude-opus-4\", \"opencode-claude-sonnet-4\" | | ORGANIZATION | Institution | \"Noord-Hollands Archief\" |\n**USE CASES**:\n1. **Attribution Tracking**: Who made this assertion about primary presence? 2. **Provenance Chain**: Trace assertions back to their source agent. 3. **Quality Assessment**: Different asserters may have different reliability. 4. **Accountability**: Identify responsible party for each\
+    annotations:
+      specificity_score: "0.45"
+      specificity_rationale: "Asserter is moderately specific for provenance attribution across heritage contexts."
+      custodian_types: "['*']"
+      asserter_types: "HUMAN_ANALYST, AUTOMATED_SYSTEM, AI_AGENT, ORGANIZATION"

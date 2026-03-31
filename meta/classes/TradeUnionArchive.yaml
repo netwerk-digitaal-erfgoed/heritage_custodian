@@ -1,0 +1,95 @@
+id: https://nde.nl/ontology/hc/class/TradeUnionArchive
+name: TradeUnionArchive
+title: Trade Union Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- ../classes/AgentType
+- ../classes/TradeUnionArchiveRecordSetType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/related_to
+classes:
+  TradeUnionArchive:
+    description: >-
+      Custodial organization within labor movements that governs, preserves, and provides access to documentary heritage.
+    alt_descriptions:
+      nl: Erfgoedbeheerder die documentatie van arbeidsorganisaties, vakbonden en arbeidersbewegingen bewaart.
+      de: Kulturerbeverwalter, der Dokumentation von Arbeitsorganisationen, Gewerkschaften und Arbeiterbewegungen bewahrt.
+      fr: Dépositaire du patrimoine préservant la documentation des organisations syndicales et des mouvements ouvriers.
+      es: Custodio patrimonial que preserva documentación de organizaciones laborales y sindicatos.
+      ar: أمين تراث يحفظ وثائق منظمات العمال والنقابات العمالية والحركات العمالية.
+      id: Pengelola warisan yang melestarikan dokumentasi organisasi buruh dan serikat pekerja.
+      zh: 保存劳工组织、工会和工人运动文献资料的遗产保管机构。
+    structured_aliases:
+    - literal_form: vakbondsarchief
+      in_language: nl
+    - literal_form: Gewerkschaftsarchiv
+      in_language: de
+    - literal_form: archives syndicales
+      in_language: fr
+    - literal_form: archivo sindical
+      in_language: es
+    - literal_form: أرشيف نقابي
+      in_language: ar
+    - literal_form: arsip serikat buruh
+      in_language: id
+    - literal_form: 工会档案
+      in_language: zh
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q66604802
+    broad_mappings:
+    - wd:Q166118
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - related_to
+    - identified_by
+    slot_usage:
+      identified_by:
+      hold_record_set:
+        range: TradeUnionArchiveRecordSetType
+        multivalued: true
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+    see_also:
+    - PoliticalArchive
+    - AssociationArchive
+    - SocialArchive
+    - EconomicArchive
+    - TradeUnionArchiveRecordSetType
+    comments:
+    - Preserves records of labor organizations and workers' movements
+    - Major Dutch collection at IISG (International Institute of Social History)
+    - Documents collective bargaining, strikes, and workers' rights
+    annotations:
+      label_de: Gewerkschaftsarchiv
+      skos:prefLabel: Trade Union Archive
+      skos:altLabel: Gewerkschaftsarchiv, archivo sindical, archives syndicales, Labor Archive, Workers Archive
+      subject_domain: labor/workers
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

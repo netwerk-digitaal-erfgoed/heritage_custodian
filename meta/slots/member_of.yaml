@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: member_of
+# ==============================================================================
+# Membership relationship between an entity and a group or organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line               | Mapping  | Notes                                      |
+# |---------------|---------------------------|-------------------------|----------|--------------------------------------------|
+# | **W3C Org**   | `org:memberOf`            | org.rdf:743-758         | slot_uri | "Person is a member of the Organization."  |
+# |               |                           |                         |          | Domain: foaf:Agent, Range: org:Organization.|
+# | **Schema.org**| `schema:memberOf`         | schemaorg.owl:26080-26108| close   | "Org/ProgramMembership to which Person or  |
+# |               |                           |                         |          | Org belongs." Person|Org domain only.      |
+# | **RiC-O**     | `rico:isOrWasMemberOf`    | RiC-O_1-1.rdf:14505-14550| close  | Person→Group. Person domain only.          |
+# | **FOAF**      | `foaf:member`             | foaf.ttl:410-417        | related  | "Member of a Group." INVERSE direction:    |
+# |               |                           |                         |          | Group→Agent (not Agent→Group).             |
+#
+# org:memberOf is the closest match. It explicitly covers "affiliation or other
+# involvement in the organization" beyond formal membership.
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10 - Fixed slot_uri to org:memberOf (was hc:memberOf)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/member_of
+name: member_of
+title: Member Of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  foaf: http://xmlns.com/foaf/0.1/
+  la: https://linked.art/ns/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  member_of:
+    slot_uri: org:memberOf
+    description: >-
+      Signifies that an individual, organization, or object belongs to a
+      group, association, or collection as a constituent part or affiliate.
+      Covers formal membership arrangements as well as related concepts such
+      as affiliation or other involvement in the organization.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een individu, organisatie of object behoort tot een
+        groep, vereniging of collectie als bestanddeel of aangeslotene.
+      de: >-
+        Gibt an, dass eine Person, Organisation oder ein Objekt als
+        Bestandteil oder Mitglied zu einer Gruppe, Vereinigung oder
+        Sammlung gehört.
+      fr: >-
+        Signifie qu'un individu, une organisation ou un objet appartient à
+        un groupe, une association ou une collection en tant que partie
+        constituante ou affilié.
+      ar: >-
+        يدل على أن فرداً أو منظمة أو كائناً ينتمي إلى مجموعة أو جمعية أو
+        مجموعة كجزء مكون أو منتسب.
+      id: >-
+        Menandakan bahwa individu, organisasi, atau objek termasuk dalam
+        suatu kelompok, asosiasi, atau koleksi sebagai bagian konstituen
+        atau afiliasi.
+      zh: >-
+        表示个人、组织或对象作为组成部分或关联方隶属于某个团体、协会或集合。
+      es: >-
+        Significa que un individuo, organización u objeto pertenece a un
+        grupo, asociación o colección como parte constituyente o afiliado.
+    structured_aliases:
+      - literal_form: Lidmaatschap
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Mitgliedschaft
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Adhésion
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عضوية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Keanggotaan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 成员资格
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Membresía
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_member_of
+    close_mappings:
+      - schema:memberOf  # schemaorg.owl:26080-26108 - Person|Org→Org|ProgramMembership
+      - rico:isOrWasMemberOf  # RiC-O_1-1.rdf:14505-14550 - Person→Group (restricted domain)
+    related_mappings:
+      - foaf:member  # foaf.ttl:410-417 - INVERSE: Group→Agent (not Agent→Group)
+      - la:member_of  # Linked Art extensions: membership (Entity→Set)
+    annotations:
+      inverse_slot: has_or_had_member
+      deprecates: is_member_of
+      rico_pattern: isOrWasMemberOf
+      custodian_types: '["*"]'
+    examples:
+      - value: "Rijksmuseum member of Netwerk Digitaal Erfgoed"
+        description: Rijksmuseum as a network member (voluntary membership).
+    comments:
+      - "RiC-O pattern: isOrWas* for temporal membership relationships."
+      - "Inverse of has_or_had_member (org:hasMember)."
+      - "Complements is_or_was_encompassed_by (governance) with membership (voluntary participation)."
+      - "Membership relationships can change over time. A custodian may have been a member of a network in the past but no longer participates."
+      - "Distinction from is_or_was_encompassed_by: member_of = MEMBERSHIP (voluntary, network participation); encompassed_by = GOVERNANCE (hierarchical, umbrella oversight). Both may apply simultaneously."
+      - "Deprecates: is_member_of (non-temporal naming)."
+      - "MIGRATED 2026-02-03 from is_or_was_member_of for conciseness."

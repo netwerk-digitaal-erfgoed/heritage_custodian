@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: observed_by
+# ==============================================================================
+# Agent, sensor, or instrument that perceived or recorded an event or entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property            | File/Line       | Mapping | Notes                                      |
+# |----------|---------------------|-----------------|---------|--------------------------------------------|
+# | **SOSA** | `sosa:madeBySensor` | sosa.ttl:244-250| close   | "Relation between an Observation and the   |
+# |          |                     |                 |         | Sensor which made the Observation." Domain:|
+# |          |                     |                 |         | Observation, Range: Sensor. Sensor-specific.|
+#
+# sosa:madeBySensor is restricted to Observation→Sensor relationships.
+# This slot is broader: any agent, sensor, or instrument that perceived,
+# measured, or recorded anything.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/observed_by
+name: observed_by
+title: Observed By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  observed_by:
+    name: observed_by
+    title: Observed By
+    slot_uri: hc:observedBy
+    description: >-
+      Identifies the agent, sensor, or instrument that perceived, measured, or recorded a specific event, phenomenon, or entity.
+    alt_descriptions:
+      nl: >-
+        Identificeert de agent, sensor of het instrument dat een specifieke gebeurtenis, fenomeen of entiteit heeft waargenomen, gemeten of geregistreerd.
+      de: >-
+        Identifiziert den Akteur, Sensor oder das Instrument, das ein bestimmtes Ereignis, Phänomen oder eine Entität wahrgenommen, gemessen oder aufgezeichnet hat.
+      fr: >-
+        Identifie l'agent, le capteur ou l'instrument qui a perçu, mesuré ou enregistré un événement, phénomène ou entité spécifique.
+      ar: >-
+        يحدد العامل أو المستشعر أو الأداة التي رصدت أو قاست أو سجلت حدثاً أو ظاهرة أو كياناً محدداً.
+      id: >-
+        Mengidentifikasi agen, sensor, atau instrumen yang mengamati, mengukur, atau mencatat peristiwa, fenomena, atau entitas tertentu.
+      zh: >-
+        标识感知、测量或记录特定事件、现象或实体的代理、传感器或仪器。
+      es: >-
+        Identifica el agente, sensor o instrumento que percibió, midió o registró un evento, fenómeno o entidad específica.
+    structured_aliases:
+      - literal_form: Waarnemer
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beobachter
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Observateur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُراقِب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pengamat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 观察者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Observador
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - is_or_was_observed_by
+      - observer_affiliation
+      - observer_name
+      - observer_type
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - sosa:madeBySensor  # sosa.ttl:244-250 - Observation→Sensor (sensor-specific)

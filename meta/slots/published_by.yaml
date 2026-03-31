@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: published_by
+# ==============================================================================
+# The agent or organization responsible for publishing the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                              |
+# |---------------|-----------------------|-------------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:publisher`   | dcterms.rdf:1761-1779   | exact   | "An entity responsible for making  |
+# |               |                       |                         |         | the resource available."           |
+# | **Schema.org**| `schema:publisher`    | schemaorg.owl:31710-31730| close   | "The publisher of the article."    |
+# | **DCAT**      | `dcat:publisher`      | dcat3.ttl               | exact   | Dataset publisher                  |
+#
+# CREATED: 2026-02-04
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/published_by
+name: published_by
+title: Published By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  published_by:
+    slot_uri: dcterms:publisher
+    description: >-
+      The agent, publisher, organization, or entity responsible for issuing,
+      releasing, or making the resource publicly available.
+    alt_descriptions:
+      nl: >-
+        De agent, uitgever, organisatie of entiteit die verantwoordelijk is
+        voor het uitgeven, vrijgeven of openbaar beschikbaar stellen van de
+        bron.
+      de: >-
+        Der Agent, Verleger, die Organisation oder Entität, die für die
+        Herausgabe, Veröffentlichung oder öffentliche Bereitstellung der
+        Ressource verantwortlich ist.
+      fr: >-
+        L'agent, l'éditeur, l'organisation ou l'entité responsable de
+        l'émission, de la publication ou de la mise à disposition publique
+        de la ressource.
+      ar: >-
+        الوكيل أو الناشر أو المنظمة أو الكيان المسؤول عن إصدار المورد
+        أو إطلاقه أو إتاحته للجمهور.
+      id: >-
+        Agen, penerbit, organisasi, atau entitas yang bertanggung jawab
+        untuk menerbitkan, merilis, atau menyediakan sumber daya untuk umum.
+      zh: >-
+        负责发布、发行或公开提供资源的代理、出版商、组织或实体。
+      es: >-
+        El agente, editor, organización o entidad responsable de emitir,
+        publicar o poner el recurso a disposición del público.
+    structured_aliases:
+      - literal_form: gepubliceerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: veröffentlicht von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: publié par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منشور بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diterbitkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...发布
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: publicado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+      - dcat:publisher
+    close_mappings:
+      - schema:publisher  # schemaorg.owl:31710-31730 - article-specific
+    aliases:
+      - is_or_was_published_by
+      - is_official_content
+      - issuing_organisation
+      - printer_publisher
+    comments:
+      - |
+        **HERITAGE CONTEXT**: Uses Custodian class (not Publisher) because
+        this slot is specifically for datasets published by heritage
+        institutions. For commercial publications, use has_publisher instead.
+    examples:
+      - value: ghcid:NL-NH-AMS-M-RM
+        description: Rijksmuseum publishing a dataset to national registry
+      - value: ghcid:NL-ZH-DHA-A-NA
+        description: Nationaal Archief publishing linked open data
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.4
+      specificity_rationale: Standard publishing attribution slot.

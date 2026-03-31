@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: used_by
+# ==============================================================================
+# Indicates the agent, user, group, or system that employs or utilizes something.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasUsedBy`      | prov.ttl:1610-1611         | close   | Inverse of prov:used               |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual, prov:wasUsedBy as close mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/used_by
+name: used_by
+title: Used By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  used_by:
+    slot_uri: hc:usedBy
+    description: >-
+      To be employed, operated, or utilized by a specific agent, user, group,
+      or system.
+    alt_descriptions:
+      nl: >-
+        Gebruikt, bediend of toegepast worden door een specifieke agent, gebruiker,
+        groep of systeem.
+      de: >-
+        Von einem bestimmten Agenten, Benutzer, einer Gruppe oder einem System
+        verwendet, betrieben oder genutzt zu werden.
+      fr: >-
+        Être employé, opéré ou utilisé par un agent, un utilisateur, un groupe
+        ou un système spécifique.
+      ar: >-
+        أن يتم توظيفه أو تشغيله أو استخدامه بواسطة وكيل أو مستخدم أو مجموعة أو
+        نظام محدد.
+      id: >-
+        Digunakan, dioperasikan, atau dimanfaatkan oleh agen, pengguna, kelompok,
+        atau sistem tertentu.
+      zh: >-
+        被特定代理、用户、群组或系统使用、操作或利用。
+      es: >-
+        Ser empleado, operado o utilizado por un agente, usuario, grupo o
+        sistema específico.
+    structured_aliases:
+      - literal_form: gebruikt door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verwendet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: utilisé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستخدم بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: digunakan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被使用者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: usado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_used_by
+    close_mappings:
+      - prov:wasUsedBy  # prov.ttl:1610-1611 - Inverse of prov:used
+    annotations:
+      custodian_types: '["*"]'

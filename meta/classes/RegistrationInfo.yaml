@@ -1,0 +1,48 @@
+id: https://nde.nl/ontology/hc/class/RegistrationInfo
+name: registration_info_classes
+title: Registration Information Classes
+description: >-
+  Classes for capturing organizational registration details including
+  registration numbers, dates, authorities, and trade registers.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rov: http://www.w3.org/ns/regorg#
+  gleif_base: https://www.gleif.org/ontology/Base/
+  gleif_ra: https://www.gleif.org/ontology/RegistrationAuthority/
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/in_jurisdiction
+classes:
+  LegalStatus:
+    class_uri: gleif_base:RegistrationStatus
+    description: >-
+      Legal status of an organization (active, dissolved, suspended, etc.).
+    alt_descriptions:
+      nl: Juridische status van een organisatie (actief, ontbonden, geschorst, enz.).
+      de: Rechtlicher Status einer Organisation (aktiv, aufgelöst, ausgesetzt usw.).
+      fr: Statut juridique d'une organisation (actif, dissous, suspendu, etc.).
+    structured_aliases:
+    - literal_form: juridische status
+      in_language: nl
+    - literal_form: rechtlicher Status
+      in_language: de
+    - literal_form: statut juridique
+      in_language: fr
+    comments:
+    - Status definitions vary by jurisdiction and legal framework.
+    - GLEIF defines EntityStatus as ACTIVE or INACTIVE.
+    exact_mappings:
+    - gleif_base:RegistrationStatus
+    close_mappings:
+    - gleif_base:EntityStatus
+    - schema:status
+    slots:
+    - has_score
+    - has_label
+    - in_jurisdiction

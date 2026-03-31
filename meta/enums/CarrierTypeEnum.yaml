@@ -1,0 +1,449 @@
+# CarrierTypeEnum - Physical carrier types for information objects
+#
+# Enumeration of physical carriers that contain textual/symbolic content.
+#
+# Aligned with:
+# - CIDOC-CRM E84_Information_Carrier
+# - RDA Carrier Type vocabulary
+# - MARC 21 format/carrier codes
+# - AAT (Getty Art & Architecture Thesaurus) formats
+#
+# Created: January 2026
+
+id: https://nde.nl/ontology/hc/enum/CarrierTypeEnum
+name: CarrierTypeEnum
+title: Carrier Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  aat: http://vocab.getty.edu/aat/
+  rda: http://rdaregistry.info/termList/RDACarrierType/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  CarrierTypeEnum:
+    description: |
+      Physical carrier types for information-bearing objects.
+      
+      **CIDOC-CRM Context**:
+      
+      E84_Information_Carrier - "Physical object that carries textual or symbolic
+      content." The carrier is distinguished from the content it carries.
+      
+      **Key Distinction**:
+      
+      | Concept | Example | Class |
+      |---------|---------|-------|
+      | Physical carrier | The Gutenberg Bible volume | InformationCarrier |
+      | Information content | The Vulgate Latin text | E73_Information_Object |
+      
+      **Categories**:
+      
+      1. **Codex/Book Forms**: Bound volumes, notebooks
+      2. **Sheet Forms**: Single sheets, maps, prints
+      3. **Scroll Forms**: Rolled documents
+      4. **Ancient Forms**: Tablets, inscriptions
+      5. **Audio/Visual Carriers**: Discs, tapes, film
+      6. **Digital Carriers**: Computer media
+    
+    permissible_values:
+      # Codex and Book Forms
+      CODEX:
+        description: |
+          Bound book in codex format (leaves bound along one edge).
+          Standard book format since late antiquity.
+          
+          **Typical Use**: Medieval manuscripts, printed books
+        meaning: aat:300265634  # codices (bound manuscripts)
+        annotations:
+          category: "codex"
+          era: "antiquity-present"
+      
+      BOUND_VOLUME:
+        description: |
+          Modern bound book or volume.
+          Includes hardcover and paperback bindings.
+          
+          **Typical Use**: Published books, bound journals
+        meaning: rda:1049  # volume
+        annotations:
+          category: "codex"
+      
+      PAMPHLET:
+        description: |
+          Unbound or loosely bound publication, typically thin.
+          Usually fewer than 50 pages.
+          
+          **Typical Use**: Brochures, leaflets, small publications
+        meaning: aat:300220463  # pamphlets
+        annotations:
+          category: "codex"
+      
+      NOTEBOOK:
+        description: |
+          Bound blank book for handwritten content.
+          Includes journals, diaries, field notebooks.
+          
+          **Typical Use**: Personal papers, scientific field notes
+        meaning: aat:300027016  # notebooks
+        annotations:
+          category: "codex"
+      
+      ALBUM:
+        description: |
+          Bound volume for mounting photographs, stamps, or other items.
+          
+          **Typical Use**: Photograph albums, stamp collections
+        meaning: aat:300026690  # albums (books)
+        annotations:
+          category: "codex"
+      
+      # Sheet Forms
+      SHEET:
+        description: |
+          Single loose sheet (unbound).
+          May be folded but not bound.
+          
+          **Typical Use**: Letters, documents, broadsides
+        meaning: rda:1048  # sheet
+        annotations:
+          category: "sheet"
+      
+      BROADSIDE:
+        description: |
+          Large single sheet printed on one side.
+          Often for public display (proclamations, posters).
+          
+          **Typical Use**: Historical proclamations, announcements
+        meaning: aat:300026739  # broadsides (notices)
+        annotations:
+          category: "sheet"
+      
+      MAP_SHEET:
+        description: |
+          Cartographic document on single sheet.
+          May be flat or folded.
+          
+          **Typical Use**: Geographic and thematic maps
+        meaning: aat:300028094  # maps (documents)
+        annotations:
+          category: "sheet"
+      
+      PRINT:
+        description: |
+          Printed image on sheet (engraving, lithograph, etc.).
+          
+          **Typical Use**: Art prints, illustrations
+        meaning: aat:300041273  # prints (visual works)
+        annotations:
+          category: "sheet"
+      
+      DRAWING:
+        description: |
+          Original drawing on sheet.
+          
+          **Typical Use**: Architectural drawings, artistic works
+        meaning: aat:300033973  # drawings (visual works)
+        annotations:
+          category: "sheet"
+      
+      PHOTOGRAPH:
+        description: |
+          Photographic print or negative.
+          Includes various photographic processes.
+          
+          **Typical Use**: Historical photographs, art photography
+        meaning: aat:300046300  # photographs
+        annotations:
+          category: "sheet"
+      
+      # Scroll Forms
+      SCROLL:
+        description: |
+          Rolled document written/printed on continuous sheet.
+          Read by unrolling horizontally or vertically.
+          
+          **Typical Use**: Torah scrolls, Asian hanging scrolls
+        meaning: aat:300028629  # scrolls (information artifacts)
+        annotations:
+          category: "scroll"
+          era: "ancient-present"
+      
+      PAPYRUS_SCROLL:
+        description: |
+          Scroll made of papyrus sheets.
+          Ancient Egyptian and Mediterranean format.
+          
+          **Typical Use**: Ancient Egyptian/Greek/Roman texts
+        meaning: aat:300014109  # papyrus (paper)
+        annotations:
+          category: "scroll"
+          era: "ancient"
+      
+      # Ancient Forms
+      CLAY_TABLET:
+        description: |
+          Clay tablet with impressed or incised writing.
+          Mesopotamian cuneiform tradition.
+          
+          **Typical Use**: Cuneiform tablets, administrative records
+        meaning: aat:300028638  # clay tablets
+        annotations:
+          category: "ancient"
+          era: "ancient"
+      
+      WAX_TABLET:
+        description: |
+          Wooden tablet with wax writing surface.
+          Reusable writing medium in antiquity.
+          
+          **Typical Use**: Roman writing tablets
+        meaning: aat:300028651  # wax tablets
+        annotations:
+          category: "ancient"
+          era: "ancient"
+      
+      INSCRIPTION:
+        description: |
+          Text carved, incised, or painted on durable surface.
+          Stone, metal, or architectural inscriptions.
+          
+          **Typical Use**: Monumental inscriptions, tombstones
+        meaning: aat:300028702  # inscriptions
+        annotations:
+          category: "ancient"
+      
+      OSTRACON:
+        description: |
+          Pottery shard or limestone flake with writing.
+          Common in ancient Egypt and Greece.
+          
+          **Typical Use**: Ancient receipts, notes, voting tokens
+        meaning: aat:300028722  # ostraca
+        annotations:
+          category: "ancient"
+          era: "ancient"
+      
+      # Medieval/Early Modern
+      PARCHMENT_LEAF:
+        description: |
+          Single leaf of parchment or vellum.
+          Animal skin prepared for writing.
+          
+          **Typical Use**: Medieval manuscript leaves
+        meaning: aat:300011851  # parchment (animal material)
+        annotations:
+          category: "sheet"
+          material: "parchment"
+      
+      CHARTER:
+        description: |
+          Formal legal document on single sheet.
+          Often with seals attached.
+          
+          **Typical Use**: Royal charters, deeds, grants
+        meaning: aat:300027621  # charters (legal documents)
+        annotations:
+          category: "sheet"
+      
+      # Audio Carriers
+      PHONOGRAPH_CYLINDER:
+        description: |
+          Wax or celluloid cylinder for audio recording.
+          Edison phonograph format.
+          
+          **Typical Use**: Early sound recordings (1880s-1920s)
+        meaning: aat:300264897  # phonograph cylinders
+        annotations:
+          category: "audio"
+          era: "1880s-1920s"
+      
+      VINYL_DISC:
+        description: |
+          Vinyl gramophone record (LP, 45, 78 rpm).
+          Analog audio recording.
+          
+          **Typical Use**: Music recordings, spoken word
+        meaning: aat:300265735  # phonograph records
+        annotations:
+          category: "audio"
+      
+      AUDIO_CASSETTE:
+        description: |
+          Compact audio cassette tape.
+          Magnetic tape in plastic housing.
+          
+          **Typical Use**: Music, oral history recordings
+        meaning: rda:1007  # audiocassette
+        annotations:
+          category: "audio"
+      
+      COMPACT_DISC:
+        description: |
+          Optical disc for digital audio.
+          CD format (12 cm diameter).
+          
+          **Typical Use**: Music CDs, audiobooks
+        meaning: rda:1004  # audio disc
+        annotations:
+          category: "audio_digital"
+      
+      REEL_TO_REEL_TAPE:
+        description: |
+          Magnetic tape on open reels.
+          Professional audio recording format.
+          
+          **Typical Use**: Master recordings, broadcast archives
+        meaning: aat:300265768  # audiotapes
+        annotations:
+          category: "audio"
+      
+      # Visual/Film Carriers
+      FILM_REEL:
+        description: |
+          Motion picture film on reel.
+          Includes 35mm, 16mm, 8mm formats.
+          
+          **Typical Use**: Cinema films, newsreels
+        meaning: aat:300127173  # motion picture film
+        annotations:
+          category: "film"
+      
+      VIDEOTAPE:
+        description: |
+          Magnetic tape for video recording.
+          Includes VHS, Betamax, U-matic formats.
+          
+          **Typical Use**: Television archives, home video
+        meaning: rda:1052  # videocassette
+        annotations:
+          category: "video"
+      
+      MICROFILM:
+        description: |
+          Photographic film containing microphotographs.
+          35mm roll or 16mm formats.
+          
+          **Typical Use**: Newspaper archives, preservation copies
+        meaning: rda:1029  # microfilm reel
+        annotations:
+          category: "micrographic"
+      
+      MICROFICHE:
+        description: |
+          Flat sheet of microfilm with grid of images.
+          Standard 105×148mm format.
+          
+          **Typical Use**: Library catalogs, technical documentation
+        meaning: rda:1028  # microfiche
+        annotations:
+          category: "micrographic"
+      
+      LANTERN_SLIDE:
+        description: |
+          Glass slide for magic lantern projection.
+          Typically 3.25×4 inches.
+          
+          **Typical Use**: Historical educational slides
+        meaning: aat:300134977  # lantern slides
+        annotations:
+          category: "visual"
+          era: "1850s-1950s"
+      
+      # Digital Carriers
+      FLOPPY_DISK:
+        description: |
+          Magnetic flexible disk in plastic casing.
+          Includes 8", 5.25", 3.5" formats.
+          
+          **Typical Use**: Early digital archives, software
+        meaning: aat:300265749  # floppy disks
+        annotations:
+          category: "digital"
+          era: "1970s-2000s"
+      
+      OPTICAL_DISC:
+        description: |
+          Optical disc for digital data.
+          Includes CD-ROM, DVD, Blu-ray.
+          
+          **Typical Use**: Digital archives, multimedia
+        meaning: rda:1060  # computer disc
+        annotations:
+          category: "digital"
+      
+      HARD_DRIVE:
+        description: |
+          Magnetic hard disk drive.
+          Internal or external storage device.
+          
+          **Typical Use**: Digital archives, backups
+        annotations:
+          category: "digital"
+      
+      SOLID_STATE_DRIVE:
+        description: |
+          Solid-state storage device (SSD).
+          Flash memory based.
+          
+          **Typical Use**: Modern digital archives
+        annotations:
+          category: "digital"
+      
+      USB_DRIVE:
+        description: |
+          USB flash drive (thumb drive).
+          Portable solid-state storage.
+          
+          **Typical Use**: Digital content distribution
+        annotations:
+          category: "digital"
+      
+      MAGNETIC_TAPE_DIGITAL:
+        description: |
+          Magnetic tape for digital data storage.
+          LTO, DAT, DLT formats.
+          
+          **Typical Use**: Large-scale digital archives
+        annotations:
+          category: "digital"
+      
+      # Special Forms
+      OBJECT_WITH_INSCRIPTION:
+        description: |
+          Three-dimensional object bearing text.
+          Text secondary to object's primary function.
+          
+          **Typical Use**: Commemorative objects, vessels with text
+        annotations:
+          category: "object"
+      
+      TEXTILE:
+        description: |
+          Fabric bearing text or symbolic content.
+          Includes embroidered, woven, or printed text.
+          
+          **Typical Use**: Samplers, banners, ceremonial textiles
+        meaning: aat:300014063  # textiles (visual works)
+        annotations:
+          category: "textile"
+      
+      OTHER:
+        description: |
+          Carrier type not covered by other categories.
+          Use for unusual or specialized formats.
+        annotations:
+          category: "other"
+      
+      UNKNOWN:
+        description: |
+          Carrier type not recorded or cannot be determined.
+          
+          **Typical Use**: Legacy catalog records lacking format info
+        annotations:
+          category: "unknown"

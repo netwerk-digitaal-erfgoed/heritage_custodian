@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: has_specification
+# ==============================================================================
+# Detailed criteria or requirements defining an entity's design or performance.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                | Mapping | Notes                                                    |
+# |---------------|-----------------------------|--------------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:additionalProperty` | schemaorg.owl:7161-7184  | related | "A property-value pair representing an additional characteristic." Generic catch-all.|
+# | **DCTerms**   | `dcterms:conformsTo`        | dcterms.rdf:987-1010     | close   | "An established standard to which the described resource conforms." Conformance ≠ specs.|
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_specification
+name: has_specification
+title: Has Specification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_specification:
+    slot_uri: hc:hasSpecification
+    description: >-
+      To specify the detailed description, criteria, or requirements that define the
+      design, functionality, materials, or performance standards of an entity.
+    comments:
+      - "Used for IoT device technical specs (range, connectivity, power), equipment specifications, system requirements, hardware/software specifications."
+      - "MIGRATED 2026-02-03: Renamed from has_or_had_specification for conciseness."
+    alt_descriptions:
+      nl: >-
+        Om de gedetailleerde beschrijving, criteria of vereisten aan te geven die het
+        ontwerp, de functionaliteit, de materialen of de prestatienormen van een entiteit
+        definiëren.
+      de: >-
+        Um die detaillierte Beschreibung, Kriterien oder Anforderungen anzugeben, die das
+        Design, die Funktionalität, die Materialien oder die Leistungsstandards einer
+        Entität definieren.
+      fr: >-
+        Pour spécifier la description détaillée, les critères ou les exigences qui définissent
+        la conception, la fonctionnalité, les matériaux ou les normes de performance d'une
+        entité.
+      ar: >-
+        لتحديد الوصف التفصيلي أو المعايير أو المتطلبات التي تحدد التصميم أو الوظائف أو
+        المواد أو معايير الأداء لكيان ما.
+      id: >-
+        Untuk menentukan deskripsi terperinci, kriteria, atau persyaratan yang mendefinisikan
+        desain, fungsionalitas, bahan, atau standar kinerja suatu entitas.
+      zh: >-
+        用于指定定义实体设计、功能、材料或性能标准的详细描述、标准或要求。
+      es: >-
+        Para especificar la descripción detallada, los criterios o los requisitos que definen
+        el diseño, la funcionalidad, los materiales o los estándares de rendimiento de una
+        entidad.
+    structured_aliases:
+      - literal_form: Specificatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Spezifikation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Spécification
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مواصفات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Spesifikasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 规格
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Especificación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_specification
+      - specification_url
+    examples:
+    - value: BLE 5.0, 50m range, 5-year battery, IP67 rated
+      description: Beacon technical specifications
+    - value: 24-inch touchscreen, 1920x1080 resolution, wheelchair accessible
+      description: Kiosk specifications
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+    - schema:additionalProperty  # schemaorg.owl:7161-7184 - "A property-value pair representing an additional characteristic." Generic catch-all.
+    close_mappings:
+    - dcterms:conformsTo  # dcterms.rdf:987-1010 - "An established standard to which the described resource conforms." Conformance ≠ specs.

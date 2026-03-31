@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: use_material
+# ==============================================================================
+# The substance or raw material employed to create, restore, or modify an object.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line                        | Mapping | Notes                                                          |
+# |----------------|-----------------------|----------------------------------|---------|----------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P126_employed`   | CIDOC_CRM_v7.1.3.rdf:3886-3898  | close   | "E57 Material employed in an instance of E11 Modification." Domain: E11_Modification. Most directly aligned. |
+# | **Schema.org** | `schema:material`     | schemaorg.owl:25511-25533        | close   | "A material that something is made from." Domain: CreativeWork, Product. About result composition. |
+# | **BIBFRAME**   | `bf:material`         | bibframe.rdf:2162-2168           | close   | "Resource uses, is composed of, integrates, etc. the related material." |
+# | **CIDOC-CRM**  | `crm:P45_consists_of` | CIDOC_CRM_v7.1.3.rdf:2297-2311  | related | "E57 Materials of which a Physical Thing is composed." Observed composition, not process-employed. |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/use_material
+name: use_material
+title: Use Material
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  bf: http://id.loc.gov/ontologies/bibframe/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  use_material:
+    slot_uri: hc:useMaterial
+    description: >-
+      Indicates the specific substance, raw material, or component that is
+      employed, consumed, or incorporated to create, restore or modify an object
+      or to complete a process.
+    alt_descriptions:
+      nl: >-
+        Geeft de specifieke stof, grondstof of component aan die wordt gebruikt,
+        verbruikt of verwerkt om een object te creëren, te restaureren of te
+        wijzigen, of om een proces te voltooien.
+      de: >-
+        Gibt den spezifischen Stoff, Rohstoff oder die Komponente an, die
+        verwendet, verbraucht oder eingebaut wird, um ein Objekt zu erstellen,
+        zu restaurieren oder zu verändern oder einen Prozess abzuschließen.
+      fr: >-
+        Indique la substance spécifique, la matière première ou le composant
+        qui est utilisé, consommé ou incorporé pour créer, restaurer ou modifier
+        un objet ou pour achever un processus.
+      ar: >-
+        يشير إلى المادة أو الخامة أو المكوّن المحدد الذي يُستخدم أو يُستهلك
+        أو يُدمج لإنشاء أو ترميم أو تعديل كائن أو لإتمام عملية.
+      id: >-
+        Menunjukkan zat, bahan baku, atau komponen tertentu yang digunakan,
+        dikonsumsi, atau dimasukkan untuk membuat, merestorasi, atau memodifikasi
+        suatu objek atau untuk menyelesaikan suatu proses.
+      zh: >-
+        表示用于创建、修复或修改对象或完成流程的特定物质、原材料或组件。
+      es: >-
+        Indica la sustancia específica, materia prima o componente que se emplea,
+        consume o incorpora para crear, restaurar o modificar un objeto o para
+        completar un proceso.
+    structured_aliases:
+      - literal_form: Gebruiksmateriaal
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Verwendetes Material
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Matériau Utilisé
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مادة مستخدمة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Bahan yang Digunakan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 使用材料
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Material Utilizado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - materials_used
+      - medium
+    close_mappings:
+      - crm:P126_employed  # CIDOC_CRM_v7.1.3.rdf:3886-3898 - "E57 Material employed in an instance of E11 Modification." Domain: E11_Modification.
+      - schema:material  # schemaorg.owl:25511-25533 - "A material that something is made from." Domain: CreativeWork, Product.
+      - bf:material  # bibframe.rdf:2162-2168 - "Resource uses, is composed of, integrates, etc. the related material."
+    related_mappings:
+      - crm:P45_consists_of  # CIDOC_CRM_v7.1.3.rdf:2297-2311 - "E57 Materials of which a Physical Thing is composed." Observed composition.

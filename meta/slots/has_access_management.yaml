@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: has_access_management
+# ==============================================================================
+# Links an entity to its access management system or policy.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line            | Mapping | Notes                            |
+# |----------------|-----------------------|----------------------|---------|----------------------------------|
+# | **DC Terms**   | `dcterms:accessRights`| dcterms.ttl:2489-2557| close   | "Information about who access    |
+# |                |                       |                      |         | the resource or an indication    |
+# |                |                       |                      |         | of its security status" - about  |
+# |                |                       |                      |         | rights, not management system    |
+#
+# No exact standard mapping exists for access management systems.
+# This is a domain-specific property for authorization infrastructure.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (removed migration note), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_access_management
+name: has_access_management
+title: Has Access Management
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_access_management:
+    slot_uri: hc:hasAccessManagement
+    description: >-
+      To have a designated system, policy, or set of protocols that controls, 
+      verifies, and manages the authorization and privileges required to 
+      access the entity.
+    alt_descriptions:
+      nl: >-
+        Een aangewezen systeem, beleid of reeks protocollen hebben die de 
+        autorisatie en privileges die nodig zijn om toegang te krijgen tot 
+        de entiteit controleert, verifieert en beheert.
+      de: >-
+        Ein festgelegtes System, eine Richtlinie oder eine Reihe von 
+        Protokollen haben, die die Autorisierung und Berechtigungen 
+        kontrolliert, verifiziert und verwaltet, die für den Zugriff 
+        auf die Entität erforderlich sind.
+      fr: >-
+        Avoir un système, une politique ou un ensemble de protocoles 
+        désignés qui contrôle, vérifie et gère l'autorisation et les 
+        privilèges requis pour accéder à l'entité.
+      ar: >-
+        أن يكون له نظام أو سياسة أو مجموعة من البروتوكولات المحددة 
+        التي تتحكم وتتحقق وتدير التفويض والامتيازات المطلوبة 
+        للوصول إلى الكيان.
+      id: >-
+        Memiliki sistem, kebijakan, atau serangkaian protokol yang 
+        ditunjuk yang mengontrol, memverifikasi, dan mengelola 
+        otorisasi dan hak istimewa yang diperlukan untuk mengakses 
+        entitas.
+      zh: >-
+        拥有指定的系统、策略或协议集，用于控制、验证和管理访问
+        实体所需的授权和权限。
+      es: >-
+        Tener un sistema, política o conjunto de protocolos designados 
+        que controla, verifica y gestiona la autorización y privilegios 
+        requeridos para acceder a la entidad.
+    structured_aliases:
+      - literal_form: heeft toegangsbeheer
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Zugriffsverwaltung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une gestion des accès
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له إدارة الوصول
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki manajemen akses
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有访问管理
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene gestión de acceso
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - dcterms:accessRights  # dcterms.ttl:2489-2557 - about rights, not management system
+    aliases:
+      - has_or_had_access_management
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link resources to their access control 
+        systems, authentication mechanisms, or authorization policies.
+      - |
+        **MIGRATION NOTE (2026-02-03)**: Renamed from `has_or_had_access_management` 
+        for conciseness.

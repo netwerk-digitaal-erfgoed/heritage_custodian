@@ -1,0 +1,145 @@
+id: https://nde.nl/ontology/hc/class/StaffRole
+name: staff_role_class
+title: Staff Role Base Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  pico: https://personsincontext.org/model#
+  wd: http://www.wikidata.org/entity/
+imports:
+  - linkml:types
+  - ../enums/CauseOfDeathTypeEnum
+  - ../enums/RoleCategoryEnum
+  - ../metadata
+  - ../slots/has_description
+  - ../slots/has_domain
+  - ../slots/responsible_for
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/include
+  - ../slots/deceased
+  - ../slots/martyred_through
+  - ../slots/require
+  - ../slots/categorized_as
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/temporal_extent
+classes:
+  StaffRole:
+    class_uri: org:Role
+    abstract: true
+    description: >-
+      Abstract classification for official job titles or role designations
+      assigned to positions within heritage institutions by formal HR processes.
+    alt_descriptions:
+      nl: >-
+        Abstracte classificatie voor officiële functietitels of rolbenamingen
+        die aan posities binnen erfgoedinstellingen worden toegewezen via formele HR-processen.
+      de: >-
+        Abstrakte Klassifikation für offizielle Berufsbezeichnungen oder Rollenbezeichnungen,
+        die Positionen in Kulturerbeeinrichtungen durch formale HR-Prozesse zugewiesen werden.
+      fr: >-
+        Classification abstraite pour les titres d'emploi officiels ou les désignations de rôles
+        attribués aux postes dans les institutions patrimoniales par des processus RH formels.
+      es: >-
+        Clasificación abstracta para títulos de trabajo oficiales o designaciones de roles
+        asignados a puestos en instituciones patrimoniales mediante procesos formales de RRHH.
+      ar: >-
+        تصنيف مجرد للمسميات الوظيفية الرسمية أو تسميات الأدوار
+        المخصصة للمناصب في مؤسسات التراث من خلال عمليات الموارد البشرية الرسمية.
+      id: >-
+        Klasifikasi abstrak untuk jabatan resmi atau penunjukan peran
+        yang ditugaskan ke posisi di institusi warisan budaya melalui proses HR formal.
+      zh: >-
+        通过正式人力资源流程分配给遗产机构职位的官方职称或角色名称的抽象分类。
+    exact_mappings:
+      - org:Role
+      - schema:Role
+    close_mappings:
+      - pico:PersonObservation
+      - schema:Occupation
+    related_mappings:
+      - schema:JobPosting
+      - schema:EmployeeRole
+    broad_mappings:
+      - schema:Thing
+    keywords:
+      - staff role
+      - job title
+      - position
+      - employment
+    structured_aliases:
+      - literal_form: personeelsrol
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Personalrolle
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: rôle du personnel
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    comments:
+      - Abstract base class - use specific subclasses (Curator, Archivist, etc.)
+      - Represents OFFICIAL JOB TITLES, not de facto work performed
+      - Actual work may differ or extend beyond formal title classification
+      - A person may hold multiple roles simultaneously
+    slots:
+      - deceased
+      - has_type
+      - include
+      - has_description
+      - martyred_through
+      - require
+      - categorized_as
+      - identified_by
+      - has_label
+      - has_score
+      - temporal_extent
+      - has_domain
+      - responsible_for
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      categorized_as:
+        required: false
+      martyred_through:
+        required: false
+      deceased:
+        required: false
+        inlined: false
+        description: >-
+          Structured death information using DeceasedStatus class.
+          Replaces simple circumstances_of_death string.
+      has_type:
+        required: false
+        multivalued: true
+        inlined: false
+        inlined_as_list: false
+        examples:
+          - value:
+              has_label: Keeper
+              has_type: SynonymVariant
+              has_description: British English alternative for Curator
+          - value:
+              has_label: Conservateur
+              has_type: TranslationVariant
+              has_language: fr
+      include:
+        required: false
+        multivalued: true
+        inlined: false
+        inlined_as_list: false
+    see_also:
+      - https://www.w3.org/TR/vocab-org/#class-role
+      - https://schema.org/Role
+      - https://github.com/FICLIT/PiCo
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

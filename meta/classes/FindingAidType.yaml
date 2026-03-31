@@ -1,0 +1,88 @@
+id: https://nde.nl/ontology/hc/class/FindingAidType
+name: finding_aid_type_class
+title: FindingAidType Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  bf: http://id.loc.gov/ontologies/bibframe/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/equivalent_to
+- ../slots/has_description
+- ../slots/has_domain
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/identified_by
+classes:
+  FindingAidType:
+    class_uri: rico:DocumentaryFormType
+    abstract: true
+    description: >-
+      Abstract classification concept for documentary forms of finding aids,
+      such as inventories, guides, catalogs, lists, and indexes.
+    alt_descriptions:
+      nl: Abstract classificatieconcept voor documentaire vormen van vindmiddelen zoals inventarissen gidsen en catalogi.
+      de: Abstraktes Klassifikationskonzept fuer dokumentarische Formen von Findmitteln wie Inventare Guides und Kataloge.
+      fr: Concept abstrait de classification des formes documentaires d instruments de recherche telles que inventaires et guides.
+      es: Concepto abstracto de clasificacion para formas documentales de instrumentos de descripcion como inventarios guias y catalogos.
+      ar: مفهوم تصنيفي مجرد للأشكال الوثائقية لأدوات الإرشاد والوصف مثل الجردات والأدلة والفهارس.
+      id: Konsep klasifikasi abstrak untuk bentuk dokumenter sarana temu balik seperti inventaris panduan dan katalog.
+      zh: 用于检索工具文献形态（如清单、指南、目录、索引）分类的抽象概念。
+    structured_aliases:
+    - {literal_form: type vindmiddel, in_language: nl}
+    - {literal_form: Findmitteltyp, in_language: de}
+    - {literal_form: type d instrument de recherche, in_language: fr}
+    - {literal_form: tipo de instrumento de descripcion, in_language: es}
+    - {literal_form: نوع أداة إرشاد, in_language: ar}
+    - {literal_form: tipe sarana temu balik, in_language: id}
+    - {literal_form: 检索工具类型, in_language: zh}
+    broad_mappings:
+    - rico:DocumentaryFormType
+    close_mappings:
+    - skos:Concept
+    - bf:Work
+    - schema:CreativeWork
+    - crm:E31_Document
+    slots:
+    - has_hypernym
+    - has_hyponym
+    - has_domain
+    - has_label
+    - has_description
+    - identified_by
+    - equivalent_to
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_label:
+        required: true
+      equivalent_to:
+        multivalued: true
+      has_hypernym:
+        range: FindingAidType
+      has_hyponym:
+        range: FindingAidType
+        multivalued: true
+      has_domain:
+        range: Domain
+        multivalued: true
+        inlined_as_list: true
+    notes:
+    - |
+      Preserved from prior description (commit ee5e8e5a):
+
+      "Abstract base class for finding aid type classification.\n\nA finding aid is a descriptive tool that establishes intellectual and physical\ncontrol over records by describing them and facilitating access. Finding aids\nrange from simple lists to elaborate guides with narrative descriptions.\n\n1. **RiC-O (Records in Contexts)**:\n   - Finding aids in RiC-O are Records with `rico:DocumentaryFormType` = `FindingAid`\n   - Uses `rico:hasDocumentaryFormType` to classify finding aids\n   - Vocabulary value: `rico-voc:FindingAid`\n\n2. **CIDOC-CRM**:\n   - crm:E31_Document - Conceptual object serving as finding aid\n   - crm:E33_Linguistic_Object - Textual description\n\n3. **BIBFRAME**:\n   - bf:Work - Intellectual content of finding aid\n   - bf:Instance - Specific manifestation (print, online)\n\n4. **Schema.org**:\n   - schema:CreativeWork - Published finding aid\n   - schema:Dataset - Structured finding aid data\n\n**FINDING AID TYPE HIERARCHY**:\n\n```\nFindingAidType (abstract\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

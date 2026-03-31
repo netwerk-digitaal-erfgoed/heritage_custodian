@@ -1,0 +1,253 @@
+id: https://nde.nl/ontology/hc/class/GovernmentArchiveRecordSetTypes
+name: GovernmentArchiveRecordSetTypes
+title: Government Archive Record Set Types Class Module
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - ./GovernmentArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_type
+  - ../slots/has_score
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  AgencyAdministrativeFonds:
+    is_a: GovernmentArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of administrative operations documentation
+      produced by a public agency.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie over administratieve
+        werkzaamheden van een publieke organisatie.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen zu administrativen
+        Arbeitsablaeufen einer oeffentlichen Behoerde.
+      fr: >-
+        Agregation fondee sur la provenance de documentation d'operations
+        administratives produite par une agence publique.
+      es: >-
+        Agregacion basada en procedencia de documentacion de operaciones
+        administrativas producida por una agencia publica.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق العمليات الإدارية الصادرة عن
+        جهة عامة.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi operasi administratif
+        yang dihasilkan oleh badan publik.
+      zh: >-
+        基于来源原则聚合公共机构形成的行政运作文献。
+    structured_aliases:
+      - literal_form: dossiergroep agentschapsadministratie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bestand der Behoerdenverwaltung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: ensemble d'administration d'agence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: conjunto de administracion de agencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: تجميع وثائق وكالة عامة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: himpunan administrasi badan publik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 公共机构行政文献聚合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Captures internal governance, staffing, finance, and operational control evidence for a single agency provenance.
+    keywords:
+      - public agency
+      - administrative operations
+      - governance evidence
+      - provenance aggregation
+    examples:
+      - value:
+          has_type: hc:AgencyAdministrativeFonds
+          has_custodian: hc:GovernmentArchive
+          has_note: Internal policy memos, staffing registers, and budget files.
+        description: Agency administrative operations grouped by provenance.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:AgencyAdministrativeFonds
+      has_custodian:
+        equals_string: hc:GovernmentArchive
+  PolicyDocumentCollection:
+    is_a: GovernmentArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of policy instruments, regulations, and guidance
+      issued by public authorities.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van beleidsinstrumenten, regelgeving en
+        richtlijnen uitgevaardigd door publieke autoriteiten.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus Politikdokumenten, Vorschriften
+        und Leitlinien, die von oeffentlichen Behoerden erlassen wurden.
+      fr: >-
+        Ensemble documentaire reuni d'instruments de politique publique,
+        de reglementation et de lignes directrices emises par des autorites publiques.
+      es: >-
+        Cuerpo documental reunido de instrumentos de politica, normativa y
+        orientaciones emitidas por autoridades publicas.
+      ar: >-
+        جسم وثائقي مُجمع من أدوات السياسات واللوائح والإرشادات
+        الصادرة عن السلطات العامة.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi instrumen kebijakan, regulasi,
+        dan pedoman yang diterbitkan otoritas publik.
+      zh: >-
+        汇集公共机构发布的政策工具、法规与指导文件的文献整体。
+    structured_aliases:
+      - literal_form: beleids- en regelgevingsdocumentatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung von Politik- und Regulierungsdokumenten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de documentation reglementaire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de documentacion regulatoria
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة وثائق سياسات ولوائح
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi dokumentasi kebijakan dan regulasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 政策法规文献汇编
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Materials may be assembled across multiple issuing offices and revision cycles.
+    keywords:
+      - policy instrument
+      - regulation
+      - public guidance
+      - assembled documentation
+    examples:
+      - value:
+          has_type: hc:PolicyDocumentCollection
+          has_custodian: hc:GovernmentArchive
+          has_note: Regulations with amendment histories and explanatory memoranda.
+        description: Policy and regulatory documentation assembled for access.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:PolicyDocumentCollection
+      has_custodian:
+        equals_string: hc:GovernmentArchive
+  PublicServiceRecordSeries:
+    is_a: GovernmentArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence capturing service-delivery transactions,
+      case handling, and recurring administrative procedures.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks met dienstverleningshandelingen,
+        zaakbehandeling en terugkerende administratieve procedures.
+      de: >-
+        Geordnete Dokumentationsfolge mit Servicevorgaengen,
+        Fallbearbeitung und wiederkehrenden Verwaltungsverfahren.
+      fr: >-
+        Sequence documentaire ordonnee retraçant les prestations de service,
+        le traitement des dossiers et les procedures administratives recurrentes.
+      es: >-
+        Secuencia documental ordenada que recoge transacciones de servicio,
+        tramitacion de casos y procedimientos administrativos recurrentes.
+      ar: >-
+        تسلسل وثائقي منظم يوثق معاملات تقديم الخدمات
+        ومعالجة القضايا والإجراءات الإدارية المتكررة.
+      id: >-
+        Urutan dokumenter teratur yang merekam transaksi layanan publik,
+        penanganan kasus, dan prosedur administratif berulang.
+      zh: >-
+        记录公共服务办理、个案处理与周期性行政流程的有序文献序列。
+    structured_aliases:
+      - literal_form: reeks dienstverleningstransacties
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Folge von Dienstleistungsakten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: sequence de dossiers de service public
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: secuencia de expedientes de servicio publico
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: سلسلة سجلات تقديم خدمة عامة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: urutan catatan layanan publik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 公共服务办理文献序列
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Often arranged by procedure, service program, or case lifecycle stage.
+    keywords:
+      - service delivery
+      - case handling
+      - administrative procedure
+      - recurring workflow
+    examples:
+      - value:
+          has_type: hc:PublicServiceRecordSeries
+          has_custodian: hc:GovernmentArchive
+          has_note: Permit applications and decisions organized by processing cycle.
+        description: Service-delivery workflow documentation arranged as a recurring sequence.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Series
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:PublicServiceRecordSeries
+      has_custodian:
+        equals_string: hc:GovernmentArchive

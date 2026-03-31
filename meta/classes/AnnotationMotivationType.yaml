@@ -1,0 +1,192 @@
+id: https://nde.nl/ontology/hc/class/AnnotationMotivationType
+name: annotation_motivation_type_class
+title: Annotation Motivation Type (W3C Web Annotation aligned)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  oa: http://www.w3.org/ns/oa#
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  as: https://www.w3.org/ns/activitystreams#
+  schema: http://schema.org/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_score
+  - ../slots/has_description
+  - ../slots/identify_as
+  - ../slots/has_label
+classes:
+  AnnotationMotivationType:
+    class_uri: oa:Motivation
+    abstract: true
+    description: >-
+      Abstract base class for categories of reasons or intents behind creating
+      annotations. Each subclass defines a specific purpose such as classifying,
+      commenting, describing, identifying, linking, or tagging content.
+    alt_descriptions:
+      nl: >-
+        Abstracte basisklasse voor categorieen van redenen of intenties achter het
+        maken van annotaties. Elke subklasse definieert een specifiek doel zoals
+        classificeren, becommentarieren, beschrijven, identificeren, koppelen of
+        taggen van inhoud.
+      de: >-
+        Abstrakte Basisklasse fur Kategorien von Grunden oder Absichten hinter der
+        Erstellung von Annotationen. Jede Unterklasse definiert einen spezifischen
+        Zweck wie Klassifizieren, Kommentieren, Beschreiben, Identifizieren,
+        Verknupfen oder Taggen von Inhalten.
+      fr: >-
+        Classe de base abstraite pour les categories de raisons ou intentions derriere
+        la creation d'annotations. Chaque sous-classe definit un objectif specifique
+        tel que classifier, commenter, decrire, identifier, lier ou etiqueter du contenu.
+      es: >-
+        Clase base abstracta para categorias de razones o intenciones detras de la
+        creacion de anotaciones. Cada subclase define un proposito especifico como
+        clasificar, comentar, describir, identificar, vincular o etiquetar contenido.
+      ar: >-
+        فئة أساسية مجردة لفئات الأسباب أو النوايا وراء إنشاء التعليقات التوضيحية.
+        يحدد كل فئة فرعية غرضًا محددًا مثل التصنيف أو التعليق أو الوصف أو
+        التعريف أو الربط أو وضع العلامات على المحتوى.
+      id: >-
+        Kelas dasar abstrak untuk kategori alasan atau niat di balik pembuatan anotasi.
+        Setiap subkelas mendefinisikan tujuan spesifik seperti mengklasifikasikan,
+        mengomentari, mendeskripsikan, mengidentifikasi, menautkan, atau menandai konten.
+      zh: >-
+        用于创建注释背后的原因或意图类别的抽象基类。每个子类定义特定目的，
+        如分类、评论、描述、识别、链接或标记内容。
+    structured_aliases:
+    - literal_form: annotatiemotivatietype
+      in_language: nl
+    - literal_form: Anmerkungsmotivationstyp
+      in_language: de
+    - literal_form: type de motivation d'annotation
+      in_language: fr
+    - literal_form: tipo de motivacion de anotacion
+      in_language: es
+    - literal_form: نوع دافع التعليق التوضيحي
+      in_language: ar
+    - literal_form: tipe motivasi anotasi
+      in_language: id
+    - literal_form: 注释动机类型
+      in_language: zh
+    exact_mappings:
+    - oa:Motivation
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - crm:E55_Type
+    - prov:Influence
+    - as:Object
+    slots:
+    - identify_as
+    - has_label
+    - has_description
+    - has_score
+    slot_usage:
+      identify_as:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+    comments:
+    - Abstract base class - use specific subclasses (ClassifyingMotivation, DescribingMotivation, etc.)
+    - Represents MOTIVATION TYPES, not individual motivation instances
+    - Aligns with W3C Web Annotation oa:Motivation class
+    - oa:Motivation is a subclass of skos:Concept in the W3C model
+    - Heritage-specific extensions beyond W3C standard motivations include AccessibilityMotivation, DiscoveryMotivation, PreservationMotivation, ResearchMotivation
+    - |
+        Preserved from prior description:
+        
+        **DEFINITION**:
+        
+        AnnotationMotivationType represents CATEGORIES of motivations for creating
+        annotations. Each subclass defines a specific purpose or intent behind
+        annotation creation.
+        
+        **W3C WEB ANNOTATION ALIGNMENT**:
+        
+        The W3C Web Annotation Data Model defines `oa:Motivation` as:
+        > The class for Motivation resources that describe the user's intent
+        > or motivation for the creation of the Annotation.
+        
+        The `oa:Motivation` class is a subclass of `skos:Concept`:
+        ```turtle
+        oa:Motivation a rdfs:Class ;
+            rdfs:subClassOf skos:Concept .
+        ```
+        
+        **STANDARD MOTIVATIONS** (from W3C Web Annotation):
+        
+        | Motivation | URI | Description |
+        |------------|-----|-------------|
+        | classifying | oa:classifying | Categorizing or classifying content |
+        | commenting | oa:commenting | Adding commentary |
+        | describing | oa:describing | Adding descriptive information |
+        | identifying | oa:identifying | Identifying depicted entities |
+        | linking | oa:linking | Linking to external resources |
+        | tagging | oa:tagging | Adding tags or keywords |
+        
+        **HERITAGE-SPECIFIC EXTENSIONS**:
+        
+        Beyond W3C standard motivations, heritage institutions require:
+        
+        | Motivation | Purpose | Use Case |
+        |------------|---------|----------|
+        | AccessibilityMotivation | Accessibility support | Alt-text, captions, audio descriptions |
+        | DiscoveryMotivation | Search and discovery | SEO, facets, keywords |
+        | PreservationMotivation | Digital preservation | Checksums, format migration notes |
+        | ResearchMotivation | Research support | Citations, analysis, scholarly notes |
+        
+        **CIDOC-CRM ALIGNMENT**:
+        
+        Annotation motivations relate to CIDOC-CRM attribute assignments:
+        - `crm:E13_Attribute_Assignment` - The act of assigning information
+        - `crm:P17_was_motivated_by` - The motivation for an activity
+        
+        **PROV-O ALIGNMENT**:
+        
+        - `prov:Activity` - Annotations as activities with motivations
+        - `prov:wasMotivatedBy` (proposed) - Relates activity to motivation
+        
+        **SUBCLASSES**:
+        
+        See AnnotationMotivationTypes.yaml for 10 concrete motivation subclasses:
+        - ClassifyingMotivation, DescribingMotivation, IdentifyingMotivation
+        - TaggingMotivation, LinkingMotivation, CommentingMotivation
+        - AccessibilityMotivation, DiscoveryMotivation, PreservationMotivation, ResearchMotivation
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/#motivation
+    - https://www.w3.org/ns/oa#Motivation
+    - AnnotationMotivationTypes
+    examples:
+    - value:
+        identify_as: oa:classifying
+        has_label: classifying
+        has_description: "The motivation for classifying the target"
+      description: W3C standard classifying motivation type
+    keywords:
+    - motivation
+    - intent
+    - purpose
+    - W3C Web Annotation
+    - oa:Motivation
+    - classifying
+    - commenting
+    - describing
+    - identifying
+    - tagging
+    - linking
+    - accessibility
+    - discovery
+    - preservation
+    - research
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Abstract base class aligned with W3C Web Annotation standard
+      custodian_types: "['*']"

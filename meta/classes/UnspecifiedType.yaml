@@ -1,0 +1,212 @@
+id: https://nde.nl/ontology/hc/class/unspecified-type
+name: UnspecifiedType
+title: UnspecifiedType
+description: Fallback custodian classification when institutional type cannot be reliably determined.
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/assert
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/has_type
+- ../slots/based_on
+- ../slots/evaluated_through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  wd: http://www.wikidata.org/entity/
+classes:
+  UnspecifiedType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    alt_descriptions:
+      nl: Custodian-type voor instellingen waarvan het type op basis van beschikbare gegevens niet betrouwbaar kan worden vastgesteld.
+      de: Custodian-Typ fuer Einrichtungen, deren Typ anhand verfuegbarer Evidenz nicht verlaesslich bestimmbar ist.
+      fr: Type de custodian pour des institutions dont le type ne peut pas etre determine de maniere fiable selon les preuves disponibles.
+      es: Tipo de custodian para instituciones cuyo tipo no puede determinarse de forma fiable con la evidencia disponible.
+      ar: نوع جهة حافظة للمؤسسات التي لا يمكن تحديد نوعها بشكل موثوق وفق الأدلة المتاحة.
+      id: Tipe custodian untuk institusi yang tipenya tidak dapat ditentukan secara andal dari bukti yang tersedia.
+      zh: 用于在现有证据下无法可靠判定机构类型的保管机构类型。
+    annotations:
+      skos:prefLabel: Unspecified Type
+      skos:altLabel: unknown type, unclassified, indeterminate, heritage organization, cultural organization
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Use this type when classification is indeterminate because evidence is
+        insufficient, conflicting, transitional, or genuinely outside current type
+        categories.
+
+        This is a data-quality/uncertainty marker and should be reviewed over time.
+
+        Distinction
+
+        - UnspecifiedType: type cannot be determined.
+        - MixedCustodianType: multiple known types apply.
+    structured_aliases:
+    - literal_form: ongespecificeerd
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: onbekend type
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: niet geclassificeerd
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: erfgoedorganisatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: culturele organisatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: unspecified
+      predicate: EXACT_SYNONYM
+      in_language: en
+    - literal_form: unknown type
+      predicate: EXACT_SYNONYM
+      in_language: en
+    - literal_form: unclassified
+      predicate: EXACT_SYNONYM
+      in_language: en
+    - literal_form: heritage organization
+      predicate: EXACT_SYNONYM
+      in_language: en
+    - literal_form: cultural organization
+      predicate: EXACT_SYNONYM
+      in_language: en
+    - literal_form: nicht spezifiziert
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: unbekannter Typ
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: nicht klassifiziert
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: Kulturorganisation
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: "non spécifié"
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: type inconnu
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: "non classifié"
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: organisation culturelle
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: no especificado
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: tipo desconocido
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: no clasificado
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: "organización cultural"
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: non specificato
+      predicate: EXACT_SYNONYM
+      in_language: it
+    - literal_form: tipo sconosciuto
+      predicate: EXACT_SYNONYM
+      in_language: it
+    - literal_form: organizzazione culturale
+      predicate: EXACT_SYNONYM
+      in_language: it
+    - literal_form: "não especificado"
+      predicate: EXACT_SYNONYM
+      in_language: pt
+    - literal_form: tipo desconhecido
+      predicate: EXACT_SYNONYM
+      in_language: pt
+    - literal_form: "organização cultural"
+      predicate: EXACT_SYNONYM
+      in_language: pt
+    - literal_form: غير محدد
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: tipe tidak ditentukan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 未明确分类
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    description: >-
+      Fallback classification used when available evidence is insufficient or
+      contradictory for institutional categorization.
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - schema:Organization
+    - crm:E74_Group
+    - schema:Thing
+    - prov:Entity
+    - prov:Activity
+    slots:
+    - has_status
+    - has_type
+    - based_on
+    - evaluated_through
+    - has_score
+    - assert
+    slot_usage:
+      has_status:
+#         range: string # uriorcurie
+        # range: ClassificationStatus
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_type:
+              has_label: Indeterminate
+            has_description: Type indeterminate - insufficient evidence
+        - value:
+            has_type:
+              has_label: Ambiguous
+            has_description: 'Sources conflict: museum (website) vs archive (ISIL)'
+        - value:
+            has_type:
+              has_label: Transitional
+            has_description: Type transitional - merger in progress
+        - value: Website offline, Phone disconnected, No email response
+        - value: 'Conflicting sources: museum vs. archive'
+      assert:
+#         range: string # uriorcurie
+        # range: Hypothesis
+        multivalued: true
+        required: false
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: Possibly collecting society (mentions archival holdings)
+        - value: Possibly advocacy organization (described as preservation group)
+      based_on:
+#         range: string
+        multivalued: true
+        required: true
+        examples:
+        - value: National Archives search (no results), Local society queried
+        - value: Website checked (offline), Email sent (no response)
+        - value: Wikidata search, ICOM directory, Regional museum
+      evaluated_through:
+#         range: string
+        required: true
+        examples:
+        - value: Requires specialist research, Low priority, Consider removing
+        - value: High priority - recently mentioned in journal, Re-investigate
+        - value: Medium priority - waiting for archival cataloging, Review 2026
+        - value: 'evidence_quality: minimal, source_count: 1'
+        - value: 'completeness: 30%, last_updated: 2025-11-23'
+      has_type:
+        equals_string: hc:UnspecifiedType

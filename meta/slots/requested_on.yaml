@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: requested_on
+# ==============================================================================
+# Records the date when a service, item, permission, or action was formally
+# requested or initiated.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                | File/Line              | Mapping | Notes                                                          |
+# |------------|-------------------------|------------------------|---------|------------------------------------------------------------|
+# | **DCTerms**| `dcterms:dateSubmitted`  | dcterms.rdf:1200-1225  | close   | "Date of submission of the resource." Submission ≈ request.    |
+# | **DCTerms**| `dcterms:dateAccepted`   | dcterms.rdf:1146-1170  | related | "Date of acceptance." Acceptance follows request.              |
+# | **DCTerms**| `dcterms:date`           | dcterms.rdf:1122-1133  | broad   | "A point or period of time associated with an event."          |
+# | **Schema** | `schema:orderDate`       | schemaorg.owl:28290-94  | related | "Date order was placed." Order→Date, e-commerce context.       |
+# | **PROV**   | `prov:startedAtTime`     | prov.ttl:1018-1028     | related | Activity→dateTime. When an activity began, not requested.      |
+#
+# dcterms:dateSubmitted is close but not exact: it captures submission of a
+# resource (e.g. thesis, article), while this slot records when any service,
+# item, or permission was requested within heritage operations.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/requested_on
+name: requested_on
+title: Requested On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  requested_on:
+    slot_uri: hc:requestedOn
+    description: >-
+      Records the date when a service, item, permission, or action was formally
+      requested or initiated. Captures the moment a formal ask was made,
+      distinct from when it was fulfilled, approved, or completed.
+    alt_descriptions:
+      nl: >-
+        Registreert de datum waarop een dienst, item, toestemming of actie
+        formeel is aangevraagd of geïnitieerd.
+      de: >-
+        Erfasst das Datum, an dem ein Dienst, ein Objekt, eine Genehmigung oder
+        eine Aktion formell angefordert oder eingeleitet wurde.
+      fr: >-
+        Enregistre la date à laquelle un service, un élément, une autorisation
+        ou une action a été formellement demandé ou initié.
+      ar: >-
+        يسجل التاريخ الذي تم فيه طلب خدمة أو عنصر أو إذن أو إجراء بشكل رسمي
+        أو بدء تنفيذه.
+      id: >-
+        Mencatat tanggal ketika suatu layanan, item, izin, atau tindakan secara
+        resmi diminta atau dimulai.
+      zh: >-
+        记录正式请求或发起某项服务、物品、许可或操作的日期。
+      es: >-
+        Registra la fecha en que un servicio, elemento, permiso o acción fue
+        solicitado o iniciado formalmente.
+    structured_aliases:
+      - literal_form: aangevraagd op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: angefordert am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: demandé le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ الطلب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diminta pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 请求日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: solicitado el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    close_mappings:
+      - dcterms:dateSubmitted  # dcterms.rdf:1200-1225 - "Date of submission of the resource"
+    broad_mappings:
+      - dcterms:date  # dcterms.rdf:1122-1133 - "A point or period of time associated with an event"
+    related_mappings:
+      - dcterms:dateAccepted  # dcterms.rdf:1146-1170 - "Date of acceptance of the resource"
+      - schema:orderDate  # schemaorg.owl:28290-28294 - "Date order was placed"
+      - prov:startedAtTime  # prov.ttl:1018-1028 - Activity→dateTime
+    aliases:
+      - request_date
+    examples:
+      - value: "2025-03-15"
+        description: >-
+          The date a researcher submitted a request to access restricted
+          archival materials.
+      - value: "2024-11-01"
+        description: >-
+          The date a museum loan was formally requested by a partner institution.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This slot captures the request initiation date, not the date of
+        fulfilment or approval. For acceptance dates, see slots related to
+        dcterms:dateAccepted. For completion dates, use appropriate completion
+        or end-date slots.
+      - >-
+        Common heritage use cases include reading room access requests,
+        reproduction permission requests, inter-institutional loan requests,
+        and digitisation service requests.

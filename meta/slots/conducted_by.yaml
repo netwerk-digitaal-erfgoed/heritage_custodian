@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: conducted_by
+# ==============================================================================
+# Agent or organization that conducted an activity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line            | Mapping | Notes                              |
+# |---------------|---------------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasAssociatedWith`  | prov.ttl:1066-1080   | exact   | "Agent with responsibility for Activity"|
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, verified mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/conducted_by
+name: conducted_by
+title: Conducted By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  conducted_by:
+    slot_uri: prov:wasAssociatedWith
+    description: >-
+      The agent or organization that performed, executed, or was responsible
+      for carrying out the activity or process.
+    alt_descriptions:
+      nl: >-
+        De agent of organisatie die de activiteit of het proces heeft uitgevoerd,
+        geëxecuteerd of verantwoordelijk was voor de uitvoering ervan.
+      de: >-
+        Der Agent oder die Organisation, die die Aktivität oder den Prozess
+        durchgeführt, ausgeführt oder dafür verantwortlich war.
+      fr: >-
+        L'agent ou l'organisation qui a réalisé, exécuté ou était responsable
+        de l'exécution de l'activité ou du processus.
+      ar: >-
+        الوكيل أو المنظمة التي نفذت أو أجرت أو كانت مسؤولة عن تنفيذ
+        النشاط أو العملية.
+      id: >-
+        Agen atau organisasi yang melakukan, menjalankan, atau bertanggung
+        jawab untuk melaksanakan aktivitas atau proses.
+      zh: >-
+        执行、实施或负责开展活动或流程的代理人或组织。
+      es: >-
+        El agente u organización que realizó, ejecutó o fue responsable de
+        llevar a cabo la actividad o proceso.
+    structured_aliases:
+      - literal_form: uitgevoerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: durchgeführt von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: conduit par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أُجري بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dilakukan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...执行
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: conducido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    exact_mappings:
+    aliases:
+      - is_or_was_conducted_by
+      - responsible_agent
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **ONTOLOGY ALIGNMENT**: prov:wasAssociatedWith from PROV-O describes
+        "An Agent that had some (unspecified) responsibility for the occurrence
+        of this Activity." This aligns with the "conducted by" semantics.

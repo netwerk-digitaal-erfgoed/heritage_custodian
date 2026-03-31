@@ -1,0 +1,49 @@
+id: https://nde.nl/ontology/hc/class/ISO639-3Identifier
+name: ISO639-3Identifier
+title: ISO 639-3 Identifier Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+classes:
+  ISO639-3Identifier:
+    class_uri: hc:ISO639-3Identifier
+    description: Three-letter language identifier value defined by ISO 639-3.
+    alt_descriptions:
+      nl: Drieletterige taalidentificator volgens ISO 639-3.
+      de: Dreistelliger Sprachidentifikator gemaess ISO 639-3.
+      fr: Identifiant de langue a trois lettres defini par ISO 639-3.
+      es: Identificador de idioma de tres letras definido por ISO 639-3.
+      ar: معرّف لغة مكوّن من ثلاثة أحرف وفق ISO 639-3.
+      id: Pengidentifikasi bahasa tiga huruf yang ditetapkan oleh ISO 639-3.
+      zh: ISO 639-3定义的三字母语言标识符。
+    structured_aliases:
+    - {literal_form: ISO 639-3 code, in_language: nl}
+    - {literal_form: ISO-639-3-Code, in_language: de}
+    - {literal_form: code ISO 639-3, in_language: fr}
+    - {literal_form: codigo ISO 639-3, in_language: es}
+    - {literal_form: رمز ISO 639-3, in_language: ar}
+    - {literal_form: kode ISO 639-3, in_language: id}
+    - {literal_form: ISO 639-3代码, in_language: zh}
+    close_mappings:
+    - dcterms:Identifier
+    slots:
+    - has_code
+    slot_usage:
+      has_code:
+        pattern: ^[a-z]{3}$
+        required: true
+    comments:
+    - Use for ISO 639-3 identifiers (three-letter codes) when ISO 639-1 is not sufficient.
+    examples:
+    - value:
+        has_code: nld
+      description: ISO 639-3 code for Dutch
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Controlled language-code identifier class.
+      custodian_types: '["*"]'

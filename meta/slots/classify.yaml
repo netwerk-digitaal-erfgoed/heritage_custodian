@@ -1,0 +1,163 @@
+# ==============================================================================
+# LinkML Slot Definition: classify
+# ==============================================================================
+# Describes the action of arranging or assigning entities into classes or
+# categories based on shared characteristics or established criteria.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property                    | File/Line              | Mapping | Notes                                           |
+# |--------------|----------------------------|------------------------|---------|------------------------------------------------|
+# | **CIDOC-CRM**| `crm:P2i_is_type_of`       | CIDOC_CRM:1215-1225    | exact   | Inverse of P2_has_type - type classifies entity |
+# | **SKOS**     | `skos:broader`             | skos.rdf:266-277       | close   | Hierarchical concept relationship               |
+# | **CIDOC-CRM**| `crm:P137i_is_exemplified_by`| CIDOC_CRM:4142-4153  | narrow  | Type exemplified by entity (prototypical)       |
+# | **CIDOC-CRM**| `crm:P2_has_type`          | CIDOC_CRM:1200-1214    | related | Entity has type (forward direction)             |
+# | **RiC-O**    | `rico:hasDocumentaryFormType`| RiC-O_1-1:4930-4931  | related | Documentary form classification                 |
+# | **RiC-O**    | `rico:hasRecordSetType`    | RiC-O_1-1:8966-8967    | related | Record set type classification                  |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/classify
+name: classify
+title: classify
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+description: |
+  To arrange or assign entities into specific classes or categories based on shared qualities, characteristics, or established criteria.
+
+imports:
+  - linkml:types
+
+slots:
+  classify:
+    slot_uri: crm:P2i_is_type_of
+    description: |
+      To arrange or assign entities into specific classes or categories based on shared qualities, characteristics, or established criteria.
+    alt_descriptions:
+      nl: >-
+        Entiteiten indelen of toewijzen aan specifieke klassen of categorieën op basis van gedeelde kwaliteiten, kenmerken of vastgestelde criteria.
+      de: >-
+        Entitäten in spezifische Klassen oder Kategorien einordnen oder zuweisen, basierend auf gemeinsamen Eigenschaften, Merkmalen oder festgelegten Kriterien.
+      fr: >-
+        Organiser ou attribuer des entités à des classes ou catégories spécifiques en fonction de qualités, caractéristiques ou critères établis communs.
+      ar: >-
+        ترتيب أو تعيين الكيانات في فئات أو تصنيفات محددة بناءً على صفات أو خصائص أو معايير مشتركة.
+      id: >-
+        Mengatur atau menetapkan entitas ke dalam kelas atau kategori tertentu berdasarkan kualitas, karakteristik, atau kriteria yang ditetapkan bersama.
+      zh: >-
+        根据共同的品质、特征或既定标准，将实体安排或分配到特定的类别或分类中。
+      es: >-
+        Organizar o asignar entidades en clases o categorías específicas basándose en cualidades, características o criterios establecidos compartidos.
+    structured_aliases:
+      - literal_form: classificeren
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_classify
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: klassifizieren
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: classifier
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يصنّف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengklasifikasikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分类
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: clasificar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: false
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.45
+      specificity_rationale: Generic classification relationship applicable across many entity types
+    exact_mappings:
+      # CIDOC-CRM P2i_is_type_of - Inverse of has_type, the type classifies the entity
+      # Domain: E55_Type, Range: E1_CRM_Entity
+      # Lines 1215-1225 in CIDOC_CRM_v7.1.3.rdf
+    close_mappings:
+      # SKOS broader - Hierarchical broader concept relationship
+      # Lines 266-277 in skos.rdf
+      - skos:broader
+    narrow_mappings:
+      # CIDOC-CRM P137i_is_exemplified_by - More specific: type exemplified by entity
+      # subPropertyOf P2i_is_type_of - for prototypical/archetypical examples
+      # Lines 4142-4153 in CIDOC_CRM_v7.1.3.rdf
+      - crm:P137i_is_exemplified_by
+    related_mappings:
+      # CIDOC-CRM P2_has_type - Entity has type (forward direction)
+      # Lines 1200-1214 in CIDOC_CRM_v7.1.3.rdf
+      - crm:P2_has_type
+      # RiC-O hasDocumentaryFormType - Classification by documentary form
+      # Lines 4930-4931 in RiC-O_1-1.rdf
+      - rico:hasDocumentaryFormType
+      # RiC-O hasRecordSetType - Classification of record sets
+      # Lines 8966-8967 in RiC-O_1-1.rdf
+      - rico:hasRecordSetType
+    aliases:
+      - classifies_or_classified
+      - is_or_was_classify
+    examples:
+      - value: "hc:FeaturePlace/museum-building"
+        description: A FeaturePlace that classifies a CustodianPlace as a museum building type
+      - value: "hc:TypeSpecimen/holotype"
+        description: A TypeSpecimen that classifies a Taxon as the holotype
+      - value: "hc:HeritageDesignation/national-monument"
+        description: A HeritageDesignation that classifies a HeritageSite as a national monument
+    comments:
+      - Updated 2026-02-03 with verified ontology mappings and translations
+      - |
+        **PURPOSE**: Establishes a classification relationship where one entity
+        provides typological or categorical information about another entity.
+        This is the inverse perspective of "has type" - here the classifying
+        entity is the subject rather than the classified entity.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | CIDOC-CRM | crm:P2i_is_type_of | 1215 | exact | Type classifies entity |
+        | SKOS | skos:broader | 266 | close | Hierarchical broader |
+        | CIDOC-CRM | crm:P137i_is_exemplified_by | 4142 | narrow | Prototypical example |
+        | CIDOC-CRM | crm:P2_has_type | 1200 | related | Forward direction |
+        | RiC-O | rico:hasDocumentaryFormType | 4930 | related | Form type |
+        | RiC-O | rico:hasRecordSetType | 8966 | related | Record set type |
+      - |
+        **COMMON USE CASES**:
+        - FeaturePlace classifies CustodianPlace (building type classification)
+        - TypeSpecimen classifies Taxon (nomenclatural classification)
+        - HeritageDesignation classifies HeritageSite (protection status)
+      - |
+        **CIDOC-CRM ALIGNMENT**: Maps to crm:P2_has_type / crm:P2i_is_type_of
+        pattern where one entity provides typological information about another.
+      - |
+        **EXAMPLE**:
+        ```yaml
+        FeaturePlace:
+          feature_type: MUSEUM
+          classifies_or_classified:
+            id: https://nde.nl/ontology/hc/place/rijksmuseum-location
+            place_name: "Rijksmuseum"
+        ```

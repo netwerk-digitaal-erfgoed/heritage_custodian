@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/FundingRequirement
+name: FundingRequirement
+title: Funding Requirement
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/apply_to
+  - ../slots/has_note
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/mandatory
+  - ../slots/observed_in
+  - ../slots/identified_by
+  - ../slots/has_text
+  - ../slots/has_measurement_unit
+  - ../slots/has_value
+  - ../slots/in_section
+  - ../slots/supersede
+  - ../slots/temporal_extent
+classes:
+  FundingRequirement:
+    class_uri: hc:FundingRequirement
+    description: >-
+      Eligibility or compliance criterion that must be satisfied for a proposal
+      to qualify under a specific funding call.
+    alt_descriptions:
+      nl: Subsidiabiliteits- of nalevingscriterium waaraan een voorstel moet voldoen om in aanmerking te komen binnen een specifieke oproep.
+      de: Eignungs- oder Compliance-Kriterium, das fuer die Foerderfaehigkeit eines Antrags in einem bestimmten Aufruf erfuellt sein muss.
+      fr: Critere d'eligibilite ou de conformite devant etre satisfait pour qu'une proposition soit recevable dans un appel donne.
+      es: Criterio de elegibilidad o cumplimiento que debe satisfacerse para que una propuesta califique en una convocatoria especifica.
+      ar: معيار أهلية أو امتثال يجب استيفاؤه لكي يتأهل المقترح ضمن دعوة تمويل محددة.
+      id: Kriteria kelayakan atau kepatuhan yang harus dipenuhi agar proposal memenuhi syarat pada panggilan pendanaan tertentu.
+      zh: 在特定资助征集中，提案必须满足的资格或合规条件。
+    structured_aliases:
+      - literal_form: financieringsvoorwaarde
+        in_language: nl
+      - literal_form: Foerdervoraussetzung
+        in_language: de
+      - literal_form: condition de financement
+        in_language: fr
+      - literal_form: requisito de financiacion
+        in_language: es
+      - literal_form: شرط التمويل
+        in_language: ar
+      - literal_form: persyaratan pendanaan
+        in_language: id
+      - literal_form: 资助要求
+        in_language: zh
+    slots:
+      - apply_to
+      - has_note
+      - mandatory
+      - observed_in
+      - identified_by
+      - has_text
+      - has_type
+      - has_measurement_unit
+      - has_value
+      - in_section
+      - supersede
+      - has_score
+      - temporal_extent
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_text:
+        required: true
+      mandatory:
+        range: boolean
+        ifabsent: 'true'
+      observed_in:
+        required: true
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/requirement/ec-call/minimum-partners
+          has_text: Minimum 3 independent legal entities from 3 different countries.
+          has_value: '3'
+          has_measurement_unit: partners
+          mandatory: true
+        description: Consortium size threshold requirement
+      - value:
+          identified_by: https://nde.nl/ontology/hc/requirement/ec-call/open-access
+          has_text: Immediate open access publication is required.
+          mandatory: true
+        description: Technical dissemination requirement
+    exact_mappings:
+      - dcterms:Standard
+    related_mappings:
+      - dcterms:requires
+      - dcterms:conformsTo
+      - schema:eligibleQuantity
+      - prov:wasDerivedFrom
+    comments:
+      - |
+        Preserved from prior description (commit 554fe520):
+
+        "A requirement or criterion that applicants must meet to be eligible for\na funding call. Each requirement is tracked with provenance linking to\nthe source document where it was stated.\n\n**PURPOSE**:\n\nFundingRequirement provides structured, machine-readable representation\nof funding call eligibility criteria. Instead of storing requirements as\nfree-text lists in CallForApplication, each requirement becomes a\ntrackable entity with:\n\n- **Classification**: Categorized by FundingRequirementTypeEnum\n- **Provenance**: Linked to WebObservation documenting source\n- **Values**: Machine-readable value + human-readable text\n- **Temporality**: Valid date range for time-scoped requirements\n\n**PROVENANCE CHAIN**:\n\n```\nCallForApplication\n      \u2502\n      \u251C\u2500\u2500 requirements \u2500\u2500\u2192 FundingRequirement[]\n      \u2502                          \u2502\n      \u2502                          \u251C\u2500\u2500 requirement_type: PARTNERSHIP_MINIMUM_PARTNERS\n\

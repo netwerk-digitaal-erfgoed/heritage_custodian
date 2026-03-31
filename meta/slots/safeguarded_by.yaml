@@ -1,0 +1,126 @@
+# ==============================================================================
+# LinkML Slot Definition: safeguarded_by
+# ==============================================================================
+# Links an intangible heritage form to the custodian(s) that safeguard it
+# through identification, documentation, preservation, promotion, or education.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                              | File/Line                      | Mapping          | Notes                                                                           |
+# |----------------|---------------------------------------|--------------------------------|------------------|---------------------------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P109i_is_current_or_former_curator_of` | CIDOC:3654-3665       | related_mappings | "is current or former curator of" Actor→CuratedHolding. Related: inverse direction; curated holdings not intangible heritage. |
+# | **CIDOC-CRM**  | `crm:P49_has_former_or_current_keeper` | CIDOC:2383-2397                | related_mappings | "has former or current keeper" PhysicalThing→Actor. Related: custody of physical things, not intangible heritage safeguarding. |
+# | **Schema.org** | `schema:maintainer`                   | schemaorg.owl:25330-25348      | related_mappings | "maintainer" CreativeWork→Person/Organization. Related: software/dataset maintenance, not heritage safeguarding.               |
+# | **RiC-O**      | `rico:hasOrHadHolder`                 | RiC-O_1-1.rdf:6436-6473       | related_mappings | "has or had holder" RecordResource/Instantiation→Agent. Related: archival holding, not intangible heritage safeguarding.       |
+# | **RiC-O**      | `rico:hasOrHadManager`                | RiC-O_1-1.rdf:6925-6962       | broad_mappings   | "has or had manager" RecordResource/Instantiation→Agent. Broader: general management responsibility.                          |
+# | **PROV**       | `prov:wasAttributedTo`                | prov.ttl:1082-1094             | broad_mappings   | "wasAttributedTo" Entity→Agent. Broader: general attribution of responsibility.                                               |
+#
+# CREATED: 2026-02-11
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/safeguarded_by
+name: safeguarded_by
+title: Safeguarded By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  safeguarded_by:
+    slot_uri: hc:safeguardedBy
+    description: >-
+      Identifies the custodian or organization that protects, sustains, or
+      ensures the viability of an intangible heritage form through measures
+      such as identification, documentation, research, preservation,
+      promotion, or transmission through education.
+    alt_descriptions:
+      nl: >-
+        Identificeert de beheerder of organisatie die een immaterieel
+        erfgoedvorm beschermt, in stand houdt of de levensvatbaarheid ervan
+        waarborgt door middel van identificatie, documentatie, onderzoek,
+        behoud, promotie of overdracht via educatie.
+      de: >-
+        Identifiziert den Verwalter oder die Organisation, die eine
+        immaterielle Kulturerbeform schützt, aufrechterhält oder deren
+        Lebensfähigkeit durch Identifikation, Dokumentation, Forschung,
+        Bewahrung, Förderung oder Vermittlung durch Bildung sicherstellt.
+      fr: >-
+        Identifie le dépositaire ou l'organisation qui protège, maintient ou
+        assure la viabilité d'une forme de patrimoine immatériel par
+        l'identification, la documentation, la recherche, la préservation,
+        la promotion ou la transmission par l'éducation.
+      ar: >-
+        يحدد الجهة الراعية أو المنظمة التي تحمي أو تحافظ على أو تضمن
+        استمرارية شكل من أشكال التراث غير المادي من خلال التعريف والتوثيق
+        والبحث والحفظ والترويج أو النقل عبر التعليم.
+      id: >-
+        Mengidentifikasi lembaga atau organisasi yang melindungi, melestarikan,
+        atau menjamin keberlangsungan suatu bentuk warisan budaya takbenda
+        melalui identifikasi, dokumentasi, penelitian, pelestarian, promosi,
+        atau transmisi melalui pendidikan.
+      zh: >-
+        标识通过识别、记录、研究、保护、推广或教育传承等措施来保护、维持或
+        确保非物质文化遗产形式存续的保管机构或组织。
+      es: >-
+        Identifica al custodio u organización que protege, sostiene o asegura
+        la viabilidad de una forma de patrimonio inmaterial a través de la
+        identificación, documentación, investigación, preservación, promoción
+        o transmisión mediante la educación.
+    structured_aliases:
+      - literal_form: geborgd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geschützt durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: sauvegardé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: محفوظ بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dijaga oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由…保护
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: salvaguardado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - rico:hasOrHadManager  # RiC-O_1-1.rdf:6925-6962 - "has or had manager" RecordResource/Instantiation→Agent
+      - prov:wasAttributedTo  # prov.ttl:1082-1094 - "wasAttributedTo" Entity→Agent
+    related_mappings:
+      - crm:P109i_is_current_or_former_curator_of  # CIDOC:3654-3665 - "is current or former curator of" Actor→CuratedHolding
+      - crm:P49_has_former_or_current_keeper  # CIDOC:2383-2397 - "has former or current keeper" PhysicalThing→Actor
+      - schema:maintainer  # schemaorg.owl:25330-25348 - "maintainer" CreativeWork→Person/Organization
+      - rico:hasOrHadHolder  # RiC-O_1-1.rdf:6436-6473 - "has or had holder" RecordResource/Instantiation→Agent
+    aliases:
+      - safeguarding_measure
+      - current_keeper
+      - record_holder_note
+    examples:
+      - value: Stichting Amsterdam Gay Pride
+        description: Safeguards Pride Amsterdam as an intangible heritage event.
+      - value: Bakkerij van Maanen
+        description: Safeguards traditional Dutch baking techniques as intangible heritage.
+    annotations:
+      inverse_slot: safeguards
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Links an IntangibleHeritageForm to the Custodian entities that preserve
+        it. Custodians with institution_type "I" (Intangible Heritage Group)
+        are typical safeguarders.
+      - >-
+        Inverse of the safeguards slot. If HeritageForm is safeguarded_by
+        Custodian, then Custodian safeguards HeritageForm.

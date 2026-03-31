@@ -1,0 +1,138 @@
+# ==============================================================================
+# LinkML Slot Definition: identify_as
+# ==============================================================================
+# The emic perspective of a person, group, or entity, representing the
+# internal self-definition or classification meaningful to the subject itself.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                              |
+# |---------------|-----------------------|-------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:pronouns`     | schemaorg.owl:31391-31396| narrow  | "A short string listing or         |
+# |               |                       |                         |         | describing pronouns for a person." |
+# |               |                       |                         |         | Pronouns are one specific form of  |
+# |               |                       |                         |         | emic self-identification.          |
+#
+# CREATED: 2026-02-04
+# UPDATED: 2026-02-08 — Broadened from pronouns to emic self-identification;
+#   synced alt_descriptions; demoted schema:pronouns exact→narrow; removed
+#   foaf:name related mapping; capitalized structured_aliases; cleaned prefixes.
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/identify_as
+name: identify_as
+title: Identify As
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  identify_as:
+    slot_uri: hc:identifyAs
+    description: >-
+      The emic perspective of a person, group, or entity, representing the
+      internal self-definition or classification that is meaningful to the
+      subject itself.
+    alt_descriptions:
+      nl: >-
+        Het emische perspectief van een persoon, groep of entiteit, dat de
+        interne zelfdefinitie of classificatie vertegenwoordigt die voor het
+        subject zelf betekenisvol is.
+      de: >-
+        Die emische Perspektive einer Person, Gruppe oder Entität, die die
+        interne Selbstdefinition oder Klassifikation darstellt, die für das
+        Subjekt selbst bedeutsam ist.
+      fr: >-
+        La perspective émique d'une personne, d'un groupe ou d'une entité,
+        représentant l'auto-définition ou la classification interne qui est
+        significative pour le sujet lui-même.
+      ar: >-
+        المنظور الإيمي لشخص أو مجموعة أو كيان، يمثل التعريف الذاتي الداخلي
+        أو التصنيف الذي يكون ذا معنى للموضوع نفسه.
+      id: >-
+        Perspektif emik dari seseorang, kelompok, atau entitas, yang mewakili
+        definisi diri atau klasifikasi internal yang bermakna bagi subjek itu
+        sendiri.
+      zh: >-
+        个人、群体或实体的主位视角，代表对主体自身有意义的内部自我定义或分类。
+      es: >-
+        La perspectiva émica de una persona, grupo o entidad, que representa
+        la autodefinición o clasificación interna que es significativa para
+        el propio sujeto.
+    structured_aliases:
+      - literal_form: Zelfidentificatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Selbstidentifikation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Auto-identification
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تعريف ذاتي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Identifikasi Diri
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 自我认同
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Autoidentificación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    narrow_mappings:
+      - schema:pronouns  # schemaorg.owl:31391-31396 — "A short string listing or describing pronouns for a person." Pronouns are one specific form of emic self-identification.
+    aliases:
+      - is_or_was_pronoun
+      - motivation_type_id
+    comments:
+      - >-
+        EMIC PERSPECTIVE: This slot captures how an entity defines itself from
+        the inside — the subject is the authority on their own identity. This
+        contrasts with identified_as, which captures etic (outsider)
+        classification.
+      - >-
+        SELF-AUTHORITY: As Schema.org notes for pronouns, "the person concerned
+        is the best authority as pronouns are a critical part of personal
+        identity and expression."
+      - >-
+        SCOPE: Emic self-identification encompasses pronoun preferences (e.g.,
+        she/her, they/them, ze/zir), cultural identity (e.g., "indigenous
+        peoples of the Pacific Northwest"), institutional self-description
+        (e.g., "community archive"), religious or spiritual identity, and any
+        other form of self-classification.
+      - >-
+        LINGUISTIC DIVERSITY: Many languages use gender-neutral pronouns by
+        default (e.g., Malay/Indonesian "dia", Finnish "hän", Turkish "o",
+        Hungarian "ő", Persian "او"). In these languages, pronouns do not
+        indicate gender identity.
+      - >-
+        HISTORICAL RECORDS: Historical sources may not have self-identification
+        as a concept. Leave empty rather than assuming.
+      - >-
+        PRIVACY: This field may be left empty by choice.
+    examples:
+      - value: she/her
+        description: Feminine pronouns (English)
+      - value: they/them
+        description: Gender-neutral singular they (English)
+      - value: ze/zir
+        description: Neopronoun set (English)
+      - value: dia
+        description: Gender-neutral by default (Malay/Indonesian)
+      - value: indigenous peoples of the Pacific Northwest
+        description: Cultural self-identification of a community
+      - value: community archive
+        description: Institutional self-description
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.7
+      specificity_rationale: Emic self-identification for persons, groups, or entities.

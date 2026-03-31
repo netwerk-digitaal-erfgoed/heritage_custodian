@@ -1,0 +1,121 @@
+id: https://nde.nl/ontology/hc/class/ArchiveAssociation
+name: ArchiveAssociation
+title: Archive Association Type (Heritage Society)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/focus_on
+  - ../slots/has_label
+classes:
+  ArchiveAssociation:
+    is_a: HeritageSocietyType
+    class_uri: hc:ArchiveAssociation
+    description: >-
+      Membership organization that supports archival institutions through
+      advocacy, fundraising, volunteer programs, and public engagement,
+      distinct from the archives themselves.
+    alt_descriptions:
+      nl: >-
+        Ledenorganisatie die archiefinstellingen ondersteunt door belangenbehartiging,
+        fondsenwerving, vrijwilligersprogramma's en publieksbetrokkenheid,
+        onderscheiden van de archieven zelf.
+      de: >-
+        Mitgliedsorganisation, die Archivinstitutionen durch Interessenvertretung,
+        Fundraising, Freiwilligenprogramme und Offentlichkeitsarbeit unterstutzt,
+        unterschieden von den Archiven selbst.
+      fr: >-
+        Organisation de membres qui soutient les institutions d'archives par
+        le plaidoyer, la collecte de fonds, les programmes de benevoles et
+        l'engagement public, distincte des archives elles-mêmes.
+      es: >-
+        Organizacion de miembros que apoya a las instituciones de archivos
+        a traves de la incidencia, recaudacion de fondos, programas de
+        voluntarios y participacion publica, distinta de los archivos mismos.
+      ar: >-
+        منظمة عضوية تدعم المؤسسات الأرشيفية من خلال الدعوة وجمع التبرعات
+        وبرامج التطوع والمشاركة العامة، ومتميزة عن الأرشيفات نفسها.
+      id: >-
+        Organisasi keanggotaan yang mendukung lembaga arsip melalui advokasi,
+        penggalangan dana, program sukarelawan, dan keterlibatan publik,
+        berbeda dari arsip itu sendiri.
+      zh: >-
+        通过倡导、筹款、志愿者计划和公众参与支持档案机构的会员组织，
+        与档案本身不同。
+    structured_aliases:
+    - literal_form: archiefvereniging
+      in_language: nl
+    - literal_form: Archivverein
+      in_language: de
+    - literal_form: association des amis des archives
+      in_language: fr
+    - literal_form: asociacion de archivos
+      in_language: es
+    - literal_form: جمعية الأرشيف
+      in_language: ar
+    - literal_form: asosiasi arsip
+      in_language: id
+    - literal_form: 档案协会
+      in_language: zh
+    close_mappings:
+    - schema:Organization
+    - schema:NGO
+    - rico:CorporateBody
+    related_mappings:
+    - wd:Q130427366
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_type
+    - has_score
+    - identified_by
+    - focus_on
+    - has_label
+    slot_usage:
+      focus_on:
+        range: ArchiveOrganizationType
+        required: true
+      identified_by:
+        pattern: ^Q[0-9]+$
+      has_type:
+        equals_string: "hc:HeritageSocietyType"
+    comments:
+    - HERITAGE SOCIETY type - support organization, NOT an archive itself
+    - Primary type is S (COLLECTING_SOCIETY), NOT A (ARCHIVE)
+    - Membership-based volunteer organizations supporting archives
+    - No corresponding RecordSetType - these don't hold archival records
+    see_also:
+    - HeritageSocietyType
+    - ArchiveOrganizationType
+    examples:
+    - value:
+        has_type: hc:HeritageSocietyType
+        has_label: "Friends of the National Archives"
+        focus_on: hc:NationalArchive
+        identified_by: Q130427366
+      description: Friends of archives organization
+    keywords:
+    - archive association
+    - friends of archives
+    - heritage society
+    - advocacy
+    - fundraising
+    - volunteer organization
+    notes:
+      - |
+        Preserved from prior description (commit 1fe1d1ad):
+
+        "Booster, history, and heritage societies that support archival institutions\nthrough advocacy, fundraising, volunteer programs, and public engagement.\n\n**Wikidata**: Q130427366\n\n**IMPORTANT: This is a HeritageSocietyType, NOT an ArchiveOrganizationType**\n\nArchive associations are HERITAGE SOCIETIES (membership organizations) that \nsupport archives, not archives themselves. The key distinction:\n- **ArchiveOrganizationType**: Actual archive institutions holding records\n- **HeritageSocietyType (this class)**: Volunteer/membership organizations supporting archives\n\n**Scope**:\nArchive associations (Archivvereine) provide:\n- Advocacy for archival institutions\n- Fundraising and donor cultivation\n- Volunteer recruitment and coordination\n- Public programming and outreach\n- Membership programs\n- Publication of newsletters and journals\n- Support for acquisitions and preservation\n\n**Organizational Role**:\nThese are typically:\n- \"Friends of the Archives\" organizations\n\
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to archive support organizations
+      custodian_types: "['*']"

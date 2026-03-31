@@ -1,0 +1,91 @@
+id: https://nde.nl/ontology/hc/parsimony/class/Observation
+name: Observation
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  pico: https://personsincontext.org/model#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/has_note_literal
+  - ../slots/attested_in
+  - ../slots/expressed_in
+  - ../slots/functions_as
+  - ../slots/situated_in_time
+  - ../slots/indicates
+  - ../slots/realized_through
+  - ../slots/typed_as
+classes:
+  Observation:
+    class_uri: prov:Entity
+    description: >-
+      Evidence-bearing observation anchored in a source that directly indicates
+      semantic entities such as custodial bodies, places, holdings, legal
+      statuses, sources, or encompassing bodies.
+
+      An observation captures what a source says and points to what it is
+      evidence about via the `indicates` predicate. This replaces the former
+      intermediate Reconstruction class, making the evidence chain flatter:
+      Activity --[yields]--> Observation --[indicates]--> target entity.
+
+      `functions_as` lets an observation preserve the role under which someone
+      is described in a source without reducing that role to a plain label
+      string. `realized_through` links the observation to the activity or
+      workflow that produced it. `typed_as` classifies the kind of observation.
+    narrow_mappings:
+      - pico:PersonObservation
+      - hc:CustodianObservation
+    close_mappings:
+      - crm:E73_Information_Object
+    examples:
+      - value:
+          has_label_literal:
+            - Registry entry naming the archive
+          attested_in:
+            - SourceResource:registry_page
+          situated_in_time:
+            - 1998-01-01
+          indicates:
+            - CustodialEntity:regional_archive
+          realized_through:
+            - Activity:reconciliation_workflow
+        description: >-
+          Observation from a registry page that indicates a custodial entity,
+          produced through a reconciliation workflow.
+      - value:
+          has_label_literal:
+            - Staff directory statement
+          functions_as:
+            - Classification:Conservator
+          attested_in:
+            - SourceResource:staff_directory
+          indicates:
+            - CustodialEntity:museum_x
+        description: >-
+          An observation that records the role named in a source document and
+          indicates which custodial entity it is evidence about.
+      - value:
+          has_label_literal:
+            - Legal registration record
+          attested_in:
+            - SourceResource:chamber_of_commerce
+          indicates:
+            - LegalStatus:foundation_status
+          typed_as:
+            - Classification:legal_evidence
+        description: >-
+          An observation from a legal source that indicates the legal status
+          of a heritage custodian.
+    slots:
+      - has_label_literal
+      - has_note_literal
+      - attested_in
+      - expressed_in
+      - functions_as
+      - situated_in_time
+      - indicates
+      - realized_through
+      - typed_as

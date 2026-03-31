@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: represent
+# ==============================================================================
+# Links an entity to what it stands for, symbolises, depicts, or acts on behalf
+# of — covering visual representation, symbolic meaning, and agency.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                  | File/Line              | Mapping | Notes                                                          |
+# |------------|---------------------------|------------------------|---------|------------------------------------------------------------|
+# | **CIDOC**  | `crm:P138_represents`     | CIDOC:4155-4169        | close   | VisualItem→CRMEntity. Visual representation incl. digitisation.|
+# | **EDM**    | `edm:isRepresentationOf`  | edm.owl:515-521        | related | InformationResource→Resource. SubProperty of P138_represents.  |
+# | **FOAF**   | `foaf:depicts`            | foaf.ttl:198-206       | related | Image→Thing. Visual depiction, narrower scope (images only).   |
+# | **CIDOC**  | `crm:P62_depicts`         | CIDOC:2649-2661        | related | PhysicalHumanMadeThing→CRMEntity. Shortcut of P138 path.      |
+# | **Schema** | `schema:about`            | schemaorg.owl:6247-6251| related | "The subject matter of an object." Broader: subject not repr.  |
+#
+# This slot spans multiple senses of "represent" (visual depiction, symbolic
+# meaning, acting on behalf of) which no single external property fully covers.
+# Using hc:represent as the slot_uri.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/represent
+name: represent
+title: Represent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  edm: http://www.europeana.eu/schemas/edm/
+  foaf: http://xmlns.com/foaf/0.1/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  represent:
+    slot_uri: hc:represent
+    description: >-
+      Links an entity to what it stands for, symbolises, depicts, or acts on
+      behalf of. Captures relationships where a heritage object, image, or
+      agent represents another entity, concept, group, or value — whether
+      through visual depiction, symbolic meaning, or formal agency.
+    alt_descriptions:
+      nl: >-
+        Koppelt een entiteit aan wat het voorstelt, symboliseert, afbeeldt of
+        vertegenwoordigt.
+      de: >-
+        Verknüpft eine Entität mit dem, was sie darstellt, symbolisiert,
+        abbildet oder vertritt.
+      fr: >-
+        Relie une entité à ce qu'elle représente, symbolise, dépeint ou pour
+        laquelle elle agit.
+      ar: >-
+        يربط كياناً بما يمثله أو يرمز إليه أو يصوره أو ينوب عنه.
+      id: >-
+        Menghubungkan suatu entitas dengan apa yang diwakili, dilambangkan,
+        digambarkan, atau diwakilkannya.
+      zh: >-
+        将实体与其所代表、象征、描绘或代理的对象关联起来。
+      es: >-
+        Vincula una entidad con lo que representa, simboliza, retrata o actúa
+        en nombre de.
+    structured_aliases:
+      - literal_form: vertegenwoordigen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: darstellen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: représenter
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يمثل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mewakili
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 代表
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: representar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - crm:P138_represents  # CIDOC:4155-4169 - VisualItem→CRMEntity, visual representation
+    related_mappings:
+      - edm:isRepresentationOf  # edm.owl:515-521 - InformationResource→Resource
+      - foaf:depicts  # foaf.ttl:198-206 - Image→Thing, visual depiction
+      - crm:P62_depicts  # CIDOC:2649-2661 - PhysicalHumanMadeThing→CRMEntity
+      - schema:about  # schemaorg.owl:6247-6251 - "The subject matter of an object"
+    aliases:
+      - represents_or_represented
+    examples:
+      - value: "Artist: Banksy"
+        description: >-
+          A gallery represents an artist for commercial and exhibition purposes.
+      - value: "Concept: Dutch Golden Age maritime trade"
+        description: >-
+          A painting symbolises or visually represents a historical concept.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This slot is intentionally broad, covering visual depiction (a painting
+        represents a scene), symbolic meaning (an emblem represents a value),
+        and formal agency (an institution represents an artist). For purely
+        visual depiction of physical objects, crm:P138_represents or
+        crm:P62_depicts may be more precise.
+      - >-
+        EDM's edm:isRepresentationOf is a subproperty of crm:P138_represents,
+        scoped to information resources representing cultural heritage objects
+        in the Europeana context.

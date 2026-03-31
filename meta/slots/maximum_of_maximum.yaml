@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: maximum_of_maximum
+# ==============================================================================
+# Upper bound value of a dimensional range (CIDOC-CRM E54 Dimension pattern).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                        | File/Line                          | Mapping | Notes                                                   |
+# |----------------|---------------------------------|------------------------------------|---------|----------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P90b_has_upper_value_limit`| CIDOC_CRM_v7.1.3.rdf:3135-3139    | slot_uri| "has upper value limit" E54→Literal, subProp of P90.     |
+# | **Schema.org** | `schema:maxValue`               | schemaorg.owl:25599-25615          | close   | "The upper value of some characteristic or property."    |
+# | **CIDOC-CRM**  | `crm:P90_has_value`             | CIDOC_CRM_v7.1.3.rdf:3122-3128    | broad   | General value property; P90b is subPropertyOf P90.       |
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-10 - Full polish: multilingual, clean description, header
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/maximum_of_maximum
+name: maximum_of_maximum
+title: Maximum of Maximum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  maximum_of_maximum:
+    slot_uri: crm:P90b_has_upper_value_limit
+    description: >-
+      Upper bound value of a range, following the CIDOC-CRM pattern for
+      dimensional ranges. Maps to P90b_has_upper_value_limit, which defines
+      the highest value that a dimension may have within an instance of
+      E54 Dimension. Named "maximum of maximum" to acknowledge that the
+      upper bound itself may have uncertainty.
+    alt_descriptions:
+      nl: >-
+        Bovengrenswaarde van een bereik, volgend op het CIDOC-CRM-patroon
+        voor dimensionale bereiken. Geeft de hoogste waarde aan die een
+        dimensie kan hebben.
+      de: >-
+        Oberer Grenzwert eines Bereichs, gemäß dem CIDOC-CRM-Muster für
+        dimensionale Bereiche. Definiert den höchsten Wert, den eine
+        Dimension haben kann.
+      fr: >-
+        Valeur de la limite supérieure d'une plage, suivant le modèle
+        CIDOC-CRM pour les plages dimensionnelles. Définit la valeur la
+        plus élevée qu'une dimension peut avoir.
+      ar: >-
+        قيمة الحد الأعلى لنطاق، وفقًا لنمط CIDOC-CRM للنطاقات البُعدية.
+        يحدد أعلى قيمة يمكن أن يكون عليها بُعد ما.
+      id: >-
+        Nilai batas atas dari suatu rentang, mengikuti pola CIDOC-CRM
+        untuk rentang dimensi. Mendefinisikan nilai tertinggi yang dapat
+        dimiliki suatu dimensi.
+      zh: >-
+        范围的上限值，遵循CIDOC-CRM维度范围模式。定义维度实例中可能具有的最高值。
+      es: >-
+        Valor del límite superior de un rango, siguiendo el patrón CIDOC-CRM
+        para rangos dimensionales. Define el valor más alto que una dimensión
+        puede tener.
+    structured_aliases:
+      - literal_form: Maximum van Maximum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Maximum des Maximums
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Maximum du Maximum
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الحد الأقصى للأقصى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Maksimum dari Maksimum
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 最大值中的最大值
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Máximo del Máximo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    multivalued: false
+    close_mappings:
+      - schema:maxValue  # schemaorg.owl:25599-25615 - "The upper value of some characteristic or property." DatatypeProperty on QuantitativeValue/MonetaryAmount.
+    broad_mappings:
+      - crm:P90_has_value  # CIDOC_CRM_v7.1.3.rdf:3122-3128 - General value property; P90b is subPropertyOf P90.
+    aliases:
+      - max_group_size
+      - max_light_lux_slot
+      - max_likelihood_score
+      - maximum_amount
+      - maximal_of_maximal
+      - setpoint_max
+    examples:
+      - value: "500000"
+        description: Upper bound of €500K for grant range (works with minimum_of_minimum for complete range)
+      - value: "300"
+        description: Maximum lux level for light-sensitive artifacts
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.35
+      specificity_rationale: General utility slot for expressing upper bounds of any measured range.
+    comments:
+      - >-
+        Works with minimum_of_minimum (P90a) for complete range specification.
+      - >-
+        For grant funding ranges like "€100K–€500K":
+        minimum_of_minimum = 100000, maximum_of_maximum = 500000.
+      - >-
+        The slot_uri uses crm:P90b_has_upper_value_limit directly since the
+        semantics are equivalent. The redundant exact_mapping has been removed.
+      - Created from slot_fixes.yaml migration (2026-01-14).

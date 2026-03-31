@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: licensed_as
+# ==============================================================================
+# Legal license, permit, or certification under which something operates.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                | Mapping  | Notes                                                      |
+# |---------------|-----------------------------|--------------------------|----------|------------------------------------------------------------|
+# | **DOAP**      | `doap:license`              | doap.rdf:441-455         | close    | "URI of an RDF description of the license the software is distributed under." Software-specific. |
+# | **Schema.org**| `schema:license`            | schemaorg.owl:24781-24802| broad    | "A license document that applies to this content." CreativeWork domain. |
+# | **DCTerms**   | `dcterms:license`           | dcterms.rdf:1635-1661    | broad    | "A legal document giving official permission to do something with the resource." |
+# | **SPDX**      | `spdx:licenseDeclared`      | spdx2.owl:318-323        | related  | "The licensing that the creators of the software in the package have declared." |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/licensed_as
+name: licensed_as
+title: Licensed As
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  doap: http://usefulinc.com/ns/doap#
+  spdx: http://spdx.org/rdf/terms#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  licensed_as:
+    slot_uri: hc:licensedAs
+    description: >-
+      Specifies the particular legal license, permit, or certification under which a work, product, or professional operates or is distributed.
+    comments:
+      - "DOAP: license for software license information."
+      - "Use SPDX identifiers when possible: GPL-3.0 (GNU General Public License v3), MIT (MIT License), Apache-2.0 (Apache License 2.0), BSD-3-Clause (BSD 3-Clause), ECL-2.0 (Educational Community License), Proprietary (Commercial/proprietary license)."
+    alt_descriptions:
+      nl: >-
+        Specificeert de specifieke wettelijke licentie, vergunning of certificering waaronder een werk, product of professional opereert of wordt gedistribueerd.
+      de: >-
+        Gibt die bestimmte rechtliche Lizenz, Genehmigung oder Zertifizierung an, unter der ein Werk, Produkt oder Fachmann tätig ist oder vertrieben wird.
+      fr: >-
+        Spécifie la licence légale, le permis ou la certification particulière sous laquelle une œuvre, un produit ou un professionnel opère ou est distribué.
+      ar: >-
+        يحدد الترخيص القانوني أو التصريح أو الشهادة المحددة التي يعمل أو يُوزع بموجبها عمل أو منتج أو محترف.
+      id: >-
+        Menentukan lisensi hukum, izin, atau sertifikasi tertentu di mana suatu karya, produk, atau profesional beroperasi atau didistribusikan.
+      zh: >-
+        指定作品、产品或专业人员在其下运营或分发的特定法律许可、许可证或认证。
+      es: >-
+        Especifica la licencia legal, permiso o certificación particular bajo la cual una obra, producto o profesional opera o se distribuye.
+    structured_aliases:
+      - literal_form: Licentie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Lizenz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Licence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ترخيص
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Lisensi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 许可证
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Licencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - license
+      - is_licensed_content
+    close_mappings:
+      - doap:license  # doap.rdf:441-455 - "URI of an RDF description of the license the software is distributed under." Software-specific.
+    broad_mappings:
+      - schema:license  # schemaorg.owl:24781-24802 - "A license document that applies to this content." CreativeWork domain.
+      - dcterms:license  # dcterms.rdf:1635-1661 - "A legal document giving official permission to do something with the resource."
+    related_mappings:
+      - spdx:licenseDeclared  # spdx2.owl:318-323 - "The licensing that the creators of the software in the package have declared."

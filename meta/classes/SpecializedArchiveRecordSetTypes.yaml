@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/SpecializedArchiveRecordSetTypes
+name: SpecializedArchiveRecordSetTypes
+title: SpecializedArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./SpecializedArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  SpecializedCollectionFonds:
+    is_a: SpecializedArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of domain-focused documentation,
+      arranged to preserve thematic institutional context and source continuity.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van domeingerichte documentatie,
+        geordend met behoud van thematische institutionele context en broncontinuiteit.
+      de: >-
+        Provenienzbasierte Aggregation fachbezogener Dokumentation,
+        geordnet zur Wahrung thematischer institutioneller Kontexte und Quellenkontinuitaet.
+      fr: >-
+        Agregation fondee sur la provenance de documentation orientee domaine,
+        organisee pour conserver le contexte institutionnel thematique et la continuite des sources.
+      es: >-
+        Agregacion basada en procedencia de documentacion centrada en dominio,
+        organizada para preservar contexto institucional tematico y continuidad de fuentes.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق موجهة إلى مجال تخصصي، منظم للحفاظ على
+        السياق المؤسسي الموضوعي واستمرارية المصادر.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi berfokus domain,
+        disusun untuk menjaga konteks institusional tematik dan kesinambungan sumber.
+      zh: >-
+        基于来源原则聚合领域导向文献，并以保持主题性机构语境与来源连续性为组织目标。
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    keywords:
+    - specialized fonds
+    - subject collection
+    - thematic fonds
+    structured_aliases:
+    - literal_form: gespecialiseerd fonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Spezialfonds
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds spécialisé
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo especializado tematico
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: صندوق تجميعي متخصص
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds arsip spesialis tematik
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 专题领域文献全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: The class remains intended for domain-specialized archival aggregations.
+    - Specialized thematic context is retained without breaking provenance continuity.
+    - 'Preserved from prior description: Record set organized around subject-specialized materials following the fonds principle for thematic or domain-specific archival aggregations.'
+    examples:
+    - value:
+        has_type: hc:SpecializedCollectionFonds
+        has_custodian: hc:SpecializedArchive
+        has_note: Domain dossiers, specialist reports, and themed institutional files.
+      description: Domain-focused documentation grouped by originating specialized institution.
+    see_also:
+    - SpecializedArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:SpecializedCollectionFonds
+      has_custodian:
+        equals_string: hc:SpecializedArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by SpecializedArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '["*"]'

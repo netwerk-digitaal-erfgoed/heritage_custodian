@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: deposited_by
+# ==============================================================================
+# Agent or entity responsible for placing materials into a repository.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                 | File/Line            | Mapping | Notes                                           |
+# |---------------|--------------------------|----------------------|---------|-------------------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo`   | prov.ttl:1082-1097   | close   | "Ascribing of an entity to an agent."           |
+# | **CIDOC-CRM** | `crm:P30i_custody_transferred_through` | CIDOC:1918-1929 | related | Transfer of custody event.              |
+#
+# NOTE: prov:wasAttributedTo is about general attribution, not specifically about
+# depositing into a repository. Our slot is more specific (deposit action).
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/deposited_by
+name: deposited_by
+title: Deposited By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  deposited_by:
+    slot_uri: hc:depositedBy
+    description: >-
+      To denote the specific agent or entity responsible for placing an object, 
+      document, or dataset into a repository, archive, or system for safekeeping 
+      or preservation.
+    alt_descriptions:
+      nl: >-
+        Het aanduiden van de specifieke agent of entiteit die verantwoordelijk is voor 
+        het plaatsen van een object, document of dataset in een repository, archief 
+        of systeem voor bewaring of conservering.
+      de: >-
+        Die Bezeichnung des spezifischen Akteurs oder der Entität, die für die 
+        Hinterlegung eines Objekts, Dokuments oder Datensatzes in einem Repository, 
+        Archiv oder System zur Aufbewahrung oder Erhaltung verantwortlich ist.
+      fr: >-
+        Désigner l'agent ou l'entité spécifique responsable du dépôt d'un objet, 
+        d'un document ou d'un jeu de données dans un dépôt, des archives ou un 
+        système pour la conservation ou la préservation.
+      ar: >-
+        للدلالة على الوكيل أو الكيان المحدد المسؤول عن وضع كائن أو وثيقة 
+        أو مجموعة بيانات في مستودع أو أرشيف أو نظام للحفظ أو الصون.
+      id: >-
+        Untuk menunjukkan agen atau entitas tertentu yang bertanggung jawab untuk 
+        menempatkan objek, dokumen, atau kumpulan data ke dalam repositori, arsip, 
+        atau sistem untuk penyimpanan atau pelestarian.
+      zh: >-
+        表示负责将物品、文档或数据集存放到存储库、档案馆或系统中以供保管或保存的特定代理人或实体。
+      es: >-
+        Denotar el agente o entidad específico responsable de depositar un objeto, 
+        documento o conjunto de datos en un repositorio, archivo o sistema para 
+        su custodia o preservación.
+    structured_aliases:
+      - literal_form: gedeponeerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hinterlegt von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: déposé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أودع من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didepositkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 存放者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: depositado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - is_or_was_deposited_by
+    close_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1097 - general attribution
+    related_mappings:
+      - crm:P30i_custody_transferred_through  # CIDOC:1918-1929 - custody transfer event
+    comments:
+      - |
+        **USAGE**: Use to identify the organization, person, or agent that formally 
+        deposited materials (collections, records, datasets) into an archive or repository.
+      - |
+        **DISTINCTION**: This differs from creator (who made the materials) and donor 
+        (who may have gifted but not directly deposited).
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Organization/RoyalLibrary"
+        description: "Materials deposited by the Royal Library"

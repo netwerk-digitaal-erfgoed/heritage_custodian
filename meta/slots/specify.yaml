@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: specify
+# ==============================================================================
+# Clear and detailed statement of facts, requirements, or instructions
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:hasCredential`| schemaorg.owl:19949-19971  | related | "A credential awarded to the Person or Organization." Domain: Organization/Person. Only covers one narrow use case (credentials). |
+#
+# REMOVED:
+# - rico:specifies — NOT A DEFINED PROPERTY in RiC-O (verified: no ObjectProperty
+#   or DatatypeProperty with URI #specifies in RiC-O_1-1.rdf). Was used as both
+#   slot_uri and exact_mapping. Reverted slot_uri to hc:specify.
+#
+# NOTE: No standard ontology property directly matches the general concept of
+# "specifying facts/requirements/instructions." This is a domain-specific slot.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/specify
+name: specify
+title: Specify
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  specify:
+    slot_uri: hc:specify
+    description: >-
+      To state a fact, requirement, or instruction clearly and in detail, leaving
+      no room for doubt or ambiguity.
+    alt_descriptions:
+      nl: >-
+        Een feit, vereiste of instructie duidelijk en gedetailleerd vermelden, zonder
+        ruimte voor twijfel of dubbelzinnigheid.
+      de: >-
+        Eine Tatsache, Anforderung oder Anweisung klar und detailliert darlegen,
+        sodass kein Raum für Zweifel oder Mehrdeutigkeit bleibt.
+      fr: >-
+        Énoncer un fait, une exigence ou une instruction de manière claire et
+        détaillée, sans laisser place au doute ou à l'ambiguïté.
+      ar: >-
+        ذكر حقيقة أو متطلب أو تعليمات بوضوح وتفصيل، دون ترك مجال للشك أو الغموض.
+      id: >-
+        Menyatakan fakta, persyaratan, atau instruksi secara jelas dan terperinci,
+        tanpa menyisakan ruang untuk keraguan atau ambiguitas.
+      zh: >-
+        清晰详细地陈述事实、要求或指示，不留任何疑问或歧义的余地。
+      es: >-
+        Declarar un hecho, requisito o instrucción de manera clara y detallada, sin
+        dejar lugar a dudas o ambigüedades.
+    structured_aliases:
+      - literal_form: Specificatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Spezifikation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Spécification
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تحديد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Spesifikasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 规范
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Especificación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    multivalued: true
+    required: false
+    aliases:
+      - specifies_or_specified
+      - light_max_lux
+    related_mappings:
+      - schema:hasCredential  # schemaorg.owl:19949-19971 - "A credential awarded to the Person or Organization." Domain: Organization/Person. Covers only the credential use case of specifying.
+    comments:
+      - "Used for: financial specifications (net assets, revenues, expenses), education history and credentials, quantitative measurements, and formal specifications and criteria."
+    annotations:
+      custodian_types: '["*"]'

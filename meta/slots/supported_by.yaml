@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: supported_by
+# ==============================================================================
+# Identifies who or what provides assistance, funding, backing, or compatibility.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                      | Mapping | Notes                                                        |
+# |---------------|---------------------------|--------------------------------|---------|--------------------------------------------------------------|
+# | **Schema.org**| `schema:sponsor`          | schemaorg.owl:36077-36100      | narrow  | "Supports through pledge/financial contribution." Narrower.  |
+# | **Schema.org**| `schema:funder`           | schemaorg.owl:18743-18775      | narrow  | "Supports through financial contribution." SubProp of sponsor|
+# | **Schema.org**| `schema:contributor`      | schemaorg.owl:12908-12930      | related | "Secondary contributor to CreativeWork/Event." ≠ support.    |
+# | **DCTerms**   | `dcterms:contributor`     | dcterms.rdf:1011-1032          | related | "Entity responsible for contributions." Contributing ≠ support|
+# | **PROV-O**    | `prov:wasAttributedTo`    | prov.ttl:1082-1098             | related | "Ascribing entity to agent." Attribution ≠ support.          |
+#
+# DEMOTED MAPPINGS:
+#   - schema:contributor (was exact → related) — "secondary contributor to
+#     CreativeWork/Event" is about creative/intellectual contribution, not about
+#     providing assistance, funding, backing, or compatibility.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/supported_by
+name: supported_by
+title: Supported By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  supported_by:
+    description: >-
+      Identifies the person, organization, evidence, or technology that provides
+      assistance, funding, backing, or compatibility for a resource, claim, or
+      system.
+    alt_descriptions:
+      nl: >-
+        Identificeert de persoon, organisatie, het bewijs of de technologie die
+        ondersteuning, financiering, steun of compatibiliteit biedt voor een
+        bron, bewering of systeem.
+      de: >-
+        Identifiziert die Person, Organisation, den Nachweis oder die Technologie,
+        die Unterstützung, Finanzierung, Rückhalt oder Kompatibilität für eine
+        Ressource, Behauptung oder ein System bereitstellt.
+      fr: >-
+        Identifie la personne, l'organisation, la preuve ou la technologie qui
+        fournit une assistance, un financement, un soutien ou une compatibilité
+        pour une ressource, une affirmation ou un système.
+      ar: >-
+        يحدد الشخص أو المنظمة أو الدليل أو التقنية التي توفر المساعدة أو التمويل
+        أو الدعم أو التوافق لمورد أو ادعاء أو نظام.
+      id: >-
+        Mengidentifikasi orang, organisasi, bukti, atau teknologi yang memberikan
+        bantuan, pendanaan, dukungan, atau kompatibilitas untuk suatu sumber daya,
+        klaim, atau sistem.
+      zh: >-
+        标识为资源、主张或系统提供协助、资金、支持或兼容性的个人、组织、证据或技术。
+      es: >-
+        Identifica a la persona, organización, evidencia o tecnología que
+        proporciona asistencia, financiación, respaldo o compatibilidad para un
+        recurso, afirmación o sistema.
+    structured_aliases:
+      - literal_form: Ondersteuning
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Unterstützung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Soutien
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: دعم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Dukungan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 支持
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Apoyo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    slot_uri: hc:supportedBy
+    annotations:
+      custodian_types: '["*"]'
+    narrow_mappings:
+      - schema:sponsor  # schemaorg.owl:36077-36100 — "Supports through pledge, promise, or financial contribution." Financial/pledge support is a specific type of general support.
+      - schema:funder  # schemaorg.owl:18743-18775 — "Supports through financial contribution." SubPropertyOf sponsor. Even narrower.
+    related_mappings:
+      - schema:contributor  # schemaorg.owl:12908-12930 — "A secondary contributor to the CreativeWork or Event." Contributing content ≠ providing support/funding/backing.
+      - dcterms:contributor  # dcterms.rdf:1011-1032 — "An entity responsible for making contributions to the resource." Contributing ≠ supporting.
+      - prov:wasAttributedTo  # prov.ttl:1082-1098 — "Ascribing of an entity to an agent." Attribution ≠ support.
+    aliases:
+      - contributor

@@ -1,0 +1,101 @@
+id: https://nde.nl/ontology/hc/classes/UpdateFrequency
+name: UpdateFrequency
+title: UpdateFrequency
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  schema: http://schema.org/
+  time: http://www.w3.org/2006/time#
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+  - ../slots/has_quantity
+  - ../slots/has_time_interval
+# default_range: string
+classes:
+  UpdateFrequency:
+    description: >-
+      Cadence definition indicating how often data, signals, or derived values
+      are refreshed, either by interval or by trigger.
+    alt_descriptions:
+      nl: Frequentiedefinitie die aangeeft hoe vaak gegevens, signalen of afgeleide waarden worden ververst, via interval of trigger.
+      de: Frequenzdefinition, die angibt, wie oft Daten, Signale oder abgeleitete Werte intervall- oder ereignisbasiert aktualisiert werden.
+      fr: Definition de cadence indiquant la frequence de mise a jour des donnees, signaux ou valeurs derivees, par intervalle ou declencheur.
+      es: Definicion de cadencia que indica con que frecuencia se actualizan datos, senales o valores derivados, por intervalo o disparador.
+      ar: تعريف وتيرة يوضح مدى تكرار تحديث البيانات أو الإشارات أو القيم المشتقة، بفاصل زمني أو بمحفز.
+      id: Definisi frekuensi yang menunjukkan seberapa sering data, sinyal, atau nilai turunan diperbarui, berbasis interval atau pemicu.
+      zh: 用于表示数据、信号或派生值刷新频率的定义，可按时间间隔或触发事件执行。
+    structured_aliases:
+    - literal_form: updatefrequentie
+      in_language: nl
+    - literal_form: Aktualisierungsfrequenz
+      in_language: de
+    - literal_form: frequence de mise a jour
+      in_language: fr
+    - literal_form: frecuencia de actualizacion
+      in_language: es
+    - literal_form: وتيرة التحديث
+      in_language: ar
+    - literal_form: frekuensi pembaruan
+      in_language: id
+    - literal_form: 更新频率
+      in_language: zh
+    keywords:
+    - periodic refresh
+    - event-driven update
+    - accrual periodicity
+    class_uri: dcterms:Frequency
+    exact_mappings:
+    - dcterms:Frequency
+    close_mappings:
+    - schema:Schedule
+    related_mappings:
+    - time:TemporalEntity
+    slots:
+    - has_quantity
+    - has_time_interval
+    slot_usage:
+      has_quantity:
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value: "has_quantity:\n  numeric_value: 5\n  has_measurement_unit:\n\
+            \    has_symbol: \"updates\"\n"
+      has_time_interval:
+        range: TimeInterval
+        inlined: true
+        examples:
+        - value: "has_time_interval:\n  duration_value: \"PT1M\"\n  duration_description:\
+            \ \"per minute\"\n"
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Update frequency applicable to all custodian types
+        with IoT or data systems.
+      custodian_types_primary: '*'
+      specificity_score: 0.35
+      specificity_rationale: Moderate specificity - relevant to custodians with digital/IoT
+        infrastructure.
+      mapping_predicate: dcat:frequency
+    examples:
+    - value: "UpdateFrequency:\n  frequency_description: \"Every 5 minutes\"\n  has_quantity:\n\
+        \    numeric_value: 5\n  has_time_interval:\n    duration_value: \"\
+        PT1M\"\n    duration_description: \"minute\"\n"
+    - value: "UpdateFrequency:\n  frequency_description: \"Hourly\"\n  has_quantity:\n\
+        \    numeric_value: 1\n  has_time_interval:\n    duration_value: \"\
+        PT1H\"\n    duration_description: \"hour\"\n"
+    - value: "UpdateFrequency:\n  frequency_description: \"On proximity trigger\"\n\
+        \  is_event_driven: true\n  trigger_type: \"proximity\"\n"
+    - value: "UpdateFrequency:\n  frequency_description: \"Real-time\"\n  is_event_driven:\
+        \ true\n  trigger_type: \"continuous\"\n"
+    comments:
+    - Created from slot_fixes.yaml migration (2026-01-14)
+    - Replaces simple string update_frequency slot
+    - Supports both time-based and event-driven frequencies
+    - Uses Dublin Core Frequency class for semantic alignment

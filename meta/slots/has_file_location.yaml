@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: has_file_location
+# ==============================================================================
+# To specify the path or URL where a digital file is stored.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property            | File/Line                | Mapping | Notes                                          |
+# |----------------|---------------------|--------------------------|---------|-------------------------------------------------|
+# | **Schema.org** | `schema:contentUrl` | schemaorg.owl:12864-12867| close   | URL of actual bytes of MediaObject (narrower). |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_file_location
+name: has_file_location
+title: has_file_location
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_file_location:
+    name: has_file_location
+    title: has_file_location
+    slot_uri: hc:hasFileLocation
+    description: >-
+      To specify the specific path, directory, or network address (such as a
+      URL or URI) where a digital file is stored and from which it can be
+      retrieved.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van het specifieke pad, de map of het netwerkadres
+        (zoals een URL of URI) waar een digitaal bestand is opgeslagen en van
+        waaruit het kan worden opgehaald.
+      de: >-
+        Angabe des spezifischen Pfads, Verzeichnisses oder der Netzwerkadresse
+        (wie eine URL oder URI), unter der eine digitale Datei gespeichert ist
+        und von der sie abgerufen werden kann.
+      fr: >-
+        Spécifier le chemin, le répertoire ou l'adresse réseau spécifique
+        (tel qu'une URL ou URI) où un fichier numérique est stocké et à
+        partir duquel il peut être récupéré.
+      ar: >-
+        تحديد المسار أو الدليل أو عنوان الشبكة المحدد (مثل URL أو URI) حيث
+        يتم تخزين ملف رقمي ومن حيث يمكن استرجاعه.
+      id: >-
+        Menentukan jalur, direktori, atau alamat jaringan spesifik (seperti
+        URL atau URI) tempat file digital disimpan dan dari mana file tersebut
+        dapat diambil.
+      zh: >-
+        指定数字文件存储位置的具体路径、目录或网络地址（如URL或URI），以便从中检索该文件。
+      es: >-
+        Especificar la ruta, directorio o dirección de red específica (como una
+        URL o URI) donde se almacena un archivo digital y desde donde se puede
+        recuperar.
+    structured_aliases:
+      - literal_form: heeft bestandslocatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Dateispeicherort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un emplacement de fichier
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له موقع ملف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki lokasi file
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有文件位置
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene ubicación de archivo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_file_location
+      - has_or_had_file_path
+      - has_file_path
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:contentUrl  # schemaorg.owl:12864-12867 — "Actual bytes of the media object, for example the image file or video file." Domain: MediaObject. Narrower: specifically about MediaObject content URLs.
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_file_location for conciseness.
+      - |
+        **ONTOLOGY NOTE**: `schema:contentUrl` (schemaorg.owl:12864-12867) specifically
+        provides the URL for the actual bytes of a MediaObject. This slot is broader —
+        it covers any digital file location including paths, directories, and URIs for
+        non-media files.

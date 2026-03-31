@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: consume
+# ==============================================================================
+# The quantity of a resource, material, or service that has been used up.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line              | Mapping  | Notes                                                             |
+# |---------------|-----------------------|------------------------|----------|-------------------------------------------------------------------|
+# | **PROV-O**    | `prov:used`           | prov.ttl:1039-1053     | related  | "A prov:Entity that was used by this Activity." Links to WHAT     |
+# |               |                       |                        |          | entity was used (ObjectProperty), not HOW MUCH was consumed.      |
+# | **DQV**       | `dqv:value`           | dqv.ttl:128-132        | related  | "Refers to values computed by metric." Domain: QualityMeasurement.|
+# | **PROV-O**    | `prov:value`          | prov.ttl:1055-1064     | broad    | "A direct representation of an entity." Very generic.             |
+#
+# NO EXACT/CLOSE MATCH: Standard ontologies do not define a property for
+# "quantity of resources consumed." schema:amount (schemaorg.owl:7894-7920)
+# is exclusively about monetary amounts (Domain: financial entities).
+# prov:used links to the entity consumed, not the amount. The slot captures
+# an integer quantity of usage (e.g. LLM token counts), which is domain-specific.
+#
+# REMOVED: schema:amount — "The amount of money." Financial domain only.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/consume
+name: consume
+title: Consume
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dqv: http://www.w3.org/ns/dqv#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  consume:
+    slot_uri: hc:consume
+    description: >-
+      The quantity of a resource, material, product, or service that has been
+      used up, expended, or ingested, completely or partially.
+    comments:
+      - >-
+        Typical uses include token consumption tracking for LLM APIs, resource
+        usage metrics, and general consumption measurement.
+    alt_descriptions:
+      nl: >-
+        De hoeveelheid van een hulpbron, materiaal, product of dienst die
+        geheel of gedeeltelijk is verbruikt, besteed of ingenomen.
+      de: >-
+        Die Menge einer Ressource, eines Materials, Produkts oder einer
+        Dienstleistung, die ganz oder teilweise verbraucht, aufgewendet
+        oder aufgenommen wurde.
+      fr: >-
+        La quantité d'une ressource, d'un matériau, d'un produit ou d'un
+        service qui a été consommée, dépensée ou ingérée, en totalité ou
+        en partie.
+      ar: >-
+        كمية المورد أو المادة أو المنتج أو الخدمة التي تم استهلاكها أو
+        إنفاقها أو تناولها، كلياً أو جزئياً.
+      id: >-
+        Jumlah sumber daya, bahan, produk, atau layanan yang telah digunakan,
+        dikeluarkan, atau dikonsumsi, seluruhnya atau sebagian.
+      zh: >-
+        已全部或部分使用、消耗或摄取的资源、材料、产品或服务的数量。
+      es: >-
+        La cantidad de un recurso, material, producto o servicio que ha sido
+        consumida, gastada o ingerida, total o parcialmente.
+    structured_aliases:
+      - literal_form: Verbruik
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Verbrauch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Consommation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استهلاك
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Konsumsi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 消耗量
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Consumo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: integer
+    related_mappings:
+      - prov:used              # prov.ttl:1039-1053 - "A prov:Entity that was used by this Activity."
+      - dqv:value              # dqv.ttl:128-132 - "Refers to values computed by metric."
+    broad_mappings:
+      - prov:value             # prov.ttl:1055-1064 - "A direct representation of an entity."
+    aliases:
+      - consumes_or_consumed
+    examples:
+      - value: "15000"
+        description: Total tokens consumed
+    annotations:
+      custodian_types: '["*"]'

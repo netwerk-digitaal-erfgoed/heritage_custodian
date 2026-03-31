@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: has_mandate
+# ==============================================================================
+# Authority, commission, or legal instruction given to an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property                  | File/Line                  | Mapping | Notes                                              |
+# |-----------|---------------------------|----------------------------|---------|----------------------------------------------------|
+# | **RiC-O** | `rico:authorizedBy`       | RiC-O_1-1.rdf:1776-1810   | close   | "Inverse of 'authorizes'." Domain: Agent,          |
+# |           |                           |                            |         | Range: Mandate. Agent authorized by Mandate.       |
+# | **RiC-O** | `rico:authorizingMandate` | RiC-O_1-1.rdf:20838-20865 | close   | "Information on a Mandate that authorizes an Agent  |
+# |           |                           |                            |         | to perform an Activity." DatatypeProperty (literal).|
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_mandate
+name: has_mandate
+title: has_mandate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_mandate:
+    name: has_mandate
+    slot_uri: hc:hasMandate
+    description: >-
+      To specify the authority, commission, or legal instruction given to an entity (such as an organization or official) to perform specific functions, responsibilities, or activities.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de bevoegdheid, opdracht of wettelijke instructie die aan een entiteit (zoals een organisatie of functionaris) is gegeven om specifieke functies, verantwoordelijkheden of activiteiten uit te voeren.
+      de: >-
+        Angabe der Befugnis, des Auftrags oder der rechtlichen Weisung, die einer Entitaet (wie einer Organisation oder einem Beamten) erteilt wurde, um bestimmte Funktionen, Verantwortlichkeiten oder Aktivitaeten auszufuehren.
+      fr: >-
+        Specifier l'autorite, la mission ou l'instruction legale donnee a une entite (telle qu'une organisation ou un fonctionnaire) pour exercer des fonctions, des responsabilites ou des activites specifiques.
+      ar: >-
+        تحديد السلطة أو التفويض أو التعليمات القانونية الممنوحة لكيان ما (مثل منظمة أو مسؤول) لأداء وظائف أو مسؤوليات أو أنشطة محددة.
+      id: >-
+        Menentukan wewenang, komisi, atau instruksi hukum yang diberikan kepada suatu entitas (seperti organisasi atau pejabat) untuk menjalankan fungsi, tanggung jawab, atau kegiatan tertentu.
+      zh: >-
+        指定授予实体（如组织或官员）以执行特定职能、职责或活动的权力、委托或法律指令。
+      es: >-
+        Especificar la autoridad, comision o instruccion legal otorgada a una entidad (como una organizacion o funcionario) para desempenar funciones, responsabilidades o actividades especificas.
+    structured_aliases:
+      - literal_form: mandaat
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Mandat
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: mandat
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تفويض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mandat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 授权
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: mandato
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_mandate
+      - mandate
+    close_mappings:
+      - rico:authorizedBy  # RiC-O_1-1.rdf:1776-1810 - "Inverse of 'authorizes'." Domain: Agent, Range: Mandate. Connects agent to its authorizing mandate.
+      - rico:authorizingMandate  # RiC-O_1-1.rdf:20838-20865 - "Information on a Mandate that authorizes an Agent to perform an Activity." DatatypeProperty (literal value).
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_mandate for conciseness (2026-02-03).
+    annotations:
+      custodian_types: '["*"]'

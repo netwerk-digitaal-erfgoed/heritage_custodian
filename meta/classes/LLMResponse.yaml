@@ -1,0 +1,142 @@
+id: https://nde.nl/ontology/hc/class/LLMResponse
+name: llm_response_class
+title: LLM Response Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dct: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- ./ReasoningContent
+- ./ThinkingMode
+- ./CeaseEvent
+- ./Token
+- linkml:types
+- ../enums/FinishReasonEnum
+- ../enums/LLMProviderEnum
+- ../enums/ThinkingModeEnum
+- ../metadata
+- ../slots/consume
+#  - ../slots/20260202_matang/new/content
+- ../slots/has_expense
+- ../slots/begin_of_the_begin
+- ../slots/has_mode
+- ../slots/has_score
+- ../slots/has_token
+- ../slots/ceased_by
+- ../slots/has_latency
+- ../slots/generated_by
+- ../slots/preserve
+- ../slots/has_reasoning_content
+- ../slots/identified_by
+# default_range: string
+classes:
+  LLMResponse:
+    class_uri: prov:Activity
+    description: >-
+      Provenance activity record for machine-generated response output,
+      including timing, token usage, cost, and completion metadata.
+    alt_descriptions:
+      nl: Provenance-activiteitsrecord voor machinaal gegenereerde responsoutput inclusief timing tokengebruik kosten en afrondingsmetadata.
+      de: Provenienz-Aktivitaetsdatensatz fuer maschinell erzeugte Antwortausgabe inklusive Timing Tokenverbrauch Kosten und Abschlussmetadaten.
+      fr: Enregistrement d activite de provenance pour sortie de reponse generee automatiquement avec delais jetons cout et metadonnees de fin.
+      es: Registro de actividad de procedencia para salida de respuesta generada automaticamente con tiempos tokens costo y metadatos de finalizacion.
+      ar: سجل نشاط إسناد لمخرجات الاستجابة المولدة آليًا، يتضمن التوقيت واستهلاك الرموز والتكلفة وبيانات الإنهاء.
+      id: Catatan aktivitas provenance untuk keluaran respons yang dihasilkan mesin termasuk waktu penggunaan token biaya dan metadata penyelesaian.
+      zh: 机器生成响应输出的溯源活动记录，包含时序、token 用量、成本与完成元数据。
+    structured_aliases:
+    - {literal_form: responsprovenance record, in_language: nl}
+    - {literal_form: Antwort-Provenienzdatensatz, in_language: de}
+    - {literal_form: enregistrement de provenance de reponse, in_language: fr}
+    - {literal_form: registro de procedencia de respuesta, in_language: es}
+    - {literal_form: سجل إسناد الاستجابة, in_language: ar}
+    - {literal_form: catatan provenance respons, in_language: id}
+    - {literal_form: 响应溯源记录, in_language: zh}
+    broad_mappings:
+    - prov:Activity
+    close_mappings:
+    - schema:Action
+    - schema:CreativeWork
+    slots:
+    - has_token
+    - preserve
+#    - content
+    - has_expense
+    - begin_of_the_begin
+    - ceased_by
+    - has_latency
+    - generated_by
+    - has_reasoning_content
+    - identified_by
+    - has_score
+    - has_mode
+    - consume
+    slot_usage:
+#      content:
+#        # range: string
+#        required: true
+#        examples:
+#        - value: The Rijksmuseum is a national museum in Amsterdam dedicated to Dutch arts and history.
+      has_reasoning_content:
+        # range: string
+        required: false
+        examples:
+        - value: 'The user is asking about Dutch heritage institutions...'
+      generated_by:
+        # range: string
+        required: true
+        examples:
+        - value: glm-4.7
+      identified_by:
+        identifier: true        # range: string
+        required: true
+        examples:
+        - value: req_8f3a2b1c4d5e6f7g
+      begin_of_the_begin:
+        range: datetime
+        required: true
+        examples:
+        - value: '2025-12-23T10:30:00Z'
+      consume:
+        range: integer
+        minimum_value: 0
+        examples:
+        - value: 600
+      has_token:
+        range: Token
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        required: false
+      ceased_by:
+        range: CeaseEvent
+        inlined: true
+        required: false
+      has_latency:
+        range: integer
+        minimum_value: 0
+        required: false
+        examples:
+        - value: 1250
+      has_expense:
+        range: float
+        minimum_value: 0.0
+        required: false
+        examples:
+        - value: 0.0
+        - value: 0.015
+      has_mode:
+        range: ThinkingMode
+        required: false
+      preserve:
+        range: ReasoningContent
+        inlined: true
+        multivalued: true
+        required: false
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

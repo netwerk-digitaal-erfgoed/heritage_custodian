@@ -1,0 +1,109 @@
+# ==============================================================================
+# LinkML Slot Definition: has_interface
+# ==============================================================================
+# To specify the mechanism through which systems or users interact.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property              | File/Line          | Mapping | Notes                                          |
+# |-----------|-----------------------|--------------------|---------|------------------------------------------------|
+# | **DCAT**  | `dcat:accessService`  | dcat3.ttl:536-550  | close   | Dataset access endpoint (narrower domain).     |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_interface
+name: has_interface
+title: has_interface
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_interface:
+    name: has_interface
+    title: has_interface
+    slot_uri: hc:hasInterface
+    description: >-
+      To specify the shared boundary, connection, or mechanism (such as a
+      Graphical User Interface or API) through which separate components,
+      systems, or users exchange information and interact.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de gedeelde grens, verbinding of het mechanisme
+        (zoals een grafische gebruikersinterface of API) waarmee afzonderlijke
+        componenten, systemen of gebruikers informatie uitwisselen en
+        communiceren.
+      de: >-
+        Angabe der gemeinsamen Schnittstelle, Verbindung oder des Mechanismus
+        (wie eine grafische Benutzeroberfläche oder API), über die separate
+        Komponenten, Systeme oder Benutzer Informationen austauschen und
+        interagieren.
+      fr: >-
+        Spécifier la frontière partagée, la connexion ou le mécanisme (tel
+        qu'une interface graphique utilisateur ou une API) par lequel des
+        composants, systèmes ou utilisateurs distincts échangent des
+        informations et interagissent.
+      ar: >-
+        تحديد الحدود المشتركة أو الاتصال أو الآلية (مثل واجهة المستخدم
+        الرسومية أو واجهة برمجة التطبيقات) التي تتبادل من خلالها المكونات
+        أو الأنظمة أو المستخدمون المنفصلون المعلومات ويتفاعلون.
+      id: >-
+        Menentukan batas bersama, koneksi, atau mekanisme (seperti Antarmuka
+        Pengguna Grafis atau API) yang melaluinya komponen, sistem, atau
+        pengguna yang terpisah bertukar informasi dan berinteraksi.
+      zh: >-
+        指定共享边界、连接或机制（如图形用户界面或API），不同组件、系统或用户通过该机制交换信息并进行交互。
+      es: >-
+        Especificar el límite compartido, la conexión o el mecanismo (como una
+        interfaz gráfica de usuario o API) a través del cual componentes,
+        sistemas o usuarios separados intercambian información e interactúan.
+    structured_aliases:
+      - literal_form: heeft interface
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Schnittstelle
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une interface
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له واجهة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki antarmuka
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有接口
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene interfaz
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_interface
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcat:accessService  # dcat3.ttl:536-550 — "A site or end-point that gives access to the distribution of the dataset." Range: DataService. Narrower domain: specifically about dataset access endpoints, not general interfaces (GUIs, system boundaries, etc.).
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_interface for conciseness.
+      - |
+        **ONTOLOGY NOTE**: `dcat:accessService` (dcat3.ttl:536-550) is specifically about
+        dataset distribution access endpoints (Range: DataService). This slot is broader —
+        it covers any interface type including GUIs, APIs, system boundaries, and user
+        interaction points. Therefore demoted from exact to close.

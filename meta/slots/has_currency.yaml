@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: has_currency
+# ==============================================================================
+# The system of money or medium of exchange used, accepted, or associated with
+# a specific country, region, or transaction.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:currency`     | schemaorg.owl:13615-13639  | exact   | "The currency in which the monetary amount is expressed" — domain MonetaryAmount/ExchangeRateSpec (finance-specific domain, not general) |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, demoted schema:currency from exact to close
+#   (schema:currency is scoped to MonetaryAmount/ExchangeRateSpecification domains)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_currency
+name: has_currency
+title: Has Currency
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_currency:
+    slot_uri: hc:hasCurrency
+    description: >-
+      To specify the system of money or medium of exchange used, accepted, or associated with a specific country, region, or transaction.
+    alt_descriptions:
+      nl: >-
+        Het geldsysteem of ruilmiddel specificeren dat wordt gebruikt, geaccepteerd of geassocieerd met een specifiek land, regio of transactie.
+      de: >-
+        Das Geldsystem oder Tauschmittel angeben, das in einem bestimmten Land, einer Region oder einer Transaktion verwendet, akzeptiert oder damit verbunden ist.
+      fr: >-
+        Spécifier le système monétaire ou le moyen d'échange utilisé, accepté ou associé à un pays, une région ou une transaction spécifique.
+      ar: >-
+        تحديد النظام النقدي أو وسيلة التبادل المستخدمة أو المقبولة أو المرتبطة ببلد أو منطقة أو معاملة محددة.
+      id: >-
+        Menentukan sistem uang atau alat tukar yang digunakan, diterima, atau dikaitkan dengan negara, wilayah, atau transaksi tertentu.
+      zh: >-
+        指定与特定国家、地区或交易相关的、使用的或接受的货币系统或交换媒介。
+      es: >-
+        Especificar el sistema monetario o medio de intercambio utilizado, aceptado o asociado con un país, región o transacción específica.
+    structured_aliases:
+      - literal_form: heeft valuta
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Währung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une devise
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه عملة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki mata uang
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有货币
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene moneda
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_currency
+      - statement_currency
+      - cost_currency
+      - currency
+      - price_currency
+    exact_mappings:
+      - schema:currency  # schemaorg.owl:13615-13639 - "The currency in which the monetary amount is expressed" — domain MonetaryAmount/ExchangeRateSpec
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_currency for conciseness.
+    annotations:
+      custodian_types: '["*"]'

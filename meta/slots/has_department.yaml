@@ -1,0 +1,109 @@
+# ==============================================================================
+# LinkML Slot Definition: has_department
+# ==============================================================================
+# Identifies a specialized functional division or unit within a heritage
+# organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                      | File/Line                      | Mapping        | Notes                                                             |
+# |----------------|-------------------------------|--------------------------------|----------------|-------------------------------------------------------------------|
+# | **Schema.org** | `schema:department`           | schemaorg.owl:14603-14624      | close_mappings | "department" Organization→Organization. Close because schema:department is about a commercial department relationship, not a heritage custodian unit. |
+# | **W3C Org**    | `org:hasUnit`                 | org.rdf:510-528                | close_mappings | "has Unit" FormalOrganization→OrganizationalUnit. Close because org:hasUnit is a formal organizational vocabulary construct; hc:hasDepartment is heritage-custodian-specific.           |
+# | **W3C Org**    | `org:hasSubOrganization`      | org.rdf:645-661                | broad_mappings | "has SubOrganization" Organization→Organization. Broader: any sub-org, not specifically a department.                                               |
+# | **Schema.org** | `schema:subOrganization`      | schemaorg.owl:36756-36765      | broad_mappings | "subOrganization" Organization→Organization. Broader: any subsidiary relationship.                                                                  |
+# | **RiC-O**      | `rico:hasOrHadSubdivision`    | RiC-O_1-1.rdf:8137-8173       | related_mappings | "has or had subdivision" Group→Group. Related: archival context, temporal dimension (has or had).                                                  |
+# | **DCTerms**    | `dcterms:hasPart`             | dcterms.rdf:1347-1370          | broad_mappings | "Has Part" general part-whole. Much broader: any resource part relationship.                                                                       |
+#
+# CREATED: 2026-02-11
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_department
+name: has_department
+title: Has Department
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_department:
+    slot_uri: hc:hasDepartment
+    description: >-
+      Identifies a specialized functional division or unit within a larger
+      heritage organization or institution, such as a conservation department,
+      curatorial department, or education department.
+    alt_descriptions:
+      nl: >-
+        Identificeert een gespecialiseerde functionele afdeling of eenheid binnen
+        een grotere erfgoedorganisatie of instelling.
+      de: >-
+        Identifiziert eine spezialisierte funktionale Abteilung oder Einheit
+        innerhalb einer größeren Kulturerbe-Organisation oder Einrichtung.
+      fr: >-
+        Identifie une division ou unité fonctionnelle spécialisée au sein d'une
+        organisation ou institution patrimoniale plus grande.
+      ar: >-
+        يحدد قسمًا وظيفيًا متخصصًا أو وحدة ضمن منظمة أو مؤسسة تراثية أكبر.
+      id: >-
+        Mengidentifikasi divisi atau unit fungsional khusus dalam organisasi
+        atau lembaga warisan budaya yang lebih besar.
+      zh: >-
+        标识较大遗产组织或机构内的专门职能部门或单元。
+      es: >-
+        Identifica una división o unidad funcional especializada dentro de una
+        organización o institución patrimonial más grande.
+    structured_aliases:
+      - literal_form: afdeling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Abteilung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: département
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قسم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: departemen
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 部门
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: departamento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:department  # schemaorg.owl:14603-14624 - "department" Organization→Organization
+      - org:hasUnit  # org.rdf:510-528 - "has Unit" FormalOrganization→OrganizationalUnit
+    broad_mappings:
+      - org:hasSubOrganization  # org.rdf:645-661 - "has SubOrganization" Organization→Organization
+      - schema:subOrganization  # schemaorg.owl:36756-36765 - "subOrganization" Organization→Organization
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "Has Part" general part-whole relationship
+    related_mappings:
+      - rico:hasOrHadSubdivision  # RiC-O_1-1.rdf:8137-8173 - "has or had subdivision" Group→Group
+    aliases:
+      - research_department
+    examples:
+      - value: Conservation Department
+        description: A department focused on preserving and restoring collection items.
+      - value: Curatorial Department
+        description: A department responsible for managing and interpreting collections.
+      - value: Education and Public Programs
+        description: A department handling educational outreach and visitor programs.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Use this slot to enumerate the named departments or functional divisions
+        within a heritage custodian organization. Each value represents a single
+        department name or label.

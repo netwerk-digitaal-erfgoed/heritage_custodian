@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: allocated_budget
+# ==============================================================================
+# Financial sum designated for a particular purpose or project.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:amount`       | schemaorg.owl        | related | Monetary amount - more generic                           |
+# | **GoodRelations**| `gr:hasCurrencyValue`| (external)          | related | Currency value representation                            |
+#
+# SEMANTIC NOTES:
+# - Budget allocation is a domain-specific concept for organizational finance
+# - No exact standard property exists for "allocated budget"
+# - Custom hc: URI is appropriate for this heritage-specific concept
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description, added multilingual support, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/allocated_budget
+name: allocated_budget
+title: Allocated Budget
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  allocated_budget:
+    slot_uri: hc:allocatedBudget
+    description: >-
+      To have a specific financial sum designated or set aside for a particular purpose, 
+      project, or department within an organization's overall financial plan.
+    alt_descriptions:
+      nl: >-
+        Een specifiek financieel bedrag dat is aangewezen of gereserveerd voor een 
+        bepaald doel, project of afdeling binnen het totale financiële plan van een organisatie.
+      de: >-
+        Eine bestimmte finanzielle Summe, die für einen bestimmten Zweck, ein Projekt 
+        oder eine Abteilung im Gesamtfinanzplan einer Organisation vorgesehen oder 
+        zurückgestellt ist.
+      fr: >-
+        Avoir une somme financière spécifique désignée ou réservée pour un objectif, 
+        projet ou département particulier dans le plan financier global d'une organisation.
+      ar: >-
+        أن يكون لديك مبلغ مالي محدد مخصص أو مرصود لغرض أو مشروع أو قسم معين 
+        ضمن الخطة المالية الشاملة للمنظمة.
+      id: >-
+        Memiliki jumlah keuangan tertentu yang ditunjuk atau disisihkan untuk tujuan, 
+        proyek, atau departemen tertentu dalam rencana keuangan keseluruhan organisasi.
+      zh: >-
+        在组织整体财务计划中为特定目的、项目或部门指定或预留特定财务金额。
+      es: >-
+        Tener una suma financiera específica designada o reservada para un propósito, 
+        proyecto o departamento particular dentro del plan financiero general de una organización.
+    structured_aliases:
+      - literal_form: toegewezen budget
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: zugewiesenes Budget
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: budget alloué
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الميزانية المخصصة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: anggaran yang dialokasikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分配预算
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: presupuesto asignado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    related_mappings:
+      - schema:amount  # Generic monetary amount
+    aliases:
+      - is_or_was_allocated_budget
+    comments:
+      - |
+        **USAGE**: Record the budget amount allocated to projects, departments, or activities. 
+        Consider using a structured format that includes currency code and amount.
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,79 @@
+id: https://nde.nl/ontology/hc/class/DeceasedStatus
+name: deceased_status_class
+title: Deceased Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/caused_by
+- ../slots/occur_at
+- ../slots/temporal_extent
+classes:
+  DeceasedStatus:
+    class_uri: hc:DeceasedStatus
+    broad_mappings:
+    - schema:Event
+    description: >-
+      Structured event record for a person's death including causal,
+      temporal, and contextual attributes.
+    alt_descriptions:
+      nl: Gestructureerd gebeurtenisrecord van overlijden met causale temporele en contextuele kenmerken.
+      de: Strukturierter Ereigniseintrag zum Tod einer Person mit kausalen zeitlichen und kontextuellen Merkmalen.
+      fr: Enregistrement evenementiel structure du deces d une personne avec attributs causaux temporels et contextuels.
+      es: Registro estructurado de evento de fallecimiento con atributos causales temporales y contextuales.
+      ar: سجل حدث منظم للوفاة يتضمن السمات السببية والزمنية والسياقية.
+      id: Rekaman peristiwa terstruktur tentang kematian seseorang dengan atribut kausal temporal dan kontekstual.
+      zh: 包含死因、时间与背景属性的结构化死亡事件记录。
+    structured_aliases:
+    - {literal_form: overlijdensstatus, in_language: nl}
+    - {literal_form: Todesstatus, in_language: de}
+    - {literal_form: statut de deces, in_language: fr}
+    - {literal_form: estado de fallecimiento, in_language: es}
+    - {literal_form: حالة الوفاة, in_language: ar}
+    - {literal_form: status kematian, in_language: id}
+    - {literal_form: 死亡状态记录, in_language: zh}
+    exact_mappings:
+    - crm:E69_Death
+    close_mappings:
+    related_mappings:
+    - prov:End
+    keywords:
+    - death event
+    - cause documentation
+    - temporal evidence
+    slots:
+    - caused_by
+    - temporal_extent
+    - has_description
+    - occur_at
+    slot_usage:
+      caused_by:
+        range: CauseOfDeath
+        inlined: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+      occur_at:
+        range: Place
+        inlined: true
+    comments:
+    - Structured replacement for free-text death circumstance statements
+    - Handle documentation with dignity and source verification
+    notes:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      Preserved from prior description (commit 5e94e52b):
+
+      "Structured representation of a person's death status and circumstances.\n\n**Purpose**:\nCaptures comprehensive information about a person's death, replacing the\nsimple `circumstances_of_death` string with structured data:\n- **Cause**: Why/how the person died (CauseOfDeath class)\n- **Temporal**: When the death occurred (TimeSpan for fuzzy dates)\n- **Narrative**: Detailed description of circumstances\n\n**Ontological Alignment**:\n- **Primary** (`class_uri`): `schema:DeathEvent` - Schema.org death event\n- **Related**: `crm:E69_Death` - CIDOC-CRM death event\n- **Related**: `prov:End` - PROV-O activity end\n\n**Heritage Sector Context**:\nCritical for documenting:\n- Heritage workers killed during armed conflicts (Gaza, Ukraine, Syria, etc.)\n- Targeted attacks on cultural institutions and their staff\n- Historical figures in the heritage sector\n- Occupational has_risks and accidents\n\n**Privacy Considerations**:\n- For recently deceased individuals, verify with institution\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

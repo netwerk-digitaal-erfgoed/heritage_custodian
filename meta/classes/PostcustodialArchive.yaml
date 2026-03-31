@@ -1,0 +1,95 @@
+id: https://w3id.org/nde/ontology/PostcustodialArchive
+name: PostcustodialArchive
+title: Postcustodial Archive Organization Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  PostcustodialArchive:
+    description: >-
+      Organization providing archival services (description, access, preservation guidance) without taking physical custody of records.
+    alt_descriptions:
+      nl: >-
+        Organisatie die archiefdiensten biedt (beschrijving, toegang, behoudsbegeleiding) zonder fysieke bewaring van archieven over te nemen.
+      de: >-
+        Organisation, die Archivdienstleistungen (Erschließung, Zugang, Erhaltungshinweise) anbietet, ohne physische Verwahrung der Unterlagen zu übernehmen.
+      fr: >-
+        Organisation fournissant des services d'archives (description, accès, conseils de conservation) sans prendre la garde physique des documents.
+      es: >-
+        Organización que proporciona servicios archivísticos (descripción, acceso, orientación de preservación) sin tomar custodia física de los registros.
+      ar: >-
+        منظمة توفر خدمات أرشيفية (الوصف والوصول وإرشادات الحفظ) دون الاستيلاء المادي على السجلات.
+      id: >-
+        Organisasi yang menyediakan layanan arsip (deskripsi, akses, panduan pelestarian) tanpa mengambil penguasaan fisik atas catatan.
+      zh: >-
+        提供档案服务（描述、访问、保存指导）而不实际保管记录的组织。
+    exact_mappings:
+    - wd:Q124223197
+    broad_mappings:
+    - skos:Concept
+    - wd:Q166118
+    related_mappings:
+    - rico:CorporateBody
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: "hc:ArchiveOrganizationType"
+        - equals_string: "hc:PostcustodialArchive"
+    see_also:
+    - DigitalArchive
+    - ArchiveNetwork
+    - CollectingArchive
+    comments:
+    - Operates without physical custody of records
+    - Provides archival services to records holders
+    - Relevant for digital and distributed archives
+    - Challenges traditional custodial archival model
+    - 'Preserved from prior description: Organization providing archival services (description, access, preservation guidance) without taking physical custody of records. Materials remain with creators or other custodians while benefiting from professional archival expertise.'
+    examples:
+    - value:
+        has_type: hc:PostcustodialArchive
+        has_score: 0.80
+      description: Distributed archival service organization
+    keywords:
+    - postcustodial
+    - distributed archive
+    - non-custodial
+    - archival services
+    annotations:
+      skos:prefLabel: Postcustodial Archive
+      archival_model: postcustodial
+      specificity_score: 0.80
+      specificity_rationale: Specialized archival model without physical custody
+      custodian_types: "['*']"
+    structured_aliases:
+    - literal_form: postcustodiaal archief
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Postkustodiales Archiv
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: archives post-custodiales
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: archivo postcustodial
+      predicate: EXACT_SYNONYM
+      in_language: es

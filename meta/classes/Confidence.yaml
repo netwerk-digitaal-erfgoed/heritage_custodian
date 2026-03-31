@@ -1,0 +1,66 @@
+id: https://nde.nl/ontology/hc/class/Confidence
+name: Confidence
+title: Confidence
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  dqv: http://www.w3.org/ns/dqv#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_value
+classes:
+  Confidence:
+    class_uri: hc:Confidence
+    description: >-
+      Quantitative certainty estimate attached to an assertion, extraction, or
+      measurement outcome.
+    alt_descriptions:
+      nl: Kwantitatieve zekerheidsinschatting gekoppeld aan een bewering, extractie of meetuitkomst.
+      de: Quantitative Sicherheitseinschaetzung zu einer Aussage, Extraktion oder einem Messergebnis.
+      fr: Estimation quantitative de certitude associee a une assertion, une extraction ou un resultat de mesure.
+      es: Estimacion cuantitativa de certeza asociada a una afirmacion, extraccion o resultado de medicion.
+      ar: تقدير كمي لليقين مرتبط بعبارة أو عملية استخراج أو نتيجة قياس.
+      id: Estimasi kepastian kuantitatif yang dikaitkan dengan pernyataan, ekstraksi, atau hasil pengukuran.
+      zh: 附加于断言、抽取或测量结果的定量可信度估计。
+    structured_aliases:
+      - literal_form: zekerheidsinschatting
+        in_language: nl
+      - literal_form: Sicherheitswert
+        in_language: de
+      - literal_form: indice de certitude
+        in_language: fr
+      - literal_form: indice de certeza
+        in_language: es
+      - literal_form: تقدير اليقين
+        in_language: ar
+      - literal_form: estimasi kepastian
+        in_language: id
+      - literal_form: 可信度估计
+        in_language: zh
+    slots:
+      - has_value
+    slot_usage:
+      has_value:
+        range: float
+        required: true
+    examples:
+      - value:
+          has_value: 0.92
+        description: High certainty for exact identifier matching
+      - value:
+          has_value: 0.48
+        description: Moderate certainty for fuzzy label alignment
+    keywords:
+      - certainty estimate
+      - quality signal
+      - extraction reliability
+      - match reliability
+    broad_mappings:
+      - sosa:Result
+      - dqv:QualityMeasurement
+    annotations:
+      specificity_score: "0.2"
+      specificity_rationale: Generic certainty artifact reusable across workflows.
+      custodian_types: "['*']"

@@ -1,0 +1,157 @@
+id: https://nde.nl/ontology/hc/class/LegalResponsibilityCollection
+name: legal_responsibility_collection_class
+title: LegalResponsibilityCollection Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  prov: http://www.w3.org/ns/prov#
+  dcat: http://www.w3.org/ns/dcat#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  dcmitype: http://purl.org/dc/dcmitype/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_legal_basis
+- ../slots/has_legal_form
+- ../slots/refer_to
+- ../slots/has_accountable
+classes:
+  LegalResponsibilityCollection:
+    is_a: CustodianCollection
+    class_uri: tooi:Informatieobject
+    description: >-
+      Collection class for holdings with formally assigned legal accountability,
+      including explicit responsible entity and legal basis.
+    alt_descriptions:
+      nl: Collectieklasse voor holdings met formeel toegewezen juridische verantwoordelijkheid inclusief verantwoordelijke entiteit en rechtsgrond.
+      de: Sammlungsklasse fuer Bestaende mit formell zugewiesener rechtlicher Verantwortung inklusive verantwortlicher Stelle und Rechtsgrundlage.
+      fr: Classe de collection pour fonds soumis a une responsabilite legale formellement attribuee avec entite responsable et base juridique.
+      es: Clase de coleccion para fondos con responsabilidad legal formalmente asignada incluyendo entidad responsable y base juridica.
+      ar: فئة مجموعة للمقتنيات ذات مسؤولية قانونية مُسندة رسميًا، مع تحديد الجهة المسؤولة والأساس القانوني.
+      id: Kelas koleksi untuk himpunan dengan akuntabilitas hukum yang ditetapkan secara formal termasuk entitas penanggung jawab dan dasar hukum.
+      zh: 适用于具有正式法律责任归属之馆藏的集合类，包含责任主体与法律依据。
+    structured_aliases:
+    - {literal_form: collectie met juridische verantwoordelijkheid, in_language: nl}
+    - {literal_form: rechtlich verantwortete Sammlung, in_language: de}
+    - {literal_form: collection sous responsabilite legale, in_language: fr}
+    - {literal_form: coleccion con responsabilidad legal, in_language: es}
+    - {literal_form: مجموعة ذات مسؤولية قانونية, in_language: ar}
+    - {literal_form: koleksi dengan tanggung jawab hukum, in_language: id}
+    - {literal_form: 法律责任集合, in_language: zh}
+    broad_mappings:
+    - prov:Entity
+    - dcat:Resource
+    - tooi:Informatieobject
+    close_mappings:
+    - rico:RecordSet
+    - crm:E78_Curated_Holding
+    - bf:Collection
+    related_mappings:
+    - dcmitype:Collection
+    - schema:CreativeWork
+    slots:
+    - has_type
+    - has_legal_basis
+    - has_legal_form
+    - has_accountable
+    - has_score
+    slot_usage:
+      has_accountable:
+        range: CustodianLegalStatus
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/legal/nha-organization
+        - value: https://nde.nl/ontology/hc/legal/rijksmuseum-foundation
+      has_legal_basis:
+#         range: string
+        required: true
+        examples:
+        - value: 'Archiefwet 1995, Article 41: Provincial archives shall preserve government records'
+        - value: 'Testamentary bequest 1897-12-20: Teylers Museum trust deed'
+      has_legal_form:
+        range: date
+        required: false
+        examples:
+        - value: '2001-01-01'
+        - value: '1885-07-01'
+      refer_to:
+        required: true
+      has_type:
+        any_of:
+        - equals_string: hc:LegalResponsibilityCollection
+    comments:
+    - Subclass of CustodianCollection specializing in LEGALLY ACCOUNTABLE collections
+    - 'Follows TOOI ontology pattern: tooi:verantwoordelijke property linking Informatieobject to Overheidsorganisatie'
+    - Distinguishes legal responsibility (CustodianLegalStatus) from operational management (OrganizationalStructure)
+    - Legal responsibility can transfer between entities over time (track via custody_history)
+    - Use this class when collection has FORMAL legal accountability relationship with custodian
+    - Use parent CustodianCollection when collection lacks formal legal responsibility (e.g., private collections)
+    see_also:
+    - https://identifier.overheid.nl/tooi/def/ont/
+    - https://www.w3.org/TR/prov-o/
+    - https://www.w3.org/TR/vocab-dcat-3/
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/collection/nha-provincial-archive
+        has_label:
+          has_label: Noord-Hollands Archief - Provinciaal Archief
+        collection_type:
+        - archival_records
+        has_scope:
+          scope_description: Provincial government records of Noord-Holland
+        has_content:
+        - has_label: Provincial Government Records
+          temporal_extent:
+            begin_of_the_begin: '1289-01-01'
+            end_of_the_end:
+        responsible_legal_entity: https://nde.nl/ontology/hc/legal/nha-organization
+        legal_responsibility_basis: 'Archiefwet 1995 (Dutch Archives Act), Article 41:  "De provincie draagt zorg voor de archiefbescheiden die niet meer voor de dagelijkse  uitvoering van de werkzaamheden nodig zijn" (The province is responsible for archival  records no longer needed for daily operations)'
+        legal_responsibility_start_date: '2001-01-01'
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-haa-a-nha
+        derived_from:
+        - https://nde.nl/ontology/hc/observation/nha-website-2025
+        - https://nde.nl/ontology/hc/observation/nha-archiefwet-registration
+        generated_by:
+    - value:
+        id: https://nde.nl/ontology/hc/collection/rm-national-collection
+        has_label:
+          has_label: Rijksmuseum National Art Collection
+        collection_type:
+        - museum_objects
+        has_scope:
+          scope_description: Dutch art and history from the Middle Ages to present
+        has_content:
+        - has_label: National Art Collection
+          temporal_extent:
+            begin_of_the_begin: '1200-01-01'
+            end_of_the_end:
+        responsible_legal_entity: https://nde.nl/ontology/hc/legal/rijksmuseum-foundation
+        legal_responsibility_basis: 'Erfgoedwet (Heritage Act) 2016, Article 2.1 + Stichting Rijksmuseum statute (1885):  "Het Rijksmuseum heeft tot taak het beheren, bewaren, en tonen van de Rijkscollectie"  (The Rijksmuseum''s mission is to manage, preserve, and display the National Collection)'
+        legal_responsibility_start_date: '1885-07-01'
+        managing_unit: https://nde.nl/ontology/hc/org-unit/rm-collection-management
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+        derived_from:
+        - https://nde.nl/ontology/hc/observation/rijksmuseum-website
+        - https://nde.nl/ontology/hc/observation/erfgoedwet-2016
+        generated_by:
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Specialized subclass of CustodianCollection representing information objects (informatieobjecten)\nunder the legal responsibility of a heritage custodian organization.\n\n**TOOI Ontology Alignment**:\n- Follows TOOI pattern: tooi:Informatieobject with tooi:verantwoordelijke property\n- tooi:verantwoordelijke: \"Overheidsorganisatie die de wettelijke verantwoordelijkheid draagt \n  voor de inhoud (strekking) van het informatieobject\" (Organization with legal responsibility \n  for the content/purport of the information object)\n- Maps information objects to legally responsible organizations\n\n**Definition from TOOI**:\n- Informatieobject: \"Een resource waarvan de essenti\xEBle karakteristieken medegedeeld kunnen \n  worden in een bericht\" (A resource whose essential characteristics can be communicated in a message)\n- Subclass of prov:Entity and dcat:Resource\n\n**Key Distinctions**:\n- **LegalResponsibilityCollection**: Collections with FORMAL LEGAL ACCOUNTABILITY\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,50 @@
+id: https://nde.nl/ontology/hc/class/country
+name: country
+title: Country Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  lcc_cr: https://www.omg.org/spec/LCC/Countries/CountryRepresentation/
+  gn: http://www.geonames.org/ontology#
+  wikidata: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_score
+classes:
+  Country:
+    class_uri: schema:Country
+    description: >-
+      Sovereign-state reference entity identified through standardized country code representations.
+    alt_descriptions:
+      nl: Referentie-entiteit voor soevereine staten, geidentificeerd via gestandaardiseerde landcodes.
+      de: Referenzentitaet fuer souveräne Staaten, identifiziert durch standardisierte Ländercodes.
+      fr: Entite de reference d'etat souverain identifiee via des representations normalisees de code pays.
+      es: Entidad de referencia de estado soberano identificada mediante representaciones estandarizadas de codigo pais.
+      ar: كيان مرجعي للدولة ذات السيادة يُعرّف عبر تمثيلات معيارية لرموز البلدان.
+      id: Entitas referensi negara berdaulat yang diidentifikasi melalui representasi kode negara terstandar.
+      zh: 通过标准化国家代码表示进行识别的主权国家参照实体。
+    exact_mappings:
+    - schema:Country
+    close_mappings:
+    - lcc_cr:Country
+    related_mappings:
+    - gn:A.PCLI
+    - wikidata:Q6256
+    slots:
+    - has_code
+    - has_score
+    slot_usage:
+      has_code:
+        multivalued: true
+    see_also:
+    - https://www.geonames.org/
+    - https://unstats.un.org/unsd/methodology/m49/
+    - https://www.iso.org/iso-3166-country-codes.html
+    comments:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      "Country identified by ISO 3166-1 alpha-2 and alpha-3 codes.\n\nThis is a **minimal design** class containing ONLY ISO standardized country codes.\nNo other metadata (names, languages, capitals, regions) is included.\n\nPurpose:\n- Link legal forms to their jurisdiction (legal forms are country-specific)\n- Link custodian places to their country location\n- Enable conditional enum values in FeatureTypeEnum (e.g., \"cultural heritage of Peru\")\n\nDesign rationale:\n- ISO 3166 codes are authoritative, stable, and language-neutral\n- Country names, languages, and other metadata should be resolved via external services\n- Keeps the ontology focused on heritage custodian relationships, not geopolitical data\n\nExternal resolution services:\n- GeoNames API: https://www.geonames.org/\n- UN M49 Standard: https://unstats.un.org/unsd/methodology/m49/\n- ISO 3166 Maintenance Agency: https://www.iso.org/iso-3166-country-codes.html\n\nMIGRATION (2026-01-16): Now uses has_code\

@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: degree_of_certainty
+# ==============================================================================
+# Qualitative or quantitative measure of confidence or reliability.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                                      |
+# |---------------|-----------------------|-------------------------|---------|--------------------------------------------|
+# | **PROV-O**    | `prov:value`          | prov.ttl                | related | Generic value property.                    |
+#
+# NOTE: Previous close_mapping to crm:P91_has_unit was INCORRECT. P91_has_unit 
+# means "has measurement unit" (e.g., meters, kilograms) - not certainty levels.
+# CIDOC-CRM line 3141-3153: "shows the type of unit an instance of E54 Dimension 
+# was expressed in" with range E58_Measurement_Unit.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, REMOVED incorrect crm:P91_has_unit
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/degree_of_certainty
+name: degree_of_certainty
+title: Degree of Certainty
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  degree_of_certainty:
+    slot_uri: hc:degreeOfCertainty
+    description: >-
+      To denote the qualitative or quantitative measure of confidence or reliability 
+      regarding the accuracy of a statement, fact, or relationship.
+    alt_descriptions:
+      nl: >-
+        Het aanduiden van de kwalitatieve of kwantitatieve mate van vertrouwen of 
+        betrouwbaarheid met betrekking tot de nauwkeurigheid van een bewering, 
+        feit of relatie.
+      de: >-
+        Die Bezeichnung des qualitativen oder quantitativen Maßes an Vertrauen oder 
+        Zuverlässigkeit hinsichtlich der Genauigkeit einer Aussage, Tatsache oder 
+        Beziehung.
+      fr: >-
+        Désigner la mesure qualitative ou quantitative de confiance ou de fiabilité 
+        concernant l'exactitude d'une déclaration, d'un fait ou d'une relation.
+      ar: >-
+        للدلالة على المقياس النوعي أو الكمي للثقة أو الموثوقية فيما يتعلق 
+        بدقة بيان أو حقيقة أو علاقة.
+      id: >-
+        Untuk menunjukkan ukuran kualitatif atau kuantitatif kepercayaan atau 
+        keandalan mengenai keakuratan pernyataan, fakta, atau hubungan.
+      zh: >-
+        表示关于陈述、事实或关系准确性的定性或定量的信心或可靠性度量。
+      es: >-
+        Denotar la medida cualitativa o cuantitativa de confianza o fiabilidad 
+        respecto a la exactitud de una declaración, hecho o relación.
+    structured_aliases:
+      - literal_form: mate van zekerheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Grad der Gewissheit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: degré de certitude
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: درجة اليقين
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: tingkat kepastian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 确定程度
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: grado de certeza
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - degree_of_certainty
+      - is_or_was_degree_of_certainty
+    related_mappings:
+      - prov:value  # generic value property
+    comments:
+      - |
+        **USAGE**: Use to indicate how specific or certain information is, particularly 
+        for temporal data (dates) and other values that may have varying levels of precision.
+      - |
+        **PRECISION LEVELS**: Common values include day, month, year, decade, century 
+        for temporal precision, or confidence levels (high, medium, low) for inferred data.
+    annotations:
+      specificity_score: 0.3
+      specificity_rationale: Certainty/precision levels are broadly applicable across temporal, quantitative, and qualitative contexts.
+      custodian_types: '["*"]'
+      custodian_types_rationale: Degree of certainty applies universally to all custodian types.
+    examples:
+      - value: "year"
+        description: "Date known to year precision only"
+      - value: "high"
+        description: "High confidence in the stated relationship"
+      - value: "estimated"
+        description: "Value is an estimate rather than exact"

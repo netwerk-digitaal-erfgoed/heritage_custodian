@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/Profit
+name: profit_class
+title: Profit Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+imports:
+  - linkml:types
+  - ../metadata
+default_prefix: hc
+classes:
+  Profit:
+    class_uri: hc:Profit
+    description: >-
+      Structured representation of an organization's financial objective or operational model,
+      indicating whether it operates for commercial gain, as a nonprofit, or under a hybrid structure.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde weergave van de financiële doelstelling of het operationele model van een organisatie,
+        die aangeeft of deze commercieel, non-profit of volgens een hybride structuur opereert.
+      de: >-
+        Strukturierte Darstellung des finanziellen Ziels oder Betriebsmodells einer Organisation,
+        die angibt, ob sie gewinnorientiert, als Nonprofit-Organisation oder in einer Hybridstruktur operiert.
+      fr: >-
+        Représentation structurée de l'objectif financier ou du modèle opérationnel d'une organisation,
+        indiquant si elle opère à but lucratif, en tant qu'organisme sans but lucratif ou selon une structure hybride.
+      es: >-
+        Representación estructurada del objetivo financiero o modelo operativo de una organización,
+        indicando si opera con fines de lucro, como organización sin fines de lucro o bajo una estructura híbrida.
+      ar: >-
+        تمثيل منظم للهدف المالي أو النموذج التشغيلي لمنظمة،
+        يوضح ما إذا كانت تعمل بهدف الربح أو كمنظمة غير ربحية أو وفق هيكل مختلط.
+      id: >-
+        Representasi terstruktur dari tujuan keuangan atau model operasional suatu organisasi,
+        menunjukkan apakah beroperasi secara komersial, nirlaba, atau dengan struktur hibrid.
+      zh: >-
+        组织财务目标或运营模式的结构化表示，
+        表明其是以营利为目的、非营利性还是混合结构运营。
+    close_mappings:
+      - schema:BusinessFunction
+    broad_mappings:
+      - org:purpose
+      - schema:Thing
+    keywords:
+      - profit
+      - nonprofit
+      - commercial operation
+      - business model
+      - organizational objective
+    examples:
+      - value:
+          objective_type: for-profit
+          is_commercial: true
+          profit_model: Sales commission (50%)
+          tax_status: for-profit corporation
+        description: Commercial art gallery with sales commission model
+      - value:
+          objective_type: nonprofit
+          is_commercial: false
+          profit_model: Public funding and grants
+          tax_status: ANBI
+        description: Kunsthalle with nonprofit status
+      - value:
+          objective_type: mixed
+          is_commercial: true
+          profit_model: Gift shop and admission, plus grants
+          tax_status: 501(c)(3) nonprofit
+        description: Museum with mixed revenue model
+    comments:
+      - Created 2026-01-22 from commercial_operation migration (Rule 53)
+      - Replaces boolean with structured objective representation
+      - Supports commercial, nonprofit, and mixed operational models
+    see_also:
+      - https://schema.org/BusinessFunction
+      - https://www.w3.org/ns/org#purpose
+    structured_aliases:
+      - literal_form: winstoogmerk
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Gewinnorientierung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: but lucratif
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Universal - any custodian type may have operational objectives.
+      specificity_score: '0.40'
+      specificity_rationale: Moderately specific - relates to organizational structure across types.
+    slots: []

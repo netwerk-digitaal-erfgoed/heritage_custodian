@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: decommissioned_at
+# ==============================================================================
+# Date when an entity was decommissioned or taken out of service.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line            | Mapping | Notes                              |
+# |---------------|------------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:invalidatedAtTime`| prov.ttl            | close   | Invalidation time (similar)        |
+# | **Schema.org**| `schema:endDate`       | schemaorg.owl        | related | End date (more general)            |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/decommissioned_at
+name: decommissioned_at
+title: Decommissioned At
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  decommissioned_at:
+    slot_uri: hc:decommissionedAt
+    description: >-
+      The date and time when the entity was officially taken out of service,
+      retired, or decommissioned.
+    alt_descriptions:
+      nl: >-
+        De datum en tijd waarop de entiteit officieel buiten dienst is
+        gesteld, met pensioen is gegaan of is ontmanteld.
+      de: >-
+        Das Datum und die Uhrzeit, zu der die Entität offiziell außer
+        Betrieb genommen, stillgelegt oder ausgemustert wurde.
+      fr: >-
+        La date et l'heure auxquelles l'entité a été officiellement mise
+        hors service, retirée ou désaffectée.
+      ar: >-
+        التاريخ والوقت الذي تم فيه إخراج الكيان رسميًا من الخدمة أو
+        إيقافه أو إلغاء تشغيله.
+      id: >-
+        Tanggal dan waktu ketika entitas secara resmi dinonaktifkan,
+        dipensiunkan, atau dinonaktifkan.
+      zh: >-
+        实体正式退役、停用或退出服务的日期和时间。
+      es: >-
+        La fecha y hora en que la entidad fue oficialmente retirada del
+        servicio, jubilada o desmantelada.
+    structured_aliases:
+      - literal_form: buiten dienst gesteld op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: außer Betrieb genommen am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: désaffecté le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خارج الخدمة في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dinonaktifkan pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 退役于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: desmantelado el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    close_mappings:
+      - prov:invalidatedAtTime  # Time of invalidation
+    related_mappings:
+      - schema:endDate  # General end date
+    aliases:
+      - is_or_was_decommissioned_at
+    annotations:
+      custodian_types: '["*"]'

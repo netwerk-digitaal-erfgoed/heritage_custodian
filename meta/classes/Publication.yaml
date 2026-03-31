@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/Publication
+name: Publication_class
+title: Publication Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  bf: http://id.loc.gov/ontologies/bibframe/
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_name
+  - ../slots/temporal_extent
+default_prefix: hc
+classes:
+  Publication:
+    description: >-
+      Event representing the public release or distribution of a creative work,
+      information carrier, or document, capturing temporal extent, publisher, and location details.
+    alt_descriptions:
+      nl: >-
+        Gebeurtenis die de openbare release of distributie van een creatief werk,
+        informatiedrager of document vertegenwoordigt, met tijdsomvang, uitgever en locatiedetails.
+      de: >-
+        Ereignis, das die öffentliche Veröffentlichung oder Verbreitung eines kreativen Werks,
+        eines Informationsträgers oder Dokuments darstellt, mit Zeitumfang, Verlag und Ortsangaben.
+      fr: >-
+        Événement représentant la publication ou la distribution publique d'une œuvre créative,
+        d'un support d'information ou d'un document, capturant l'étendue temporelle, l'éditeur et les détails de localisation.
+      es: >-
+        Evento que representa el lanzamiento o distribución pública de una obra creativa,
+        soporte de información o documento, capturando la extensión temporal, el editor y los detalles de ubicación.
+      ar: >-
+        حدث يمثل الإصدار أو التوزيع العام لعمل إبداعي
+        أو حامل معلومات أو مستند، مع التفاصيل الزمنية والناشر والموقع.
+      id: >-
+        Peristiwa yang mewakili rilis atau distribusi publik dari karya kreatif,
+        pembawa informasi, atau dokumen, menangkap cakupan temporal, penerbit, dan detail lokasi.
+      zh: >-
+        表示创意作品、信息载体或文档的公开发布或分发的事件，
+        记录时间范围、出版商和位置详情。
+    class_uri: schema:PublicationEvent
+    broad_mappings:
+      - schema:Event
+      - prov:Activity
+    keywords:
+      - publication
+      - publishing event
+      - release
+    structured_aliases:
+      - literal_form: publicatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Veröffentlichung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: publication
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    mixins: []
+    slots:
+      - temporal_extent
+      - has_name
+      - has_description
+      - published_at
+    annotations:
+      replaces: date_of_publication
+      migration_date: '2026-01-23'
+      migration_rule: Rule 53 - No bespoke slots
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '["*"]'
+    examples:
+      - value:
+          publication_date_string: c. 1455
+          publisher: Johannes Gutenberg
+          publication_place: Mainz
+        description: Gutenberg Bible approximate publication
+      - value:
+          temporal_extent:
+            begin_of_the_begin: '1776-08-02'
+            end_of_the_end: '1776-08-02'
+          publisher: John Dunlap
+          publication_place: Philadelphia
+        description: US Declaration of Independence with precise date
+      - value:
+          publication_date_string: 4th century CE
+        description: Ancient manuscript with century-level precision

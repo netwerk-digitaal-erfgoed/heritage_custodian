@@ -1,0 +1,121 @@
+# ==============================================================================
+# LinkML Slot Definition: has_name
+# ==============================================================================
+# The name of an entity (person, organization, project, etc.).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property               | File/Line                | Mapping  | Notes                                           |
+# |----------------|------------------------|--------------------------|----------|-------------------------------------------------|
+# | **Schema.org** | `schema:name`          | schemaorg.owl:26889-26908 | slot_uri | "The name of the item." Thing→Text.             |
+# | **FOAF**       | `foaf:name`            | foaf.ttl:442-450          | exact    | "A name for some thing." Thing→Literal.         |
+# | **Schema.org** | `schema:alternateName` | schemaorg.owl:7757-7777   | related  | "An alias for the item." (alternate, not primary)|
+# | **RDFS**       | `rdfs:label`           | W3C RDF Schema standard   | broad    | Any label/tag, broader than "name" specifically. |
+# | **PNV**        | `pnv:hasName`          | (not in data/ontology/)   | narrow   | Person Name Vocabulary; person names only.       |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_name
+name: has_name
+title: Has Name
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  pnv: https://w3id.org/pnv#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_name:
+    slot_uri: schema:name
+    description: >-
+      The name assigned to an entity, such as a person, organization, project,
+      or any other identifiable thing.
+    alt_descriptions:
+      nl: >-
+        De naam die is toegekend aan een entiteit, zoals een persoon, organisatie,
+        project of elk ander identificeerbaar ding.
+      de: >-
+        Der einer Entität zugewiesene Name, wie einer Person, Organisation,
+        einem Projekt oder einem anderen identifizierbaren Ding.
+      fr: >-
+        Le nom attribué à une entité, telle qu'une personne, une organisation,
+        un projet ou toute autre chose identifiable.
+      ar: >-
+        الاسم المخصص لكيان، مثل شخص أو منظمة أو مشروع أو أي شيء آخر قابل للتحديد.
+      id: >-
+        Nama yang diberikan kepada suatu entitas, seperti orang, organisasi,
+        proyek, atau hal lain yang dapat diidentifikasi.
+      zh: >-
+        分配给实体的名称，例如人员、组织、项目或任何其他可识别的事物。
+      es: >-
+        El nombre asignado a una entidad, como una persona, organización,
+        proyecto o cualquier otra cosa identificable.
+    structured_aliases:
+      - literal_form: Naam
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Name
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Nom
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: اسم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Nama
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 名称
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Nombre
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    exact_mappings:
+      - foaf:name  # foaf.ttl:442-450 - "A name for some thing." Thing→Literal. subPropertyOf rdfs:label.
+    broad_mappings:
+      - rdfs:label  # W3C RDF Schema standard - Any label/tag; broader than "name" specifically. schema:name and foaf:name are both subPropertyOf rdfs:label.
+    narrow_mappings:
+      - pnv:hasName  # (not in data/ontology/) - Person Name Vocabulary; person names only, maps to structured pnv:PersonName.
+    related_mappings:
+      - schema:alternateName  # schemaorg.owl:7757-7777 - "An alias for the item." Alternate name, not primary name.
+    aliases:
+      - has_or_had_name
+      - is_or_was_full_name
+      - full_name
+      - has_or_had_annex_name
+      - has_person_name
+      - has_or_had_person_name
+      - member_organization_name
+      - modern_place_name
+      - name
+      - person_name
+      - preferred_name
+      - profile_name
+      - standardized_name
+    comments:
+      - >-
+        Usage: For persons, the full name (e.g., "Jan de Vries"). For organizations,
+        the official name (e.g., "Rijksmuseum Amsterdam"). For projects, the project title.
+      - >-
+        The slot_uri uses schema:name directly since the semantics are equivalent.
+        The redundant exact_mapping to schema:name has been removed.
+      - >-
+        pnv:hasName from the Person Name Vocabulary is unverified (not in data/ontology/).
+        It is narrower because it applies only to person names and maps to structured pnv:PersonName objects.
+    examples:
+      - value: Jan de Vries
+        description: Person name (individual author)
+      - value: Rijksmuseum Research Department
+        description: Corporate/organizational name
+    annotations:
+      custodian_types: '["*"]'

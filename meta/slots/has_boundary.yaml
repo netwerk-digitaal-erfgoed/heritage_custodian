@@ -1,0 +1,86 @@
+# ==============================================================================
+# LinkML Slot Definition: has_boundary
+# ==============================================================================
+# Indicates the boundary of a place or region.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:geo`          | schemaorg.owl:19029-19032  | related | "The geo coordinates of the place." (coordinates, not boundary) |
+# | **Schema.org**| `schema:polygon`      | schemaorg.owl:30022-30025  | close   | "A polygon is the area enclosed by a point-to-point path" (shape representation of boundary) |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Rewrote alt_descriptions, refined mappings with file:line refs, added schema:polygon as close
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_boundary
+name: has_boundary
+title: Has Boundary
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_boundary:
+    slot_uri: hc:hasBoundary
+    description: >-
+      To have a specific geographic limit, border, or demarcation line that defines the physical extent or jurisdiction of the place.
+    alt_descriptions:
+      nl: >-
+        Een specifieke geografische grens, begrenzing of afbakeningslijn hebben die de fysieke omvang of jurisdictie van de plaats definieert.
+      de: >-
+        Eine bestimmte geografische Grenze, Begrenzung oder Demarkationslinie haben, die die physische Ausdehnung oder Zuständigkeit des Ortes definiert.
+      fr: >-
+        Avoir une limite géographique spécifique, une frontière ou une ligne de démarcation qui définit l'étendue physique ou la juridiction du lieu.
+      ar: >-
+        امتلاك حد جغرافي محدد أو خط ترسيم يحدد النطاق المادي أو الاختصاص القضائي للمكان.
+      id: >-
+        Memiliki batas geografis, perbatasan, atau garis demarkasi tertentu yang mendefinisikan luas fisik atau yurisdiksi tempat tersebut.
+      zh: >-
+        具有特定的地理界限、边界或分界线，用以界定该地点的物理范围或管辖区域。
+      es: >-
+        Tener un límite geográfico específico, frontera o línea de demarcación que define la extensión física o la jurisdicción del lugar.
+    structured_aliases:
+      - literal_form: heeft grens
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Grenze
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une limite
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه حدود
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki batas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有边界
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene límite
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_boundary
+      - is_historical_boundary
+    close_mappings:
+      - schema:polygon  # schemaorg.owl:30022-30025 - "A polygon is the area enclosed by a point-to-point path" (shape representation of boundary)
+    related_mappings:
+      - schema:geo  # schemaorg.owl:19029-19032 - "The geo coordinates of the place." (coordinates, not boundary)
+    annotations:
+      custodian_types: '["*"]'

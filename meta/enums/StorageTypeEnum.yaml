@@ -1,0 +1,190 @@
+# StorageTypeEnum - Types of storage facilities for heritage collections
+# 
+# Based on Wikidata concepts:
+# - Q1191732 (depot/storage facility)
+# - Q1454974 (archive storage)
+# - Q1280667 (art storage)
+# 
+# Generation date: 2025-11-29
+# 
+id: https://nde.nl/ontology/hc/enum/storage-type
+name: storage_type_enum
+title: Storage Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  wd: http://www.wikidata.org/entity/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+imports:
+  - linkml:types
+
+enums:
+  StorageTypeEnum:
+    description: |
+      Types of storage facilities used by heritage custodians to preserve
+      collections, documents, and artifacts.
+      
+      Aligns with:
+      - Wikidata Q1191732 (depot/storage facility)
+      - PREMIS premis:StorageLocation (digital/physical storage)
+      - CIDOC-CRM E27_Site (physical sites)
+      
+      Storage facilities may be on-site or off-site, climate-controlled or
+      basic, and serve different preservation requirements.
+    
+    permissible_values:
+      ARCHIVE_DEPOT:
+        title: archive depot
+        description: |
+          Specialized storage for archival documents, manuscripts, and records.
+          Climate-controlled with stable temperature and humidity for paper
+          and parchment preservation.
+        meaning: wikidata:Q1454974
+        annotations:
+          examples: "Document depot, Records center, Manuscript vault"
+          typical_conditions: "18-20°C, 45-55% RH, low light"
+      
+      ART_STORAGE:
+        title: art storage
+        description: |
+          Climate-controlled facility for paintings, sculptures, and art objects.
+          Requires specific humidity and temperature ranges for different media.
+        meaning: wikidata:Q1280667
+        annotations:
+          examples: "Paintings storage, Sculpture warehouse, Art vault"
+          typical_conditions: "18-22°C, 45-55% RH, UV-filtered lighting"
+      
+      GENERAL_DEPOT:
+        title: general depot
+        description: |
+          Multi-purpose storage facility for mixed collections. May house
+          various object types with moderate climate control.
+        meaning: wikidata:Q1191732
+        annotations:
+          examples: "Museum depot, Collection warehouse, Off-site storage"
+          typical_conditions: "Variable, basic climate control"
+      
+      COLD_STORAGE:
+        title: cold storage
+        description: |
+          Refrigerated or frozen storage for film, photographic materials,
+          biological specimens, or other temperature-sensitive items.
+        meaning: premis:StorageLocation
+        annotations:
+          examples: "Film vault, Photo negatives freezer, Specimen cold room"
+          typical_conditions: "-18°C to 4°C, controlled humidity"
+      
+      HIGH_SECURITY_VAULT:
+        title: high security vault
+        description: |
+          Maximum security storage for valuable items, precious metals,
+          rare manuscripts, or items requiring special protection.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Treasure vault, Rare book vault, High-value objects safe"
+          security_features: "Biometric access, 24/7 monitoring, fireproof"
+      
+      OPEN_STORAGE:
+        title: open storage
+        description: |
+          Visible storage where collections are accessible for study or
+          display while in storage. Study galleries or visible reserves.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Study gallery, Visible storage, Open reserve collection"
+          access_type: "Researcher access, sometimes public viewing"
+      
+      OFFSITE_STORAGE:
+        title: offsite storage
+        description: |
+          Remote storage facility separate from main institution building.
+          May be shared facility or dedicated off-campus location.
+        meaning: wikidata:Q1191732
+        annotations:
+          examples: "External depot, Remote warehouse, Satellite storage"
+          distance: "Typically 5-50km from main building"
+      
+      COMPACT_STORAGE:
+        title: compact storage
+        description: |
+          High-density mobile shelving or compact storage systems maximizing
+          space efficiency. Rolling shelves, compactus systems.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Mobile shelving, Compactus, High-density racking"
+          space_efficiency: "2-3x capacity vs fixed shelving"
+      
+      HAZMAT_STORAGE:
+        title: hazardous materials storage
+        description: |
+          Specialized storage for hazardous materials in collections:
+          nitrate film, asbestos-containing objects, radioactive minerals,
+          or chemically unstable materials.
+        meaning: premis:StorageLocation
+        annotations:
+          examples: "Nitrate film vault, Hazmat containment, Chemical store"
+          safety_requirements: "Ventilation, fire suppression, isolation"
+      
+      DIGITAL_STORAGE:
+        title: digital storage
+        description: |
+          Data center or server facility for digital preservation.
+          Includes on-premises servers, tape libraries, and cloud storage.
+        meaning: premis:StorageLocation
+        annotations:
+          examples: "Data center, Tape library, Digital vault, Cloud storage"
+          technology: "RAID arrays, LTO tape, geographic replication"
+      
+      TEXTILE_STORAGE:
+        title: textile storage
+        description: |
+          Climate-controlled facility for textiles, costumes, and fiber-based
+          materials. Requires pest control and specific humidity.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Costume store, Textile vault, Fabric collection storage"
+          typical_conditions: "18°C, 50% RH, pest-free, dark"
+      
+      PHOTOGRAPH_STORAGE:
+        title: photograph storage
+        description: |
+          Specialized storage for photographic materials including prints,
+          negatives, glass plates, and photographic albums.
+        meaning: premis:StorageLocation
+        annotations:
+          examples: "Photo archive, Negative vault, Glass plate storage"
+          typical_conditions: "15-18°C, 30-40% RH for most formats"
+      
+      ARCHAEOLOGICAL_STORAGE:
+        title: archaeological storage
+        description: |
+          Storage for archaeological finds and excavation materials.
+          May include wet finds, organic materials, metal objects.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Finds depot, Excavation store, Pottery store"
+          special_requirements: "May include wet storage, conservation areas"
+      
+      NATURAL_HISTORY_STORAGE:
+        title: natural history storage
+        description: |
+          Storage for natural history specimens including herbaria,
+          taxidermy, geological samples, and biological collections.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Herbarium, Specimen cabinet, Taxidermy store, Mineral vault"
+          special_requirements: "Pest control, specimen jars, climate zones"
+      
+      TEMPORARY_STORAGE:
+        title: temporary storage
+        description: |
+          Short-term storage during renovation, exhibition prep, or transit.
+          Not intended for long-term preservation.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Staging area, Quarantine room, Transit storage"
+          duration: "Days to months, not years"

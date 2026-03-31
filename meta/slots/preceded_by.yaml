@@ -1,0 +1,135 @@
+# ==============================================================================
+# LinkML Slot Definition: preceded_by
+# ==============================================================================
+# Identifies the entity, event, or item that occurred or existed immediately
+# before the current one in a sequence, timeline, or ordered collection.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                         | File/Line                     | Mapping | Notes                                                                  |
+# |------------|----------------------------------|-------------------------------|---------|------------------------------------------------------------------------|
+# | **RiC-O**  | `rico:followsOrFollowed`         | RiC-O_1-1.rdf:3081-3129       | close   | "Connects Thing to Thing that follows or followed it in sequence."      |
+# | **RiC-O**  | `rico:followsInTime`             | RiC-O_1-1.rdf:3025-3080       | narrow  | Temporal variant (transitive). Inverse of precedesInTime.              |
+# | **DCAT**   | `dcat:prev`                      | dcat3.ttl:1402-1424           | close   | "Previous resource in an ordered collection." DCAT 3 property.         |
+# | **CRM**    | `crm:P134_continued`             | CIDOC_CRM_v7.1.3.rdf:4042-4057| related | "Associates E7 Activity with Activity it continued." Activity domain.  |
+# | **Time**   | `time:after`                     | time.ttl:639-647              | related | "T1 is after T2." TemporalEntity domain only.                         |
+# | **Schema** | `schema:predecessorOf`           | schemaorg.owl:30406-30420     | related | "Previous variant of product." ProductModel domain only.               |
+# | **Schema** | `schema:previousItem`            | schemaorg.owl:30559-30575     | related | "Preceding ListItem." ListItem domain only.                            |
+# | **DCT**    | `dcterms:replaces`               | dcterms.rdf:1827-1846         | related | "Supplants/supersedes described resource." Implies replacement.        |
+#
+# No single external property captures general "preceded by" across all entity
+# types; slot_uri remains hc:precededBy.
+#
+# CREATED: 2026-01-19
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/preceded_by
+name: preceded_by
+title: Preceded By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcat: http://www.w3.org/ns/dcat#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  time: http://www.w3.org/2006/time#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  pav: http://purl.org/pav/2.3#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  preceded_by:
+    slot_uri: hc:precededBy
+    description: >-
+      Identifies or points to the specific entity, event, or item that
+      occurred, existed, or was positioned immediately before the current one
+      in a sequence, timeline, or ordered collection. In heritage custodian
+      contexts this captures temporal succession of exhibitions, directorship
+      periods, conservation campaigns, accession records, and organisational
+      predecessor relationships. The relationship is directional: the subject
+      is preceded by the object.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke entiteit, gebeurtenis of item dat
+        onmiddellijk voor het huidige in een reeks, tijdlijn of geordende
+        verzameling plaatsvond, bestond of gepositioneerd was.
+      de: >-
+        Identifiziert die spezifische Entität, das Ereignis oder Element, das
+        unmittelbar vor dem aktuellen in einer Reihenfolge, Zeitleiste oder
+        geordneten Sammlung auftrat, existierte oder positioniert war.
+      fr: >-
+        Identifie l'entité, l'événement ou l'élément spécifique qui s'est
+        produit, a existé ou était positionné immédiatement avant l'actuel
+        dans une séquence, une chronologie ou une collection ordonnée.
+      ar: >-
+        يحدد الكيان أو الحدث أو العنصر المحدد الذي حدث أو وُجد أو تموضع
+        مباشرة قبل الحالي في تسلسل أو جدول زمني أو مجموعة مرتبة.
+      id: >-
+        Mengidentifikasi entitas, peristiwa, atau item tertentu yang terjadi,
+        ada, atau diposisikan tepat sebelum yang sekarang dalam urutan, garis
+        waktu, atau koleksi terurut.
+      zh: >-
+        标识在序列、时间线或有序集合中紧接当前实体之前发生、存在或定位的特定实体、事件或项目。
+      es: >-
+        Identifica la entidad, evento o elemento específico que ocurrió,
+        existió o se posicionó inmediatamente antes del actual en una
+        secuencia, línea temporal o colección ordenada.
+    structured_aliases:
+      - literal_form: voorafgegaan door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: vorangegangen durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: précédé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مسبوق بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didahului oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 先于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: precedido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    close_mappings:
+      - rico:followsOrFollowed  # RiC-O_1-1.rdf:3081-3129 - "Connects Thing to Thing that follows or followed it in sequence"
+      - dcat:prev  # dcat3.ttl:1402-1424 - "Previous resource in ordered collection or series"
+    narrow_mappings:
+      - rico:followsInTime  # RiC-O_1-1.rdf:3025-3080 - "Inverse of precedesInTime; temporal, transitive"
+    related_mappings:
+      - crm:P134_continued  # CIDOC_CRM_v7.1.3.rdf:4042-4057 - "Associates E7 Activity with Activity it continued"
+      - time:after  # time.ttl:639-647 - "T1 is after T2; TemporalEntity domain"
+      - schema:predecessorOf  # schemaorg.owl:30406-30420 - "Previous variant of product; ProductModel domain"
+      - schema:previousItem  # schemaorg.owl:30559-30575 - "Preceding ListItem; ListItem domain"
+      - dcterms:replaces  # dcterms.rdf:1827-1846 - "Supplants/supersedes described resource; implies replacement"
+      - pav:previousVersion  # PAV 2.3 (used by ArDO): previous version link (version chain)
+    aliases:
+      - previous_observation
+    examples:
+      - value: "hc:exhibition-2023-spring"
+        description: >-
+          The current summer exhibition is preceded by the spring exhibition
+          in the museum's annual programme.
+      - value: "hc:director-jan-de-vries"
+        description: >-
+          The current museum director is preceded by Jan de Vries who served
+          from 2010 to 2020.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This is a general-purpose succession slot. For version-specific
+        precedence of datasets or distributions, consider using dcterms:replaces
+        or dcat:previousVersion directly.
+      - >-
+        The inverse relationship (what follows the current entity) can be
+        expressed through a complementary succeeded_by or follows slot.

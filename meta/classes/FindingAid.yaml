@@ -1,0 +1,321 @@
+id: https://nde.nl/ontology/hc/class/FindingAid
+name: finding_aid_class
+title: FindingAid Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  wd: http://www.wikidata.org/entity/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+# default_range: string
+imports:
+- linkml:types
+- ../enums/ExternalResourceTypeEnum
+- ../enums/LinkTypeEnum
+- ../enums/RelationshipTypeEnum
+- ../enums/SubGuideTypeEnum
+- ../slots/contain
+- ../slots/created_by
+- ../slots/has_selector
+- ../slots/managed_by
+- ../slots/has_date
+- ../slots/has_content
+- ../slots/has_description
+- ../slots/has_file_location
+- ../slots/has_format
+- ../slots/geographic_extent
+- ../slots/identified_by
+- ../slots/has_image
+- ../slots/has_label
+- ../slots/has_level
+- ../slots/has_note
+- ../slots/in_period
+- ../slots/has_policy
+- ../slots/has_provenance
+- ../slots/restricted_by
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/originate_from
+- ../slots/include
+- ../slots/has_scope
+- ../slots/access_restricted
+- ../slots/categorized_as
+- ../slots/generated_by
+- ../slots/instance_of
+- ../slots/located_in
+- ../slots/related_to
+- ../slots/retrieved_through
+- ../slots/superseded_by
+- ../slots/auxiliary_of
+- ../slots/in_language
+- ../slots/has_context
+- ../slots/has_text
+- ../slots/list
+- ../slots/has_locality
+- ../slots/outbound_to
+- ../slots/temporal_extent
+- ../slots/end_of_the_end
+- ../slots/begin_of_the_begin
+- ../slots/require
+- ../slots/primary
+- ../slots/has_access_policy
+- ../slots/retrieved_by
+- ../slots/updated_at
+- ../slots/has_geographic_subdivision
+- ../slots/has_section
+- ../slots/provided_by
+- ../slots/has_slug
+- ../slots/supersede
+classes:
+  FindingAid:
+    class_uri: rico:FindingAid
+    description: >-
+      Descriptive access instrument that identifies, summarizes, and indexes
+      archival or collection materials to support discovery and retrieval.
+    alt_descriptions:
+      nl: Beschrijvend toegangsinstrument dat collectie- of archiefmateriaal identificeert samenvat en indexeert voor vindbaarheid en raadpleging.
+      de: Deskriptives Zugangs- und Nachweisinstrument das Archiv- oder Sammlungsmaterial identifiziert zusammenfasst und indexiert.
+      fr: Instrument descriptif d acces qui identifie resume et indexe les materiaux d archives ou de collection pour la recherche.
+      es: Instrumento descriptivo de acceso que identifica resume e indexa materiales de archivo o coleccion para su localizacion.
+      ar: أداة وصفية للوصول تحدد مواد الأرشيف أو المجموعات وتلخصها وتفهرسها لدعم الاكتشاف والاسترجاع.
+      id: Instrumen akses deskriptif yang mengidentifikasi merangkum dan mengindeks materi arsip atau koleksi untuk penemuan dan temu kembali.
+      zh: 用于识别、概述并编制档案或馆藏材料索引的描述性检索工具，以支持发现与获取。
+    structured_aliases:
+    - {literal_form: toegangsinventaris, in_language: nl}
+    - {literal_form: Findmittel, in_language: de}
+    - {literal_form: instrument de recherche, in_language: fr}
+    - {literal_form: instrumento de descripcion archivistica, in_language: es}
+    - {literal_form: أداة إرشاد أرشيفية, in_language: ar}
+    - {literal_form: sarana temu balik arsip, in_language: id}
+    - {literal_form: 检索工具, in_language: zh}
+    exact_mappings:
+    - rico:FindingAid
+    close_mappings:
+    - dcterms:BibliographicResource
+    - schema:CreativeWork
+    - crm:E31_Document
+    - bf:Work
+    related_mappings:
+    - schema:temporalCoverage
+    slots:
+    - has_policy
+    - created_by
+    - managed_by
+    - has_description
+    - identified_by
+    - has_note
+    - has_type
+    - has_format
+    - geographic_extent
+    - in_language
+    - include
+    - contain
+    - in_period
+    - begin_of_the_begin
+    - has_score
+    slot_usage:
+      begin_of_the_begin:
+        range: TemporalValue
+        required: true
+      in_period:
+        range: TemporalPeriod
+        multivalued: true
+        inlined_as_list: true
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  TemporalPeriod:
+    class_uri: dcterms:PeriodOfTime
+    description: A named historical period with optional start/end dates and description.
+    slots:
+    - temporal_extent
+    - has_description
+    - end_of_the_end
+    - has_label
+    - begin_of_the_begin
+    - has_score
+    slot_usage:
+      has_label:
+#         range: string
+        required: true
+        aliases:
+        - name
+      temporal_extent:
+#         range: string
+      begin_of_the_begin:
+        range: TemporalValue
+        aliases:
+        - start
+      end_of_the_end:
+        range: TemporalValue
+        aliases:
+      has_description:
+#         range: string
+        aliases:
+        - has_description
+
+  SubGuideReference:
+    class_uri: rico:FindingAid
+    description: 'Reference to a sub-guide or related finding aid within the same repository.'
+    slots:
+    - access_restricted
+    - has_note
+    - has_slug
+    - has_description
+    - has_content
+    - has_type
+    - has_score
+    - has_label
+    - has_url
+    slot_usage:
+      has_slug:
+        required: true
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value: 'label_value: "Burgerlijke Stand" language_code: "nl" '
+        - value: 'label_value: "Civil Registry" language_code: "en" '
+      has_url:
+        range: uri
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+      has_type:
+#         range: string # uriorcurie
+      access_restricted:
+        range: boolean
+      has_content:
+#         range: string
+        examples:
+        - value: 1811-1935
+        - value: before 1811
+    comments:
+    - Captures part-of linkage between sub-guides and their parent finding aids.
+    - 'Preserved from prior description: Reference to a sub-guide or related finding aid within the same repository. Sub-guides are more specific finding aids linked from a repository guide. For example, a "Family History" repository guide links to specific sub-guides for "Civil Registry", "Notarial Records", etc.'
+    annotations:
+      mapping_predicate: rico:isOrWasPartOf
+  ArchiveReference:
+    class_uri: rico:RecordSet
+    description: 'Reference to an archive collection or institution. Used for key_archives (main archives for a topic) and related_archives (external archives with related holdings). '
+    close_mappings:
+    - schema:WebPageElement
+    slots:
+    - has_label
+    - identified_by
+    - has_level
+    - contain
+    - list
+    - has_section
+    - has_score
+    - has_provenance
+    slot_usage:
+      has_level:
+        range: integer
+        minimum_value: 1
+        maximum_value: 6
+      contain:
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        any_of:
+        - range: PageSection
+        - range: PageLink
+      list:
+        multivalued: true
+      has_provenance:
+        range: XPath
+        inlined: true
+  PageLink:
+    class_uri: schema:WebPage
+    description: 'A hyperlink extracted from a page. '
+    slots:
+    - auxiliary_of
+    - has_context
+    - has_text
+    - has_type
+    - has_url
+    - has_score
+    - has_provenance
+    slot_usage:
+      has_text:
+        required: true
+      has_url:
+        range: uri
+        required: true
+      has_type:
+        range: LinkTypeEnum
+      auxiliary_of:
+        range: boolean
+      has_provenance:
+        range: XPath
+        inlined: true
+  FeaturedCard:
+    class_uri: schema:CreativeWork
+    description: 'A featured content card (often with image/icon). Common on archive websites to highlight important sub-guides or resources. '
+    slots:
+    - has_description
+    - has_image
+    - has_label
+    - has_url
+    - has_score
+    - has_provenance
+    slot_usage:
+      has_description:
+#         range: string
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Kaart beschrijving in het Nederlands
+            description_type: card
+            language: nl
+        - value:
+            description_text: Card description in English
+            description_type: card
+            language: en
+      has_image:
+        range: Image
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_url:
+              has_value: https://archive.org/images/card.jpg
+      has_label:
+#         range: string
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+        examples:
+        - value:
+            has_text: Kaart titel
+            language: nl
+        - value:
+            has_text: Card title
+            language: en
+      has_url:
+        range: uri
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_value: https://archive.org/page
+      has_provenance:
+        range: XPath
+        inlined: true
+types:
+  TemporalValue:
+    typeof: string
+    uri: xsd:string
+    description: 'A temporal value that can be either a year (integer) or special value like "present". Examples: 1572, 1811, "present", "ongoing" '

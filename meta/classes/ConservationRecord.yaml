@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/ConservationRecord
+name: ConservationRecord
+title: Conservation Record Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  aat: http://vocab.getty.edu/aat/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/ConservationStatusEnum
+- ../metadata
+- ../slots/has_note
+- ../slots/conserved_by
+- ../slots/affiliated_with
+- ../slots/has_expense
+- ../slots/has_currency
+- ../slots/describe
+- ../slots/final_of_the_final
+- ../slots/has_condition
+- ../slots/has_score
+- ../slots/has_treatment
+- ../slots/has_type
+- ../slots/indicate
+- ../slots/initial_of_the_initial
+- ../slots/use_material
+- ../slots/refer_to
+- ../slots/has_url
+- ../slots/receive
+- ../slots/recommend
+- ../slots/has_timestamp
+- ../slots/identified_by
+- ../slots/temporal_extent
+- ../slots/related_to
+- ../slots/has_source
+- ../slots/use
+classes:
+  ConservationRecord:
+    class_uri: crm:E14_Condition_Assessment
+    description: >-
+      Documentation entity for condition assessment, technical examination, and treatment actions performed on a heritage object.
+    alt_descriptions:
+      nl: Documentatie-entiteit voor conditiebeoordeling, technisch onderzoek en behandelacties op erfgoedobjecten.
+      de: Dokumentationseinheit fuer Zustandsbewertung, technische Untersuchung und Behandlungsmaßnahmen an Kulturerbeobjekten.
+      fr: Entite de documentation pour l'evaluation d'etat, l'examen technique et les interventions appliquees a un objet patrimonial.
+      es: Entidad documental para evaluacion de estado, examen tecnico e intervenciones de tratamiento sobre objetos patrimoniales.
+      ar: كيان توثيقي لتقييم الحالة والفحص التقني وإجراءات المعالجة المنفذة على عنصر تراثي.
+      id: Entitas dokumentasi untuk penilaian kondisi, pemeriksaan teknis, dan tindakan perawatan pada objek warisan.
+      zh: 用于记录遗产对象状态评估、技术检查与处理干预的文档实体。
+    exact_mappings:
+    - crm:E14_Condition_Assessment
+    close_mappings:
+    - crm:E11_Modification
+    - aat:300054795
+    - aat:300054796
+    related_mappings:
+    - schema:HowTo
+    - crm:E7_Activity
+    slots:
+    - identified_by
+    - refer_to
+    - has_type
+    - has_timestamp
+    - temporal_extent
+    - initial_of_the_initial
+    - final_of_the_final
+    - has_condition
+    - has_treatment
+    - conserved_by
+    - affiliated_with
+    - use_material
+    - use
+    - describe
+    - has_url
+    - has_source
+    - recommend
+    - indicate
+    - related_to
+    - has_expense
+    - has_currency
+    - receive
+    - has_note
+    - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      refer_to:
+        required: true
+      has_type:
+        required: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+      has_condition:
+        range: Condition
+        multivalued: true
+        inlined: true
+      has_treatment:
+        range: Treatment
+        multivalued: true
+        inlined_as_list: true

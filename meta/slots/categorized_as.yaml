@@ -1,0 +1,219 @@
+# ==============================================================================
+# LinkML Slot Definition: categorized_as
+# ==============================================================================
+# Assign an entity to a specific class or group based on shared characteristics
+# or distinct criteria.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line             | Mapping | Notes                              |
+# |---------------|---------------------------|-----------------------|---------|------------------------------------|
+# | **CIDOC-CRM** | `crm:P2_has_type`         | CIDOC_CRM:1200        | slot_uri| Primary typing property            |
+# | **DCAT**      | `dcat:theme`              | dcat3.ttl:1722        | exact   | Main category of resource          |
+# | **Dublin Core**| `dcterms:subject`        | dcterms.rdf:1968-1987 | broad   | Topic of resource                  |
+# | **Schema.org**| `schema:category`         | schemaorg.owl:11338   | close   | Category for item                  |
+# | **RiC-O**     | `rico:hasOrHadSubject`    | RiC-O_1-1:8231        | close   | Subject of Record Resource         |
+# | **RiC-O**     | `rico:hasContentOfType`   | RiC-O_1-1:4148        | close   | Content type classification        |
+# | **Schema.org**| `schema:about`            | schemaorg.owl:6247    | related | Subject matter (broader)           |
+# | **CIDOC-CRM** | `crm:P41_classified`      | CIDOC_CRM:2184        | related | Classification event               |
+# | **CIDOC-CRM** | `crm:P127_has_broader_term`| CIDOC_CRM:3912       | related | Type hierarchy (Type-to-Type)      |
+# | **SKOS**      | `skos:broader`            | skos.rdf:266          | related | Concept hierarchy                  |
+# | **SKOS**      | `skos:narrower`           | skos.rdf:281          | related | Concept hierarchy (inverse)        |
+# | **DCAT**      | `dcat:keyword`            | dcat3.ttl:1208        | broad   | Free-text keywords                 |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/categorized_as
+name: categorized_as
+title: categorized as
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcat: http://www.w3.org/ns/dcat#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  categorized_as:
+    description: >-
+      To assign an entity to a specific class or group based on shared
+      characteristics or distinct criteria.
+    alt_descriptions:
+      nl: >-
+        Een entiteit toewijzen aan een specifieke klasse of groep op basis
+        van gedeelde kenmerken of onderscheidende criteria.
+      de: >-
+        Eine Entität einer bestimmten Klasse oder Gruppe zuordnen, basierend
+        auf gemeinsamen Merkmalen oder unterscheidenden Kriterien.
+      fr: >-
+        Attribuer une entité à une classe ou un groupe spécifique en fonction
+        de caractéristiques partagées ou de critères distincts.
+      ar: >-
+        تعيين كيان إلى فئة أو مجموعة محددة بناءً على خصائص مشتركة أو معايير مميزة.
+      id: >-
+        Menetapkan entitas ke kelas atau kelompok tertentu berdasarkan
+        karakteristik bersama atau kriteria yang berbeda.
+      zh: >-
+        根据共同特征或特定标准将实体分配到特定的类别或组。
+      es: >-
+        Asignar una entidad a una clase o grupo específico basándose en
+        características compartidas o criterios distintivos.
+    structured_aliases:
+      - literal_form: gecategoriseerd als
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_categorized_as
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: kategorisiert als
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: catégorisé comme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مصنف كـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dikategorikan sebagai
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 归类为
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: categorizado como
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    # range: Category
+    slot_uri: crm:P2_has_type
+    multivalued: true
+    inlined: false
+    inlined_as_list: false
+    
+    # VERIFIED MAPPINGS (2026-02-XX)
+    # Source files: data/ontology/CIDOC_CRM_v7.1.3.rdf, data/ontology/dcterms.rdf,
+    #               data/ontology/dcat3.ttl, data/ontology/schemaorg.owl,
+    #               data/ontology/RiC-O_1-1.rdf, data/ontology/skos.rdf
+    
+    exact_mappings:
+      # dcat3.ttl line 1722: theme
+      # "A main category of the resource. A resource can have multiple themes."
+      # Exact: categorization/classification semantics
+      - dcat:theme  # from dcat3.ttl - main category of resource
+    
+    close_mappings:
+      # schemaorg.owl line 11338: category
+      # "A category for the item. Greater signs or slashes can indicate category hierarchy."
+      # Close: informal category assignment
+      - schema:category  # from schemaorg.owl - category for item
+      
+      # RiC-O_1-1.rdf line 8231: hasOrHadSubject
+      # "Connects a Record Resource to a Thing that is or was its subject"
+      # Close: subject relationship for archival records
+      - rico:hasOrHadSubject  # from RiC-O_1-1.rdf - subject of Record Resource
+      
+      # RiC-O_1-1.rdf line 4148: hasContentOfType
+      # Connects Record Resource to Type
+      # Close: content type classification
+      - rico:hasContentOfType  # from RiC-O_1-1.rdf - content type of Record Resource
+    
+    related_mappings:
+      # schemaorg.owl line 6247: about
+      # "The subject matter of an object"
+      # Related: aboutness (broader than categorization)
+      - schema:about  # from schemaorg.owl - subject matter (broader)
+      
+      # CIDOC_CRM_v7.1.3.rdf line 2184: P41_classified
+      # "This property records the act of classifying an item"
+      # Related: the classification ACT (event-based, not direct categorization)
+      - crm:P41_classified  # from CIDOC_CRM_v7.1.3.rdf - classification event
+      
+      # CIDOC_CRM_v7.1.3.rdf line 3912: P127_has_broader_term
+      # "Identifies a super-Type to which this Type is subordinate"
+      # Related: hierarchy between Types, not Entity-to-Type relationship
+      - crm:P127_has_broader_term  # from CIDOC_CRM_v7.1.3.rdf - Type hierarchy
+      
+      # skos.rdf line 266: broader
+      # "Relates a concept to a concept that is more general in meaning"
+      # Related: Concept-to-Concept hierarchy (not Entity-to-Concept)
+      - skos:broader  # from skos.rdf - concept hierarchy (related context)
+      
+      # skos.rdf line 281: narrower
+      # "Relates a concept to a concept that is more specific in meaning"
+      # Related: Concept-to-Concept hierarchy (not Entity-to-Concept)
+      - skos:narrower  # from skos.rdf - concept hierarchy (related context)
+    
+    broad_mappings:
+      # dcterms.rdf line 1968-1987: subject
+      # "A topic of the resource"
+      # Broad: aboutness/topic is more general than categorization
+      - dcterms:subject  # from dcterms.rdf - topic of resource (broader)
+      
+      # dcat3.ttl line 1208: keyword
+      # Free-text keywords (less structured than categorization)
+      - dcat:keyword  # from dcat3.ttl - free-text keywords (broader/less structured)
+    
+    aliases:
+      - has_or_had_category
+      - is_classified_as
+      - is_or_was_categorized_as
+      - connections_by_heritage_type
+      - cultural_context
+      - dutch_context
+      - portal_type_category
+      - post_type_category
+      - post_type_schema_org_type
+      - role_category
+      - social_media_platform_category
+      - specialized_place
+    annotations:
+      rule_53_migration: Replaces collection_focus with structured Category
+      custodian_types: '["*"]'
+    
+    examples:
+      - value:
+          has_or_had_identifier: "http://vocab.getty.edu/aat/300033618"
+          has_or_had_label: "paintings"
+        description: Artwork categorized as painting (AAT term)
+      - value:
+          has_or_had_identifier: "https://example.org/category/dutch-golden-age"
+          has_or_had_label: "Dutch Golden Age"
+        description: Collection categorized by historical period
+    
+    comments:
+      - |
+          Categories represent hierarchical or faceted classifications:
+          - Subject categories (art, science, history)
+          - Thematic categories (Dutch Golden Age, WWII, Islamic art)
+          - Material categories (paintings, manuscripts, specimens)
+          - Geographic categories (European, Asian, African)
+          - Temporal categories (Medieval, Renaissance, Contemporary)
+      - | 
+          The Category class enables structured categorization with:
+          - Category name and description
+          - Category type (subject, theme, material, geographic, temporal)
+          - Hierarchical relationships (broader/narrower terms)
+          - Provenance tracking
+      - |
+          MAPPING CORRECTIONS (2026-02-XX):
+          - REMOVED skos:Concept from exact_mappings - it is a CLASS, not a PROPERTY
+          - Changed slot_uri from dcterms:subject to crm:P2_has_type for more precise
+            categorization/typing semantics (dcterms:subject is about "topic/aboutness")
+          - Moved dcterms:subject to close_mappings (related but not exact)
+          - Added dcat:theme as exact_mapping (category semantics)
+          - Moved skos:broader/skos:narrower to related_mappings (Concept-to-Concept
+            hierarchies, not Entity-to-Concept categorization)
+      - |
+          Verified predicates from:
+          - data/ontology/CIDOC_CRM_v7.1.3.rdf (crm:P2_has_type line 1200, crm:P41_classified line 2184, crm:P127 line 3912)
+          - data/ontology/dcterms.rdf (dcterms:subject line 1968)
+          - data/ontology/dcat3.ttl (dcat:theme line 1722, dcat:keyword line 1208)
+          - data/ontology/schemaorg.owl (schema:category line 11338, schema:about line 6247)
+          - data/ontology/RiC-O_1-1.rdf (rico:hasOrHadSubject line 8231, rico:hasContentOfType line 4148)
+          - data/ontology/skos.rdf (skos:broader line 266, skos:narrower line 281)

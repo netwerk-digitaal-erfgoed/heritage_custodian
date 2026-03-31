@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: has_domain
+# ==============================================================================
+# The particular field of knowledge, activity, influence, or territory to which
+# the entity belongs or is applicable.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | (none)        | —                     | —                          | —       | rdfs:domain is a meta-property for specifying the domain of an RDF property — NOT equivalent to "field of knowledge". No standard match. |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, REMOVED erroneous rdfs:domain exact_mapping
+#   and slot_uri (rdfs:domain is an OWL/RDF meta-property, not a content property),
+#   changed slot_uri to hc:hasDomain, removed top-level description field
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_domain
+name: has_domain
+title: Has Domain
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_domain:
+    slot_uri: hc:hasDomain
+    description: >-
+      To specify the particular field of knowledge, activity, influence, or territory (such as a subject area or industry sector) to which the entity belongs or is applicable.
+    alt_descriptions:
+      nl: >-
+        Het specifieke kennisgebied, activiteitengebied, invloedsgebied of territorium (zoals een vakgebied of bedrijfssector) specificeren waartoe de entiteit behoort of waarop deze van toepassing is.
+      de: >-
+        Das bestimmte Wissensgebiet, Tätigkeitsfeld, den Einflussbereich oder das Gebiet (wie ein Fachgebiet oder eine Branche) angeben, zu dem die Entität gehört oder auf das sie anwendbar ist.
+      fr: >-
+        Spécifier le domaine particulier de connaissance, d'activité, d'influence ou de territoire (tel qu'un domaine thématique ou un secteur industriel) auquel l'entité appartient ou est applicable.
+      ar: >-
+        تحديد مجال المعرفة أو النشاط أو التأثير أو الإقليم المحدد (مثل مجال موضوعي أو قطاع صناعي) الذي ينتمي إليه الكيان أو ينطبق عليه.
+      id: >-
+        Menentukan bidang pengetahuan, aktivitas, pengaruh, atau wilayah tertentu (seperti bidang subjek atau sektor industri) yang menjadi tempat entitas tersebut atau yang berlaku.
+      zh: >-
+        指定实体所属或适用的特定知识领域、活动领域、影响范围或领地（如学科领域或行业部门）。
+      es: >-
+        Especificar el campo particular de conocimiento, actividad, influencia o territorio (como un área temática o sector industrial) al que pertenece o es aplicable la entidad.
+    structured_aliases:
+      - literal_form: heeft domein
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Domäne
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un domaine
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه مجال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki domain
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有领域
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene dominio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_domain
+      - portal_typical_domain
+      - sensory_heritage_domain
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_domain for conciseness.
+      - |
+        **WARNING**: The previous version used rdfs:domain as both slot_uri and exact_mapping.
+        This was INCORRECT — rdfs:domain is an OWL/RDF meta-property that specifies the
+        domain class of an RDF property, NOT a content property for "field of knowledge".
+        Corrected to hc:hasDomain.
+    annotations:
+      custodian_types: '["*"]'

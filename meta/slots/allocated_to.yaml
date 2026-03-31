@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: allocated_to
+# ==============================================================================
+# Individual, group, project, or entity to which resources are assigned.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:recipient`    | schemaorg.owl        | close   | Recipient of message/action - similar semantic           |
+# | **PROV-O**    | `prov:wasAttributedTo`| prov.ttl:428-437     | related | Attribution to agent                                     |
+#
+# SEMANTIC NOTES:
+# - Allocation "to" captures the target/recipient of resource assignment
+# - schema:recipient is close but more for communication context
+# - Custom hc: URI is appropriate for resource allocation
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (removed embedded notes), added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/allocated_to
+name: allocated_to
+title: Allocated To
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  oa: http://www.w3.org/ns/oa#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  allocated_to:
+    slot_uri: hc:allocatedTo
+    description: >-
+      To be assigned, distributed, or designated for the use or responsibility of a 
+      specific individual, group, project, or entity.
+    alt_descriptions:
+      nl: >-
+        Toegewezen, verdeeld of aangewezen voor het gebruik of de verantwoordelijkheid 
+        van een specifiek individu, groep, project of entiteit.
+      de: >-
+        Zugewiesen, verteilt oder bestimmt für die Nutzung oder Verantwortung einer 
+        bestimmten Person, Gruppe, eines Projekts oder einer Entität.
+      fr: >-
+        Attribué, distribué ou désigné pour l'utilisation ou la responsabilité d'un 
+        individu, groupe, projet ou entité spécifique.
+      ar: >-
+        أن يتم تخصيصه أو توزيعه أو تعيينه لاستخدام أو مسؤولية فرد أو مجموعة 
+        أو مشروع أو كيان معين.
+      id: >-
+        Ditugaskan, didistribusikan, atau ditentukan untuk penggunaan atau tanggung 
+        jawab individu, kelompok, proyek, atau entitas tertentu.
+      zh: >-
+        分配、分发或指定给特定个人、团体、项目或实体使用或负责。
+      es: >-
+        Asignado, distribuido o designado para el uso o responsabilidad de un 
+        individuo, grupo, proyecto o entidad específica.
+    structured_aliases:
+      - literal_form: toegewezen aan
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: zugewiesen an
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: alloué à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مخصص لـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dialokasikan untuk
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分配给
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: asignado a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - schema:recipient  # schemaorg.owl - recipient of message/action
+    aliases:
+      - is_or_was_allocated_to
+    comments:
+      - |
+        **USAGE**: Used for investment allocations, budget allocations, and resource 
+        distribution to specific projects, departments, or individuals.
+    examples:
+      - value: https://nde.nl/project/digitization-2024
+        description: Allocated to digitization project
+    annotations:
+      custodian_types: '["*"]'

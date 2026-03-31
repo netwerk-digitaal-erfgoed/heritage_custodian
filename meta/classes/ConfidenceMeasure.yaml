@@ -1,0 +1,83 @@
+id: https://nde.nl/ontology/hc/class/ConfidenceMeasure
+name: ConfidenceMeasure
+title: Confidence Measure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+  sosa: http://www.w3.org/ns/sosa/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_method
+  - ../slots/has_score
+  - ../slots/has_value
+classes:
+  ConfidenceMeasure:
+    class_uri: hc:ConfidenceMeasure
+    description: >-
+      Measured certainty record combining a numeric estimate with the procedure
+      used to derive it.
+    alt_descriptions:
+      nl: Gemeten zekerheidsregistratie die een numerieke schatting combineert met de gebruikte berekeningsprocedure.
+      de: Gemessener Sicherheitseintrag, der eine numerische Schaetzung mit dem verwendeten Berechnungsverfahren kombiniert.
+      fr: Enregistrement mesure de certitude combinant une estimation numerique et la procedure de calcul utilisee.
+      es: Registro medido de certeza que combina una estimacion numerica con el procedimiento utilizado para calcularla.
+      ar: سجل مقاس لليقين يجمع بين تقدير رقمي والإجراء المستخدم لاشتقاقه.
+      id: Catatan kepastian terukur yang menggabungkan estimasi numerik dengan prosedur perhitungan yang digunakan.
+      zh: 将数值估计与计算方法结合在一起的可测可信度记录。
+    structured_aliases:
+      - literal_form: zekerheidsmeting
+        in_language: nl
+      - literal_form: Sicherheitsmessung
+        in_language: de
+      - literal_form: mesure de certitude
+        in_language: fr
+      - literal_form: medicion de certeza
+        in_language: es
+      - literal_form: قياس اليقين
+        in_language: ar
+      - literal_form: pengukuran kepastian
+        in_language: id
+      - literal_form: 置信度测量
+        in_language: zh
+    slots:
+      - has_method
+      - has_value
+      - has_score
+    slot_usage:
+      has_value:
+        range: float
+        minimum_value: 0.0
+        maximum_value: 1.0
+        required: true
+      has_score:
+        range: float
+        minimum_value: 0.0
+        maximum_value: 1.0
+    examples:
+      - value:
+          has_method: fuzzy_string_matching
+          has_value: 0.78
+          has_score: 0.78
+        description: Similarity-based estimate from lexical comparison
+      - value:
+          has_method: expert_assessment
+          has_value: 0.9
+          has_score: 0.9
+        description: Expert-reviewed estimate after manual validation
+    keywords:
+      - measured certainty
+      - scoring method
+      - data quality assessment
+      - reproducible evaluation
+    broad_mappings:
+      - dqv:QualityMeasurement
+      - schema:PropertyValue
+    close_mappings:
+      - sosa:Result
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: Reusable measurement artifact with explicit scoring method.
+      custodian_types: "['*']"

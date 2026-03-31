@@ -1,0 +1,71 @@
+id: https://nde.nl/ontology/hc/class/AuditStatusType
+name: AuditStatusType
+title: Audit Status Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_description
+classes:
+  AuditStatusType:
+    class_uri: hc:AuditStatusType
+    description: >-
+      Type classification for audit status.
+
+      Abstract base class for categorizing different audit completion states,  such as audited, unaudited, or under review.
+    alt_descriptions:
+      nl: Typeclassificatie voor auditstatus.
+      de: Typklassifikation für Prüfungsstatus.
+      fr: Classification du type d'état d'audit.
+      es: Clasificación de tipo de estado de auditoría.
+      ar: تصنيف نوع حالة التدقيق.
+      id: Klasifikasi tipe status audit.
+      zh: 审计状态的类型分类。
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    structured_aliases:
+    - literal_form: auditstatustype
+      in_language: nl
+    - literal_form: Prüfungsstatustyp
+      in_language: de
+    - literal_form: type de statut d'audit
+      in_language: fr
+    - literal_form: tipo de estado de auditoría
+      in_language: es
+    - literal_form: نوع حالة التدقيق
+      in_language: ar
+    - literal_form: tipe status audit
+      in_language: id
+    - literal_form: 审计状态类型
+      in_language: zh
+    keywords:
+    - audit status type
+    - audit classification
+    - compliance type
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Audited
+        - value: Unaudited
+        - value: Under Review
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: "AuditStatusType is moderately specific to organizational compliance workflows."
+      custodian_types: "['*']"
+    comments:
+    - Abstract base class for audit status types
+    - Extended by AuditedStatus, UnauditedStatus, ReviewStatus
+    see_also:
+    - AuditStatus
+    - AuditStatusTypes

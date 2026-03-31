@@ -1,0 +1,196 @@
+id: https://nde.nl/ontology/hc/class/WebObservation
+name: WebObservation
+title: WebObservation Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  pav: http://purl.org/pav/
+  foaf: http://xmlns.com/foaf/0.1/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+- ../slots/changed_through
+- ../slots/encoded_as
+- ../slots/has_content
+- ../slots/has_method
+- ../slots/has_note
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/archived_at
+- ../slots/updated_at
+- ../slots/identified_by
+- ../slots/observe
+- ../slots/has_title
+- ../slots/preceded_by
+- ../slots/retrieved_through
+- ../slots/retrieved_by
+- ../slots/retrieved_at
+- ../slots/has_url
+- ../slots/warrant
+default_prefix: hc
+classes:
+  WebObservation:
+    class_uri: prov:Activity
+    description: >-
+      Provenance activity documenting retrieval of online content, tracking when,
+      where, and how source information was obtained.
+    alt_descriptions:
+      nl: Een provenanceregistratie voor het ophalen en observeren van webcontent.
+      de: Ein Provenienzdatensatz für den Abruf und die Beobachtung von Webinhalten.
+      fr: Un enregistrement de provenance documentant la récupération de contenu web.
+      es: Un registro de procedencia que documenta la recuperación de contenido web.
+      ar: سجل المصدر الذي يوثق استرجاع محتوى الويب.
+      id: Catatan provenance yang mendokumentasikan pengambilan konten web.
+      zh: 记录网页内容检索和观察的溯源记录。
+    structured_aliases:
+    - literal_form: webobservatie
+      in_language: nl
+    - literal_form: Web-Beobachtung
+      in_language: de
+    - literal_form: observation web
+      in_language: fr
+    - literal_form: observación web
+      in_language: es
+    - literal_form: ملاحظة الويب
+      in_language: ar
+    - literal_form: observasi web
+      in_language: id
+    - literal_form: 网页观察
+      in_language: zh
+    comments:
+    - Provides transparent provenance for web-extracted data.
+    - Documents what, when, who, how, and quality of web retrieval.
+    - Supports change detection via content_hash and previous_observation.
+    - 'Preserved from prior description: Provenance record documenting the retrieval and observation of web content, tracking when, where, and how web-based information was obtained.'
+    broad_mappings:
+    - prov:Activity
+    - schema:Action
+    related_mappings:
+    - prov:Entity
+    - pav:sourceAccessedAt
+    - dcterms:source
+    slots:
+    - archived_at
+    - warrant
+    - changed_through
+    - encoded_as
+    - has_content
+    - has_method
+    - has_note
+    - has_status
+    - updated_at
+
+    - identified_by
+    - observe
+    - has_title
+    - preceded_by
+    - retrieved_through
+    - retrieved_by
+    - retrieved_at
+    - has_url
+    - has_score
+    slot_usage:
+      identified_by:
+        description: Persistent identifier for this WebObservation activity.
+        required: true
+        identifier: true
+      has_url:
+        description: Source URL that was retrieved/observed.
+        recommended: true
+      retrieved_at:
+        description: Timestamp when the web retrieval occurred.
+        recommended: true
+      retrieved_by:
+        description: Agent (person or software) that performed retrieval.
+        recommended: true
+      has_method:
+#         range: string
+        description: Retrieval method used (e.g., browser automation, API call, search provider).
+        recommended: true
+      has_status:  # was: http_status_code - migrated per Rule 53/56 (2026-01-28)
+        range: HTTPStatusCode
+        examples:
+        - value:
+            has_value: "200"
+            has_label: "OK"
+      has_score:
+        description: Confidence/quality score for extraction.
+        recommended: true
+      observe:
+        description: Entities or resources that were observed/derived from this retrieval.
+    see_also:
+    - https://www.w3.org/TR/prov-o/
+    - http://purl.org/pav/
+    - https://www.w3.org/TR/prov-dm/
+    - https://web.archive.org/
+    examples:
+    - value:
+        observation_id: https://nde.nl/ontology/hc/observation/web/2025-11-29/eu-horizon-cl2-heritage
+        source_url: https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2025-heritage-01
+        retrieved_on: '2025-11-29T10:30:00Z'
+        retrieved_by: claude-assistant
+        retrieval_method: exa-search
+        has_status:
+          has_value: "200"
+        content_type: text/html
+
+
+        page_title: Horizon Europe - Cultural heritage, cultural and creative industries
+        has_score:
+          has_score: 0.92
+        extraction_notes: Extracted via Exa AI search. Call details structured and well-formatted. Budget and deadline clearly stated. Eligibility criteria parsed from HTML sections.
+        observe:
+        - https://nde.nl/ontology/hc/call/ec/cl2-2025-heritage-01
+        archived_at: https://web.archive.org/web/20251129103000/https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/horizon-cl2-2025-heritage-01
+    - value:
+        observation_id: https://nde.nl/ontology/hc/observation/web/2025-11-28/nlhf-medium-grants
+        source_url: https://www.heritagefund.org.uk/funding/medium-grants
+        retrieved_on: '2025-11-28T14:00:00Z'
+        retrieved_by: glam-harvester/1.0
+        retrieval_method: playwright-scraper
+        has_status:
+          has_value: "200"
+        content_type: text/html
+
+
+        page_title: Medium grants | The National Lottery Heritage Fund
+        content_hash: sha256:a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456
+        last_modified: '2025-11-15T09:00:00Z'
+        has_score:
+          has_score: 0.88
+        extraction_notes: Extracted via Playwright scraper. Dynamic content fully rendered. Grant range and eligibility parsed from page sections.
+        observe:
+        - https://nde.nl/ontology/hc/call/nlhf/medium-grants-2025-q4
+        previous_observation: https://nde.nl/ontology/hc/observation/web/2025-10-15/nlhf-medium-grants
+        content_changed: true
+    - value:
+        observation_id: https://nde.nl/ontology/hc/observation/web/2025-11-29/wikidata-echoes
+        source_url: https://query.wikidata.org/sparql
+        retrieved_on: '2025-11-29T09:00:00Z'
+        retrieved_by: wikidata-mcp-server
+        retrieval_method: sparql-api
+        has_status:
+          has_value: "200"
+        content_type: application/sparql-results+json
+
+        has_score:
+          has_score: 1.0
+        extraction_notes: SPARQL query for ECHOES/ECCCH Q-number (Q131381572). Structured API response with high confidence.
+        observe:
+        - http://www.wikidata.org/entity/Q131381572
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      "A provenance record documenting the retrieval and observation of web content.\nTracks when, where, and how web-based information was obtained.\n\n**PURPOSE**:\n\nWebObservation provides transparent provenance for web-extracted data in the\nheritage custodian ontology. When information about funding calls, institutions,\nor other entities is extracted from web sources, a WebObservation record\ndocuments:\n\n- **What**: The source URL and content\n- **When**: Timestamp of retrieval\n- **Who/What**: Agent performing retrieval\n- **How**: Method of extraction\n- **Quality**: Confidence scores and notes\n\n**PROVENANCE CHAIN**:\n\n```\nWebObservation (Activity)\n      \u2502\n      \u251C\u2500\u2500 prov:used \u2500\u2500\u2192 SourceDocument (web page as Entity)\n      \u2502                     \u2502\n      \u2502                     \u2514\u2500\u2500 source_uri: https://example.org/call\n      \u2502\n      \u251C\u2500\u2500 prov:generated \u2500\u2500\u2192 CallForApplication\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

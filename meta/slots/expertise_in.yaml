@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: expertise_in
+# ==============================================================================
+# To possess specialized knowledge, skill, or mastery in a particular subject,
+# field, or activity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line               | Mapping | Notes                                              |
+# |----------------|-----------------------|-------------------------|---------|----------------------------------------------------|
+# | **Schema.org** | `schema:knowsAbout`   | schemaorg.owl:23901-923 | broad   | "suggesting possible expertise but not implying it" |
+#
+# schema:knowsAbout is broader because it merely suggests familiarity with a
+# topic without asserting mastery, whereas expertise_in asserts specialized
+# knowledge or skill.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, schema:knowsAbout as broad
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/expertise_in
+name: expertise_in
+title: expertise in
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  expertise_in:
+    name: expertise_in
+    title: expertise in
+    description: >-
+      To possess specialized knowledge, skill, or mastery in a particular
+      subject, field, or activity.
+    alt_descriptions:
+      nl: >-
+        Gespecialiseerde kennis, vaardigheid of meesterschap bezitten in een
+        bepaald onderwerp, vakgebied of activiteit.
+      de: >-
+        Spezialisiertes Wissen, Können oder Meisterschaft in einem bestimmten
+        Fachgebiet, Bereich oder einer bestimmten Tätigkeit zu besitzen.
+      fr: >-
+        Posséder des connaissances spécialisées, une compétence ou une maîtrise
+        dans un sujet, un domaine ou une activité particulière.
+      ar: >-
+        امتلاك معرفة متخصصة أو مهارة أو إتقان في موضوع أو مجال أو نشاط معين.
+      id: >-
+        Memiliki pengetahuan khusus, keterampilan, atau penguasaan dalam suatu
+        subjek, bidang, atau aktivitas tertentu.
+      zh: >-
+        在特定学科、领域或活动中拥有专业知识、技能或精通能力。
+      es: >-
+        Poseer conocimiento especializado, habilidad o dominio en un tema,
+        campo o actividad particular.
+    structured_aliases:
+      - literal_form: expertise in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Fachwissen in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: expertise en
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خبرة في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: keahlian dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 专长于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: experiencia en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:expertiseIn
+    range: string
+    aliases:
+      - has_or_had_expertise_in
+      - conservation_specialization
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - schema:knowsAbout  # schemaorg.owl:23901-923 - "suggesting possible expertise but not implying it"
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_expertise_in for conciseness (2026-02-03).

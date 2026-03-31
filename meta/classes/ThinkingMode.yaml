@@ -1,0 +1,76 @@
+id: https://nde.nl/ontology/hc/class/ThinkingMode
+name: thinking_mode_class
+title: Thinking Mode
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/ThinkingModeEnum
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  ThinkingMode:
+    class_uri: schema:PropertyValue
+    description: >-
+      Controlled categorization of reasoning styles applied during interpretation, analysis, or decision support.
+    alt_descriptions:
+      nl: LLM-denkwijzeconfiguratie voor API-verzoeken.
+      de: LLM-Denkmodus-Konfiguration für API-Anfragen.
+      fr: Configuration du mode de réflexion LLM pour les requêtes API.
+      es: 'Concepto para: Configuration setting controlling how a large language model performs internal reasoning during inference operations.'
+      ar: 'مفهوم لـ: Configuration setting controlling how a large language model performs internal reasoning during inference operations.'
+      id: 'Konsep untuk: Configuration setting controlling how a large language model performs internal reasoning during inference operations.'
+      zh: 用于以下内容的概念：Configuration setting controlling how a large language model performs internal reasoning during inference operations.
+    structured_aliases:
+    - literal_form: denkwijze
+      in_language: nl
+    - literal_form: Denkmodus
+      in_language: de
+    - literal_form: mode de réflexion
+      in_language: fr
+    - literal_form: thinking mode
+      in_language: es
+    - literal_form: thinking mode
+      in_language: ar
+    - literal_form: thinking mode
+      in_language: id
+    - literal_form: thinking mode
+      in_language: zh
+    broad_mappings:
+    - schema:PropertyValue
+    close_mappings:
+    - prov:Plan
+    slots:
+    - has_label
+    - has_description
+    - has_score
+    slot_usage:
+      has_label:
+        examples:
+        - value: Preserved Thinking
+      has_description:
+        examples:
+        - value: Retains reasoning_content from previous assistant turns in context for improved performance.
+    comments:
+    - ThinkingMode represents the operational mode for LLM reasoning during inference
+    - This class wraps ThinkingModeEnum to provide extensibility and structured metadata
+    - GLM 4.7 Thinking Modes: enabled (thinking enabled, model reasons before responding), disabled (thinking disabled, faster responses without reasoning_content), interleaved (think between tool calls, default since GLM-4.5), preserved (retain reasoning across turns, Coding Plan default)
+    - Ontological Alignment: Maps to schema:PropertyValue for configuration settings, enables future extension with timing, tokens, confidence metadata
+    - Migration Note: Created 2026-01-16 to replace bespoke thinking_mode slot per Rule 53/56
+    annotations:
+      specificity_score: 0.75
+      specificity_rationale: Highly specific to LLM API configuration domain
+      custodian_types: '["D"]'
+      custodian_types_rationale: Applies to Digital Platform custodians using LLM APIs
+    examples:
+    - value:
+        has_label: Preserved Thinking
+        has_description: Retains reasoning across conversation turns for improved accuracy.
+    - value:
+        has_label: Interleaved Thinking
+        has_description: Default mode - thinks between tool calls.

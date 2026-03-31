@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/trade-register
+name: trade_register
+title: Trade Register
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  gleif_ra: https://www.gleif.org/ontology/RegistrationAuthority/
+  gleif_base: https://www.gleif.org/ontology/Base/
+  schema: http://schema.org/
+  rov: http://www.w3.org/ns/regorg#
+imports:
+- linkml:types
+- ../enums/RegisterTypeEnum
+- ../metadata
+- ../slots/has_description
+- ../slots/has_endpoint
+- ../slots/has_format
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_url
+- ../slots/in_jurisdiction
+- ../slots/maintained_by
+- ../slots/has_abbreviation
+- ../slots/has_label
+- ../slots/has_type
+default_prefix: hc
+classes:
+  TradeRegister:
+    class_uri: gleif_ra:BusinessRegistry
+    description: >-
+      Official government-maintained in which business entities are formally incorporated and recorded.
+    alt_descriptions:
+      nl: Officieel door de overheid bijgehouden register waarin ondernemingen formeel worden ingeschreven.
+      de: Offizielles staatliches Register, in dem Unternehmen formell eingetragen und erfasst werden.
+      fr: Registre officiel maintenu par l'État dans lequel les entités commerciales sont formellement constituées et enregistrées.
+      es: Registro oficial mantenido por el gobierno en el que las entidades comerciales se constituyen y registran formalmente.
+      ar: سجل رسمي تديره الحكومة تُسجل فيه الكيانات التجارية رسميًا وتُدرج.
+      id: Register resmi yang dikelola pemerintah tempat entitas bisnis secara formal didirikan dan dicatat.
+      zh: 政府维护的官方登记簿，商业实体在其中正式注册和记录。
+    structured_aliases:
+    - literal_form: handelsregister
+      in_language: nl
+    - literal_form: Handelsregister
+      in_language: de
+    - literal_form: registre du commerce
+      in_language: fr
+    - literal_form: registro mercantil
+      in_language: es
+    - literal_form: سجل تجاري
+      in_language: ar
+    - literal_form: register dagang
+      in_language: id
+    - literal_form: 工商登记簿
+      in_language: zh
+    broad_mappings:
+    - gleif_ra:BusinessRegistry
+    - gleif_base:Registry
+    close_mappings:
+    - schema:GovernmentService
+    related_mappings:
+    - rov:RegisteredOrganization
+    slots:
+    - has_endpoint
+    - has_description
+    - identified_by
+    - has_format
+    - in_jurisdiction
+    - maintained_by
+    - has_abbreviation
+    - has_label
+    - has_type
+    - has_score
+    - has_url
+    slot_usage:
+      identified_by:
+        range: string
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      has_abbreviation:
+        required: false
+      has_type:
+        required: true
+      in_jurisdiction:
+        required: true
+      maintained_by:
+        required: true
+      has_url:
+        range: uri
+        inlined: false
+        multivalued: false
+      has_endpoint:
+        range: APIEndpoint
+        inlined: true
+        examples:
+        - value:
+            has_url: https://api.kvk.nl/
+            has_description: KvK Handelsregister API
+    comments:
+    - TradeRegister models the register system/database itself
+    - RegistrationAuthority models the organization maintaining that register
+    - Registers may expose endpoints/APIs and jurisdiction-scoped identifiers
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

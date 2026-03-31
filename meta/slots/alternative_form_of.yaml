@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: alternative_form_of
+# ==============================================================================
+# Links an entity to another entity of which it is a variant form.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property           | File/Line        | Mapping | Notes                                    |
+# |------------|--------------------|------------------|---------|------------------------------------------|
+# | **PROV-O** | `prov:alternateOf` | prov.ttl:466-478 | close   | "Two alternate entities present aspects  |
+# |            |                    |                  |         | of the same thing" - same concept but    |
+# |            |                    |                  |         | different manifestation                  |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/alternative_form_of
+name: alternative_form_of
+title: Alternative Form Of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  alternative_form_of:
+    slot_uri: hc:alternativeFormOf
+    description: >-
+      To be a variant, such as a different spelling, format, or physical 
+      manifestation, of another entity or term, while referring to the same 
+      underlying concept or object.
+    alt_descriptions:
+      nl: >-
+        Een variant zijn, zoals een andere spelling, formaat of fysieke 
+        manifestatie, van een andere entiteit of term, terwijl wordt verwezen 
+        naar hetzelfde onderliggende concept of object.
+      de: >-
+        Eine Variante sein, wie eine andere Schreibweise, ein anderes Format 
+        oder eine andere physische Manifestation einer anderen Entität oder 
+        eines Begriffs, während auf dasselbe zugrunde liegende Konzept oder 
+        Objekt verwiesen wird.
+      fr: >-
+        Être une variante, telle qu'une orthographe, un format ou une 
+        manifestation physique différente, d'une autre entité ou terme, 
+        tout en faisant référence au même concept ou objet sous-jacent.
+      ar: >-
+        أن يكون متغيرًا، مثل تهجئة مختلفة أو تنسيق أو مظهر مادي مختلف، 
+        لكيان أو مصطلح آخر، مع الإشارة إلى نفس المفهوم أو الكائن الأساسي.
+      id: >-
+        Menjadi varian, seperti ejaan, format, atau manifestasi fisik yang 
+        berbeda, dari entitas atau istilah lain, sambil merujuk pada konsep 
+        atau objek dasar yang sama.
+      zh: >-
+        作为另一实体或术语的变体，例如不同的拼写、格式或物理表现形式，
+        同时指向相同的基础概念或对象。
+      es: >-
+        Ser una variante, como una ortografía, formato o manifestación física 
+        diferente, de otra entidad o término, mientras se refiere al mismo 
+        concepto u objeto subyacente.
+    structured_aliases:
+      - literal_form: alternatieve vorm van
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: alternative Form von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: forme alternative de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: شكل بديل لـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: bentuk alternatif dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 替代形式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: forma alternativa de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - prov:alternateOf  # prov.ttl:466-478 - "Two alternate entities present aspects of the same thing"
+    aliases:
+      - is_or_was_alternative_form_of
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link variant forms of the same entity, 
+        such as different spellings, transliterations, or format versions.
+      - |
+        **MAPPING NOTE**: `prov:alternateOf` is close but not exact - PROV-O 
+        focuses on "aspects of the same thing" in provenance contexts, while 
+        this slot is more general for variant forms.

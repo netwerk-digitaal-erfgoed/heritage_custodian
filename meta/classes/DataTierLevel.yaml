@@ -1,0 +1,81 @@
+id: https://nde.nl/ontology/hc/class/DataTierLevel
+name: data_tier_level_class
+title: DataTierLevel Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dqv: http://www.w3.org/ns/dqv#
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  DataTierLevel:
+    class_uri: hc:DataTierLevel
+    description: >-
+      Trust-stratification level expressing evidential strength and verification
+      maturity of asserted information.
+    alt_descriptions:
+      nl: Vertrouwensstratificatieniveau dat de bewijskracht en verificatiematuriteit van vastgelegde informatie uitdrukt.
+      de: Vertrauensstufe zur Darstellung von Evidenzstaerke und Verifikationsreife einer Information.
+      fr: Niveau de stratification de confiance exprimant la force de preuve et la maturite de verification des informations affirmees.
+      es: Nivel de estratificacion de confianza que expresa la solidez de evidencia y madurez de verificacion de informacion afirmada.
+      ar: مستوى تدرج ثقة يعبّر عن قوة الدليل ونضج التحقق للمعلومات المصرّح بها.
+      id: Tingkat stratifikasi kepercayaan yang menyatakan kekuatan bukti dan kematangan verifikasi informasi yang dinyatakan.
+      zh: 表达断言信息证据强度与核验成熟度的可信分层级别。
+    structured_aliases:
+    - {literal_form: dataniveau, in_language: nl}
+    - {literal_form: Datenstufe, in_language: de}
+    - {literal_form: niveau de confiance des donnees, in_language: fr}
+    - {literal_form: nivel de confianza de datos, in_language: es}
+    - {literal_form: مستوى موثوقية البيانات, in_language: ar}
+    - {literal_form: tingkat kepercayaan data, in_language: id}
+    - {literal_form: 数据可信层级, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - dqv:QualityMeasurement
+    - prov:qualifiedDerivation
+    slots:
+    - has_label
+    - has_code
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+      has_code:
+        required: true
+        pattern: ^TIER_[1-4]_[A-Z_]+$
+      has_description:
+        required: false
+    notes:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      Data quality tier level classification.
+
+      **Standard Tier Levels** (from most to least authoritative):
+
+      | Tier | Short Code | Description | Examples |
+      |------|------------|-------------|----------|
+      | Tier 1 | TIER_1_AUTHORITATIVE | Official registry data | NDE CSV, ISIL registry, government databases |
+      | Tier 2 | TIER_2_VERIFIED | Verified external sources | Wikidata (verified), Google Maps, official websites |
+      | Tier 3 | TIER_3_CROWD_SOURCED | Community-contributed data | Reviews, user edits, Wikipedia |
+      | Tier 4 | TIER_4_INFERRED | Algorithmically extracted | Website scrape, LLM extraction, API inference |
+
+      **Usage Guidelines**:
+      - Always prefer higher-tier data when available
+      - TIER_4 data requires verification before promotion
+      - Data can be promoted to higher tiers after verification
+      - Track tier changes in provenance history
+
+      **PROV-O Alignment**: Maps to prov:qualifiedDerivation for data quality tracking.
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Broadly useful for provenance quality analysis
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable across all custodial contexts

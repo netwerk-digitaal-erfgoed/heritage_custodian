@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/CollectingArchivesRecordSetTypes
+name: CollectingArchivesRecordSetTypes
+title: CollectingArchives Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./CollectingArchivesRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  CollectedMaterialsFonds:
+    is_a: CollectingArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation arranged as a fonds for externally acquired
+      manuscripts, papers, and analogous holdings.
+    alt_descriptions:
+      nl: Documentaire aggregatie ingericht als fonds voor extern verworven manuscripten, papieren en vergelijkbare holdings.
+      de: Dokumentarische Aggregation als Fonds fuer extern erworbene Manuskripte, Unterlagen und vergleichbare Bestaende.
+      fr: Agregation documentaire organisee en fonds pour des manuscrits, dossiers et ensembles analogues acquis a l externe.
+      es: Agregacion documental dispuesta como fondo para manuscritos, expedientes y conjuntos similares adquiridos externamente.
+      ar: تجميع وثائقي منظم كرصيد أرشيفي لمخطوطات وملفات ومقتنيات مماثلة تم اقتناؤها من خارج المؤسسة.
+      id: Agregasi dokumenter yang diatur sebagai fonds untuk naskah, berkas, dan himpunan sejenis yang diperoleh dari luar.
+      zh: 以全宗方式组织的外部征集手稿、文书及类似藏品文献聚合体。
+    structured_aliases:
+    - literal_form: verworven-materialenfonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fonds erworbener Materialien
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds de materiaux acquis
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo de materiales adquiridos
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رصيد مواد مقتناة
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds materi terakuisisi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 征集材料全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: Externally acquired provenance context remains explicit for collected holdings organized as fonds.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - CollectingArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:CollectedMaterialsFonds
+      has_custodian:
+        equals_string: hc:CollectingArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by CollectingArchives custodians. Inverse of rico:isOrWasHolderOf.
+    keywords:
+    - donated papers
+    - gift collections
+    - personal papers donation
+    - archival donations
+

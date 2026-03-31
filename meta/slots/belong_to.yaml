@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: belong_to
+# ==============================================================================
+# Legal property, charge, or membership linkage to an individual or group.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                             | File/Line              | Mapping  | Notes                                                            |
+# |---------------|--------------------------------------|------------------------|----------|------------------------------------------------------------------|
+# | **Schema.org**| `schema:memberOf`                    | schemaorg.owl:26080-26104| related | "An Organization to which this Person or Organization belongs."  |
+# | **ORG**       | `org:memberOf`                       | org.rdf:743-758        | related  | "Person is a member of the Organization." Membership only.       |
+# | **CIDOC-CRM** | `crm:P52_has_current_owner`          | CIDOC:2465-2479        | related  | "Identifies the owner of a Physical Thing." Physical things only.|
+# | **CIDOC-CRM** | `crm:P49_has_former_or_current_keeper`| CIDOC:2383-2397       | related  | "Actor who has/had custody of a Physical Thing."                 |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/belong_to
+name: belong_to
+title: Belong To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  belong_to:
+    slot_uri: hc:belongTo
+    description: >-
+      Signifies that an item, asset, title, or responsibility is the legal property, charge, or proper member of a specific individual, group, or category.
+    comments:
+      - "Inverse of legal_status."
+      - "Links legal entity back to custodian hub."
+      - "Creates owl:inverseOf axiom in RDF output."
+      - "Inverse: `legal_status` | Pattern: If Custodian legal_status LegalStatus, then LegalStatus is_legal_status_of Custodian."
+      - "Navigation: From legal status: Find custodian it represents (is_legal_status_of) | From custodian: Find formal legal entity (legal_status)."
+    examples:
+      - value: |
+          CustodianLegalStatus:
+            legal_name: "Stichting Rijksmuseum"
+            is_legal_status_of: "https://nde.nl/ontology/hc/nl-nh-ams-m-rm"
+        description: Usage example
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een item, bezitting, titel of verantwoordelijkheid het wettelijk eigendom, de last of het rechtmatig lid is van een specifiek individu, groep of categorie.
+      de: >-
+        Bezeichnet, dass ein Gegenstand, Vermögenswert, Titel oder eine Verantwortung das rechtliche Eigentum, die Zuständigkeit oder das ordnungsgemäße Mitglied einer bestimmten Person, Gruppe oder Kategorie ist.
+      fr: >-
+        Indique qu'un élément, un actif, un titre ou une responsabilité est la propriété légale, la charge ou le membre légitime d'un individu, d'un groupe ou d'une catégorie spécifique.
+      ar: >-
+        يشير إلى أن عنصرًا أو أصلًا أو لقبًا أو مسؤولية هي الملكية القانونية أو العهدة أو العضوية الصحيحة لفرد أو مجموعة أو فئة محددة.
+      id: >-
+        Menandakan bahwa suatu item, aset, gelar, atau tanggung jawab merupakan milik hukum, beban, atau anggota sah dari individu, kelompok, atau kategori tertentu.
+      zh: >-
+        表示某个项目、资产、头衔或责任是特定个人、团体或类别的合法财产、职责或正式成员。
+      es: >-
+        Indica que un elemento, activo, título o responsabilidad es la propiedad legal, cargo o miembro legítimo de un individuo, grupo o categoría específica.
+    structured_aliases:
+      - literal_form: Eigendom
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zugehörigkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Appartenance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملكية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kepemilikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 所属
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Pertenencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      inverse_slot: legal_status
+      custodian_types: '["*"]'
+    aliases:
+      - is_legal_status_of
+    related_mappings:
+      - schema:memberOf  # schemaorg.owl:26080-26104 - "An Organization to which this Person or Organization belongs." Membership only.
+      - org:memberOf  # org.rdf:743-758 - "Person is a member of the Organization." Membership only.
+      - crm:P52_has_current_owner  # CIDOC:2465-2479 - "Identifies the owner of a Physical Thing." Physical things only.
+      - crm:P49_has_former_or_current_keeper  # CIDOC:2383-2397 - "Actor who has/had custody of a Physical Thing."

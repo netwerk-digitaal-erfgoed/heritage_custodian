@@ -1,0 +1,151 @@
+id: https://nde.nl/ontology/hc/class/AllocationAgency
+name: allocation_agency
+title: Allocation Agency
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  gleif_base: https://www.gleif.org/ontology/Base/
+  hc: https://nde.nl/ontology/hc/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/AllocationDomainEnum
+- ../metadata
+- ../slots/has_description
+- ../slots/has_score
+classes:
+  AllocationAgency:
+    class_uri: org:FormalOrganization
+    description: >-
+      Organization authorized to allocate identifiers within a specific geographic area and/or domain of heritage institutions, distinguished from registration authorities that maintain global registries for identifier standards.
+    alt_descriptions:
+      nl: >-
+        Organisatie die bevoegd is om identifiers toe te wijzen binnen een
+        specifiek geografisch gebied en/of domein van erfgoedinstellingen,
+        te onderscheiden van registratieautoriteiten die wereldwijde registers
+        bijhouden voor identifierstandaarden.
+      de: >-
+        Organisation, die berechtigt ist, Kennungen innerhalb eines bestimmten
+        geografischen Bereichs und/oder Bereichs von Heritage-Institutionen
+        zuzuweisen, unterschieden von Registrierungsbehoerden, die globale
+        Register fuer Kennungsstandards pflegen.
+      fr: >-
+        Organisation autorisee a attribuer des identifiants dans une zone
+        geographique specifique et/ou un domaine d'institutions patrimoniales,
+        distinguee des autorites d'enregistrement qui maintiennent des registres
+        mondiaux pour les normes d'identifiants.
+      es: >-
+        Organizacion autorizada para asignar identificadores dentro de un area
+        geografica especifica y/o dominio de instituciones patrimoniales,
+        distinguible de las autoridades de registro que mantienen registros
+        globales para estandares de identificadores.
+      ar: >-
+        منظمة مخولة لتخصيص المعرفات داخل منطقة جغرافية محددة و/أو مجال
+        المؤسسات التراثية، تتميز عن سلطات التسجيل التي تحافظ على سجلات
+        عالمية لمعايير المعرفات.
+      id: >-
+        Organisasi yang berwenang mengalokasikan pengidentifikasi dalam area
+        geografis tertentu dan/atau domain lembaga warisan, dibedakan dari
+        otoritas pendaftaran yang memelihara registri global untuk standar
+        pengidentifikasi.
+      zh: >-
+        被授权在特定地理区域和/或遗产机构领域内分配标识符的组织，区别于维护
+        标识符标准全球注册表的注册机构。
+    examples:
+    - value:
+        has_name: Koninklijke Bibliotheek
+        has_score: 1.0
+      description: KB allocates ISIL for Dutch public libraries
+    - value:
+        has_name: Nationaal Archief
+        has_score: 1.0
+      description: Nationaal Archief allocates ISIL for Dutch archives
+    structured_aliases:
+    - literal_form: toewijzingsagentschap
+      in_language: nl
+    - literal_form: Zuweisungsstelle
+      in_language: de
+    - literal_form: agence d'allocation
+      in_language: fr
+    - literal_form: agencia de asignacion
+      in_language: es
+    - literal_form: وكالة التخصيص
+      in_language: ar
+    - literal_form: lembaga alokasi
+      in_language: id
+    - literal_form: 分配机构
+      in_language: zh
+    keywords:
+    - identifier allocation
+    - ISIL
+    - ISNI
+    - VIAF
+    - registration
+    - authority
+    broad_mappings:
+    - schema:Organization
+    - org:FormalOrganization
+    close_mappings:
+    - gleif_base:RegistrationAuthority
+    slots:
+    - has_score
+    - has_name
+    - has_label
+    - current
+    comments:
+    - AllocationAgency allocates LOCALLY within geographic/domain constraints
+    - RegistrationAuthority maintains GLOBAL registry for a standard
+    - Multiple AllocationAgencies may serve different domains within one country
+    - |
+      Preserved from prior description:
+
+      **Key Distinction from RegistrationAuthority:**
+
+      - **RegistrationAuthority**: Maintains the GLOBAL registry for a standard
+        - Example: Danish Agency for Culture and Palaces maintains global ISIL registry
+        - Example: ISNI International Agency (WIPO) maintains global ISNI database
+
+      - **AllocationAgency**: Allocates identifiers LOCALLY within constraints
+        - Example: Koninklijke Bibliotheek allocates ISIL for Dutch public libraries
+        - Example: OCLC allocates ISIL for Dutch academic libraries
+        - Example: Nationaal Archief allocates ISIL for Dutch archives
+
+      **Multi-Dimensional Scope:**
+
+      AllocationAgencies have both:
+      1. **Geographic scope**: Which country/region they serve
+      2. **Domain scope**: Which types of institutions they serve
+
+      This allows multiple agencies per country, each serving different domains:
+      - NL public libraries → KB
+      - NL academic libraries → OCLC
+      - NL archives → Nationaal Archief
+
+      **Relationship to Standard:**
+
+      An AllocationAgency allocates for one or more Standards:
+      - AllocationAgency.allocates_for → Standard[]
+      - Standard can have multiple AllocationAgencies (one per country/domain)
+
+      **Examples:**
+
+      | Agency | Country | Domain | Standard |
+      |--------|---------|--------|----------|
+      | Koninklijke Bibliotheek | NL | Public libraries | ISIL |
+      | OCLC | NL | Academic libraries | ISIL |
+      | Nationaal Archief | NL | Archives | ISIL |
+      | British Library | GB | All | ISIL |
+      | Library of Congress | US | All | ISIL |
+      | OCLC | Global | Academic | VIAF |
+      | Deutsche Nationalbibliothek | DE | All | ISNI |
+
+      **Ontology Alignment:**
+
+      - org:FormalOrganization - W3C Organization Ontology
+      - Extends gleif_base:RegistrationAuthority concept (but for allocation, not registration)
+    - 'Preserved from prior description: Organization authorized to allocate identifiers within a specific geographic area and/or domain of heritage institutions, distinguished from registration authorities that maintain global registries for identifier standards.'
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: Specific to identifier allocation within heritage domain
+      custodian_types: "['*']"

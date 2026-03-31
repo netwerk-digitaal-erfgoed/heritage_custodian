@@ -1,0 +1,135 @@
+id: https://nde.nl/ontology/hc/enum/AgentTypeEnum
+name: AgentTypeEnum
+title: Agent Type Enumeration
+
+imports:
+  - linkml:types
+
+prefixes:
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  org: http://www.w3.org/ns/org#
+  cpov: http://data.europa.eu/m8g/
+  pico: https://personsincontext.org/model#
+
+# DESIGN NOTE: Separation of Concerns (Provenance vs. Custodian Types)
+# =====================================================================
+# This enum serves a DIFFERENT purpose than the CustodianType class hierarchy:
+#
+# AgentTypeEnum (THIS FILE):
+#   - Purpose: Provenance tracking (WHO performed actions on data)
+#   - Examples: Researchers extracting data, software agents, curators verifying records
+#   - Used in: Provenance class, Activity tracking, data quality attribution
+#   - Ontology alignment: PROV-O (prov:Agent, prov:SoftwareAgent), FOAF, W3C Org
+#
+# CustodianType class hierarchy (modules/classes/CustodianType.yaml + 19 subclasses):
+#   - Purpose: Heritage custodian classification (WHAT type of heritage institution)
+#   - Examples: MuseumType, ArchiveOrganizationType, LibraryType, GalleryType, etc.
+#   - Used in: HeritageCustodian class, GHCID generation
+#   - Ontology alignment: Domain-specific 19-type GLAMORCUBESFIXPHDNT taxonomy
+#   - Note: CustodianPrimaryTypeEnum was ARCHIVED per Rule 9 (Enum-to-Class Promotion)
+#          See: schemas/20251121/linkml/archive/enums/CustodianPrimaryTypeEnum.yaml.archived_20260105
+#
+# These concepts are INTENTIONALLY SEPARATE. Do not merge them.
+# =====================================================================
+
+enums:
+  AgentTypeEnum:
+    description: |
+      Types of agents that can perform actions, create observations, or be responsible
+      for activities in heritage custodian contexts. Based on FOAF, PROV-O, CIDOC-CRM E39 Actor,
+      W3C Organization Ontology, CPOV, and PiCo ontologies.
+      
+      **Scope**: This enum is for PROVENANCE tracking (who performed data operations),
+      NOT for heritage custodian classification. See CustodianType class hierarchy for the
+      19-type GLAMORCUBESFIXPHDNT taxonomy of heritage institution types.
+    comments:
+      - "CIDOC-CRM E39 Actor: 'comprises people, either individually or in groups, who have the potential to perform intentional actions'"
+      - "This enum covers both individual agents (persons, software) and collective agents (groups, organizations)"
+      - "Used in provenance tracking for data extraction, entity creation, and curation activities"
+      - "Distinct from CustodianType class hierarchy which classifies heritage institutions (MuseumType, ArchiveOrganizationType, etc.)"
+    permissible_values:
+      PERSON:
+        description: "Individual human person"
+        meaning: foaf:Person
+        comments:
+          - "Maps to crm:E21_Person (CIDOC-CRM)"
+          - "Maps to pico:PersonObservation for historical person records"
+          - "Use for individual human agents (curators, researchers, archivists)"
+        exact_mappings:
+          - crm:E21_Person
+          - pico:PersonObservation
+      
+      GROUP:
+        description: "Group or collective of persons acting together"
+        meaning: foaf:Group
+        comments:
+          - "Maps to crm:E74_Group (CIDOC-CRM)"
+          - "Gatherings or organizations of individuals acting collectively"
+          - "Includes informal groups, communities, or collaborative teams"
+          - "Use for collectives that don't have formal legal recognition"
+        exact_mappings:
+          - crm:E74_Group
+      
+      ORGANIZATION:
+        description: "Formal organization with collective identity"
+        meaning: foaf:Organization
+        comments:
+          - "Maps to org:Organization (W3C Organization Ontology)"
+          - "Collection of people organized with common purpose"
+          - "Includes commercial, social, or political structures"
+          - "Use for institutions with defined organizational structure"
+        exact_mappings:
+          - org:Organization
+      
+      FORMAL_ORGANIZATION:
+        description: "Legally recognized organization with rights and responsibilities"
+        meaning: org:FormalOrganization
+        comments:
+          - "Subclass of ORGANIZATION with legal entity status"
+          - "Recognized in legal jurisdictions (corporations, charities, government bodies)"
+          - "Use for heritage institutions with formal legal registration"
+        exact_mappings:
+          - org:FormalOrganization
+      
+      PUBLIC_ORGANIZATION:
+        description: "Organization defined as part of public sector by legal framework"
+        meaning: cpov:PublicOrganisation
+        comments:
+          - "Government or state-funded heritage organizations"
+          - "National archives, state museums, public libraries"
+          - "Maps to Core Public Organisation Vocabulary (EU)"
+        exact_mappings:
+          - cpov:PublicOrganisation
+      
+      ORGANIZATIONAL_UNIT:
+        description: "Department or unit within larger organization"
+        meaning: org:OrganizationalUnit
+        comments:
+          - "Part of FormalOrganization but not independent legal entity"
+          - "Examples: museum departments, archive divisions, library branches"
+          - "Has recognition only within parent organization context"
+        exact_mappings:
+          - org:OrganizationalUnit
+      
+      ORGANIZATIONAL_COLLABORATION:
+        description: "Collaboration between multiple organizations (project, consortium)"
+        meaning: org:OrganizationalCollaboration
+        comments:
+          - "Joint projects, partnerships, or consortia between organizations"
+          - "Has identity independent of member organizations"
+          - "Not a legal entity or sub-unit of larger organization"
+          - "Examples: digitization consortia, multi-institutional research projects"
+        exact_mappings:
+          - org:OrganizationalCollaboration
+      
+      SOFTWARE:
+        description: "Software agent or automated system"
+        meaning: prov:SoftwareAgent
+        comments:
+          - "Automated extraction systems, NLP tools, data processing scripts"
+          - "Use for AI agents, bots, or algorithmic processes"
+          - "Track software version and configuration in prov:Activity metadata"
+        exact_mappings:
+          - prov:SoftwareAgent

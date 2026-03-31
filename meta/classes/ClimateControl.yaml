@@ -1,0 +1,142 @@
+id: https://nde.nl/ontology/hc/class/climate_control
+name: climate_control_class
+title: Climate Control Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  aat: http://vocab.getty.edu/aat/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+classes:
+  ClimateControl:
+    class_uri: aat:300264752
+    description: >-
+      Environmental regulation infrastructure used to stabilize temperature,
+      humidity, and air quality in heritage buildings and storage areas.
+    alt_descriptions:
+      nl: Infrastructuur voor omgevingsregeling die temperatuur, luchtvochtigheid en luchtkwaliteit stabiliseert in erfgoedgebouwen en depots.
+      de: Infrastruktur zur Umgebungsregelung, die Temperatur, Luftfeuchtigkeit und Luftqualitaet in Kulturgebaeuden und Magazinen stabilisiert.
+      fr: Infrastructure de regulation environnementale stabilisant temperature, humidite et qualite de l air dans les batiments patrimoniaux et les depots.
+      es: Infraestructura de regulacion ambiental que estabiliza temperatura, humedad y calidad del aire en edificios patrimoniales y depositos.
+      ar: بنية تنظيم بيئي تثبت درجة الحرارة والرطوبة وجودة الهواء في مباني التراث ومناطق التخزين.
+      id: Infrastruktur pengaturan lingkungan untuk menstabilkan suhu, kelembapan, dan kualitas udara di bangunan warisan serta ruang penyimpanan.
+      zh: 用于在遗产建筑与库房中稳定温度、湿度和空气质量的环境调控设施。
+    structured_aliases:
+    - literal_form: klimaatbeheersysteem
+      in_language: nl
+    - literal_form: Klimaregelungssystem
+      in_language: de
+    - literal_form: systeme de regulation environnementale
+      in_language: fr
+    - literal_form: sistema de regulacion ambiental
+      in_language: es
+    - literal_form: نظام ضبط بيئي
+      in_language: ar
+    - literal_form: sistem pengendalian lingkungan
+      in_language: id
+    - literal_form: 环境调控系统
+      in_language: zh
+    exact_mappings:
+    - aat:300264752
+    close_mappings:
+    - schema:Product
+    related_mappings:
+    - crm:E22_Human-Made_Object
+    keywords:
+    - environmental regulation
+    - facility preservation
+    - HVAC
+    - humidity management
+
+    slots:
+    - has_label
+    - has_description
+    - has_type
+
+    slot_usage:
+      has_label:
+        required: false
+        examples:
+        - value: "Main Stack HVAC System"
+        - value: "Depot B Climate Control"
+      has_description:
+        examples:
+        - value:
+            description_text: "Precision HVAC with temperature control ±1°C, humidity control ±3% RH. Redundant systems with automatic failover."
+            description_type: technical
+      has_type:
+#         range: string # uriorcurie
+        required: true
+        examples:
+        - value: HVAC
+        - value: HEATED
+        - value: DEHUMIDIFIED
+        - value: NONE
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      Climate control system or approach for managing environmental conditions.
+
+      **DEFINITION**:
+
+      A ClimateControl represents the physical system, equipment, or approach
+      used to manage temperature, humidity, air quality, and other environmental
+      factors in heritage facilities.
+
+      **GETTY AAT ALIGNMENT**:
+
+      `aat:300264752` (climate control systems) - "Systems for controlling
+      environmental conditions such as temperature and humidity."
+
+      **USE CASES**:
+
+      1. **Full HVAC System**:
+         
+      ClimateControl
+          │
+          └── has_type ──► ClimateControlType
+                                      │
+                                      └── (HEATED, HVAC, DEHUMIDIFIED, NONE, etc.)
+      ```
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Climate control applies to all heritage custodian types with physical facilities.
+      custodian_types_primary: A
+      specificity_score: 0.55
+      specificity_rationale: Moderately specific - common across facility management contexts.
+      replaces_slots: "climate_control_type (partial - represents the system, type is separate)"
+    comments:
+    - Represents equipment and infrastructure rather than policy statements
+    - Type assignment uses has_type and values from ClimateControlType
+
+    examples:
+    - value:
+        has_label: "Rijksmuseum Collection Storage HVAC"
+        has_type: HVAC
+        has_description:
+          description_text: "Precision climate control with T=20±1°C, RH=50±3%. Redundant compressors, backup power, 24/7 monitoring."
+          description_type: technical
+    - value:
+        has_label: "Logistics Warehouse Heating"
+        has_type: HEATED
+        has_description:
+          description_text: "Basic gas heating to prevent freezing. No humidity control."
+          description_type: technical
+    - value:
+        has_label: "Photo Archive Dehumidifier"
+        has_type: DEHUMIDIFIED
+        has_description:
+          description_text: "Portable dehumidifier maintaining RH below 50%."
+          description_type: technical

@@ -1,0 +1,102 @@
+id: https://nde.nl/ontology/hc/class/CauseOfDeath
+name: cause_of_death_class
+title: Cause Of Death Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  wd: http://www.wikidata.org/entity/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/CauseOfDeathTypeEnum
+- ../metadata
+- ../slots/has_description
+- ../slots/has_location
+- ../slots/has_type
+classes:
+  CauseOfDeath:
+    class_uri: hc:CauseOfDeath
+    description: >-
+      Structured representation of the circumstances and manner of a person's death.
+    alt_descriptions:
+      nl: Gestructureerde weergave van de omstandigheden en wijze van overlijden van een persoon.
+      de: Strukturierte Darstellung der Umstände und Todesursache einer Person.
+      fr: Représentation structurée des circonstances et du mode de décès d'une personne.
+      es: Representación estructurada de las circunstancias y la manera de muerte de una persona.
+      ar: تمثيل منظم لظروف وسبب وفاة الشخص.
+      id: Representasi terstruktur dari keadaan dan cara kematian seseorang.
+      zh: 对一个人死亡情况和方式的结构化表示。
+    structured_aliases:
+    - literal_form: doodsoorzaak
+      in_language: nl
+    - literal_form: overlijdensoorzaak
+      in_language: nl
+    - literal_form: Todesursache
+      in_language: de
+    - literal_form: Sterbeursache
+      in_language: de
+    - literal_form: cause de décès
+      in_language: fr
+    - literal_form: cause de mort
+      in_language: fr
+    - literal_form: causa de muerte
+      in_language: es
+    - literal_form: سبب الوفاة
+      in_language: ar
+    - literal_form: penyebab kematian
+      in_language: id
+    - literal_form: 死因
+      in_language: zh
+    broad_mappings:
+    - wd:P1196
+    keywords:
+    - cause of death
+    - manner of death
+    - death circumstances
+    - mortality
+    examples:
+    - value:
+        has_type: CONFLICT
+        has_description: Killed in airstrike on residential building
+        has_location:
+          city: Gaza City
+          country: PS
+    - value:
+        has_type: NATURAL
+        has_description: Natural causes due to advanced age
+    comments:
+    - Important for documenting heritage worker deaths, particularly in conflict zones
+    - Wikidata P1196 (manner of death) is semantically related
+    - Handle with respect and verify facts from authoritative sources
+    slots:
+    - has_type
+    - has_description
+    - has_location
+    slot_usage:
+      has_type:
+        range: CauseOfDeathTypeEnum
+        description: Category of death cause (NATURAL, CONFLICT, TARGETED_ATTACK, OCCUPATIONAL, ACCIDENT, PERSECUTION, UNKNOWN).
+      has_description:
+      has_location:
+        inlined: false
+    see_also:
+    - https://www.wikidata.org/wiki/Property:P1196
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      "Structured representation of the cause and circumstances of a person's death.\n\n**Purpose**:\nCaptures structured information about how and why a person died:\n- **Type**: Category of death (natural, conflict, accident, etc.)\n- **Location**: Where the death occurred\n- **Description**: Narrative details and context\n\n**Ontological Alignment**:\n- **Primary** (`class_uri`): `hc:CauseOfDeath` - Heritage Custodian class\n- **Related**: Wikidata P1196 (manner of death) - semantic equivalent\n- **Related**: `schema:causeOfDeath` - Schema.org (MedicalCause context)\n\n**Heritage Sector Context**:\nParticularly important for documenting deaths of heritage workers due to:\n- **CONFLICT**: Armed conflict, airstrikes, military operations\n- **TARGETED_ATTACK**: Violence specifically targeting cultural workers\n- **OCCUPATIONAL**: Hazards from heritage work (conservation chemicals, etc.)\n- **NATURAL**: Age, illness, medical conditions\n- **ACCIDENT**: Non-occupational accidents\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,86 @@
+# ==============================================================================
+# LinkML Slot Definition: has_condition
+# ==============================================================================
+# The physical state, quality, or preservation status of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line                       | Mapping | Notes                              |
+# |---------------|------------------------|---------------------------------|---------|------------------------------------|
+# | **CIDOC-CRM** | `crm:P44_has_condition`| CIDOC_CRM_v7.1.3.rdf:2270-2284 | close   | "Records an E3 Condition State for some E18 Physical Thing" — physical condition of material objects; slot is broader (any entity) |
+# | **Schema.org**| `schema:itemCondition` | schemaorg.owl:23398-23416       | related | "A predefined value from OfferItemCondition specifying the condition of the product or service" — commerce-oriented (new/used/refurbished), different domain |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added file:line refs, multilingual, added crm:P44_has_condition as close,
+#   demoted schema:itemCondition from close to related, removed top-level description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_condition
+name: has_condition
+title: Has Condition
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_condition:
+    slot_uri: hc:hasCondition
+    description: >-
+      To specify the physical state, quality, or preservation status of an entity (e.g., assessing wear, damage, or fitness for use).
+    alt_descriptions:
+      nl: >-
+        De fysieke staat, kwaliteit of conserveringsstatus van een entiteit specificeren (bijv. slijtage, schade of geschiktheid voor gebruik beoordelen).
+      de: >-
+        Den physischen Zustand, die Qualität oder den Erhaltungsstatus einer Entität angeben (z. B. Abnutzung, Schäden oder Gebrauchstauglichkeit bewerten).
+      fr: >-
+        Spécifier l'état physique, la qualité ou le statut de conservation d'une entité (par ex., évaluer l'usure, les dommages ou l'aptitude à l'utilisation).
+      ar: >-
+        تحديد الحالة المادية أو الجودة أو حالة الحفظ لكيان ما (مثل تقييم التآكل أو الضرر أو الصلاحية للاستخدام).
+      id: >-
+        Menentukan keadaan fisik, kualitas, atau status pelestarian suatu entitas (misalnya, menilai keausan, kerusakan, atau kelayakan penggunaan).
+      zh: >-
+        指定实体的物理状态、质量或保存状况（例如评估磨损、损坏或适用性）。
+      es: >-
+        Especificar el estado físico, la calidad o el estado de conservación de una entidad (por ejemplo, evaluar el desgaste, el daño o la aptitud para el uso).
+    structured_aliases:
+      - literal_form: heeft conditie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Zustand
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un état
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه حالة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki kondisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有状况
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene condición
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_condition
+      - return_condition_report_url
+    close_mappings:
+      - crm:P44_has_condition  # CIDOC_CRM_v7.1.3.rdf:2270-2284 - "Records an E3 Condition State for some E18 Physical Thing"
+    related_mappings:
+      - schema:itemCondition  # schemaorg.owl:23398-23416 - commerce-oriented (new/used/refurbished), different domain
+    annotations:
+      custodian_types: '["*"]'

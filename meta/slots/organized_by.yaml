@@ -1,0 +1,82 @@
+# ==============================================================================
+# LinkML Slot Definition: organized_by
+# ==============================================================================
+# Person, group, or entity responsible for planning, arrangement, and
+# coordination of an event, competition, or structured system.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property            | File/Line               | Mapping | Notes                                           |
+# |------------|---------------------|-------------------------|---------|-------------------------------------------------|
+# | Schema.org | `schema:organizer`  | schemaorg.owl:28512-28531 | close   | "An organizer of an Event." Event domain only.  |
+#
+# schema:organizer is Event-specific (domain: Event, range: Person|Organization).
+# This slot is broader: organizer of any entity, not just events.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/organized_by
+name: organized_by
+title: organized_by
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  organized_by:
+    name: organized_by
+    title: organized by
+    slot_uri: hc:organizedBy
+    description: >-
+      Identifies the person, group, or entity responsible for the planning, arrangement, and coordination of an event, competition, or structured system.
+    alt_descriptions:
+      nl: >-
+        Identificeert de persoon, groep of entiteit die verantwoordelijk is voor de planning, inrichting en coördinatie van een evenement, wedstrijd of gestructureerd systeem.
+      de: >-
+        Identifiziert die Person, Gruppe oder Entität, die für die Planung, Organisation und Koordination eines Ereignisses, Wettbewerbs oder strukturierten Systems verantwortlich ist.
+      fr: >-
+        Identifie la personne, le groupe ou l'entité responsable de la planification, de l'organisation et de la coordination d'un événement, d'une compétition ou d'un système structuré.
+      ar: >-
+        يحدد الشخص أو المجموعة أو الكيان المسؤول عن التخطيط والترتيب والتنسيق لحدث أو مسابقة أو نظام منظم.
+      id: >-
+        Mengidentifikasi orang, kelompok, atau entitas yang bertanggung jawab atas perencanaan, pengaturan, dan koordinasi acara, kompetisi, atau sistem terstruktur.
+      zh: >-
+        标识负责规划、安排和协调活动、竞赛或结构化系统的个人、团体或实体。
+      es: >-
+        Identifica a la persona, grupo o entidad responsable de la planificación, organización y coordinación de un evento, competición o sistema estructurado.
+    structured_aliases:
+      - literal_form: Organisator
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Veranstalter
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Organisateur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منظم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penyelenggara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 组织者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Organizador
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    multivalued: true
+    aliases:
+      - has_or_had_organizer
+      - organizing_body
+      - has_organizer
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:organizer  # schemaorg.owl:28512-28531 - "An organizer of an Event" (Event domain only)

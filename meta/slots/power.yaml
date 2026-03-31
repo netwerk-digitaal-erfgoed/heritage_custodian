@@ -1,0 +1,138 @@
+# ==============================================================================
+# LinkML Slot Definition: power
+# ==============================================================================
+# Links a system (such as a Collection Management System) to the digital
+# platform it drives, enables, or provides backend services for.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property                        | File/Line                       | Mapping | Notes                                                              |
+# |-----------|---------------------------------|---------------------------------|---------|--------------------------------------------------------------------|
+# | **CRM**   | `crm:P33_used_specific_technique`| CIDOC_CRM_v7.1.3.rdf:1985-1999 | related | "used specific technique" E7_Activity→E29_Design_or_Procedure.     |
+# | **PROV**  | `prov:used`                     | prov.ttl:1039-1053              | related | "used" Activity→Entity. Activity-uses-entity pattern.              |
+# | **DOAP**  | `doap:platform`                 | doap.rdf:880-889                | related | "platform" Project∪Version→Literal. Software platform indicator.   |
+#
+# No exact match found. The concept of one software system "powering" another
+# (a CMS driving a public website, mobile app, or API service) is a heritage-
+# infrastructure-specific relationship. External ontologies model technique
+# usage (CRM), resource consumption (PROV), or platform indicators (DOAP),
+# but none capture the directional "powers/enables" relationship between
+# backend systems and frontend digital platforms.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/power
+name: power
+title: Power
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  doap: http://usefulinc.com/ns/doap#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  power:
+    slot_uri: hc:power
+    description: >-
+      Links a backend system, service, or Collection Management System
+      (CMS) to the digital platform it drives, enables, or provides
+      operational support for. Captures the relationship where one
+      system supplies the content, data, or functionality that makes
+      another platform operational. A single CMS deployment may power
+      multiple platforms simultaneously.
+    alt_descriptions:
+      nl: >-
+        Koppelt een backend-systeem of collectiebeheersysteem (CMS) aan
+        het digitale platform dat het aandrijft, mogelijk maakt of van
+        operationele ondersteuning voorziet.
+      de: >-
+        Verknüpft ein Backend-System oder Sammlungsmanagementsystem
+        (CMS) mit der digitalen Plattform, die es antreibt, ermöglicht
+        oder betrieblich unterstützt.
+      fr: >-
+        Relie un système dorsal ou système de gestion de collection
+        (CMS) à la plateforme numérique qu'il alimente, permet ou
+        soutient opérationnellement.
+      ar: >-
+        يربط نظام خلفي أو نظام إدارة مجموعات بالمنصة الرقمية التي
+        يشغّلها أو يمكّنها أو يقدم لها الدعم التشغيلي.
+      id: >-
+        Menghubungkan sistem backend atau sistem manajemen koleksi
+        (CMS) ke platform digital yang digerakkan, dimungkinkan, atau
+        didukung secara operasional olehnya.
+      zh: >-
+        将后端系统或藏品管理系统（CMS）与其驱动、支持或提供运营服务的
+        数字平台相关联。
+      es: >-
+        Vincula un sistema backend o sistema de gestión de colecciones
+        (CMS) con la plataforma digital que impulsa, habilita o da
+        soporte operativo.
+    structured_aliases:
+      - literal_form: aandrijven
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: antreiben
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: alimenter
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يُشغّل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menggerakkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 驱动
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: impulsar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - crm:P33_used_specific_technique  # CIDOC_CRM_v7.1.3.rdf:1985-1999 - "used specific technique" Activity→Design_or_Procedure
+      - prov:used  # prov.ttl:1039-1053 - "used" Activity→Entity
+      - doap:platform  # doap.rdf:880-889 - "platform" Project∪Version→Literal
+    aliases:
+      - powers_platform
+    examples:
+      - value: "public_website"
+        description: >-
+          A CMS such as Adlib or TMS powering the institution's public
+          collection search website.
+      - value: "mobile_app_backend"
+        description: >-
+          A collection database providing content and API services to a
+          museum's mobile companion app.
+      - value: "api_service"
+        description: >-
+          A CMS exposing collection data through a public REST API used
+          by external researchers and aggregators.
+      - value: "staff_intranet"
+        description: >-
+          A CMS powering an internal staff portal for collection
+          management and cataloguing workflows.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Bidirectional relationship pattern: Forward direction is
+        CollectionManagementSystem → DigitalPlatform (powers_platform);
+        reverse direction is DigitalPlatform → CollectionManagementSystem
+        (powered_by_cms). One CMS deployment may power multiple platforms:
+        public website, staff intranet, mobile app backend, API service.
+      - >-
+        The original description referenced CIDOC-CRM P33_used_specific_technique
+        as an analogy (the CMS as the technique/procedure used to power the
+        digital platform). While conceptually related, P33 models activity-to-
+        technique relationships rather than system-to-platform relationships.
+      - >-
+        The alias powers_platform reflects the directional nature of this
+        relationship — emphasizing that the subject system powers the target
+        platform.

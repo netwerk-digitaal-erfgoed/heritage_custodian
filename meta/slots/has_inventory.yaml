@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: has_inventory
+# ==============================================================================
+# Links an archival collection to its descriptive finding aid or inventory URL.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                  | Mapping | Notes                                        |
+# |---------------|-----------------------------|----------------------------|---------|----------------------------------------------|
+# | **FOAF**      | `foaf:page`                 | foaf.ttl:467-475           | broad   | "A page or document about this thing."       |
+# | **Schema**    | `schema:url`                | schemaorg.owl:39120-39141  | broad   | "URL of the item." Generic URL property.     |
+# | **DCAT**      | `dcat:landingPage`          | dcat3.ttl:1241-1274        | related | Web page for dataset access, not inventory.  |
+# | **RiC-O**     | `rico:isOrWasDescribedBy`   | RiC-O_1-1.rdf:13383-13410 | related | Thing→RecordResource; finding aid context.   |
+#
+# No standard ontology defines an exact "archival inventory link" property.
+# Retains hc:inventoryWebAddresses.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_inventory
+name: has_inventory
+title: Has Inventory
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  foaf: http://xmlns.com/foaf/0.1/
+  schema: https://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_inventory:
+    slot_uri: hc:inventoryWebAddresses
+    description: >-
+      Links a specific archival collection, fonds, or series to the descriptive list,
+      finding aid, or catalog record that details its contents, arrangement, and scope.
+    alt_descriptions:
+      nl: >-
+        Koppelt een specifieke archiefcollectie, fonds of serie aan de beschrijvende lijst,
+        toegang of catalogusrecord met gegevens over de inhoud, ordening en omvang ervan.
+      de: >-
+        Verknüpft eine bestimmte Archivsammlung, einen Bestand oder eine Serie mit dem
+        beschreibenden Verzeichnis, Findmittel oder Katalogdatensatz, der deren Inhalt,
+        Ordnung und Umfang dokumentiert.
+      fr: >-
+        Relie une collection d'archives, un fonds ou une série spécifique à la liste descriptive,
+        l'instrument de recherche ou la notice de catalogue détaillant son contenu, son classement
+        et sa portée.
+      ar: >-
+        يربط مجموعة أرشيفية محددة أو رصيد أو سلسلة بالقائمة الوصفية أو أداة البحث أو سجل
+        الفهرس الذي يوضح محتوياتها وترتيبها ونطاقها.
+      id: >-
+        Menghubungkan koleksi arsip, fonds, atau seri tertentu ke daftar deskriptif,
+        alat bantu pencarian, atau catatan katalog yang merinci isi, susunan, dan
+        cakupannya.
+      zh: >-
+        将特定的档案收藏、全宗或系列链接到描述其内容、排列和范围的描述性清单、检索工具或目录记录。
+      es: >-
+        Vincula una colección archivística, fondo o serie específica con la lista descriptiva,
+        instrumento de consulta o registro de catálogo que detalla su contenido, ordenación
+        y alcance.
+    structured_aliases:
+      - literal_form: Inventaris
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Findbuch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Inventaire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: جرد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Inventaris
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 清册
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Inventario
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        DCAT: landingPage for human-readable collection descriptions.
+      - >-
+        Examples: "https://www.nationaalarchief.nl/onderzoeken/index" (National Archives
+        inventories), "https://archief.amsterdam/inventarissen" (Amsterdam City Archives
+        inventories).
+    range: uri
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - inventory_web_address
+    broad_mappings:
+      - foaf:page  # foaf.ttl:467-475 - "A page or document about this thing."
+      - schema:url  # schemaorg.owl:39120-39141 - "URL of the item." Generic URL.
+    related_mappings:
+      - dcat:landingPage  # dcat3.ttl:1241-1274 - web page for dataset/catalog access
+      - rico:isOrWasDescribedBy  # RiC-O_1-1.rdf:13383-13410 - Thing described by RecordResource

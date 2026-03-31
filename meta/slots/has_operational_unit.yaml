@@ -1,0 +1,86 @@
+# ==============================================================================
+# LinkML Slot Definition: has_operational_unit
+# ==============================================================================
+# Links a branch to its internal organizational units.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property       | File/Line        | Mapping | Notes                                                      |
+# |----------|----------------|------------------|---------|------------------------------------------------------------|
+# | W3C ORG  | `org:hasUnit`  | org.rdf:510-528  | close   | "Indicates a unit which is part of this Organization."     |
+# |          |                |                  |         | FormalOrganization→OrganizationalUnit (formal units only). |
+#
+# org:hasUnit is close but not exact: domain is FormalOrganization, range is
+# OrganizationalUnit. This slot is for INFORMAL units (teams, departments)
+# within a branch, not necessarily formal organizational units.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_operational_unit
+name: has_operational_unit_slot
+title: Has Operational Unit Slot
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_operational_unit:
+    slot_uri: hc:hasOperationalUnit
+    description: >-
+      To specify a distinct functional subdivision, department, branch, or team within a larger organization that is responsible for carrying out specific operations or activities.
+    alt_descriptions:
+      nl: >-
+        Organisatorische structuureenheden (afdelingen, teams) binnen deze vestiging.
+      de: >-
+        Organisationsstruktureinheiten (Abteilungen, Teams) innerhalb dieser Niederlassung.
+      fr: >-
+        Unités de structure organisationnelle (départements, équipes) au sein de cette branche.
+      ar: >-
+        وحدات الهيكل التنظيمي (الأقسام والفرق) داخل هذا الفرع.
+      id: >-
+        Unit struktur organisasi (departemen, tim) dalam cabang ini.
+      zh: >-
+        此分支机构内的组织结构单元（部门、团队）。
+      es: >-
+        Unidades de estructura organizacional (departamentos, equipos) dentro de esta sucursal.
+    structured_aliases:
+      - literal_form: Operationele eenheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Betriebseinheit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Unité opérationnelle
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: وحدة تشغيلية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Unit operasional
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 运营单元
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Unidad operacional
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - has_or_had_operational_unit
+      - managing_unit
+    # range: OrganizationalStructure
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - org:hasUnit  # org.rdf:510-528 - FormalOrganization→OrganizationalUnit (formal units)
+    comments:
+      - |
+        **USAGE**: W3C ORG org:hasUnit links organization to sub-units. Branches can have their
+        own internal departmental structure: Branch -> Reading Room Services (team), Branch ->
+        Digitization Team, Branch -> Public Programs Department. These are INFORMAL units within
+        the formal branch.

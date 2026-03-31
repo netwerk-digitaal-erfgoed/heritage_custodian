@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: grant_access_to
+# ==============================================================================
+# Authorization to access a secured resource, location, or information system.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                 | File/Line               | Mapping | Notes                              |
+# |---------------|--------------------------|-------------------------|---------|------------------------------------|
+# | **DCAT**      | `dcat:servesDataset`     | dcat3.ttl:1556-1564     | close   | "A collection of data that this    |
+# |               |                          |                         |         | DataService can distribute."       |
+# | **DCAT**      | `dcat:accessService`     | dcat3.ttl:536           | related | Access service relationship        |
+#
+# dcat:servesDataset is specific to DataService->Dataset; this slot is more
+# general for any access authorization. Hence close, not exact.
+#
+# CREATED: 2026-02-04
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/grant_access_to
+name: grant_access_to
+title: Grant Access To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  grant_access_to:
+    slot_uri: hc:providesAccessTo
+    description: >-
+      Authorization or permission to enter, use, or interact with a secured
+      resource, physical location, or information system.
+    alt_descriptions:
+      nl: >-
+        Autorisatie of toestemming om een beveiligde bron, fysieke locatie
+        of informatiesysteem te betreden, gebruiken of ermee te interageren.
+      de: >-
+        Autorisierung oder Erlaubnis zum Betreten, Nutzen oder Interagieren
+        mit einer gesicherten Ressource, einem physischen Standort oder
+        einem Informationssystem.
+      fr: >-
+        Autorisation ou permission d'entrer, d'utiliser ou d'interagir avec
+        une ressource sécurisée, un lieu physique ou un système d'information.
+      ar: >-
+        تفويض أو إذن للدخول أو الاستخدام أو التفاعل مع مورد محمي
+        أو موقع مادي أو نظام معلومات.
+      id: >-
+        Otorisasi atau izin untuk memasuki, menggunakan, atau berinteraksi
+        dengan sumber daya yang diamankan, lokasi fisik, atau sistem informasi.
+      zh: >-
+        授权或许可进入、使用或与受保护的资源、物理位置或信息系统进行交互。
+      es: >-
+        Autorización o permiso para entrar, usar o interactuar con un recurso
+        protegido, ubicación física o sistema de información.
+    structured_aliases:
+      - literal_form: toegang verlenen tot
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zugang gewähren zu
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: accorder l'accès à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منح الوصول إلى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memberikan akses ke
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 授予访问权限
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: otorgar acceso a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - dcat:servesDataset  # dcat3.ttl:1556-1564 - DataService->Dataset specific
+    related_mappings:
+      - dcat:accessService  # dcat3.ttl:536
+    aliases:
+      - is_or_was_provides_access_to
+      - grants_or_granted_access_through
+      - grant_access_to
+    comments:
+      - |
+        **DCAT ALIGNMENT**: dcat:servesDataset for data service relationship.
+        Link to CustodianCollection or dataset identifiers.
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: A
+      specificity_score: 0.6
+      specificity_rationale: Access control slot for digital resources.

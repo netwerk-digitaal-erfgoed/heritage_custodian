@@ -1,0 +1,143 @@
+id: https://nde.nl/ontology/hc/class/DeploymentEvent
+name: deployment_event_class
+title: DeploymentEvent Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_score
+- ../slots/refer_to
+- ../slots/temporal_extent
+classes:
+  DeploymentEvent:
+    class_uri: prov:Activity
+    description: >-
+      Operational event recording the rollout of a digital system at a target
+      institution, including timing and contextual notes.
+    alt_descriptions:
+      nl: Operationele gebeurtenis die de uitrol van een digitaal systeem bij een instelling vastlegt inclusief timing en contextnotities.
+      de: Operatives Ereignis zur Einfuehrung eines digitalen Systems in einer Zielinstitution mit Zeitangaben und Kontextnotizen.
+      fr: Evenement operationnel enregistrant le deploiement d un systeme numerique dans une institution cible avec temporalite et contexte.
+      es: Evento operativo que registra el despliegue de un sistema digital en una institucion objetivo con temporalidad y contexto.
+      ar: حدث تشغيلي يسجل نشر نظام رقمي لدى مؤسسة مستهدفة مع التوقيت والسياق.
+      id: Peristiwa operasional yang mencatat penerapan sistem digital pada institusi target beserta waktu dan konteksnya.
+      zh: 记录数字系统在目标机构上线部署及其时间与背景说明的运营事件。
+    structured_aliases:
+    - {literal_form: uitrolgebeurtenis, in_language: nl}
+    - {literal_form: Bereitstellungsereignis, in_language: de}
+    - {literal_form: evenement de deploiement, in_language: fr}
+    - {literal_form: evento de despliegue, in_language: es}
+    - {literal_form: حدث نشر, in_language: ar}
+    - {literal_form: peristiwa deployment, in_language: id}
+    - {literal_form: 部署事件, in_language: zh}
+    broad_mappings:
+    - prov:Activity
+
+    close_mappings:
+    - crm:E5_Event
+    - schema:Action
+
+    related_mappings:
+    - schema:InstallAction
+
+    slots:
+    - temporal_extent
+    - refer_to
+    - has_description
+    - has_score
+
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: true
+        examples:
+        - value:
+            begin_of_the_begin: "2015-06-01"
+            end_of_the_end: "2015-06-01"
+        - value:
+            begin_of_the_begin: "2015-01-01"
+            end_of_the_end: "2015-06-30"
+      refer_to:
+        range: Custodian
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+      has_description:
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+        examples:
+        - value:
+            has_text: "Migrated from legacy system to Adlib v7.4. Data migration completed in phases over Q2 2015."
+    notes:
+    - |
+      Preserved from prior description (commit 86b9dceb):
+
+      Preserved from prior description (commit 86b9dceb):
+
+      Event representing the deployment of a software system (CMS, platform) at an institution.
+
+      **Purpose**:
+      DeploymentEvent captures the full context of a software deployment:
+      - WHEN: Via temporal_extent (TimeSpan with fuzzy boundaries)
+      - WHERE: Via refers_to_custodian (target institution)
+      - WHAT: Linked from CollectionManagementSystem.deployed_at
+      - WHY: Via description (deployment rationale, notes)
+
+      **MIGRATED FROM**: `deployment_date` slot
+
+      Replaces simple date with structured event that:
+      - Supports fuzzy temporal bounds (TimeSpan)
+      - Tracks deployment at specific custodians
+      - Enables multiple deployment events per system
+      - Captures deployment context and rationale
+
+      **Ontological Alignment**:
+      - **Primary**: `prov:Activity` - PROV-O activity
+      - **Close**: `crm:E5_Event` - CIDOC-CRM event
+      - **Related**: `schema:Action` - Schema.org action
+
+      **Relationship to CollectionManagementSystem**:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Deployment events applicable to all custodian types.
+      custodian_types_primary:
+      specificity_score: 0.7
+      specificity_rationale: Specific to software deployment tracking.
+
+    comments:
+    - "MIGRATED from deployment_date per slot_fixes.yaml (Rule 53)"
+    - "PROV-O Activity for deployment tracking"
+    - "Enables multiple deployments per CMS (upgrades, re-deployments)"
+    - "TimeSpan allows fuzzy temporal bounds for uncertain deployment dates"
+    examples:
+    - value:
+        temporal_extent:
+          begin_of_the_begin: "2015-06-01"
+          end_of_the_end: "2015-06-01"
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+        has_description:
+          has_text: "Initial deployment of Adlib CMS at Rijksmuseum"
+    - value:
+        temporal_extent:
+          begin_of_the_begin: "2020-01-01"
+          end_of_the_end: "2020-03-31"
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-zh-hag-a-na
+        has_description:
+          has_text: "Upgrade to MAIS-Flexis v3.0. Migration included archival descriptions from 2010-2019."
+    - value: |
+        CollectionManagementSystem
+          │
+          └── deployed_at → DeploymentEvent[]
+                                          ├── temporal_extent → TimeSpan
+                                          ├── refers_to_custodian → Custodian
+                                          └── description → Description

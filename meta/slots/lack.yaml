@@ -1,0 +1,83 @@
+# ==============================================================================
+# LinkML Slot Definition: lack
+# ==============================================================================
+# Indicates absence of a quality, resource, or evidence.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                      | File/Line            | Mapping | Notes                                                       |
+# |---------------|-------------------------------|----------------------|---------|-------------------------------------------------------------|
+# | **DQV**       | `dqv:hasQualityAnnotation`    | dqv.ttl:168-172      | related | "Refers to a quality annotation." Can flag data/evidence gaps.|
+# | **CIDOC-CRM** | `crm:P3_has_note`             | CIDOC_CRM:1227-1241  | broad   | Generic note container; noting absence is one specific type. |
+# | **SKOS**      | `skos:note`                   | skos.rdf:176-185     | broad   | "A general note, for any purpose." Very generic annotation.  |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/lack
+name: lack
+title: Lack
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  lack:
+    slot_uri: hc:lack
+    range: string
+    multivalued: true
+    description: >-
+      Indicates absence of a quality, resource, or evidence.
+    alt_descriptions:
+      nl: >-
+        Geeft de afwezigheid van een kwaliteit, hulpbron of bewijs aan.
+      de: >-
+        Gibt das Fehlen einer Qualität, Ressource oder eines Nachweises an.
+      fr: >-
+        Indique l'absence d'une qualité, d'une ressource ou d'une preuve.
+      ar: >-
+        يشير إلى غياب جودة أو مورد أو دليل.
+      id: >-
+        Menunjukkan ketiadaan suatu kualitas, sumber daya, atau bukti.
+      zh: >-
+        表示某种质量、资源或证据的缺失。
+      es: >-
+        Indica la ausencia de una cualidad, recurso o evidencia.
+    structured_aliases:
+      - literal_form: Ontbreken
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Fehlen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Manque
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نقص
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kekurangan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 缺失
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Carencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    related_mappings:
+      - dqv:hasQualityAnnotation  # dqv.ttl:168-172 - "Refers to a quality annotation"; can flag data/evidence gaps
+    broad_mappings:
+      - crm:P3_has_note  # CIDOC_CRM_v7.1.3.rdf:1227-1241 - generic note/characterisation container
+      - skos:note  # skos.rdf:176-185 - "A general note, for any purpose"
+    comments:
+      - "Migrated from evidence_gap per slot_fixes.yaml (Rule 53)."
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - lacks_or_lacked

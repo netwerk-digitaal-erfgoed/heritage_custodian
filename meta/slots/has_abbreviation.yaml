@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_abbreviation
+# ==============================================================================
+# Links an entity to its abbreviated form or acronym.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                   | File/Line            | Mapping | Notes                          |
+# |----------------|----------------------------|----------------------|---------|--------------------------------|
+# | **GLEIF**      | `gleif-base:hasAbbreviation`| gleif_base.ttl:479-83| exact   | "An abbreviation for the       |
+# |                |                            |                      |         | entity identified"             |
+# | **Schema.org** | `schema:alternateName`     | schemaorg.owl:7757-77| close   | "An alias for the item" -      |
+# |                |                            |                      |         | more general than abbreviation |
+# | **SKOS**       | `skos:altLabel`            | N/A                  | close   | Alternative lexical label      |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_abbreviation
+name: has_abbreviation
+title: Has Abbreviation
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  gleif-base: https://www.gleif.org/ontology/Base/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_abbreviation:
+    slot_uri: hc:hasAbbreviation
+    description: >-
+      To be represented by a shortened form, acronym, or initialism that 
+      stands for the full name or phrase.
+    alt_descriptions:
+      nl: >-
+        Vertegenwoordigd te worden door een verkorte vorm, acroniem of 
+        initiaalwoord dat staat voor de volledige naam of zin.
+      de: >-
+        Durch eine Kurzform, ein Akronym oder eine Abkürzung dargestellt 
+        zu werden, die für den vollständigen Namen oder die Phrase steht.
+      fr: >-
+        Être représenté par une forme abrégée, un acronyme ou un sigle 
+        qui représente le nom ou la phrase complète.
+      ar: >-
+        أن يتم تمثيله بشكل مختصر أو اختصار أو حروف أولى تمثل 
+        الاسم أو العبارة الكاملة.
+      id: >-
+        Diwakili oleh bentuk singkat, akronim, atau inisialisme yang 
+        mewakili nama atau frasa lengkap.
+      zh: >-
+        用代表全称或短语的缩写形式、首字母缩写词或缩略语来表示。
+      es: >-
+        Ser representado por una forma abreviada, acrónimo o sigla que 
+        representa el nombre o frase completa.
+    structured_aliases:
+      - literal_form: heeft afkorting
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Abkürzung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une abréviation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له اختصار
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki singkatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有缩写
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene abreviatura
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    exact_mappings:
+      - gleif-base:hasAbbreviation  # gleif_base.ttl:479-483 - "An abbreviation for the entity identified"
+    close_mappings:
+      - schema:alternateName  # schemaorg.owl:7757-7777 - "An alias for the item" - more general
+      - skos:altLabel  # Alternative lexical label
+    aliases:
+      - has_or_had_abbreviation
+      - register_abbreviation
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to store acronyms, initialisms, or other 
+        abbreviated forms of organization names or titles. For example, 
+        "ICOM" for "International Council of Museums".

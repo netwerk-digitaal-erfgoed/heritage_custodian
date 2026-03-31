@@ -1,0 +1,102 @@
+id: https://nde.nl/ontology/hc/class/StateArchivesSectionRecordSetTypes
+name: StateArchivesSectionRecordSetTypes
+title: StateArchivesSection Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./StateArchivesSectionRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  StateSectionFonds:
+    is_a: StateArchivesSectionRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Fonds-level arrangement of records maintained by Italian state archive sections.
+    alt_descriptions:
+      nl: >-
+        Fonds-niveau ordening van records beheerd door Italiaanse staatsarchiefsecties.
+      de: >-
+        Bestandsordnung auf Fonds-Ebene in italienischen Staatsarchivsprengeln.
+      fr: >-
+        Organisation au niveau du fonds des documents conservés par les sections d'archives d'État italiennes.
+      es: >-
+        Organización a nivel de fondo de registros mantenidos por secciones de archivos estatales italianos.
+      ar: >-
+        ترتيب على مستوى الفوندس للسجلات التي تحتفظ بها أقسام الأرشيف الحكومية الإيطالية.
+      id: >-
+        Pengaturan tingkat fonds rekaman yang dikelola oleh bagian arsip negara Italia.
+      zh: >-
+        意大利国家档案馆分区所保管记录的全宗级整理。
+    structured_aliases:
+      - literal_form: fonds di sezione statale
+        predicate: EXACT_SYNONYM
+        in_language: it
+      - literal_form: staatssprengel fonds
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: staatsarchiefsectie-fonds
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: fonds de section d'archives d'etat
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de seccion de archivo estatal
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: صندوق قسم الأرشيف الحكومي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds seksi arsip negara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 国家档案分馆全宗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    keywords:
+      - fonds
+      - state archives section
+      - Italian archives
+    see_also:
+      - StateArchivesSectionRecordSetType
+      - rico:RecordSetType
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:StateSectionFonds
+      has_custodian:
+        equals_string: hc:StateArchivesSection
+      has_note:
+        equals_string: This RecordSetType is typically held by StateArchivesSection custodians. Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Note preserved: Earlier modeling allowed ArchiveOrganizationType in has_type; the slot now uses a single specific type value for consistency.
+      - Institutional provenance remains bound to Italian state archive section custody.
+    examples:
+      - value:
+          has_type: hc:StateSectionFonds
+          has_custodian: hc:StateArchivesSection
+          has_note: Section-level administrative files, transfer records, and local custody logs.
+        description: Italian state-archive section documentation grouped by section provenance.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

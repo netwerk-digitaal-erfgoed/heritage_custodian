@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: has_budget
+# ==============================================================================
+# Indicates the budget allocated to or associated with an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DBpedia**   | `dbpedia:budget`      | dbpedia_ontology.owl:5221,9096 | close   | Budget for projects/films          |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Rewrote alt_descriptions to faithful translations, verified file:line refs
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_budget
+name: has_budget
+title: Has Budget
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dbpedia: http://dbpedia.org/ontology/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_budget:
+    slot_uri: hc:hasBudget
+    description: >-
+      To possess, be allocated, or operate with a specific amount of financial resources designated for a particular purpose or time period.
+    alt_descriptions:
+      nl: >-
+        Een specifiek bedrag aan financiële middelen bezitten, toegewezen krijgen of ermee opereren dat is bestemd voor een bepaald doel of een bepaalde periode.
+      de: >-
+        Einen bestimmten Betrag an finanziellen Mitteln besitzen, zugewiesen bekommen oder damit operieren, der für einen bestimmten Zweck oder Zeitraum vorgesehen ist.
+      fr: >-
+        Posséder, se voir allouer ou fonctionner avec un montant spécifique de ressources financières destinées à un objectif ou une période particulière.
+      ar: >-
+        امتلاك أو تخصيص أو تشغيل مبلغ محدد من الموارد المالية المخصصة لغرض معين أو فترة زمنية محددة.
+      id: >-
+        Memiliki, dialokasikan, atau beroperasi dengan jumlah sumber daya keuangan tertentu yang ditujukan untuk tujuan atau periode waktu tertentu.
+      zh: >-
+        拥有、被分配或以特定数额的财务资源运营，这些资源被指定用于特定目的或时间段。
+      es: >-
+        Poseer, tener asignado u operar con una cantidad específica de recursos financieros designados para un propósito o período de tiempo particular.
+    structured_aliases:
+      - literal_form: heeft budget
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Budget
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un budget
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه ميزانية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki anggaran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有预算
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene presupuesto
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_budget
+      - innovation_budget
+      - operating_budget
+      - preservation_budget
+    close_mappings:
+      - dbpedia:budget  # dbpedia_ontology.owl:5221,9096 - Budget for projects/films (domain-specific)
+    annotations:
+      custodian_types: '["*"]'

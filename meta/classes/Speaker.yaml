@@ -1,0 +1,98 @@
+id: https://nde.nl/ontology/hc/class/Speaker
+name: Speaker
+title: Speaker
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  Speaker:
+    class_uri: prov:Agent
+    description: >-
+      Participant entity associated with verbal contributions within audio or video
+      content segments.
+    alt_descriptions:
+      nl: >-
+        Deelnemersentiteit geassocieerd met verbale bijdragen binnen audio- of video-
+        inhoudssegmenten.
+      de: >-
+        Teilnehmende Entität, die mit sprachlichen Beiträgen in Audio- oder Video-
+        Inhaltssegmenten verbunden ist.
+      fr: >-
+        Entité participante associée à des contributions verbales dans des segments
+        de contenu audio ou vidéo.
+      es: >-
+        Entidad participante asociada con contribuciones verbales dentro de segmentos
+        de contenido de audio o video.
+      ar: >-
+        كيان مشارك مرتبط بمساهمات لفظية ضمن مقاطع محتوى
+        صوتي أو مرئي.
+      id: >-
+        Entitas peserta yang terkait dengan kontribusi verbal dalam segmen konten
+        audio atau video.
+      zh: >-
+        与音频或视频内容片段中的口头贡献相关联的参与者实体。
+    structured_aliases:
+    - literal_form: spreker
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sprecher
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: locuteur
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: hablante
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: متحدث
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: pembicara
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 说话人
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - prov:Agent
+    close_mappings:
+    - schema:Person
+    slots:
+    - identified_by
+    - has_label
+    slot_usage:
+      identified_by:
+        required: true
+      has_label:
+        required: false
+    comments:
+    - "CREATED from diarization_speaker_* migration per slot_fixes.yaml (Rule 53)"
+    - "Represents identified speakers in media content"
+    - "Use identified_by for stable speaker IDs from diarization runs; use Wikidata URLs when a real-world identity is known."
+    - 'Preserved from prior description: Represents a speaker identified in audio/video content analysis. **MIGRATION SOURCE**: Created from diarization_speaker_id and diarization_speaker_label migration (Rule 53, 2026-01-25). **Ontological Alignment**: - **Primary**: `prov:Agent` - An agent (person) participating in an activity (speaking) - **Close**: `schema:Person` - A person'
+    keywords:
+    - audio speaker
+    - media participant
+    - voice identification
+    - content analysis
+    examples:
+    - value:
+        identified_by: spk_001
+        has_label: Curator
+    - value:
+        identified_by: https://www.wikidata.org/wiki/Q12345
+        has_label: John Doe
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.7
+      specificity_rationale: Specific to audio/video content analysis.

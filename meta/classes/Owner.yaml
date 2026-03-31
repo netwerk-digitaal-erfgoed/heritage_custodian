@@ -1,0 +1,101 @@
+id: https://nde.nl/ontology/hc/class/Owner
+name: Owner
+title: Owner Entity
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  Owner:
+    class_uri: crm:E39_Actor
+    description: >-
+      Actor holding or having held legal title to property or assets within
+      ownership transfer and provenance contexts.
+    alt_descriptions:
+      nl: >-
+        Actor die de juridische titel op eigendom of activa houdt of heeft gehouden
+        binnen eigendomsoverdracht en herkomstcontexten.
+      de: >-
+        Akteur, der rechtlichen Eigentumstitel an Eigentum oder Vermögenswerten hält oder gehalten hat
+        innerhalb von Eigentumsübertragungs- und Provenienzkontexten.
+      fr: >-
+        Acteur détenant ou ayant détenu un titre juridique sur des biens ou des actifs
+        dans des contextes de transfert de propriété et de provenance.
+      es: >-
+        Actor que posee o ha poseído título legal sobre propiedad o activos
+        en contextos de transferencia de propiedad y procedencia.
+      ar: >-
+        فاعل يحمل أو كان يحمل اللقب القانوني على الملكية أو الأصول
+        في سياقات نقل الملكية والمنشأ.
+      id: >-
+        Aktor yang memegang atau pernah memegang gelar hukum atas properti atau aset
+        dalam konteks transfer kepemilikan dan provenans.
+      zh: >-
+        在所有权转移和来源语境中持有或曾经持有财产或资产法定所有权的行动者。
+    structured_aliases:
+    - literal_form: eigenaar
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Eigentümer
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: propriétaire
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: propietario
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مالك
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: pemilik
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 所有者
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - crm:E39_Actor
+    close_mappings:
+    - prov:Agent
+    - rico:Agent
+    related_mappings:
+    - schema:Person
+    - schema:Organization
+    slots:
+    - has_label
+    - identified_by
+    slot_usage:
+      has_label:
+      identified_by:
+    comments:
+    - "Used in provenance/ownership transfer events to represent the title holder."
+    - "Semantic distinction: Owner (legal title) vs Holder (physical custody) vs Custodian (responsible keeper)."
+    - "CIDOC-CRM patterns: transferred title (P22), custody surrendered (P28), current keeper (P50)."
+    - 'Preserved from prior description: Actor that holds or held legal title in an ownership transfer context.'
+    keywords:
+    - legal title holder
+    - property owner
+    - provenance actor
+    - ownership transfer
+    examples:
+    - value:
+        has_label: Rijksmuseum
+        identified_by: https://www.wikidata.org/entity/Q190804
+    - value:
+        has_label: Private Collection (Anonymous)
+        identified_by: hc:owner/private-001
+    annotations:
+      specificity_score: 0.50
+      specificity_rationale: Medium specificity - used in provenance contexts.
+      migration_date: '2026-01-16'
+      migration_rule: Rule 56 (semantic consistency over simplicity)
+      custodian_types: "['*']"

@@ -1,0 +1,178 @@
+# ==============================================================================
+# LinkML Slot Definition: has_role
+# ==============================================================================
+# Designates a position or function with specific responsibilities within an
+# organizational structure. Used for agent roles, membership roles, and
+# participation roles in heritage contexts.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property                  | File/Line              | Mapping | Notes                                           |
+# |--------------|---------------------------|------------------------|---------|------------------------------------------------|
+# | **W3C Org**  | `org:role`                | org.rdf:623-644        | exact   | "Role that Agent plays in Membership with Organization" |
+# | **PROV-O**   | `prov:hadRole`            | prov.ttl:676-692       | close   | "Role Entity assumed in context of Activity"    |
+# | **Schema.org**| `schema:roleName`        | schemaorg.owl:33901-33919| close  | "Role played, performed or filled by person/org"|
+# | **W3C Org**  | `org:roleProperty`        | org.rdf:580-594        | broad   | Meta-property for role annotation               |
+# | **Schema.org**| `schema:jobTitle`        | schemaorg.owl:23787-23790| narrow | Specific: job title (narrower than role)        |
+# | **Schema.org**| `schema:hasOccupation`   | schemaorg.owl          | related | Occupation held (related concept)               |
+#
+# NOTE: org:role is for membership/organizational roles.
+# prov:hadRole is for qualified roles in activity contexts.
+# schema:roleName is for creative/team roles.
+#
+# CREATED: 2026-01-16 - Consolidated from author_role, agent_role, participant_role
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_role
+name: has_role
+title: has role
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  owl: http://www.w3.org/2002/07/owl#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+description: |
+  To hold a designated position or function that entails specific responsibilities and authority within an organizational structure or endeavor.
+
+imports:
+  - linkml:types
+
+slots:
+  has_role:
+    slot_uri: org:role
+    description: |
+      To hold a designated position or function that entails specific responsibilities and authority within an organizational structure or endeavor.
+    alt_descriptions:
+      nl: >-
+        Een aangewezen positie of functie bekleden die specifieke verantwoordelijkheden en bevoegdheden met zich meebrengt binnen een organisatiestructuur of onderneming.
+      de: >-
+        Eine bestimmte Position oder Funktion innehaben, die spezifische Verantwortlichkeiten und Befugnisse innerhalb einer Organisationsstruktur oder eines Unternehmens mit sich bringt.
+      fr: >-
+        Occuper une position ou fonction désignée comportant des responsabilités et une autorité spécifiques au sein d'une structure organisationnelle ou d'une entreprise.
+      ar: >-
+        شغل منصب أو وظيفة محددة تستتبع مسؤوليات وصلاحيات محددة ضمن هيكل تنظيمي أو مسعى.
+      id: >-
+        Memegang posisi atau fungsi yang ditunjuk yang memerlukan tanggung jawab dan wewenang tertentu dalam struktur organisasi atau usaha.
+      zh: >-
+        担任在组织结构或事业中具有特定职责和权限的指定职位或职能。
+      es: >-
+        Ocupar una posición o función designada que conlleva responsabilidades y autoridad específicas dentro de una estructura organizacional o empresa.
+    structured_aliases:
+      - literal_form: heeft rol
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Rolle
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a pour rôle
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له دور
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki peran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有角色
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene rol
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    inverse: is_role_of
+    implements:
+      - owl:ObjectProperty
+    required: false
+    multivalued: false
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.50
+      replaces_slots: author_role, agent_role, participant_role
+      migration_date: '2026-01-16'
+    exact_mappings:
+      # W3C Org role - "Role that Agent plays in Membership with Organization"
+      # Domain: Membership | Post, Range: org:Role
+      # Lines 623-644 in org.rdf
+    close_mappings:
+      # PROV-O hadRole - "Role Entity assumed in context of Activity"
+      # Used in qualified influence patterns
+      # Lines 676-692 in prov.ttl
+      - prov:hadRole
+      # Schema.org roleName - "Role played, performed or filled by person/org"
+      # Domain: Role, Range: Text | URL
+      # Lines 33901-33919 in schemaorg.owl
+      - schema:roleName
+    broad_mappings:
+      # W3C Org roleProperty - Meta-property for annotating roles
+      # Higher-level abstraction for role relationships
+      # Lines 580-594 in org.rdf
+      - org:roleProperty
+    narrow_mappings:
+      # Schema.org jobTitle - Specific job title (narrower than general role)
+      # Lines 23787-23790 in schemaorg.owl
+      - schema:jobTitle
+    related_mappings:
+      # Schema.org hasOccupation - Occupation held by person
+      - schema:hasOccupation
+    aliases:
+      - has_or_had_role
+      - is_or_was_governance_role
+      - governance_role
+      - membership_role
+    examples:
+      - value: "hc:Role/author"
+        description: Primary author role in a publication
+      - value: "hc:Role/editor"
+        description: Editor role in content creation
+      - value: "hc:Role/curator"
+        description: Curator role in collection management
+      - value: "hc:Role/translator"
+        description: Translator role in content adaptation
+    comments:
+      - Updated 2026-02-03 with verified ontology mappings and translations
+      - |
+        **PURPOSE**: Assigns roles to agents within organizational structures,
+        activities, or creative endeavors. Consolidated from multiple legacy
+        role slots for consistency.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | W3C Org | org:role | 623 | exact | Membership role |
+        | PROV-O | prov:hadRole | 676 | close | Activity role |
+        | Schema.org | schema:roleName | 33901 | close | Creative role |
+        | W3C Org | org:roleProperty | 580 | broad | Meta-property |
+        | Schema.org | schema:jobTitle | 23787 | narrow | Job title |
+      - |
+        **TEMPORAL SEMANTICS** (RiC-O Pattern):
+        "has_or_had_role" indicates roles may be historical - an entity's
+        role may change over time within an organization.
+      - |
+        **USAGE PATTERNS**:
+        - For authors: role in creating a work (AUTHOR, EDITOR, TRANSLATOR)
+        - For agents: role in an activity or event
+        - For participants: role in a project or organization
+        - For members: role in organizational membership
+      - |
+        **MIGRATION NOTES** (2026-01-16):
+        Consolidated from:
+        - `author_role` → has_role
+        - `agent_role` → has_role
+        - `participant_role` → has_role
+      - |
+        **RANGE NOTES**:
+        Range is `uriorcurie` (Rule 55) to allow enum values or Role class
+        references. Classes may narrow via slot_usage to specific Role enums.

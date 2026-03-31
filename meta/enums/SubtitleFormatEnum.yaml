@@ -1,0 +1,77 @@
+id: https://nde.nl/ontology/hc/enum/SubtitleFormatEnum
+name: subtitle_format_enum
+title: SubtitleFormatEnum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+imports:
+  - linkml:types
+default_prefix: hc
+
+enums:
+  SubtitleFormatEnum:
+    description: |
+      Subtitle/caption file formats.
+
+      Each format has different capabilities for timing precision,
+      styling, positioning, and metadata.
+    permissible_values:
+      SRT:
+        description: |
+          SubRip subtitle format (.srt).
+          Most widely supported format.
+          Simple: sequence number, timecode, text.
+          No styling or positioning support.
+      VTT:
+        description: |
+          WebVTT format (.vtt).
+          W3C standard for HTML5 video.
+          Supports styling (CSS), positioning, cue settings.
+          Recommended for web delivery.
+      TTML:
+        description: |
+          Timed Text Markup Language (.ttml/.dfxp/.xml).
+          W3C XML-based standard.
+          Rich styling, regions, timing.
+          Used in broadcast and streaming (Netflix, Amazon).
+      SBV:
+        description: |
+          YouTube SubViewer format (.sbv).
+          Simple format similar to SRT.
+          Native YouTube caption format.
+      ASS:
+        description: |
+          Advanced SubStation Alpha (.ass).
+          Advanced styling, positioning, effects.
+          Popular for anime subtitles.
+          Includes SSA (.ssa) as predecessor.
+      STL:
+        description: |
+          EBU STL format (.stl).
+          European Broadcasting Union standard.
+          Used in broadcast television.
+          Binary format with teletext compatibility.
+      CAP:
+        description: |
+          Scenarist Closed Caption (.scc/.cap).
+          Used for broadcast closed captioning.
+          CEA-608/CEA-708 compliant.
+      SAMI:
+        description: |
+          Synchronized Accessible Media Interchange (.smi/.sami).
+          Microsoft format for Windows Media.
+          HTML-like markup with timing.
+      LRC:
+        description: |
+          LRC lyrics format (.lrc).
+          Simple format for song lyrics.
+          Line-by-line timing, no duration.
+      JSON:
+        description: |
+          JSON-based subtitle format.
+          Used by some APIs (YouTube transcript API).
+          Structure varies by source.
+      UNKNOWN:
+        description: |
+          Unknown or unrecognized format.
+          May require manual parsing or conversion.

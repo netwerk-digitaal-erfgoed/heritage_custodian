@@ -1,0 +1,181 @@
+id: https://nde.nl/ontology/hc/class/OrganizationalStructure
+name: OrganizationalStructure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+- ../slots/has_contact_point
+- ../slots/has_label
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_staff
+- ../slots/has_type
+- ../slots/located_at
+- ../slots/part_of
+- ../slots/refer_to
+- ../slots/temporal_extent
+classes:
+  OrganizationalStructure:
+    class_uri: org:OrganizationalUnit
+    broad_mappings:
+    - org:OrganizationalUnit
+    description: Operational internal structure of a custodian, describing non-legal units such as departments and teams.
+    alt_descriptions:
+      nl: Interne operationele structuur van een bewaarder met niet-juridische eenheden zoals afdelingen en teams.
+      de: Interne betriebliche Struktur einer verwahrenden Organisation mit nicht-rechtlichen Einheiten wie Abteilungen und Teams.
+      fr: Structure operationnelle interne d un depositaire
+      es: Estructura operativa interna de un custodio que describe unidades no juridicas como departamentos y equipos.
+      ar: هيكل تشغيلي داخلي للجهة الحافظة يصف وحدات غير قانونية مثل الأقسام والفرق.
+      id: Struktur operasional internal kustodian yang menggambarkan unit non-hukum seperti departemen dan tim.
+      zh: 描述部门与团队等非法人单元的保管机构内部运营结构。
+    structured_aliases:
+    - literal_form: interne organisatiestructuur
+      in_language: nl
+    - literal_form: interne Organisationsstruktur
+      in_language: de
+    - literal_form: structure organisationnelle interne
+      in_language: fr
+    - literal_form: estructura organizativa interna
+      in_language: es
+    - literal_form: الهيكل التنظيمي الداخلي
+      in_language: ar
+    - literal_form: struktur organisasi internal
+      in_language: id
+    - literal_form: 内部组织结构
+      in_language: zh
+    slots:
+    - has_contact_point
+    - located_at
+    - part_of
+    - refer_to
+    - has_quantity
+    - has_staff
+    - has_score
+    - has_label
+    - has_type
+    - temporal_extent
+    slot_usage:
+      has_label:
+        required: true
+#         range: string
+        examples:
+        - value: Digital Preservation Department
+        - value: Public Services Team
+        - value: Research and Documentation Division
+      has_type:
+#         range: string # uriorcurie
+        examples:
+        - value: DEPARTMENT
+        - value: TEAM
+      part_of:
+        range: OrganizationalStructure
+        examples:
+        - value:
+            has_label:
+              has_label: Collections Division
+      has_quantity:
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+      has_staff:
+        range: PersonObservation
+        multivalued: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - id: https://nde.nl/ontology/hc/person-obs/nl-na/john-doe/archivist-2015
+            person_name: John Doe
+            staff_role: ARCHIVIST
+            role_title: Digital Preservation Manager
+      located_at:
+        range: AuxiliaryPlace
+        multivalued: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - place_name: Depot Amersfoort
+            auxiliary_place_type: STORAGE_FACILITY
+      has_contact_point:
+#         range: string
+        examples:
+        - value: digitization@nationalarchives.nl
+        - value: https://nationalarchives.nl/services/reading-room
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: '2015-01-01'
+        - value:
+            begin_of_the_begin: '2015-01-01'
+            end_of_the_end: '2020-12-31'
+      refer_to:
+        required: true
+        range: Custodian
+        examples:
+        - value:
+            identified_by: https://nde.nl/ontology/hc/cust/national-archives
+    comments:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Informal organizational structure of a heritage custodian, representing\noperational departments, teams, divisions, or groups that are NOT formally\nregistered as separate legal entities.\n\n**Distinction from GovernanceStructure**:\n- **GovernanceStructure**: Formal structure from legal registration \n  (e.g., \"National Archives is agency under Ministry OCW\")\n- **OrganizationalStructure**: Informal/operational units\n  (e.g., \"Digital Preservation Team\", \"Public Services Department\")\n\n**W3C ORG Alignment**:\nMaps to `org:OrganizationalUnit` - \"An Organization such as a University \nSupport Unit which is part of some larger FormalOrganization and only has \nfull recognition within the context of that FormalOrganization, it is not \na Legal Entity in its own right.\"\n\n**Scope**:\n- Departments (Collections, Education, Research, IT)\n- Teams (Digital Preservation, Conservation, Cataloging)\n- Programs (Outreach programs, fellowship programs)\n- Working groups\
+    - OrganizationalStructure models INFORMAL operational units
+    - GovernanceStructure models FORMAL legal structure
+    - Both use org:OrganizationalUnit but at different levels
+    - Units can be nested via parent_unit (hierarchical structure)
+    - Temporal validity tracks organizational changes
+    - NOT for legally registered sub-organizations (use CustodianLegalStatus)
+    - 'NEW: located_at links organizational units to AuxiliaryPlace locations (optional)'
+    - Enables tracking which departments/teams operate at which physical sites
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/org-unit/na-digital-pres
+        has_label:
+          has_label: Digital Preservation Department
+        has_type: DEPARTMENT
+        has_quantity:
+          range: integer
+          inlined: false # Fixed invalid inline for primitive type
+        contact_point: digipres@nationalarchives.nl
+        temporal_extent:
+          begin_of_the_begin: '2010-01-01'
+        refers_to_custodian:
+          identified_by: https://nde.nl/ontology/hc/cust/national-archives-nl
+    - value:
+        id: https://nde.nl/ontology/hc/org-unit/rijks-conservation
+        has_label:
+          has_label: Conservation Lab
+        has_type: LAB
+        part_of:
+          has_label:
+            has_label: Collections Care Division
+        has_quantity:
+          range: integer
+          inlined: false # Fixed invalid inline for primitive type
+        temporal_extent:
+          begin_of_the_begin: '1885-07-13'
+        refers_to_custodian:
+          identified_by: https://nde.nl/ontology/hc/cust/national-archives-nl
+    - value:
+        id: https://nde.nl/ontology/hc/org-unit/rijks-conservation
+        has_label:
+          has_label: Conservation Lab
+        has_type: LAB
+        part_of:
+          has_label:
+            has_label: Collections Care Division
+        has_quantity:
+          range: integer
+          inlined: false # Fixed invalid inline for primitive type
+        temporal_extent:
+          begin_of_the_begin: '1885-07-13'
+        refers_to_custodian:
+          identified_by: https://nde.nl/ontology/hc/cust/rijksmuseum
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

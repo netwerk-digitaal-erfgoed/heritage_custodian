@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: draw_endowment
+# ==============================================================================
+# Withdraw or utilize funds from a permanent fund or financial gift.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property         | File/Line                | Mapping | Notes                                                    |
+# |----------------|------------------|--------------------------|---------|-----------------------------------------------------------|
+# | **Schema.org** | `schema:amount`  | schemaorg.owl:7894-7920  | related | Generic monetary amount; endowment draw is more specific. |
+# | **FRAPO**      | `frapo:hasFunding`| NOT IN REPO             | REMOVED | No FRAPO ontology file in data/ontology/; unverifiable.   |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, removed unverifiable FRAPO mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/draw_endowment
+name: draw_endowment
+title: Draw Endowment
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  draw_endowment:
+    name: draw_endowment
+    slot_uri: hc:drawEndowment
+    description: >-
+      To withdraw or utilize a portion of the funds or income from an established permanent fund or financial gift to support specific operations, projects, or beneficiaries.
+    alt_descriptions:
+      nl: >-
+        Een deel van de fondsen of inkomsten uit een vast permanent fonds of
+        financiële schenking opnemen of benutten ter ondersteuning van specifieke
+        activiteiten, projecten of begunstigden.
+      de: >-
+        Einen Teil der Mittel oder Erträge aus einem dauerhaften Fonds oder einer
+        finanziellen Zuwendung entnehmen oder nutzen, um bestimmte Tätigkeiten,
+        Projekte oder Begünstigte zu unterstützen.
+      fr: >-
+        Retirer ou utiliser une partie des fonds ou des revenus d'un fonds permanent
+        établi ou d'un don financier pour soutenir des opérations, des projets ou
+        des bénéficiaires spécifiques.
+      ar: >-
+        سحب أو استخدام جزء من الأموال أو الدخل من صندوق دائم أو هبة مالية
+        لدعم عمليات أو مشاريع أو مستفيدين محددين.
+      id: >-
+        Menarik atau memanfaatkan sebagian dana atau pendapatan dari dana abadi
+        yang telah ditetapkan atau hibah keuangan untuk mendukung operasi, proyek,
+        atau penerima manfaat tertentu.
+      zh: >-
+        从已设立的永久基金或财务捐赠中提取或利用部分资金或收入，以支持特定的运营、项目或
+        受益人。
+      es: >-
+        Retirar o utilizar una parte de los fondos o ingresos de un fondo permanente
+        establecido o de una donación financiera para apoyar operaciones, proyectos
+        o beneficiarios específicos.
+    structured_aliases:
+      - literal_form: stichtingsopname
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Stiftungsentnahme
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: prélèvement sur dotation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: سحب من الوقف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: penarikan dana abadi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 捐赠基金提取
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: retiro de dotación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: decimal
+    multivalued: false
+    aliases:
+      - has_or_had_endowment_draw
+      - has_endowment_draw
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:amount  # schemaorg.owl:7894-7920 — generic monetary amount; different axis from endowment draw
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_endowment_draw for conciseness (2026-02-03).
+      - |
+        **MAPPING NOTE**: The previously assigned `frapo:hasFunding` was removed because the
+        FRAPO ontology is not present in the repository and cannot be verified. Additionally,
+        "hasFunding" (linking to a funding source) is semantically different from the specific
+        amount drawn from an endowment.

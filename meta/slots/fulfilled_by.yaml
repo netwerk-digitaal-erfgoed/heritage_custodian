@@ -1,0 +1,146 @@
+# ==============================================================================
+# LinkML Slot Definition: fulfilled_by
+# ==============================================================================
+# Relate a requirement, condition, or duty to the entity that fulfills it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:eligibleCustomerType` | schemaorg.owl:16287 | close   | Eligibility/qualification          |
+# | **ODRL**      | `odrl:assignee`            | odrl.ttl:1777-1788   | close   | Party that receives permission     |
+# | **Schema.org**| `schema:participant`       | schemaorg.owl:29158  | related | General participation in action    |
+# | **ODRL**      | `odrl:duty`                | odrl.ttl:769-776     | related | Pre-condition to fulfill           |
+# | **ODRL**      | `odrl:obligation`          | odrl.ttl:778-785     | related | Requirement to fulfill             |
+# | **ODRL**      | `odrl:constraint`          | odrl.ttl:739-743     | broad   | General constraint                 |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/fulfilled_by
+name: fulfilled_by
+title: fulfilled by
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  odrl: http://www.w3.org/ns/odrl/2/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  fulfilled_by:
+    name: fulfilled_by
+    description: >-
+      To relate a requirement, condition, or duty to the entity that fulfills it.
+    alt_descriptions:
+      nl: >-
+        Een vereiste, voorwaarde of plicht relateren aan de entiteit die
+        eraan voldoet.
+      de: >-
+        Eine Anforderung, Bedingung oder Pflicht mit der Entität verbinden,
+        die sie erfüllt.
+      fr: >-
+        Relier une exigence, une condition ou un devoir à l'entité qui
+        la remplit.
+      ar: >-
+        ربط متطلب أو شرط أو واجب بالكيان الذي يفي به.
+      id: >-
+        Menghubungkan persyaratan, kondisi, atau tugas dengan entitas
+        yang memenuhinya.
+      zh: >-
+        将需求、条件或责任与满足它的实体关联起来。
+      es: >-
+        Relacionar un requisito, condición o deber con la entidad que
+        lo cumple.
+    structured_aliases:
+      - literal_form: vervuld door
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_fulfilled_by
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erfüllt von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: rempli par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يتم الوفاء به من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dipenuhi oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...满足
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cumplido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:fulfilledBy
+    # range: Any
+    multivalued: true
+    
+    # VERIFIED MAPPINGS (2026-02-XX)
+    # Source files: data/ontology/odrl.ttl, data/ontology/schemaorg.owl
+    
+    # No exact_mappings: hc:fulfilledBy has specific requirement-fulfillment semantics
+    # that are not precisely matched by standard ontologies
+    
+    close_mappings:
+      # schemaorg.owl line 16287-16290: eligibleCustomerType - "The type of customer eligible for offer"
+      # Semantically similar: specifies who can satisfy eligibility criteria
+      - schema:eligibleCustomerType  # from schemaorg.owl - eligibility/qualification relationship
+      
+      # odrl.ttl line 1777-1788: assignee - "The Party that receives the permission"
+      # In ODRL, assignee is the party that can exercise a permission (fulfills conditions to use)
+      - odrl:assignee  # from odrl.ttl - party that receives/fulfills permission terms
+    
+    related_mappings:
+      # schemaorg.owl line 29158-29161: participant - "Other co-agents that participated in the action"
+      # Broader: general participation, not specifically fulfillment
+      - schema:participant  # from schemaorg.owl - general participation in action
+      
+      # odrl.ttl line 769-776: duty - "Relates an individual Duty to a Permission"
+      # Note: Different direction - duty is ON a party, not fulfilled BY a party
+      # "A Duty is a pre-condition which must be fulfilled in order to receive the Permission"
+      - odrl:duty  # from odrl.ttl - pre-condition that must be fulfilled (inverted relationship)
+      
+      # odrl.ttl line 778-785: obligation - "Relates an individual Duty to a Policy"
+      # "The Duty is a requirement which must be fulfilled"
+      - odrl:obligation  # from odrl.ttl - requirement that must be fulfilled
+    
+    broad_mappings:
+      # odrl.ttl line 739-743: constraint - general constraint expression
+      # Much broader: any constraint, not specifically about who fulfills it
+      - odrl:constraint  # from odrl.ttl - general constraint (broader than fulfillment)
+    
+    aliases:
+      - can_or_could_be_fulfilled_by
+      - satisfied_by
+      - met_by
+      - is_or_was_fulfilled_by
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value:
+          has_or_had_identifier: "https://nde.nl/ontology/hc/applicant/non-profit"
+          has_or_had_label: "Non-profit Organization"
+        description: Requirement fulfilled by non-profit applicants
+      - value:
+          has_or_had_identifier: "https://example.org/role/museum-professional"
+          has_or_had_label: "Museum Professional"
+        description: Eligibility criterion fulfilled by museum professionals
+    comments:
+      - |
+          MIGRATED from `eligible_applicant` (via ApplicantRequirement).
+      - |
+          ODRL semantics note: In ODRL, 'odrl:duty' expresses "Permission has Duty" 
+          (a pre-condition), while 'odrl:assignee' expresses "who receives permission".
+          Our 'fulfilled_by' is semantically closer to assignee (who can satisfy) than
+          duty (what must be done).
+      - |
+          Verified predicates from:
+          - data/ontology/odrl.ttl (odrl:assignee, odrl:duty, odrl:obligation, odrl:constraint)
+          - data/ontology/schemaorg.owl (schema:eligibleCustomerType, schema:participant)

@@ -1,0 +1,214 @@
+id: https://nde.nl/ontology/hc/class/climate_control_types
+name: climate_control_types_class
+title: Climate Control Types Classes
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  aat: http://vocab.getty.edu/aat/
+default_prefix: hc
+imports:
+- ./ClimateControlType
+- linkml:types
+classes:
+  HeatedClimateControl:
+    is_a: ClimateControlType
+    class_uri: hc:HeatedClimateControl
+    description: >-
+      Environmental regulation mode focused on freeze prevention with heat
+      provision only.
+    alt_descriptions:
+      nl: Omgevingsregelingsmodus gericht op vorstpreventie met alleen verwarming.
+      de: Umgebungsregelungsmodus mit Fokus auf Frostschutz und ausschliesslicher Beheizung.
+      fr: Mode de regulation environnementale axe sur la prevention du gel avec chauffage seul.
+      es: Modo de regulacion ambiental centrado en evitar congelacion con solo calefaccion.
+      ar: نمط ضبط بيئي يركز على منع التجمد عبر التدفئة فقط.
+      id: Mode pengaturan lingkungan yang berfokus pada pencegahan pembekuan dengan pemanasan saja.
+      zh: 仅提供加热、以防止冻结的环境调控模式。
+    structured_aliases:
+    - {literal_form: alleen-verwarmd, in_language: nl}
+    - {literal_form: nur-beheizt, in_language: de}
+    - {literal_form: chauffage seul, in_language: fr}
+    - {literal_form: solo calefaccion, in_language: es}
+    - {literal_form: تدفئة فقط, in_language: ar}
+    - {literal_form: pemanasan saja, in_language: id}
+    - {literal_form: 仅加热, in_language: zh}
+    annotations:
+      climate_control_code: HEATED
+      preservation_suitability: Low - suitable for non-sensitive materials only
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    examples:
+    - value:
+        has_label: HEATED
+        has_description:
+          description_text: Heating only to prevent freezing. No humidity or cooling control.
+      description: Basic heating type
+    broad_mappings:
+    - skos:Concept
+  HVACClimateControl:
+    is_a: ClimateControlType
+    class_uri: hc:HVACClimateControl
+    description: >-
+      Environmental regulation mode combining heating, ventilation, and cooling
+      with tight stability bands.
+    alt_descriptions:
+      nl: Omgevingsregelingsmodus die verwarming, ventilatie en koeling combineert met strakke stabiliteitsbanden.
+      de: Umgebungsregelungsmodus mit Heizung, Lueftung und Kuehlung bei engen Stabilitaetsbereichen.
+      fr: Mode de regulation environnementale combinant chauffage, ventilation et refroidissement avec des marges de stabilite etroites.
+      es: Modo de regulacion ambiental que combina calefaccion, ventilacion y enfriamiento con bandas estrictas de estabilidad.
+      ar: نمط ضبط بيئي يجمع التدفئة والتهوية والتبريد ضمن نطاقات ثبات ضيقة.
+      id: Mode pengaturan lingkungan yang menggabungkan pemanasan, ventilasi, dan pendinginan dengan rentang stabilitas ketat.
+      zh: 结合供热、通风与制冷并保持严格稳定范围的环境调控模式。
+    structured_aliases:
+    - {literal_form: hvac, in_language: nl}
+    - {literal_form: HLK-Vollsystem, in_language: de}
+    - {literal_form: CVC complet, in_language: fr}
+    - {literal_form: HVAC completo, in_language: es}
+    - {literal_form: نظام تكييف متكامل, in_language: ar}
+    - {literal_form: HVAC penuh, in_language: id}
+    - {literal_form: 全功能暖通空调, in_language: zh}
+    annotations:
+      climate_control_code: HVAC
+      preservation_suitability: High - suitable for sensitive collections
+    examples:
+    - value:
+        has_label: HVAC
+        has_description:
+          description_text: Full heating, ventilation, and air conditioning with temperature and humidity control.
+      description: Full HVAC type
+    broad_mappings:
+    - skos:Concept
+  DehumidifiedClimateControl:
+    is_a: ClimateControlType
+    class_uri: hc:DehumidifiedClimateControl
+    description: >-
+      Environmental regulation mode emphasizing moisture reduction while leaving
+      ambient temperature largely unmanaged.
+    alt_descriptions:
+      nl: Omgevingsregelingsmodus die vochtreductie benadrukt terwijl de omgevingstemperatuur grotendeels onbeheerd blijft.
+      de: Umgebungsregelungsmodus mit Schwerpunkt auf Feuchtereduktion bei weitgehend ungeregelter Umgebungstemperatur.
+      fr: Mode de regulation environnementale privilegieant la reduction de l humidite avec une temperature ambiante peu regulee.
+      es: Modo de regulacion ambiental enfocado en reducir humedad con temperatura ambiente mayormente no controlada.
+      ar: نمط ضبط بيئي يركز على خفض الرطوبة مع ترك الحرارة المحيطة دون ضبط دقيق.
+      id: Mode pengaturan lingkungan yang menekankan penurunan kelembapan sementara suhu sekitar sebagian besar tidak dikendalikan.
+      zh: 以降低湿度为主、对环境温度控制较少的环境调控模式。
+    structured_aliases:
+    - {literal_form: ontvochtigd, in_language: nl}
+    - {literal_form: entfeuchtet, in_language: de}
+    - {literal_form: deshumidifie, in_language: fr}
+    - {literal_form: deshumidificado, in_language: es}
+    - {literal_form: إزالة رطوبة, in_language: ar}
+    - {literal_form: dehumidifikasi, in_language: id}
+    - {literal_form: 除湿型, in_language: zh}
+    annotations:
+      climate_control_code: DEHUMIDIFIED
+      preservation_suitability: Medium - protects against humidity damage
+    examples:
+    - value:
+        has_label: DEHUMIDIFIED
+        has_description:
+          description_text: Humidity control only - maintains RH below target threshold.
+      description: Dehumidification type
+    broad_mappings:
+    - skos:Concept
+  CooledClimateControl:
+    is_a: ClimateControlType
+    class_uri: hc:CooledClimateControl
+    description: >-
+      Environmental regulation mode focused on lowering indoor temperature
+      without dedicated heating provision.
+    alt_descriptions:
+      nl: Omgevingsregelingsmodus gericht op verlaging van binnentemperatuur zonder aparte verwarmingsvoorziening.
+      de: Umgebungsregelungsmodus mit Fokus auf Innenkuehlung ohne eigene Heizfunktion.
+      fr: Mode de regulation environnementale axe sur l abaissement de la temperature interieure sans chauffage dedie.
+      es: Modo de regulacion ambiental centrado en reducir la temperatura interior sin calefaccion dedicada.
+      ar: نمط ضبط بيئي يركز على خفض حرارة الداخل دون توفير تدفئة مخصصة.
+      id: Mode pengaturan lingkungan yang berfokus menurunkan suhu dalam ruang tanpa penyediaan pemanasan khusus.
+      zh: 侧重降低室内温度且不提供专门供热的环境调控模式。
+    structured_aliases:
+    - {literal_form: gekoeld, in_language: nl}
+    - {literal_form: nur-gekuehlt, in_language: de}
+    - {literal_form: refroidissement seul, in_language: fr}
+    - {literal_form: solo enfriamiento, in_language: es}
+    - {literal_form: تبريد فقط, in_language: ar}
+    - {literal_form: pendinginan saja, in_language: id}
+    - {literal_form: 仅制冷, in_language: zh}
+    annotations:
+      climate_control_code: COOLED
+      preservation_suitability: Medium-High - depends on precision
+    examples:
+    - value:
+        has_label: COOLED
+        has_description:
+          description_text: Cooling only - maintains temperature below ambient in warm climates.
+      description: Cooling-only type
+    broad_mappings:
+    - skos:Concept
+  PassiveClimateControl:
+    is_a: ClimateControlType
+    class_uri: hc:PassiveClimateControl
+    description: >-
+      Environmental regulation mode relying on architectural form, material
+      mass, and natural airflow instead of active machinery.
+    alt_descriptions:
+      nl: Omgevingsregelingsmodus die steunt op bouwvorm, materiaalmassa en natuurlijke luchtstroom in plaats van actieve installaties.
+      de: Umgebungsregelungsmodus, der auf Bauform, Materialmasse und natuerlichem Luftstrom statt aktiver Technik beruht.
+      fr: Mode de regulation environnementale reposant sur la forme architecturale, l inertie materielle et les flux d air naturels plutot que sur des machines actives.
+      es: Modo de regulacion ambiental basado en forma arquitectonica, masa material y flujo natural de aire en lugar de maquinaria activa.
+      ar: نمط ضبط بيئي يعتمد على التصميم المعماري وكتلة المواد والتهوية الطبيعية بدل المعدات النشطة.
+      id: Mode pengaturan lingkungan yang mengandalkan bentuk arsitektur, massa material, dan aliran udara alami alih-alih mesin aktif.
+      zh: 依赖建筑形态、材料热容与自然气流而非主动设备的环境调控模式。
+    structured_aliases:
+    - {literal_form: passief geregeld, in_language: nl}
+    - {literal_form: passiv geregelt, in_language: de}
+    - {literal_form: regulation passive, in_language: fr}
+    - {literal_form: control pasivo, in_language: es}
+    - {literal_form: ضبط سلبي, in_language: ar}
+    - {literal_form: kontrol pasif, in_language: id}
+    - {literal_form: 被动调控, in_language: zh}
+    annotations:
+      climate_control_code: PASSIVE
+      preservation_suitability: Variable - depends on building characteristics
+    examples:
+    - value:
+        has_label: PASSIVE
+        has_description:
+          description_text: Passive environmental control through building design, thermal mass, and natural ventilation.
+      description: Passive control type
+    broad_mappings:
+    - skos:Concept
+  NoClimateControl:
+    is_a: ClimateControlType
+    class_uri: hc:NoClimateControl
+    description: >-
+      Environmental condition mode where indoor parameters follow ambient
+      weather patterns without dedicated regulation infrastructure.
+    alt_descriptions:
+      nl: Conditiemodus waarbij binnenwaarden de buitenomstandigheden volgen zonder specifieke regelinfrastructuur.
+      de: Zustandsmodus, bei der Innenparameter ohne eigene Regelinfrastruktur den Aussenbedingungen folgen.
+      fr: Mode de condition ou les parametres interieurs suivent les conditions ambiantes sans infrastructure de regulation dediee.
+      es: Modo de condicion en el que los parametros interiores siguen el ambiente externo sin infraestructura dedicada de regulacion.
+      ar: نمط حالة تتبع فيه المعلمات الداخلية ظروف الطقس المحيط دون بنية تنظيم مخصصة.
+      id: Mode kondisi ketika parameter dalam ruang mengikuti cuaca sekitar tanpa infrastruktur pengaturan khusus.
+      zh: 室内参数随外部环境变化、无专门调控设施的条件模式。
+    structured_aliases:
+    - {literal_form: geen regeling, in_language: nl}
+    - {literal_form: ungeregelt, in_language: de}
+    - {literal_form: sans regulation, in_language: fr}
+    - {literal_form: sin regulacion, in_language: es}
+    - {literal_form: بلا ضبط, in_language: ar}
+    - {literal_form: tanpa pengendalian, in_language: id}
+    - {literal_form: 无调控, in_language: zh}
+    annotations:
+      climate_control_code: NONE
+      preservation_suitability: None - unsuitable for sensitive materials
+    examples:
+    - value:
+        has_label: NONE
+        has_description:
+          description_text: No climate control - ambient environmental conditions only.
+      description: No climate control type
+    broad_mappings:
+    - skos:Concept

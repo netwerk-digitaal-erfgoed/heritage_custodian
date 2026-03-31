@@ -1,0 +1,132 @@
+id: https://nde.nl/ontology/hc/class/Conflict
+name: Conflict
+title: Conflict
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_label
+  - ../slots/has_provenance
+  - ../slots/has_type
+  - ../slots/based_on
+  - ../slots/temporal_extent
+classes:
+  Conflict:
+    class_uri: hc:Conflict
+    description: >-
+      Delimited crisis event whose armed, political, or disaster dynamics disrupt
+      heritage custodians, their holdings, or their operational continuity.
+    alt_descriptions:
+      nl: >-
+        Afgebakende crisissituatie waarvan gewapende, politieke of rampgerelateerde
+        dynamiek erfgoedbeheerders, hun collecties of hun operationele continuiteit
+        verstoort.
+      de: >-
+        Abgrenzbares Krisenereignis, dessen bewaffnete, politische oder katastrophale
+        Dynamiken Kulturerbeeinrichtungen, ihre Bestaende oder ihre betriebliche
+        Kontinuitaet beeintraechtigen.
+      fr: >-
+        Episode de crise delimitee dont les dynamiques armees, politiques ou de
+        catastrophe perturbent les institutions patrimoniales, leurs collections ou
+        leur continuite operationnelle.
+      es: >-
+        Episodio de crisis delimitado cuyas dinamicas armadas, politicas o de
+        desastre interrumpen a custodios patrimoniales, sus fondos o su continuidad
+        operativa.
+      ar: >-
+        حدث أزمة محدد تؤدي ديناميكياته المسلحة أو السياسية أو الكارثية إلى تعطيل
+        مؤسسات حفظ التراث أو مقتنياتها أو استمرارية عملها.
+      id: >-
+        Peristiwa krisis terbatasi yang dinamika bersenjata, politik, atau
+        kebencanaannya mengganggu lembaga pengelola warisan, koleksinya, atau
+        kesinambungan operasionalnya.
+      zh: >-
+        其武装、政治或灾害过程会扰乱遗产保管机构、馆藏或运营连续性的界定性危机事件。
+    structured_aliases:
+      - literal_form: crisisgebeurtenis
+        in_language: nl
+      - literal_form: Krisenereignis
+        in_language: de
+      - literal_form: evenement de crise
+        in_language: fr
+      - literal_form: evento de crisis
+        in_language: es
+      - literal_form: حدث أزمة
+        in_language: ar
+      - literal_form: peristiwa krisis
+        in_language: id
+      - literal_form: 危机事件
+        in_language: zh
+    slots:
+      - has_type
+      - has_label
+      - has_description
+      - temporal_extent
+      - has_provenance
+    slot_usage:
+      has_type:
+        required: true
+      has_label:
+        examples:
+          - value:
+              label_text: Gaza War 2023-2024
+              language: en
+          - value:
+              label_text: Nepal Earthquake 2015
+              language: en
+      temporal_extent:
+        examples:
+          - value:
+              begin_of_the_begin: '2023-10-07'
+      has_provenance:
+        range: Provenance
+        inlined: true
+        examples:
+          - value:
+              based_on:
+                has_label: UNESCO cultural heritage emergency assessment
+    examples:
+      - value:
+          has_type: ArmedConflict
+          has_label:
+            label_text: Gaza War 2023-2024
+            language: en
+          has_description:
+            description_text: Armed hostilities causing severe disruption to memory institutions.
+          temporal_extent:
+            begin_of_the_begin: '2023-10-07'
+        description: Armed conflict affecting multiple archives and libraries
+      - value:
+          has_type: NaturalDisaster
+          has_label:
+            label_text: Nepal Earthquake 2015
+            language: en
+          has_description:
+            description_text: Seismic disaster damaging heritage repositories and access infrastructure.
+          temporal_extent:
+            begin_of_the_begin: '2015-04-25'
+        description: Disaster event linked to institutional impact tracking
+    keywords:
+      - crisis event
+      - armed hostilities
+      - disaster impact
+      - cultural heritage risk
+      - institutional disruption
+    broad_mappings:
+      - crm:E5_Event
+      - schema:Event
+    close_mappings:
+      - crm:E6_Destruction
+    comments:
+      - Models the crisis event itself; institution-specific outcomes are expressed via ConflictStatus.
+      - One crisis can be linked to multiple custodians with different consequences.
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Crisis events can impact all heritage custodian types.
+      specificity_score: "0.55"
+      specificity_rationale: Specialized event class for heritage-impact crisis documentation.

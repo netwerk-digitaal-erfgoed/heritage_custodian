@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: has_bounding_box
+# ==============================================================================
+# Rectangular coordinate limits enclosing an object, feature, or region.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line              | Mapping | Notes                                            |
+# |---------------|-----------------------|------------------------|---------|--------------------------------------------------|
+# | **GeoSPARQL** | `geo:hasBoundingBox`   | geo.ttl:345-358        | close   | "The minimum or smallest bounding or enclosing    |
+# |               |                        |                        |         | box of a given Feature." subPropertyOf            |
+# |               |                        |                        |         | geo:hasGeometry. Domain: Feature. Range: Geometry.|
+# |               |                        |                        |         | Same concept, but GeoSPARQL is geographic only;   |
+# |               |                        |                        |         | our slot also covers image/CV bounding boxes.     |
+# | **GeoSPARQL** | `geo:hasGeometry`      | geo.ttl:320-343        | broad   | "A spatial representation for a given Feature."   |
+# |               |                        |                        |         | Any geometry, not just bounding box.              |
+# | **Schema.org**| `schema:geo`           | schemaorg.owl:19029-19050| related| "The geo coordinates of the place." Domain: Place.|
+# |               |                        |                        |         | Range: GeoShape/GeoCoordinates. About place       |
+# |               |                        |                        |         | coordinates, not bounding boxes specifically.     |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_bounding_box
+name: has_bounding_box
+title: Has Bounding Box
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  geo: http://www.opengis.net/ont/geosparql#
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_bounding_box:
+    slot_uri: hc:hasBoundingBox
+    description: >-
+      Defines the rectangular limits that fully enclose a specific object,
+      feature, or region of interest within an image or spatial dataset,
+      typically expressed as coordinate pairs such as x_min, y_min, x_max,
+      y_max.
+    alt_descriptions:
+      nl: >-
+        Definieert de rechthoekige grenzen die een specifiek object, kenmerk
+        of interessegebied binnen een afbeelding of ruimtelijke dataset
+        volledig omsluiten, doorgaans uitgedrukt als coordinatenparen.
+      de: >-
+        Definiert die rechteckigen Grenzen, die ein bestimmtes Objekt,
+        Merkmal oder Interessengebiet innerhalb eines Bildes oder
+        raeumlichen Datensatzes vollstaendig umschliessen, typischerweise
+        als Koordinatenpaare angegeben.
+      fr: >-
+        Definit les limites rectangulaires qui englobent entierement un
+        objet, un element ou une region d'interet specifique au sein d'une
+        image ou d'un jeu de donnees spatiales, generalement exprimees sous
+        forme de paires de coordonnees.
+      ar: >-
+        يحدد الحدود المستطيلة التي تحيط بالكامل بكائن أو معلم أو منطقة
+        اهتمام محددة ضمن صورة أو مجموعة بيانات مكانية، وعادة ما يتم التعبير
+        عنها كأزواج إحداثيات.
+      id: >-
+        Mendefinisikan batas persegi panjang yang sepenuhnya melingkupi objek,
+        fitur, atau wilayah tertentu dalam sebuah gambar atau kumpulan data
+        spasial, biasanya dinyatakan sebagai pasangan koordinat.
+      zh: >-
+        定义在图像或空间数据集中完全包围特定对象、要素或感兴趣区域的矩形
+        边界，通常以坐标对表示。
+      es: >-
+        Define los limites rectangulares que encierran completamente un objeto,
+        elemento o region de interes especifica dentro de una imagen o conjunto
+        de datos espaciales, normalmente expresados como pares de coordenadas.
+    structured_aliases:
+      - literal_form: Begrenzingskader
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Begrenzungsrahmen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Cadre englobant
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مربع الإحاطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kotak pembatas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 边界框
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Cuadro delimitador
+        predicate: EXACT_SYNONYM
+        in_language: es
+    aliases:
+      - includes_bounding_box
+    comments:
+      - >-
+        Bounding boxes define rectangular regions in frames where objects,
+        faces, or text were detected. Format typically: [x, y, width, height]
+        or [x1, y1, x2, y2].
+      - >-
+        In segment data, true indicates spatial coordinates are available;
+        false indicates only temporal information (no spatial).
+      - >-
+        geo:hasBoundingBox from GeoSPARQL is the closest standard property
+        but is specific to geographic features, whereas this slot also covers
+        image-level and computer vision bounding boxes.
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - geo:hasBoundingBox  # geo.ttl:345-358 - "The minimum or smallest bounding or enclosing box of a given Feature." subPropertyOf geo:hasGeometry. Same concept; GeoSPARQL is geographic only, our slot also covers image/CV.
+    broad_mappings:
+      - geo:hasGeometry  # geo.ttl:320-343 - "A spatial representation for a given Feature." Any geometry, not just bounding box.
+    related_mappings:
+      - schema:geo  # schemaorg.owl:19029-19050 - "The geo coordinates of the place." About place coordinates, not bounding boxes specifically.

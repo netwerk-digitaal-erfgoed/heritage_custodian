@@ -1,0 +1,212 @@
+id: https://nde.nl/ontology/hc/class/ActivityType
+name: ActivityType
+title: Activity Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  aat: http://vocab.getty.edu/aat/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/begin_of_the_begin
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/updated_at
+classes:
+  ActivityType:
+    class_uri: skos:Concept
+    description: >-
+      Classification category for activities performed by heritage custodians.
+    alt_descriptions:
+      nl: "Classificatiecategorie voor activiteiten uitgevoerd door erfgoedbeheerders."
+      de: "Klassifikationskategorie für Aktivitäten von Kulturgüterverwaltern."
+      fr: "Catégorie de classification pour les activités effectuées par les dépositaires du patrimoine."
+      es: "Categoría de clasificación para actividades realizadas por custodios del patrimonio."
+      ar: "فئة تصنيف للأنشطة التي يقوم بها أمناء التراث."
+      id: "Kategori klasifikasi untuk aktivitas yang dilakukan oleh pengelola warisan."
+      zh: "遗产保管人执行活动的分类类别。"
+    examples:
+    - value:
+        identified_by:
+        - https://nde.nl/ontology/hc/activity-type/curation
+        has_label:
+        - Curation@en
+        - curatie@nl
+        has_description: Activities related to ongoing collection management
+      description: Curation activity type classification
+    abstract: true
+    close_mappings:
+    - schema:DefinedTerm
+    broad_mappings:
+    - crm:E55_Type
+    - skos:Concept
+    related_mappings:
+    - prov:Activity
+    - aat:300054277
+    structured_aliases:
+    - literal_form: activiteittype
+      in_language: nl
+    - literal_form: activiteitscategorie
+      in_language: nl
+    - literal_form: Aktivitätstyp
+      in_language: de
+    - literal_form: Aktivitätskategorie
+      in_language: de
+    - literal_form: type d'activité
+      in_language: fr
+    - literal_form: catégorie d'activité
+      in_language: fr
+    - literal_form: tipo de actividad
+      in_language: es
+    - literal_form: categoría de actividad
+      in_language: es
+    - literal_form: نوع النشاط
+      in_language: ar
+    - literal_form: فئة النشاط
+      in_language: ar
+    - literal_form: tipe aktivitas
+      in_language: id
+    - literal_form: kategori aktivitas
+      in_language: id
+    - literal_form: 活动类型
+      in_language: zh
+    - literal_form: 活动类别
+      in_language: zh
+    keywords:
+    - activity type
+    - classification
+    - category
+    - curation
+    - conservation
+    - digitization
+    - cataloging
+    - exhibition
+    - research
+    - education
+    - administrative
+    slots:
+    - begin_of_the_begin
+    - updated_at
+    - has_score
+    - has_description
+    - identified_by
+    - has_label
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        multivalued: true
+        examples:
+        - value: https://nde.nl/ontology/hc/activity-type/curation
+        - value: https://nde.nl/ontology/hc/activity-type/conservation
+      has_label:
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Curation@en
+          - curatie@nl
+          - Kuratierung@de
+      has_description:
+        required: false
+        examples:
+        - value: Activities related to the ongoing management and care of collections
+      begin_of_the_begin:
+        range: datetime
+      updated_at:
+        range: datetime
+    annotations:
+      specificity_score: "0.40"
+      specificity_rationale: "Moderately specific - activity types are domain-relevant but not specific to any single custodian type."
+      has_score:
+      custodian_types: "['*']"
+      activity_categories: "CURATION, CONSERVATION, COMMERCIAL, RESEARCH, EDUCATION, EXHIBITION, DIGITIZATION, ADMINISTRATIVE"
+      type_vs_instance: "ActivityType = classification; Activity = individual activity instance"
+      spectrum_alignment: "UK Collections Management Standard procedures"
+    comments:
+    - Abstract base class - use specific subclasses (CurationType, ConservationType, etc.)
+    - Represents ACTIVITY TYPES, not activity instances
+    - Activity.has_activity_type references these type classes
+    - Follows Type/Types naming convention (Rule 0b)
+    - Organized by function, domain, and typical characteristics
+    - Activity types organized into 8 categories: CURATION, CONSERVATION, COMMERCIAL, RESEARCH, EDUCATION, EXHIBITION, DIGITIZATION, ADMINISTRATIVE
+    - |
+      Preserved from prior description:
+
+      **DEFINITION**:
+
+      ActivityType represents CATEGORIES of activities performed by heritage
+      custodians, not individual activity instances. Each subclass defines
+      characteristics of an activity category (function, typical duration,
+      deliverables, etc.).
+
+      **CRITICAL: TYPE vs INSTANCE **
+
+      | Aspect | ActivityType (This Class) | Activity (Instance Class) |
+      |--------|---------------------------|---------------------------|
+      | **Nature** | Classification/category | Individual activity |
+      | **Examples** | CURATION, CONSERVATION | "2025 Inventory at Rijksmuseum" |
+      | **Properties** | Category metadata, typical standards | Dates, responsible actors |
+      | **Cardinality** | ~20-30 types | Thousands of instances |
+
+      **CATEGORY STRUCTURE**:
+
+      Activity types are organized into high-level categories:
+
+      1. **CURATION**: Collection management activities
+         - Accessioning, Cataloging, Inventory, Deaccessioning
+         - Rehousing, Relocation, Storage Reorganization
+
+      2. **CONSERVATION**: Preservation activities
+         - Preventive Conservation, Condition Assessment
+         - Restoration, Stabilization, Environmental Monitoring
+
+      3. **COMMERCIAL**: Business activities
+         - Sales, Licensing, Merchandising
+         - Venue Rental, Event Hosting
+
+      4. **RESEARCH**: Scholarly activities
+         - Provenance Research, Cataloging Research
+         - Scientific Analysis, Documentation
+
+      5. **EDUCATION**: Educational activities
+         - Guided Tours, Workshops, Lectures
+         - Online Courses, Educational Programs
+
+      6. **EXHIBITION**: Display activities
+         - Permanent Exhibition, Temporary Exhibition
+         - Traveling Exhibition, Virtual Exhibition
+
+      7. **DIGITIZATION**: Digital transformation activities
+         - Scanning, Photography, 3D Modeling
+         - OCR/HTR Processing, Metadata Enhancement
+
+      8. **ADMINISTRATIVE**: Governance activities
+         - Audit, Valuation, Insurance
+         - Loan Management, Rights Management
+
+      **ONTOLOGY ALIGNMENT**:
+
+      - **SKOS Concept**: Activity types are concepts in a controlled vocabulary
+      - **CIDOC-CRM E55_Type**: Cultural heritage domain type system
+      - **AAT**: Getty Art & Architecture Thesaurus for activity terms
+      - **SPECTRUM**: UK Collections Management Standard procedures
+
+      **SUBCLASSES**:
+
+      See ActivityTypes.yaml for concrete activity type subclasses organized
+      by category: CURATION, CONSERVATION, COMMERCIAL, RESEARCH, EDUCATION,
+      EXHIBITION, DIGITIZATION, and ADMINISTRATIVE.
+    - 'Preserved from prior description: Classification category for activities performed by heritage custodians. Abstract base class representing TYPES of activities (not individual instances). Each subclass defines characteristics of an activity category including function, typical duration, deliverables, and applicable standards.'
+    see_also:
+    - https://www.w3.org/2004/02/skos/
+    - http://vocab.getty.edu/aat/
+    - https://collectionstrust.org.uk/spectrum/
+    - Activity
+    - ActivityTypes

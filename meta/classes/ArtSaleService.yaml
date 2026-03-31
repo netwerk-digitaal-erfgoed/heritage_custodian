@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/ArtSaleService
+name: art_sale_service_class
+title: Art Sale Service Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../metadata
+- ../slots/take_comission
+default_prefix: hc
+classes:
+  ArtSaleService:
+    is_a: Service
+    class_uri: hc:ArtSaleService
+    description: >-
+      Service for selling artworks, typically offered by commercial galleries.
+
+      Models art sales activities including commission structures, market type  (primary/secondary), and artist representation.
+    alt_descriptions:
+      nl: "Dienst voor de verkoop van kunstwerken, doorgaans aangeboden door commerciële galerieën.\nModelleert kunstverkoopactiviteiten inclusief commissiestructuren, markttype  (primair/secundair) en kunstenaarsvertegenwoordiging."
+      de: "Dienst für den Verkauf von Kunstwerken, typischerweise von kommerziellen Galerien angeboten.\nModelliert Kunstverkaufsaktivitäten einschließlich Provisionsstrukturen, Markttyp  (Primär-/Sekundärmarkt) und Künstlervertretung."
+      fr: "Service de vente d'œuvres d'art, généralement proposé par les galeries commerciales.\nModélise les activités de vente d'art, y compris les structures de commission,  le type de marché (primaire/secondaire) et la représentation des artistes."
+      es: "Servicio de venta de obras de arte, típicamente ofrecido por galerías comerciales.\nModela actividades de venta de arte incluyendo estructuras de comisión,  tipo de mercado (primario/secundario) y representación de artistas."
+      ar: "خدمة بيع الأعمال الفنية، تقدمها عادة المعارض التجارية.\nتصمم أنشطة بيع الفن بما في ذلك هياكل العمولة ونوع السوق  (أساسي/ثانوي) وتمثيل الفنانين."
+      id: "Layanan untuk menjual karya seni, biasanya ditawarkan oleh galeri komersial.\nMemodelkan aktivitas penjualan seni termasuk struktur komisi, jenis pasar  (primer/sekunder), dan perwakilan seniman."
+      zh: "销售艺术品的服务，通常由商业画廊提供。\n对艺术品销售活动进行建模，包括佣金结构、市场类型（一级/二级）和艺术家代理。"
+    examples:
+    - value:
+        sales_activity: true
+        takes_or_took_comission:
+          has_percentage: 50
+      description: Primary market sale with 50% commission
+    - value:
+        sales_activity: true
+        takes_or_took_comission:
+          has_percentage: 15
+      description: Secondary market consignment sale with 15% commission
+    close_mappings:
+    - schema:SellAction
+    - schema:Service
+    structured_aliases:
+    - literal_form: kunstverkoopdienst
+      in_language: nl
+    - literal_form: Kunstverkaufsdienst
+      in_language: de
+    - literal_form: service de vente d'art
+      in_language: fr
+    - literal_form: servicio de venta de arte
+      in_language: es
+    - literal_form: خدمة بيع الفن
+      in_language: ar
+    - literal_form: layanan jual beli seni
+      in_language: id
+    - literal_form: 艺术品销售服务
+      in_language: zh
+    keywords:
+    - art sales
+    - gallery sales
+    - commission
+    - primary market
+    - secondary market
+    - art commerce
+    slots:
+    - takes_or_took_comission
+    - has_activity
+    slot_usage:
+      takes_or_took_comission:
+        range: CommissionRate
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_percentage: 50
+        - value:
+            has_percentage: 15
+    comments:
+    - Created 2026-01-22 from commission_rate migration (Rule 53)
+    - Extends Service class for art sales context
+    - Supports primary and secondary market distinctions
+    - Primary market: first sale by artist (40-50% commission)
+    - Secondary market: resale of previously sold works (10-20% commission)
+    see_also:
+    - https://schema.org/SellAction
+    - CommissionRate
+    annotations:
+      custodian_types: "['G', 'C']"
+      custodian_types_rationale: "Primarily for galleries (G) and commercial organizations (C)."
+      specificity_score: "0.75"
+      specificity_rationale: "Specific to commercial art sales context."
+      market_types: "primary (40-50% commission), secondary (10-20% commission)"

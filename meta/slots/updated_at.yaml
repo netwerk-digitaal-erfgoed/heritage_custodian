@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: updated_at
+# ==============================================================================
+# Records the date and time when an entity was last modified.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DC Terms**  | `dcterms:modified`    | dcterms.rdf:1713-1737      | exact   | "Date on which resource changed"   |
+# | **Schema.org**| `schema:dateModified` | schemaorg.owl:14234-14237  | exact   | "Date CreativeWork was modified"   |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Fixed description (removed embedded USAGE), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/updated_at
+name: updated_at
+title: Updated At
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  updated_at:
+    slot_uri: dcterms:modified
+    description: >-
+      The specific date and time when the entity was last modified, refreshed,
+      or altered.
+    alt_descriptions:
+      nl: >-
+        De specifieke datum en tijd waarop de entiteit voor het laatst is
+        gewijzigd, vernieuwd of aangepast.
+      de: >-
+        Das spezifische Datum und die Uhrzeit, zu der die Entität zuletzt
+        geändert, aktualisiert oder verändert wurde.
+      fr: >-
+        La date et l'heure spécifiques auxquelles l'entité a été modifiée,
+        actualisée ou altérée pour la dernière fois.
+      ar: >-
+        التاريخ والوقت المحددان اللذان تم فيهما تعديل الكيان أو تحديثه أو
+        تغييره آخر مرة.
+      id: >-
+        Tanggal dan waktu spesifik ketika entitas terakhir dimodifikasi,
+        diperbarui, atau diubah.
+      zh: >-
+        实体最后被修改、刷新或更改的具体日期和时间。
+      es: >-
+        La fecha y hora específicas en que la entidad fue modificada, actualizada
+        o alterada por última vez.
+    structured_aliases:
+      - literal_form: bijgewerkt op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aktualisiert am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: mis à jour le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم التحديث في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diperbarui pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 更新于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: actualizado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    aliases:
+      - is_or_was_was_last_updated_at
+      - is_or_was_last_updated_at
+      - last_updated_at
+      - last_modified
+      - modified
+      - revision_date
+    exact_mappings:
+      - schema:dateModified  # schemaorg.owl:14234-14237 - "Date CreativeWork was modified"
+    examples:
+      - value: '2025-01-14T10:30:00Z'
+        description: Last update timestamp
+    comments:
+      - |
+        **USAGE**: Used for record modification timestamps, content update dates,
+        and sync timestamps.
+    annotations:
+      custodian_types: '["*"]'

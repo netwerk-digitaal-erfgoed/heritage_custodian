@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: displayed_at
+# ==============================================================================
+# To be publicly exhibited or presented for viewing at a specific physical
+# location, venue, or site.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:location`     | schemaorg.owl        | close   | Location of action/event           |
+# | **CIDOC-CRM** | `crm:P7_took_place_at`| CIDOC_CRM            | close   | Location of activity               |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/displayed_at
+name: displayed_at
+title: Displayed At
+prefixes:
+  hc: https://nde.nl/ontology/hc/
+  linkml: https://w3id.org/linkml/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  displayed_at:
+    slot_uri: schema:location
+    description: >-
+      To be publicly exhibited or presented for viewing at a specific physical
+      location, venue, or site.
+    alt_descriptions:
+      nl: >-
+        Om publiekelijk tentoongesteld of gepresenteerd te worden voor bezichtiging
+        op een specifieke fysieke locatie, plaats of site.
+      de: >-
+        Öffentlich ausgestellt oder zur Besichtigung an einem bestimmten
+        physischen Ort, Veranstaltungsort oder Standort präsentiert zu werden.
+      fr: >-
+        Être exposé ou présenté publiquement pour être vu dans un lieu
+        physique, un site ou un emplacement spécifique.
+      ar: >-
+        أن يُعرض أو يُقدم علنياً للمشاهدة في موقع مادي أو مكان أو
+        موضع محدد.
+      id: >-
+        Dipamerkan atau disajikan secara publik untuk dilihat di lokasi fisik,
+        tempat, atau situs tertentu.
+      zh: >-
+        在特定的物理位置、场地或场所公开展出或呈现供观看。
+      es: >-
+        Ser exhibido o presentado públicamente para su visualización en una
+        ubicación física, sede o sitio específico.
+    structured_aliases:
+      - literal_form: tentoongesteld bij
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ausgestellt bei
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: exposé à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معروض في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dipamerkan di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 展示于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: exhibido en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    inlined: false
+    close_mappings:
+      - schema:location
+      - crm:P7_took_place_at
+    aliases:
+      - is_or_was_displayed_at
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.7
+    comments:
+      - MIGRATED from display_location per slot_fixes.yaml (2026-01-26).

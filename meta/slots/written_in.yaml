@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: written_in
+# ==============================================================================
+# The language (natural or programming) in which content is composed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                      | File/Line               | Mapping | Notes                              |
+# |---------------|-------------------------------|-------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:programmingLanguage`  | schemaorg.owl:31348-31370| close   | "The computer programming          |
+# |               |                               |                         |         | language." - software specific     |
+# | **Schema.org**| `schema:inLanguage`           | schemaorg.owl:21591-21594| close   | Natural language of content        |
+# | **DCTerms**   | `dcterms:language`            | dcterms.rdf:1611-1632   | close   | "A language of the resource."      |
+#
+# This slot covers both natural and programming languages; standard ontology
+# properties are more specific, hence close mappings.
+#
+# CREATED: 2026-02-04
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/written_in
+name: written_in
+title: Written In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  written_in:
+    slot_uri: hc:writtenIn
+    description: >-
+      The natural language, programming language, script, or notation system
+      in which content is composed, encoded, or expressed.
+    alt_descriptions:
+      nl: >-
+        De natuurlijke taal, programmeertaal, script of notatiesysteem
+        waarin inhoud is samengesteld, gecodeerd of uitgedrukt.
+      de: >-
+        Die natürliche Sprache, Programmiersprache, Schrift oder das
+        Notationssystem, in dem der Inhalt verfasst, kodiert oder
+        ausgedrückt ist.
+      fr: >-
+        La langue naturelle, le langage de programmation, le script ou
+        le système de notation dans lequel le contenu est composé, encodé
+        ou exprimé.
+      ar: >-
+        اللغة الطبيعية أو لغة البرمجة أو النص أو نظام الترميز الذي
+        يتم فيه تأليف المحتوى أو ترميزه أو التعبير عنه.
+      id: >-
+        Bahasa alami, bahasa pemrograman, skrip, atau sistem notasi yang
+        digunakan untuk menyusun, mengkodekan, atau mengekspresikan konten.
+      zh: >-
+        内容所使用的自然语言、编程语言、脚本或符号系统。
+      es: >-
+        El idioma natural, lenguaje de programación, script o sistema de
+        notación en el que se compone, codifica o expresa el contenido.
+    structured_aliases:
+      - literal_form: geschreven in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geschrieben in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: écrit en
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكتوب بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ditulis dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 使用...编写
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: escrito en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - schema:programmingLanguage  # schemaorg.owl:31348-31370 - software specific
+      - schema:inLanguage  # schemaorg.owl:21591-21594 - natural language
+      - dcterms:language  # dcterms.rdf:1611-1632
+    aliases:
+      - is_or_was_programming_language
+    comments:
+      - |
+        **PROGRAMMING LANGUAGES**: For software, examples include Java, Python,
+        JavaScript, TypeScript, Go, Rust, Ruby, PHP.
+      - |
+        **NATURAL LANGUAGES**: For documents, use ISO 639 language codes or
+        IETF BCP 47 language tags.
+      - |
+        **DOAP ALIGNMENT**: DOAP (Description of a Project) uses
+        doap:programming-language for software implementation languages.
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: L
+      specificity_score: 0.5
+      specificity_rationale: Language specification slot for content.

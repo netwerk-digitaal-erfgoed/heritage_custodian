@@ -1,0 +1,58 @@
+id: https://nde.nl/ontology/hc/enum/ExtractionPipelineStageEnum
+name: extraction_pipeline_stage_enum
+title: Extraction Pipeline Stage Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  nif: http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#
+  oa: http://www.w3.org/ns/oa#
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+
+enums:
+  ExtractionPipelineStageEnum:
+    description: |
+      The four stages of the entity extraction pipeline, following the
+      GLAM-NER Unified Entity Annotation Convention v1.7.0.
+
+      Reference: docs/convention/schema/20251202/entity_annotation_rules_v1.6.0_unified.yaml
+    permissible_values:
+      entity_recognition:
+        description: |
+          Stage 1: Detect and classify named entities in text.
+          Identifies entity spans and assigns hypernym types (AGT, GRP, TOP, etc.)
+        meaning: nif:String
+        comments:
+          - "Input: Raw text or rendered HTML"
+          - "Output: Entity spans with type classifications"
+          - "Models: spaCy NER, transformer-based NER, pattern matching"
+      layout_analysis:
+        description: |
+          Stage 2: Analyze document structure and region semantics.
+          Identifies headers, paragraphs, tables, navigation, sidebars, etc.
+          Uses DOC hypernym types (DOC.HDR, DOC.PAR, DOC.TBL, etc.)
+        meaning: oa:Annotation
+        comments:
+          - "Input: HTML DOM or PAGE-XML"
+          - "Output: Document region annotations with semantic roles"
+          - XPath provenance links claims to specific DOM locations
+      entity_resolution:
+        description: |
+          Stage 3: Disambiguate and merge entity mentions.
+          Resolves coreferences, handles name variants, deduplicates entities.
+        meaning: prov:Activity
+        comments:
+          - "Input: Entity spans from stage 1"
+          - "Output: Resolved entity clusters with canonical forms"
+          - "Methods: String similarity, context matching, ML classifiers"
+      entity_linking:
+        description: |
+          Stage 4: Link entities to knowledge bases.
+          Connects resolved entities to Wikidata, ISIL registry, GeoNames, etc.
+        meaning: oa:Annotation
+        comments:
+          - "Input: Resolved entities from stage 3"
+          - "Output: Knowledge base URIs (Q-numbers, ISIL codes, GeoNames IDs)"
+          - "Confidence: Link confidence scores from disambiguation"

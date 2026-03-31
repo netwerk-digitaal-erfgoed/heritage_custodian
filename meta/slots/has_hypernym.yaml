@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: has_hypernym
+# ==============================================================================
+# Broader/parent concept in a hierarchy.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+# | Ontology      | Property          | Mapping | Notes                            |
+# |---------------|-------------------|---------|----------------------------------|
+# | **SKOS**      | `skos:broader`    | exact   | SKOS broader concept             |
+# | **RDFS**      | `rdfs:subClassOf` | close   | Class hierarchy (inverse)        |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-07 - Added alt_descriptions and structured_aliases
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_hypernym
+name: has_hypernym
+title: Has Hypernym
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+description: |
+  Broader/parent concept in a hierarchy.
+imports:
+- linkml:types
+slots:
+  has_hypernym:
+    slot_uri: skos:broader
+    description: >-
+      To specify a term or concept with a broader, more general meaning that
+      encompasses the specific term (e.g., "fruit" is a hypernym of "apple");
+      a superordinate.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een term of concept met een bredere, meer algemene
+        betekenis die de specifieke term omvat (bijv. "fruit" is een hyperoniem
+        van "appel"); een superordinaat.
+      de: >-
+        Angabe eines Begriffs oder Konzepts mit einer breiteren, allgemeineren
+        Bedeutung, die den spezifischen Begriff umfasst (z. B. „Frucht" ist ein
+        Hyperonym von „Apfel"); ein Oberbegriff.
+      fr: >-
+        Spécifier un terme ou un concept ayant un sens plus large et plus
+        général qui englobe le terme spécifique (par ex., « fruit » est un
+        hyperonyme de « pomme ») ; un terme générique.
+      ar: >-
+        تحديد مصطلح أو مفهوم بمعنى أوسع وأكثر عمومية يشمل المصطلح المحدد
+        (مثال: "فاكهة" هي كلمة شاملة لـ "تفاحة")؛ مصطلح أعلى.
+      id: >-
+        Menentukan istilah atau konsep dengan makna yang lebih luas dan lebih
+        umum yang mencakup istilah spesifik (misalnya, "buah" adalah hipernim
+        dari "apel"); superordinat.
+      zh: >-
+        指定一个含义更广泛、更概括的术语或概念，该术语涵盖特定术语（例如，"水果"是"苹果"的上位词）；上义词。
+      es: >-
+        Especificar un término o concepto con un significado más amplio y
+        general que abarca el término específico (p. ej., "fruta" es un
+        hiperónimo de "manzana"); un término superordinado.
+    structured_aliases:
+      - literal_form: heeft hyperoniem
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Hyperonym
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un hyperonyme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له كلمة شاملة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki hipernim
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有上位词
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene hiperónimo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - rdfs:subClassOf
+    aliases:
+      - has_or_had_hypernym
+      - has_or_had_parent
+      - has_parent
+      - is_or_was_higher_classification
+      - higher_classification
+      - custodian_type_broader
+      - legal_entity_type
+      - platform_type_category
+    annotations:
+      custodian_types: '["*"]'

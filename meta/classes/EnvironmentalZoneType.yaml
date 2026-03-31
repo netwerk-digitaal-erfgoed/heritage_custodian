@@ -1,0 +1,167 @@
+id: https://nde.nl/ontology/hc/class/EnvironmentalZoneType
+name: EnvironmentalZoneType
+title: Environmental Zone Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/has_setpoint
+  - ../slots/has_light_exposure
+  - ../slots/maximum_of_maximum
+  - ../slots/has_reference
+classes:
+  EnvironmentalZoneType:
+    class_uri: hc:EnvironmentalZoneType
+    abstract: true
+    description: >-
+      Controlled taxonomy root for categorizing storage-climate profiles by target
+      material sensitivity and preservation objective.
+    alt_descriptions:
+      nl: Gecontroleerde taxonomiewortel voor categorisering van opslagklimaatprofielen op basis van materiaalgevoeligheid en behoudsdoel.
+      de: Kontrollierte Taxonomie-Wurzel zur Kategorisierung von Lagerklimaprofilen nach Materialempfindlichkeit und Erhaltungsziel.
+      fr: Racine taxonomique controlee pour classer les profils climatiques de stockage selon la sensibilite des materiaux et l'objectif de conservation.
+      es: Raiz taxonomica controlada para categorizar perfiles climaticos de almacenamiento por sensibilidad material y objetivo de preservacion.
+      ar: جذر تصنيفي مضبوط لتصنيف أنماط مناخ التخزين حسب حساسية المواد وهدف الحفظ.
+      id: Akar taksonomi terkendali untuk mengategorikan profil iklim penyimpanan menurut sensitivitas material dan tujuan pelestarian.
+      zh: 用于按材料敏感性与保存目标分类存储气候方案的受控分类根节点。
+    structured_aliases:
+      - literal_form: klimaatzonetype
+        in_language: nl
+      - literal_form: Klimazonentyp
+        in_language: de
+      - literal_form: type de zone climatique
+        in_language: fr
+      - literal_form: tipo de zona climatica
+        in_language: es
+      - literal_form: نوع المنطقة المناخية
+        in_language: ar
+      - literal_form: tipe zona iklim
+        in_language: id
+      - literal_form: 环境分区类型
+        in_language: zh
+    slots:
+      - identified_by
+      - has_code
+      - has_label
+      - has_description
+      - has_setpoint
+      - max_light_lux
+      - has_light_exposure
+      - has_reference
+      - has_score
+    slot_usage:
+      identified_by:
+        required: true
+      has_code:
+        required: true
+      has_label:
+        required: true
+      has_setpoint:
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    broad_mappings:
+      - skos:Concept
+      - crm:E55_Type
+    comments:
+      - Abstract superclass; concrete categories are defined in EnvironmentalZoneTypes.yaml.
+      - Describes profile categories, not physical zones.
+    examples:
+      - value: |
+          EnvironmentalZone (facility zone instance)
+          │
+          └── has_type → EnvironmentalZoneType (THIS CLASS)
+                ├── temperature_target (recommended °C)
+                ├── humidity_target (recommended % RH)
+                ├── max_light_lux (maximum illumination)
+                ├── target_material[] (suitable materials)
+                ├── iso_standard[] (applicable standards)
+                └── has_uri (ontology preset)
+    notes:
+      - |
+        Preserved from prior description (commit ee5e8e5a):
+
+        Preserved from prior description (commit ee5e8e5a):
+
+        Abstract base class for environmental zone type classifications in heritage storage.
+        **DEFINITION**:
+        EnvironmentalZoneType represents CATEGORIES of climate-controlled storage zones,
+        not individual zone instances. Each subclass defines the environmental parameters,
+        target materials, and preservation requirements for a specific zone category.
+        **CRITICAL: TYPE vs INSTANCE**
+        | Aspect | EnvironmentalZoneType (This Class) | EnvironmentalZone (Instance Class) |
+        |--------|-------------------------------------|-------------------------------------|
+        | **Nature** | Classification/category | Individual zone |
+        | **Examples** | ARCHIVE_STANDARD, COLD_STORAGE | "Depot Room A", "Cold Vault 1" |
+        | **Properties** | Target conditions, materials | Actual readings, location |
+        | **Cardinality** | ~16 types | Many instances |
+        **CATEGORY STRUCTURE**:
+        Environmental zone types are organized by primary function:
+        1. **STANDARD STORAGE**: Basic climate-controlled environments
+           - ArchiveStandardStorageEnvironment (18°C, 50% RH)
+           - BookStorageEnvironment
+           - GeneralStorageEnvironment
+        2. **TEMPERATURE-CONTROLLED**: Specialized cold/frozen storage
+           - ColdStorageEnvironment (-5°C to 4°C)
+           - FrozenStorageEnvironment (-18°C to -25°C)
+        3. **MATERIAL-SPECIFIC**: Optimized for specific material types
+           - PhotographicStorageEnvironment (15°C, 35% RH)
+           - TextileStorageEnvironment
+           - ArtStorageEnvironment
+           - MetalObjectStorageEnvironment (low humidity)
+           - NaturalHistoryStorageEnvironment
+           - AudiovisualStorageEnvironment
+           - DigitalMediaStorageEnvironment
+        4. **SPECIALIZED**: Purpose-specific zones
+           - QuarantineEnvironment (isolation)
+           - ConservationLabEnvironment (workspace)
+           - AmbientStorageEnvironment (minimal control)
+           - OtherEnvironmentalZone (custom)
+        **MIGRATION FROM ENUM**:
+        This class hierarchy replaces `EnvironmentalZoneTypeEnum` (16 values).
+        Each enum value becomes a subclass with richer semantic modeling.
+        **SLOT MIGRATION** (2026-01-13):
+        This class now uses shared slots instead of domain-specific environmental_zone_type_* slots:
+        - `identified_by` replaces `environmental_zone_type_id`
+        - `has_code` replaces `environmental_zone_type_code`
+        - `has_label` replaces `environmental_zone_type_label`
+        - `has_description` replaces `environmental_zone_type_description`
+        **ONTOLOGY ALIGNMENT**:
+        - **CIDOC-CRM E3_Condition_State**: Environmental conditions as states
+        - **PREMIS StorageLocation**: Storage environment context
+        - **SKOS Concept**: Type classification vocabulary
+        - **EN 16893**: European standard for heritage storage buildings
+        **RELATIONSHIP TO OTHER CLASSES**:
+
+        **SUBCLASSES**:
+        See EnvironmentalZoneTypes.yaml for 16 concrete zone type subclasses:
+        - ArchiveStandardStorageEnvironment
+        - ColdStorageEnvironment
+        - FrozenStorageEnvironment
+        - PhotographicStorageEnvironment
+        - TextileStorageEnvironment
+        - ArtStorageEnvironment
+        - MetalObjectStorageEnvironment
+        - NaturalHistoryStorageEnvironment
+        - BookStorageEnvironment
+        - AudiovisualStorageEnvironment
+        - DigitalMediaStorageEnvironment
+        - GeneralStorageEnvironment
+        - AmbientStorageEnvironment
+        - QuarantineEnvironment
+        - ConservationLabEnvironment
+        - OtherEnvironmentalZone
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Storage climate categories are reusable across all custodians.
+      specificity_score: "0.55"
+      specificity_rationale: Domain taxonomy for preservation climate profiles.

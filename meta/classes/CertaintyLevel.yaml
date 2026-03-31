@@ -1,0 +1,144 @@
+id: https://nde.nl/ontology/hc/class/CertaintyLevel
+name: certainty_level_class
+title: Certainty Level Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_note
+- ../slots/has_score
+- ../slots/has_level
+classes:
+  CertaintyLevel:
+    class_uri: rico:ConfidenceLevel
+    description: >-
+      Structured representation of confidence or certainty in claims with explanatory notes.
+    alt_descriptions:
+      nl: Gestructureerde weergave van vertrouwen of zekerheid in beweringen met verklarende notities.
+      de: Strukturierte Darstellung von Vertrauen oder Gewissheit in Behauptungen mit erläuternden Anmerkungen.
+      fr: Représentation structurée de la confiance ou de la certitude dans les affirmations avec des notes explicatives.
+      es: Representación estructurada de confianza o certeza en afirmaciones con notas explicativas.
+      ar: تمثيل منظم للثقة أو اليقين في الادعاءات مع ملاحظات تفسيرية.
+      id: Representasi terstruktur dari kepercayaan atau kepastian dalam klaim dengan catatan penjelasan.
+      zh: 对声明中信心或确定性的结构化表示，附有解释性说明。
+    structured_aliases:
+    - literal_form: zekerheidsniveau
+      in_language: nl
+    - literal_form: betrouwbaarheidsniveau
+      in_language: nl
+    - literal_form: Gewissheitsgrad
+      in_language: de
+    - literal_form: Zuverlässigkeitsstufe
+      in_language: de
+    - literal_form: niveau de certitude
+      in_language: fr
+    - literal_form: degré de confiance
+      in_language: fr
+    - literal_form: nivel de certeza
+      in_language: es
+    - literal_form: grado de confianza
+      in_language: es
+    - literal_form: مستوى اليقين
+      in_language: ar
+    - literal_form: tingkat kepastian
+      in_language: id
+    - literal_form: 确定性等级
+      in_language: zh
+    exact_mappings:
+    - rico:ConfidenceLevel
+    close_mappings:
+    - crm:P141_assigned
+    - prov:qualifiedAssociation
+    keywords:
+    - certainty level
+    - confidence
+    - provenance research
+    - attribution
+    - dating confidence
+    examples:
+    - value:
+        has_level: CERTAIN
+        has_note:
+        - note_type: certainty
+          note_content: "Confirmed by sale catalogue and receipt"
+          note_date: "2025-06-15"
+    - value:
+        has_level: UNCERTAIN
+        has_note:
+        - note_type: certainty
+          note_content: "Provenance gap 1933-1945 requires further research"
+    comments:
+    - Standard values: CERTAIN, PROBABLE, POSSIBLE, UNCERTAIN
+    - Used for provenance event certainty, attribution confidence, dating confidence
+    slots:
+    - has_level
+    - has_note
+    - has_score
+    slot_usage:
+      has_level:
+        required: true
+        examples:
+        - value: CERTAIN
+        - value: PROBABLE
+        - value: POSSIBLE
+        - value: UNCERTAIN
+      has_note:
+        multivalued: true
+        inlined: false
+        required: false
+        examples:
+        - value:
+            note_type: certainty
+            note_content: "Confirmed by sale catalogue and receipt"
+        - value:
+            note_type: certainty
+            note_content: "Inferred from stylistic analysis and collection history"
+    notes:
+    - |
+      Preserved from prior description (commit bd8368df):
+
+      Preserved from prior description (commit bd8368df):
+
+      A structured representation of certainty/confidence level with explanatory notes.
+
+      **Purpose**:
+      CertaintyLevel encapsulates both the level of certainty (CERTAIN, PROBABLE,
+      POSSIBLE, UNCERTAIN) and any notes explaining the certainty assessment.
+      Used primarily in provenance research to document confidence in ownership
+      transfer claims.
+
+      **Ontological Alignment**:
+      - **Primary**: `rico:ConfidenceLevel` - RiC-O confidence level
+      - **Close**: `crm:P141_assigned` - CIDOC-CRM attribute assignment
+
+      **Standard Values for level_value**:
+      - CERTAIN: Documentary evidence confirms the claim
+      - PROBABLE: Strong circumstantial evidence supports the claim
+      - POSSIBLE: Reasonable inference from available context
+      - UNCERTAIN: Speculative or unverified claim
+
+      **Use Cases**:
+      - Provenance event certainty (ProvenanceEvent)
+      - Attribution confidence (artwork authorship)
+      - Dating confidence (temporal assertions)
+      - Identification confidence (person/place identification)
+
+      **Replaces** (per slot_fixes.yaml):
+      - `certainty_level` (string) → has_level with CertaintyLevel class
+      - `certainty_note` (string) → has_note with Note class (within CertaintyLevel)
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Certainty documentation applicable to all custodian types.
+      custodian_types_primary:
+      specificity_score: 0.4
+      specificity_rationale: Moderately specific class for provenance and attribution certainty.

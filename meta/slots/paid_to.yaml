@@ -1,0 +1,41 @@
+# ==============================================================================
+# LinkML Slot Definition: paid_to
+# ==============================================================================
+# Receiving party/destination in a payment context.
+#
+# ONTOLOGY ALIGNMENT (verified against linked.art terms):
+#
+# | Ontology       | Property        | Mapping | Notes                                                     |
+# |----------------|-----------------|---------|-----------------------------------------------------------|
+# | **Linked Art** | `la:paid_to`    | exact   | Payment recipient actor in Linked Art extensions.         |
+# | **Schema.org** | `schema:seller` | related | Seller role; related commercial payee perspective.        |
+#
+# CREATED: 2026-02-18
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/paid_to
+name: paid_to
+title: Paid To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  la: https://linked.art/ns/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  paid_to:
+    slot_uri: hc:paidTo
+    description: >-
+      Identifies the party or destination to which a payment was made.
+    range: string
+    multivalued: false
+    exact_mappings:
+      - la:paid_to
+    related_mappings:
+      - schema:seller
+    aliases:
+      - is_or_was_paid_to
+    annotations:
+      custodian_types: '["*"]'

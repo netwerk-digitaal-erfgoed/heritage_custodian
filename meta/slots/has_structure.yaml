@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: has_structure
+# ==============================================================================
+# Internal configuration or systematic arrangement of an organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property       | File/Line        | Mapping  | Notes                                                                        |
+# |----------|----------------|------------------|----------|------------------------------------------------------------------------------|
+# | **ORG**  | `org:hasUnit`  | org.rdf:510-528  | close    | "Indicates a unit which is part of this Organization." Domain: FormalOrganization, Range: OrganizationalUnit — specific to org units, not general structure. |
+#
+# REMOVED: org:organization (org.rdf:839-854) — "Indicates Organization in which the Agent is a member." About membership, not structure.
+# REMOVED: org:OrganizationalUnit (org.rdf:88-103) — This is a CLASS, not a property. Invalid as a mapping target.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_structure
+name: has_structure
+title: Has Structure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_structure:
+    slot_uri: hc:hasStructure
+    description: >-
+      To specify the internal configuration, framework, or systematic arrangement
+      of components, roles, and relationships within an organization or group.
+    alt_descriptions:
+      nl: >-
+        Om de interne configuratie, het raamwerk of de systematische ordening
+        van componenten, rollen en relaties binnen een organisatie of groep
+        aan te geven.
+      de: >-
+        Zur Angabe der internen Konfiguration, des Rahmens oder der systematischen
+        Anordnung von Komponenten, Rollen und Beziehungen innerhalb einer
+        Organisation oder Gruppe.
+      fr: >-
+        Pour spécifier la configuration interne, le cadre ou l'arrangement
+        systématique des composants, rôles et relations au sein d'une organisation
+        ou d'un groupe.
+      ar: >-
+        لتحديد التكوين الداخلي أو الإطار أو الترتيب المنهجي للمكونات والأدوار
+        والعلاقات داخل منظمة أو مجموعة.
+      id: >-
+        Untuk menentukan konfigurasi internal, kerangka kerja, atau susunan
+        sistematis komponen, peran, dan hubungan dalam suatu organisasi atau kelompok.
+      zh: >-
+        用于指定组织或团体内部组件、角色和关系的内部配置、框架或系统性安排。
+      es: >-
+        Para especificar la configuración interna, el marco o la disposición
+        sistemática de componentes, roles y relaciones dentro de una organización
+        o grupo.
+    structured_aliases:
+      - literal_form: Structuur
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Struktur
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Structure
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: هيكل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Struktur
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 结构
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Estructura
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - is_or_was_governance_structure
+      - mixed_governance_structure
+      - organizational_structure
+    close_mappings:
+      - org:hasUnit  # org.rdf:510-528 — "Indicates a unit which is part of this Organization." Domain: FormalOrganization, Range: OrganizationalUnit.
+    comments:
+      - "Now uses structured GovernanceStructure class instead of simple string."
+      - "Allows modeling complex organizational hierarchies."
+      - "Can reference other CustodianLegalStatus entities for units."
+      - "Models organizational units, governance bodies, and reporting relationships."
+    examples:
+      - value:
+          structure_type: "hierarchical"
+          description: "Board of trustees with director-led departments (collections, education, research)"
+        description: "Typical museum governance structure"

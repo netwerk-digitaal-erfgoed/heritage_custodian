@@ -1,0 +1,96 @@
+id: https://nde.nl/ontology/hc/class/PostcustodialArchiveRecordSetTypes
+name: PostcustodialArchiveRecordSetTypes
+title: Postcustodial Archive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - ./PostcustodialArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  DistributedRecordsCollection:
+    is_a: PostcustodialArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Records maintained across multiple physical locations under distributed custody
+      arrangements, with archival description and access coordinated centrally.
+    alt_descriptions:
+      nl: >-
+        Archieven beheerd op meerdere fysieke locaties onder gedistribueerde bewaringsregelingen,
+        met archiefbeschrijving en toegang centraal gecoördineerd.
+      de: >-
+        Unterlagen, die an mehreren physischen Standorten unter verteilter Verwahrung geführt werden,
+        mit zentral koordinierter archivischer Erschließung und Zugang.
+      fr: >-
+        Documents conservés dans plusieurs lieux physiques selon des arrangements de garde distribués,
+        avec description archivistique et accès coordonnés centralement.
+      es: >-
+        Registros mantenidos en múltiples ubicaciones físicas bajo acuerdos de custodia distribuida,
+        con descripción archivística y acceso coordinados centralmente.
+      ar: >-
+        سجلات محفوظة عبر مواقع مادية متعددة ضمن ترتيبات حفظ موزعة، مع تنسيق الوصف الأرشيفي وإتاحة الوصول مركزياً.
+      id: >-
+        Catatan yang dipelihara di berbagai lokasi fisik dalam pengaturan kustodi terdistribusi, dengan deskripsi arsip dan akses yang dikoordinasikan secara terpusat.
+      zh: >-
+        在多个实体地点分散保存的记录，通过中心化方式协调档案描述与访问。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+          - equals_string: "hc:DistributedRecordsCollection"
+      has_custodian:
+        equals_string: "hc:PostcustodialArchive"
+    see_also:
+      - PostcustodialArchiveRecordSetType
+      - rico:RecordSetType
+    keywords:
+      - distributed records
+      - remote custody
+      - distributed archives
+    annotations:
+      specificity_score: 0.75
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: gedistribueerde archieven
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verteilte Bestände
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection distribuée
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: colección distribuida
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة سجلات موزعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi catatan terdistribusi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分布式记录集
+        predicate: EXACT_SYNONYM
+        in_language: zh

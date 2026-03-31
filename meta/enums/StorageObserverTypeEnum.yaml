@@ -1,0 +1,198 @@
+# StorageObserverTypeEnum - Types of observers who assess storage conditions
+# 
+# Critical for distinguishing between internal self-assessments and
+# external investigations (journalists, inspectors, researchers).
+# 
+# Generation date: 2025-11-29
+# 
+id: https://nde.nl/ontology/hc/enum/storage-observer-type
+name: storage_observer_type_enum
+title: Storage Observer Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  pico: https://personsincontext.org/model#
+
+imports:
+  - linkml:types
+
+enums:
+  StorageObserverTypeEnum:
+    description: |
+      Types of observers who assess and report on storage conditions.
+      
+      **CRITICAL DESIGN PRINCIPLE**:
+      
+      Storage condition reports are NOT limited to official custodian
+      self-assessments. External observers (journalists, researchers,
+      inspectors) may discover conditions that differ from what the
+      institution officially claims.
+      
+      This enum enables tracking of WHO made the observation, which is
+      essential for:
+      - Distinguishing official vs. investigative reports
+      - Assessing potential bias in reporting
+      - Understanding the context of findings
+      - Tracking accountability
+      
+      **Example Use Case**:
+      A journalist discovers white ants in an archive's storage facility.
+      This observation has:
+      - observer_type: JOURNALIST
+      - observer_affiliation: "De Volkskrant"
+      - observation_context: "Investigative report on heritage preservation"
+      - is_official_assessment: false
+      
+      This contrasts with:
+      - observer_type: INTERNAL_STAFF
+      - observer_affiliation: "National Archives"
+      - is_official_assessment: true
+      
+      Aligns with PROV-O prov:Agent and PiCo observation patterns.
+    
+    permissible_values:
+      INTERNAL_STAFF:
+        title: internal staff
+        description: |
+          Staff member employed by the custodian institution. Collections
+          manager, conservator, facilities manager, or other employee
+          conducting internal assessment.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "May underreport issues due to institutional pressure"
+          authority: "Official institutional viewpoint"
+          examples: "Collections manager, Head of conservation, Facilities team"
+      
+      EXTERNAL_CONSULTANT:
+        title: external consultant
+        description: |
+          Independent consultant hired by the institution for professional
+          assessment. Conservation specialist, building surveyor, or
+          preservation consultant.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "Low - professional reputation at stake"
+          authority: "Professional expert opinion"
+          examples: "Conservation consultant, Building surveyor, IPM specialist"
+      
+      GOVERNMENT_INSPECTOR:
+        title: government inspector
+        description: |
+          Official inspector from government heritage agency, building
+          authority, fire department, or regulatory body. Conducting
+          compliance or safety inspection.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "Low - regulatory independence"
+          authority: "Official regulatory findings"
+          examples: "Heritage inspector, Fire safety officer, Building inspector"
+      
+      ACCREDITATION_ASSESSOR:
+        title: accreditation assessor
+        description: |
+          Assessor from accreditation body (e.g., museum accreditation,
+          archive certification) evaluating storage for standards compliance.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "Low - accreditation independence"
+          authority: "Accreditation standards compliance"
+          examples: "Museum Registration assessor, Archive certification body"
+      
+      INSURANCE_ASSESSOR:
+        title: insurance assessor
+        description: |
+          Insurance company assessor evaluating risk for coverage purposes
+          or investigating after an incident.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "May focus on financial risk over preservation"
+          authority: "Risk assessment perspective"
+          examples: "Insurance surveyor, Loss adjuster, Risk assessor"
+      
+      JOURNALIST:
+        title: journalist
+        description: |
+          Journalist or media representative investigating storage conditions.
+          May have discovered issues not officially reported by institution.
+          
+          **IMPORTANT**: Journalistic observations may reveal discrepancies
+          between official claims and actual conditions.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "May sensationalize; verify facts independently"
+          authority: "Independent investigation"
+          examples: "Investigative reporter, Documentary filmmaker, News photographer"
+          verification_needed: "Cross-reference with other sources"
+      
+      RESEARCHER:
+        title: researcher
+        description: |
+          Academic researcher, archivist, or scholar who observed conditions
+          while accessing collections for research purposes.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "Low - academic integrity standards"
+          authority: "Expert observation, may lack facilities expertise"
+          examples: "Visiting researcher, PhD student, Heritage scholar"
+      
+      VISITING_PROFESSIONAL:
+        title: visiting professional
+        description: |
+          Heritage professional from another institution visiting for
+          benchmarking, loans, or professional exchange.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "Low - professional peer perspective"
+          authority: "Peer professional observation"
+          examples: "Curator from partner museum, Archivist on study visit"
+      
+      PUBLIC_VISITOR:
+        title: public visitor
+        description: |
+          Member of the public who observed conditions during a tour,
+          open day, or public access event. May report concerns via
+          complaints or social media.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "May lack technical expertise"
+          authority: "Public perception and experience"
+          examples: "Tour participant, Open house visitor, Volunteer"
+      
+      WHISTLEBLOWER:
+        title: whistleblower
+        description: |
+          Current or former staff member reporting conditions through
+          unofficial channels due to concerns about institutional
+          non-disclosure or cover-up.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "May have grievances; verify independently"
+          authority: "Insider knowledge, potential bias"
+          examples: "Former employee, Concerned staff member"
+          legal_protection: "May be protected under whistleblower legislation"
+      
+      AUTOMATED_SYSTEM:
+        title: automated monitoring system
+        description: |
+          Automated environmental monitoring system (sensors, IoT devices)
+          recording temperature, humidity, or other conditions without
+          human observation.
+        meaning: prov:SoftwareAgent
+        annotations:
+          bias_risk: "None - objective measurement"
+          authority: "Sensor data, requires calibration"
+          examples: "Climate monitoring system, HVAC sensors, Pest detection traps"
+          verification_needed: "Sensor calibration and maintenance"
+      
+      UNKNOWN:
+        title: observer unknown
+        description: |
+          Observer type could not be determined. Report may be anonymous
+          or source unverified.
+        meaning: prov:Agent
+        annotations:
+          bias_risk: "Unknown - cannot assess"
+          authority: "Unverified"
+          verification_needed: "Attempt to identify source"

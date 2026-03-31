@@ -1,0 +1,60 @@
+id: https://nde.nl/ontology/hc/class/Diocese
+name: Diocese
+title: Diocese
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/founded_through
+- ../slots/located_in
+classes:
+  Diocese:
+    class_uri: org:Organization
+    description: >-
+      Ecclesiastical territorial jurisdiction under episcopal governance,
+      modeled as an organizational unit for church administration.
+    alt_descriptions:
+      nl: Kerkelijk territoriaal rechtsgebied onder bisschoppelijk bestuur gemodelleerd als organisatorische eenheid.
+      de: Kirchliche Territorialjurisdiktion unter bischoflicher Leitung als organisatorische Einheit modelliert.
+      fr: Juridiction territoriale ecclesiastique sous gouvernance episcopale modelisee comme unite organisationnelle.
+      es: Jurisdiccion territorial eclesiastica bajo gobierno episcopal modelada como unidad organizativa.
+      ar: ولاية كنسية إقليمية تحت إدارة أسقفية، ممثلة كوحدة تنظيمية.
+      id: Yurisdiksi teritorial gerejawi di bawah tata kelola episkopal yang dimodelkan sebagai unit organisasi.
+      zh: 由主教治理的教会领辖区，建模为组织单元。
+    structured_aliases:
+    - {literal_form: bisdom, in_language: nl}
+    - {literal_form: Dioezese, in_language: de}
+    - {literal_form: diocese, in_language: fr}
+    - {literal_form: diocesis, in_language: es}
+    - {literal_form: أبرشية, in_language: ar}
+    - {literal_form: keuskupan, in_language: id}
+    - {literal_form: 教区, in_language: zh}
+    close_mappings:
+    - org:Organization
+    - schema:Organization
+    - wd:Q665487
+    slots:
+    - founded_through
+    - identified_by
+    - has_label
+    - has_description
+    - located_in
+    slot_usage:
+      has_label:
+        required: true
+      founded_through:
+        range: FoundingEvent
+        inlined: true
+    annotations:
+      custodian_types: '["H"]'
+      custodian_types_rationale: Primarily relevant to ecclesiastical heritage contexts
+      specificity_score: '0.75'
+      specificity_rationale: Fairly specific to diocesan and religious administrative modeling

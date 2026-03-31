@@ -1,0 +1,123 @@
+# Service Area Type Enumeration
+# Classification of geographic service area types for heritage custodians
+
+id: https://nde.nl/ontology/hc/enum/ServiceAreaTypeEnum
+name: service_area_type_enum
+title: Service Area Type Enumeration
+
+prefixes:
+  schema: http://schema.org/
+
+imports:
+  - linkml:types
+
+
+enums:
+  ServiceAreaTypeEnum:
+    description: |
+      Classification of service area types for heritage custodians.
+      
+      Service areas define the geographic jurisdiction or coverage area where
+      a heritage institution provides services, collects materials, or has
+      archival responsibility ("werkgebied" in Dutch).
+      
+      **Usage by Institution Type**:
+      
+      | Type | Common Usage |
+      |------|--------------|
+      | **MUNICIPAL** | Municipal archives, city libraries |
+      | **PROVINCIAL** | Provincial archives (Rijksarchief in de Provincie) |
+      | **REGIONAL** | Regional archives covering multiple municipalities |
+      | **HISTORICAL** | Historical boundaries from before administrative changes |
+      | **NATIONAL** | National archives, national libraries |
+      | **CUSTOM** | Special arrangements, consortia |
+      | **ECCLESIASTICAL** | Church archives with diocese/parish boundaries |
+      | **WATERBOARD** | Water authority archives (waterschapsarchieven) |
+      
+    permissible_values:
+      MUNICIPAL:
+        description: |
+          Single municipality service area.
+          
+          Archives: Municipal archive serving one gemeente.
+          Libraries: Public library serving one city.
+          
+          Dutch term: "Gemeentearchief"
+        meaning: schema:City
+        
+      PROVINCIAL:
+        description: |
+          Entire province/state coverage.
+          
+          Archives: Provincial archives (formerly Rijksarchief in de Provincie)
+          covering all municipalities in a province.
+          
+          Dutch term: "Provinciaal archief" / "Rijksarchief"
+        meaning: schema:State
+        
+      REGIONAL:
+        description: |
+          Multi-municipality regional area, not aligned with province boundaries.
+          
+          Archives: Regional Historical Centers (RHC) serving multiple
+          municipalities that have pooled archival services.
+          
+          Examples:
+          - Regionaal Archief Rivierenland
+          - Regionaal Historisch Centrum Limburg
+          
+          Dutch term: "Regionaal archief"
+          
+      HISTORICAL:
+        description: |
+          Historical administrative boundary that no longer exists in current geography.
+          
+          Use for:
+          - Pre-merger municipal boundaries
+          - Historical territories (e.g., HALC 1500 data)
+          - Dissolved provinces or regions
+          - Pre-1795 territories (Ancien Regime)
+          
+          Display: Brown border (#8b4513), goldenrod fill (#daa520)
+          
+      NATIONAL:
+        description: |
+          Country-wide service area.
+          
+          Archives: National Archives (Nationaal Archief)
+          Libraries: National libraries (Koninklijke Bibliotheek)
+          Museums: National museums
+        meaning: schema:Country
+        
+      CUSTOM:
+        description: |
+          Non-standard or negotiated service area.
+          
+          Use for special arrangements that don't fit standard categories:
+          - Consortium service areas
+          - Cross-border arrangements
+          - Temporary or pilot service areas
+          
+      ECCLESIASTICAL:
+        description: |
+          Church/religious administrative boundary.
+          
+          Relevant for:
+          - Diocesan archives
+          - Parish records
+          - Church libraries
+          
+          Boundaries may not align with civil administrative divisions.
+          
+      WATERBOARD:
+        description: |
+          Water management district (Netherlands-specific).
+          
+          Dutch terms: "Waterschap", "Hoogheemraadschap"
+          
+          Water boards have their own archives and service areas
+          based on water management geography, not civil administration.
+          
+          Examples:
+          - Hoogheemraadschap van Rijnland
+          - Waterschap Rivierenland

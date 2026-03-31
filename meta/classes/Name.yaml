@@ -1,0 +1,311 @@
+id: https://nde.nl/ontology/hc/class/Name
+name: name_class
+title: Name Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  dwc: http://rs.tdwg.org/dwc/terms/
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_label
+- ../slots/has_language
+- ../slots/has_type
+default_prefix: hc
+
+classes:
+  Name:
+    class_uri: hc:Name
+    description: >-
+      Designation or label assigned to an entity, optionally classified by type and language of expression.
+    alt_descriptions:
+      nl: >-
+        Aanduiding of label toegekend aan een entiteit, optioneel geclassificeerd naar type en taal van uitdrukking.
+      de: >-
+        Bezeichnung oder Label, das einer Entität zugewiesen ist, optional nach Typ und Sprache klassifiziert.
+      fr: >-
+        Désignation ou étiquette attribuée à une entité, éventuellement classée par type et langue d'expression.
+      es: >-
+        Designación o etiqueta asignada a una entidad, opcionalmente clasificada por tipo y idioma de expresión.
+      ar: >-
+        تسمية أو وصف مخصص لكيان، مصنف اختيارياً حسب النوع ولغة التعبير.
+      id: >-
+        Penunjukan atau label yang diberikan kepada entitas, secara opsional diklasifikasikan berdasarkan jenis dan bahasa ekspresi.
+      zh: >-
+        分配给实体的名称或标签，可选择按类型和表达语言分类。
+    structured_aliases:
+
+      - literal_form: naam
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: benaming
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: aanduiding
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: Name
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: Bezeichnung
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: nom
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: appellation
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: nombre
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: denominación
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: اسم
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: تسمية
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: nama
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: sebutan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: 名称
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: 命名
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: name
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: label
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: designation
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: multilingual
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: entity identification
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_label
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_type
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_language
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: \"Dodo\""
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: \"Dronte\""
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: CommonName"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: ScientificName"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+    close_mappings:
+    - schema:name
+    - skos:prefLabel
+    - rdfs:label
+    related_mappings:
+    - dwc:vernacularName
+    - schema:alternateName
+
+    keywords:
+    - name
+    - label
+    - designation
+    - multilingual
+    slots:
+    - has_label
+    - has_type
+    - has_language
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: "Dodo"
+        - value: "Dronte"
+      has_type:
+        required: false
+        examples:
+        - value: CommonName
+        - value: ScientificName
+      has_language:
+        required: false
+        examples:
+        - value: "en"
+        - value: "nl"
+        - value: "la"
+
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      Structured representation of a name associated with an entity.
+
+      **MIGRATION NOTE** (2026-01-22):
+      Created per slot_fixes.yaml migration from `common_name` string
+      to structured Name class per Rule 53.
+
+      **Purpose**:
+      Provides structured representation for names including:
+      - The name value itself (via has_label)
+      - Name type classification (e.g., common name, scientific name, trade name)
+      - Language information
+
+      **Ontological Alignment**:
+      - **Primary** (`class_uri`): `schema:name` - Schema.org name
+      - **Close**: `skos:prefLabel`, `rdfs:label` - Label predicates
+      - **Related**: `dwc:vernacularName` - Darwin Core vernacular name
+
+      **Use Cases**:
+      - Biological specimens with common/vernacular names in multiple languages
+      - Organizations with official names and trading names
+      - Places with indigenous and colonial names
+      - Products with brand names and generic names
+
+      **Pattern**:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Name structures applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.25
+      specificity_rationale: >-
+        Broadly applicable - names are fundamental to all heritage entities
+        including biological specimens, organizations, places, and objects.
+      template_specificity: '{"collection_discovery": 0.3, "person_research": 0.35, "general_heritage": 0.25}'
+      # migration_info: (Flattened)
+      migration_source_slot: common_name
+      migration_date: "2026-01-22"
+      migration_rule: "Rule 53"
+
+    comments:
+    - "Structured name representation with type and language"
+    - "Replaces simple string-valued common_name slot"
+    - "Supports multilingual names through has_language"
+    - "Type classification via NameType hierarchy"
+    - "Created 2026-01-22 from common_name migration (Rule 53)"
+
+    - 'Preserved from prior description: Structured name value with optional type and language metadata.'
+    examples:
+    - value:
+        has_label: "Dodo"
+        has_type: CommonName
+        has_language: "en"
+    - value:
+        has_label: "Dronte"
+        has_type: CommonName
+        has_language: "nl"
+    - value:
+        has_label: "Coast Redwood"
+        has_type: CommonName
+        has_language: "en"
+    - value: |
+        has_name:
+        - has_label: "Dodo"
+          has_type: CommonName
+          has_language: "en"
+        - has_label: "Dronte"
+          has_type: CommonName
+          has_language: "nl"

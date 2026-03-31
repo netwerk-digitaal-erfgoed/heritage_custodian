@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: overlap_with
+# ==============================================================================
+# Two entities, timeframes, or regions share a common portion of space,
+# duration, or content.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                                 | File/Line          | Mapping | Notes                                          |
+# |---------------|------------------------------------------|--------------------|---------|-------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P132_spatiotemporally_overlaps_with` | CIDOC:4022-4031   | narrow  | Spatiotemporal overlap (space+time) between     |
+# |               |                                          |                    |         | E92 Spacetime Volumes. Narrower — does not      |
+# |               |                                          |                    |         | cover content overlap.                          |
+# | **GeoSPARQL** | `geo:sfOverlaps`                         | geo.ttl:637-649    | narrow  | Purely spatial overlap between SpatialObjects.  |
+# | **Schema.org**| `schema:geoOverlaps`                     | schemaorg.owl:     | narrow  | Geospatial overlap between Place /              |
+# |               |                                          | 19242-19261        |         | GeospatialGeometry. Purely spatial.             |
+#
+# No exact match — retains hc:overlapWith.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/overlap_with
+name: overlap_with
+title: Overlap With
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  geo: http://www.opengis.net/ont/geosparql#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  overlap_with:
+    slot_uri: hc:overlapWith
+    description: >-
+      Demonstrates that two distinct entities, timeframes, or regions share a common portion
+      of space, duration, or content.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat twee afzonderlijke entiteiten, tijdsperioden of regio's een gemeenschappelijk
+        deel van ruimte, duur of inhoud delen.
+      de: >-
+        Zeigt, dass zwei unterschiedliche Entitäten, Zeiträume oder Regionen einen gemeinsamen
+        Anteil an Raum, Dauer oder Inhalt teilen.
+      fr: >-
+        Démontre que deux entités, périodes ou régions distinctes partagent une portion commune
+        d'espace, de durée ou de contenu.
+      ar: >-
+        يوضح أن كيانين أو فترتين زمنيتين أو منطقتين مختلفتين يتشاركان جزءًا مشتركًا من
+        المكان أو المدة أو المحتوى.
+      id: >-
+        Menunjukkan bahwa dua entitas, jangka waktu, atau wilayah yang berbeda berbagi bagian
+        yang sama dari ruang, durasi, atau konten.
+      zh: >-
+        表明两个不同的实体、时间段或区域共享空间、持续时间或内容的共同部分。
+      es: >-
+        Demuestra que dos entidades, períodos de tiempo o regiones distintas comparten una porción
+        común de espacio, duración o contenido.
+    structured_aliases:
+      - literal_form: Overlapping
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Überlappung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Chevauchement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تداخل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tumpang Tindih
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 重叠
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Solapamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - "Overlapping speech occurs when multiple people speak simultaneously."
+    narrow_mappings:
+      - crm:P132_spatiotemporally_overlaps_with  # CIDOC:4022-4031 — spatiotemporal overlap between E92 Spacetime Volumes; narrower (space+time only, not content)
+      - geo:sfOverlaps  # geo.ttl:637-649 — purely spatial overlap between SpatialObjects
+      - schema:geoOverlaps  # schemaorg.owl:19242-19261 — geospatial overlap between Place/GeospatialGeometry
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_overlapping

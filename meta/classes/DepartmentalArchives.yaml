@@ -1,0 +1,78 @@
+id: https://nde.nl/ontology/hc/class/DepartmentalArchives
+name: departmental_archives_class
+title: Departmental Archives Type (France)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_service_area
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/applicable_in
+- ../slots/part_of
+classes:
+  DepartmentalArchives:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: >-
+      Public repository institution at the French departement level,
+      responsible for stewardship of regional administrative and civil records.
+    alt_descriptions:
+      nl: Openbare archiefinstelling op Frans departementsniveau voor beheer van regionale bestuurs- en burgerlijke documenten.
+      de: Oeffentliche Archivinstitution auf franzoesischer Departementsebene zur Bewahrung regionaler Verwaltungs- und Personenstandsunterlagen.
+      fr: Institution archivistique publique au niveau departemental francais chargee de la conservation des archives administratives et civiles.
+      es: Institucion archivistica publica a nivel departamental frances responsable de registros administrativos y civiles regionales.
+      ar: مؤسسة أرشيف عامة على مستوى المقاطعة في فرنسا مسؤولة عن حفظ السجلات الإدارية والمدنية الإقليمية.
+      id: Lembaga arsip publik tingkat departemen di Prancis yang bertanggung jawab atas pengelolaan arsip administratif dan sipil regional.
+      zh: 法国省级公共档案机构，负责区域行政与民事档案保管。
+    structured_aliases:
+    - {literal_form: departementsarchief frankrijk, in_language: nl}
+    - {literal_form: Departementsarchiv, in_language: de}
+    - {literal_form: archives departementales, in_language: fr}
+    - {literal_form: archivos departamentales, in_language: es}
+    - {literal_form: الأرشيفات الإدارية للمقاطعات الفرنسية, in_language: ar}
+    - {literal_form: arsip departemen prancis, in_language: id}
+    - {literal_form: 法国省级档案馆, in_language: zh}
+    close_mappings:
+    - wd:Q2860456
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    keywords:
+    - france departmental archives
+    - civil registration holdings
+    - regional public records
+    slots:
+    - part_of
+    - has_type
+    - has_service_area
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+      applicable_in:
+        range: Country
+        required: true
+        minimum_cardinality: 1
+        maximum_cardinality: 1
+    comments:
+    - Organization type restricted to the French administrative context
+    notes:
+    - |
+      Preserved from prior description (commit 86b9dceb):
+
+      "Departmental archives in France (archives d\xE9partementales).\n\n**Wikidata**: Q2860456 (archives d\xE9partementales)\n\n**\u26A0\uFE0F GEOGRAPHIC RESTRICTION: FRANCE ONLY**\n\nThis type applies ONLY to French d\xE9partement-level archives. For archives\nat comparable administrative levels in other countries, use:\n- DistrictArchiveGermany (Q130757255) for Kreisarchiv\n- ProvincialArchive (Q5403345) for provincial archives\n- RegionalArchive (Q27032392) for other regional archives\n\n**DEFINITION**:\n\nArchives d\xE9partementales are public archives at the d\xE9partement level in France.\nThey are the primary repositories for:\n- Pre-revolutionary records (ancien r\xE9gime documents)\n- Civil registration (\xE9tat civil) from 1792\n- Notarial archives\n- Cadastral/land records\n- Local government records\n- Regional ecclesiastical records\n\n**FRENCH TERRITORIAL ARCHIVE HIERARCHY**:\n\n```\nArchives nationales (national)\n  \u2514\u2500\u2500 Archives r\xE9gionales (regional)\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

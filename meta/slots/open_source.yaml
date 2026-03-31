@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: open_source
+# ==============================================================================
+# Boolean flag indicating whether software or creative work is open source.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                   | File/Line                 | Mapping | Notes                                                                          |
+# |----------------|----------------------------|---------------------------|---------|--------------------------------------------------------------------------------|
+# | **Schema.org** | `schema:isAccessibleForFree`| schemaorg.owl:22667-22687 | related | "A flag to signal the item is accessible for free." Boolean. Related:           |
+# |                |                            |                           |         | free accessibility ≠ open source (source code availability).                   |
+# | **DOAP**       | `doap:license`             | doap.rdf:441-455          | related | "URI of an RDF description of the license." Project→License. Related:           |
+# |                |                            |                           |         | the license determines open-source status but is a URI, not a boolean flag.    |
+#
+# No exact external match for a boolean "is open source" property. Retaining
+# hc:openSource as slot_uri.
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/open_source
+name: open_source
+title: Open Source
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  doap: http://usefulinc.com/ns/doap#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  open_source:
+    slot_uri: hc:openSource
+    description: >-
+      Boolean flag indicating whether software, hardware, or creative work has
+      its original source code, blueprints, or design freely available for use,
+      modification, and redistribution by anyone under an open-source licence.
+      When true, the has_license slot should contain an OSI-approved licence
+      identifier (e.g. GPL-3.0, MIT, BSD-3-Clause, ECL-2.0).
+    alt_descriptions:
+      nl: >-
+        Booleaanse vlag die aangeeft of software, hardware of creatief werk
+        open source is, met broncode vrij beschikbaar voor gebruik, wijziging
+        en herdistributie.
+      de: >-
+        Boolesches Flag, das angibt, ob Software, Hardware oder kreative Werke
+        Open Source sind, wobei der Quellcode frei verfügbar ist für Nutzung,
+        Änderung und Weiterverbreitung.
+      fr: >-
+        Indicateur booléen indiquant si un logiciel, matériel ou œuvre créative
+        est open source, avec le code source librement disponible pour
+        l'utilisation, la modification et la redistribution.
+      ar: >-
+        علامة منطقية تشير إلى ما إذا كان البرنامج أو الجهاز أو العمل الإبداعي
+        مفتوح المصدر، مع توفر الشيفرة المصدرية بحرية للاستخدام والتعديل وإعادة
+        التوزيع.
+      id: >-
+        Penanda boolean yang menunjukkan apakah perangkat lunak, perangkat
+        keras, atau karya kreatif bersifat sumber terbuka, dengan kode sumber
+        tersedia secara bebas untuk digunakan, dimodifikasi, dan
+        didistribusikan ulang.
+      zh: >-
+        布尔标志，指示软件、硬件或创意作品是否为开源，其源代码可自由使用、修改
+        和再分发。
+      es: >-
+        Indicador booleano que señala si el software, hardware u obra creativa
+        es de código abierto, con el código fuente disponible libremente para
+        uso, modificación y redistribución.
+    structured_aliases:
+      - literal_form: Open source
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Quelloffen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Source ouverte
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مفتوح المصدر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Sumber terbuka
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 开源
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Código abierto
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    related_mappings:
+      - schema:isAccessibleForFree  # schemaorg.owl:22667-22687 - "A flag to signal the item is accessible for free." Boolean. Free accessibility ≠ open source (source code availability).
+      - doap:license  # doap.rdf:441-455 - "URI of an RDF description of the license the software is distributed under." Determines open-source status but is a URI, not boolean.
+    aliases: []
+    examples:
+      - value: "true"
+        description: >-
+          Omeka S is open source, distributed under GPL-3.0.
+      - value: "false"
+        description: >-
+          A proprietary CMS with closed source code.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Boolean flag. When true, the has_license slot should contain an
+        OSI-approved licence identifier.
+      - >-
+        Common open-source CMS platforms used in the heritage sector:
+        CollectiveAccess (GPL-3.0), ArchivesSpace (ECL-2.0), Omeka S
+        (GPL-3.0), DSpace (BSD-3-Clause), Koha (GPL-3.0).
+      - >-
+        "Open source" here follows the Open Source Initiative (OSI) definition:
+        source code is available for use, modification, and redistribution
+        under a licence that has been approved by OSI.

@@ -1,0 +1,57 @@
+id: https://nde.nl/ontology/hc/class/Status
+name: status_class
+title: Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+classes:
+  Status:
+    class_uri: schema:PropertyValue
+    description: >-
+      Generic status or state representation for various entities.
+    alt_descriptions:
+      nl: Generieke status- of staatweergave voor verschillende entiteiten.
+      de: Generische Status- oder Zustandsdarstellung für verschiedene Entitäten.
+      fr: Représentation générique du statut ou de l'état pour diverses entités.
+    structured_aliases:
+    - literal_form: status
+      in_language: nl
+    - literal_form: Status
+      in_language: de
+    - literal_form: statut
+      in_language: fr
+    comments:
+    - Provides structured representation of status information.
+    - Used for default language status, processing status, availability status, publication status.
+    - Created per slot_fixes.yaml revision for default_audio_language and default_language migrations.
+    broad_mappings:
+    - schema:PropertyValue
+    close_mappings:
+    - prov:Entity
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+      has_label:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Generic status applicable to all entity types.
+      specificity_score: 0.20
+      specificity_rationale: Very broadly applicable generic class.
+    examples:
+    - value:
+        has_type: DEFAULT
+        has_label: "Default Language"
+    - value:
+        has_type: SECONDARY
+        has_label: "Alternative Audio"

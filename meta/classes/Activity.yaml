@@ -1,0 +1,254 @@
+id: https://nde.nl/ontology/hc/class/Activity
+name: Activity
+title: Activity Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  aat: http://vocab.getty.edu/aat/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/succeeded_by
+- ../slots/has_note
+- ../slots/has_activity
+- ../slots/temporal_extent
+classes:
+  Activity:
+    class_uri: prov:Activity
+    description: >-
+      Discrete or ongoing action undertaken by a heritage custodian.
+    alt_descriptions:
+      nl: "Discrete of doorlopende actie uitgevoerd door een erfgoedbeheerder."
+      de: "Diskrete oder laufende Handlung, die von einem Kulturgüterverwalter durchgeführt wird."
+      fr: "Action discrète ou continue entreprise par un dépositaire du patrimoine."
+      es: "Acción discreta o continua realizada por un custodio del patrimonio."
+      ar: "إجراء منفصل أو مستمر يقوم به أمين التراث."
+      id: "Tindakan diskrit atau berkelanjutan yang dilakukan oleh pengelola warisan."
+      zh: "由遗产保管人执行的离散或持续行动。"
+    examples:
+    - value:
+        identified_by:
+          identifier_value: https://nde.nl/ontology/hc/activity/rijksmuseum-inventory-2025-001
+        has_label: 2025 Annual Collection Inventory - Dutch Masters
+        has_description: "Annual physical inventory of the Dutch Masters collection (Gallery of Honour and adjacent galleries). Spot-check methodology with 20% sample verification against CMS records."
+        temporal_extent:
+          begin_of_the_begin: '2025-01-15'
+          end_of_the_end: '2025-03-31'
+        has_status: IN_PROGRESS
+      description: Annual collection inventory activity at a museum
+    - value:
+        identified_by:
+          identifier_value: https://nde.nl/ontology/hc/activity/kb-digitization-medieval-2024
+        has_label: Medieval Manuscripts Digitization Project
+        has_description: "High-resolution digitization of 342 medieval manuscripts with HTR processing and metadata enhancement. IIIF-compliant output."
+        temporal_extent:
+          begin_of_the_begin: '2024-03-01'
+          end_of_the_end: '2025-12-31'
+        has_status: IN_PROGRESS
+        preceding_activity: https://nde.nl/ontology/hc/activity/kb-condition-survey-2023
+      description: Digitization project activity at a national library
+    close_mappings:
+    - crm:E7_Activity
+    - rico:Activity
+    broad_mappings:
+    - schema:Action
+    - prov:Activity
+    related_mappings:
+    - aat:300054277
+    structured_aliases:
+    - literal_form: activiteit
+      in_language: nl
+    - literal_form: handeling
+      in_language: nl
+    - literal_form: verrichting
+      in_language: nl
+    - literal_form: Aktivität
+      in_language: de
+    - literal_form: Tätigkeit
+      in_language: de
+    - literal_form: Vorgang
+      in_language: de
+    - literal_form: activité
+      in_language: fr
+    - literal_form: opération
+      in_language: fr
+    - literal_form: action
+      in_language: fr
+    - literal_form: actividad
+      in_language: es
+    - literal_form: operación
+      in_language: es
+    - literal_form: acción
+      in_language: es
+    - literal_form: نشاط
+      in_language: ar
+    - literal_form: إجراء
+      in_language: ar
+    - literal_form: عملية
+      in_language: ar
+    - literal_form: aktivitas
+      in_language: id
+    - literal_form: kegiatan
+      in_language: id
+    - literal_form: operasi
+      in_language: id
+    - literal_form: 活动
+      in_language: zh
+    - literal_form: 行动
+      in_language: zh
+    - literal_form: 操作
+      in_language: zh
+    keywords:
+    - action
+    - operation
+    - provenance
+    - workflow
+    - process
+    - activity
+    - curation
+    - conservation
+    - digitization
+    - cataloging
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - temporal_extent
+    - succeeded_by
+    - has_activity
+    - has_status
+    - has_note
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        inlined: false
+        examples:
+        - value:
+            identifier_value: https://nde.nl/ontology/hc/activity/rijksmuseum-inventory-2025-001
+        - value:
+            identifier_value: https://nde.nl/ontology/hc/activity/nationaal-archief-digitization-voc-2024
+      has_label:
+        required: true
+        examples:
+        - value: 2025 Annual Collection Inventory
+        - value: VOC Archives Digitization Project Phase 2
+      has_description:
+        required: false
+        examples:
+        - value: "Annual physical inventory of the Dutch Masters collection, covering approximately 450 paintings. Spot-check methodology with 20% sample verified against catalog records."
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        inlined: true
+        examples:
+        - value:
+            begin_of_the_begin: '2025-01-15'
+            end_of_the_end: '2025-03-31'
+      succeeded_by:
+        range: Activity
+        description: Link to subsequent activity instances (activity chaining).
+        multivalued: true
+        inlined: false
+        examples:
+        - value: https://nde.nl/ontology/hc/activity/conservation-treatment-2025
+      has_activity:
+        inlined: false
+        examples:
+        - value: https://nde.nl/ontology/hc/activity/condition-survey-2024
+      has_status:
+        required: false
+        examples:
+        - value: IN_PROGRESS
+        - value: COMPLETED
+        - value: PLANNED
+      has_note:
+        multivalued: true
+    annotations:
+      specificity_score: "0.50"
+      specificity_rationale: "Moderately specific - Activity is a core domain concept but broadly applicable across all heritage custodian types."
+      has_score:
+      custodian_types: "['*']"
+      ontological_alignment_prov: "Primary - provenance tracking"
+      ontological_alignment_crm: "E7_Activity - Cultural heritage domain"
+      ontological_alignment_rico: "Activity - Archival activities"
+      ontological_alignment_schema: "Action - Web semantics"
+      key_relationships: "has_activity_type, has_timespan, succeeded_by, preceding_activity"
+      subclasses: "CurationActivity, ConservationActivity, ExhibitionActivity, DigitizationActivity"
+      prov_properties: "prov:wasAssociatedWith, prov:used, prov:generated, prov:atTime"
+    comments:
+    - Base class for all heritage domain activities
+    - Extended by CurationActivity, ConservationActivity, ExhibitionActivity, DigitizationActivity
+    - Uses generic slots: has_activity_identifier, has_activity_type, has_timespan
+    - PROV-O primary alignment for provenance tracking
+    - Supports activity chaining via succeeded_by/preceding_activity
+    - Activity types organized by category: CURATION, CONSERVATION, COMMERCIAL, RESEARCH, EDUCATION, EXHIBITION, DIGITIZATION, ADMINISTRATIVE
+    - |
+      Preserved from prior description:
+
+      **DEFINITION**:
+
+      An Activity represents a discrete or ongoing action undertaken by a heritage
+      custodian. This is the base class for all activity instances in the ontology.
+
+      **ONTOLOGICAL ALIGNMENT**:
+
+      | Ontology | Class | Use Case |
+      |----------|-------|----------|
+      | PROV-O | prov:Activity | Primary - provenance tracking |
+      | CIDOC-CRM | crm:E7_Activity | Cultural heritage domain |
+      | RiC-O | rico:Activity | Archival activities |
+      | Schema.org | schema:Action | Web semantics |
+
+      **KEY RELATIONSHIPS**:
+
+      ```
+      Activity
+          │
+          ├── has_activity_type → ActivityType (classification)
+          │       └── CurationActivityType, ConservationActivityType, etc.
+          │
+          ├── has_timespan → TimeSpan (temporal extent)
+          │       └── start_date, end_date, fuzzy bounds
+          │
+          ├── succeeded_by → Activity (succession)
+          │
+          └── preceding_activity → Activity (inverse succession)
+      ```
+
+      **SPECIALIZATION**:
+
+      This base class is extended by domain-specific activity classes:
+      - CurationActivity - Collection management (existing, to be refactored)
+      - ConservationActivity - Preservation work
+      - ExhibitionActivity - Exhibition planning and execution
+      - DigitizationActivity - Digital transformation projects
+
+      **PROVENANCE (PROV-O)**:
+
+      Activities generate provenance information:
+      - `prov:Activity` - The activity itself
+      - `prov:wasAssociatedWith` - Responsible agents
+      - `prov:used` - Entities processed
+      - `prov:generated` - Entities created
+      - `prov:atTime` - Temporal extent
+    - 'Preserved from prior description: Discrete or ongoing action undertaken by a heritage custodian. Base class for all activity instances in the ontology, representing provenance-tracked operations such as collection inventory, digitization projects, conservation treatments, and cataloging workflows.'
+    see_also:
+    - https://www.w3.org/TR/prov-o/
+    - http://www.cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E7
+    - https://www.ica.org/standards/RiC/ontology
+    - ActivityType
+    - ActivityTypes

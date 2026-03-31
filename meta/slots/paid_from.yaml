@@ -1,0 +1,41 @@
+# ==============================================================================
+# LinkML Slot Definition: paid_from
+# ==============================================================================
+# Paying party/source in a payment context.
+#
+# ONTOLOGY ALIGNMENT (verified against linked.art terms):
+#
+# | Ontology       | Property       | Mapping | Notes                                                     |
+# |----------------|----------------|---------|-----------------------------------------------------------|
+# | **Linked Art** | `la:paid_from` | exact   | Payment source actor in Linked Art extensions.            |
+# | **Schema.org** | `schema:buyer` | related | Buyer role; related commercial payer perspective.         |
+#
+# CREATED: 2026-02-18
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/paid_from
+name: paid_from
+title: Paid From
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  la: https://linked.art/ns/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  paid_from:
+    slot_uri: hc:paidFrom
+    description: >-
+      Identifies the party or source from which a payment originated.
+    range: string
+    multivalued: false
+    exact_mappings:
+      - la:paid_from
+    related_mappings:
+      - schema:buyer
+    aliases:
+      - is_or_was_paid_from
+    annotations:
+      custodian_types: '["*"]'

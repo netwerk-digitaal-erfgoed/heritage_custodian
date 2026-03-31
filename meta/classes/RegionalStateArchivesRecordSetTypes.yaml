@@ -1,0 +1,114 @@
+id: https://nde.nl/ontology/hc/class/RegionalStateArchivesRecordSetTypes
+name: RegionalStateArchivesRecordSetTypes
+title: RegionalStateArchives Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./RegionalStateArchivesRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  RegionalStateFonds:
+    is_a: RegionalStateArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation produced by regional
+      state authorities in governance and public administration.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie die is gevormd door
+        regionale staatsautoriteiten in bestuur en overheidsadministratie.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen regionaler
+        Staatsbehoerden in Verwaltung und oeffentlicher Organisation.
+      fr: >-
+        Agregation fondee sur la provenance de documentation produite par des
+        autorites etatiques regionales dans la gouvernance publique.
+      es: >-
+        Agregacion basada en procedencia de documentacion producida por
+        autoridades estatales regionales en gobierno y administracion publica.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق أصدرتها سلطات الدولة الإقليمية في
+        الحوكمة والإدارة العامة.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi yang dihasilkan otoritas
+        negara tingkat regional dalam tata kelola dan administrasi publik.
+      zh: >-
+        基于来源原则聚合由区域国家机关在治理与公共行政中形成的文献。
+      sv: >-
+        Proveniensbaserad aggregering av dokumentation skapad av regionala
+        statliga myndigheter inom styrning och offentlig forvaltning.
+    structured_aliases:
+    - literal_form: landsarkivfond
+      predicate: EXACT_SYNONYM
+      in_language: sv
+    - literal_form: Provinzialbestand
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: regionaal staatsbestuursfonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: fonds administratif etatique regional
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo estatal regional administrativo
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: صندوق إدارة دولة إقليمي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds administrasi negara regional
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 区域国家行政文献全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Follows the fonds organizational principle as defined by rico-rst:Fonds.
+    - Note preserved: The Swedish domain label remains for interoperability with regional cataloging practice.
+    - 'Preserved from prior description: A rico:RecordSetType for regional state government records.'
+    keywords:
+    - regional state authority
+    - public administration
+    - fonds arrangement
+    - governance provenance
+    examples:
+    - value:
+        has_type: hc:RegionalStateFonds
+        has_custodian: hc:RegionalStateArchives
+        has_note: Regional decrees, policy files, and authority correspondence.
+      description: Regional state-administration documentation grouped by provenance.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - RegionalStateArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:RegionalStateFonds
+      has_custodian:
+        equals_string: hc:RegionalStateArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by RegionalStateArchives custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

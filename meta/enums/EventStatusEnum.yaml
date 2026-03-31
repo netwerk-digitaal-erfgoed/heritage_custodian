@@ -1,0 +1,64 @@
+# Event Status Enumeration
+# Status of heritage events (scheduled, cancelled, completed, etc.)
+
+id: https://nde.nl/ontology/hc/enum/EventStatusEnum
+name: event_status_enum
+title: Event Status Enumeration
+
+imports:
+  - linkml:types
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+
+enums:
+  EventStatusEnum:
+    description: |
+      Status of a heritage event occurrence.
+      
+      Aligned with Schema.org EventStatusType vocabulary for web discoverability.
+    enum_uri: schema:EventStatusType
+    permissible_values:
+      SCHEDULED:
+        description: |
+          Event is planned and scheduled to occur.
+          Default status for announced future events.
+        meaning: schema:EventScheduled
+      
+      CANCELLED:
+        description: |
+          Event has been cancelled and will not take place.
+          Important for documenting COVID-19 impacts and other disruptions.
+        meaning: schema:EventCancelled
+      
+      POSTPONED:
+        description: |
+          Event has been postponed to an unspecified future date.
+          Original dates are no longer valid, new dates TBD.
+        meaning: schema:EventPostponed
+      
+      RESCHEDULED:
+        description: |
+          Event has been rescheduled to new dates.
+          Links to new event occurrence with updated dates.
+        meaning: schema:EventRescheduled
+      
+      MOVED_ONLINE:
+        description: |
+          Event moved from in-person to online/virtual format.
+          Common during COVID-19 pandemic period.
+        meaning: schema:EventMovedOnline
+      
+      COMPLETED:
+        description: |
+          Event has taken place as scheduled.
+          Historical record of past events.
+        meaning: hc:EventCompleted
+      
+      IN_PROGRESS:
+        description: |
+          Event is currently taking place.
+          For multi-day events during their run.
+        meaning: hc:EventInProgress

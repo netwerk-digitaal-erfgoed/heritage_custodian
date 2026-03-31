@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/class/ConditionType
+name: ConditionType
+title: Condition Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+classes:
+  ConditionType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Controlled vocabulary root used to classify preservation states and
+      consultation restrictions for heritage resources.
+    alt_descriptions:
+      nl: >-
+        Wortel van een gecontroleerde vocabulaire om bewaartoestanden en
+        raadpleegbeperkingen van erfgoedbronnen te classificeren.
+      de: >-
+        Stamm einer kontrollierten Vokabelliste zur Klassifikation von
+        Erhaltungszustaenden und Nutzungsbeschraenkungen von Kulturerbe-Ressourcen.
+      fr: >-
+        Racine de vocabulaire controle destinee a classifier les etats de
+        conservation et les restrictions de consultation des ressources
+        patrimoniales.
+      es: >-
+        Raiz de vocabulario controlado para clasificar estados de preservacion y
+        restricciones de consulta de recursos patrimoniales.
+      ar: >-
+        جذر مفردات مضبوطة لتصنيف حالات الحفظ وقيود الاطلاع الخاصة بموارد التراث.
+      id: >-
+        Akar kosakata terkendali untuk mengklasifikasikan status pelestarian dan
+        pembatasan konsultasi pada sumber daya warisan.
+      zh: >-
+        用于对遗产资源保存状态与查阅限制进行分类的受控词表根节点。
+    structured_aliases:
+      - literal_form: behoudsclassificatie
+        in_language: nl
+      - literal_form: Erhaltungsklassifikation
+        in_language: de
+      - literal_form: taxonomie de conservation
+        in_language: fr
+      - literal_form: taxonomia de preservacion
+        in_language: es
+      - literal_form: تصنيف الحفظ
+        in_language: ar
+      - literal_form: klasifikasi pelestarian
+        in_language: id
+      - literal_form: 保存分类体系
+        in_language: zh
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+    examples:
+      - value:
+          identified_by: ct-preservation
+          has_label: Preservation status vocabulary
+          has_description:
+            description_text: Taxonomy branch for physical integrity and conservation risk.
+        description: Vocabulary branch for material preservation assessment
+      - value:
+          identified_by: ct-consultation
+          has_label: Consultation requirement vocabulary
+          has_description:
+            description_text: Taxonomy branch for consultation and reuse constraints.
+        description: Vocabulary branch for consultation governance terms
+    keywords:
+      - controlled vocabulary
+      - taxonomy root
+      - preservation categories
+      - consultation restrictions
+      - classification scheme
+    broad_mappings:
+      - skos:Concept
+    comments:
+      - Abstract superclass; concrete subclasses are declared in ConditionTypes.yaml.
+    notes:
+      - |
+        Preserved from prior description (commit 2e1e6e5f):
+
+        "Abstract base class for condition type classification.\n\nCovers TWO distinct semantic domains:\n\n**1. Physical/Preservation Conditions**:\nCondition states for heritage objects (excellent, good, fair, poor, critical).\nMay include specialized categories for different material types.\n\n**2. Access/Use Conditions** (added 2026-01-22):\nRequirements or restrictions on accessing or using materials. Includes:\n- AccessCondition: Appointment requirements, reading room rules\n- UseCondition: Photography restrictions, handling requirements\n- ReproductionCondition: Permissions, fees, attribution requirements\n- LoanCondition: Insurance, environmental, courier requirements\n- DigitizationCondition: Quality standards, metadata requirements\n\nPer slot_fixes.yaml migration: `condition` \u2192 `poses_or_posed_condition` + Condition (Rule 53)\n"
+    annotations:
+      specificity_score: "0.2"
+      specificity_rationale: Generic taxonomy root for preservation and consultation categories.
+      custodian_types: "['*']"

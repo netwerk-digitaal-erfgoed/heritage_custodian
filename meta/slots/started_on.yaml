@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: started_on
+# ==============================================================================
+# Records the date when an activity, event, process, or period began.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                  | File/Line                    | Mapping | Notes                                                              |
+# |------------|---------------------------|------------------------------|---------|--------------------------------------------------------------------|
+# | **PROV**   | `prov:startedAtTime`      | prov.ttl:1018-1028           | close   | "Time at which activity started." Domain: Activity; range: dateTime.|
+# | **Schema** | `schema:startDate`        | schemaorg.owl:36282-36301    | close   | "Start date and time of item." Domain: Event/Role/etc.             |
+# | **RiC-O**  | `rico:beginningDate`      | RiC-O_1-1.rdf:20864-20890   | close   | "Date at which something began." Domain: Thing; range: Literal.    |
+# | **DCAT**   | `dcat:startDate`          | dcat3.ttl:1657-1676          | related | "Start of the period." Domain: PeriodOfTime only.                  |
+#
+# Multiple external properties cover "start date" but each constrains domain
+# or range differently. Our slot is broader (any entity, range: date);
+# slot_uri remains hc:startedOn.
+#
+# CREATED: 2026-01-19
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/started_on
+name: started_on
+title: Started On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcat: http://www.w3.org/ns/dcat#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  started_on:
+    slot_uri: hc:startedOn
+    description: >-
+      Records the date when an activity, event, process, or period began.
+      In heritage custodian contexts this captures when archival processing
+      commenced, when a conservation treatment started, when an exhibition
+      opened, or when an organisational mandate took effect. The value is
+      typically null if the associated workflow has not yet transitioned
+      beyond an initial state such as UNPROCESSED or ON_HOLD, and is set
+      when the status advances to an active phase such as IN_APPRAISAL.
+    alt_descriptions:
+      nl: >-
+        Registreert de datum waarop een activiteit, gebeurtenis, proces of
+        periode begon.
+      de: >-
+        Erfasst das Datum, an dem eine Aktivität, ein Ereignis, ein Prozess
+        oder ein Zeitraum begonnen hat.
+      fr: >-
+        Enregistre la date à laquelle une activité, un événement, un
+        processus ou une période a commencé.
+      ar: >-
+        يسجل التاريخ الذي بدأ فيه نشاط أو حدث أو عملية أو فترة.
+      id: >-
+        Mencatat tanggal ketika suatu aktivitas, peristiwa, proses, atau
+        periode dimulai.
+      zh: >-
+        记录活动、事件、流程或时期开始的日期。
+      es: >-
+        Registra la fecha en que una actividad, evento, proceso o período
+        comenzó.
+    structured_aliases:
+      - literal_form: gestart op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: begonnen am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: commencé le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بدأ في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dimulai pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 开始于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: iniciado el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    multivalued: false
+    close_mappings:
+      - prov:startedAtTime  # prov.ttl:1018-1028 - "Time at which activity started." Domain: Activity; range: dateTime
+      - schema:startDate  # schemaorg.owl:36282-36301 - "Start date and time of item." Domain: Event/Role/etc.
+      - rico:beginningDate  # RiC-O_1-1.rdf:20864-20890 - "Date at which something began." Domain: Thing; range: Literal
+    related_mappings:
+      - dcat:startDate  # dcat3.ttl:1657-1676 - "Start of the period." Domain: PeriodOfTime only
+    aliases:
+      - processing_started_date
+    examples:
+      - value: "2023-09-01"
+        description: >-
+          Archival processing of a newly accessioned collection began on
+          1 September 2023 after the appraisal phase concluded.
+      - value: "2025-01-15"
+        description: >-
+          A conservation treatment for a flood-damaged textile collection
+          started on 15 January 2025.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Typically null when the associated workflow status is UNPROCESSED
+        or ON_HOLD; set when the status transitions to IN_APPRAISAL or a
+        subsequent active state.
+      - >-
+        Pair with completed_at to compute processing duration or elapsed
+        time metrics.

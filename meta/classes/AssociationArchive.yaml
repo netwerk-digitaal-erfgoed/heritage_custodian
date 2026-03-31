@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/AssociationArchive
+name: AssociationArchive
+title: Association Archive Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  wd: http://www.wikidata.org/entity/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- linkml:types
+- ../slots/part_of
+- ../slots/has_label
+- ../slots/has_description
+classes:
+  AssociationArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: hc:AssociationArchive
+    description: >-
+      Archive preserving records of associations, societies, clubs, and other membership-based organizations.
+    alt_descriptions:
+      nl: "Archief dat records bewaart van verenigingen, genootschappen, clubs en  andere op lidmaatschap gebaseerde organisaties."
+      de: "Archiv, das Unterlagen von Verbänden, Gesellschaften, Klubs und anderen  mitgliedschaftsbasierten Organisationen bewahrt."
+      fr: "Archives préservant les documents d'associations, sociétés, clubs et  autres organisations basées sur l'adhésion."
+      es: "Archivo que preserva registros de asociaciones, sociedades, clubes y  otras organizaciones basadas en membresía."
+      ar: "أرشيف يحفظ سجلات الجمعيات والمؤسسات والأندية والمنظمات الأخرى القائمة على العضوية."
+      id: "Arsip yang melestarikan catatan asosiasi, masyarakat, klub, dan  organisasi berbasis keanggotaan lainnya."
+      zh: "保存协会、学会、俱乐部和其他会员制组织记录的档案。"
+    examples:
+    - value:
+        has_label: Professional Association Archive
+        part_of: HeritageSocietyType
+      description: Archive of a professional association
+    close_mappings:
+    - schema:ArchiveOrganization
+    - rico:CorporateBody
+    - wd:Q27030820
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - wd:Q27030827
+    - wd:Q66604802
+    structured_aliases:
+    - literal_form: verenigingsarchief
+      in_language: nl
+    - literal_form: genootschapsarchief
+      in_language: nl
+    - literal_form: Verbandsarchiv
+      in_language: de
+    - literal_form: Vereinsarchiv
+      in_language: de
+    - literal_form: archives d'association
+      in_language: fr
+    - literal_form: archivo de asociación
+      in_language: es
+    - literal_form: أرشيف الجمعيات
+      in_language: ar
+    - literal_form: arsip asosiasi
+      in_language: id
+    - literal_form: 协会档案
+      in_language: zh
+    keywords:
+    - association archive
+    - society records
+    - club archive
+    - membership records
+    - organizational archive
+    slots:
+    - part_of
+    - has_label
+    - has_description
+    slot_usage:
+      part_of:
+        required: false
+        examples:
+        - value: HeritageSocietyType
+    notes:
+    - |
+      Preserved from prior description (commit 1fe1d1ad):
+
+      "Archive preserving records of associations, societies, clubs, and\nother membership-based organizations.\n\n**Wikidata**: Q27030820\n\n**IMPORTANT: Parent Organization Constraint**\n\nAssociationArchive is an archive that holds records OF an association/society.\nThe parent custodian (the association whose records are archived) should \ntypically be a HeritageSocietyType. Use `parent_society` slot to link to \nthe heritage society that created/owns these archival records.\n\n**Scope**:\nAssociation archives (Verbandsarchive) preserve:\n- Founding documents and bylaws\n- Membership records and registers\n- Meeting minutes and proceedings\n- Correspondence and communications\n- Publications and newsletters\n- Event documentation\n- Financial records\n- Photographs and memorabilia\n\n**Types of Associations**:\n- Professional associations and trade bodies\n- Social and cultural clubs\n- Sports organizations\n- Alumni associations\n- Charitable organizations\n- Advocacy and\
+    annotations:
+      specificity_score: "0.55"
+      specificity_rationale: "AssociationArchive is highly specific to membership-based organizational archives."
+      custodian_types: "['AssociationArchive']"
+      wikidata_qid: "Q27030820"
+      related_types: "FoundationArchive (Q27030827), TradeUnionArchive (Q66604802)"
+      parent_constraint: "Parent custodian should typically be a HeritageSocietyType"
+    comments:
+    - Archive holding records of associations, societies, clubs
+    - Parent organization should typically be a HeritageSocietyType
+    - Use parent_society slot to link to the heritage society whose records are archived
+    - Related: FoundationArchive, TradeUnionArchive
+    - 'Preserved from prior description: Archive preserving records of associations, societies, clubs, and other membership-based organizations. Maintains founding documents, membership records, meeting minutes, correspondence, publications, event documentation, and memorabilia from professional associations, social clubs, sports organizations, alumni associations, charitable organizations, and advocacy groups.'
+    see_also:
+    - HeritageSocietyType
+    - wd:Q27030827
+    - wd:Q66604802

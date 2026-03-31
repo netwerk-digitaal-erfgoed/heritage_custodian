@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/APIRequest
+name: APIRequest
+title: API Request Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+  dcat: http://www.w3.org/ns/dcat#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_endpoint
+  - ../slots/has_provenance
+  - ../slots/has_version
+classes:
+  APIRequest:
+    class_uri: hc:APIRequest
+    description: >-
+      Single invocation of an API endpoint, capturing the request context,
+      provenance, and version information for audit and debugging purposes.
+    alt_descriptions:
+      nl: >-
+        Enkele aanroeping van een API-eindpunt, waarbij de verzoekcontext,
+        herkomst en versie-informatie worden vastgelegd voor controle en debugging.
+      de: >-
+        Einzelner Aufruf eines API-Endpunkts, der den Anfragekontext,
+        die Provenienz und Versionsinformationen fur Audit und Debugging erfasst.
+      fr: >-
+        Invocation unique d'un point de terminaison API, capturant le contexte
+        de la requete, la provenance et les informations de version pour l'audit
+        et le debogage.
+      es: >-
+        Invocacion unica de un punto final API, capturando el contexto de la solicitud,
+        la procedencia y la informacion de version para auditoria y depuracion.
+      ar: >-
+        استدعاء واحد لنقطة نهاية API، يلتقط سياق الطلب والمصدر ومعلومات الإصدار
+        لأغراض التدقيق وتصحيح الأخطاء.
+      id: >-
+        Pemanggilan tunggal titik akhir API, menangkap konteks permintaan,
+        provenans, dan informasi versi untuk audit dan debugging.
+      zh: >-
+        对API端点的单次调用，捕获请求上下文、来源和版本信息用于审计和调试。
+    structured_aliases:
+    - literal_form: API-verzoek
+      in_language: nl
+    - literal_form: API-Anfrage
+      in_language: de
+    - literal_form: requete API
+      in_language: fr
+    - literal_form: solicitud API
+      in_language: es
+    - literal_form: طلب API
+      in_language: ar
+    - literal_form: permintaan API
+      in_language: id
+    - literal_form: API请求
+      in_language: zh
+    broad_mappings:
+    - prov:Activity
+    - schema:Action
+    close_mappings:
+    - dcat:DataService
+    slots:
+    - has_provenance
+    - has_endpoint
+    - has_version
+    slot_usage:
+      has_endpoint:
+        range: APIEndpoint
+        required: true
+      has_provenance:
+        range: Provenance
+        required: false
+      has_version:
+        range: APIVersion
+        required: false
+    comments:
+    - Captures individual API call events for logging and analysis
+    - Useful for rate limiting, audit trails, and usage analytics
+    - Links to endpoint definition and API version
+    see_also:
+    - APIEndpoint
+    - APIVersion
+    examples:
+    - value:
+        has_endpoint: "https://api.example.org/v2/search"
+        has_provenance:
+          created_by: "https://example.org/users/app123"
+          created_at: "2025-01-14T10:00:00Z"
+        has_version: "v2.1.0"
+      description: Logged search API request with provenance
+    keywords:
+    - API request
+    - API call
+    - invocation
+    - audit
+    - logging
+    - provenance
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Specific to API request event tracking
+      custodian_types: "['*']"

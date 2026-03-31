@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: extracted_through
+# ==============================================================================
+# Links an entity to the process or tool used to extract it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property              | File/Line          | Mapping | Notes                                |
+# |------------|-----------------------|--------------------|---------|--------------------------------------|
+# | **PROV-O** | `prov:used`           | prov.ttl:1039-1053 | close   | "A prov:Entity that was used by this |
+# |            |                       |                    |         | prov:Activity" - Activity→Entity     |
+# |            |                       |                    |         | direction, not extraction-specific   |
+# | **PROV-O** | `prov:wasDerivedFrom` | prov.ttl:1099-1114 | close   | Derivation relationship              |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed mapping (prov:used is close, not exact), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/extracted_through
+name: extracted_through
+title: Extracted Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  extracted_through:
+    slot_uri: hc:extractedThrough
+    description: >-
+      To be obtained, isolated, or derived from a source material or dataset 
+      using a specific process, technique, or tool.
+    alt_descriptions:
+      nl: >-
+        Verkregen, geïsoleerd of afgeleid van een bronmateriaal of dataset 
+        met behulp van een specifiek proces, techniek of hulpmiddel.
+      de: >-
+        Aus einem Quellmaterial oder Datensatz unter Verwendung eines 
+        bestimmten Prozesses, einer Technik oder eines Werkzeugs gewonnen, 
+        isoliert oder abgeleitet zu werden.
+      fr: >-
+        Être obtenu, isolé ou dérivé d'un matériel source ou d'un ensemble 
+        de données en utilisant un processus, une technique ou un outil 
+        spécifique.
+      ar: >-
+        أن يتم الحصول عليه أو عزله أو اشتقاقه من مادة مصدر أو مجموعة 
+        بيانات باستخدام عملية أو تقنية أو أداة محددة.
+      id: >-
+        Diperoleh, diisolasi, atau diturunkan dari materi sumber atau 
+        kumpulan data menggunakan proses, teknik, atau alat tertentu.
+      zh: >-
+        使用特定过程、技术或工具从源材料或数据集中获取、分离或衍生。
+      es: >-
+        Ser obtenido, aislado o derivado de un material fuente o conjunto 
+        de datos utilizando un proceso, técnica o herramienta específica.
+    structured_aliases:
+      - literal_form: geëxtraheerd via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: extrahiert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: extrait via
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستخرج عبر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diekstrak melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...提取
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: extraído mediante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - prov:used  # prov.ttl:1039-1053 - Activity used Entity, not extraction-specific
+      - prov:wasDerivedFrom  # prov.ttl:1099-1114 - Derivation relationship
+    aliases:
+      - is_or_was_extracted_using
+      - extracted_using
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link extracted data, entities, or content 
+        to the extraction process, pipeline, or tool that produced them.
+      - |
+        **MAPPING NOTE**: `prov:used` describes what an Activity used (not what 
+        was extracted), so it is a close but not exact mapping. The extraction 
+        relationship is domain-specific.

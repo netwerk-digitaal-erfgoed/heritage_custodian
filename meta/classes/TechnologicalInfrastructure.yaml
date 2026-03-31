@@ -1,0 +1,131 @@
+id: https://nde.nl/ontology/hc/class/TechnologicalInfrastructure
+name: TechnologicalInfrastructure
+title: Technological Infrastructure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  doap: http://usefulinc.com/ns/doap#
+  spdx: http://spdx.org/rdf/terms#
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/has_version
+- ../slots/include
+default_prefix: hc
+classes:
+  TechnologicalInfrastructure:
+    class_uri: doap:Project
+    description: >-
+      Structured representation of software, hardware, or platform components supporting digital heritage systems.
+    alt_descriptions:
+      nl: Gestructureerde weergave van een technologiecomponent die in een digitaal platform wordt gebruikt.
+      de: Strukturierte Darstellung einer Technologiekomponente, die in einer digitalen Plattform verwendet wird.
+      fr: Représentation structurée d'un composant technologique utilisé dans une plateforme numérique.
+      es: 'Concepto para: Structured representation of software, hardware, or platform components supporting digital heritage systems.'
+      ar: 'مفهوم لـ: Structured representation of software, hardware, or platform components supporting digital heritage systems.'
+      id: 'Konsep untuk: Structured representation of software, hardware, or platform components supporting digital heritage systems.'
+      zh: 用于以下内容的概念：Structured representation of software, hardware, or platform components supporting digital heritage systems.
+    structured_aliases:
+    - literal_form: technologische infrastructuur
+      in_language: nl
+    - literal_form: technologische Infrastruktur
+      in_language: de
+    - literal_form: infrastructure technologique
+      in_language: fr
+    - literal_form: technological infrastructure
+      in_language: es
+    - literal_form: technological infrastructure
+      in_language: ar
+    - literal_form: technological infrastructure
+      in_language: id
+    - literal_form: technological infrastructure
+      in_language: zh
+    close_mappings:
+    - doap:Project
+    - schema:SoftwareApplication
+    related_mappings:
+    - spdx:Package
+    slots:
+    - identified_by
+    - has_type
+    - has_label
+    - has_description
+    - has_version
+    - include
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        examples:
+        - value: tech-react-18-frontend
+        - value: tech-postgresql-15-primary
+      has_type:
+        required: true
+        examples:
+        - value: FrontendFramework
+        - value: RelationalDatabase
+        - value: SPARQLEndpoint
+      has_label:
+        required: true
+        examples:
+        - value: React
+        - value: Python/Django
+        - value: Fedora Commons
+      has_description:
+        examples:
+        - value: Frontend JavaScript framework for collection browsing interface
+      has_version:
+        examples:
+        - value: 18.2.0
+        - value: 4.2 LTS
+        - value: '15.4'
+      include:
+        multivalued: true
+        examples:
+        - value: Django REST Framework
+        - value: React Router
+    comments:
+    - MIGRATION: Replaces technology_stack slot per slot_fixes.yaml (2026-01-16)
+    - DOAP-aligned for software project descriptions
+    - Enables structured technology discovery and comparison
+    - Supports version tracking for preservation planning
+    - Type classification via TechnologicalInfrastructureType hierarchy
+    - Component composition via include slot
+    examples:
+    - value:
+        identified_by: tech-react-18
+        has_type: FrontendFramework
+        has_label: React
+        has_version: 18.2.0
+        has_description: Frontend JavaScript library for collection interface
+    - value:
+        identified_by: tech-django-backend
+        has_type: BackendFramework
+        has_label: Python/Django
+        has_version: '4.2'
+        has_description: Backend web framework for API and admin
+        include:
+        - Django REST Framework
+        - Django ORM
+        - Celery
+    - value:
+        identified_by: tech-solr-search
+        has_type: SearchIndex
+        has_label: Apache Solr
+        has_version: '9.4'
+        has_description: Full-text search indexing for collection discovery
+    - value:
+        identified_by: tech-fedora-repo
+        has_type: DigitalRepositorySystem
+        has_label: Fedora Commons
+        has_version: '6.5'
+        has_description: Digital asset repository for preservation
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

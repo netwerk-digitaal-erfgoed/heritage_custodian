@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: installed_in
+# ==============================================================================
+# The enclosing system or facility where a component is set up and resides.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                        | File/Line                 | Mapping | Notes                                                   |
+# |----------------|---------------------------------|---------------------------|---------|---------------------------------------------------------|
+# | **Schema.org** | `schema:location`               | schemaorg.owl:25018-25043 | broad   | "Location of event/org/action"; any location, broader.  |
+# | **Schema.org** | `schema:containedInPlace`       | schemaorg.owl:12688-12714 | related | "Containment relation between places"; Place→Place,     |
+# |                |                                 |                           |         | spatial containment, not component in system.           |
+# | **CIDOC-CRM**  | `crm:P55_has_current_location`  | CIDOC:2549-2565           | related | "Current location of E19 Physical Object"; physical     |
+# |                |                                 |                           |         | object location, not installation in a system.          |
+#
+# No standard ontology defines "installed in" for components. Retains hc:installedIn.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/installed_in
+name: installed_in
+title: Installed In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  installed_in:
+    slot_uri: hc:installedIn
+    description: >-
+      Specifies the enclosing system, machine, software environment, or physical
+      facility where a component, application, or object is set up and resides.
+    alt_descriptions:
+      nl: >-
+        Specificeert het omsluitende systeem, de machine, softwareomgeving of
+        fysieke faciliteit waar een component, applicatie of object is
+        geïnstalleerd en zich bevindt.
+      de: >-
+        Gibt das umschließende System, die Maschine, Softwareumgebung oder
+        physische Einrichtung an, in der eine Komponente, Anwendung oder ein
+        Objekt eingerichtet ist und sich befindet.
+      fr: >-
+        Spécifie le système englobant, la machine, l'environnement logiciel ou
+        l'installation physique où un composant, une application ou un objet est
+        installé et réside.
+      ar: >-
+        يحدد النظام المحيط أو الآلة أو بيئة البرمجيات أو المنشأة المادية حيث
+        يتم تثبيت مكون أو تطبيق أو كائن ويتواجد فيه.
+      id: >-
+        Menentukan sistem, mesin, lingkungan perangkat lunak, atau fasilitas
+        fisik tempat komponen, aplikasi, atau objek dipasang dan berada.
+      zh: >-
+        指定组件、应用程序或对象安装并驻留其中的封闭系统、机器、软件环境或物理设施。
+      es: >-
+        Especifica el sistema envolvente, máquina, entorno de software o
+        instalación física donde un componente, aplicación u objeto está
+        instalado y reside.
+    structured_aliases:
+      - literal_form: Geïnstalleerd In
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Installiert In
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Installé Dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُثبَّت في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Dipasang Di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 安装于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Instalado En
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - schema:location               # schemaorg.owl:25018-25043 - "Location of event/org/action"; any location
+    related_mappings:
+      - schema:containedInPlace        # schemaorg.owl:12688-12714 - "Containment of places"; Place→Place only
+      - crm:P55_has_current_location   # CIDOC:2549-2565 - "Current location of Physical Object"
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - Links to CustodianPlace for precise location.
+      - 'Schema.org suggests: location for physical location (approximate only).'
+    aliases:
+      - installed_at_place

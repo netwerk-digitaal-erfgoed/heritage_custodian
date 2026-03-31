@@ -1,0 +1,144 @@
+# ==============================================================================
+# LinkML Slot Definition: assert
+# ==============================================================================
+# Stating a fact or belief with confidence to affirm its validity or existence.
+# Used for provenance and attribution contexts.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **CIDOC-CRM**| `crm:P140_assigned_attribute_to`| CIDOC_CRM| exact  | E13 assigns attribute to E1 Entity.      |
+# | **CIDOC-CRM**| `crm:P141_assigned`    | CIDOC_CRM         | close   | The value being assigned.                |
+# | **OA**       | `oa:hasBody`           | oa.ttl            | close   | Annotation content being asserted.       |
+# | **OA**       | `oa:hasTarget`         | oa.ttl            | close   | What the assertion is about.             |
+# | **PROV-O**   | `prov:wasAttributedTo` | prov.ttl          | related | Entity attributed to Agent.              |
+# | **Schema.org**| `schema:Claim`         | schemaorg.owl     | related | Factually-oriented claim class.          |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Changed slot_uri from hc:assert to crm:P140_assigned_attribute_to (exact mapping)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/assert
+name: assert
+title: assert
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  assert:
+    title: Assert
+    description: >-
+      To state a fact or belief with confidence to affirm its validity or existence.
+    alt_descriptions:
+      nl: >-
+        Een feit of overtuiging met vertrouwen uitspreken om de geldigheid
+        of het bestaan ervan te bevestigen.
+      de: >-
+        Eine Tatsache oder Überzeugung mit Zuversicht aussprechen, um ihre
+        Gültigkeit oder Existenz zu bestätigen.
+      fr: >-
+        Énoncer un fait ou une croyance avec confiance pour affirmer sa
+        validité ou son existence.
+      ar: >-
+        التصريح بحقيقة أو اعتقاد بثقة لتأكيد صحتها أو وجودها.
+      id: >-
+        Menyatakan fakta atau keyakinan dengan percaya diri untuk menegaskan
+        validitas atau keberadaannya.
+      zh: >-
+        自信地陈述事实或信念，以确认其有效性或存在。
+      es: >-
+        Afirmar un hecho o creencia con confianza para confirmar su validez
+        o existencia.
+    structured_aliases:
+      - literal_form: beweert
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_assert
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: behauptet
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: affirme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يؤكد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menegaskan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 断言
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: afirma
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    multivalued: true
+    slot_uri: crm:P140_assigned_attribute_to
+    inlined: false
+    # Semantic mappings (SKOS predicates)
+    # From: prov.ttl, CIDOC_CRM_v7.1.3.rdf, schemaorg.owl, oa.ttl, RiC-O_1-1.rdf
+    exact_mappings:
+    close_mappings:
+    - crm:P141_assigned               # CIDOC-CRM: E13 Attribute Assignment assigned (the value/range)
+    - oa:hasBody                      # oa.ttl: Annotation has body (the content being asserted)
+    - oa:hasTarget                    # oa.ttl: Annotation has target (what the assertion is about)
+    related_mappings:
+    - crm:E13_Attribute_Assignment    # CIDOC-CRM: Class - actions of making assertions about properties
+    - prov:Attribution                # prov.ttl: Class - ascribing entity to agent
+    - prov:wasAttributedTo            # prov.ttl: Entity was attributed to Agent
+    - oa:Annotation                   # oa.ttl: Class - Web Annotation (assertion container)
+    - oa:motivatedBy                  # oa.ttl: Annotation motivated by (purpose of assertion)
+    - oa:classifying                  # oa.ttl: Motivation - classify Target as something
+    - oa:identifying                  # oa.ttl: Motivation - assign identity to Target
+    - rico:describesOrDescribed       # RiC-O: RecordResource describes/described Thing
+    - schema:Claim                    # schemaorg.owl: Class - specific factually-oriented claim
+    - schema:Statement                # schemaorg.owl: Class - statement about something
+    - schema:mainEntity               # schemaorg.owl: CreativeWork's primary entity (what is being asserted about)
+    narrow_mappings:
+    - schema:interpretedAsClaim       # schemaorg.owl: MediaObject/CreativeWork interpreted as Claim
+    - crm:P177_assigned_property_of_type  # CIDOC-CRM: E13 Attribute Assignment assigned property of type E55 Type
+    broad_mappings:
+    - prov:influenced                 # prov.ttl: Activity/Entity/Agent influenced another
+    - dcterms:relation                # dcterms.rdf: Generic resource relation
+    aliases:
+    - asserts_or_asserted
+      - is_or_was_assert
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.2
+      specificity_rationale: Broadly applicable assertion predicate for provenance and attribution contexts.
+    comments:
+    - |
+      **SEMANTICS**: Uses RiC-O temporal pattern (is_or_was / has_or_had / asserts_or_asserted)
+      to capture assertions that may change over time. New evidence may modify or invalidate 
+      hypotheses. Historical assertions are preserved for audit trail.
+    - |
+      **ONTOLOGY NOTES**: The core semantic model for assertions is CIDOC-CRM's E13 Attribute Assignment,
+      which represents "actions of making assertions about one property of an object". P140 connects
+      the assignment to the entity being described (domain), P141 connects to the value being assigned (range).
+      Web Annotation (oa:) provides a flexible assertion model with oa:hasBody (the assertion content) 
+      and oa:hasTarget (what it's about). Note: prov:generated is NOT appropriate here as it represents
+      Activity-produces-Entity (creation), not epistemic claims.
+    - |
+      **USAGE**: 
+      - Link PrimaryDigitalPresenceAssertion to DigitalPresence (crm:P140)
+      - Link Annotation to asserted content (oa:hasBody)
+      - Link assertion to what it's about (oa:hasTarget)
+    - |
+      **RANGE**: Generic `uriorcurie` to support multiple assertion targets (Hypothesis, DigitalPresence).
+      Classes should narrow this via slot_usage.
+    examples:
+    - value: "assert:\n  - \"hypothesis:type_museum_art\"\n  - \"claim:primary_website\"\n"
+      description: Provenance record asserting hypotheses about institution type

@@ -1,0 +1,115 @@
+id: https://nde.nl/ontology/hc/class/BioCustodianSubtype
+name: bio_custodian_subtype_class
+title: Biological Custodian Subtype Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/equivalent_to
+default_prefix: hc
+classes:
+  BioCustodianSubtype:
+    class_uri: hc:BioCustodianSubtype
+    abstract: true
+    description: >-
+      Abstract base for fine-grained classification of biological/zoological custodians
+      derived from Wikidata entities. Covers botanical gardens, zoos, aquariums, etc.
+    alt_descriptions:
+      nl: >-
+        Abstracte basis voor gedetailleerde classificatie van biologische/zoölogische beheerders
+        afgeleid van Wikidata-entiteiten. Omvat botanische tuinen, dierentuinen, aquaria, etc.
+      de: >-
+        Abstrakte Basis für detaillierte Klassifizierung biologischer/zoologischer Kustoden
+        abgeleitet von Wikidata-Entitäten. Umfasst Botanische Gärten, Zoos, Aquarien usw.
+      fr: >-
+        Base abstraite pour la classification détaillée des dépositaires biologiques/zoologiques
+        dérivés des entités Wikidata. Couvre jardins botaniques, zoos, aquariums, etc.
+      es: >-
+        Base abstracta para clasificación detallada de custodios biológicos/zoológicos
+        derivados de entidades Wikidata. Cubre jardines botánicos, zoológicos, acuarios, etc.
+      ar: >-
+        أساس مجرد للتصنيف التفصيلي للقيمين البيولوجيين/الحيوانيين
+        المشتقة من كيانات ويكي بيانات. يغطي الحدائق النباتية وحدائق الحيوان والأحواض المائية وما إلى ذلك.
+      id: >-
+        Dasar abstrak untuk klasifikasi rinci kustodian biologis/zoologis
+        yang diturunkan dari entitas Wikidata. Mencakup kebun raya, kebun binatang, akuarium, dll.
+      zh: >-
+        从维基数据实体派生的生物/动物保管人详细分类的抽象基础。
+        涵盖植物园、动物园、水族馆等。
+    broad_mappings:
+      - skos:Concept
+      - schema:Enumeration
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+      - equivalent_to
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        examples:
+          - value: hc:BioCustodianSubtype/BOTANICAL_GARDEN
+          - value: hc:BioCustodianSubtype/ZOOLOGICAL_GARDEN
+      has_label:
+        required: true
+        examples:
+          - value: Botanical Garden
+          - value: Zoological Park
+          - value: Alpine Garden
+          - value: Safari Park
+      has_description:
+        required: false
+      equivalent_to:
+        required: false
+        range: WikiDataIdentifier
+    comments:
+      - Abstract base for subtype hierarchy
+      - Follows Type/Types naming convention (Rule 0b)
+      - Created during bio_custodian_subtype migration (Rule 53/56)
+      - Linked to BioCustodianTypeEnum for backward compatibility
+    see_also:
+      - https://www.wikidata.org/wiki/Q167346
+      - https://www.wikidata.org/wiki/Q43501
+      - https://www.wikidata.org/wiki/Q2281788
+    examples:
+      - value:
+          identified_by: hc:BioCustodianSubtype/BOTANICAL_GARDEN
+          has_label: Botanical Garden
+          equivalent_to:
+            - qid: Q167346
+        description: Standard botanical garden subtype
+    keywords:
+      - biological custodian
+      - subtype
+      - botanical garden
+      - zoo
+      - aquarium
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: biocustodian subtype
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: biologische beheerder subtype
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Biokustoden-Untertyp
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: sous-type de dépositaire biologique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: subtipo de custodio biológico
+        predicate: EXACT_SYNONYM
+        in_language: es

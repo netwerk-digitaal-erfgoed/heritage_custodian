@@ -1,0 +1,79 @@
+id: https://nde.nl/ontology/hc/class/TokenType
+name: token_type_class
+title: Token Type Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+default_prefix: hc
+classes:
+  TokenType:
+    class_uri: hc:TokenType
+    abstract: true
+    description: >-
+      Category for classifying discrete units used in computational processes, including authentication credentials, lexical elements, and service consumption metrics.
+    alt_descriptions:
+      nl: Categorie voor het classificeren van discrete eenheden die worden gebruikt in computationele processen.
+      de: Kategorie zur Klassifizierung diskreter Einheiten, die in Rechenprozessen verwendet werden.
+      fr: Catégorie pour classer les unités discrètes utilisées dans les processus informatiques.
+      es: Categoría para clasificar unidades discretas utilizadas en procesos computacionales.
+      ar: فئة لتصنيف الوحدات المنفصلة المستخدمة في العمليات الحسابية.
+      id: Kategori untuk mengklasifikasikan unit diskrit yang digunakan dalam proses komputasi.
+      zh: 用于分类计算过程中使用的离散单元的类别。
+    structured_aliases:
+    - literal_form: tokentype
+      in_language: nl
+    - literal_form: Tokentyp
+      in_language: de
+    - literal_form: type de jeton
+      in_language: fr
+    - literal_form: tipo de token
+      in_language: es
+    - literal_form: نوع التوكن
+      in_language: ar
+    - literal_form: tipe token
+      in_language: id
+    - literal_form: token 类型
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:Enumeration
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+#         range: string # uriorcurie
+        examples:
+        - value: hc:TokenType/INPUT
+      has_label:
+        required: true
+#         range: string
+        examples:
+        - value: Input Token
+        - value: Cached Token
+      has_description:
+        required: false
+#         range: string
+    comments:
+    - Abstract base class for TokenTypes hierarchy
+    - Follows Type/Types naming convention (Rule 0b)
+    - Created during cached_token migration (Rule 53/56)
+    see_also:
+    - https://platform.openai.com/docs/api-reference/chat/object#usage
+    - https://docs.z.ai/guides/capabilities/thinking-mode
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/class/LanguageProficiency
+name: LanguageProficiency
+title: Language Proficiency
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/LanguageProficiencyEnum
+- ../slots/has_score
+- ../slots/has_code
+- ../slots/has_label
+- ../slots/has_raw_data
+- ../slots/proficient_in
+classes:
+  LanguageProficiency:
+    class_uri: hc:LanguageProficiency
+    description: >-
+      Language skill statement combining language identity with a declared
+      proficiency level.
+    alt_descriptions:
+      nl: Vaardigheidsverklaring die taalidentiteit combineert met een aangegeven beheersingsniveau.
+      de: Sprachkompetenzangabe die Sprachidentitaet mit einem angegebenen Beherrschungsgrad kombiniert.
+      fr: Declaration de competence linguistique combinant l identite de la langue et un niveau de maitrise declare.
+      es: Declaracion de competencia linguistica que combina identidad del idioma con un nivel declarado de dominio.
+      ar: بيان كفاءة لغوية يجمع بين هوية اللغة ومستوى إتقان مُعلن.
+      id: Pernyataan kemampuan bahasa yang menggabungkan identitas bahasa dengan tingkat kemahiran yang dinyatakan.
+      zh: 将语言身份与声明的熟练程度结合的语言能力陈述。
+    structured_aliases:
+    - {literal_form: taalvaardigheid, in_language: nl}
+    - {literal_form: Sprachkompetenz, in_language: de}
+    - {literal_form: competence linguistique, in_language: fr}
+    - {literal_form: competencia linguistica, in_language: es}
+    - {literal_form: كفاءة لغوية, in_language: ar}
+    - {literal_form: kemahiran bahasa, in_language: id}
+    - {literal_form: 语言熟练度, in_language: zh}
+    slots:
+    - has_code
+    - has_label
+    - has_raw_data
+    - proficient_in
+    - has_score
+    slot_usage:
+      has_raw_data:
+        examples:
+        - value: English - Native or bilingual
+        - value: Dutch - Professional working proficiency
+      has_label:
+        examples:
+        - value: English
+        - value: Dutch
+        - value: French
+      has_code:
+        pattern: "^[a-z]{2}$"
+        examples:
+        - value: en
+        - value: nl
+        - value: fr
+      proficient_in:
+        range: LanguageProficiencyEnum
+        examples:
+        - value: NATIVE_BILINGUAL
+    close_mappings:
+    - schema:knowsLanguage
+    - dcterms:language
+    comments:
+    - Models language abilities as extracted from profile sources (e.g., LinkedIn language sections) and retains raw strings for provenance.
+    - Use has_label/has_code for parsed components; use has_raw_data to preserve original source phrasing.
+    see_also:
+    - https://schema.org/knowsLanguage
+    - https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+    examples:
+    - value:
+        has_raw_data: English - Native or bilingual
+        has_label: English
+        has_code: en
+        proficient_in: NATIVE_BILINGUAL
+    - value:
+        has_raw_data: French - Professional working proficiency
+        has_label: French
+        has_code: fr
+        proficient_in: PROFESSIONAL_WORKING
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "A language skill with proficiency level.\n\nModels language abilities as extracted from LinkedIn profiles,\nwith both raw string and parsed components.\n\n**Schema.org Alignment**:\n- Represents schema:knowsLanguage relation\n- Language is schema:Language\n\n**Use Cases**:\n- LinkedIn profile language sections\n- Multilingual staff identification\n- Heritage institution language capabilities\n\n**Example JSON Values**:\n```json\n[\n  \"English - Native or bilingual\",\n  \"Dutch - Native or bilingual\",\n  \"French - Professional working proficiency\"\n]\n```\n\n**LinkedIn Proficiency Levels**:\n- Native or bilingual proficiency\n- Full professional proficiency  \n- Professional working proficiency\n- Limited working proficiency\n- Elementary proficiency\n"
+    annotations:
+      specificity_score: 0.3
+      specificity_rationale: Person-profile skill statement used for staff capability and multilingual analysis.
+      custodian_types: "['*']"

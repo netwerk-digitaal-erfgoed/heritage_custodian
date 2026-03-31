@@ -1,0 +1,82 @@
+# ==============================================================================
+# LinkML Slot Definition: opiniate
+# ==============================================================================
+# Expression of a view, judgment, or belief regarding a subject or entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                         | File/Line              | Mapping  | Notes                                                      |
+# |---------------|----------------------------------|------------------------|----------|------------------------------------------------------------|
+# | **Schema.org**| `schema:review`                  | schemaorg.owl:33693-33718| related | "A review of the item." Structured evaluation, not general opinion. |
+# | **CIDOC-CRM** | `crm:P140_assigned_attribute_to` | CIDOC:4206-4219        | related  | "Associates an Attribute Assignment with the entity." Expert opinion model. |
+# | **OA**        | `oa:motivatedBy`                 | oa.ttl:312-317         | related  | "Relationship between an Annotation and a Motivation." Annotation domain. |
+#
+# NOTE: oa:assessing (oa.ttl:168-171) is a Motivation instance (CLASS), not a property — cannot be used as a mapping.
+# NOTE: prov:generated was previously listed but is incorrect (generation of entity ≠ expressing opinion).
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/opiniate
+name: opiniate
+title: Opiniate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  opiniate:
+    slot_uri: hc:opiniate
+    description: >-
+      To express a specific view, judgment, sentiment, or belief regarding a particular subject, topic, or entity.
+    alt_descriptions:
+      nl: >-
+        Het uiten van een specifieke mening, oordeel, sentiment of overtuiging met betrekking tot een bepaald onderwerp, thema of entiteit.
+      de: >-
+        Eine bestimmte Ansicht, ein Urteil, eine Stimmung oder eine Überzeugung in Bezug auf ein bestimmtes Thema, einen Gegenstand oder eine Entität zum Ausdruck bringen.
+      fr: >-
+        Exprimer une opinion, un jugement, un sentiment ou une conviction spécifique concernant un sujet, un thème ou une entité particulière.
+      ar: >-
+        التعبير عن رأي أو حكم أو شعور أو اعتقاد محدد بشأن موضوع أو مسألة أو كيان معين.
+      id: >-
+        Mengungkapkan pandangan, penilaian, sentimen, atau keyakinan tertentu mengenai subjek, topik, atau entitas tertentu.
+      zh: >-
+        就特定主题、话题或实体表达特定的观点、判断、情感或信念。
+      es: >-
+        Expresar una opinión, juicio, sentimiento o creencia específica con respecto a un tema, asunto o entidad particular.
+    structured_aliases:
+      - literal_form: Opinie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Meinung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Opinion
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: رأي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Opini
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 意见
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Opinión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - draws_or_drew_opinion
+    related_mappings:
+      - schema:review  # schemaorg.owl:33693-33718 - "A review of the item." Structured evaluation, not general opinion.
+      - crm:P140_assigned_attribute_to  # CIDOC:4206-4219 - "Associates an Attribute Assignment with the entity." Expert opinion model.
+      - oa:motivatedBy  # oa.ttl:312-317 - "Relationship between an Annotation and a Motivation." Annotation domain.

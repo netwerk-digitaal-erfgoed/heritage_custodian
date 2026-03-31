@@ -1,0 +1,132 @@
+# ==============================================================================
+# LinkML Slot Definition: collection_of
+# ==============================================================================
+# Links a collection to its owning custodian.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line              | Mapping | Notes                              |
+# |---------------|------------------------|------------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:isOrWasPartOf`   | RiC-O_1-1.rdf:14734-14770| exact | "Inverse of hasOrHadPart"          |
+# | **CIDOC-CRM** | `crm:P46i_forms_part_of`| CIDOC_CRM:2341-2352   | close   | "Forms part of" (physical things)  |
+# | **RiC-O**     | `rico:isOrWasIncludedIn`| RiC-O_1-1.rdf         | related | Inclusion relationship             |
+# | **Schema.org**| `schema:isPartOf`      | schemaorg.owl          | close   | Part-whole relationship            |
+# | **DC Terms**  | `dcterms:isPartOf`     | dcterms.rdf            | close   | Part of collection                 |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, cleaned description, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/collection_of
+name: collection_of
+title: Collection Of
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  collection_of:
+    slot_uri: rico:isOrWasPartOf
+    description: >-
+      The custodian, organization, or individual collector whose assembled
+      holdings or curated property this collection belongs to.
+    alt_descriptions:
+      nl: >-
+        De bewaarder, organisatie of individuele verzamelaar van wiens
+        verzamelde bezittingen of beheerde eigendom deze collectie deel uitmaakt.
+      de: >-
+        Der Verwahrer, die Organisation oder der einzelne Sammler, dessen
+        zusammengetragene Bestände oder kuratiertes Eigentum diese Sammlung gehört.
+      fr: >-
+        Le dépositaire, l'organisation ou le collectionneur individuel dont
+        les fonds rassemblés ou la propriété conservée constituent cette collection.
+      ar: >-
+        الحارس أو المنظمة أو الجامع الفردي الذي تنتمي إليه هذه المجموعة كجزء
+        من مقتنياته المجمعة أو ملكيته المنسقة.
+      id: >-
+        Penjaga, organisasi, atau kolektor individu yang memiliki koleksi ini
+        sebagai bagian dari kepemilikan yang dikumpulkan atau properti yang dikurasi.
+      zh: >-
+        此收藏所属的保管人、组织或个人收藏家的汇集馆藏或策展财产。
+      es: >-
+        El custodio, organización o coleccionista individual cuyos fondos
+        reunidos o propiedad curada comprende esta colección.
+    structured_aliases:
+      - literal_form: collectie van
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مجموعة من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 收藏属于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: colección de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - crm:P46i_forms_part_of  # CIDOC_CRM:2341-2352 - "Forms part of" (physical things)
+      - schema:isPartOf
+      - dcterms:isPartOf
+    related_mappings:
+      - rico:isOrWasIncludedIn
+    aliases:
+      - is_or_was_collection_of
+    annotations:
+      inverse_slot: has_or_had_collection
+      deprecates: collection_of
+      rico_pattern: isOrWasPartOf
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804"
+        description: Collection identifying its current custodian (Rijksmuseum)
+    comments:
+      - |
+        **TEMPORAL PATTERN**: Uses RiC-O `isOrWas*` pattern because collections
+        can be transferred between custodians over time. This property captures
+        both current and historical custody relationships.
+      - |
+        **METONYMIC REFERENCE**:
+        This property captures the common metonymic usage where people refer to 
+        a custodian by its collection:
+        - "The Rijksmuseum has a Rembrandt" (has_or_had_collection)
+        - "This painting belongs to the Rijksmuseum" (collection_of)
+      - |
+        **CUSTODY TRANSFER EXAMPLE**:
+        A collection transferred from Library A to Archive B would have:
+        - Historical: collection_of → Library A (with end date)
+        - Current: collection_of → Archive B (with start date)
+      - |
+        **INVERSE**: `has_or_had_collection` (rico:hasOrHadPart)
+        Pattern: If Custodian hasOrHadCollection Collection, then Collection 
+        isOrWasCollectionOf Custodian
+      - |
+        **MIGRATION NOTE (2026-02-03)**:
+        Migrated from is_or_was_collection_of for conciseness.

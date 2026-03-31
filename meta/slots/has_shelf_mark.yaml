@@ -1,0 +1,123 @@
+# ==============================================================================
+# LinkML Slot Definition: has_shelf_mark
+# ==============================================================================
+# Unique alphanumeric code indicating an item's physical location in a storage
+# facility, library, or archive.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                 | File/Line                        | Mapping  | Notes                                                              |
+# |-------------|--------------------------|----------------------------------|----------|--------------------------------------------------------------------|
+# | **HC**      | `hc:hasShelfMark`        | —                                | slot_uri | Custom heritage-custodian property for shelf marks.                |
+# | **BIBFRAME**| `bf:shelfMark`           | bibframe.rdf:2350-2356           | close    | "Piece identifier, such as a call or other type of number."        |
+# |             |                          |                                  |          | Same concept but BIBFRAME constrains domain to bf:Item and range   |
+# |             |                          |                                  |          | to bf:ShelfMark class; our slot is broader (any custodian object,  |
+# |             |                          |                                  |          | string range, covers archives/museums not just libraries).         |
+# | **Schema**  | `schema:identifier`      | schemaorg.owl:21325-21346        | broad    | "The identifier property represents any kind of identifier for     |
+# |             |                          |                                  |          | any kind of Thing." Much broader than shelf marks.                 |
+# | **CIDOC**   | `crm:P1_is_identified_by`| CIDOC_CRM_v7.1.3.rdf:1172-1187  | broad    | "The naming or identification of any real-world item by a name or  |
+# |             |                          |                                  |          | any other identifier." CRM Entity→Appellation. Very broad but      |
+# |             |                          |                                  |          | culturally relevant for heritage collections.                      |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_shelf_mark
+name: has_shelf_mark
+title: Has Shelf Mark
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_shelf_mark:
+    slot_uri: hc:hasShelfMark
+    description: >-
+      The unique alphanumeric code that indicates the specific physical location
+      of an item within a storage facility, library, or archive. Shelf marks
+      (also known as call numbers, pressmarks, or location codes) are essential
+      for retrieval and inventory management in heritage custodian institutions.
+      They may follow standardised classification schemes such as DDC or LCC,
+      or be institution-specific codes reflecting local shelving arrangements.
+    alt_descriptions:
+      nl: >-
+        De unieke alfanumerieke code die de specifieke fysieke locatie van een
+        item aangeeft binnen een opslagfaciliteit, bibliotheek of archief.
+      de: >-
+        Der eindeutige alphanumerische Code, der den spezifischen physischen
+        Standort eines Objekts in einer Aufbewahrungseinrichtung, Bibliothek
+        oder einem Archiv angibt.
+      fr: >-
+        Le code alphanumérique unique qui indique l'emplacement physique
+        spécifique d'un article dans une installation de stockage, une
+        bibliothèque ou une archive.
+      ar: >-
+        الرمز الأبجدي الرقمي الفريد الذي يشير إلى الموقع المادي المحدد
+        لعنصر داخل مرفق تخزين أو مكتبة أو أرشيف.
+      id: >-
+        Kode alfanumerik unik yang menunjukkan lokasi fisik spesifik suatu
+        item dalam fasilitas penyimpanan, perpustakaan, atau arsip.
+      zh: >-
+        唯一的字母数字代码，用于标识存储设施、图书馆或档案馆中物品的
+        具体物理位置。
+      es: >-
+        El código alfanumérico único que indica la ubicación física específica
+        de un elemento dentro de una instalación de almacenamiento, biblioteca
+        o archivo.
+    structured_aliases:
+      - literal_form: plaatskenmerk
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Signatur
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: cote de rangement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: رقم الرف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: tanda rak
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 架标号
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: signatura topográfica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - bf:shelfMark  # bibframe.rdf:2350-2356 - "Piece identifier, such as a call or other type of number." Same concept but BIBFRAME constrains domain to bf:Item and range to bf:ShelfMark class.
+    broad_mappings:
+      - schema:identifier  # schemaorg.owl:21325-21346 - "The identifier property represents any kind of identifier for any kind of Thing."
+      - crm:P1_is_identified_by  # CIDOC_CRM_v7.1.3.rdf:1172-1187 - "The naming or identification of any real-world item by a name or any other identifier."
+    aliases:
+      - shelf_number
+      - shelf_mark
+    examples:
+      - value: "A-1234-5678"
+        description: "A location code in a national archive's storage facility."
+      - value: "823.912 WOO"
+        description: "A Dewey Decimal Classification shelf mark for a library book."
+      - value: "Depot 3, Kast 12, Plank 4"
+        description: "A Dutch museum's internal shelf location code for an object in storage."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        BIBFRAME provides bf:shelfMark (bibframe.rdf:2350-2356) with subclasses
+        ShelfMarkDdc, ShelfMarkLcc, ShelfMarkUdc, and ShelfMarkNlm for specific
+        classification systems. Our slot uses a plain string range to accommodate
+        the wide variety of marking schemes across archives, libraries, and museums.
+      - >-
+        Shelf marks may also be called call numbers, pressmarks, location codes,
+        or placement marks depending on institution type and local convention.
+      - >-
+        In Dutch heritage institutions, the term 'plaatskenmerk' or 'signatuur'
+        is commonly used for this concept.

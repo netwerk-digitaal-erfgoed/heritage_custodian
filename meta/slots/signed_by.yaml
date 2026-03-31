@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: signed_by
+# ==============================================================================
+# Identifies the person who signed a record or legal document.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property / Class                     | File/Line                    | Mapping  | Notes                                                                                     |
+# |----------------|--------------------------------------|------------------------------|----------|-------------------------------------------------------------------------------------------|
+# | **RiC-O**      | `rico:hasAuthor`                     | RiC-O_1-1.rdf:3705-3772     | related  | ObjectProperty. Record→Person/Group/Position. scopeNote: "Includes the Person who signed   |
+# |                |                                      |                              |          | the Record." Our slot stores a name string, not an entity reference.                       |
+# | **RiC-O**      | `rico:AuthorshipRelation`            | RiC-O_1-1.rdf:24448-24548   | related  | Class. scopeNote mentions "the person who signed the record" and roles like notary/scribe. |
+# | **Schema.org** | `schema:legislationCountersignedBy`  | schemaorg.owl:24357-24360    | narrow   | ObjectProperty. Legislation→Person/Organization. Narrower: legislation countersigning only. |
+#
+# CREATED: 2026-02-10
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/signed_by
+name: signed_by
+title: Signed By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  signed_by:
+    slot_uri: hc:signedBy
+    description: >-
+      Identifies the individual who affixed a signature or mark to a document,
+      deed, or record to attest authorship, consent, or authenticity. In the
+      heritage custodian context this typically records the name of the notary
+      or official who signed a founding deed, charter, or similar legal
+      instrument (e.g. a Dutch notarial deed for a stichting or BV).
+    alt_descriptions:
+      nl: >-
+        Naam van de persoon die een document, akte of record heeft ondertekend
+        ter bevestiging van auteurschap, instemming of authenticiteit.
+      de: >-
+        Name der Person, die ein Dokument, eine Urkunde oder einen Datensatz
+        unterzeichnet hat, um Urheberschaft, Zustimmung oder Echtheit zu
+        bestätigen.
+      fr: >-
+        Nom de la personne qui a signé un document, un acte ou un enregistrement
+        pour attester la paternité, le consentement ou l'authenticité.
+      ar: >-
+        اسم الشخص الذي وقّع على وثيقة أو سجل لإثبات التأليف أو الموافقة أو
+        الأصالة.
+      id: >-
+        Nama orang yang menandatangani dokumen, akta, atau catatan untuk
+        membuktikan kepenulisan, persetujuan, atau keaslian.
+      zh: >-
+        签署文件、契约或记录以证明作者身份、同意或真实性的个人姓名。
+      es: >-
+        Nombre de la persona que firmó un documento, escritura o registro para
+        atestiguar la autoría, el consentimiento o la autenticidad.
+    structured_aliases:
+      - literal_form: ondertekend door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: unterzeichnet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: signé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موقع من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ditandatangani oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 签署人
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: firmado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    related_mappings:
+      - rico:hasAuthor  # RiC-O_1-1.rdf:3705-3772 - "Includes the Person who signed the Record" (scopeNote). Object property Record→Agent; our slot stores a name string.
+    narrow_mappings:
+      - schema:legislationCountersignedBy  # schemaorg.owl:24357-24360 - "The person or organization that countersigned the legislation." Narrower: legislation-specific countersigning only.
+    aliases:
+      - notary_name
+    examples:
+      - value: "Mr. J. van den Berg"
+        description: >-
+          Name of the notary who signed the founding deed of a Dutch stichting.
+      - value: "Notaris A.C. de Vries"
+        description: >-
+          Notary who signed the deed of incorporation for a heritage foundation.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Stores the name of the signer as a plain string. For structured
+        person references, use a dedicated Person class or entity link instead.
+      - >-
+        In Dutch heritage practice, notarial deeds (notariële akten) are
+        required for establishing foundations (stichtingen) and companies (BV).
+        The notary name is a key provenance attribute of these founding documents.
+      - >-
+        RiC-O's AuthorshipRelation class (RiC-O_1-1.rdf:24448-24548) explicitly
+        mentions roles such as notary, scribe, and secretary in its scopeNote,
+        confirming the archival relevance of recording the signer identity.

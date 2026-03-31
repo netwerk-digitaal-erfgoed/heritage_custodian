@@ -1,0 +1,482 @@
+id: https://nde.nl/ontology/hc/class/DataServiceEndpointTypes
+name: data_service_endpoint_types
+title: Data Service Endpoint Types Collection
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  schema: http://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- ./DataServiceEndpointType
+- linkml:types
+- ../metadata
+- ../slots/has_format
+- ../slots/has_method
+- ../slots/has_score
+- ../slots/has_specification
+classes:
+  SRUEndpoint:
+    is_a: DataServiceEndpointType
+    class_uri: hc:SRUEndpoint
+    description: Search/Retrieve via URL service interface classification.
+    alt_descriptions:
+      nl: Service-interface voor zoeken/ophalen via URL-classificatie.
+      de: Search/Retrieve via URL Service-Interface-Klassifikation.
+      fr: Classification d'interface de service de recherche/récupération via URL.
+      es: Clasificación de interfaz de servicio de búsqueda/recuperación vía URL.
+      ar: تصنيف واجهة خدمة البحث/الاسترجاع عبر عنوان الويب.
+      id: Klasifikasi antarmuka layanan pencarian/pengambilan melalui URL.
+      zh: 通过URL进行搜索/检索的服务接口分类。
+    structured_aliases:
+    - literal_form: SRU-eindpunt
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: SRU-Endpunkt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: point de terminaison SRU
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: punto final SRU
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نقطة نهاية SRU
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: titik akhir SRU
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: SRU端点
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - SRU
+    - search retrieve
+    - library protocol
+    - CQL
+    - federated search
+    slot_usage:
+      has_specification:
+        ifabsent: uri(http://www.loc.gov/standards/sru/)
+      has_format:
+        ifabsent: string(application/xml)
+      has_method:
+        ifabsent: string(GET)
+    comments:
+    - Library-focused search protocol - successor to Z39.50
+    - Uses CQL (Contextual Query Language)
+    - 'Preserved from prior description: Classification for SRU (Search/Retrieve via URL) endpoints. **Protocol**: SRU/SRW **Purpose**: Library search and retrieval **Standard**: http://www.loc.gov/standards/sru/ **Heritage Sector Usage**: SRU is the successor to Z39.50, commonly used by: - Library union catalogs (WorldCat, GBV) - National library portals - Federated library search **Query Language**: CQL (Contextual Query Language)'
+    slots:
+    - has_score
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+  OpenSearch:
+    is_a: DataServiceEndpointType
+    class_uri: hc:OpenSearch
+    description: Federated search-description and result-discovery interface classification.
+    alt_descriptions:
+      nl: Federatieve zoekbeschrijving- en resultaat-ontdekking interface-classificatie.
+      de: Föderierte Suchbeschreibungs- und Ergebnisentdeckungs-Schnittstellenklassifikation.
+      fr: Classification d'interface de description de recherche fédérée et de découverte de résultats.
+      es: Clasificación de interfaz de descripción de búsqueda federada y descubrimiento de resultados.
+      ar: تصنيف واجهة وصف البحث الموحد واكتشاف النتائج.
+      id: Klasifikasi antarmuka deskripsi pencarian terfederasi dan penemuan hasil.
+      zh: 联合搜索描述和结果发现接口分类。
+    structured_aliases:
+    - literal_form: OpenSearch-eindpunt
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: OpenSearch-Endpunkt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: point de terminaison OpenSearch
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: punto final OpenSearch
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نقطة نهاية البحث المفتوح
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: titik akhir OpenSearch
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 开放搜索端点
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - OpenSearch
+    - federated search
+    - RSS
+    - Atom
+    - browser integration
+    slot_usage:
+      has_specification:
+        ifabsent: uri(https://opensearch.org/)
+      has_format:
+        any_of:
+        - equals_string: application/opensearchdescription+xml
+        - equals_string: application/atom+xml
+        - equals_string: application/rss+xml
+      has_method:
+        ifabsent: string(GET)
+    comments:
+    - Federated search standard - browser integration support
+    - 'Preserved from prior description: Classification for OpenSearch endpoints. **Protocol**: OpenSearch **Purpose**: Federated search description and results **Standard**: https://opensearch.org/ **Heritage Sector Usage**: OpenSearch enables federated search across multiple sources: - Browser search integration - Cross-repository discovery - Search suggestions **Components**: Description document, RSS/Atom results'
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+  IIIFImageAPI:
+    is_a: DataServiceEndpointType
+    class_uri: hc:IIIFImageAPI
+    description: IIIF image-delivery interface classification for parameterized image access.
+    alt_descriptions:
+      nl: IIIF-beeldleveringsinterface-classificatie voor geparametriseerde beeldtoegang.
+      de: IIIF-Bildlieferungs-Schnittstellenklassifikation für parametrisierten Bildzugriff.
+      fr: Classification d'interface de livraison d'images IIIF pour l'accès paramétré aux images.
+      es: Clasificación de interfaz de entrega de imágenes IIIF para acceso parametrizado a imágenes.
+      ar: تصنيف واجهة تسليم صور IIIF للوصول المُعلم للصور.
+      id: Klasifikasi antarmuka pengiriman gambar IIIF untuk akses gambar terparameter.
+      zh: 用于参数化图像访问的IIIF图像交付接口分类。
+    structured_aliases:
+    - literal_form: IIIF-beeld-API
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: IIIF-Bild-API
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: API d'image IIIF
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: API de imagen IIIF
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: واجهة برمجة صور IIIF
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: API gambar IIIF
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: IIIF图像API
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - IIIF
+    - image API
+    - image delivery
+    - interoperability
+    - deep zoom
+    slot_usage:
+      has_specification:
+        ifabsent: uri(https://iiif.io/api/image/)
+      has_format:
+        any_of:
+        - equals_string: image/jpeg
+        - equals_string: image/png
+        - equals_string: image/tiff
+        - equals_string: image/webp
+      has_method:
+        ifabsent: string(GET)
+    comments:
+    - International Image Interoperability Framework - Image API
+    - Global standard for heritage image delivery
+    - 'Preserved from prior description: Classification for IIIF Image API endpoints. **Protocol**: IIIF Image API **Purpose**: Standardized image manipulation and delivery **Standard**: https://iiif.io/api/image/ **Heritage Sector Usage**: IIIF Image API enables interoperable image access: - Region extraction - Size scaling - Rotation - Format conversion - Quality selection **Widely adopted** by museums, libraries, archives worldwide. **Versions**: 2.1, 3.0'
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+  IIIFPresentationAPI:
+    is_a: DataServiceEndpointType
+    class_uri: hc:IIIFPresentationAPI
+    description: IIIF manifest and structure-description interface classification.
+    alt_descriptions:
+      nl: IIIF-manifest en structuur-beschrijving interface-classificatie.
+      de: IIIF-Manifest- und Strukturbeschreibungs-Schnittstellenklassifikation.
+      fr: Classification d'interface de manifeste IIIF et de description de structure.
+      es: Clasificación de interfaz de manifiesto IIIF y descripción de estructura.
+      ar: تصنيف واجهة بيان IIIF ووصف الهيكل.
+      id: Klasifikasi antarmuka manifes IIIF dan deskripsi struktur.
+      zh: IIIF清单和结构描述接口分类。
+    structured_aliases:
+    - literal_form: IIIF-presentatie-API
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: IIIF-Präsentations-API
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: API de présentation IIIF
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: API de presentación IIIF
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: واجهة برمجة عرض IIIF
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: API presentasi IIIF
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: IIIF呈现API
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - IIIF
+    - presentation API
+    - manifest
+    - digital object
+    - viewer
+    slot_usage:
+      has_specification:
+        ifabsent: uri(https://iiif.io/api/presentation/)
+      has_format:
+        ifabsent: string(application/ld+json)
+      has_method:
+        ifabsent: string(GET)
+    comments:
+    - International Image Interoperability Framework - Presentation API
+    - Manifests describe object structure for viewers
+    - 'Preserved from prior description: Classification for IIIF Presentation API endpoints. **Protocol**: IIIF Presentation API **Purpose**: Describe structure and layout of digital objects **Standard**: https://iiif.io/api/presentation/ **Heritage Sector Usage**: IIIF Presentation API delivers manifests describing: - Multi-page documents (books, manuscripts) - Image sequences - Annotations - Structural metadata **Viewers**: Mirador, Universal Viewer, Tify **Versions**: 2.1, 3.0'
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+  SPARQLEndpoint:
+    is_a: DataServiceEndpointType
+    class_uri: hc:SPARQLEndpoint
+    description: SPARQL query-service interface classification for RDF graph access.
+    alt_descriptions:
+      nl: SPARQL-query-service interface-classificatie voor RDF-graaf toegang.
+      de: SPARQL-Abfragedienst-Schnittstellenklassifikation für RDF-Graph-Zugriff.
+      fr: Classification d'interface de service de requête SPARQL pour l'accès aux graphes RDF.
+      es: Clasificación de interfaz de servicio de consulta SPARQL para acceso a grafos RDF.
+      ar: تصنيف واجهة خدمة استعلام SPARQL للوصول إلى الرسوم البيانية RDF.
+      id: Klasifikasi antarmuka layanan kueri SPARQL untuk akses graf RDF.
+      zh: 用于RDF图访问的SPARQL查询服务接口分类。
+    structured_aliases:
+    - literal_form: SPARQL-eindpunt
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: SPARQL-Endpunkt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: point de terminaison SPARQL
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: punto final SPARQL
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نقطة نهاية SPARQL
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: titik akhir SPARQL
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: SPARQL端点
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - SPARQL
+    - query service
+    - RDF
+    - linked data
+    - knowledge graph
+    slot_usage:
+      has_specification:
+        ifabsent: uri(https://www.w3.org/TR/sparql11-protocol/)
+      has_format:
+        any_of:
+        - equals_string: application/sparql-results+json
+        - equals_string: application/sparql-results+xml
+        - equals_string: text/turtle
+      has_method:
+        any_of:
+        - equals_string: GET
+        - equals_string: POST
+    comments:
+    - W3C standard for querying RDF graphs
+    - Foundation of Linked Open Data infrastructure
+    - 'Preserved from prior description: Classification for SPARQL Protocol endpoints. **Protocol**: SPARQL 1.1 **Purpose**: Query RDF triple stores / knowledge graphs **Standard**: https://www.w3.org/TR/sparql11-protocol/ **Heritage Sector Usage**: SPARQL endpoints enable linked data queries: - Europeana SPARQL endpoint - Wikidata Query Service - Getty vocabularies - NDE Termennetwerk **Query Types**: SELECT, CONSTRUCT, ASK, DESCRIBE'
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+  GraphQLEndpoint:
+    is_a: DataServiceEndpointType
+    class_uri: hc:GraphQLEndpoint
+    description: Graph query-language service interface classification.
+    alt_descriptions:
+      nl: Grafische query-taal service-interface-classificatie.
+      de: Graph-Abfragesprachen-Service-Interface-Klassifikation.
+      fr: Classification d'interface de service de langage de requête de graphe.
+      es: Clasificación de interfaz de servicio de lenguaje de consulta de grafos.
+      ar: تصنيف واجهة خدمة لغة استعلام الرسوم البيانية.
+      id: Klasifikasi antarmuka layanan bahasa kueri graf.
+      zh: 图查询语言服务接口分类。
+    structured_aliases:
+    - literal_form: GraphQL-eindpunt
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: GraphQL-Endpunkt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: point de terminaison GraphQL
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: punto final GraphQL
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نقطة نهاية GraphQL
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: titik akhir GraphQL
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: GraphQL端点
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - GraphQL
+    - graph query
+    - API
+    - flexible query
+    - introspection
+    slot_usage:
+      has_specification:
+        ifabsent: uri(https://graphql.org/)
+      has_format:
+        ifabsent: string(application/json)
+      has_method:
+        ifabsent: string(POST)
+    comments:
+    - Modern API query language - growing adoption in GLAM
+    - Alternative to REST for complex data requirements
+    - 'Preserved from prior description: Classification for GraphQL API endpoints. **Protocol**: GraphQL **Purpose**: Flexible query language for APIs **Standard**: https://graphql.org/ **Heritage Sector Usage**: GraphQL adoption growing in heritage sector: - Flexible data retrieval (request exactly what you need) - Single endpoint for complex queries - Strong typing and introspection **Examples**: Some modern museum APIs, Europeana experiments'
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+  AtomFeed:
+    is_a: DataServiceEndpointType
+    class_uri: hc:AtomFeed
+    description: Atom syndication-feed service interface classification.
+    alt_descriptions:
+      nl: Atom-syndicatie-feed service-interface-classificatie.
+      de: Atom-Syndication-Feed-Service-Interface-Klassifikation.
+      fr: Classification d'interface de service de flux de syndication Atom.
+      es: Clasificación de interfaz de servicio de fuente de sindicación Atom.
+      ar: تصنيف واجهة خدمة خلاصة توزيع آtom.
+      id: Klasifikasi antarmuka layanan umpan sindikasi Atom.
+      zh: Atom聚合源服务接口分类。
+    structured_aliases:
+    - literal_form: Atom-feed
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Atom-Feed
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: flux Atom
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fuente Atom
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: خلاصة آtom
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: umpan Atom
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: Atom源
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - Atom
+    - syndication
+    - feed
+    - content distribution
+    - updates
+    slot_usage:
+      has_specification:
+        ifabsent: uri(https://www.rfc-editor.org/rfc/rfc4287)
+      has_format:
+        ifabsent: string(application/atom+xml)
+      has_method:
+        ifabsent: string(GET)
+    comments:
+    - IETF standard for content syndication
+    - More structured than RSS - supports namespaces
+    - 'Preserved from prior description: Classification for Atom feed endpoints. **Protocol**: Atom Syndication Format **Purpose**: Content syndication and updates **Standard**: https://www.rfc-editor.org/rfc/rfc4287 **Heritage Sector Usage**: Atom feeds used for: - New acquisitions announcements - Collection update notifications - Blog/news syndication - Activity streams'
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+  RSSFeed:
+    is_a: DataServiceEndpointType
+    class_uri: hc:RSSFeed
+    description: RSS syndication-feed service interface classification.
+    alt_descriptions:
+      nl: RSS-syndicatie-feed service-interface-classificatie.
+      de: RSS-Syndication-Feed-Service-Interface-Klassifikation.
+      fr: Classification d'interface de service de flux de syndication RSS.
+      es: Clasificación de interfaz de servicio de fuente de sindicación RSS.
+      ar: تصنيف واجهة خدمة خلاصة توزيع RSS.
+      id: Klasifikasi antarmuka layanan umpan sindikasi RSS.
+      zh: RSS聚合源服务接口分类。
+    structured_aliases:
+    - literal_form: RSS-feed
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: RSS-Feed
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: flux RSS
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fuente RSS
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: خلاصة RSS
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: umpan RSS
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: RSS源
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - RSS
+    - syndication
+    - feed
+    - news
+    - content distribution
+    slot_usage:
+      has_format:
+        ifabsent: string(application/rss+xml)
+      has_method:
+        ifabsent: string(GET)
+    comments:
+    - Legacy syndication format - still widely supported
+    - Simpler than Atom but less extensible
+    - 'Preserved from prior description: Classification for RSS feed endpoints. **Protocol**: RSS (Really Simple Syndication) **Purpose**: Content syndication **Versions**: RSS 2.0 most common **Heritage Sector Usage**: RSS feeds used for: - News and announcements - Event listings - Exhibition updates     - Blog syndication'
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+

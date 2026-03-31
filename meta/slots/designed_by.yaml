@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: designed_by
+# ==============================================================================
+# Agent responsible for conceiving or planning aesthetic/functional specifications.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                           |
+# |---------------|-----------------------|----------------------|---------|-------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P14_carried_out_by`| CIDOC:1489-1503    | close   | "Active participation of Actor in Activity."    |
+# | **PROV-O**    | `prov:wasAttributedTo`| prov.ttl:1082-1097   | close   | General attribution to an agent.                |
+#
+# NOTE: Previous exact_mapping to schema:designer is INVALID - schema:designer 
+# does not exist in schemaorg.owl. crm:P14_carried_out_by is about activity 
+# participation (broader than design specifically).
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, REMOVED invalid schema:designer mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/designed_by
+name: designed_by
+title: Designed By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  designed_by:
+    slot_uri: hc:designedBy
+    description: >-
+      To be conceived, planned, or fashioned by a specific agent responsible for 
+      the aesthetic, functional, or structural specifications.
+    alt_descriptions:
+      nl: >-
+        Ontworpen, gepland of vormgegeven door een specifieke agent die verantwoordelijk 
+        is voor de esthetische, functionele of structurele specificaties.
+      de: >-
+        Entworfen, geplant oder gestaltet von einem spezifischen Akteur, der für 
+        die ästhetischen, funktionalen oder strukturellen Spezifikationen 
+        verantwortlich ist.
+      fr: >-
+        Être conçu, planifié ou façonné par un agent spécifique responsable des 
+        spécifications esthétiques, fonctionnelles ou structurelles.
+      ar: >-
+        أن يتم تصميمه أو تخطيطه أو تشكيله من قبل وكيل محدد مسؤول عن 
+        المواصفات الجمالية أو الوظيفية أو الهيكلية.
+      id: >-
+        Dirancang, direncanakan, atau dibentuk oleh agen tertentu yang bertanggung 
+        jawab atas spesifikasi estetika, fungsional, atau struktural.
+      zh: >-
+        由负责美学、功能或结构规格的特定代理人构思、规划或设计。
+      es: >-
+        Ser concebido, planificado o diseñado por un agente específico responsable 
+        de las especificaciones estéticas, funcionales o estructurales.
+    structured_aliases:
+      - literal_form: ontworpen door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: entworfen von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: conçu par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مصمم من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dirancang oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 设计者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: diseñado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - is_or_was_designed_by
+    close_mappings:
+      - crm:P14_carried_out_by  # CIDOC:1489-1503 - actor participation in activity
+      - prov:wasAttributedTo  # prov.ttl:1082-1097 - general attribution
+    comments:
+      - |
+        **USAGE**: Use to identify the architect, designer, or planner responsible 
+        for the design of buildings, exhibits, systems, or other designed artifacts.
+      - |
+        **NOTE**: Previous exact_mapping to schema:designer was removed as this 
+        property does not exist in Schema.org ontology (verified 2026-02-03).
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Person/PierreCuypers"
+        description: "Building designed by Pierre Cuypers (architect of Rijksmuseum)"

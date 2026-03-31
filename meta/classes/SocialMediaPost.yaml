@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/SocialMediaPost
+name: SocialMediaPost
+title: Social Media Post
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  as: https://www.w3.org/ns/activitystreams#
+default_prefix: hc
+imports:
+- linkml:types
+- ./SocialMediaContent
+classes:
+  SocialMediaPost:
+    is_a: SocialMediaContent
+    class_uri: as:Object
+    description: >-
+      Individual content item published on a social networking platform for public or community engagement.
+    alt_descriptions:
+      nl: >-
+        Individuele inhoud gepubliceerd op een sociaalnetwerkplatform voor publieke of gemeenschapsbetrokkenheid.
+      de: >-
+        Einzelnes Inhaltelement, das auf einer Social-Networking-Plattform für öffentliches oder gemeinschaftliches Engagement veröffentlicht wurde.
+      fr: >-
+        Élément de contenu individuel publié sur une plateforme de réseau social pour l'engagement public ou communautaire.
+      es: >-
+        Elemento de contenido individual publicado en una plataforma de redes sociales para participación pública o comunitaria.
+      ar: >-
+        عنصر محتوى فردي منشور على منصة شبكة اجتماعية للمشاركة العامة أو المجتمعية.
+      id: >-
+        Item konten individual yang diterbitkan di platform jejaring sosial untuk keterlibatan publik atau komunitas.
+      zh: >-
+        在社交网络平台上发布的用于公众或社区参与的个人内容项目。
+    structured_aliases:
+    - literal_form: socialmedia-bericht
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Social-Media-Beitrag
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: publication sur réseaux sociaux
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: publicación en redes sociales
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: منشور وسائل التواصل
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: posting media sosial
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 社交媒体帖子
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - as:Object
+    close_mappings:
+    - schema:CreativeWork
+    - crm:E73_Information_Object
+    related_mappings:
+    - schema:SocialMediaPosting
+    - dcterms:BibliographicResource
+    comments:
+    - Concrete subclass of SocialMediaContent for representing individual posts.
+    - A single post can combine multiple media formats; classify with SocialMediaPostType concepts (see SocialMediaPostTypes.yaml).
+    - Ordering convention (if multiple types are recorded): first type is the primary/dominant format.
+    - Engagement metrics are observational; always include retrieval timestamps when harvesting.
+    - 'Preserved from prior description: Social media content item published on a platform.'
+    keywords:
+    - social content
+    - platform publication
+    - community engagement
+    - social networking
+    examples:
+    - value:
+        has_label: Exhibition Announcement
+      description: Museum social media post about new exhibition
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

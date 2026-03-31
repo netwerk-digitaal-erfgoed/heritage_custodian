@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: has_latitude
+# ==============================================================================
+# Specifies the north-south geographic coordinate of a point on Earth's surface.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property           | File/Line                | Mapping | Notes                                                          |
+# |----------------|--------------------|--------------------------|---------|----------------------------------------------------------------|
+# | **Schema.org** | `schema:latitude`  | schemaorg.owl:24036-24058 | close   | "The latitude of a location." Domain: GeoCoordinates/Place.    |
+# | **WGS84**      | `wgs84:lat`        | wgs84_pos.rdf:143-147    | close   | "The WGS84 latitude of a SpatialThing (decimal degrees)."      |
+# | **GeoSPARQL**  | `geo:hasGeometry`  | geo.ttl:320-343          | broad   | "A spatial representation for a given Feature." Full geometry, not single coordinate. |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_latitude
+name: has_latitude
+title: Has Latitude
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  wgs84: http://www.w3.org/2003/01/geo/wgs84_pos#
+  geo: http://www.opengis.net/ont/geosparql#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_latitude:
+    slot_uri: hc:hasLatitude
+    description: >-
+      Specifies the geographic coordinate that represents the north-south position
+      of a point on the Earth's surface, ranging from 0° at the Equator to 90°
+      at the poles.
+    alt_descriptions:
+      nl: >-
+        Specificeert de geografische coördinaat die de noord-zuidpositie van een
+        punt op het aardoppervlak aangeeft, variërend van 0° op de evenaar tot
+        90° bij de polen.
+      de: >-
+        Gibt die geografische Koordinate an, die die Nord-Süd-Position eines Punktes
+        auf der Erdoberfläche darstellt, von 0° am Äquator bis 90° an den Polen.
+      fr: >-
+        Spécifie la coordonnée géographique qui représente la position nord-sud
+        d'un point à la surface de la Terre, allant de 0° à l'équateur à 90°
+        aux pôles.
+      ar: >-
+        يحدد الإحداثي الجغرافي الذي يمثل الموقع شمالاً-جنوباً لنقطة على سطح
+        الأرض، ويتراوح من 0° عند خط الاستواء إلى 90° عند القطبين.
+      id: >-
+        Menentukan koordinat geografis yang mewakili posisi utara-selatan suatu
+        titik di permukaan bumi, berkisar dari 0° di khatulistiwa hingga 90°
+        di kutub.
+      zh: >-
+        指定表示地球表面某一点南北位置的地理坐标，范围从赤道的0°到两极的90°。
+      es: >-
+        Especifica la coordenada geográfica que representa la posición norte-sur
+        de un punto en la superficie terrestre, que varía de 0° en el ecuador a
+        90° en los polos.
+    structured_aliases:
+      - literal_form: Breedtegraad
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Breitengrad
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Latitude
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خط العرض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Garis Lintang
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 纬度
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Latitud
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    required: false
+    comments:
+      - WGS84 datum (standard GPS coordinate system).
+      - 'Example: 52.3600 (Amsterdam), 40.7128 (New York), -33.8688 (Sydney).'
+    close_mappings:
+      - schema:latitude  # schemaorg.owl:24036-24058 — "The latitude of a location." Domain: GeoCoordinates/Place.
+      - wgs84:lat  # wgs84_pos.rdf:143-147 — "The WGS84 latitude of a SpatialThing (decimal degrees)."
+    broad_mappings:
+      - geo:hasGeometry  # geo.ttl:320-343 — "A spatial representation for a given Feature." Full geometry object, not a single coordinate.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - latitude

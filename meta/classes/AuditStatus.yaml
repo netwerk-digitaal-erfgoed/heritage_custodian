@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/AuditStatus
+name: AuditStatus
+title: Audit Status
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/has_description
+classes:
+  AuditStatus:
+    class_uri: hc:AuditStatus
+    description: >-
+      Status of an audit process.
+
+      Represents the current state of an audit workflow, tracking whether  an audit is planned, in progress, completed, or has issues requiring  attention.
+    alt_descriptions:
+      nl: Status van een auditproces.
+      de: Status eines Prüfungsprozesses.
+      fr: État d'un processus d'audit.
+      es: Estado de un proceso de auditoría.
+      ar: حالة عملية التدقيق.
+      id: Status proses audit.
+      zh: 审计流程的状态。
+    examples:
+    - value:
+        has_label: Audit Completed
+        has_type: AuditedStatus
+      description: Audit has been completed successfully
+    - value:
+        has_label: Not Audited
+        has_type: UnauditedStatus
+      description: No audit has been performed
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    structured_aliases:
+    - literal_form: auditstatus
+      in_language: nl
+    - literal_form: Prüfungsstatus
+      in_language: de
+    - literal_form: statut d'audit
+      in_language: fr
+    - literal_form: estado de auditoría
+      in_language: es
+    - literal_form: حالة التدقيق
+      in_language: ar
+    - literal_form: status audit
+      in_language: id
+    - literal_form: 审计状态
+      in_language: zh
+    keywords:
+    - audit status
+    - audit state
+    - compliance status
+    - financial review
+    slots:
+    - has_label
+    - has_type
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Audit Completed
+        - value: Not Audited
+      has_type:
+        required: false
+    annotations:
+      specificity_score: "0.30"
+      specificity_rationale: "AuditStatus is moderately specific to organizational compliance workflows."
+      custodian_types: "['*']"
+    comments:
+    - Represents the current state of an audit workflow
+    - Links to AuditStatusType for classification
+    see_also:
+    - AuditStatusType
+    - AuditStatusTypes
+    - Audit

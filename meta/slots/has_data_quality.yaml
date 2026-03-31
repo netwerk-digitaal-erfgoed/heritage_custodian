@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_data_quality
+# ==============================================================================
+# Metrics or standards regarding accuracy, completeness, consistency,
+# reliability, and timeliness of the data.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line            | Mapping  | Notes                              |
+# |---------------|--------------------------------|----------------------|----------|------------------------------------|
+# | **DQV**       | `dqv:hasQualityMeasurement`    | dqv.ttl:157-161      | related  | "Refers to the performed quality measurements" — dataset-oriented, expects QualityMeasurement instances |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, cleaned description, added DQV as related
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_data_quality
+name: has_data_quality
+title: Has Data Quality
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_data_quality:
+    slot_uri: hc:hasDataQuality
+    description: >-
+      To possess or be evaluated against specific metrics or standards regarding accuracy, completeness, consistency, reliability, and timeliness of the data.
+    alt_descriptions:
+      nl: >-
+        Beschikken over of worden geëvalueerd aan de hand van specifieke metrieken of standaarden met betrekking tot nauwkeurigheid, volledigheid, consistentie, betrouwbaarheid en tijdigheid van de gegevens.
+      de: >-
+        Über bestimmte Metriken oder Standards hinsichtlich Genauigkeit, Vollständigkeit, Konsistenz, Zuverlässigkeit und Aktualität der Daten verfügen oder daran gemessen werden.
+      fr: >-
+        Posséder ou être évalué selon des métriques ou des normes spécifiques concernant l'exactitude, l'exhaustivité, la cohérence, la fiabilité et l'actualité des données.
+      ar: >-
+        امتلاك أو تقييم وفقًا لمقاييس أو معايير محددة تتعلق بدقة البيانات واكتمالها واتساقها وموثوقيتها وحداثتها.
+      id: >-
+        Memiliki atau dievaluasi berdasarkan metrik atau standar tertentu terkait akurasi, kelengkapan, konsistensi, keandalan, dan ketepatan waktu data.
+      zh: >-
+        拥有或根据数据的准确性、完整性、一致性、可靠性和及时性方面的特定指标或标准进行评估。
+      es: >-
+        Poseer o ser evaluado según métricas o estándares específicos relativos a la precisión, integridad, consistencia, fiabilidad y oportunidad de los datos.
+    structured_aliases:
+      - literal_form: heeft datakwaliteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Datenqualität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une qualité de données
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه جودة بيانات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki kualitas data
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有数据质量
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene calidad de datos
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_data_quality_notes
+      - has_data_quality_notes
+    related_mappings:
+      - dqv:hasQualityMeasurement  # dqv.ttl:157-161 - "Refers to the performed quality measurements" — dataset-oriented
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_data_quality_notes for conciseness.
+      - |
+        **USAGE**: Note slot_uri was previously hc:hasDataQualityNotes; normalized to hc:hasDataQuality
+        to match the slot name.
+    annotations:
+      custodian_types: '["*"]'

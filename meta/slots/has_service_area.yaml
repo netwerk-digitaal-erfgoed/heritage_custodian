@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: has_service_area
+# ==============================================================================
+# The geographic region where a service is provided or operative.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line               | Mapping | Notes                                                |
+# |---------------|---------------------------|-------------------------|---------|------------------------------------------------------|
+# | **Schema.org**| `schema:areaServed`       | schemaorg.owl:8403-8426  | close   | "The geographic area where a service or offered item is provided." Commercial/offer focus.|
+# | **W3C Org**   | `org:hasSite`             | org.rdf:492-509          | related | "Site at which the Organization has some presence." Site ≠ service area.|
+# | **RiC-O**     | `rico:hasOrHadLocation`   | RiC-O_1-1.rdf:6852-6880 | broad   | "Has or had location." Broader than service area.     |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_service_area
+name: has_service_area
+title: Has Service Area
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_service_area:
+    slot_uri: hc:hasServiceArea
+    description: >-
+      To specify the geographic region, territory, or location where a service is provided,
+      available, or operative.
+    comments:
+      - "Links to ServiceArea class which models the 'werkgebied' (operational territory) of heritage custodians."
+      - "MIGRATED from branch_service_area (Rule 53): Changed from string to ServiceArea class for richer geographic modeling."
+      - "MIGRATED 2026-02-03 from has_or_had_service_area for conciseness."
+    alt_descriptions:
+      nl: >-
+        Om het geografische gebied, territorium of de locatie aan te geven waar een dienst
+        wordt verleend, beschikbaar is of operationeel is.
+      de: >-
+        Um die geografische Region, das Gebiet oder den Standort anzugeben, in dem ein
+        Dienst angeboten, verfügbar oder operativ ist.
+      fr: >-
+        Pour spécifier la région géographique, le territoire ou l'emplacement où un service
+        est fourni, disponible ou opérationnel.
+      ar: >-
+        لتحديد المنطقة الجغرافية أو الإقليم أو الموقع الذي يتم فيه تقديم الخدمة أو
+        توفرها أو تشغيلها.
+      id: >-
+        Untuk menentukan wilayah geografis, teritorial, atau lokasi tempat layanan disediakan,
+        tersedia, atau beroperasi.
+      zh: >-
+        用于指定提供、可用或运营服务的地理区域、领土或位置。
+      es: >-
+        Para especificar la región geográfica, territorio o ubicación donde un servicio
+        se presta, está disponible u opera.
+    structured_aliases:
+      - literal_form: Werkgebied
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Einzugsgebiet
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Zone de service
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منطقة الخدمة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Wilayah Layanan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 服务区域
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Área de servicio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+    - has_or_had_service_area
+    - coverage_area
+    - service_area
+    close_mappings:
+    - schema:areaServed  # schemaorg.owl:8403-8426 - "The geographic area where a service or offered item is provided." Commercial/offer focus.
+    related_mappings:
+    - org:hasSite  # org.rdf:492-509 - "Site at which the Organization has some presence." Site ≠ service area.
+    broad_mappings:
+    - rico:hasOrHadLocation  # RiC-O_1-1.rdf:6852-6880 - "Has or had location." Broader than service area.
+    annotations:
+      custodian_types: '["A", "L", "M", "O", "R"]'

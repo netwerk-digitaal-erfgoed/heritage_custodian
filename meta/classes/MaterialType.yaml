@@ -1,0 +1,170 @@
+id: https://nde.nl/ontology/hc/class/MaterialType
+name: MaterialType
+title: Material Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  aat: http://vocab.getty.edu/aat/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/has_score
+classes:
+  MaterialType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomic concept for categorizing physical substances based on composition and preservation characteristics.
+    alt_descriptions:
+      nl: >-
+        Abstract taxonomisch concept voor het categoriseren van fysieke stoffen op basis van
+        samenstelling en conserveringseigenschappen.
+      de: >-
+        Abstraktes taxonomisches Konzept zur Kategorisierung physischer Substanzen basierend auf
+        Zusammensetzung und Erhaltungseigenschaften.
+      fr: >-
+        Concept taxonomique abstrait pour catégoriser les substances physiques en fonction de
+        leur composition et de leurs caractéristiques de conservation.
+      es: >-
+        Concepto taxonómico abstracto para categorizar sustancias físicas según su composición
+        y características de conservación.
+      ar: >-
+        مفهوم تصنيفي تجريدي لتصنيف المواد الفيزيائية بناءً على التركيب وخصائص الحفظ.
+      id: >-
+        Konsep taksonomi abstrak untuk mengkategorikan zat fisik berdasarkan komposisi
+        dan karakteristik pelestarian.
+      zh: >-
+        用于根据成分和保护特性对物理物质进行分类的抽象分类概念。
+    structured_aliases:
+    - literal_form: materiaalsoort
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Materialart
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: type de matériau
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: tipo de material
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نوع المادة
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: tipe bahan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 材料类型
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E55_Type
+    - aat:300010358
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      has_hypernym:
+        range: MaterialType
+      has_hyponym:
+        range: MaterialType
+        multivalued: true
+        inlined_as_list: true
+    examples:
+    - value: |
+        Material (individual material instance)
+        │
+        └── has_type → MaterialType (THIS CLASS)
+              ├── has_hypernym → MaterialType (parent)
+              └── has_hyponym → MaterialType[] (children)
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      Abstract base class for material type classifications in heritage preservation.
+
+      **DEFINITION**:
+
+      MaterialType provides a SKOS-based classification hierarchy for categorizing
+      physical materials used in heritage objects. This enables structured organization
+      of materials by their fundamental properties and preservation requirements.
+
+      **CATEGORY STRUCTURE**:
+
+      Material types are organized by fundamental composition:
+
+      1. **ORGANIC MATERIALS**: Plant and animal-derived substances
+         - Paper, parchment, vellum, leather
+         - Wood, textiles (cotton, linen, silk, wool)
+         - Adhesives (animal glue, starch)
+
+      2. **SYNTHETIC MATERIALS**: Man-made polymers and compounds
+         - Plastics (cellulose nitrate, acetate, polyester)
+         - Film bases
+         - Synthetic textiles (nylon, polyester)
+
+      3. **METAL MATERIALS**: Metallic substances
+         - Bronze, iron, silver, gold, copper
+         - Alloys
+
+      4. **CERAMIC MATERIALS**: Fired clay and glass
+         - Pottery, porcelain, stoneware
+         - Glass, enamel
+
+      5. **COMPOSITE MATERIALS**: Multi-material objects
+         - Photographs (paper + silver gelatin)
+         - Paintings (canvas + paint + varnish)
+
+      **PRESERVATION SIGNIFICANCE**:
+
+      Material type classification directly informs:
+      - Environmental storage requirements (temperature, humidity, light)
+      - Conservation treatment options
+      - Handling protocols
+      - Risk assessment (inherent vice, chemical instability)
+
+      **ONTOLOGY ALIGNMENT**:
+
+      - **SKOS Concept**: Type classification vocabulary
+      - **AAT Materials Hierarchy**: Getty AAT alignment (aat:300010358)
+      - **CIDOC-CRM E57_Material**: Material as substance type
+
+      **RELATIONSHIP TO OTHER CLASSES**:
+
+
+
+      **SUBCLASSES**:
+
+      See MaterialTypes.yaml for concrete material type subclasses:
+      - OrganicMaterial
+      - SyntheticMaterial
+      - MetalMaterial
+      - CeramicMaterial
+      - GlassMaterial
+      - CompositeMaterial
+    annotations:
+      specificity_score: 0.55
+      specificity_rationale: Hierarchical material-type taxonomy for conservation decision support.
+      custodian_types: '["*"]'
+    comments:
+    - 'Preserved from prior description: Abstract material classification concept used for preservation-oriented typing.'

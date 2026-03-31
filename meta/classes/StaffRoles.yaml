@@ -1,0 +1,740 @@
+id: https://nde.nl/ontology/hc/class/StaffRoles
+name: staff_roles
+title: Staff Role Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_score
+- ../slots/categorized_as
+classes:
+  Curator:
+    is_a: StaffRole
+    description: >-
+      Professional role responsible for research, acquisition strategy, and
+      interpretive presentation of holdings.
+    alt_descriptions:
+      nl: >-
+        Professionele rol die verantwoordelijk is voor onderzoek,
+        verwervingsstrategie en interpretatieve presentatie van collecties.
+      de: >-
+        Berufsrolle mit Verantwortung für Forschung, Erwerbsstrategie und
+        interpretative Präsentation von Beständen.
+      fr: >-
+        Rôle professionnel responsable de la recherche, de la stratégie
+        d'acquisition et de la présentation interprétative des fonds.
+      es: >-
+        Rol profesional responsable de investigación, estrategia de adquisición
+        y presentación interpretativa de los fondos.
+      ar: >-
+        دور مهني مسؤول عن البحث واستراتيجية الاقتناء والعرض التفسيري
+        للمقتنيات.
+      id: >-
+        Peran profesional yang bertanggung jawab atas riset, strategi
+        akuisisi, dan penyajian interpretatif koleksi.
+      zh: >-
+        负责藏品研究、征集策略与诠释展示的专业岗位。
+    close_mappings:
+    - wd:Q674426
+    structured_aliases:
+    - literal_form: collectiecurator
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Kurator
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: conservateur de collection
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: curador de colecciones
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: أمين مقتنيات
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: kurator koleksi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 馆藏策展岗位
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Covers scholarly stewardship, acquisition planning, and interpretive framing.
+    - Preserved scope detail: includes exhibition development responsibilities.
+    - 'Preserved from prior description: Curator responsible for collections research, acquisition, and exhibitions.'
+    keywords:
+    - collection research
+    - acquisition strategy
+    - interpretive presentation
+    - stewardship role
+    examples:
+    - value:
+        has_score: 0.94
+      description: Staff role assignment used for curatorial responsibility modeling.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(CURATORIAL)
+    slots:
+    - has_score
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  CollectionsManager:
+    is_a: StaffRole
+    description: >-
+      Operational role responsible for registration control, catalog integrity,
+      loan logistics, and storage governance.
+    alt_descriptions:
+      nl: >-
+        Operationele rol die verantwoordelijk is voor registratiebeheer,
+        catalogusintegriteit, uitleenlogistiek en depotbeheer.
+      de: >-
+        Operative Rolle mit Verantwortung für Registratursteuerung,
+        Katalogintegrität, Leihverkehrslogistik und Magazinverwaltung.
+      fr: >-
+        Rôle opérationnel responsable du contrôle de l'enregistrement, de
+        l'intégrité du catalogue, de la logistique des prêts et de la gestion
+        des réserves.
+      es: >-
+        Rol operativo responsable del control de registro, la integridad del
+        catálogo, la logística de préstamos y la gestión de almacenamiento.
+      ar: >-
+        دور تشغيلي مسؤول عن ضبط التسجيل وسلامة الفهرس ولوجستيات الإعارة
+        وحوكمة التخزين.
+      id: >-
+        Peran operasional yang bertanggung jawab atas kendali registrasi,
+        integritas katalog, logistik pinjaman, dan tata kelola penyimpanan.
+      zh: >-
+        负责登记管控、目录完整性、借展物流与库藏治理的运营岗位。
+    close_mappings:
+    - wd:Q136462760
+    structured_aliases:
+    - literal_form: collectiebeheerder
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlungsmanager
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: gestionnaire de collection
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: gestor de colecciones
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مسؤول إدارة المقتنيات
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: manajer koleksi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 馆藏管理岗位
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    slot_usage:
+      categorized_as:
+        ifabsent: string(CURATORIAL)
+    slots:
+    - has_score
+    comments:
+    - 'Preserved from prior description: Collections manager handling registration, cataloging, loans, and storage.'
+  Conservator:
+    is_a: StaffRole
+    description: >-
+      Conservator specializing in preservation and restoration of heritage
+      objects.
+    close_mappings:
+    - wd:Q446966
+    slot_usage:
+      categorized_as:
+        ifabsent: string(CONSERVATION)
+    slots:
+    - has_score
+  Archivist:
+    is_a: StaffRole
+    description: >-
+      Archivist managing archival collections, appraisal, arrangement, and
+      description.
+    close_mappings:
+    - wd:Q635734
+    slot_usage:
+      categorized_as:
+        ifabsent: string(ARCHIVAL)
+    slots:
+    - has_score
+  RecordsManager:
+    is_a: StaffRole
+    description: >-
+      Records manager handling institutional records management and
+      retention.
+    close_mappings:
+    - wd:Q3499285
+    slot_usage:
+      categorized_as:
+        ifabsent: string(ARCHIVAL)
+    slots:
+    - has_score
+  Librarian:
+    is_a: StaffRole
+    description: >-
+      Librarian managing library collections, cataloging, and reference
+      services.
+    close_mappings:
+    - wd:Q182436
+    slot_usage:
+      categorized_as:
+        ifabsent: string(LIBRARY)
+    slots:
+    - has_score
+  DigitalPreservationSpecialist:
+    is_a: StaffRole
+    description: >-
+      Specialist in long-term preservation of digital collections.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  DigitizationSpecialist:
+    is_a: StaffRole
+    description: >-
+      Specialist in digitization workflows, imaging, and quality control.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  DataManager:
+    is_a: StaffRole
+    description: >-
+      Data manager handling collections data, metadata, and information
+      systems.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  Educator:
+    is_a: StaffRole
+    description: >-
+      Educator designing and delivering educational programs.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EDUCATION)
+    slots:
+    - has_score
+  PublicEngagementSpecialist:
+    is_a: StaffRole
+    description: >-
+      Specialist in community engagement, outreach, and accessibility.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EDUCATION)
+    slots:
+    - has_score
+  Director:
+    is_a: StaffRole
+    description: >-
+      Executive director or institutional director (top leadership).
+    close_mappings:
+    - wd:Q1162163
+    slot_usage:
+      categorized_as:
+        ifabsent: string(LEADERSHIP)
+    slots:
+    - has_score
+  DeputyDirector:
+    is_a: StaffRole
+    description: >-
+      Deputy director or assistant director (senior leadership).
+    slot_usage:
+      categorized_as:
+        ifabsent: string(LEADERSHIP)
+    slots:
+    - has_score
+  DepartmentHead:
+    is_a: StaffRole
+    description: >-
+      Head of department or division (middle management).
+    slot_usage:
+      categorized_as:
+        ifabsent: string(LEADERSHIP)
+    slots:
+    - has_score
+  Chairperson:
+    is_a: StaffRole
+    description: >-
+      Chairperson presiding over board meetings and representing the
+      organization.
+    close_mappings:
+    - wd:Q140686
+    slot_usage:
+      categorized_as:
+        ifabsent: string(GOVERNANCE)
+    slots:
+    - has_score
+  ViceChairperson:
+    is_a: StaffRole
+    description: >-
+      Vice chairperson supporting the chair and presiding in their absence.
+    close_mappings:
+    - wd:Q42178
+    slot_usage:
+      categorized_as:
+        ifabsent: string(GOVERNANCE)
+    slots:
+    - has_score
+  Secretary:
+    is_a: StaffRole
+    description: >-
+      Secretary managing organizational records, correspondence, and meeting
+      minutes.
+    close_mappings:
+    - wd:Q80687
+    slot_usage:
+      categorized_as:
+        ifabsent: string(GOVERNANCE)
+    slots:
+    - has_score
+  Treasurer:
+    is_a: StaffRole
+    description: >-
+      Treasurer managing organizational finances and financial reporting.
+    close_mappings:
+    - wd:Q388338
+    slot_usage:
+      categorized_as:
+        ifabsent: string(GOVERNANCE)
+    slots:
+    - has_score
+  BoardMember:
+    is_a: StaffRole
+    description: >-
+      Board member serving on governing board without specific officer role.
+    close_mappings:
+    - wd:Q2824523
+    slot_usage:
+      categorized_as:
+        ifabsent: string(GOVERNANCE)
+    slots:
+    - has_score
+  Researcher:
+    is_a: StaffRole
+    description: >-
+      Researcher conducting scholarly research on collections.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(RESEARCH)
+    slots:
+    - has_score
+  ResearcherInResidence:
+    is_a: StaffRole
+    description: >-
+      Researcher in residence - visiting scholar with temporary affiliation.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(RESEARCH)
+    slots:
+    - has_score
+  Historian:
+    is_a: StaffRole
+    description: >-
+      Historian conducting historical research and documentation for the
+      organization.
+    close_mappings:
+    - wd:Q201788
+    slot_usage:
+      categorized_as:
+        ifabsent: string(RESEARCH)
+    slots:
+    - has_score
+  Genealogist:
+    is_a: StaffRole
+    description: >-
+      Genealogist specializing in family history and lineage research.
+    close_mappings:
+    - wd:Q8963721
+    slot_usage:
+      categorized_as:
+        ifabsent: string(RESEARCH)
+    slots:
+    - has_score
+  OralHistorian:
+    is_a: StaffRole
+    description: >-
+      Oral historian collecting and preserving spoken testimonies and
+      memories.
+    close_mappings:
+    - wd:Q56885785
+    slot_usage:
+      categorized_as:
+        ifabsent: string(RESEARCH)
+    slots:
+    - has_score
+  FacilitiesManager:
+    is_a: StaffRole
+    description: >-
+      Facilities manager overseeing buildings, climate control, and
+      security.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(TECHNICAL)
+    slots:
+    - has_score
+  ITSpecialist:
+    is_a: StaffRole
+    description: >-
+      IT specialist managing technical infrastructure and systems.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(TECHNICAL)
+    slots:
+    - has_score
+  SecurityGuard:
+    is_a: StaffRole
+    description: >-
+      Security guard providing facility and collection security.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  Janitor:
+    is_a: StaffRole
+    description: >-
+      Janitor providing building maintenance and minor repairs.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  Cleaner:
+    is_a: StaffRole
+    description: >-
+      Cleaner providing facility cleaning services.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  Volunteer:
+    is_a: StaffRole
+    description: >-
+      Volunteer providing unpaid assistance to the institution.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score
+  DataEngineer:
+    is_a: StaffRole
+    description: >-
+      Data engineer building and maintaining data infrastructure.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  DataScientist:
+    is_a: StaffRole
+    description: >-
+      Data scientist applying statistical and ML methods to heritage data.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  DataAnalyst:
+    is_a: StaffRole
+    description: >-
+      Data analyst providing reporting and business intelligence.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  EnterpriseArchitect:
+    is_a: StaffRole
+    description: >-
+      Enterprise has_architect designing organizational IT architecture.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(TECHNICAL)
+    slots:
+    - has_score
+  ProductOwner:
+    is_a: StaffRole
+    description: >-
+      Product owner managing digital product development priorities.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  Caterer:
+    is_a: StaffRole
+    description: Food-service role supporting institutional catering and cafe operations.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  DepotWorker:
+    is_a: StaffRole
+    description: >-
+      Depot worker handling collection storage and movement.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  HumanResourcesWorker:
+    is_a: StaffRole
+    description: >-
+      Human resources worker managing personnel administration.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  MapSpecialist:
+    is_a: StaffRole
+    description: >-
+      Map specialist with expertise in cartographic collections.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(LIBRARY)
+    slots:
+    - has_score
+  FrontendDeveloper:
+    is_a: StaffRole
+    description: >-
+      Frontend developer creating user interfaces for digital platforms.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(TECHNICAL)
+    slots:
+    - has_score
+  BackendDeveloper:
+    is_a: StaffRole
+    description: >-
+      Backend developer building server-side applications and APIs.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(TECHNICAL)
+    slots:
+    - has_score
+  ArtistInResidence:
+    is_a: StaffRole
+    description: >-
+      Artist in residence creating new work inspired by collections.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(CREATIVE)
+    slots:
+    - has_score
+  Spokesperson:
+    is_a: StaffRole
+    description: >-
+      Spokesperson representing the institution to media and public.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EDUCATION)
+    slots:
+    - has_score
+  Receptionist:
+    is_a: StaffRole
+    description: >-
+      Receptionist providing front-desk visitor services.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  CallCenterWorker:
+    is_a: StaffRole
+    description: >-
+      Call center worker handling telephone inquiries.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  Host:
+    is_a: StaffRole
+    description: >-
+      Host providing visitor welcome and orientation services.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  TourGuide:
+    is_a: StaffRole
+    description: >-
+      Tour guide leading visitors through exhibitions, sites, or
+      collections.
+    close_mappings:
+    - wd:Q1039099
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  Consultant:
+    is_a: StaffRole
+    description: >-
+      Consultant providing external expertise on specific projects.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score
+  LegalConsultant:
+    is_a: StaffRole
+    description: >-
+      Legal consultant providing external legal expertise.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score
+  Lawyer:
+    is_a: StaffRole
+    description: >-
+      Lawyer providing in-house or external legal services.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score
+  Translator:
+    is_a: StaffRole
+    description: >-
+      Translator providing language translation services.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score
+  Gardener:
+    is_a: StaffRole
+    description: >-
+      Gardener maintaining grounds and gardens.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  Waiter:
+    is_a: StaffRole
+    description: Frontline hospitality role providing table and visitor-facing service.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  UXDesigner:
+    is_a: StaffRole
+    description: >-
+      UX designer creating user experiences for digital products.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  DevOpsEngineer:
+    is_a: StaffRole
+    description: >-
+      DevOps engineer managing deployment and infrastructure automation.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(TECHNICAL)
+    slots:
+    - has_score
+  ScrumMaster:
+    is_a: StaffRole
+    description: >-
+      Scrum master facilitating agile development processes.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  MLOpsEngineer:
+    is_a: StaffRole
+    description: >-
+      MLOps engineer managing machine learning operations.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  MLEngineer:
+    is_a: StaffRole
+    description: >-
+      Machine learning engineer developing ML models and systems.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  LinkedDataSpecialist:
+    is_a: StaffRole
+    description: >-
+      Linked data specialist managing semantic web and LOD initiatives.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(DIGITAL)
+    slots:
+    - has_score
+  InternationalDelegate:
+    is_a: StaffRole
+    description: Representative role for international partnerships, forums, and cultural exchange.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score
+  CooperativeManager:
+    is_a: StaffRole
+    description: Operational leadership role managing cooperative heritage organizations.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(LEADERSHIP)
+    slots:
+    - has_score
+  MembershipCoordinator:
+    is_a: StaffRole
+    description: >-
+      Coordinator managing membership administration and engagement.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(SUPPORT)
+    slots:
+    - has_score
+  NewsletterEditor:
+    is_a: StaffRole
+    description: >-
+      Editor producing newsletters and regular publications for members.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score
+  EventCoordinator:
+    is_a: StaffRole
+    description: Coordination role for planning and delivering institutional events and programs.
+    slot_usage:
+      categorized_as:
+        ifabsent: string(EXTERNAL)
+    slots:
+    - has_score

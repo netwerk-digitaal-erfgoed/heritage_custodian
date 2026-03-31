@@ -1,0 +1,119 @@
+id: https://w3id.org/nde/ontology/SchoolArchive
+name: SchoolArchive
+title: School Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  SchoolArchive:
+    description: >-
+      Organizational memory unit within a teaching institution that governs
+      long-term documentary custody, access controls, and accountability support
+      for educational operations.
+    alt_descriptions:
+      nl: >-
+        Organisatorische geheugeneenheid binnen een onderwijsinstelling die
+        langetermijnbewaring, toegangscontrole en verantwoordingsondersteuning
+        voor onderwijsprocessen beheert.
+      de: >-
+        Organisatorische Gedächtniseinheit innerhalb einer Bildungseinrichtung,
+        die langfristige Dokumentverwahrung, Zugangskontrolle und
+        Rechenschaftsunterstützung für Bildungsabläufe steuert.
+      fr: >-
+        Unité de mémoire organisationnelle au sein d'un établissement
+        d'enseignement qui gère la conservation documentaire à long terme, les
+        contrôles d'accès et l'appui à la responsabilité des activités
+        éducatives.
+      es: >-
+        Unidad de memoria organizacional dentro de una institución educativa
+        que gestiona custodia documental a largo plazo, controles de acceso y
+        apoyo a la rendición de cuentas de operaciones educativas.
+      ar: >-
+        وحدة ذاكرة تنظيمية داخل مؤسسة تعليمية تدير الحفظ الوثائقي طويل الأمد
+        وضوابط الوصول ودعم المساءلة للعمليات التعليمية.
+      id: >-
+        Unit memori organisasi di dalam lembaga pendidikan yang mengelola
+        kustodi dokumenter jangka panjang, kontrol akses, dan dukungan
+        akuntabilitas untuk operasi pendidikan.
+      zh: >-
+        教学机构内部的组织记忆单元，负责教育业务文档的长期保管、访问控制与问责支持。
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - wd:Q27030883
+    broad_mappings:
+    - wd:Q166118
+    - skos:Concept
+    slot_usage:
+      identified_by:
+    annotations:
+      skos:prefLabel: School Archive
+      skos:altLabel: Schularchiv, archivo escolar, archives scolaires, Educational Archive
+      subject_domain: education
+      institutional_context: school
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - UniversityArchive
+    - AcademicArchive
+    - InstitutionalArchive
+    structured_aliases:
+    - literal_form: onderwijsgeheugeninstelling
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Bildungsgedächtniseinheit
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: unité mémorielle éducative
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: unidad memorial educativa
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: وحدة ذاكرة تعليمية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: unit memori pendidikan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 教育记忆机构
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Schularchiv (de)
+    - archivo escolar (es)
+    - archives scolaires (fr)
+    - Preserves school records and institutional memory.
+    - May include student records (often with privacy restrictions).
+    - Documents educational practices, governance, and local educational history.
+    - 'Preserved from prior description: Archive organization associated with a school or educational institution.'
+    keywords:
+    - educational governance
+    - long-term custody
+    - institutional accountability
+    - student record context
+    examples:
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        hold_record_set: student_registers
+      description: Memory unit managing long-term documentation in a teaching institution.

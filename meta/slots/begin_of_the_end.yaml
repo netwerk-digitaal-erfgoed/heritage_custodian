@@ -1,0 +1,152 @@
+# ==============================================================================
+# LinkML Slot Definition: begin_of_the_end
+# ==============================================================================
+# CIDOC-CRM fuzzy temporal bound: earliest possible end time of a temporal
+# extent. Part of the four-point fuzzy date pattern.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **CIDOC-CRM**| `crm:P81b_begin_of_the_end`| CIDOC_CRM    | slot_uri| Earliest possible end of E52 Time-Span.  |
+# |              |                        |                   | exact   |                                          |
+# | **CIDOC-CRM**| `crm:P81_ongoing_throughout`| CIDOC_CRM L3028| broad | Parent property (P81b subPropertyOf P81).|
+# | **RiC-O**    | `rico:hasEndDate`      | RiC-O_1-1.rdf     | close   | Thing has end Date.                      |
+# | **OWL Time** | `time:hasEnd`          | time.ttl          | related | Exact instant, not fuzzy.                |
+# | **PROV-O**   | `prov:endedAtTime`     | prov.ttl          | related | Exact end time, not fuzzy.               |
+# | **Schema.org**| `schema:endDate`       | schemaorg.owl     | broad   | Simple date, no uncertainty semantics.   |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Moved crm:P81_ongoing_throughout to broad_mappings (parent of P81b)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/begin_of_the_end
+name: begin_of_the_end
+title: Begin of the End
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  time: http://www.w3.org/2006/time#
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  begin_of_the_end:
+    # Primary semantic: CIDOC-CRM fuzzy temporal bound (earliest possible end)
+    slot_uri: crm:P81b_begin_of_the_end
+    description: >-
+      To indicate the earliest possible end time of a temporal extent, used
+      to express uncertainty about when something ended.
+    alt_descriptions:
+      nl: >-
+        Het aangeven van de vroegst mogelijke eindtijd van een tijdsspanne,
+        gebruikt om onzekerheid over het einde uit te drukken.
+      de: >-
+        Die frühestmögliche Endzeit eines zeitlichen Umfangs angeben, um
+        Unsicherheit darüber auszudrücken, wann etwas endete.
+      fr: >-
+        Indiquer le moment de fin le plus tôt possible d'une étendue
+        temporelle, pour exprimer l'incertitude sur la fin.
+      ar: >-
+        الإشارة إلى أقرب وقت نهاية ممكن لنطاق زمني، يستخدم للتعبير عن عدم
+        اليقين حول متى انتهى شيء ما.
+      id: >-
+        Menunjukkan waktu akhir paling awal yang mungkin dari rentang waktu,
+        digunakan untuk mengekspresikan ketidakpastian tentang kapan sesuatu berakhir.
+      zh: >-
+        表示时间范围最早可能的结束时间，用于表达某事何时结束的不确定性。
+      es: >-
+        Indicar el momento de fin más temprano posible de una extensión
+        temporal, para expresar incertidumbre sobre cuándo terminó algo.
+    structured_aliases:
+      - literal_form: begin van het einde
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_begin_of_the_end
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beginn des Endes
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: début de la fin
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بداية النهاية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: awal dari akhir
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 结束之始
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: inicio del fin
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    any_of:
+    - range: Timestamp
+    - range: string
+    - range: datetime
+    inlined: false
+    required: false
+    multivalued: false
+    # Semantic mappings (SKOS predicates)
+    # From: CIDOC_CRM_v7.1.3.rdf, RiC-O_1-1.rdf, time ontology, prov.ttl, schemaorg.owl
+    exact_mappings:
+    close_mappings:
+    - rico:hasEndDate              # RiC-O: Thing has end Date (ObjectProperty, range: rico:Date)
+    related_mappings:
+    - crm:P82b_end_of_the_end      # CIDOC-CRM: Latest possible end (partner in fuzzy end pattern)
+    - time:hasEnd                  # OWL Time: Temporal entity has end Instant (exact, not fuzzy)
+    - rico:isEndDateOf             # RiC-O: Inverse - Date is end date of Thing
+    - prov:endedAtTime             # PROV-O: Activity ended at time (exact instant, not fuzzy)
+    broad_mappings:
+    - crm:P81_ongoing_throughout   # CIDOC-CRM: Parent property (P81b rdfs:subPropertyOf P81)
+    - rico:isAssociatedWithDate    # RiC-O: Generic date association (parent of hasEndDate)
+    - schema:endDate               # schema.org: End date (simple date, no fuzzy semantics)
+    - schema:dissolutionDate       # schema.org: Organization dissolution date (specific end type)
+    - dcterms:date                 # Dublin Core: Generic date association
+    aliases:
+      - original_end_date
+    annotations:
+      migration_date: '2026-01-15'
+      custodian_types: '["*"]'
+    examples:
+    - value: |
+        timestamp_value: "1950-01-01"
+        timestamp_precision: day
+      description: Earliest possible closure date as Timestamp object
+    - value: |
+        # For "Closed between 1950-1955":
+        begin_of_the_end: "1950-01-01"  # earliest possible closure
+        end_of_the_end: "1955-12-31"    # latest possible closure
+      description: Expressing uncertainty about closure date using fuzzy bounds
+    comments:
+      - |
+        **CIDOC-CRM Fuzzy Date Pattern**:
+        
+        P81b defines the earliest possible time an E52 Time-Span could have ended.
+        Used together with P82b (end_of_the_end) to express uncertainty about end time.
+        The four fuzzy bound properties are:
+        - P82a_begin_of_the_begin: earliest possible start
+        - P81a_end_of_the_begin: latest possible start  
+        - P81b_begin_of_the_end: earliest possible end
+        - P82b_end_of_the_end: latest possible end
+      - |
+        **Ontological Alignment**:
+        
+        - **Primary** (`slot_uri`): `crm:P81b_begin_of_the_end` - CIDOC-CRM fuzzy temporal bound
+        - **Broad**: `crm:P81_ongoing_throughout` - Parent property (P81b rdfs:subPropertyOf P81)
+        - **Close**: `rico:hasEndDate` - RiC-O end date (ObjectProperty with rico:Date range)
+        - **Related**: `time:hasEnd` - OWL Time (note: exact instant semantics, not fuzzy)
+        - **Broad**: `schema:endDate` - simple end date without uncertainty semantics
+        
+        Note: time:hasEnd and prov:endedAtTime represent exact instants, not fuzzy bounds.
+        They are related but semantically distinct from the CIDOC-CRM uncertainty pattern.
+      - |
+        **Range**: Supports Timestamp class, string, and datetime values

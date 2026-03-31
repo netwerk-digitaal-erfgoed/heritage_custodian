@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/class/APIEndpoint
+name: APIEndpoint
+title: API Endpoint Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcat: http://www.w3.org/ns/dcat#
+  hydra: http://www.w3.org/ns/hydra/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_url
+classes:
+  APIEndpoint:
+    class_uri: schema:EntryPoint
+    description: >-
+      Uniform Resource Locator that provides programmatic access to a service
+      or data resource through a defined interface specification.
+    alt_descriptions:
+      nl: >-
+        Uniform Resource Locator die programmatische toegang biedt tot een service
+        of gegevensbron via een gedefinieerde interfacespecificatie.
+      de: >-
+        Uniform Resource Locator, der programmatischen Zugriff auf einen Dienst
+        oder eine Datenressource uber eine definierte Schnittstellenspezifikation bietet.
+      fr: >-
+        Localisateur uniforme de ressources fournissant un acces programmatique
+        a un service ou a une ressource de donnees via une specification d'interface definie.
+      es: >-
+        Localizador uniforme de recursos que proporciona acceso programatico a un
+        servicio o recurso de datos a traves de una especificacion de interfaz definida.
+      ar: >-
+        محدد موقع الموارد المنتظم الذي يوفر وصولاً برمجياً إلى خدمة أو مورد بيانات
+        من خلال مواصفات واجهة محددة.
+      id: >-
+        Uniform Resource Locator yang menyediakan akses terprogram ke layanan atau
+        sumber daya data melalui spesifikasi antarmuka yang ditentukan.
+      zh: >-
+        通过定义的接口规范提供服务或数据资源的编程访问的统一资源定位符。
+    structured_aliases:
+    - literal_form: API-eindpunt
+      in_language: nl
+    - literal_form: API-Endpunkt
+      in_language: de
+    - literal_form: point de terminaison API
+      in_language: fr
+    - literal_form: punto final API
+      in_language: es
+    - literal_form: نقطة نهاية API
+      in_language: ar
+    - literal_form: titik akhir API
+      in_language: id
+    - literal_form: API端点
+      in_language: zh
+    close_mappings:
+    - hydra:EntryPoint
+    - dcat:DataService
+    broad_mappings:
+    - schema:EntryPoint
+    - skos:Concept
+    slots:
+    - has_url
+    - has_description
+    comments:
+    - Represents a callable URL for an API operation
+    - Part of schema.org for describing web services
+    - Use with APIVersion for versioned endpoints
+    see_also:
+    - https://schema.org/EntryPoint
+    - APIVersion
+    - APIRequest
+    examples:
+    - value:
+        has_url: "https://api.example.org/v2/collections"
+        has_description: "Collections listing endpoint"
+      description: REST API endpoint for collections
+    - value:
+        has_url: "https://api.example.org/v2/search"
+        has_description: "Search endpoint with query parameters"
+      description: Search API endpoint
+    keywords:
+    - API
+    - endpoint
+    - URL
+    - web service
+    - REST
+    - programmatic access
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Specific to API/web service endpoints
+      custodian_types: "['*']"

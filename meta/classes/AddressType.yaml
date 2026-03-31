@@ -1,0 +1,229 @@
+id: https://nde.nl/ontology/hc/class/AddressType
+name: address_type_class
+title: Address Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  vcard: http://www.w3.org/2006/vcard/ns#
+  gleif_base: https://www.gleif.org/ontology/Base/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/equivalent_to
+- ../slots/related_to
+classes:
+  AddressType:
+    class_uri: skos:Concept
+    description: >-
+      Classification type for address purposes in heritage custodian contexts.
+    alt_descriptions:
+      nl: "Classificatietype voor adresdoeleinden in erfgoedbeheerderscontext."
+      de: "Klassifikationstyp für Adresszwecke im Kontext von Kulturgüterverwaltern."
+      fr: "Type de classification pour les objectifs d'adresse dans le contexte des dépositaires du patrimoine."
+      es: "Tipo de clasificación para fines de dirección en el contexto de custodios del patrimonio."
+      ar: "نوع التصنيف لأغراض العنوان في سياق أمناء التراث."
+      id: "Jenis klasifikasi untuk tujuan alamat dalam konteks pengelola warisan."
+      zh: "遗产保管人背景下地址目的的分类类型。"
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/address-type/headquarters
+        has_code: HEADQUARTERS
+        has_label:
+        - Headquarters@en
+        - Hoofdkantoor@nl
+        has_description: Main organizational address where primary operations occur. This is typically where leadership and central administration are located.
+      description: Headquarters address type
+    - value:
+        identified_by: https://nde.nl/ontology/hc/address-type/legal
+        has_code: LEGAL
+        has_label:
+        - Legal Address@en
+        - Juridisch adres@nl
+        - Statutaire zetel@nl
+        has_description: Registered legal address for official correspondence and legal purposes. May differ from operational headquarters. For Dutch organizations, this is the address registered with KvK.
+      description: Legal address type
+    close_mappings:
+    - vcard:Type
+    broad_mappings:
+    - crm:E55_Type
+    - skos:Concept
+    related_mappings:
+    - gleif_base:hasAddressLegal
+    - gleif_base:hasAddressHeadquarters
+    structured_aliases:
+    - literal_form: adrestype
+      in_language: nl
+    - literal_form: adresclassificatie
+      in_language: nl
+    - literal_form: Adresstyp
+      in_language: de
+    - literal_form: Adressklassifikation
+      in_language: de
+    - literal_form: type d'adresse
+      in_language: fr
+    - literal_form: classification d'adresse
+      in_language: fr
+    - literal_form: tipo de dirección
+      in_language: es
+    - literal_form: clasificación de dirección
+      in_language: es
+    - literal_form: نوع العنوان
+      in_language: ar
+    - literal_form: تصنيف العنوان
+      in_language: ar
+    - literal_form: tipe alamat
+      in_language: id
+    - literal_form: klasifikasi alamat
+      in_language: id
+    - literal_form: 地址类型
+      in_language: zh
+    - literal_form: 地址分类
+      in_language: zh
+    keywords:
+    - address type
+    - headquarters
+    - legal address
+    - visiting address
+    - mailing address
+    - storage address
+    - branch address
+    - classification
+    slots:
+    - identified_by
+    - has_code
+    - has_label
+    - has_description
+    - has_hypernym
+    - has_hyponym
+    - related_to
+    - equivalent_to
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        pattern: "^https://nde\\.nl/ontology/hc/address-type/[a-z0-9-]+$"
+        examples:
+        - value: https://nde.nl/ontology/hc/address-type/headquarters
+        - value: https://nde.nl/ontology/hc/address-type/legal
+      has_code:
+        required: true
+        pattern: "^[A-Z][A-Z0-9_]*$"
+        examples:
+        - value: HEADQUARTERS
+        - value: LEGAL
+        - value: VISITING
+        - value: MAILING
+        - value: STORAGE
+        - value: BRANCH
+      has_label:
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Headquarters@en
+          - Hoofdkantoor@nl
+        - value:
+          - Legal Address@en
+          - Juridisch adres@nl
+        - value:
+          - Visiting Address@en
+          - Bezoekadres@nl
+      has_description:
+        examples:
+        - value: Main organizational address where primary operations occur.
+      has_hypernym:
+        range: AddressType
+      has_hyponym:
+        range: AddressType
+        multivalued: true
+        inlined_as_list: true
+      related_to:
+        range: AddressType
+        multivalued: true
+        inlined_as_list: true
+      equivalent_to:
+        range: WikiDataIdentifier
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - qid: Q1234567
+    annotations:
+      specificity_score: "0.30"
+      specificity_rationale: "Address types are broadly applicable - all heritage custodians have addresses."
+      has_score:
+      slot_migration: "2026-01-13: Migrated from address_type string slot to AddressType class - address_type (string) → has_type (AddressType)"
+      custodian_types: "['*']"
+      address_types: "HEADQUARTERS, LEGAL, VISITING, MAILING, STORAGE, BRANCH, READING_ROOM"
+    comments:
+    - AddressType provides SKOS-based classification for Address instances
+    - Supports hierarchical type relationships (has_hypernym/hyponym)
+    - Richer semantics than flat address_type string slot
+    - Aligned with vCard Type, GLEIF address distinctions
+    - MIGRATED 2026-01-13: Now uses shared slots (Rule 38)
+    - |
+      Preserved from prior description:
+
+      **DEFINITION**:
+
+      AddressType provides a SKOS-based classification hierarchy for categorizing
+      different types of addresses based on their purpose or function. This enables:
+      - Rich metadata (descriptions, use cases)
+      - Hierarchical relationships (broader/narrower types)
+      - Extensibility (new types without enum modification)
+      - Semantic alignment with vCard, GLEIF, and Schema.org ontologies
+
+      **ONTOLOGY ALIGNMENT**:
+
+      | Ontology | Class/Property | Notes |
+      |----------|----------------|-------|
+      | **vCard** | `vcard:Type` | RFC6350 type codes (Home, Work) |
+      | **GLEIF** | `gleif_base:hasAddressLegal`, `gleif_base:hasAddressHeadquarters` | Legal entity addresses |
+      | **CIDOC-CRM** | `crm:E55_Type` | General type classification |
+      | **SKOS** | `skos:Concept` | Controlled vocabulary concept |
+
+      **ADDRESS TYPES FOR HERITAGE CUSTODIANS**:
+
+      | Type | Use Case |
+      |------|----------|
+      | `HEADQUARTERS` | Main organizational address |
+      | `LEGAL` | Registered legal/business address (KvK, Chamber of Commerce) |
+      | `VISITING` | Public visitor entrance address |
+      | `MAILING` | Correspondence/postal address |
+      | `STORAGE` | Depot, warehouse, off-site storage facility |
+      | `BRANCH` | Branch office location |
+      | `READING_ROOM` | Public reading/research room entrance |
+
+      **RELATIONSHIP TO OTHER CLASSES**:
+
+      ```
+      Address (physical address)
+        │
+        └── has_type → AddressType (THIS CLASS)
+              ├── has_hypernym → AddressType (parent in hierarchy)
+              ├── has_hyponym → AddressType[] (children)
+              └── has_description (text)
+      ```
+
+      **SLOT MIGRATION** (2026-01-13):
+
+      This class replaces the address_type string slot with a proper class hierarchy.
+      Old pattern: `address_type: HEADQUARTERS` (string)
+      New pattern: `has_type: AddressType` (object reference)
+    - 'Preserved from prior description: Classification type for address purposes in heritage custodian contexts. SKOS-based classification hierarchy for categorizing different types of addresses based on their purpose or function. Enables rich metadata, hierarchical relationships, and semantic alignment with vCard, GLEIF, and Schema.org ontologies.'
+    see_also:
+    - https://www.w3.org/TR/vcard-rdf/#d4e1769
+    - https://www.gleif.org/ontology/Base/
+    - Address
+    - AddressTypes

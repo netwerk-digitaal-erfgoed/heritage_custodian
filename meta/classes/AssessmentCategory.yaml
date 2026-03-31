@@ -1,0 +1,91 @@
+id: https://nde.nl/ontology/hc/class/AssessmentCategory
+name: AssessmentCategory
+title: Assessment Category
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+- linkml:types
+- ../slots/has_type
+- ../slots/has_label
+- ../slots/has_description
+default_prefix: hc
+classes:
+  AssessmentCategory:
+    class_uri: hc:AssessmentCategory
+    description: >-
+      Category or classification used in an assessment.
+
+      Represents a classification value used in condition assessments,  risk assessments, or other evaluation workflows for heritage collections.
+    alt_descriptions:
+      nl: "Categorie of classificatie gebruikt in een beoordeling.\nVertegenwoordigt een classificatiewaarde gebruikt in toestandsbeoordelingen,  risicobeoordelingen of andere evaluatiewerkstromen voor erfgoedcollecties."
+      de: "Kategorie oder Klassifikation, die in einer Bewertung verwendet wird.\nRepräsentiert einen Klassifikationswert, der in Zustandsbewertungen,  Risikobewertungen oder anderen Bewertungsworkflows für Kulturgütersammlungen verwendet wird."
+      fr: "Catégorie ou classification utilisée dans une évaluation.\nReprésente une valeur de classification utilisée dans les évaluations de l'état,  les évaluations des risques ou d'autres flux de travail d'évaluation pour les collections patrimoniales."
+      es: "Categoría o clasificación utilizada en una evaluación.\nRepresenta un valor de clasificación utilizado en evaluaciones de condición,  evaluaciones de riesgos u otros flujos de trabajo de evaluación para colecciones patrimoniales."
+      ar: "فئة أو تصنيف مستخدم في التقييم.\nيمثل قيمة تصنيف مستخدمة في تقييمات الحالة أو تقييمات المخاطر  أو سير عمل التقييم الأخرى لمجموعات التراث."
+      id: "Kategori atau klasifikasi yang digunakan dalam penilaian.\nMewakili nilai klasifikasi yang digunakan dalam penilaian kondisi,  penilaian risiko, atau alur kerja evaluasi lainnya untuk koleksi warisan."
+      zh: "评估中使用的类别或分类。\n表示遗产藏品的状况评估、风险评估或其他评估工作流中使用的分类值。"
+    examples:
+    - value:
+        has_label: Good Condition
+        has_type: ConditionAssessmentCategory
+      description: Condition assessment category
+    - value:
+        has_label: High Risk
+        has_type: RiskAssessmentCategory
+      description: Risk assessment category
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    structured_aliases:
+    - literal_form: beoordelingscategorie
+      in_language: nl
+    - literal_form: Bewertungkategorie
+      in_language: de
+    - literal_form: catégorie d'évaluation
+      in_language: fr
+    - literal_form: categoría de evaluación
+      in_language: es
+    - literal_form: فئة التقييم
+      in_language: ar
+    - literal_form: kategori penilaian
+      in_language: id
+    - literal_form: 评估类别
+      in_language: zh
+    keywords:
+    - assessment category
+    - condition assessment
+    - risk assessment
+    - evaluation
+    - classification
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+        required: false
+        examples:
+        - value: ConditionAssessmentCategory
+        - value: RiskAssessmentCategory
+      has_label:
+        required: true
+        examples:
+        - value: Good
+        - value: Fair
+        - value: Poor
+        - value: High Risk
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: "Assessment categories are moderately specific to heritage evaluation workflows."
+      custodian_types: "['*']"
+      category_types: "ConditionAssessmentCategory, RiskAssessmentCategory"
+    comments:
+    - Used for condition and risk assessment classifications
+    - Values typically include: Good, Fair, Poor for conditions
+    - Risk levels: High, Medium, Low
+    see_also:
+    - AssessmentCategoryType
+    - AssessmentCategoryTypes

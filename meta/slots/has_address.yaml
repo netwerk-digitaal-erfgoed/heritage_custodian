@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: has_address
+# ==============================================================================
+# Links an entity to its physical or postal address.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property         | File/Line              | Mapping | Notes                          |
+# |----------------|------------------|------------------------|---------|--------------------------------|
+# | **Schema.org** | `schema:address` | schemaorg.owl:7234-59  | exact   | "Physical address of the item" |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Updated slot_uri to schema:address, fixed description, added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_address
+name: has_address
+title: Has Address
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_address:
+    slot_uri: schema:address
+    description: >-
+      To possess a specified physical or electronic location used for 
+      communication, delivery, or identification purposes.
+    alt_descriptions:
+      nl: >-
+        Een gespecificeerde fysieke of elektronische locatie bezitten die 
+        wordt gebruikt voor communicatie, levering of identificatiedoeleinden.
+      de: >-
+        Einen bestimmten physischen oder elektronischen Standort besitzen, 
+        der für Kommunikation, Lieferung oder Identifikationszwecke 
+        verwendet wird.
+      fr: >-
+        Posséder un emplacement physique ou électronique spécifié utilisé 
+        à des fins de communication, de livraison ou d'identification.
+      ar: >-
+        امتلاك موقع مادي أو إلكتروني محدد يستخدم لأغراض الاتصال 
+        أو التسليم أو التعريف.
+      id: >-
+        Memiliki lokasi fisik atau elektronik tertentu yang digunakan 
+        untuk tujuan komunikasi, pengiriman, atau identifikasi.
+      zh: >-
+        拥有用于通信、交付或识别目的的指定物理或电子位置。
+      es: >-
+        Poseer una ubicación física o electrónica especificada utilizada 
+        para fines de comunicación, entrega o identificación.
+    structured_aliases:
+      - literal_form: heeft adres
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Adresse
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une adresse
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له عنوان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki alamat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有地址
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene dirección
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    exact_mappings:
+    aliases:
+      - has_or_had_address
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to store the physical postal address of 
+        organizations, institutions, or places. For structured addresses, 
+        consider using a PostalAddress class.
+      - |
+        **MIGRATION NOTE (2026-02-03)**: Renamed from `has_or_had_address` 
+        for conciseness.

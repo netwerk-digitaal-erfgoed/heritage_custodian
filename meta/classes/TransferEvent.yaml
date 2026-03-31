@@ -1,0 +1,100 @@
+id: https://nde.nl/ontology/hc/class/TransferEvent
+name: TransferEvent
+title: TransferEvent Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_description  # migrated from has_description per Rule 55
+  - ../slots/has_policy
+  - ../slots/has_score  # was: template_specificity
+  - ../slots/originate_from
+  - ../slots/temporal_extent
+classes:
+  TransferEvent:
+    class_uri: crm:E10_Transfer_of_Custody
+    description: >-
+      Process in which custody, ownership, or physical holding location changes
+      for heritage materials.
+    alt_descriptions:
+      nl: Gebeurtenis die een wijziging in bewaring, eigendom of fysieke overdracht van erfgoedmateriaal vastlegt.
+      de: Ereignis zur Erfassung einer Aenderung von Verwahrung, Eigentum oder physischem Uebergang von Kulturgut.
+      fr: Evenement consignant un changement de garde, de propriete ou de transfert physique de materiaux patrimoniaux.
+      es: Evento que registra un cambio de custodia, propiedad o traslado fisico de materiales patrimoniales.
+      ar: حدث يوثّق تغيّر الحيازة أو الملكية أو النقل المكاني لمواد تراثية.
+      id: Peristiwa yang mencatat perubahan kustodi, kepemilikan, atau perpindahan fisik materi warisan.
+      zh: 记录遗产材料保管、所有权或物理转移变化的事件。
+    structured_aliases:
+    - literal_form: overdrachtsgebeurtenis
+      in_language: nl
+    - literal_form: Uebergabeereignis
+      in_language: de
+    - literal_form: evenement de transfert
+      in_language: fr
+    - literal_form: evento de transferencia
+      in_language: es
+    - literal_form: حدث نقل
+      in_language: ar
+    - literal_form: peristiwa transfer
+      in_language: id
+    - literal_form: 移交事件
+      in_language: zh
+    keywords:
+    - custody change
+    - ownership transfer
+    - relocation
+    exact_mappings:
+      - crm:E10_Transfer_of_Custody
+    close_mappings:
+      - rico:TransferEvent
+    related_mappings:
+      - prov:Activity
+      - schema:TransferAction
+    slots:
+      - temporal_extent
+      - originate_from
+      - has_description  # was: has_description
+      - has_policy
+      - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        inlined: true
+      originate_from:
+        range: Location
+        required: false
+        inlined: true
+      has_score:
+#         range: string
+        required: false
+        inlined: false # Fixed invalid inline for primitive type
+      has_policy:
+        range: TransferPolicy
+        required: false
+        inlined: true
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Transfer events apply to all heritage custodian types.
+      custodian_types_primary: null
+      specificity_score: 0.5
+      specificity_rationale: Specialized event type for custody/ownership changes.
+      modeling_notes: |
+        Replaces legacy string/date transfer slots with structured links to
+        TimeSpan, Location, and TransferPolicy.
+    examples:
+      - value: |
+          temporal_extent:
+            begin_of_the_begin:
+              has_timestamp: "2020-01-15T00:00:00Z"  # was: timestamp_value - migrated per Rule 53
+          originate_from:
+            location_name: "Old Storage Facility"
+          has_description:  # was: has_description
+            description_text: "Transfer of historical photographs to new climate-controlled facility"

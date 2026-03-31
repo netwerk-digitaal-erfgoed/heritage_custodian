@@ -1,0 +1,97 @@
+id: https://nde.nl/ontology/hc/class/DistritalArchiveRecordSetTypes
+name: DistritalArchiveRecordSetTypes
+title: DistritalArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./DistritalArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  DistritoAdministrationFonds:
+    is_a: DistritalArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of subnational public-authority documentation
+      managed within a district-level jurisdiction.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie van subnationale
+        publieke autoriteiten binnen een districtsniveau-jurisdictie.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen subnationaler
+        oeffentlicher Behoerden innerhalb einer Distriktzustaendigkeit.
+      fr: >-
+        Agregation fondee sur la provenance de documentation d'autorites
+        publiques infranationales au niveau d'un district.
+      es: >-
+        Agregacion basada en procedencia de documentacion de autoridades
+        publicas subnacionales a nivel de distrito.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق سلطات عامة دون وطنية ضمن
+        نطاق اختصاص على مستوى المقاطعة.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi otoritas publik
+        subnasional dalam yurisdiksi tingkat distrik.
+      zh: >-
+        基于来源原则聚合在区级管辖范围内管理的次国家公共机构文献。
+    structured_aliases:
+      - literal_form: districtbestuursfonds
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Distriktverwaltungsfonds
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds d'administration de district
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de administracion de distrito
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: رصيد إدارة مقاطعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds administrasi distrik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 区级行政文献全宗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: District-level jurisdiction scope can vary across national administrative systems.
+    keywords:
+      - subnational authority
+      - district jurisdiction
+      - public administration
+      - provenance aggregation
+    examples:
+      - value:
+          has_type: hc:DistritoAdministrationFonds
+          has_custodian: hc:DistritalArchive
+          has_note: District office directives, registers, and local governance files.
+        description: District-level public-authority documentation grouped by provenance.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DistritoAdministrationFonds
+      has_custodian:
+        equals_string: hc:DistritalArchive

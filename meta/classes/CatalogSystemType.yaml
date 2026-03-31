@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/class/CatalogSystemType
+name: CatalogSystemType
+title: Catalog System Type (Abstract Base)
+description: 'Abstract base class for catalog and collection management system types.
+
+
+  This class defines the taxonomy of system types used by heritage institutions
+
+  for managing their collections and catalogs. Concrete subclasses are defined
+
+  in CatalogSystemTypes.yaml following the Type/Types naming convention (Rule 0b).
+
+
+  Created per slot_fixes.yaml revision for catalog_system migration (Rule 53/56).
+
+  '
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_name
+default_prefix: hc
+classes:
+  CatalogSystemType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract base taxonomy for categorizing collection and catalog management software platforms.
+    alt_descriptions:
+      nl: Abstracte basistaxonomie voor het categoriseren van softwareplatforms voor collectie- en catalogusbeheer.
+      de: Abstrakte Basistaxonomie zur Kategorisierung von Softwareplattformen für Sammlungs- und Katalogverwaltung.
+      fr: Taxonomie de base abstraite pour catégoriser les plateformes logicielles de gestion de collections et de catalogues.
+      es: Taxonomía base abstracta para categorizar plataformas de software de gestión de colecciones y catálogos.
+      ar: تصنيف أساسي مجرد لتصنيف منصات برمجيات إدارة المجموعات والفهارس.
+      id: Taksonomi dasar abstrak untuk mengkategorikan platform perangkat lunak manajemen koleksi dan katalog.
+      zh: 用于分类馆藏和目录管理软件平台的抽象基础分类法。
+    structured_aliases:
+    - literal_form: catalogussysteemtype
+      in_language: nl
+    - literal_form: systeemcategorie
+      in_language: nl
+    - literal_form: Katalogsystemtyp
+      in_language: de
+    - literal_form: Systemkategorie
+      in_language: de
+    - literal_form: type de système de catalogue
+      in_language: fr
+    - literal_form: catégorie de système
+      in_language: fr
+    - literal_form: tipo de sistema de catálogo
+      in_language: es
+    - literal_form: categoría de sistema
+      in_language: es
+    - literal_form: نوع نظام الفهرسة
+      in_language: ar
+    - literal_form: jenis sistem katalog
+      in_language: id
+    - literal_form: 编目系统类型
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:SoftwareApplicationCategory
+    keywords:
+    - catalog system type
+    - ILS
+    - LMS
+    - CMS
+    - DAM
+    - archives management
+    examples:
+    - value:
+        has_name: Integrated Library System
+        has_description: Comprehensive software for library operations
+    comments:
+    - Abstract base class - concrete types defined in CatalogSystemTypes.yaml
+    - Categories include ILS, LMS, CMS, DAM, Discovery, Repository
+    slots:
+    - has_name
+    - has_description
+    slot_usage:
+      has_name:
+        required: true
+      has_description:
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

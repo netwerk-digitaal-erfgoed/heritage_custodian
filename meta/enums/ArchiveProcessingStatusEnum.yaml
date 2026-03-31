@@ -1,0 +1,213 @@
+# Archive Processing Status Enumeration
+# Tracks the lifecycle status of operational archives as they move toward integration
+# into the formal heritage collection (CustodianCollection)
+
+id: https://nde.nl/ontology/hc/enum/ArchiveProcessingStatusEnum
+name: archive_processing_status_enum
+title: Archive Processing Status Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  premis: http://www.loc.gov/premis/rdf/v3/
+
+enums:
+  ArchiveProcessingStatusEnum:
+    description: |
+      Status of operational archive processing toward integration into 
+      CustodianCollection (formal heritage collection).
+      
+      **LIFECYCLE FLOW**:
+      ```
+      CustodianAdministration (ACTIVE - in daily use)
+           ↓ (retention period ends, no longer active)
+      CustodianArchive (UNPROCESSED - backlog)
+           ↓ (appraisal, arrangement, description)
+      CustodianArchive (IN_PROCESSING)
+           ↓ (processing complete)
+      CustodianArchive (PROCESSED_PENDING_TRANSFER)
+           ↓ (physically/logically transferred)
+      CustodianCollection (integrated into formal collection)
+      ```
+      
+      **TEMPORAL REALITY**:
+      Processing backlogs can span DECADES. A national archive may have
+      30-50 years of unprocessed government records awaiting arrangement
+      and description before they become part of the searchable collection.
+      
+      **RiC-O ALIGNMENT**:
+      - rico:Activity for processing activities
+      - rico:RecordResource lifecycle states
+      - rico:hasAccumulationDate for when records were accumulated
+      
+    permissible_values:
+      UNPROCESSED:
+        description: |
+          Archive material received but not yet appraised or processed.
+          Sitting in backlog awaiting archival processing.
+          
+          **Characteristics**:
+          - No finding aid exists
+          - Not searchable by researchers
+          - May have basic accession-level description only
+          - Physical location tracked but not intellectually arranged
+          
+          **Duration**: Can remain in this state for DECADES
+          
+          **Example**: Government ministry records transferred in 2010,
+          still awaiting processing in 2025.
+        meaning: rico:Activity
+        
+      IN_APPRAISAL:
+        description: |
+          Archive material currently being appraised for permanent retention
+          or disposal/destruction.
+          
+          **Characteristics**:
+          - Archivist actively reviewing records
+          - Retention decisions being made
+          - Some records may be marked for destruction
+          - Appraisal report in progress
+          
+          **Duration**: Weeks to months per accession
+          
+          **Example**: Corporate records being reviewed against retention
+          schedule to determine what enters permanent collection.
+        meaning: rico:Activity
+        
+      IN_ARRANGEMENT:
+        description: |
+          Archive material being physically or intellectually arranged
+          according to archival principles (provenance, original order).
+          
+          **Characteristics**:
+          - Fonds/series structure being established
+          - Physical rehousing may be occurring
+          - Hierarchical relationships being documented
+          - Original order being restored or documented
+          
+          **Duration**: Weeks to months per accession
+          
+          **RiC-O**: rico:hasOrHadConstituent for hierarchical arrangement
+        meaning: rico:Activity
+        
+      IN_DESCRIPTION:
+        description: |
+          Archive material being described (finding aid creation).
+          Arrangement complete, now creating intellectual access points.
+          
+          **Characteristics**:
+          - Finding aid being written (EAD, ISAD(G), etc.)
+          - Metadata being created in CMS
+          - Subject headings, name authorities being assigned
+          - Scope and content notes being drafted
+          
+          **Duration**: Days to months depending on complexity
+          
+          **RiC-O**: rico:hasOrHadName, rico:hasOrHadIdentifier
+        meaning: rico:Activity
+        
+      IN_PRESERVATION:
+        description: |
+          Archive material undergoing preservation treatment before
+          integration into collection.
+          
+          **Characteristics**:
+          - Conservation treatment (paper repair, deacidification)
+          - Rehousing into archival containers
+          - Digitization for preservation/access
+          - Environmental stabilization
+          
+          **Duration**: Days to years for major conservation
+          
+          **PREMIS**: premis:Event (preservation activity)
+        meaning: premis:Event
+        
+      PROCESSED_PENDING_TRANSFER:
+        description: |
+          Processing complete. Archive material awaiting physical or
+          logical transfer to permanent collection storage.
+          
+          **Characteristics**:
+          - Finding aid complete and approved
+          - All metadata entered in CMS
+          - Awaiting shelf space allocation
+          - Awaiting quality review sign-off
+          - May be awaiting digitization completion
+          
+          **Duration**: Days to weeks typically
+          
+          **Next State**: Transfer to CustodianCollection
+        meaning: rico:Activity
+        
+      TRANSFERRED_TO_COLLECTION:
+        description: |
+          Archive material has been transferred to CustodianCollection.
+          This CustodianArchive record is now historical reference only.
+          
+          **Characteristics**:
+          - Physical/logical move complete
+          - Now managed as CustodianCollection
+          - CustodianArchive record retained for audit trail
+          - Links to successor CustodianCollection record
+          
+          **Note**: After this status, primary record is CustodianCollection.
+          CustodianArchive serves as provenance documentation.
+        meaning: rico:Activity
+        
+      PARTIALLY_PROCESSED:
+        description: |
+          Archive material partially processed - some series/items
+          integrated into collection, others still in backlog.
+          
+          **Characteristics**:
+          - Large accession processed incrementally
+          - High-priority series processed first
+          - Remaining material still in UNPROCESSED state
+          - Multiple CustodianArchive records may exist
+          
+          **Example**: 500-box accession, 50 boxes processed and
+          transferred, 450 boxes still awaiting processing.
+        meaning: rico:Activity
+        
+      ON_HOLD:
+        description: |
+          Processing suspended due to external factors.
+          
+          **Characteristics**:
+          - Legal hold (litigation, investigation)
+          - Donor restrictions pending resolution
+          - Resource constraints (staff, funding)
+          - Awaiting related accession before processing
+          - Access restrictions being negotiated
+          
+          **Duration**: Indefinite until hold resolved
+        meaning: rico:Activity
+        
+      DEACCESSIONED:
+        description: |
+          Archive material removed from custody without transfer
+          to CustodianCollection.
+          
+          **Reasons**:
+          - Returned to donor/creator
+          - Transferred to another institution
+          - Destroyed per retention schedule
+          - Destroyed due to condition (mold, pests)
+          
+          **Note**: Deaccession documentation retained for audit.
+        meaning: rico:Activity
+
+    comments:
+      - "Tracks operational archive lifecycle BEFORE integration into CustodianCollection"
+      - "Processing backlogs commonly span decades in archival institutions"
+      - "RiC-O rico:Activity used for processing activities"
+      - "PREMIS premis:Event for preservation activities"
+      - "Status changes should be tracked with timestamps for metrics"
+    
+    see_also:
+      - "https://www.ica.org/standards/RiC/ontology#Activity"
+      - "http://www.loc.gov/premis/rdf/v3/Event"
+      - "https://nde.nl/ontology/hc/class/CustodianArchive"
+      - "https://nde.nl/ontology/hc/class/CustodianCollection"

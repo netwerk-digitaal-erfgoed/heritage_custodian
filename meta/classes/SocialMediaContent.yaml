@@ -1,0 +1,217 @@
+id: https://nde.nl/ontology/hc/class/SocialMediaContent
+name: SocialMediaContent
+title: Social Media Content
+imports:
+- linkml:types
+- ../slots/has_content
+- ../slots/identified_by
+- ../slots/has_url
+- ../slots/has_image
+- ../slots/has_description
+- ../slots/has_endpoint
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/published_by
+- ../slots/categorized_as
+- ../slots/updated_at
+- ../slots/published_at
+- ../slots/in_language
+- ../slots/posted_by
+- ../slots/retrieved_at
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  as: https://www.w3.org/ns/activitystreams#
+default_prefix: hc
+classes:
+  SocialMediaContent:
+    class_uri: as:Object
+    abstract: true
+    description: >-
+      Discrete publication artifact distributed through interactive online
+      communication channels, such as posts, videos, or images.
+    alt_descriptions:
+      nl: >-
+        Afzonderlijk publicatie-artefact dat via interactieve online
+        communicatiekanalen wordt verspreid, zoals berichten, video's of
+        afbeeldingen.
+      de: >-
+        Einzelnes Publikationsartefakt, das über interaktive
+        Online-Kommunikationskanäle verbreitet wird, etwa Beiträge, Videos oder
+        Bilder.
+      fr: >-
+        Artefact de publication discret diffusé via des canaux de communication
+        en ligne interactifs, tels que des messages, des vidéos ou des images.
+      es: >-
+        Artefacto de publicación discreto distribuido por canales de
+        comunicación en línea interactivos, como publicaciones, videos o
+        imágenes.
+      ar: >-
+        عنصر نشر منفصل يُوزَّع عبر قنوات تواصل رقمية تفاعلية، مثل المنشورات
+        أو الفيديوهات أو الصور.
+      id: >-
+        Artefak publikasi terpisah yang didistribusikan melalui saluran
+        komunikasi daring interaktif, seperti unggahan, video, atau gambar.
+      zh: >-
+        通过互动式在线传播渠道发布的离散出版载体，如帖文、视频或图像。
+    broad_mappings:
+    - as:Object
+    close_mappings:
+    - schema:CreativeWork
+    - crm:E73_Information_Object
+    related_mappings:
+    - schema:SocialMediaPosting
+    - dcterms:BibliographicResource
+    structured_aliases:
+    - literal_form: online publicatieartefact
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Online-Publikationsartefakt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: artefact de publication en ligne
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: artefacto de publicación en línea
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: عنصر نشر رقمي تفاعلي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: artefak publikasi daring interaktif
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 在线发布载体
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    slots:
+    - has_endpoint
+    - identified_by
+    - has_url
+    - has_image
+    - has_label
+    - has_description
+    - has_content
+    - in_language
+    - categorized_as
+    - posted_by
+    - published_at
+    - updated_at
+    - retrieved_at
+    - published_by
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string
+        required: true
+        identifier: true
+        examples:
+        - value: FbIoC-Owy-M
+      has_url:
+        range: uri
+        required: true
+        pattern: ^https?://
+        examples:
+        - value: https://www.youtube.com/watch?v=FbIoC-Owy-M
+      posted_by:
+        range: SocialMediaProfile
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/social-media/nationaal-onderduikmuseum-youtube
+      has_label:
+#         range: string
+        required: false
+        examples:
+        - value: "De Vrijheidsroute (aflevering 3) – Zevenaar, Duiven, Westervoort"
+      published_at:
+        range: PublicationEvent
+        required: true
+        inlined: true
+        examples:
+        - value:
+            temporal_extent:
+              begin_of_the_begin: '2025-07-30T18:05:15Z'
+              end_of_the_begin: '2025-07-30T18:05:15Z'
+              begin_of_the_end: '2025-07-30T18:05:15Z'
+              end_of_the_end: '2025-07-30T18:05:15Z'
+      updated_at:
+        range: datetime
+        required: false
+        examples:
+        - value: '2025-08-01T10:30:00Z'
+      in_language:
+#         range: string
+        required: false
+        examples:
+        - value: nl
+      categorized_as:
+        description: Keywords/hashtags categorizing the content.
+        range: Tag
+        multivalued: true
+        inlined_as_list: true
+        required: false
+        examples:
+        - value:
+          - tag_value: 80 jaar vrijheid
+          - tag_value: wo2
+          - tag_value: vrijheidsroute
+      has_image:
+        description: Thumbnail or preview image URL.
+        range: uri
+        required: false
+        examples:
+        - value: https://i.ytimg.com/vi/FbIoC-Owy-M/hqdefault.jpg
+      published_by:
+        range: boolean
+        required: false
+        ifabsent: 'true'
+        examples:
+        - value: true
+      has_content:
+#         range: string
+        required: false
+        examples:
+        - value: Post text, caption, or transcript excerpt.
+      retrieved_at:
+        range: datetime
+        required: true
+        examples:
+        - value: '2025-12-01T23:16:22.294232+00:00'
+      has_endpoint:
+        range: APIEndpoint
+        inlined: true
+        examples:
+        - value:
+            has_url: https://www.googleapis.com/youtube/v3
+            has_description: YouTube Data API v3
+    comments:
+    - Abstract base class for social media content items.
+    - Distinguish content items (this class) from platform types (SocialMediaPlatformType) and profile accounts (SocialMediaProfile).
+    - Activity Streams 2.0 alignment enables interoperability with ActivityPub ecosystems.
+    - Observational data: always capture retrieval timestamps for changing metrics.
+    - Preserved scope detail: includes posts, videos, images, and similar publication forms.
+    - 'Preserved from prior description: Individual social media content item (post, video, image, etc.).'
+    keywords:
+    - online publication
+    - activity stream object
+    - retrieval timestamp
+    - communication channel artifact
+    examples:
+    - value:
+        identified_by: YT-12345
+        has_url: https://www.youtube.com/watch?v=FbIoC-Owy-M
+      description: Single publication artifact captured from an interactive platform.
+    see_also:
+    - https://www.w3.org/ns/activitystreams#Object
+    - https://schema.org/CreativeWork
+    - https://schema.org/SocialMediaPosting
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

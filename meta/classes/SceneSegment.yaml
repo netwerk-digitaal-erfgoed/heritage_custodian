@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/SceneSegment
+name: SceneSegment
+title: SceneSegment
+description: >-
+  A segment of a video representing a scene.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_time_interval
+classes:
+  SceneSegment:
+    class_uri: schema:VideoObject
+    description: >-
+      Temporal subdivision of a video recording representing a distinct scene
+      or coherent visual sequence within the broader content.
+    alt_descriptions:
+      nl: >-
+        Temporele onderverdeling van een video-opname die een duidelijke scène
+        of samenhangende visuele reeks binnen de bredere inhoud vertegenwoordigt.
+      de: >-
+        Zeitliche Unterteilung einer Videoaufnahme, die eine eigenständige Szene
+        oder kohärente visuelle Sequenz innerhalb des breiteren Inhalts darstellt.
+      fr: >-
+        Subdivision temporelle d'un enregistrement vidéo représentant une scène distincte
+        ou une séquence visuelle cohérente dans le contenu plus large.
+      es: >-
+        Subdivisión temporal de una grabación de video que representa una escena distinta
+        o secuencia visual coherente dentro del contenido más amplio.
+      ar: >-
+        تقسيم زمني لتسجيل فيديو يمثل مشهدًا مميزًا
+        أو تسلسلًا مرئيًا متماسكًا ضمن المحتوى الأوسع.
+      id: >-
+        Subdivisi temporal rekaman video yang mewakili adegan berbeda
+        atau urutan visual koheren dalam konten yang lebih luas.
+      zh: >-
+        视频录制的时间细分，代表更广泛内容中的独特场景或连贯视觉序列。
+    broad_mappings:
+    - schema:VideoObject
+    close_mappings:
+    - schema:Clip
+    structured_aliases:
+    - literal_form: scènesegment
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Szenensegment
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: segment de scène
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: segmento de escena
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مقطع مشهد
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: segmen adegan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 场景片段
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Use `has_time_interval` to express the temporal extent of the segment within the full video.
+    - 'Preserved from prior description: Segment of a video representing a scene.'
+    keywords:
+    - video
+    - scene
+    - segment
+    - temporal
+    examples:
+    - value:
+        has_time_interval:
+          begin: "00:02:30"
+          end: "00:05:45"
+      description: Scene segment spanning 2:30 to 5:45 in video
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: "Generic utility class created during migration"
+      custodian_types: '["*"]'
+    slots:
+    - has_time_interval

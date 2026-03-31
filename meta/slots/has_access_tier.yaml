@@ -1,0 +1,28 @@
+id: https://nde.nl/ontology/hc/slot/has_access_tier
+name: has_access_tier
+title: has_access_tier
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+imports:
+- linkml:types
+slots:
+  has_access_tier:
+    slot_uri: hc:hasAccessTier
+    description: >-
+      Tier classification (0-4) documenting the data access method used
+      for this source and why higher tiers were not applicable. Following
+      the tiered access strategy: Tier 0 (SPARQL/OAI-PMH/SRU), Tier 1
+      (REST API), Tier 2 (embedded JSON-LD/RDFa), Tier 3 (bulk download),
+      Tier 4 (HTML scraping). Each profile must include a tier_justification
+      explaining why the chosen tier was selected.
+    range: integer
+    minimum_value: 0
+    maximum_value: 4
+    comments:
+      - "Tier 0: SPARQL endpoint, OAI-PMH, SRU — richest, preferred"
+      - "Tier 1: REST API with JSON/JSON-LD"
+      - "Tier 2: Embedded structured data (JSON-LD/RDFa/Microdata in HTML)"
+      - "Tier 3: Bulk downloadable files (CSV, TSV, PDF, RDF dumps)"
+      - "Tier 4: HTML scraping via HeadlessBrowserService (fallback)"
+      - "See docs/plan/fetch_kos_regs/digital-resource-profiles.md"

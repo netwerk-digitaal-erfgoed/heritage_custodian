@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/CurrentArchiveRecordSetTypes
+name: CurrentArchiveRecordSetTypes
+title: CurrentArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./CurrentArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  ActiveRecordsFonds:
+    is_a: CurrentArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Highest-level aggregation of ongoing business documentation retained for
+      immediate administrative, legal, or operational use before lifecycle transition.
+    alt_descriptions:
+      nl: >-
+        Hoogste aggregatieniveau van lopende bedrijfsdocumentatie die wordt
+        bewaard voor direct administratief, juridisch of operationeel gebruik
+        vóór de volgende levenscyclusfase.
+      de: >-
+        Höchste Aggregationsebene laufender Geschäftsdokumentation, die für den
+        unmittelbaren administrativen, rechtlichen oder operativen Gebrauch vor
+        dem Lebenszyklusübergang aufbewahrt wird.
+      fr: >-
+        Niveau d'agrégation le plus élevé de la documentation courante conservée
+        pour un usage administratif, juridique ou opérationnel immédiat avant la
+        transition du cycle de vie.
+      es: >-
+        Nivel de agregación más alto de documentación administrativa en uso,
+        conservada para uso inmediato administrativo, jurídico u operativo antes
+        de la transición del ciclo de vida.
+      ar: >-
+        أعلى مستوى تجميعي للوثائق التشغيلية الجارية المحفوظة للاستخدام
+        الإداري أو القانوني أو التشغيلي الفوري قبل الانتقال في دورة الحياة.
+      id: >-
+        Tingkat agregasi tertinggi untuk dokumentasi bisnis yang sedang berjalan,
+        disimpan untuk penggunaan administratif, hukum, atau operasional segera
+        sebelum transisi siklus hidup.
+      zh: >-
+        运行中业务文档的最高聚合层级，在进入下一生命周期阶段前用于即时行政、法律或运营用途。
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ActiveRecordsFonds
+      has_custodian:
+        equals_string: hc:CurrentArchive
+    structured_aliases:
+    - literal_form: fonds voor lopende bedrijfsdocumentatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fonds für laufende Geschäftsdokumentation
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds de documentation courante
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo de documentación en uso
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: صندوق وثائق تشغيلية جارية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds dokumentasi operasional aktif
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 在用业务文档总成
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Represents material still needed for day-to-day institutional work.
+    - Intended for holdings before transfer to semi-current or historical custody.
+    - 'Preserved from prior description: Fonds-level aggregation of currently active operational records awaiting lifecycle transition.'
+    keywords:
+    - lifecycle stage
+    - operational documentation
+    - fonds-level aggregation
+    - records management
+    examples:
+    - value:
+        has_type: hc:ActiveRecordsFonds
+        has_custodian: hc:CurrentArchive
+        has_note: Annual budget files still under active administrative use.
+      description: Ongoing documentation retained for immediate business processes

@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: has_position
+# ==============================================================================
+# Official role, job title, rank, or placement held within an organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                                                       |
+# |---------------|-----------------------|--------------------------|---------|-----------------------------------------------------------------------------|
+# | **Schema.org**| `schema:jobTitle`     | schemaorg.owl:23787-23810| close   | "The job title of the person." Domain: Person, Range: Text|DefinedTerm|     |
+# |               |                       |                          |         | Role|URL. Person-specific; this slot covers entities too plus rank and       |
+# |               |                       |                          |         | placement, not just job title.                                              |
+# | **Schema.org**| `schema:roleName`     | schemaorg.owl:33901-33920| close   | "A role played, performed or filled by a person or organization." Domain:   |
+# |               |                       |                          |         | Role. Names a role but domain is Role class, not the entity holding it.     |
+# | **W3C Org**   | `org:role`            | org.rdf:623-645          | related | "Indicates the Role that the Agent plays in a Membership relationship with  |
+# |               |                       |                          |         | an Organization." Domain: Membership|Post. About the role within a          |
+# |               |                       |                          |         | membership context, not the position itself.                                |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_position
+name: has_position
+title: Has Position
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_position:
+    slot_uri: hc:hasPosition
+    description: >-
+      Specifies the official role, job title, rank, or placement held by an
+      individual or entity within an organization, hierarchy, or system.
+    alt_descriptions:
+      nl: >-
+        Specificeert de officiele rol, functietitel, rang of plaatsing die
+        een individu of entiteit bekleedt binnen een organisatie, hierarchie
+        of systeem.
+      de: >-
+        Gibt die offizielle Rolle, Berufsbezeichnung, den Rang oder die
+        Platzierung an, die eine Person oder Einheit innerhalb einer
+        Organisation, Hierarchie oder eines Systems innehat.
+      fr: >-
+        Specifie le role officiel, le titre de poste, le rang ou le
+        placement detenu par un individu ou une entite au sein d'une
+        organisation, d'une hierarchie ou d'un systeme.
+      ar: >-
+        يحدد الدور الرسمي أو المسمى الوظيفي أو الرتبة أو الموضع الذي
+        يشغله فرد أو كيان داخل منظمة أو تسلسل هرمي أو نظام.
+      id: >-
+        Menentukan peran resmi, jabatan, pangkat, atau penempatan yang
+        dipegang oleh individu atau entitas dalam organisasi, hierarki,
+        atau sistem.
+      zh: >-
+        指定个人或实体在组织、层级结构或系统中担任的正式角色、职位名称、等级或位置。
+      es: >-
+        Especifica el rol oficial, titulo de puesto, rango o ubicacion que
+        un individuo o entidad ocupa dentro de una organizacion, jerarquia
+        o sistema.
+    structured_aliases:
+      - literal_form: Positie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Position
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Poste
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منصب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Posisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 职位
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Posicion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - is_or_was_position
+      - position
+    close_mappings:
+      - schema:jobTitle  # schemaorg.owl:23787-23810 - "The job title of the person." Domain: Person. Person-specific; this slot is broader.
+      - schema:roleName  # schemaorg.owl:33901-33920 - "A role played, performed or filled by a person or organization." Domain: Role class.
+    related_mappings:
+      - org:role  # org.rdf:623-645 - "Indicates the Role that the Agent plays in a Membership relationship." Domain: Membership|Post.
+    annotations:
+      custodian_types: '["*"]'

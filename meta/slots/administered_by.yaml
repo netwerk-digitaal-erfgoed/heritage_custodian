@@ -1,0 +1,199 @@
+# ==============================================================================
+# LinkML Slot Definition: administered_by
+# ==============================================================================
+# Be managed, directed, or superintended by a specific entity or authority
+# responsible for operational execution.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:isOrWasUnderAuthorityOf` | RiC-O_1-1:6927   | broad   | Parent of hasOrHadManager          |
+# | **W3C Org**   | `org:hasUnit`              | org.rdf:510          | close   | Organization has unit              |
+# | **RiC-O**     | `rico:hasOrHadManager`     | RiC-O_1-1:6925       | close   | Has/had manager                    |
+# | **RiC-O**     | `rico:hasOrHadHolder`      | RiC-O_1-1:6438       | narrow  | subPropertyOf hasOrHadManager      |
+# | **RiC-O**     | `rico:isOrWasRegulatedBy`  | RiC-O_1-1:15053      | related | Regulated by authority             |
+# | **Schema.org**| `schema:member`            | schemaorg.owl        | related | Member of organization             |
+# | **CIDOC-CRM** | `crm:P50_has_current_keeper` | CIDOC_CRM:2410     | related | Current keeper/custodian           |
+#
+# CREATED: 2026-01-16
+# UPDATED: 2026-02-03 - Added broad/narrow mappings based on RiC-O hierarchy
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/administered_by
+name: administered_by
+title: administered by
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  administered_by:
+    slot_uri: hc:administeredBy
+    description: >-
+      To be managed, directed, or superintended by a specific entity or
+      authority responsible for operational execution.
+    alt_descriptions:
+      nl: >-
+        Worden beheerd, geleid of bestuurd door een specifieke entiteit of
+        autoriteit die verantwoordelijk is voor de operationele uitvoering.
+      de: >-
+        Von einer bestimmten Einheit oder Behörde verwaltet, geleitet oder
+        beaufsichtigt werden, die für die operative Durchführung
+        verantwortlich ist.
+      fr: >-
+        Être géré, dirigé ou supervisé par une entité ou une autorité
+        spécifique responsable de l'exécution opérationnelle.
+      ar: >-
+        أن تُدار أو تُوجَّه أو تُشرف عليها جهة أو سلطة محددة مسؤولة
+        عن التنفيذ التشغيلي.
+      id: >-
+        Dikelola, diarahkan, atau diawasi oleh entitas atau otoritas
+        tertentu yang bertanggung jawab atas pelaksanaan operasional.
+      zh: >-
+        由负责运营执行的特定实体或机构管理、指导或监督。
+      es: >-
+        Ser gestionado, dirigido o supervisado por una entidad o autoridad
+        específica responsable de la ejecución operativa.
+    structured_aliases:
+      - literal_form: beheerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verwaltet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: administré par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يُدار من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dikelola oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...管理
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: administrado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    
+    # VERIFIED MAPPINGS (2026-02-03)
+    # Source files: data/ontology/org.rdf, data/ontology/RiC-O_1-1.rdf,
+    #               data/ontology/schemaorg.owl, data/ontology/CIDOC_CRM_v7.1.3.rdf
+    
+    broad_mappings:
+      # RiC-O_1-1.rdf line 6927-6928: hasOrHadManager rdfs:subPropertyOf isOrWasUnderAuthorityOf
+      # Broad: general authority relationship (parent of management)
+      - rico:isOrWasUnderAuthorityOf  # from RiC-O_1-1.rdf - parent of hasOrHadManager
+    
+    narrow_mappings:
+      # RiC-O_1-1.rdf line 6438: hasOrHadHolder rdfs:subPropertyOf hasOrHadManager
+      # Narrow: specific type of management - physical custody/holding
+      - rico:hasOrHadHolder  # from RiC-O_1-1.rdf - subPropertyOf hasOrHadManager
+    
+    close_mappings:
+      # org.rdf line 510: hasUnit
+      # "Indicates a unit which is part of this Organization"
+      # Close: organizational structure (unit managed by larger org)
+      - org:hasUnit  # from org.rdf - organization has unit
+      
+      # RiC-O_1-1.rdf line 6925: hasOrHadManager
+      # "Connects a RecordSet to an Agent that manages or managed it"
+      # Close: management relationship for archival records
+      - rico:hasOrHadManager  # from RiC-O_1-1.rdf - has/had manager
+    
+    related_mappings:
+      # RiC-O_1-1.rdf line 15053: isOrWasRegulatedBy
+      # "Connects an Agent to a Rule that regulates or regulated it"
+      # Related: regulatory relationship (different from administration)
+      - rico:isOrWasRegulatedBy  # from RiC-O_1-1.rdf - regulated by authority
+      
+      # org.rdf line 353: headOf
+      # "Indicates that a person is the head or principal administrator of an organization"
+      # Related: inverse direction - person heads organization
+      - org:headOf  # from org.rdf - head of organization (inverse)
+      
+      # org.rdf line 427: hasMember
+      # "Indicates a person who is a member of the subject Organization"
+      # Related: membership relationship (broader than administration)
+      - org:hasMember  # from org.rdf - organization has member
+      
+      # CIDOC_CRM_v7.1.3.rdf line 2410: P50_has_current_keeper
+      # "Identifies the E39 Actor that had custody of an instance of E18 Physical Thing"
+      # Related: custody/keeping relationship
+      - crm:P50_has_current_keeper  # from CIDOC_CRM - current keeper/custodian
+    
+    aliases:
+      - is_or_was_administered_by
+      - has_or_had_administration
+    
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        Administration relationships applicable to all heritage custodian
+        types for organizational governance and management structures.
+      specificity_score: 0.40
+      specificity_rationale: >-
+        Moderate specificity - administration is a general organizational
+        concept applicable to entities with governance structures.
+    
+    examples:
+      - value: https://example.org/org/ministry-of-culture
+        description: Museum administered by Ministry of Culture
+      - value: https://example.org/org/university-board
+        description: University library administered by university board
+      - value: https://example.org/org/foundation-trustees
+        description: Archive administered by foundation trustees
+      - value: https://ror.org/02e2c7k09
+        description: Collection administered by Rijksmuseum (via ROR ID)
+    
+    comments:
+      - Updated 2026-02-02 with verified ontology mappings and translations
+      - |
+        **PURPOSE**:
+        Captures administrative and governance relationships for heritage
+        institutions. Indicates which entity or authority is responsible
+        for the operational management, direction, or oversight of a
+        resource, collection, or organization.
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "is_or_was_administered_by" alias to indicate temporal
+        relationship - administrative responsibility may change over time
+        as organizations restructure or merge.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **RiC-O** | `rico:isOrWasUnderAuthorityOf` | 6927 | broad | Parent of hasOrHadManager |
+        | **W3C Org** | `org:hasUnit` | 510 | close | Organization has unit |
+        | **RiC-O** | `rico:hasOrHadManager` | 6925 | close | Has/had manager |
+        | **RiC-O** | `rico:hasOrHadHolder` | 6438 | narrow | subPropertyOf hasOrHadManager |
+        | **RiC-O** | `rico:isOrWasRegulatedBy` | 15053 | related | Regulated by authority |
+        | **W3C Org** | `org:headOf` | 353 | related | Head of org (inverse) |
+        | **CIDOC-CRM** | `crm:P50_has_current_keeper` | 2410 | related | Current keeper |
+      - |
+        **USE CASES**:
+        - Museum administered by government ministry
+        - Library administered by university
+        - Archive administered by foundation
+        - Collection administered by consortium
+        - Program administered by funding agency
+      - |
+        **DISTINCTION FROM OWNERSHIP**:
+        Administration differs from ownership (has_asset, schema:owns).
+        An organization may administer resources it does not own, such as
+        collections on loan or programs funded by external grants.
+    
+    see_also:
+      - https://www.w3.org/ns/org#hasUnit
+      - https://www.ica.org/standards/RiC/ontology#hasOrHadManager

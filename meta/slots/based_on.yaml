@@ -1,0 +1,149 @@
+# ==============================================================================
+# LinkML Slot Definition: based_on
+# ==============================================================================
+# Entity or resource this item is derived from or founded upon.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line              | Mapping | Notes                              |
+# |----------------|-----------------------|------------------------|---------|-------------------------------------|
+# | **PROV-O**     | `prov:wasDerivedFrom` | prov.ttl:1099-1114     | exact   | "A derivation is a transformation   |
+# |                |                       |                        |         | of an entity into another..."       |
+# | **Schema.org** | `schema:isBasedOn`    | schemaorg.owl:22729-51 | close   | "A resource from which this work is |
+# |                |                       |                        |         | derived or from which it is a       |
+# |                |                       |                        |         | modification or adaptation."        |
+# | ~~RiC-O~~     | ~~`rico:isOrWasBasedOn`~~| ~~rico.owl~~         | ~~close~~| REMOVED: does not exist in RiC-O 1.1 |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (moved use cases to comments), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/based_on
+name: based_on
+title: Based On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  based_on:
+    slot_uri: prov:wasDerivedFrom
+    description: >-
+      To be derived from, founded upon, or developed using a specific source, 
+      predecessor, or underlying data, indicating the origin or lineage of 
+      the entity.
+    alt_descriptions:
+      nl: >-
+        Afgeleid zijn van, gebaseerd zijn op, of ontwikkeld zijn met behulp 
+        van een specifieke bron, voorganger of onderliggende gegevens, wat 
+        de oorsprong of afstamming van de entiteit aangeeft.
+      de: >-
+        Von einer bestimmten Quelle, einem Vorgänger oder zugrunde liegenden 
+        Daten abgeleitet, darauf gegründet oder damit entwickelt zu werden, 
+        was den Ursprung oder die Abstammung der Entität angibt.
+      fr: >-
+        Être dérivé de, fondé sur, ou développé à partir d'une source, 
+        d'un prédécesseur ou de données sous-jacentes spécifiques, indiquant 
+        l'origine ou la lignée de l'entité.
+      ar: >-
+        أن يكون مشتقًا من، أو مؤسسًا على، أو مطورًا باستخدام مصدر محدد 
+        أو سلف أو بيانات أساسية، مما يشير إلى أصل أو نسب الكيان.
+      id: >-
+        Berasal dari, didirikan atas, atau dikembangkan menggunakan sumber, 
+        pendahulu, atau data dasar tertentu, yang menunjukkan asal atau 
+        garis keturunan entitas.
+      zh: >-
+        源自、基于或使用特定来源、前身或基础数据开发，
+        表明实体的起源或谱系。
+      es: >-
+        Ser derivado de, fundado sobre, o desarrollado utilizando una fuente, 
+        predecesor o datos subyacentes específicos, indicando el origen o 
+        linaje de la entidad.
+    structured_aliases:
+      - literal_form: gebaseerd op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: basiert auf
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: basé sur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مبني على
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berdasarkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 基于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: basado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - schema:isBasedOn  # schemaorg.owl:22729-22751 - "A resource from which this work is derived"
+    # NOTE: rico:isOrWasBasedOn was removed — it does not exist in RiC-O 1.1.
+    # Closest RiC-O term is rico:hasOrHadDerivedInstantiation but semantics differ.
+    aliases:
+      - is_or_was_based_on
+      - based_on_claim
+      - is_or_was_based_on_claim
+      - has_or_had_citation
+      - has_citation
+      - content_origin
+      - loan_agreement_url
+      - network_analysis
+      - observation_ref
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.25
+    comments:
+      - |
+        **USE CASES**:
+        1. **CMS Detection**: Platform based on a detected CMS
+        2. **Software Dependencies**: Application based on framework/library
+        3. **Content Derivation**: Document based on template/source
+        4. **Infrastructure**: Service based on platform/technology
+      - |
+        **ARGUMENTATION SEMANTICS**:
+        In argumentation theory (Toulmin model), claims provide evidence that 
+        WARRANTS (justifies) conclusions. This slot captures the reverse relationship:
+        a conclusion or derived value is BASED ON supporting claims.
+      - |
+        **PROVENANCE TRACKING**:
+        1. Quantity provenance: A claims_count quantity is based on the actual claims
+        2. Assertion support: An assertion about an entity is based on web claims
+        3. Derivation tracking: A computed value is based on source claims
+      - |
+        **EXAMPLE**:
+        ```yaml
+        has_or_had_quantity:
+          quantity_value: 47
+          quantity_type: CLAIM_COUNT
+          has_or_had_provenance:
+            based_on_claim:
+              - claim_type: STAFF_NAME
+                claim_value: "Jan de Vries"
+              - claim_type: STAFF_ROLE
+                claim_value: "Director"
+        ```
+      - |
+        **MIGRATION NOTE (2026-01-19)**:
+        Created per slot_fixes.yaml revision for claims_count migration.
+        Enables provenance tracking for claim-based quantities.

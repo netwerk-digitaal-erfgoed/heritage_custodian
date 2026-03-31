@@ -1,0 +1,127 @@
+# ==============================================================================
+# LinkML Slot Definition: encompass
+# ==============================================================================
+# Comprehensively including or surrounding and holding within.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                      | File/Line                      | Mapping | Notes                                                        |
+# |---------------|-------------------------------|--------------------------------|---------|--------------------------------------------------------------|
+# | **Org**       | `org:hasSubOrganization`      | org.rdf:645-660                | close   | "Hierarchical containment of Organizations." Org-specific.   |
+# | **RiC-O**     | `rico:hasOrHadSubordinate`    | RiC-O_1-1.rdf:8275-8330       | close   | "Agent hierarchically inferior." Agent hierarchy.            |
+# | **Schema.org**| `schema:subOrganization`      | schemaorg.owl:36756-36780      | close   | "Org includes another, e.g. subsidiary." Same org concept.   |
+# | **DCTerms**   | `dcterms:hasPart`             | dcterms.rdf:1347-1370          | broad   | "Resource included physically or logically." Generic part.   |
+# | **RiC-O**     | `rico:includesOrIncluded`     | RiC-O_1-1.rdf:9523-9580       | related | "RecordSet aggregates Record/RecordSet." Record domain.      |
+# | **Schema.org**| `schema:containsPlace`        | schemaorg.owl:12711-12740      | related | "Place contains another Place." Spatial containment only.    |
+#
+# DEMOTED MAPPINGS:
+#   - org:hasSubOrganization (was exact → close) — "hierarchical containment of
+#     Organizations" is org-specific; the slot description covers comprehensive
+#     inclusion of any ideas, subjects, or elements.
+#   - dcterms:hasPart (was close → broad) — generic part-whole relationship is
+#     broader than the slot's concept of comprehensive inclusion/surrounding.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/encompass
+name: encompass
+title: Encompass
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  encompass:
+    slot_uri: hc:encompass
+    description: >-
+      To include a wide range of ideas, subjects, or elements comprehensively;
+      or to surround and hold within.
+    alt_descriptions:
+      nl: >-
+        Een breed scala aan ideeën, onderwerpen of elementen omvattend opnemen;
+        of omringen en binnenin houden.
+      de: >-
+        Ein breites Spektrum an Ideen, Themen oder Elementen umfassend
+        einschließen; oder umgeben und darin einschließen.
+      fr: >-
+        Inclure de manière exhaustive un large éventail d'idées, de sujets ou
+        d'éléments; ou entourer et contenir.
+      ar: >-
+        تضمين مجموعة واسعة من الأفكار أو الموضوعات أو العناصر بشكل شامل؛ أو
+        الإحاطة والاحتواء.
+      id: >-
+        Mencakup berbagai gagasan, subjek, atau elemen secara menyeluruh; atau
+        mengelilingi dan menampung di dalamnya.
+      zh: >-
+        全面涵盖广泛的思想、主题或要素；或环绕并包含在内。
+      es: >-
+        Incluir de manera integral una amplia gama de ideas, temas o elementos;
+        o rodear y contener dentro.
+    structured_aliases:
+      - literal_form: Omvatting
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Umfassung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Englobement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: احتواء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Cakupan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 涵盖
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Abarcamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    # range: Custodian
+    multivalued: true
+    annotations:
+      inverse_slot: is_or_was_encompassed_by
+      deprecates: encompasses
+      rico_pattern: hasOrHadSubordinate
+      custodian_types: '["*"]'
+    close_mappings:
+      - org:hasSubOrganization  # org.rdf:645-660 — "Hierarchical containment of Organizations or Organizational Units." Org-specific but matches primary governance use.
+      - rico:hasOrHadSubordinate  # RiC-O_1-1.rdf:8275-8330 — "Connects an Agent to an Agent that is hierarchically inferior." Agent hierarchy.
+      - schema:subOrganization  # schemaorg.owl:36756-36780 — "A relationship between two organizations where the first includes the second, e.g., as a subsidiary."
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 — "A related resource that is included either physically or logically in the described resource." Generic part-whole is broader.
+    related_mappings:
+      - rico:includesOrIncluded  # RiC-O_1-1.rdf:9523-9580 — "RecordSet aggregates Record/RecordSet." Record domain, not organizational.
+      - schema:containsPlace  # schemaorg.owl:12711-12740 — "Place contains another Place." Spatial containment domain only.
+    aliases:
+      - encompasses_or_encompassed
+    comments:
+      - 'RiC-O pattern: temporal naming for governance relationships'
+      - Inverse of is_or_was_encompassed_by (org:subOrganizationOf)
+      - Links governance body to custodians it oversees/oversaw
+      - Creates owl:inverseOf axiom in RDF output
+      - 'Inverse: `is_or_was_encompassed_by` (org:subOrganizationOf) | Pattern: If Custodian is_or_was_encompassed_by Body, then Body encompasses_or_encompassed Custodian'
+      - 'Navigation: From body: Find all encompassed custodians (encompasses_or_encompassed) | From custodian: Find encompassing bodies (is_or_was_encompassed_by)'
+      - 'Deprecates: encompasses (non-temporal naming)'
+      - >-
+        Governance relationships change over time: Institutions move between
+        ministries; Networks gain and lose members; Consortia dissolve or
+        restructure. Three relationship types: (1) Umbrella — Legal parent
+        hierarchy (permanent), e.g. Ministry encompasses National Archives,
+        Royal Library. (2) Network — Service provision (temporary, centralized),
+        e.g. De Ree Archive Hosting encompasses member archives. (3) Consortium
+        — Mutual assistance (temporary, peer-to-peer), e.g. Heritage Network
+        encompasses participating museums.
+    examples:
+      - value: "EncompassingBody:\n  organization_name: \"Ministerie van OCW\"\n  organization_type: UMBRELLA\n  encompasses_or_encompassed:\n    - \"https://nde.nl/ontology/hc/nl-na\"   # National Archives\n    - \"https://nde.nl/ontology/hc/nl-kb\"   # Royal Library (current)\n    - \"https://nde.nl/ontology/hc/nl-rm\"   # Rijksmuseum (until 2013)\n"
+        description: Ministry with current and former subordinate institutions

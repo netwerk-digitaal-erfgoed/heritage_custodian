@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: has_beneficiary
+# ==============================================================================
+# Indicates who benefits from the organization's programs and services.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:audience`     | schemaorg.owl              | close   | Intended audience, not beneficiary |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual, fixed mapping (exact->close)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_beneficiary
+name: has_beneficiary
+title: Has Beneficiary
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_beneficiary:
+    slot_uri: hc:hasBeneficiary
+    description: >-
+      Who benefits or benefited from the organization's programs and services,
+      identifying target populations.
+    alt_descriptions:
+      nl: >-
+        Wie profiteert of profiteerde van de programma's en diensten van de
+        organisatie, identificeert doelgroepen.
+      de: >-
+        Wer von den Programmen und Dienstleistungen der Organisation profitiert
+        oder profitiert hat, identifiziert Zielgruppen.
+      fr: >-
+        Qui bénéficie ou a bénéficié des programmes et services de l'organisation,
+        identifiant les populations cibles.
+      ar: >-
+        من يستفيد أو استفاد من برامج وخدمات المنظمة، مع تحديد الفئات المستهدفة.
+      id: >-
+        Siapa yang mendapat manfaat atau telah mendapat manfaat dari program dan
+        layanan organisasi, mengidentifikasi populasi target.
+      zh: >-
+        谁从组织的计划和服务中受益或曾受益，确定目标人群。
+      es: >-
+        Quién se beneficia o se ha beneficiado de los programas y servicios de
+        la organización, identificando poblaciones objetivo.
+    structured_aliases:
+      - literal_form: heeft begunstigde
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Begünstigten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un bénéficiaire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه مستفيد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki penerima manfaat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有受益人
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene beneficiario
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_beneficiary
+    close_mappings:
+      - schema:audience  # Intended audience - close but not exact match for beneficiary
+    comments:
+      - |
+        **BENEFICIARY CATEGORIES**:
+        - Heritage organizations: Museums, archives, libraries, societies
+        - Heritage professionals: Conservators, curators, archivists, educators
+        - Local communities: Residents near heritage sites, indigenous peoples
+        - Policy makers: Government officials, legislators, planners
+        - Students and researchers: Academic community
+        - General public: Tourists, volunteers, heritage enthusiasts
+        - Property owners: Private owners of heritage buildings
+    annotations:
+      custodian_types: '["*"]'

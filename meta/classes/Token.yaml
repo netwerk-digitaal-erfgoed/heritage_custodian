@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/Token
+name: token_class
+title: Token Class
+version: 1.1.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_quantity
+- ../slots/has_type
+default_prefix: hc
+classes:
+  Token:
+    class_uri: schema:QuantitativeValue
+    alt_descriptions:
+      nl: Token-telling voor het bijhouden van LLM API-gebruik.
+      de: Token-Zaehler zur Nachverfolgung der LLM-API-Nutzung.
+      fr: Comptage de jetons pour le suivi de l utilisation d une API LLM.
+      es: Conteo de tokens para el seguimiento del uso de APIs de LLM.
+      ar: تمثيل عدد الرموز لتتبع استخدام واجهة برمجة تطبيقات نماذج اللغة.
+      id: Perhitungan token untuk pelacakan penggunaan API LLM.
+      zh: 用于跟踪 LLM API 使用量的 token 计数。
+    structured_aliases:
+    - {literal_form: tokenaantal, in_language: nl}
+    - {literal_form: Tokenanzahl, in_language: de}
+    - {literal_form: nombre de jetons, in_language: fr}
+    - {literal_form: recuento de tokens, in_language: es}
+    - {literal_form: عدد التوكنات, in_language: ar}
+    - {literal_form: jumlah token, in_language: id}
+    - {literal_form: token 数, in_language: zh}
+    description: >-
+      Discrete unit count or measurement associated with a computational process, service, or resource.
+    broad_mappings:
+    - schema:QuantitativeValue
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    - has_quantity
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/token/llm-response-001-cached
+      has_type:
+#         range: string # uriorcurie
+        required: false
+        # inlined: true # CANNOT inline string
+        examples:
+        - value:
+            identified_by: hc:TokenType/CACHED
+            has_label: Cached Token
+        - value:
+            identified_by: hc:TokenType/REASONING
+            has_label: Reasoning Token
+      has_quantity:
+        range: integer
+        required: false
+        # inlined: true # CANNOT inline integer
+        examples:
+        - value: 50
+        - value: 2048
+      has_label:
+#         range: string
+        required: false
+        examples:
+        - value: Cached tokens for context window
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: 50 prompt tokens served from provider KV cache
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

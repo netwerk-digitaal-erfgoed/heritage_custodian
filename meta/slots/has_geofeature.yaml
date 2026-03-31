@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: has_geofeature
+# ==============================================================================
+# To specify a distinctive geographic element of a location or landscape.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property            | File/Line                    | Mapping | Notes                                        |
+# |----------------|---------------------|------------------------------|---------|----------------------------------------------|
+# | **GeoNames**   | `gn:featureClass`   | geonames_ontology.rdf:260    | related | Classifies a Feature, not "has" a feature.   |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_geofeature
+name: has_geofeature
+title: has_geofeature
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  gn: http://www.geonames.org/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_geofeature:
+    name: has_geofeature
+    title: has_geofeature
+    slot_uri: hc:hasGeofeature
+    description: >-
+      To specify a distinctive geographic element, aspect, or physical
+      characteristic of a location or landscape (such as a river, mountain,
+      building, or administrative boundary) associated with the entity.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een onderscheidend geografisch element, aspect of
+        fysiek kenmerk van een locatie of landschap (zoals een rivier, berg,
+        gebouw of administratieve grens) dat verbonden is met de entiteit.
+      de: >-
+        Angabe eines kennzeichnenden geografischen Elements, Aspekts oder
+        physischen Merkmals einer Lage oder Landschaft (wie ein Fluss, Berg,
+        Gebäude oder eine Verwaltungsgrenze), das mit der Entität verbunden ist.
+      fr: >-
+        Spécifier un élément géographique distinctif, un aspect ou une
+        caractéristique physique d'un lieu ou d'un paysage (tel qu'une rivière,
+        une montagne, un bâtiment ou une limite administrative) associé à
+        l'entité.
+      ar: >-
+        تحديد عنصر جغرافي مميز أو جانب أو خاصية فيزيائية لموقع أو منظر طبيعي
+        (مثل نهر أو جبل أو مبنى أو حدود إدارية) مرتبط بالكيان.
+      id: >-
+        Menentukan elemen geografis, aspek, atau karakteristik fisik yang khas
+        dari suatu lokasi atau bentang alam (seperti sungai, gunung, bangunan,
+        atau batas administratif) yang terkait dengan entitas.
+      zh: >-
+        指定与实体相关的某一地点或景观的独特地理要素、方面或物理特征（如河流、山脉、建筑物或行政边界）。
+      es: >-
+        Especificar un elemento geográfico distintivo, aspecto o característica
+        física de una ubicación o paisaje (como un río, montaña, edificio o
+        límite administrativo) asociado con la entidad.
+    structured_aliases:
+      - literal_form: heeft geografisch kenmerk
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Geomerkmal
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un élément géographique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له معلم جغرافي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki fitur geografis
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有地理特征
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene característica geográfica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_geofeature
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - gn:featureClass  # geonames_ontology.rdf:260 — classifies a GeoNames Feature into a FeatureClass category; different semantics from "having" a geographic feature
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_geofeature for conciseness.
+      - |
+        **ONTOLOGY NOTE**: `gn:featureClass` (geonames_ontology.rdf:260) assigns a broad
+        category (e.g., P=populated, H=hydrographic) to a GeoNames Feature. This is about
+        *classifying* a feature, not *having/associating* a geographic feature with an entity.
+        Therefore demoted from exact to related.

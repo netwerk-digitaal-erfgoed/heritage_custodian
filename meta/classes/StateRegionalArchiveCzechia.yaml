@@ -1,0 +1,68 @@
+id: https://nde.nl/ontology/hc/class/StateRegionalArchiveCzechia
+name: StateRegionalArchiveCzechia
+title: StateRegionalArchiveCzechia Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/related_to
+classes:
+  StateRegionalArchiveCzechia:
+    description: >-
+      A state regional archive in the Czech Republic, responsible for preserving
+      and providing access to historical records at the regional (kraj) level.
+    alt_descriptions:
+      cs: Státní oblastní archiv v České republice, zodpovědný za uchování a zpřístupnění historických záznamů na krajské úrovni.
+      de: Ein staatliches Regionalarchiv in Tschechien, zuständig für die Erhaltung und Bereitstellung historischer Unterlagen auf regionaler Ebene.
+      fr: Archives régionales d'État en République tchèque, responsables de la préservation et de l'accès aux documents historiques au niveau régional.
+    structured_aliases:
+    - literal_form: Státní oblastní archiv
+      in_language: cs
+    - literal_form: Staatliches Regionalarchiv
+      in_language: de
+    - literal_form: archives régionales d'État
+      in_language: fr
+    comments:
+    - Supervises district archives within their region.
+    - Primary archival authority for regional government records.
+    - Czech-specific institution type.
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - related_to
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q53130134
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+    see_also:
+    - StateDistrictArchive
+    - SpecializedArchivesCzechia
+    - SecurityArchives
+    - RegionalArchive
+    annotations:
+      record_set_type: true
+      custodian_type: true
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: established_by
+# ==============================================================================
+# Links an entity to the agent who founded or established it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property         | File/Line              | Mapping | Notes                                |
+# |----------------|------------------|------------------------|---------|--------------------------------------|
+# | **Schema.org** | `schema:founder` | schemaorg.owl:18389-11 | close   | "A person or organization who        |
+# |                |                  |                        |         | founded this organization" - inverse |
+# |                |                  |                        |         | direction (founder vs established by)|
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/established_by
+name: established_by
+title: Established By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  established_by:
+    slot_uri: hc:establishedBy
+    description: >-
+      To be founded, set up, instituted, or brought into existence on a 
+      permanent basis by a specific agent or organization.
+    alt_descriptions:
+      nl: >-
+        Opgericht, ingesteld, geïnstitutionaliseerd of op permanente basis 
+        in het leven geroepen door een specifieke agent of organisatie.
+      de: >-
+        Von einem bestimmten Agenten oder einer Organisation gegründet, 
+        eingerichtet, institutionalisiert oder auf dauerhafter Basis ins 
+        Leben gerufen zu werden.
+      fr: >-
+        Être fondé, établi, institué ou créé sur une base permanente par 
+        un agent ou une organisation spécifique.
+      ar: >-
+        أن يتم تأسيسه أو إنشاؤه أو إقامته أو إيجاده على أساس دائم من قبل 
+        وكيل أو منظمة محددة.
+      id: >-
+        Didirikan, dibentuk, dilembagakan, atau diwujudkan secara permanen 
+        oleh agen atau organisasi tertentu.
+      zh: >-
+        由特定代理或组织创立、设立、建立或永久性地创建。
+      es: >-
+        Ser fundado, establecido, instituido o creado de forma permanente 
+        por un agente u organización específica.
+    structured_aliases:
+      - literal_form: opgericht door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: gegründet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: établi par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أسسه
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didirikan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...创立
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: establecido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - schema:founder  # schemaorg.owl:18389-18411 - inverse direction (founder vs established by)
+    aliases:
+      - is_or_was_established_by
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link institutions, organizations, or 
+        collections to the agent (person or organization) that founded them.
+      - |
+        **MAPPING NOTE**: `schema:founder` is the inverse relationship - it 
+        links an organization TO its founder, while this slot links FROM an 
+        entity TO the agent that established it.

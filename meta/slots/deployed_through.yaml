@@ -1,0 +1,119 @@
+# ==============================================================================
+# LinkML Slot Definition: deployed_through
+# ==============================================================================
+# Denotes the mechanism, pipeline, or release event via which a system was deployed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line            | Mapping | Notes                                     |
+# |---------------|------------------------|----------------------|---------|-------------------------------------------|
+# | **PROV-O**    | `prov:wasGeneratedBy`  | prov.ttl:1132-1145   | close   | Generation of entity - more general       |
+# | **Schema.org**| `schema:datePublished` | schemaorg.owl:14278  | related | Date aspect only, not deployment mechanism|
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description, added multilingual, corrected mapping semantics
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/deployed_through
+name: deployed_through
+title: Deployed Through
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  deployed_through:
+    slot_uri: hc:deployedThrough
+    description: >-
+      The specific mechanism, pipeline, or release event via which a software system, service, 
+      or application was installed, configured, and made operational in a target environment.
+    alt_descriptions:
+      nl: >-
+        Het specifieke mechanisme, de pijplijn of de release-gebeurtenis waarmee een softwaresysteem, 
+        dienst of applicatie werd geïnstalleerd, geconfigureerd en operationeel gemaakt in een doelomgeving.
+      de: >-
+        Der spezifische Mechanismus, die Pipeline oder das Release-Ereignis, über das ein 
+        Softwaresystem, ein Dienst oder eine Anwendung in einer Zielumgebung installiert, 
+        konfiguriert und betriebsbereit gemacht wurde.
+      fr: >-
+        Le mécanisme spécifique, le pipeline ou l'événement de publication par lequel un 
+        système logiciel, un service ou une application a été installé, configuré et rendu 
+        opérationnel dans un environnement cible.
+      ar: >-
+        الآلية أو خط الإنتاج أو حدث الإصدار المحدد الذي تم من خلاله تثبيت نظام برمجي أو خدمة 
+        أو تطبيق وتكوينه وتشغيله في بيئة مستهدفة.
+      id: >-
+        Mekanisme, pipeline, atau peristiwa rilis tertentu yang melaluinya sistem perangkat 
+        lunak, layanan, atau aplikasi diinstal, dikonfigurasi, dan dioperasikan di lingkungan target.
+      zh: >-
+        软件系统、服务或应用程序在目标环境中安装、配置并投入运行所通过的具体机制、管道或发布事件。
+      es: >-
+        El mecanismo específico, pipeline o evento de lanzamiento a través del cual un sistema 
+        de software, servicio o aplicación fue instalado, configurado y puesto en funcionamiento 
+        en un entorno de destino.
+    structured_aliases:
+      - literal_form: geïmplementeerd via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bereitgestellt durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: déployé via
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم النشر عبر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diimplementasikan melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过部署
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: desplegado mediante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    required: false
+    aliases:
+      - is_or_was_deployed_at
+      - is_or_was_deployed_through
+    close_mappings:
+      - prov:wasGeneratedBy  # prov.ttl:1132-1145 - Generation of entity by activity (more general)
+    related_mappings:
+      - schema:datePublished  # schemaorg.owl:14278 - Date aspect only
+    annotations:
+      replaces_slots: deployment_date
+      migration_date: '2026-01-25'
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **TEMPORAL SEMANTICS**: This relationship may be historical - a system may have been 
+        deployed multiple times at different institutions or locations.
+      - |
+        **REVISION PATTERN**: Replaces a simple date with structured DeploymentEvent:
+        - DeploymentEvent.temporal_extent → TimeSpan with fuzzy boundaries
+        - Enables tracking multiple deployments over time
+        - Captures deployment context (who, where, why)
+      - MIGRATED from deployment_date per slot_fixes.yaml (Rule 53)
+      - Structured deployment tracking via DeploymentEvent class
+      - 'RiC-O naming: isOrWas indicates potentially historical relationship'
+      - 'Mapping Note: prov:wasGeneratedBy is close but more general (entity generation vs. deployment)'
+    examples:
+      - value: https://nde.nl/ontology/hc/event/rijksmuseum-adlib-deployment-2015
+        description: Reference to Adlib CMS deployment event at Rijksmuseum

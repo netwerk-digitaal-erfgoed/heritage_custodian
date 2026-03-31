@@ -1,0 +1,128 @@
+# ==============================================================================
+# LinkML Slot Definition: has_method
+# ==============================================================================
+# To utilize or be associated with a specific systematic procedure, technique,
+# or mode of inquiry established to accomplish a task or research objective.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:used`           | prov.ttl:1046-1057   | close   | Entity used by activity            |
+# | **Schema.org**| `schema:instrument`   | schemaorg.owl:22391  | close   | Instrument used to perform action  |
+# | **CIDOC-CRM** | `crm:P33_used_specific_technique` | CIDOC_CRM | close   | Technique used in activity         |
+# | **Schema.org**| `schema:httpMethod`   | schemaorg.owl:20833  | narrow  | HTTP method specifically           |
+#
+# HIERARCHY: 
+# - prov:used rdfs:subPropertyOf prov:wasInfluencedBy (prov.ttl:1046)
+# - No standard ontology property for general "has method" - domain-specific
+#
+# CREATED: 2026-01-20
+# UPDATED: 2026-02-03 - Fixed mappings: schema:httpMethod is narrow (HTTP-specific), prov:used is close
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_method
+name: has_method
+title: Has Method
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_method:
+    slot_uri: hc:hasMethod
+    description: >-
+      To utilize or be associated with a specific systematic procedure,
+      technique, or mode of inquiry established to accomplish a task or
+      research objective.
+    alt_descriptions:
+      nl: >-
+        Om een specifieke systematische procedure, techniek of onderzoeksmodus
+        te gebruiken of ermee geassocieerd te zijn die is vastgesteld om een
+        taak of onderzoeksdoel te bereiken.
+      de: >-
+        Ein spezifisches systematisches Verfahren, eine Technik oder einen
+        Untersuchungsmodus zu verwenden oder damit verbunden zu sein, der zur
+        Erfüllung einer Aufgabe oder eines Forschungsziels eingerichtet wurde.
+      fr: >-
+        Utiliser ou être associé à une procédure systématique, une technique
+        ou un mode d'enquête spécifique établi pour accomplir une tâche ou un
+        objectif de recherche.
+      ar: >-
+        استخدام أو الارتباط بإجراء منهجي محدد أو تقنية أو طريقة بحث تم
+        تأسيسها لإنجاز مهمة أو هدف بحثي.
+      id: >-
+        Menggunakan atau terkait dengan prosedur sistematis, teknik, atau
+        metode penyelidikan tertentu yang ditetapkan untuk menyelesaikan
+        tugas atau tujuan penelitian.
+      zh: >-
+        使用或与为完成任务或研究目标而建立的特定系统程序、技术或调查模式相关联。
+      es: >-
+        Utilizar o estar asociado con un procedimiento sistemático, técnica
+        o modo de investigación específico establecido para lograr una tarea
+        u objetivo de investigación.
+    structured_aliases:
+      - literal_form: methode
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Methode
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: méthode
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: طريقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: metode
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 方法
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: método
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - prov:used  # Entity used by activity - related but not exact
+      - schema:instrument  # Instrument used to perform action
+      - crm:P33_used_specific_technique  # CIDOC-CRM technique
+    narrow_mappings:
+      - schema:httpMethod  # HTTP method specifically (GET, POST, etc.)
+    aliases:
+    - has_or_had_method
+    - keyframe_extraction
+    - measurement_method
+    - method
+    - methodology_type
+    - method
+    - preservation_approach
+    - preservation_method
+    - production_method
+    - reconstruction_method
+    - scrape_method
+    examples:
+    - value:
+        method_name: GET
+      description: HTTP GET method
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Used for:
+        - HTTP methods (GET, POST, PUT, DELETE) - range: HTTPMethod
+        - Enrichment methods (WhatsApp API, Manual) - range: EnrichmentMethod
+        - API interaction methods
+      - Range broadened to support multiple method types per Rule 55.

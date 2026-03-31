@@ -1,0 +1,111 @@
+id: https://w3id.org/nde/ontology/PressArchive
+name: PressArchive
+title: Press Archive Organization Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+classes:
+  PressArchive:
+    description: >-
+      Organization dedicated to collecting and preserving newspapers, magazines,
+      press releases, and journalistic materials. Serves news organizations,
+      researchers, and the public with both print and digital media holdings.
+    alt_descriptions:
+      nl: >-
+        Organisatie gewijd aan het verzamelen en behouden van kranten, tijdschriften,
+        persberichten en journalistieke materialen. Dient nieuwsorganisaties,
+        onderzoekers en het publiek met zowel print- als digitale mediabestanden.
+      de: >-
+        Organisation, die sich dem Sammeln und Bewahren von Zeitungen, Zeitschriften,
+        Pressemitteilungen und journalistischen Materialien widmet. Bedient Nachrichtenorganisationen,
+        Forscher und die Öffentlichkeit mit Beständen in Print- und digitalen Medien.
+      fr: >-
+        Organisation dédiée à la collecte et à la préservation des journaux, magazines,
+        communiqués de presse et matériaux journalistiques. Sert les organisations de presse,
+        les chercheurs et le public avec des fonds en médias imprimés et numériques.
+      es: >-
+        Organización dedicada a recopilar y preservar periódicos, revistas,
+        comunicados de prensa y materiales periodísticos. Sirve a organizaciones de noticias,
+        investigadores y al público con fondos en medios impresos y digitales.
+      ar: >-
+        منظمة مكرسة لجمع وحفظ الصحف والمجلات والبيانات الصحفية
+        والمواد الصحفية. تخدم المؤسسات الإخبارية والباحثين والجمهور
+        بأصول وسائط مطبوعة ورقمية.
+      id: >-
+        Organisasi yang didedikasikan untuk mengumpulkan dan melestarikan surat kabar, majalah,
+        siaran pers, dan materi jurnalistik. Melayani organisasi berita,
+        peneliti, dan publik dengan koleksi media cetak dan digital.
+      zh: >-
+        致力于收集和保存报纸、杂志、新闻稿和新闻材料的组织。
+        为新闻机构、研究人员和公众提供印刷和数字媒体馆藏。
+    close_mappings:
+      - wd:Q56650887
+    broad_mappings:
+      - skos:Concept
+      - wd:Q166118
+    related_mappings:
+      - rico:CorporateBody
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    slots:
+      - has_type
+      - hold_record_set
+      - has_score
+      - identified_by
+    slot_usage:
+      identified_by: null
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+          - equals_string: "hc:PressArchive"
+    see_also:
+      - NewspaperClippingsArchive
+      - OnlineNewsArchive
+      - MediaArchive
+      - BroadcastArchive
+    comments:
+      - Institutional organization for press materials
+      - Preserves newspapers and press materials
+      - May include print and digital content
+      - Often maintained by news organizations
+    examples:
+      - value:
+          has_type: hc:PressArchive
+          has_score: 0.80
+        description: News organization archive
+    keywords:
+      - press
+      - newspapers
+      - journalism
+      - media
+      - magazines
+    annotations:
+      skos:prefLabel: Press Archive
+      media_type: press/newspapers
+      specificity_score: 0.75
+      specificity_rationale: Specific archive organization type for press materials
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: persarchief
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Pressearchiv
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: archives de presse
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: archivo periodístico
+        predicate: EXACT_SYNONYM
+        in_language: es

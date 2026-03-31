@@ -1,0 +1,131 @@
+id: https://nde.nl/ontology/hc/class/CollectionManagementSystem
+name: collection_management_system_class
+title: CollectionManagementSystem Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  doap: http://usefulinc.com/ns/doap#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_standard
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/has_version
+- ../slots/available
+- ../slots/deployed_at
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/used_by
+- ../slots/licensed_as
+- ../slots/export
+- ../slots/manage
+- ../slots/open_source
+- ../slots/power
+- ../slots/refer_to
+- ../slots/temporal_extent
+classes:
+  CollectionManagementSystem:
+    is_a: ReconstructedEntity
+    class_uri: schema:SoftwareApplication
+    description: >-
+      Software product entity used by custodians to register, govern, and publish metadata and object records.
+    alt_descriptions:
+      nl: Softwareproductentiteit die beheerders gebruiken om metadata en objectregistraties vast te leggen, te beheren en te publiceren.
+      de: Softwareprodukt-Entität, die Verwahrer zur Erfassung, Verwaltung und Veröffentlichung von Metadaten und Objektdatensätzen nutzen.
+      fr: Entité de produit logiciel utilisée par les dépositaires pour enregistrer, gouverner et publier des métadonnées et des notices d'objets.
+      es: Entidad de producto de software utilizada por custodios para registrar, gobernar y publicar metadatos y registros de objetos.
+      ar: كيان منتج برمجي تستخدمه الجهات الحافظة لتسجيل البيانات الوصفية وسجلات العناصر وإدارتها ونشرها.
+      id: Entitas produk perangkat lunak yang digunakan kustodian untuk mencatat, mengelola, dan memublikasikan metadata serta rekod objek.
+      zh: 由保管机构用于登记、治理并发布元数据与对象记录的软件产品实体。
+    close_mappings:
+    - crm:E29_Design_or_Procedure
+    - doap:Project
+    - schema:WebApplication
+    broad_mappings:
+    - schema:SoftwareApplication
+    related_mappings:
+    - crm:P33_used_specific_technique
+    - doap:repository
+    - prov:Activity
+    slots:
+    - available
+    - identified_by
+    - has_version
+    - has_type
+    - deployed_at
+    - licensed_as
+    - export
+    - manage
+    - open_source
+    - power
+    - refer_to
+    - has_url
+    - has_standard
+    - has_score
+    - temporal_extent
+    - used_by
+    - has_label
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_version:
+        range: Version
+        multivalued: true
+        inlined_as_list: true
+      has_type:
+        range: CMSType
+        inlined: true
+      open_source:
+        range: boolean
+      has_url:
+        range: uri
+        multivalued: true
+        inlined: false
+      has_standard:
+        multivalued: true
+        inlined_as_list: false
+      export:
+        range: boolean
+      available:
+        range: boolean
+      power:
+        range: DigitalPlatform
+        multivalued: true
+      manage:
+        range: CustodianCollection
+        multivalued: true
+      used_by:
+        range: Custodian
+        multivalued: true
+      deployed_at:
+        range: DeploymentEvent
+        multivalued: true
+        inlined_as_list: true
+      temporal_extent:
+        range: TimeSpan
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+      generated_by:
+        range: ReconstructionActivity
+      refer_to:
+        range: Custodian
+        required: true
+    comments:
+    - Models software products, not public web portals
+    - One deployment may power multiple digital platforms
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      "Software system used to manage heritage collections, objects, and metadata.\n\n**Definition**:\nSoftware used by the collections staff of a collecting institution or by \nindividual private collectors to document, manage, and track objects or \nspecimens in their collections.\n\n**CRITICAL DESIGN DECISION**:\n\nCollectionManagementSystem represents the SOFTWARE PRODUCT (e.g., CollectiveAccess,\nMuseumPlus, Adlib, Axiell Collections) that may power one or more DigitalPlatforms.\n\n**Relationship Architecture**:\n\n```\nCollectionManagementSystem (software product)\n    \u2502\n    \u251C\u2500\u2500 powers \u2192 DigitalPlatform (web interface)\n    \u2502              - Rijksmuseum Website (powered by Adlib)\n    \u2502              - National Archives Portal (powered by MAIS)\n    \u2502\n    \u2514\u2500\u2500 manages \u2192 CustodianCollection (collection records)\n                   - Paintings Collection\n                   - Archival Fonds\n```\n\n**Distinguishing\

@@ -1,0 +1,69 @@
+id: https://nde.nl/ontology/hc/parsimony/class/LegalStatus
+name: LegalStatus
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/has_note_literal
+  - ../slots/attested_in
+  - ../slots/realized_through
+  - ../slots/has_spatial_scope
+  - ../slots/situated_in_time
+  - ../slots/equivalent_to
+  - ../slots/typed_as
+classes:
+  LegalStatus:
+    class_uri: org:FormalOrganization
+    description: >-
+      Semantic class for the formal legal standing, registration status, or
+      statutory classification of a heritage custodian. Captures jurisdictional
+      incorporation, legal form, and regulatory framework membership.
+
+      **Key predicates:** `attested_in` anchors the legal status to the source
+      resource that documents it. `realized_through` links to the activity or
+      workflow that established or verified this status. `has_spatial_scope`
+      captures the jurisdiction under which the status holds. `typed_as`
+      classifies the kind of legal status (e.g., foundation, association,
+      government body).
+    narrow_mappings:
+      - hc:CustodianLegalStatus
+    broad_mappings:
+      - org:FormalOrganization
+      - schema:Organization
+    examples:
+      - value:
+          has_label_literal:
+            - Foundation registration
+          typed_as:
+            - Classification:Foundation
+          has_spatial_scope:
+            - PlaceContext:Netherlands
+          attested_in:
+            - SourceResource:chamber_of_commerce
+        description: >-
+          Legal status recording that a custodian is registered as a foundation
+          under Dutch jurisdiction, attested in a Chamber of Commerce source.
+      - value:
+          has_label_literal:
+            - Government body classification
+          typed_as:
+            - Classification:GovernmentBody
+          realized_through:
+            - Activity:legal_review_workflow
+        description: >-
+          Legal status established through a review workflow, classifying the
+          custodian as a government body.
+    slots:
+      - has_label_literal
+      - has_note_literal
+      - attested_in
+      - realized_through
+      - has_spatial_scope
+      - situated_in_time
+      - equivalent_to
+      - typed_as

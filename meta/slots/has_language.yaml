@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: has_language
+# ==============================================================================
+# Language associated with an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                                              |
+# |---------------|-----------------------|----------------------------|---------|----------------------------------------------------|
+# | **DCTerms**   | `dcterms:language`    | dcterms.rdf:1611-1630      | close   | "A language of the resource." General but resource- |
+# |               |                       |                            |         | focused; this slot extends to expression/descript.  |
+# | **Schema.org**| `schema:inLanguage`   | schemaorg.owl:21591-21620  | close   | "The language of the content or performance."       |
+# |               |                       |                            |         | Domain: Event/CreativeWork/BroadcastService.        |
+#
+# CREATED: 2026-02-03
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_language
+name: has_language
+title: Has Language
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_language:
+    slot_uri: hc:has_language
+    description: >-
+      To specify the natural language or dialect used in the content, expression, or description of an entity (often represented by a standard code or identifier).
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de natuurlijke taal of het dialect dat wordt gebruikt in de inhoud, expressie of beschrijving van een entiteit (vaak weergegeven door een standaardcode of identificatiemiddel).
+      de: >-
+        Angabe der natuerlichen Sprache oder des Dialekts, die im Inhalt, Ausdruck oder in der Beschreibung einer Entitaet verwendet wird (oft dargestellt durch einen Standardcode oder eine Kennung).
+      fr: >-
+        Specifier la langue naturelle ou le dialecte utilise dans le contenu, l'expression ou la description d'une entite (souvent represente par un code ou un identifiant standard).
+      ar: >-
+        تحديد اللغة الطبيعية أو اللهجة المستخدمة في محتوى أو تعبير أو وصف كيان ما (غالباً ما يتم تمثيلها برمز أو معرف قياسي).
+      id: >-
+        Menentukan bahasa alami atau dialek yang digunakan dalam konten, ekspresi, atau deskripsi suatu entitas (sering direpresentasikan oleh kode atau pengenal standar).
+      zh: >-
+        指定用于实体的内容、表达或描述中的自然语言或方言（通常用标准代码或标识符表示）。
+      es: >-
+        Especificar el idioma natural o dialecto utilizado en el contenido, expresion o descripcion de una entidad (a menudo representado por un codigo o identificador estandar).
+    structured_aliases:
+      - literal_form: taal
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sprache
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: langue
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لغة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: bahasa
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 语言
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: idioma
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - dcterms:language  # dcterms.rdf:1611-1630 - "A language of the resource." Resource-focused; this slot extends to expression/description contexts.
+      - schema:inLanguage  # schemaorg.owl:21591-21620 - "The language of the content or performance." Domain: Event/CreativeWork/BroadcastService.
+    aliases:
+      - has_or_had_language
+      - en
+      - has_or_had_appellation_language
+      - has_or_had_iso_639_1
+      - has_iso_639_1
+      - has_or_had_iso_639_3
+      - has_iso_639_3
+      - languages_detected
+      - portal_language
+      - region_language
+      - source_language_auto_detected
+      - has_iso_code639_1
+      - has_iso_code639_3
+    annotations:
+      custodian_types: '["*"]'

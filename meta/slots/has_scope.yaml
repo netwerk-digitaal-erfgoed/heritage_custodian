@@ -1,0 +1,139 @@
+# ==============================================================================
+# LinkML Slot Definition: has_scope
+# ==============================================================================
+# Defines the extent, range, or area of applicability that delimits the
+# operation, influence, or validity of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line               | Mapping | Notes                                            |
+# |---------------|----------------------------|-------------------------|---------|--------------------------------------------------|
+# | **Schema.org**| `schema:areaServed`        | schemaorg.owl:8403-8430 | exact   | "The geographic area where a service or offered  |
+# |               |                            |                         |         | item is provided."                               |
+# | **DCTerms**   | `dcterms:coverage`         | dcterms.rdf:1035-1063   | close   | "Spatial or temporal topic, or jurisdiction."    |
+# | **RiC-O**     | `rico:scopeAndContent`     | RiC-O:23026-23058       | close   | "Summary of scope (time, geography) and content."|
+# | **Schema.org**| `schema:eligibleRegion`    | schemaorg.owl:16357-363 | narrow  | Eligible region for an offer.                    |
+# | **Schema.org**| `schema:spatialCoverage`   | schemaorg.owl:35880     | narrow  | Spatial coverage of content.                     |
+# | **Schema.org**| `schema:temporalCoverage`  | schemaorg.owl:37609     | narrow  | Temporal coverage of content.                    |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_scope
+name: has_scope
+title: Has Scope
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+description: |
+  To possess a defined extent, range, or area of applicability that delimits the operation, influence, or validity of an entity.
+slots:
+  has_scope:
+    slot_uri: schema:areaServed
+    description: |
+      To possess a defined extent, range, or area of applicability that delimits the operation, influence, or validity of an entity.
+    alt_descriptions:
+      nl: Een gedefinieerde omvang, bereik of toepassingsgebied bezitten dat de werking, invloed of geldigheid van een entiteit afbakent.
+      de: Einen definierten Umfang, Bereich oder Anwendungsbereich besitzen, der den Betrieb, Einfluss oder die Gültigkeit einer Entität abgrenzt.
+      fr: Posséder une étendue, une portée ou un domaine d'applicabilité défini qui délimite le fonctionnement, l'influence ou la validité d'une entité.
+      ar: امتلاك نطاق أو مدى أو مجال تطبيق محدد يحدد عملية أو تأثير أو صلاحية كيان.
+      id: Memiliki cakupan, jangkauan, atau area penerapan yang ditentukan yang membatasi operasi, pengaruh, atau validitas suatu entitas.
+      zh: 拥有定义的范围、范围或适用区域，以界定实体的运作、影响或有效性。
+      es: Poseer un alcance, rango o área de aplicabilidad definida que delimita la operación, influencia o validez de una entidad.
+    structured_aliases:
+      - literal_form: heeft bereik
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Geltungsbereich
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a pour portée
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه نطاق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki cakupan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有范围
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene alcance
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - dcterms:coverage  # dcterms.rdf:1035-1063 - "Spatial or temporal topic, or jurisdiction"
+      - rico:scopeAndContent  # RiC-O:23026-23058 - summary of scope and content
+    broad_mappings:
+      - dcterms:relation  # dcterms:coverage is related to broader relation concept
+    narrow_mappings:
+      - schema:eligibleRegion  # schemaorg.owl:16357-16363 - eligible region for offer
+      - schema:spatialCoverage  # schemaorg.owl:35880 - spatial coverage of content
+      - schema:temporalCoverage  # schemaorg.owl:37609 - temporal coverage of content
+      - dcterms:spatial  # spatial characteristics specifically
+      - dcterms:temporal  # temporal characteristics specifically
+    related_mappings:
+      - schema:serviceArea  # deprecated, superseded by areaServed
+    aliases:
+      - has_or_had_scope
+      - area_served
+      - coverage
+      - scope_exclude
+      - scope_include
+      - scope
+      - international
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.50
+    examples:
+      - value: Netherlands
+        description: Service scope limited to the Netherlands.
+      - value: https://www.wikidata.org/wiki/Q55
+        description: Wikidata reference to Netherlands as service area.
+      - value: Amsterdam Metropolitan Area
+        description: Regional scope for a local heritage institution.
+      - value: European Union
+        description: Supranational scope for cross-border services.
+      - value: 17th-century Dutch Golden Age
+        description: Temporal scope for a specialized collection.
+    comments:
+      - |
+        **PURPOSE**: Defines the geographic, temporal, or subject-matter boundaries
+        within which an entity operates, applies, or is valid. Essential for:
+        - Service area definitions for heritage institutions
+        - Collection scope (geographic, temporal, thematic)
+        - Policy applicability
+        - Jurisdictional boundaries
+      - |
+        **SCOPE TYPES**:
+        - **Geographic**: Countries, regions, cities, administrative areas
+        - **Temporal**: Time periods, eras, date ranges
+        - **Thematic**: Subject areas, disciplines, themes
+        - **Organizational**: Departments, divisions, units
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | Schema.org | schema:areaServed | 8403-8430 | exact | Geographic service area |
+        | DCTerms | dcterms:coverage | 1035-1063 | close | Spatial/temporal topic |
+        | RiC-O | rico:scopeAndContent | 23026-58 | close | Scope and content summary |
+        | Schema.org | schema:spatialCoverage | 35880 | narrow | Spatial coverage |
+        | Schema.org | schema:temporalCoverage | 37609 | narrow | Temporal coverage |
+      - Updated 2026-02-03 with verified ontology mappings and translations.

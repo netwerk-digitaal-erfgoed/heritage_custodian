@@ -1,0 +1,112 @@
+id: https://nde.nl/ontology/hc/class/WikidataAlignment
+name: WikidataAlignment
+title: Wikidata Alignment Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wdt: http://www.wikidata.org/prop/direct/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/WikiDataIdentifier
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_rationale
+  - ../slots/has_type
+classes:
+  WikidataAlignment:
+    class_uri: hc:WikidataAlignment
+    description: >-
+      Mapping assertion linking a local concept to a Q-item with relation type
+      and rationale.
+    alt_descriptions:
+      nl: >-
+        Mappingbewering die een lokaal concept koppelt aan een Q-item met
+        relatietype en onderbouwing.
+      de: >-
+        Mapping-Aussage, die ein lokales Konzept mit einem Q-Item samt
+        Beziehungstyp und Begründung verknüpft.
+      fr: >-
+        Assertion de mappage reliant un concept local à un élément Q avec type
+        de relation et justification.
+      es: >-
+        Afirmación de mapeo que vincula un concepto local a un ítem Q con tipo
+        de relación y justificación.
+      ar: >-
+        تأكيد تعيين يربط مفهوماً محلياً بعنصر Q مع نوع العلاقة والمبرر.
+      id: >-
+        Pernyataan pemetaan yang menghubungkan konsep lokal ke item Q dengan
+        tipe relasi dan alasan.
+      zh: >-
+        将本地概念与Q项关联并包含关系类型与理由的映射断言。
+    broad_mappings:
+      - skos:Concept
+    related_mappings:
+      - rdfs:Resource
+    slots:
+      - identified_by
+      - has_label
+      - has_type
+      - has_rationale
+    slot_usage:
+      identified_by:
+        range: WikiDataIdentifier
+        examples:
+          - value: "qid: Q27032435"
+      has_label:
+        examples:
+          - value: "academic archive"
+      has_rationale:
+        examples:
+          - value: "Semantically equivalent to Q27032435"
+      has_type:
+        examples:
+          - value: exact
+          - value: close
+          - value: broad
+          - value: narrow
+    comments:
+      - Replaces fragmented annotations with structured mapping object
+      - Supports SKOS mapping types (exact, close, broad, narrow, related)
+    examples:
+      - value:
+          identified_by:
+            qid: Q27032435
+          has_label: "academic archive"
+          has_type: exact
+          has_rationale: "Semantically equivalent to Wikidata academic archive concept"
+        description: Exact mapping to Wikidata entity
+    keywords:
+      - wikidata
+      - alignment
+      - mapping
+      - ontology
+      - semantic
+    annotations:
+      specificity_score: 0.3
+      specificity_rationale: Universal utility for Wikidata alignment metadata
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: wikidata-koppeling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wikidata-Ausrichtung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: alignement Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: alineación Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مواءمة ويكي بيانات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: penyelarasan Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 维基数据对齐
+        predicate: EXACT_SYNONYM
+        in_language: zh

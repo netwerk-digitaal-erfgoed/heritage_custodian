@@ -1,0 +1,131 @@
+# ==============================================================================
+# LinkML Slot Definition: related_to
+# ==============================================================================
+# General associative relationship to another entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:relation`    | dcterms.rdf:*        | close   | "A related resource." Subproperties |
+# |               |                       |                      |         | include isReplacedBy, requires, etc.|
+#
+# Note: RiC-O rico:isRelatedTo was not found in rico.ttl - using dcterms:relation
+# as the primary close mapping.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added multilingual, file:line refs, cleaned description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/related_to
+name: related_to
+title: Related To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  related_to:
+    slot_uri: hc:relatedTo
+    description: >-
+      Indicates an associative connection or link to another entity, concept,
+      or object, implying a relationship that is not explicitly hierarchical
+      or causal.
+    alt_descriptions:
+      nl: >-
+        Geeft een associatieve verbinding of link aan met een andere entiteit,
+        concept of object, wat een relatie impliceert die niet expliciet
+        hiërarchisch of causaal is.
+      de: >-
+        Zeigt eine assoziative Verbindung oder Verknüpfung zu einer anderen
+        Entität, einem Konzept oder Objekt an, was eine Beziehung impliziert,
+        die nicht explizit hierarchisch oder kausal ist.
+      fr: >-
+        Indique une connexion ou un lien associatif avec une autre entité,
+        concept ou objet, impliquant une relation qui n'est pas explicitement
+        hiérarchique ou causale.
+      ar: >-
+        يشير إلى اتصال أو رابط ترابطي مع كيان أو مفهوم أو كائن آخر،
+        مما يعني علاقة ليست هرمية أو سببية بشكل صريح.
+      id: >-
+        Menunjukkan koneksi atau tautan asosiatif ke entitas, konsep, atau
+        objek lain, yang menyiratkan hubungan yang tidak secara eksplisit
+        hierarkis atau kausal.
+      zh: >-
+        表示与另一实体、概念或对象的关联性连接或链接，暗示一种
+        并非明确的层级或因果关系。
+      es: >-
+        Indica una conexión o enlace asociativo con otra entidad, concepto
+        u objeto, implicando una relación que no es explícitamente
+        jerárquica o causal.
+    structured_aliases:
+      - literal_form: gerelateerd aan
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verwandt mit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: lié à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مرتبط بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: terkait dengan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 与...相关
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: relacionado con
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - dcterms:relation  # dcterms.rdf - "A related resource."
+    aliases:
+      - is_or_was_related_to
+      - has_or_had_auxiliary_entities
+      - has_auxiliary_entities
+      - has_or_had_auxiliary_platform
+      - has_auxiliary_platform
+      - has_or_had_involved_actor
+      - has_involved_actor
+      - connection_heritage_relevant
+      - court_types_covered
+      - custodian_type_related
+      - is_heritage_relevant
+      - related_agenda
+      - related_call
+      - related_concept
+      - related_loan
+      - related_project
+      - related_type_name
+      - related_type_note
+      - related_type_relationship
+      - related_type_wikidata
+      - related_types
+      - related
+      - relationship
+      - route_relevance_to_heritage
+      - connection_heritage_type
+    comments:
+      - |
+        **DISTINCTION FROM equivalent_to**:
+        - `equivalent_to`: Semantic identity (same concept)
+        - `related_to`: Associative (related but distinct)
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.3
+      specificity_rationale: Very general relationship slot.

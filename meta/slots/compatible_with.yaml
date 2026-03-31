@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: compatible_with
+# ==============================================================================
+# Indicates compatibility with a standard, system, or technology.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:isSimilarTo`  | schemaorg.owl        | related | Similarity (NOT same as compatibility)|
+#
+# NOTE: schema:isSimilarTo expresses similarity, not technical compatibility.
+# No standard ontology has an exact match for "compatible with" semantics.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, corrected mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/compatible_with
+name: compatible_with
+title: Compatible With
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  compatible_with:
+    slot_uri: hc:compatibleWith
+    description: >-
+      A standard, system, technology, or specification with which the entity
+      is compatible, indicating interoperability or conformance capability.
+    alt_descriptions:
+      nl: >-
+        Een standaard, systeem, technologie of specificatie waarmee de entiteit
+        compatibel is, wat interoperabiliteit of conformiteitscapaciteit aangeeft.
+      de: >-
+        Ein Standard, System, eine Technologie oder Spezifikation, mit der die
+        Entität kompatibel ist, was Interoperabilität oder Konformitätsfähigkeit anzeigt.
+      fr: >-
+        Une norme, un système, une technologie ou une spécification avec laquelle
+        l'entité est compatible, indiquant une capacité d'interopérabilité ou de conformité.
+      ar: >-
+        معيار أو نظام أو تقنية أو مواصفة يتوافق معها الكيان، مما يشير إلى
+        قدرة التشغيل البيني أو المطابقة.
+      id: >-
+        Standar, sistem, teknologi, atau spesifikasi yang kompatibel dengan entitas,
+        menunjukkan interoperabilitas atau kemampuan kesesuaian.
+      zh: >-
+        实体兼容的标准、系统、技术或规范，表明互操作性或合规能力。
+      es: >-
+        Un estándar, sistema, tecnología o especificación con el cual la entidad
+        es compatible, indicando capacidad de interoperabilidad o conformidad.
+    structured_aliases:
+      - literal_form: compatibel met
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: kompatibel mit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: compatible avec
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متوافق مع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: kompatibel dengan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 兼容于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: compatible con
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    related_mappings:
+      - schema:isSimilarTo  # Similarity, not technical compatibility
+    aliases:
+      - is_or_was_compatible_with
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MAPPING NOTE**: schema:isSimilarTo expresses similarity, not technical
+        compatibility. No standard ontology has an exact match for "compatible with"
+        semantics, hence this is a related_mapping rather than exact_mapping.
+      - |
+        **MIGRATION NOTE (2026-02-03)**:
+        Migrated from is_or_was_compatible_with for conciseness.

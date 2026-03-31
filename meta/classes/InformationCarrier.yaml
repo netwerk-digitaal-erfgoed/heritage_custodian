@@ -1,0 +1,616 @@
+id: https://nde.nl/ontology/hc/class/InformationCarrier
+name: InformationCarrier
+title: Information Carrier Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  bf: http://id.loc.gov/ontologies/bibframe/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  aat: http://vocab.getty.edu/aat/
+  rda: http://rdaregistry.info/termList/
+imports:
+- linkml:types
+- ../enums/CarrierTypeEnum
+- ../metadata
+- ../slots/contain
+- ../slots/has_note
+- ../slots/has_edition
+- ../slots/has_material_type
+- ../slots/has_carrier
+- ../slots/has_content
+- ../slots/has_description
+- ../slots/has_direction
+- ../slots/has_extent
+- ../slots/has_fonds
+- ../slots/identified_by
+- ../slots/indexed_as   # was: file_number
+- ../slots/has_label    # was: title_proper
+- ../slots/has_language
+- ../slots/has_level
+- ../slots/has_policy
+- ../slots/has_provenance
+- ../slots/has_quantity    # was: folio_count
+- ../slots/has_score    # was: template_specificity
+- ../slots/in_series
+- ../slots/has_summary
+- ../slots/has_time_interval
+- ../slots/has_type
+- ../slots/in_script
+- ../slots/include
+- ../slots/created_by
+- ../slots/published_on
+- ../slots/triggered_by
+- ../slots/has_shelf_mark
+default_prefix: hc
+classes:
+  InformationCarrier:
+    class_uri: crm:E84_Information_Carrier
+    description: >-
+      Physical carrier entity that bears symbolic or textual information, modeled
+      separately from the intellectual content it conveys.
+    alt_descriptions:
+      nl: Fysieke drager-entiteit die symbolische of tekstuele informatie bevat en apart wordt gemodelleerd van de intellectuele inhoud.
+      de: Physische Traeger-Entitaet mit symbolischer oder textlicher Information
+      fr: Entite support physique portant une information symbolique ou textuelle
+      es: Entidad de soporte fisico que porta informacion simbolica o textual
+      ar: كيان حامل مادي يحمل معلومات رمزية أو نصية ويُنموذج بشكل منفصل عن المحتوى الفكري الذي ينقله.
+      id: Entitas pembawa fisik yang memuat informasi simbolik atau tekstual
+      zh: 承载符号或文本信息的实体物理载体，并与其承载的知识内容分开建模。
+    structured_aliases:
+    - literal_form: informatiedrager
+      in_language: nl
+    - literal_form: Informationstraeger
+      in_language: de
+    - literal_form: support d information
+      in_language: fr
+    - literal_form: portador de informacion
+      in_language: es
+    - literal_form: حامل معلومات
+      in_language: ar
+    - literal_form: pembawa informasi
+      in_language: id
+    - literal_form: 信息载体
+      in_language: zh
+    exact_mappings:
+    - crm:E84_Information_Carrier
+    close_mappings:
+    - bf:Item
+    - rico:Instantiation
+    - schema:Book
+    related_mappings:
+    - crm:E22_Human-Made_Object
+    - bf:Instance
+    - schema:CreativeWork
+    is_a: ExhibitedObject
+    slots:
+    # has_annotation_by REMOVED - migrated to created_by (Rule 53)
+    - created_by
+    - identified_by  # was: archival_reference - migrated per Rule 53 (2026-01-27)
+    - has_description
+    - has_provenance
+    - has_type
+    # bookplate REMOVED - migrated to include (Rule 53)
+    - include
+    # REMOVED 2026-01-17: call_number - migrated to identified_by (Rule 53)
+    # - identified_by  # ALREADY LISTED ABOVE
+    # REMOVED 2026-01-23: carrier_type - migrated to has_carrier (Rule 53/F24)
+    - has_carrier
+    # REMOVED 2026-01-23: carries_information - migrated to has_content (Rule 53/F25)
+    - has_content
+    - has_language
+    - has_summary
+    - has_note
+    - has_edition
+    - has_material_type
+    # - has_type - DUPLICATE REMOVED
+    # REMOVED 2026-01-24: date_of_publication - migrated to published (Rule 53)
+    - published_on
+    # - identified_by # ALREADY LISTED ABOVE
+    # MIGRATED 2026-01-25: duration → has_time_interval (Rule 53)
+    - has_time_interval
+    - has_extent
+    - has_quantity  # was: folio_count - migrated per Rule 53 (2026-01-26)
+    - has_fonds
+    # - isbn
+    # - issn
+    # - language
+    # - marginalia
+    # - material_composition
+    # - oclc_number
+    # - ownership_stamp
+    # - page_count
+    # - parallel_title
+    # - place_of_publication
+    # - printer_publisher
+    # - production_method
+    # - script_type
+    - in_series
+    - has_shelf_mark
+    - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    - has_direction  # was: text_direction - migrated per Rule 53/56 (2026-01-16)
+    - has_label  # was: title_proper
+    # - has_label  # was: uniform_title - DUPLICATE
+    - in_script
+    # has_access_management/policy/restriction/right REMOVED - migrated to has_policy (Rule 53)
+    - has_policy
+    # has_access_trigger_event REMOVED - migrated to triggered_by (Rule 53)
+    - triggered_by
+    slot_usage:
+      has_score:
+      # REMOVED 2026-01-23: carrier_type - migrated to has_carrier (Rule 53/F24)
+      has_carrier:
+        required: true
+        range: Carrier
+        inlined: true
+        examples:
+        - value:
+            has_type:
+              has_code: CODEX
+              has_label: Codex
+        - value:
+            has_type:
+              has_code: SCROLL
+              has_label: Scroll
+        - value:
+            has_type:
+              has_code: VINYL_DISC
+              has_label: Vinyl Disc
+      # The following slots have been removed/commented out from the slot list as they are not defined in the slots section of this file (they are imported), 
+      # but are listed in slot_usage. 
+      # Since they were simple string slots with no special usage defined here (except examples), we rely on their definition in the slot files.
+      # However, some might be bespoke slots that need archiving if they are not used elsewhere.
+      # Checking usages...
+      # material_composition:
+      #   required: false
+      #   range: string
+      #   multivalued: true
+      #   examples:
+      #   - value: Paper (laid, watermarked)
+      #   - value: Vellum
+      #   - value: Papyrus
+      # page_count:
+      #   required: false
+      #   range: integer
+      #   examples:
+      #   - value: 324
+      has_quantity:  # was: folio_count - migrated per Rule 53 (2026-01-26)
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        multivalued: true
+        examples:
+        - value:
+            has_measurement_unit:
+      has_extent:
+        required: false
+#         range: string
+        multivalued: true
+        examples:
+        - value: 'xii, 324 p., [8] p. of plates : ill. ; 24 cm'
+        - value: '1 atlas (42 maps) : col. ; 38 cm'
+      # MIGRATED 2026-01-25: duration → has_time_interval + TimeInterval (Rule 53)
+      has_time_interval:
+        required: false
+        range: TimeInterval
+        inlined: true
+        examples:
+        - value:
+        - value:
+            duration_value: 01:32:15
+          description: Duration in HH:MM:SS format
+      has_type:
+        required: false
+        range: BindingType
+        examples:
+        - value: FullLeatherBinding
+        - value: LimpVellumBinding
+      has_description:
+        required: false
+#         range: string
+        examples:
+        - value: "Contemporary blind-stamped pigskin over wooden boards, with brass clasps and corner pieces. Spine with five raised bands."
+        - value: "Rebound in the 18th century in red morocco with gold tooling."
+      has_material_type:
+        required: false
+#         range: string
+        examples:
+        - value: Leather (calf)
+        - value: Cloth (buckram)
+      # script_type:
+      #   required: false
+      #   range: string
+      #   examples:
+      #   - value: MANUSCRIPT
+      #   - value: PRINTED
+      #   - value: TYPESCRIPT
+      in_script:
+        required: false
+        range: WritingSystem
+        inlined: true
+        examples:
+        - value:
+            has_code: "Latn"
+        - value:
+            has_code: "Xsux"
+        - value:
+            has_code: "Hant"
+      # language:
+      #   required: false
+      #   range: string
+      #   multivalued: true
+      #   examples:
+      #   - value: lat
+      #     description: Latin
+      #   - value: nld
+      #     description: Dutch
+      has_language:
+        required: false
+        range: Language
+        multivalued: true
+        examples:
+        - value:
+            language_name: "Latin"
+        - value:
+            language_name: "Ancient Greek"
+      has_direction:
+        # was: text_direction - migrated per Rule 53/56 (2026-01-16)
+        required: false
+        range: TextDirection
+        inlined: true
+        examples:
+        - value:
+            has_code: "LTR"
+            has_label: "Left to Right"
+        - value:
+            has_code: "RTL"
+            has_label: "Right to Left"
+      # production_method:
+      #   required: false
+      #   range: string
+      #   examples:
+      #   - value: LETTERPRESS
+      #   - value: LITHOGRAPHY
+      # printer_publisher:
+      #   required: false
+      #   range: string
+      #   multivalued: true
+      #   examples:
+      #   - value: Johannes Gutenberg
+      #   - value: Elsevier
+      # place_of_publication:
+      #   required: false
+      #   range: CustodianPlace
+      #   inlined: true
+      #   examples:
+      #   - value:
+      #       place_name: Mainz
+      #       country: DE
+      # published:
+      #   required: false
+      #   range: Publication
+      #   inlined: true
+      #   multivalued: true
+      #   description: >-
+      #     Publication event(s) for this information carrier.
+      #     Use publication_date_string for approximate dates (c. 1455, 16th century).
+      #   examples:
+      #   - value:
+      #       publication_date_string: "c. 1455"
+      #       publisher: "Johannes Gutenberg"
+      #       publication_place: "Mainz"
+      #     description: Approximate date with publisher info
+      #   - value:
+      #       temporal_extent:
+      #         begin_of_the_begin: "1623-01-01"
+      #       publication_date_string: "1623"
+      #     description: Year-level precision
+      published_on:
+        required: false
+        range: Publication
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+        - value:
+            temporal_extent:
+              begin_of_the_begin: "1623-01-01"
+      has_edition:
+        range: Edition
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_note: "First edition"
+        - value:
+            has_note: "Second edition, revised and enlarged"
+            has_label: "2nd Edition"
+      has_note:
+        required: false
+#         range: string
+        multivalued: true
+        examples:
+        - value: Lacking title page
+        - value: Rubricated throughout in red and blue
+        - value: Illuminated initial on f. 1r
+      # marginalia:
+      #   required: false
+      #   range: string
+      #   examples:
+      #   - value: Extensive marginal annotations in 16th-century hand
+      contain:
+#         range: string
+        examples:
+        - value:
+            has_description: "Partially illegible note in margin"
+            created_by:
+              has_label: "Archivist J. Smith"
+      include:
+        required: false
+        range: Bookplate
+        multivalued: true
+        inlined_as_list: true
+        examples:
+        - value:
+            id: https://nde.nl/ontology/hc/bookplate/pembroke-001
+            has_label: "Ex Libris Earl of Pembroke"
+      # ownership_stamp:
+      #   required: false
+      #   range: string
+      #   multivalued: true
+      #   examples:
+      #   - value: British Museum stamp on verso of title page
+      has_provenance:
+        required: false
+#         range: string
+        examples:
+        - value: Bound for presentation to Elizabeth I, royal arms in gold
+      # isbn:
+      #   required: false
+      #   range: string
+      #   pattern: ^(97[89])?\d{9}[\dXx]$
+      #   examples:
+      #   - value: '9780198123569'
+      #   - value: 0198123566
+      # issn:
+      #   required: false
+      #   range: string
+      #   pattern: ^\d{4}-?\d{3}[\dXx]$
+      #   examples:
+      #   - value: 0028-0836
+      #     description: Nature
+      # doi migrated to identified_by with DOI class (Rule 53, 2026-01-26)
+      # oclc_number:
+      #   required: false
+      #   range: string
+      #   examples:
+      #   - value: '12345678'
+      # REMOVED 2026-01-17: call_number - migrated to identified_by (Rule 53)
+      # Old call_number slot_usage preserved below in identified_by
+      identified_by:
+        required: false
+#         range: string # uriorcurie
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+        - value:
+        - value:
+        - value:
+        - value:
+            has_type:
+              has_label: Archival Reference
+      has_shelf_mark:
+        required: false
+#         range: string
+        examples:
+        - value: MS. Royal 1.A.XVIII
+        - value: Add. MS 43725
+      # MIGRATED 2026-01-27: archival_reference → identified_by (Rule 53)
+      # Old archival_reference slot usage merged into identified_by
+      # archival_reference:
+      #   required: false
+      #   range: string
+      #   examples:
+      #   - value: NL-HaNA/2.21.006.50
+      #     description: Dutch National Archives reference
+      has_fonds:
+        required: false
+#         range: string
+        examples:
+        - value: VOC Archives
+        - value: Roosevelt Papers
+      in_series:
+        required: false
+#         range: string
+        examples:
+        - value: Correspondence, 1933-1945
+      has_index_number:  # was: file_number - migrated per Rule 53 (2026-01-26)
+        required: false
+        range: IndexNumber
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+        - value:
+      has_level:  # was: has_arrangement_level - migrated per Rule 53 (2026-01-27)
+        range: ArrangementLevel
+        required: false
+        examples:
+        - value:
+            has_code: ITEM
+            has_label: Item
+        - value:
+            has_code: FILE
+            has_label: File
+      # REMOVED 2026-01-23: carries_information - migrated to has_content (Rule 53/F25)
+      has_content:
+        required: false
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_label: Vulgate Latin Bible
+            has_type:
+              has_code: RELIGIOUS
+              has_label: Religious Content
+        - value:
+            has_label: Hamlet by William Shakespeare
+            has_type:
+              has_code: LITERARY
+              has_label: Literary Content
+      has_policy:
+        range: AccessPolicy
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_description:
+              description_text: "Restricted access due to fragility"
+      triggered_by:
+        range: AccessTriggerEvent
+        inlined: true
+        examples:
+        - value:
+            has_description:
+              description_text: "Embargo expiration"
+            temporal_extent:
+              begin_of_the_begin: "2050-01-01"
+      # parallel_title:
+      #   required: false
+      #   range: string
+      #   multivalued: true
+      #   examples:
+      #   - value: The Holy Bible (English parallel title)
+      has_summary:
+        required: false
+#         range: string
+        examples:
+        - value: "The Gutenberg Bible is the first substantial book printed \nwith movable metal type. Contains the complete Latin Vulgate \ntext of the Old and New Testaments.\n"
+    comments:
+    - InformationCarrier extends ExhibitedObject with carrier-specific fields
+    - Aligned with BIBFRAME, RDA, and RiC-O vocabularies
+    - Supports libraries, archives, and special collections
+    - Distinguishes physical carrier from intellectual content
+    - Includes bibliographic identifiers and archival context
+    see_also:
+    - https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E84
+    - https://www.loc.gov/bibframe/
+    - https://www.ica.org/standards/RiC/ontology
+    - https://www.ifla.org/publications/node/11240
+    examples:
+    - value:
+        object_id: https://nde.nl/ontology/hc/object/kb-gutenberg-bible
+        object_name: Gutenberg Bible (KB copy)
+        object_description: "One of fewer than 50 surviving copies of the Gutenberg Bible, \nthe first substantial book printed with movable metal type.\nThis paper copy was acquired by the Koninklijke Bibliotheek in 1807.\n"
+        # MIGRATED 2026-01-23: carrier_type → has_carrier (Rule 53/F24)
+        has_carrier:
+          has_type:
+            has_code: CODEX
+            has_label: Codex
+        has_material_type:
+        - Paper (handmade, watermarked)
+        has_quantity:  # was: folio_count - migrated per Rule 53 (2026-01-26)
+        - quantity_value: 641
+          has_unit:
+        binding_type: 18th-century full leather
+        has_description: 'Rebound in the 18th century in red morocco with gold tooling. Five raised bands on spine with gilt lettering. '
+        production_method: LETTERPRESS
+        published_by:
+        - Johannes Gutenberg
+        published_at:
+          place_name: Mainz
+          country: DE
+        # MIGRATED 2026-01-24: date_of_publication → published (Rule 53)
+        published_on:
+        - publication_date_string: "c. 1455"
+        script_type: PRINTED
+        in_script:
+          has_code: "Latn"
+        has_language:
+        - iso_639_1: lat
+        # MIGRATED 2026-01-23: carries_information → has_content (Rule 53/F25)
+        has_content:
+          has_label: Bible. Latin. Vulgate
+          has_type:
+            has_code: RELIGIOUS
+            has_label: Religious Content
+        title_proper: Biblia Latina
+        uniform_title: Bible. Latin. Vulgate. 1455
+        # MIGRATED 2026-01-17: call_number → identified_by (Rule 53)
+        # Merged with existing wikidata_id migration (2026-01-15)
+        identified_by:
+        - identifier_value: "Inc. 1"
+        - identifier_value: "Q178401"
+        has_note:
+        - Complete copy on paper (2 volumes)
+        - Rubricated in red and blue
+        current_keeper: https://nde.nl/ontology/hc/custodian/nl/koninklijke-bibliotheek
+    - value:
+        object_id: https://nde.nl/ontology/hc/object/bl-codex-sinaiticus
+        object_name: Codex Sinaiticus (British Library portion)
+        object_description: "4th-century manuscript of the Greek Bible, one of the oldest \nand most important Biblical manuscripts. The British Library \nholds 347 leaves of this codex.\n"
+        # MIGRATED 2026-01-23: carrier_type → has_carrier (Rule 53/F24)
+        has_carrier:
+          has_type:
+            has_code: CODEX
+            has_label: Codex
+        has_material_type:
+        - Parchment (vellum)
+        has_quantity:  # was: folio_count - migrated per Rule 53 (2026-01-26)
+        - quantity_value: 347
+          has_unit:
+        script_type: MANUSCRIPT
+        in_script:
+          has_code: "Grek"
+        has_language:
+        - iso_639_1: grc
+        # MIGRATED 2026-01-24: date_of_publication → published (Rule 53)
+        published_on:
+        - publication_date_string: "4th century CE"
+        # MIGRATED 2026-01-23: carries_information → has_content (Rule 53/F25)
+        has_content:
+          has_label: Septuagint and Greek New Testament
+          has_type:
+            has_code: RELIGIOUS
+            has_label: Religious Content
+        uniform_title: Bible. Greek
+        shelf_mark: Add. MS 43725
+        current_keeper: https://nde.nl/ontology/hc/custodian/uk/british-library
+        # MIGRATED 2026-01-15: wikidata_id → identified_by (Rule 53)
+        identified_by:
+        - qid: "Q151610"
+    - value:
+        object_id: https://nde.nl/ontology/hc/object/nara-declaration-independence
+        object_name: Declaration of Independence (engrossed parchment)
+        object_description: "The official engrossed parchment copy of the Declaration of \nIndependence, signed by 56 delegates to the Continental Congress.\n"
+        # MIGRATED 2026-01-23: carrier_type → has_carrier (Rule 53/F24)
+        has_carrier:
+          has_type:
+            has_code: PARCHMENT_LEAF
+            has_label: Parchment Leaf
+        has_material_type:
+        - Parchment (sheepskin)
+        script_type: MANUSCRIPT
+        in_script:
+          has_code: "Latn"
+        has_language:
+        - iso_639_1: eng
+        # MIGRATED 2026-01-24: date_of_publication → published (Rule 53)
+        published_on:
+        - temporal_extent:
+            begin_of_the_begin: "1776-08-02"
+            end_of_the_end: "1776-08-02"
+        identified_by:
+        - identifier_value: NARA 1419
+          has_type:
+            has_label: Archival Reference
+          # MIGRATED 2026-01-15: wikidata_id → identified_by (Rule 53)
+        - qid: "Q127885"
+        fonds: Records of the Continental and Confederation Congresses
+        has_level:
+          has_code: ITEM
+          has_label: Item
+        current_keeper: https://nde.nl/ontology/hc/custodian/us/national-archives

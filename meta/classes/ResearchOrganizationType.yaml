@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/ResearchOrganizationType
+name: ResearchOrganizationType
+title: Research Organization Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  vivo: http://vivoweb.org/ontology/core#
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../enums/ResearchCenterTypeEnum
+- ../slots/has_repository
+- ../slots/has_hypernym
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_hyponym
+- ../slots/focus_on
+- ../slots/has_infrastructure
+- ../slots/in_project
+classes:
+  ResearchOrganizationType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: >-
+      Specialized custodian type for research organizations - institutions whose primary
+      purpose is to conduct scientific, scholarly, or cultural research.
+    alt_descriptions:
+      nl: Gespecialiseerd beheerderstype voor onderzoeksorganisaties - instellingen wiens primaire doel het uitvoeren van wetenschappelijk of cultureel onderzoek is.
+      de: Spezialisierter Custodian-Typ für Forschungsorganisationen - Institutionen, deren Hauptzweck die Durchführung wissenschaftlicher oder kultureller Forschung ist.
+      fr: Type de dépositaire spécialisé pour les organisations de recherche - institutions dont l'objectif principal est de mener des recherches scientifiques ou culturelles.
+    structured_aliases:
+    - literal_form: onderzoeksinstituut
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: onderzoekscentrum
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Forschungsinstitut
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: Forschungszentrum
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: institut de recherche
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: centre de recherche
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    comments:
+    - Wikidata base concept Q31855 (research institute).
+    - Supports 44+ Wikidata research organization subtypes.
+    - Integrates with VIVO (academic research ontology) and CERIF (European research data).
+    - Includes conservation laboratories, herbaria, digital humanities centers, etc.
+    notes:
+    - |
+      Preserved from prior description (commit 6251b84d):
+
+      "Specialized custodian type for research organizations - institutions whose\nprimary purpose is to conduct scientific, scholarly, or cultural research,\noften maintaining collections or data repositories to support their research activities.\n\n**Wikidata Base Concept**: Q31855 (research institute)\n\n**Scope**:\nResearch organizations are distinguished by their focus on:\n- Original research and knowledge production\n- Scientific or scholarly investigation\n- Data collection and analysis\n- Documentation centers and research archives\n- Supporting materials and specimens for research\n\n**Key Research Organization Subtypes** (44+ extracted from Wikidata):\n\n**By Discipline**:\n- Economic research institutes (Q1478378) - Economic analysis and policy\n- Biocenters (Q11150110) - Biological and life sciences research\n- Oceanographic laboratories (Q118391195) - Marine science research\n- Archaeological storehouses (Q99444262) - Artifact storage and research\n- Paleontological\
+    annotations:
+      skos:prefLabel: Research Organization
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_type
+    - has_repository
+    - has_hyponym
+    - focus_on
+    - has_infrastructure
+    - in_project
+    - has_score
+    - identified_by
+    slot_usage:
+      identified_by:
+        pattern: ^Q[0-9]+$
+        required: true
+      has_hypernym:
+        range: ResearchOrganizationType
+      has_type:
+        equals_string: hc:ResearchOrganizationType
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E55_Type
+    - vivo:ResearchOrganization
+    related_mappings:
+    - vivo:Laboratory
+    - vivo:ResearchProject
+    - schema:ResearchOrganization

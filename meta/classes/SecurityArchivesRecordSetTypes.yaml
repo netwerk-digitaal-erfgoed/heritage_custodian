@@ -1,0 +1,205 @@
+id: https://nde.nl/ontology/hc/class/SecurityArchivesRecordSetTypes
+name: SecurityArchivesRecordSetTypes
+title: SecurityArchives Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./SecurityArchivesRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  SecurityServiceFonds:
+    is_a: SecurityArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation produced by security and
+      intelligence authorities in mandate execution and oversight workflows.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie die is gevormd door
+        veiligheids- en inlichtingendiensten tijdens taakuitvoering en toezicht.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen aus Sicherheits- und
+        Nachrichtendienstbehoerden in Mandatsausfuehrung und Aufsicht.
+      fr: >-
+        Agregation fondee sur la provenance de documentation produite par des
+        autorites de securite et de renseignement dans leurs mandats.
+      es: >-
+        Agregacion basada en procedencia de documentacion producida por
+        autoridades de seguridad e inteligencia en ejecucion de mandato.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق أصدرتها سلطات الأمن والاستخبارات
+        ضمن تنفيذ المهام وإجراءات الرقابة.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi yang dihasilkan otoritas
+        keamanan dan intelijen dalam pelaksanaan mandat dan pengawasan.
+      zh: >-
+        基于来源原则聚合安全与情报机构在任务执行与监督流程中形成的文献。
+      cs: >-
+        Proveniencne zalozena agregace dokumentace vytvorene bezpecnostnimi a
+        zpravodajskymi organy pri vykonu mandatu a dohledu.
+    structured_aliases:
+    - literal_form: bezpečnostní služba-fonds
+      predicate: EXACT_SYNONYM
+      in_language: cs
+    - literal_form: Sicherheitsdienstbestand
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: veiligheids- en inlichtingendienstfonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: fonds de services de securite et renseignement
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo de servicios de seguridad e inteligencia
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: صندوق وثائق أمنية واستخبارية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds layanan keamanan dan intelijen
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 安全与情报文献全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Follows the fonds organizational principle as defined by rico-rst:Fonds.
+    - Note preserved: Access controls and classification constraints may apply due to sensitivity.
+    - 'Preserved from prior description: A rico:RecordSetType for security/intelligence service records.'
+    keywords:
+    - intelligence authority
+    - oversight workflow
+    - restricted documentation
+    - governance provenance
+    examples:
+    - value:
+        has_type: hc:SecurityServiceFonds
+        has_custodian: hc:SecurityArchives
+        has_note: Mandate directives, case administration files, and oversight reports.
+      description: Security-authority documentation grouped by originating institutional provenance.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - SecurityArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:SecurityServiceFonds
+      has_custodian:
+        equals_string: hc:SecurityArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by SecurityArchives custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  SurveillanceRecordSeries:
+    is_a: SecurityArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of monitoring activities,
+      observation logs, and operational follow-up actions.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van monitoringsactiviteiten,
+        observatielogboeken en operationele opvolging.
+      de: >-
+        Geordnete Dokumentationsfolge aus Ueberwachungsaktivitaeten,
+        Beobachtungsprotokollen und operativer Nachverfolgung.
+      fr: >-
+        Sequence documentaire ordonnee d'activites de surveillance,
+        journaux d'observation et actions de suivi operationnel.
+      es: >-
+        Secuencia documental ordenada de actividades de vigilancia,
+        registros de observacion y acciones de seguimiento operativo.
+      ar: >-
+        تسلسل وثائقي منظم لأنشطة المراقبة وسجلات الرصد
+        وإجراءات المتابعة التشغيلية.
+      id: >-
+        Urutan dokumenter teratur dari aktivitas pemantauan,
+        log observasi, dan tindak lanjut operasional.
+      zh: >-
+        由监测活动、观察日志与行动跟进形成的有序文献序列。
+      cs: >-
+        Usporadana dokumentacni posloupnost monitorovacich cinnosti,
+        pozorovacich zaznamu a navazujicich operacnich kroku.
+    structured_aliases:
+    - literal_form: sledovací záznamy-serie
+      predicate: EXACT_SYNONYM
+      in_language: cs
+    - literal_form: Überwachungsakten-Serie
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: reeks toezicht- en observatiedocumentatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: sequence de surveillance operationnelle
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: secuencia de vigilancia operativa
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة وثائق مراقبة تشغيلية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: urutan dokumentasi pemantauan operasional
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 监测行动文献序列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Follows the series organizational principle as defined by rico-rst:Series.
+    - Note preserved: Sequence order supports timeline reconstruction of monitored activities.
+    - 'Preserved from prior description: A rico:RecordSetType for surveillance documentation.'
+    keywords:
+    - monitoring activity
+    - observation log
+    - operational follow-up
+    - sequence evidence
+    examples:
+    - value:
+        has_type: hc:SurveillanceRecordSeries
+        has_custodian: hc:SecurityArchives
+        has_note: Observation logs, incident notes, and follow-up action records.
+      description: Monitoring documentation arranged as a recurring operational sequence.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - SecurityArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:SurveillanceRecordSeries
+      has_custodian:
+        equals_string: hc:SecurityArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by SecurityArchives custodians. Inverse of rico:isOrWasHolderOf.

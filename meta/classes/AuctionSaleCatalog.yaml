@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/class/AuctionSaleCatalog
+name: AuctionSaleCatalog
+title: Auction Sale Catalog
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_name
+- ../slots/publish
+- ../slots/has_description
+default_prefix: hc
+classes:
+  AuctionSaleCatalog:
+    class_uri: hc:AuctionSaleCatalog
+    description: >-
+      Catalog published for an auction sale.
+
+      Printed or digital publication listing items available for sale at  an auction, typically including descriptions, images, estimated  values, and provenance information for each lot.
+    alt_descriptions:
+      nl: "Catalogus gepubliceerd voor een veilingverkoop.\nGedrukte of digitale publicatie met vermelding van items die te koop  worden aangeboden op een veiling, doorgaans inclusief beschrijvingen,  afbeeldingen, geschatte waarden en herkomstgegevens voor elk kavel."
+      de: "Katalog, der für eine Auktionsversteigerung veröffentlicht wird.\nGedruckte oder digitale Veröffentlichung, die die bei einer Auktion  zum Verkauf angebotenen Gegenstände auflistet, typischerweise mit  Beschreibungen, Bildern, Schätzwerten und Provenienzangaben für jedes Los."
+      fr: "Catalogue publié pour une vente aux enchères.\nPublication imprimée ou numérique répertoriant les articles mis en  vente lors d'une vente aux enchères, incluant généralement des descriptions,  des images, des estimations et des informations de provenance pour chaque lot."
+      es: "Catálogo publicado para una venta en subasta.\nPublicación impresa o digital que enumera los artículos disponibles  para la venta en una subasta, generalmente incluyendo descripciones,  imágenes, valores estimados e información de procedencia para cada lote."
+      ar: "فهرس منشور للبيع بالمزاد.\nمنشور مطبوع أو رقمي يسرد العناصر المعروضة للبيع في المزاد،  يتضمن عادةً الأوصاف والصور والقيم المقدرة ومعلومات المصدر لكل قطعة."
+      id: "Katalog yang diterbitkan untuk penjualan lelang.\nPublikasi cetak atau digital yang mencantumkan barang yang tersedia  untuk dijual di lelang, biasanya termasuk deskripsi, gambar, nilai  perkiraan, dan informasi provenans untuk setiap lot."
+      zh: "为拍卖销售出版的目录。\n列出拍卖会上出售物品的印刷或数字出版物，通常包括每件拍品的 描述、图片、估价和来源信息。"
+    examples:
+    - value:
+        has_name: Posters of the Dutch Avant-Garde
+        has_description: Auction catalog featuring 250 vintage posters from 1890-1940
+      description: Specialized poster auction catalog
+    - value:
+        has_name: Old Masters Sale
+        has_description: Catalog of European paintings from the 15th-18th centuries
+      description: Fine art auction catalog
+    close_mappings:
+    - schema:PublicationIssue
+    - dcterms:BibliographicResource
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: veilingcatalogus
+      in_language: nl
+    - literal_form: Auktionskatalog
+      in_language: de
+    - literal_form: catalogue de vente
+      in_language: fr
+    - literal_form: catálogo de subasta
+      in_language: es
+    - literal_form: فهرس المزاد
+      in_language: ar
+    - literal_form: katalog lelang
+      in_language: id
+    - literal_form: 拍卖目录
+      in_language: zh
+    keywords:
+    - auction catalog
+    - sale catalog
+    - auction house
+    - provenance
+    - lot descriptions
+    - estimates
+    slots:
+    - has_name
+    - has_description
+    - publish
+    slot_usage:
+      has_name:
+        required: true
+        examples:
+        - value: Posters of the Dutch Avant-Garde
+        - value: Old Masters Sale
+        - value: Contemporary Art Evening Auction
+      has_description:
+        required: false
+        examples:
+        - value: Auction catalog featuring 250 vintage posters from 1890-1940
+    annotations:
+      specificity_score: "0.40"
+      specificity_rationale: "AuctionSaleCatalog is specific to art market documentation."
+      custodian_types: "['M', 'G', 'C']"
+      contents: "Lot descriptions, images, estimates, provenance"
+    comments:
+    - Published catalog for auction sales
+    - Contains lot descriptions, images, and estimates
+    - Important provenance documentation
+    - May be print or digital format
+    see_also:
+    - AuctionHouse
+    - https://schema.org/PublicationIssue

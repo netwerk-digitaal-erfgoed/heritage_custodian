@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/classes/OriginalEntryIdentifiersDict
+name: OriginalEntryIdentifiersDict
+title: OriginalEntryIdentifiersDict
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../slots/identified_by
+# default_range: string
+classes:
+  OriginalEntryIdentifiersDict:
+    description: >-
+      Named key-value bundle preserving source-system identifier assignments for
+      one described entity.
+    alt_descriptions:
+      nl: >-
+        Benoemde sleutel-waardebundel die identifiers uit bronsystemen bewaart
+        voor één beschreven entiteit.
+      de: >-
+        Benanntes Schlüssel-Wert-Bündel zur Bewahrung von
+        Quellsystem-Identifikatorzuweisungen für eine beschriebene Entität.
+      fr: >-
+        Ensemble clé-valeur nommé conservant les attributions d'identifiants de
+        systèmes sources pour une entité décrite.
+      es: >-
+        Conjunto clave-valor nombrado que conserva asignaciones de
+        identificadores de sistemas de origen para una entidad descrita.
+      ar: >-
+        حزمة مفاتيح-قيم مسماة تحفظ تعيينات المعرّفات من أنظمة المصدر
+        لكيان موصوف واحد.
+      id: >-
+        Bundel kunci-nilai bernama yang menyimpan penetapan pengenal dari
+        sistem sumber untuk satu entitas yang dideskripsikan.
+      zh: >-
+        用于保存单个被描述实体在源系统中的标识符分配的命名键值集合。
+    class_uri: prov:Entity
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:PropertyValueSpecification
+    related_mappings:
+    - dcterms:Identifier
+    - schema:PropertyValue
+    structured_aliases:
+    - literal_form: bronidentificatiebundel
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Quellkennungsbündel
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: paquet d'identifiants source
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: paquete de identificadores de origen
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: حزمة معرّفات المصدر
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: bundel pengenal sumber
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 源标识符集合
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "Used when the source provides named identifier fields (e.g., VIAF, GND, LCNAF, GeoNames, Wikidata, ISIL, Website)."
+    - "Ontology alignment: prov:Entity for provenance tracking of the identifier bundle."
+    - 'Preserved from prior description: Dictionary-style set of identifiers preserved from an original source entry.'
+    keywords:
+    - identifier assignment
+    - source-system key
+    - provenance bundle
+    - crosswalk support
+    examples:
+    - value:
+        identified_by:
+        - VIAF: "148691498"
+        - ISIL: "NL-AmRMA"
+        - Wikidata: "Q190804"
+      description: Named source identifiers captured together for one entity
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - identified_by

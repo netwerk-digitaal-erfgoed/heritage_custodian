@@ -1,0 +1,95 @@
+id: https://nde.nl/ontology/hc/class/AccessTriggerEvent
+name: AccessTriggerEvent
+title: Access Trigger Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/temporal_extent
+classes:
+  AccessTriggerEvent:
+    description: >-
+      Occurrence that causes a change in the accessibility status of materials,
+      such as an embargo expiration, conservation completion, or declassification.
+    alt_descriptions:
+      nl: >-
+        Gebeurtenis die een verandering in de toegankelijkheidsstatus van materialen
+        veroorzaakt, zoals het aflopen van een embargo, voltooiing van conservering
+        of declassificatie.
+      de: >-
+        Ereignis, das eine Aenderung des Zugriffsstatus von Materialien verursacht,
+        wie z.B. Ablauf eines Embargos, Abschluss der Konservierung oder
+        Deklassifizierung.
+      fr: >-
+        Evenement provoquant un changement dans le statut d'accessibilite des
+        documents, tel que l'expiration d'un embargo, l'achevement d'une
+        conservation ou une declassification.
+      es: >-
+        Evento que causa un cambio en el estado de accesibilidad de los materiales,
+        como la expiracion de un embargo, la finalizacion de la conservacion o
+        la desclasificacion.
+      ar: >-
+        حدث يسبب تغييرًا في حالة إمكانية الوصول إلى المواد، مثل انتهاء الحظر
+        أو إتمام الصيانة أو رفع السرية.
+      id: >-
+        Peristiwa yang menyebabkan perubahan status aksesibilitas materi, seperti
+        berakhirnya embargo, penyelesaian konservasi, atau deklasifikasi.
+      zh: >-
+        导致材料可访问性状态发生变化的事件，如禁令到期、保护完成或解密。
+    examples:
+    - value:
+        has_description: Embargo period expires
+        temporal_extent:
+          begin_of_the_begin: "2050-01-01"
+      description: Embargo expiration triggering open access
+    - value:
+        has_description: Conservation treatment completed
+        temporal_extent:
+          begin_of_the_begin: "2024-06-15"
+      description: Conservation completion enabling physical access
+    - value:
+        has_description: 30-year rule declassification
+        temporal_extent:
+          begin_of_the_begin: "2024-01-01"
+      description: Statutory declassification of government records
+    class_uri: prov:Activity
+    slots:
+    - has_description
+    - temporal_extent
+    structured_aliases:
+    - literal_form: toegangstriggerevenement
+      in_language: nl
+    - literal_form: Zugriffsausloeser
+      in_language: de
+    - literal_form: evenement declencheur d'acces
+      in_language: fr
+    - literal_form: evento desencadenante de acceso
+      in_language: es
+    - literal_form: حدث تشغيل الوصول
+      in_language: ar
+    - literal_form: peristiwa pemicu akses
+      in_language: id
+    - literal_form: 访问触发事件
+      in_language: zh
+    keywords:
+    - embargo expiration
+    - declassification
+    - conservation completion
+    - policy change
+    - access status change
+    broad_mappings:
+    - skos:Concept
+    - prov:Activity
+    comments:
+    - Used to automate access policy changes based on temporal conditions
+    - Links to AccessPolicy via temporal_extent constraints
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Specific to access status changes
+      custodian_types: "['*']"

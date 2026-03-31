@@ -1,0 +1,83 @@
+# ==============================================================================
+# LinkML Slot Definition: appropriate_for
+# ==============================================================================
+# Suitability designation for a particular audience, age group, or purpose.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                | Mapping  | Notes                                                      |
+# |---------------|-----------------------------|--------------------------|----------|------------------------------------------------------------|
+# | **Schema.org**| `schema:audience`           | schemaorg.owl:9151-9177  | broad    | "An intended audience, i.e. a group for whom something was created." |
+# | **Schema.org**| `schema:typicalAgeRange`    | schemaorg.owl:38895-38914| narrow   | "The typical expected age range, e.g. '7-9', '11-'."      |
+# | **Schema.org**| `schema:isFamilyFriendly`   | schemaorg.owl:22821-22840| related  | "Indicates whether this content is family friendly." Boolean. |
+# | **Schema.org**| `schema:contentRating`      | schemaorg.owl:12781-12802| related  | "Official rating of a piece of content—for example, 'MPAA PG-13'." |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/appropriate_for
+name: appropriate_for
+title: Appropriate For
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  appropriate_for:
+    slot_uri: hc:appropriateFor
+    description: >-
+      Designates that a specific item, content, or action is suitable, safe, or recommended for a particular audience, age group, or purpose.
+    comments:
+      - "COPPA compliance flag. Affects comments, ads, features."
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een specifiek item, inhoud of actie geschikt, veilig of aanbevolen is voor een bepaald publiek, een bepaalde leeftijdsgroep of een bepaald doel.
+      de: >-
+        Bezeichnet, dass ein bestimmtes Element, ein Inhalt oder eine Aktion für ein bestimmtes Publikum, eine Altersgruppe oder einen Zweck geeignet, sicher oder empfohlen ist.
+      fr: >-
+        Désigne qu'un élément, un contenu ou une action spécifique est approprié, sûr ou recommandé pour un public, un groupe d'âge ou un objectif particulier.
+      ar: >-
+        يشير إلى أن عنصرًا أو محتوى أو إجراءً محددًا مناسب أو آمن أو موصى به لجمهور أو فئة عمرية أو غرض معين.
+      id: >-
+        Menetapkan bahwa item, konten, atau tindakan tertentu sesuai, aman, atau direkomendasikan untuk audiens, kelompok usia, atau tujuan tertentu.
+      zh: >-
+        指定特定项目、内容或操作适合、安全或推荐给特定受众、年龄组或目的。
+      es: >-
+        Designa que un elemento, contenido o acción específica es adecuado, seguro o recomendado para una audiencia, grupo de edad o propósito particular.
+    structured_aliases:
+      - literal_form: Geschiktheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Eignung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Adéquation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملاءمة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kesesuaian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 适宜性
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Idoneidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_made_for_kid
+    broad_mappings:
+      - schema:audience  # schemaorg.owl:9151-9177 - "An intended audience, i.e. a group for whom something was created."
+    narrow_mappings:
+      - schema:typicalAgeRange  # schemaorg.owl:38895-38914 - "The typical expected age range, e.g. '7-9', '11-'." Age-only subset.
+    related_mappings:
+      - schema:isFamilyFriendly  # schemaorg.owl:22821-22840 - "Indicates whether this content is family friendly." Boolean flag.
+      - schema:contentRating  # schemaorg.owl:12781-12802 - "Official rating of a piece of content—for example, 'MPAA PG-13'."

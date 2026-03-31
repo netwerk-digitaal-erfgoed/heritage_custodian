@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/enum/PersonClaimTypeEnum
+name: person_claim_type_enum
+title: Person Claim Type Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  PersonClaimTypeEnum:
+    description: |
+      Types of claims that can be extracted about persons from web pages.
+      Each claim type has expected source locations in institutional pages.
+    permissible_values:
+      full_name:
+        description: Full name of the person
+        comments:
+        - 'Expected in: staff directory, about page, h2/h3 headings'
+      given_name:
+        description: First/given name only
+        comments:
+        - May be parsed from full_name
+      family_name:
+        description: Family/surname only
+        comments:
+        - May be parsed from full_name
+      role_title:
+        description: Job title or role within organization
+        comments:
+        - 'Expected in: staff directory, org chart, biography section'
+      department:
+        description: Department or division name
+        comments:
+        - 'Expected in: staff directory, org chart'
+      email:
+        description: Professional email address
+        comments:
+        - 'Expected in: staff directory, contact section'
+        - Only include if publicly listed
+      phone:
+        description: Professional phone number
+        comments:
+        - 'Expected in: staff directory, contact section'
+        - Only include if publicly listed
+      biography:
+        description: Professional biography text
+        comments:
+        - 'Expected in: staff page, about section'
+      specialization:
+        description: Area of expertise or specialization
+        comments:
+        - 'Expected in: biography, staff profile, research interests'
+      education:
+        description: Educational background or degrees
+        comments:
+        - 'Expected in: biography, CV section'
+        - 'Example: ''PhD Art History, University of Amsterdam'''
+      start_date:
+        description: Date when person started current role
+        comments:
+        - 'Expected in: biography, news announcements'
+        - 'Format: ISO 8601 date'
+      end_date:
+        description: Date when person ended role (if applicable)
+        comments:
+        - 'Expected in: historical records, farewell announcements'
+      photo_url:
+        description: URL to profile photo
+        comments:
+        - 'Expected in: staff directory, biography page'
+        - 'For LinkedIn: use CDN URL (media.licdn.com), not overlay page'
+      linkedin_url:
+        description: LinkedIn profile URL
+        comments:
+        - 'Expected in: staff page footer, social links'
+      orcid:
+        description: ORCID researcher identifier
+        comments:
+        - 'Expected in: research publications, CV section'
+        - 'Format: 0000-0000-0000-0000'
+      twitter_handle:
+        description: Twitter/X handle
+        comments:
+        - 'Expected in: social media section, footer'
+      previous_employer:
+        description: Previous organization where person worked
+        comments:
+        - 'Expected in: biography, LinkedIn experience'
+      publication:
+        description: Citation or link to publication
+        comments:
+        - 'Expected in: publications list, CV'
+      award:
+        description: Professional award or recognition
+        comments:
+        - 'Expected in: biography, awards section'
+      language_proficiency:
+        description: Language the person speaks
+        comments:
+        - 'Expected in: LinkedIn profile, CV'

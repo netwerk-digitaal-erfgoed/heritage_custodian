@@ -1,0 +1,115 @@
+# ==============================================================================
+# LinkML Slot Definition: has_tradition
+# ==============================================================================
+# The cultural or religious tradition associated with a group, site, or
+# organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property          | File/Line                       | Mapping  | Notes                                                    |
+# |---------------|-------------------|---------------------------------|----------|----------------------------------------------------------|
+# | **HC**        | `hc:hasTradition` | —                               | slot_uri | No external "has tradition" property exists.             |
+# | **CIDOC-CRM** | `crm:P2_has_type` | CIDOC_CRM_v7.1.3.rdf:1200-1214 | broad    | "Sub-typing via E55 Type" — very generic typing.         |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_tradition
+name: has_tradition
+title: Has Tradition
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_tradition:
+    slot_uri: hc:hasTradition
+    description: >-
+      Identifies or associates a group, site, or organization with a specific
+      cultural or religious tradition, including faith community, theological
+      lineage, or customary practice passed down through generations.
+    alt_descriptions:
+      nl: >-
+        Identificeert of associeert een groep, locatie of organisatie met een
+        specifieke culturele of religieuze traditie, waaronder geloofsgemeenschap,
+        theologische lijn of overgeleverd gebruik.
+      de: >-
+        Identifiziert oder verbindet eine Gruppe, Stätte oder Organisation mit
+        einer bestimmten kulturellen oder religiösen Tradition, einschließlich
+        Glaubensgemeinschaft, theologischer Linie oder überliefertem Brauch.
+      fr: >-
+        Identifie ou associe un groupe, un site ou une organisation à une
+        tradition culturelle ou religieuse spécifique, y compris une communauté
+        de foi, une lignée théologique ou une pratique coutumière transmise de
+        génération en génération.
+      ar: >-
+        يحدد أو يربط مجموعة أو موقعًا أو منظمة بتقليد ثقافي أو ديني محدد،
+        بما في ذلك مجتمع إيماني أو سلسلة لاهوتية أو ممارسة عرفية متوارثة.
+      id: >-
+        Mengidentifikasi atau mengaitkan kelompok, situs, atau organisasi
+        dengan tradisi budaya atau keagamaan tertentu, termasuk komunitas
+        iman, garis teologis, atau praktik adat yang diwariskan antargenerasi.
+      zh: >-
+        标识或关联某个团体、场所或组织与特定的文化或宗教传统，包括信仰群体、
+        神学传承或代代相传的习俗。
+      es: >-
+        Identifica o asocia un grupo, sitio u organización con una tradición
+        cultural o religiosa específica, incluyendo comunidad de fe, linaje
+        teológico o práctica consuetudinaria transmitida de generación en
+        generación.
+    structured_aliases:
+      - literal_form: traditie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Tradition
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: tradition
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تقليد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: tradisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 传统
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tradición
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - crm:P2_has_type  # CIDOC_CRM_v7.1.3.rdf:1200-1214 - "Sub-typing of CRM entities via E55 Type hierarchy"
+    aliases:
+      - religious_tradition
+    examples:
+      - value: "Roman Catholic Christianity"
+        description: A major Christian denomination tradition.
+      - value: "Sunni Islam, Hanafi school"
+        description: An Islamic tradition with its specific jurisprudential school.
+      - value: "Theravada Buddhism"
+        description: A major Buddhist tradition prevalent in Southeast Asia.
+      - value: "Orthodox Judaism, Ashkenazi tradition"
+        description: A Jewish denomination with its cultural-geographic lineage.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Covers major traditions (Christianity, Islam, Judaism, Buddhism,
+        Hinduism, Sikhism), their denominations and sub-traditions (e.g.,
+        Protestant, Shia, Mahayana, Vaishnavism), as well as indigenous
+        and traditional religions and interfaith or multi-tradition sites.
+      - >-
+        Important for understanding collection context and sensitivity at
+        heritage institutions, especially holy sites (churches, temples,
+        mosques), religious archives, and institutions managing ecclesiastical
+        collections.
+      - >-
+        Distinct from has_religion which records the specific religious
+        affiliation of a person as stated in a source document. This slot
+        captures the broader tradition context of a site or organization.

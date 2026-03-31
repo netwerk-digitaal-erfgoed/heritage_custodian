@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: queryable
+# ==============================================================================
+# Whether a dataset, system, or interface supports structured querying.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property                   | File/Line              | Mapping | Notes                                                      |
+# |-----------|----------------------------|------------------------|---------|-------------------------------------------------------------|
+# | **VoID**  | `void:sparqlEndpoint`      | (not in local files)   | narrow  | SPARQL endpoint is narrower than general "queryable."       |
+# | **DCAT**  | `dcat:endpointURL`         | dcat3.ttl:1008-1033    | narrow  | "The root location or primary endpoint of the service."     |
+# | **DCAT**  | `dcat:accessService`       | dcat3.ttl:536-561      | related | "A site or end-point that gives access to the distribution."|
+# | **DCAT**  | `dcat:endpointDescription` | dcat3.ttl:972-1007     | related | "A description of the service end-point."                   |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/queryable
+name: queryable
+title: Queryable
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  void: http://rdfs.org/ns/void#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  queryable:
+    slot_uri: hc:queryable
+    description: >-
+      Describes a dataset, system, interface, or object that is structured and accessible
+      in a way that allows users or software to submit specific questions, commands, or
+      filters to retrieve information.
+    alt_descriptions:
+      nl: >-
+        Beschrijft een dataset, systeem, interface of object dat zodanig gestructureerd
+        en toegankelijk is dat gebruikers of software specifieke vragen, opdrachten of
+        filters kunnen indienen om informatie op te halen.
+      de: >-
+        Beschreibt einen Datensatz, ein System, eine Schnittstelle oder ein Objekt, das
+        so strukturiert und zugänglich ist, dass Benutzer oder Software spezifische Fragen,
+        Befehle oder Filter einreichen können, um Informationen abzurufen.
+      fr: >-
+        Décrit un jeu de données, un système, une interface ou un objet structuré et
+        accessible de manière à permettre aux utilisateurs ou aux logiciels de soumettre
+        des questions, des commandes ou des filtres spécifiques pour récupérer des informations.
+      ar: >-
+        يصف مجموعة بيانات أو نظامًا أو واجهة أو كائنًا منظمًا ومتاحًا بطريقة تسمح
+        للمستخدمين أو البرامج بتقديم أسئلة أو أوامر أو مرشحات محددة لاسترجاع المعلومات.
+      id: >-
+        Menjelaskan dataset, sistem, antarmuka, atau objek yang terstruktur dan dapat
+        diakses sedemikian rupa sehingga pengguna atau perangkat lunak dapat mengajukan
+        pertanyaan, perintah, atau filter tertentu untuk mengambil informasi.
+      zh: >-
+        描述一个数据集、系统、接口或对象，其结构和可访问性使用户或软件能够提交特定的问题、命令或筛选条件以检索信息。
+      es: >-
+        Describe un conjunto de datos, sistema, interfaz u objeto que está estructurado
+        y accesible de manera que permite a los usuarios o al software enviar preguntas,
+        comandos o filtros específicos para recuperar información.
+    structured_aliases:
+      - literal_form: Bevraagbaarheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Abfragbarkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Interrogeabilité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قابلية الاستعلام
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kemampuan Kueri
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 可查询性
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Consultabilidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    inlined: false
+    annotations:
+      custodian_types: '["*"]'
+    narrow_mappings:
+      - void:sparqlEndpoint  # (not in local ontology files) — SPARQL endpoint for a dataset
+      - dcat:endpointURL  # dcat3.ttl:1008-1033 — "The root location or primary endpoint of the service."
+    related_mappings:
+      - dcat:accessService  # dcat3.ttl:536-561 — "A site or end-point that gives access to the distribution."
+      - dcat:endpointDescription  # dcat3.ttl:972-1007 — "A description of the service end-point."
+    aliases:
+      - linked_data_access

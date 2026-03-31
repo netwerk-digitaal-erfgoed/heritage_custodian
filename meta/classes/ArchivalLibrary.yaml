@@ -1,0 +1,120 @@
+id: https://nde.nl/ontology/hc/class/ArchivalLibrary
+name: ArchivalLibrary
+title: Archival Library Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/branch_of
+  - ../slots/related_to
+  - ../slots/has_label
+classes:
+  ArchivalLibrary:
+    is_a: OrganizationBranch
+    class_uri: org:OrganizationalUnit
+    description: >-
+      Library unit embedded within or associated with an archive organization,
+      providing reference materials and published works to support archival
+      research activities.
+    alt_descriptions:
+      nl: >-
+        Bibliotheekeenheid die deel uitmaakt van of geassocieerd is met een
+        archieforganisatie, die referentiematerialen en gepubliceerde werken
+        aanbiedt om archiefonderzoek te ondersteunen.
+      de: >-
+        Bibliothekseinheit, die in eine Archivorganisation eingebettet oder
+        mit dieser verbunden ist und Referenzmaterialien und veroffentlichte
+        Werke zur Unterstutzung archivarischer Forschungsaktivitaten bereitstellt.
+      fr: >-
+        Unite de bibliotheque integree ou associee a une organisation d'archives,
+        fournissant des documents de reference et des travaux publies pour
+        soutenir les activites de recherche archivistique.
+      es: >-
+        Unidad de biblioteca integrada o asociada con una organizacion de archivos,
+        que proporciona materiales de referencia y obras publicadas para apoyar
+        las actividades de investigacion archivistica.
+      ar: >-
+        وحدة مكتبة مدمجة في منظمة أرشيف أو مرتبطة بها، توفر مواد مرجعية
+        وأعمال منشورة لدعم أنشطة البحث الأرشيفي.
+      id: >-
+        Unit perpustakaan yang tertanam atau terkait dengan organisasi arsip,
+        menyediakan materi referensi dan karya terpublikasi untuk mendukung
+        aktivitas penelitian arsip.
+      zh: >-
+        嵌入档案组织或与其关联的图书馆单位，提供参考材料和已出版作品
+        以支持档案研究活动。
+    structured_aliases:
+    - literal_form: archiefbibliotheek
+      in_language: nl
+    - literal_form: Archivbibliothek
+      in_language: de
+    - literal_form: bibliotheque d'archives
+      in_language: fr
+    - literal_form: biblioteca de archivo
+      in_language: es
+    - literal_form: مكتبة الأرشيف
+      in_language: ar
+    - literal_form: perpustakaan arsip
+      in_language: id
+    - literal_form: 档案图书馆
+      in_language: zh
+    close_mappings:
+    - schema:Library
+    - rico:CorporateBody
+    related_mappings:
+    - wd:Q25504402
+    broad_mappings:
+    - skos:Concept
+    - org:OrganizationalUnit
+    slots:
+    - has_type
+    - has_score
+    - branch_of
+    - related_to
+    - has_label
+    slot_usage:
+      has_type:
+        equals_string: BranchLibraryUnit
+        required: true
+      branch_of:
+        range: ArchiveOrganizationType
+        required: true
+    comments:
+    - BRANCH type - archival library is a section WITHIN an archive, not standalone
+    - Uses org:OrganizationalUnit pattern from W3C ORG ontology
+    - Holdings are primarily published works, not archival records
+    - ALWAYS linked to parent Archive via branch_of
+    see_also:
+    - ArchivalLibraryRecordSetType
+    - OrganizationBranch
+    examples:
+    - value:
+        has_type: BranchLibraryUnit
+        has_label: "Reference Library"
+        branch_of: hc:NationalArchive
+        has_score: 1.0
+      description: Reference library branch within a national archive
+    keywords:
+    - archival library
+    - reference library
+    - research support
+    - organizational branch
+    - archive library
+    notes:
+      - |
+        Preserved from prior description (commit 1fe1d1ad):
+
+        "Library that is part of or associated with an archive, providing reference \nmaterials and published works to support archival research.\n\n**Wikidata**: Q25504402\n\n**IMPORTANT: This is an OrganizationBranch, NOT a standalone CustodianType**\n\nArchival libraries are organizational units (branches/sections) within a \nlarger Archive custodian. They do NOT exist independently - they are always\nembedded within an archive organization.\n\n**Scope**:\nArchival libraries (Archivbibliotheken) hold:\n- Reference works for archival research\n- Published guides and finding aids\n- Local history publications\n- Genealogical reference materials\n- Legal and administrative handbooks\n- Periodicals related to archive holdings\n\n**Organizational Context**:\nArchival libraries are typically:\n- Embedded within larger archive organizations (as org:OrganizationalUnit)\n- Supporting the research mission of the parent archive\n- Providing context for archival collections\n- Serving both\
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to archival library organizational units
+      custodian_types: "['Archive']"

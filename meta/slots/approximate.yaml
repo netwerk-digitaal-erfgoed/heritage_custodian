@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: approximate
+# ==============================================================================
+# Whether a value, location, or quantity is estimated rather than exact.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                                                       |
+# |---------------|-----------------------|--------------------------|---------|-----------------------------------------------------------------------------|
+# | **DQV**       | `dqv:precision`       | dqv.ttl:184-186          | related | "Precision is a quality dimension, which refers to the recorded level of    |
+# |               |                       |                          |         | details." A Dimension (class), not a boolean property. Conceptually related |
+# |               |                       |                          |         | (precision vs approximation) but structurally different.                    |
+#
+# CREATED: 2026-02-03
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/approximate
+name: approximate
+title: Approximate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  approximate:
+    slot_uri: hc:approximate
+    description: >-
+      Indicates that a value, location, or quantity is estimated or close
+      to the actual figure, but is not exact or precise.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een waarde, locatie of hoeveelheid geschat is of
+        dicht bij het werkelijke cijfer ligt, maar niet exact of precies is.
+      de: >-
+        Gibt an, dass ein Wert, ein Standort oder eine Menge geschatzt
+        oder nahe am tatsachlichen Wert liegt, aber nicht exakt oder
+        prazise ist.
+      fr: >-
+        Indique qu'une valeur, un emplacement ou une quantite est estime
+        ou proche du chiffre reel, mais n'est pas exact ou precis.
+      ar: >-
+        يشير إلى أن قيمة أو موقعًا أو كمية مقدرة أو قريبة من الرقم
+        الفعلي، لكنها ليست دقيقة أو محددة.
+      id: >-
+        Menunjukkan bahwa suatu nilai, lokasi, atau kuantitas merupakan
+        perkiraan atau mendekati angka sebenarnya, tetapi tidak tepat
+        atau presisi.
+      zh: >-
+        表示某个值、位置或数量是估计的或接近实际数字的，但不是精确的。
+      es: >-
+        Indica que un valor, ubicacion o cantidad es estimado o cercano
+        a la cifra real, pero no es exacto o preciso.
+    structured_aliases:
+      - literal_form: Benadering
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Naherungswert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Approximation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تقريب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Perkiraan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 近似值
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Aproximacion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    aliases:
+      - is_or_was_approximate
+      - is_approximate
+      - is_estimate
+    related_mappings:
+      - dqv:precision  # dqv.ttl:184-186 - "Precision is a quality dimension, which refers to the recorded level of details." A Dimension class, not a boolean property.
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,46 @@
+id: https://nde.nl/ontology/hc/class/ContentType
+name: ContentType
+title: Content Type Class (Abstract Base)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  ContentType:
+    class_uri: crm:E55_Type
+    abstract: true
+    description: >-
+      Abstract controlled-vocabulary node for categorizing informational modality and subject expression.
+    alt_descriptions:
+      nl: Abstracte gecontroleerde-vocabulaireknoop voor categorisatie van informatiemodaliteit en onderwerpuitdrukking.
+      de: Abstrakter Knoten eines kontrollierten Vokabulars zur Kategorisierung von Informationsmodalität und Themenausprägung.
+      fr: Noeud abstrait de vocabulaire controle pour categoriser la modalite informationnelle et l'expression du sujet.
+      es: Nodo abstracto de vocabulario controlado para categorizar modalidad informativa y expresion tematica.
+      ar: عقدة مجردة في معجم مضبوط لتصنيف نمط المعلومات وتمثيل الموضوع.
+      id: Simpul abstrak kosakata terkendali untuk mengkategorikan modalitas informasi dan ekspresi subjek.
+      zh: 用于分类信息模态与主题表达的受控词表抽象节点。
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    close_mappings:
+    - dcterms:type
+    slots:
+    - has_code
+    - has_label
+    - has_description
+    slot_usage:
+      has_code:
+        required: true
+        identifier: true
+        pattern: '^[A-Z][A-Z0-9_]*$'
+      has_label:
+        required: true

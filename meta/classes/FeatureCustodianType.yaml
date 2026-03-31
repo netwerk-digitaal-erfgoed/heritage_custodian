@@ -1,0 +1,121 @@
+id: https://nde.nl/ontology/hc/class/FeatureCustodianType
+name: FeatureCustodianType
+title: Feature Custodian Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_activity
+- ../slots/has_service
+- ../slots/manage
+- ../slots/managed_by
+- ../slots/has_portfolio
+- ../slots/has_type
+- ../slots/has_score
+classes:
+  FeatureCustodianType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: >-
+      Organization category responsible for managing, preserving, and providing
+      access to physical heritage features such as monuments, landmarks, and historic sites.
+    alt_descriptions:
+      nl: >-
+        Organisatiecategorie verantwoordelijk voor het beheren, behouden en toegankelijk maken
+        van fysieke erfgoedkenmerken zoals monumenten, oriëntatiepunten en historische locaties.
+      de: >-
+        Organisationskategorie, die für die Verwaltung, Erhaltung und Bereitstellung des Zugangs
+        zu physischen Merkmalen des Erbes wie Denkmälern, Wahrzeichen und historischen Stätten verantwortlich ist.
+      fr: >-
+        Catégorie d'organisation responsable de la gestion, de la préservation et de l'accès
+        aux éléments patrimoniaux physiques tels que monuments, points de repère et sites historiques.
+      es: >-
+        Categoría de organización responsable de gestionar, preservar y proporcionar acceso
+        a características patrimoniales físicas como monumentos, puntos de referencia y sitios históricos.
+      ar: >-
+        فئة منظمة مسؤولة عن إدارة وحفظ وتوفير الوصول
+        إلى المعالم التراثية المادية مثل الآثار والمعالم التاريخية.
+      id: >-
+        Kategori organisasi yang bertanggung jawab mengelola, melestarikan, dan menyediakan akses
+        ke fitur warisan fisik seperti monumen, tengara, dan situs bersejarah.
+      zh: >-
+        负责管理、保存和提供对纪念碑、地标和历史遗址等物质遗产特征访问的组织类别。
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E39_Actor
+    - schema:Organization
+    slots:
+    - has_activity
+    - has_service
+    - manage
+    - managed_by
+    - has_portfolio
+    - has_type
+    - has_score
+    slot_usage:
+      manage:
+        multivalued: true
+        required: true
+      has_portfolio:
+        required: true
+      has_activity:
+        required: true
+      managed_by:
+        required: true
+    structured_aliases:
+    - literal_form: fysieke erfgoedbeheerder
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: physischer Erbe-Verwalter
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: gardien de caractéristiques
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: custodio de características
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: أمين المعالم
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: kustodian fitur
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 遗产特征保管人
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Manages in-situ physical heritage features (monuments, sites, landmarks)
+    - Distinct from FeaturePlace which represents the physical feature itself
+    - Link to managed features via manages_feature slot
+    - 'Preserved from prior description: Custodian type for organizations that manage and preserve physical heritage features.'
+    keywords:
+    - monument management
+    - historic site
+    - physical heritage
+    - site custodian
+    - landmark preservation
+    examples:
+    - value:
+        has_type: MonumentAuthority
+        manage:
+        - Monument_001
+        - HistoricSite_002
+      description: Organization managing multiple heritage monuments
+    notes:
+    - |
+      Ontology layer mappings:
+      - skos:Concept - Thesaurus classification
+      - crm:E39_Actor - CIDOC-CRM actor managing cultural heritage
+      - schema:Organization - Generic organization type
+    annotations:
+      skos:prefLabel: Feature Custodian
+      specificity_score: 0.55
+      specificity_rationale: Custodian taxonomy concept for in-situ heritage feature management.
+      custodian_types: '["*"]'

@@ -1,0 +1,128 @@
+# ==============================================================================
+# LinkML Slot Definition: has_collection
+# ==============================================================================
+# To possess, maintain, or hold a curated assemblage of objects, artifacts, or
+# records that have been gathered together according to a specific theme, origin,
+# or purpose.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line            | Mapping | Notes                              |
+# |---------------|---------------------------|----------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:hasOrHadPart`       | RiC-O_1-1.rdf        | exact   | Part-whole relationship            |
+# | **CIDOC-CRM** | `crm:P46_is_composed_of`  | CIDOC_CRM            | close   | Composition of items               |
+# | **RiC-O**     | `rico:includesOrIncluded` | RiC-O_1-1.rdf        | related | Inclusion relationship             |
+# | **Schema.org**| `schema:hasPart`          | schemaorg.owl        | close   | Part-whole relationship            |
+#
+# CREATED: 2026-01-15
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_collection
+name: has_collection
+title: Has Collection
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  owl: http://www.w3.org/2002/07/owl#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_collection:
+    slot_uri: rico:hasOrHadPart
+    description: >-
+      To possess, maintain, or hold a curated assemblage of objects, artifacts,
+      or records that have been gathered together according to a specific theme,
+      origin, or purpose.
+    alt_descriptions:
+      nl: >-
+        Om een samengestelde verzameling objecten, artefacten of dossiers te
+        bezitten, onderhouden of bewaren die zijn bijeengebracht volgens een
+        specifiek thema, oorsprong of doel.
+      de: >-
+        Eine kuratierte Sammlung von Objekten, Artefakten oder Aufzeichnungen
+        zu besitzen, zu pflegen oder zu halten, die nach einem bestimmten
+        Thema, einer Herkunft oder einem Zweck zusammengestellt wurden.
+      fr: >-
+        Posséder, maintenir ou détenir un assemblage organisé d'objets,
+        d'artefacts ou de documents qui ont été rassemblés selon un thème,
+        une origine ou un objectif spécifique.
+      ar: >-
+        امتلاك أو الحفاظ على أو الاحتفاظ بمجموعة منسقة من الأشياء أو القطع
+        الأثرية أو السجلات التي تم جمعها وفقاً لموضوع أو أصل أو غرض محدد.
+      id: >-
+        Memiliki, memelihara, atau menyimpan kumpulan objek, artefak, atau
+        catatan yang dikurasi dan dikumpulkan berdasarkan tema, asal, atau
+        tujuan tertentu.
+      zh: >-
+        拥有、维护或持有根据特定主题、来源或目的汇集的策划性物品、文物或记录集合。
+      es: >-
+        Poseer, mantener o conservar un conjunto curado de objetos, artefactos
+        o registros que han sido reunidos según un tema, origen o propósito
+        específico.
+    structured_aliases:
+      - literal_form: collectie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مجموعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 收藏
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: colección
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    inlined_as_list: false
+    exact_mappings:
+    close_mappings:
+      - crm:P46_is_composed_of
+      - schema:hasPart
+    related_mappings:
+      - rico:includesOrIncluded
+    aliases:
+      - has_or_had_collection
+      - has_or_had_local_collection
+      - has_local_collection
+    annotations:
+      inverse_slot: is_or_was_collection_of
+      deprecates: has_collection
+      rico_pattern: hasOrHadPart
+      custodian_types: '["*"]'
+    examples:
+      - value: hc:collection/dutch-masters
+        description: Dutch Masters Collection at Rijksmuseum
+      - value: hc:collection/asian-art
+        description: Asian Art Collection at museum
+    comments:
+      - 'RiC-O pattern: hasOrHad* for temporal custody relationships'
+      - Inverse of is_or_was_collection_of (rico:isOrWasPartOf)
+      - Creates owl:inverseOf axiom in RDF output
+      - |
+        TEMPORAL SEMANTICS: A museum may have held a collection that was later
+        transferred to another institution (custody transfer).
+      - |
+        METONYMIC REFERENCE: This property enables metonymic references - when
+        people refer to a custodian, they often mean its collection.
+        CustodianCollection makes this explicit.

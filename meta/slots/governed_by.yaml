@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: governed_by
+# ==============================================================================
+# Links an entity to the authority or body that governs it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property          | File/Line          | Mapping | Notes                                |
+# |------------|-------------------|--------------------|---------|--------------------------------------|
+# | **REC**    | `rec:regulatedBy` | Brick.ttl:32562-65 | close   | Contract regulating a lease          |
+# | **ORG**    | N/A               | N/A                | N/A     | No governance property in ORG        |
+#
+# No exact standard mapping exists for governance relationships.
+# This is a domain-specific property for organizational oversight.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/governed_by
+name: governed_by
+title: Governed By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  rec: https://w3id.org/rec#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  governed_by:
+    slot_uri: hc:governedBy
+    description: >-
+      To be directed, controlled, or regulated by a specific authority, rule, 
+      policy, or body responsible for oversight and administration.
+    alt_descriptions:
+      nl: >-
+        Geleid, gecontroleerd of gereguleerd door een specifieke autoriteit, 
+        regel, beleid of orgaan dat verantwoordelijk is voor toezicht en 
+        administratie.
+      de: >-
+        Von einer bestimmten Behörde, Regel, Richtlinie oder einem für 
+        Aufsicht und Verwaltung verantwortlichen Gremium geleitet, 
+        kontrolliert oder reguliert zu werden.
+      fr: >-
+        Être dirigé, contrôlé ou réglementé par une autorité, une règle, 
+        une politique ou un organe spécifique responsable de la surveillance 
+        et de l'administration.
+      ar: >-
+        أن يتم توجيهه أو التحكم فيه أو تنظيمه من قبل سلطة أو قاعدة أو 
+        سياسة أو هيئة محددة مسؤولة عن الإشراف والإدارة.
+      id: >-
+        Diarahkan, dikendalikan, atau diatur oleh otoritas, aturan, 
+        kebijakan, atau badan tertentu yang bertanggung jawab atas 
+        pengawasan dan administrasi.
+      zh: >-
+        由负责监督和管理的特定权力机构、规则、政策或机构指导、
+        控制或监管。
+      es: >-
+        Ser dirigido, controlado o regulado por una autoridad, regla, 
+        política u organismo específico responsable de la supervisión 
+        y administración.
+    structured_aliases:
+      - literal_form: bestuurd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geleitet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: gouverné par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يُحكم من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diatur oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...管理
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: gobernado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - rec:regulatedBy  # Brick.ttl:32562-32565 - Contract regulating relationship
+    aliases:
+      - is_or_was_governed_by
+      - is_or_was_governing_body
+      - governing_body
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link organizations, institutions, or 
+        processes to the governing bodies, policies, or authorities that 
+        oversee them.
+      - |
+        **DOMAIN-SPECIFIC**: No exact standard ontology mapping exists for 
+        governance relationships. The `rec:regulatedBy` property from RealEstateCore 
+        is close but specific to lease/contract regulation.

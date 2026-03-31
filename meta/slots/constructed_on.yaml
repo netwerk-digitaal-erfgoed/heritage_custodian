@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: constructed_at
+# ==============================================================================
+# The calendar date or time period when an object, building, or system was built.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                      | Mapping | Notes                                                              |
+# |---------------|-------------------------|--------------------------------|---------|--------------------------------------------------------------------|
+# | **DCTerms**   | `dcterms:created`       | dcterms.rdf:1065-1091          | close   | "Date of creation of the resource." Typically info resources.      |
+# | **Schema.org** | `schema:dateCreated`   | schemaorg.owl:14173-14193      | close   | "Date on which the CreativeWork was created." Domain: CreativeWork. |
+# | **PROV-O**    | `prov:generatedAtTime`  | prov.ttl:593-603               | close   | "Time at which an entity was completely created." General domain.  |
+# | **RiC-O**     | `rico:creationDate`     | RiC-O_1-1.rdf:21137-21184     | close   | "Date at which a Record Resource or Instantiation was created."    |
+# | **DCTerms**   | `dcterms:date`          | dcterms.rdf:1122-1145          | broad   | "A point or period of time associated with a lifecycle event."     |
+# | **RiC-O**     | `rico:beginningDate`    | RiC-O_1-1.rdf:20864-20890     | broad   | "Date at which something began." Domain: Thing. Very generic.      |
+#
+# NO EXACT MATCH: All standard "creation date" properties target information
+# resources (DCTerms, Schema.org), record resources (RiC-O), or generic
+# provenance entities (PROV-O). None specifically address the physical
+# construction date of a building, object, or system. Slot URI stays hc:constructedAt.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/constructed_at
+name: constructed_at
+title: Constructed At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  constructed_at:
+    slot_uri: hc:constructedAt
+    description: >-
+      Identifies the specific calendar date or time period when an object,
+      building, or system was built, assembled, or brought into existence.
+    comments:
+      - >-
+        Values may be expressed as exact years ("1650"), approximate dates
+        ("ca. 1650"), date ranges ("1648-1652"), or centuries ("17th century").
+      - >-
+        Comparable to schema:dateCreated (for CreativeWork) and dcterms:created
+        (for information resources), but specifically intended for physical
+        constructions and built objects.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke kalenderdatum of tijdsperiode waarop een
+        object, gebouw of systeem is gebouwd, samengesteld of tot stand gebracht.
+      de: >-
+        Identifiziert das spezifische Kalenderdatum oder den Zeitraum, in dem ein
+        Objekt, Gebäude oder System gebaut, zusammengebaut oder hergestellt wurde.
+      fr: >-
+        Identifie la date calendaire précise ou la période pendant laquelle un
+        objet, un bâtiment ou un système a été construit, assemblé ou créé.
+      ar: >-
+        يحدد التاريخ التقويمي المحدد أو الفترة الزمنية التي تم فيها بناء أو
+        تجميع أو إنشاء كائن أو مبنى أو نظام.
+      id: >-
+        Mengidentifikasi tanggal kalender atau periode waktu tertentu ketika
+        suatu objek, bangunan, atau sistem dibangun, dirakit, atau diwujudkan.
+      zh: >-
+        标识某个物体、建筑物或系统被建造、组装或创建的具体日历日期或时间段。
+      es: >-
+        Identifica la fecha calendario específica o el período de tiempo en que
+        un objeto, edificio o sistema fue construido, ensamblado o creado.
+    structured_aliases:
+      - literal_form: Bouwdatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Baudatum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Date de construction
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ البناء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tanggal Pembangunan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 建造日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fecha de construcción
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:created       # dcterms.rdf:1065-1091 - "Date of creation of the resource."
+      - schema:dateCreated     # schemaorg.owl:14173-14193 - "Date on which the CreativeWork was created."
+      - prov:generatedAtTime   # prov.ttl:593-603 - "Time at which an entity was completely created."
+      - rico:creationDate      # RiC-O_1-1.rdf:21137-21184 - "Date at which a Record Resource or Instantiation was created."
+    broad_mappings:
+      - dcterms:date           # dcterms.rdf:1122-1145 - "A point or period of time associated with a lifecycle event."
+      - rico:beginningDate     # RiC-O_1-1.rdf:20864-20890 - "Date at which something began."
+    aliases:
+      - construction_date_precision
+      - construction_date

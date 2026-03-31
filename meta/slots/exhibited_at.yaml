@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: exhibited_at
+# ==============================================================================
+# Links an object to the venue where it was/is exhibited.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property           | File/Line | Mapping | Notes                                   |
+# |----------------|--------------------|-----------|---------|-----------------------------------------|
+# | **Schema.org** | `schema:location`  | N/A       | related | General location, not exhibition-specific|
+# | **CIDOC-CRM**  | `crm:P12_occurred_in_the_presence_of` | N/A | related | Event participation context |
+#
+# No exact standard mapping exists for exhibition venue relationships.
+# This is a GLAM domain-specific property.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/exhibited_at
+name: exhibited_at
+title: Exhibited At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  exhibited_at:
+    slot_uri: hc:exhibitedAt
+    description: >-
+      To be displayed, shown, or presented to the public at a specific venue, 
+      location, or event.
+    alt_descriptions:
+      nl: >-
+        Tentoongesteld, getoond of gepresenteerd aan het publiek op een 
+        specifieke locatie, plaats of evenement.
+      de: >-
+        An einem bestimmten Veranstaltungsort, Ort oder bei einer Veranstaltung 
+        öffentlich ausgestellt, gezeigt oder präsentiert zu werden.
+      fr: >-
+        Être exposé, montré ou présenté au public dans un lieu, un 
+        emplacement ou un événement spécifique.
+      ar: >-
+        أن يتم عرضه أو إظهاره أو تقديمه للجمهور في مكان أو موقع أو 
+        حدث محدد.
+      id: >-
+        Dipamerkan, ditampilkan, atau dipresentasikan kepada publik di 
+        tempat, lokasi, atau acara tertentu.
+      zh: >-
+        在特定场馆、地点或活动中向公众展示、展出或呈现。
+      es: >-
+        Ser exhibido, mostrado o presentado al público en un lugar, 
+        ubicación o evento específico.
+    structured_aliases:
+      - literal_form: tentoongesteld in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ausgestellt in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: exposé à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معروض في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dipamerkan di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 展出于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: exhibido en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    related_mappings:
+      - schema:location
+    aliases:
+      - is_or_was_exhibited_at
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link collection objects, artworks, or 
+        artifacts to the museums, galleries, or events where they have been 
+        or are currently exhibited.
+      - |
+        **GLAM DOMAIN**: This is a domain-specific property for the heritage 
+        sector. No exact standard ontology mapping exists for exhibition 
+        venue relationships.

@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: has_courier
+# ==============================================================================
+# Service provider responsible for transporting a shipment or package.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property              | File/Line                  | Mapping | Notes                                                              |
+# |-------------|-----------------------|----------------------------|---------|--------------------------------------------------------------------|
+# | **Schema**  | `schema:provider`     | schemaorg.owl:31484-31509  | close   | "The service provider, service operator, or service performer." Domain includes ParcelDelivery. Broader than courier (any service provider). |
+# | **Schema**  | `schema:carrier`      | schemaorg.owl:11229-11249  | close   | "Provider for parcel delivery and flights." Domain: ParcelDelivery/Flight. DEPRECATED — superseded by schema:provider. |
+# | **CIDOC**   | `crm:P14_carried_out_by` | CIDOC_CRM_v7.1.3.rdf:1489-1503 | broad | "Active participation of an Actor in an Activity." Any activity performer, not specifically transport. |
+#
+# NOTE: No standard ontology has an exact match for "courier" as a property.
+# schema:provider is the closest active property, but covers any service
+# provider role, not specifically transport/courier.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_courier
+name: has_courier
+title: Has Courier
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_courier:
+    slot_uri: hc:has_courier
+    description: >-
+      Relates a shipment, package, or delivery process to the specific service
+      provider or individual responsible for transporting it from the sender to
+      the recipient.
+    alt_descriptions:
+      nl: >-
+        Relateert een zending, pakket of leveringsproces aan de specifieke
+        dienstverlener of persoon die verantwoordelijk is voor het transport
+        van afzender naar ontvanger.
+      de: >-
+        Verknüpft eine Sendung, ein Paket oder einen Lieferprozess mit dem
+        spezifischen Dienstleister oder der Person, die für den Transport vom
+        Absender zum Empfänger verantwortlich ist.
+      fr: >-
+        Relie un envoi, un colis ou un processus de livraison au prestataire
+        de services spécifique ou à la personne responsable de son transport
+        de l'expéditeur au destinataire.
+      ar: >-
+        يربط شحنة أو طردًا أو عملية توصيل بمقدم الخدمة المحدد أو الفرد
+        المسؤول عن نقلها من المرسل إلى المستلم.
+      id: >-
+        Menghubungkan pengiriman, paket, atau proses pengantaran dengan penyedia
+        layanan atau individu tertentu yang bertanggung jawab untuk
+        mengangkutnya dari pengirim ke penerima.
+      zh: >-
+        将货运、包裹或配送流程与负责将其从发件人运送到收件人的特定服务提供商或个人相关联。
+      es: >-
+        Relaciona un envío, paquete o proceso de entrega con el proveedor de
+        servicios específico o la persona responsable de transportarlo del
+        remitente al destinatario.
+    structured_aliases:
+      - literal_form: Koerier
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kurier
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Coursier
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ساعي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kurir
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 快递员
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Mensajero
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:provider  # schemaorg.owl:31484-31509 - "The service provider, service operator, or service performer." Domain includes ParcelDelivery.
+    broad_mappings:
+      - crm:P14_carried_out_by  # CIDOC_CRM_v7.1.3.rdf:1489-1503 - "Active participation of an Actor in an Activity."
+    aliases:
+      - courier_detail
+    comments:
+      - >-
+        schema:carrier (schemaorg.owl:11229-11249) was the closest semantic match
+        ("provider for parcel delivery and flights") but is DEPRECATED, superseded
+        by schema:provider.
+    annotations:
+      custodian_types: '["*"]'

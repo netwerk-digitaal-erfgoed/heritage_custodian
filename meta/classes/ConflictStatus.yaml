@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/ConflictStatus
+name: ConflictStatus
+title: Conflict Status
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/ConflictStatusEnum
+  - ../slots/has_description
+  - ../slots/has_score
+  - ../slots/rebuild_by
+  - ../slots/temporal_extent
+classes:
+  ConflictStatus:
+    class_uri: hc:ConflictStatus
+    description: >-
+      Institution-specific impact assessment describing damage severity,
+      operational disruption, and recovery trajectory during or after a crisis.
+    alt_descriptions:
+      nl: >-
+        Instellingsspecifieke impactbeoordeling die schade-ernst,
+        operationele verstoring en hersteltraject tijdens of na een crisis beschrijft.
+      de: >-
+        Einrichtungsbezogene Folgenbewertung, die Schadensschwere,
+        betriebliche Unterbrechung und Wiederherstellungsverlauf waehrend oder nach
+        einer Krise beschreibt.
+      fr: >-
+        Evaluation d'impact propre a une institution decrivant la gravite des
+        dommages, la perturbation operationnelle et la trajectoire de reprise
+        pendant ou apres une crise.
+      es: >-
+        Evaluacion de impacto especifica de la institucion que describe la gravedad
+        del dano, la interrupcion operativa y la trayectoria de recuperacion durante
+        o despues de una crisis.
+      ar: >-
+        تقييم أثر خاص بالمؤسسة يصف شدة الضرر وتعطل التشغيل ومسار التعافي أثناء
+        الأزمة أو بعدها.
+      id: >-
+        Penilaian dampak spesifik institusi yang menggambarkan tingkat kerusakan,
+        gangguan operasional, dan lintasan pemulihan selama atau setelah krisis.
+      zh: >-
+        描述机构在危机期间或之后损害程度、运营中断与恢复进程的机构级影响评估。
+    structured_aliases:
+      - literal_form: crisistoestand
+        in_language: nl
+      - literal_form: Krisenstatus
+        in_language: de
+      - literal_form: statut de crise
+        in_language: fr
+      - literal_form: estado de crisis
+        in_language: es
+      - literal_form: حالة الأزمة
+        in_language: ar
+      - literal_form: status krisis
+        in_language: id
+      - literal_form: 危机状态
+        in_language: zh
+    slots:
+      - has_score
+      - temporal_extent
+      - rebuild_by
+      - has_description
+    slot_usage:
+      has_score:
+        range: float
+        minimum_value: 0.0
+        maximum_value: 1.0
+      temporal_extent:
+        examples:
+          - value:
+              begin_of_the_begin: '2023-10-07'
+      rebuild_by:
+        examples:
+          - value: '2028-12-31'
+    examples:
+      - value:
+          has_score: 0.95
+          has_description:
+            description_text: Main building destroyed and collections displaced; no public access.
+          temporal_extent:
+            begin_of_the_begin: '2023-12-08'
+        description: Severe impact state for a destroyed institution
+      - value:
+          has_score: 0.55
+          has_description:
+            description_text: Partial reopening with temporary storage and phased restoration plan.
+          rebuild_by: '2027-06-30'
+        description: Moderate impact with active recovery trajectory
+    keywords:
+      - damage severity
+      - operational disruption
+      - crisis recovery
+      - rebuilding timeline
+      - institutional impact
+    related_mappings:
+      - crm:E6_Destruction
+      - crm:E11_Modification
+    comments:
+      - Use with Conflict to separate crisis events from institution-level consequences.
+      - Supports tracking of rebuilding commitments and phased recovery.
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Assessment artifact for institution-level crisis impact reporting.
+      custodian_types: '["*"]'

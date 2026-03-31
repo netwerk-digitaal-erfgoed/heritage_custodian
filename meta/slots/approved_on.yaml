@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: approved_on
+# ==============================================================================
+# Date or point in time when something was formally approved.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **DCTerms**   | `dcterms:dateAccepted`| dcterms.rdf          | close   | Date of acceptance - similar semantic                    |
+# | **PROV-O**    | `prov:generatedAtTime`| prov.ttl             | related | Time of generation - more generic                        |
+#
+# SEMANTIC NOTES:
+# - Approval date captures formal authorization timestamp
+# - dcterms:dateAccepted is close but more about resource acceptance
+# - Custom hc: URI appropriate for this approval-specific date
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description, added multilingual support, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/approved_on
+name: approved_on
+title: Approved On
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  approved_on:
+    slot_uri: hc:approvedOn
+    description: >-
+      To be formally validated, authorized, or agreed upon at a specific date or 
+      point in time.
+    alt_descriptions:
+      nl: >-
+        Formeel gevalideerd, geautoriseerd of overeengekomen op een specifieke 
+        datum of tijdstip.
+      de: >-
+        Formell validiert, autorisiert oder vereinbart zu einem bestimmten Datum 
+        oder Zeitpunkt.
+      fr: >-
+        Formellement validé, autorisé ou convenu à une date ou un moment spécifique.
+      ar: >-
+        أن يتم التحقق منه رسمياً أو الموافقة عليه في تاريخ أو وقت محدد.
+      id: >-
+        Divalidasi secara formal, diotorisasi, atau disetujui pada tanggal atau 
+        titik waktu tertentu.
+      zh: >-
+        在特定日期或时间点正式验证、授权或同意。
+      es: >-
+        Formalmente validado, autorizado o acordado en una fecha o momento específico.
+    structured_aliases:
+      - literal_form: goedgekeurd op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: genehmigt am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: approuvé le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موافق عليه في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disetujui pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 批准于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: aprobado el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    multivalued: false
+    close_mappings:
+      - dcterms:dateAccepted  # dcterms.rdf - date of acceptance
+    aliases:
+      - is_or_was_approved_on
+      - has_or_had_approval_date
+      - has_approval_date
+    annotations:
+      custodian_types: '["*"]'

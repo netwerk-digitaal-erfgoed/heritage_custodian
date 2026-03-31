@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: has_cuisine
+# ==============================================================================
+# The style of cooking, cultural tradition, or regional flavor profile that
+# characterizes a food establishment, dish, or recipe.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                     | Mapping | Notes                                                                          |
+# |---------------|-----------------------------|-------------------------------|---------|--------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:servesCuisine`      | schemaorg.owl:34869-34889     | close   | "The cuisine of the restaurant." Domain: FoodEstablishment only. Same core     |
+# |               |                             |                               |         |  concept (cuisine classification) but our slot also applies to dishes and      |
+# |               |                             |                               |         |  recipes. Range: Text — compatible.                                           |
+# | **Schema.org**| `schema:recipeCuisine`      | schemaorg.owl:32182-32202     | close   | "The cuisine of the recipe (for example, French or Ethiopian)." Domain:        |
+# |               |                             |                               |         |  Recipe only. Our slot also covers food establishments and dishes.             |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_cuisine
+name: has_cuisine
+title: Has Cuisine
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  has_cuisine:
+    slot_uri: hc:has_cuisine
+    description: >-
+      Relates a food establishment, dish, or recipe to the specific style of
+      cooking, cultural tradition, or regional flavor profile it characterizes.
+    alt_descriptions:
+      nl: >-
+        Relateert een eetgelegenheid, gerecht of recept aan de specifieke kookstijl,
+        culturele traditie of regionaal smaakprofiel dat het kenmerkt.
+      de: >-
+        Verknüpft eine Gaststätte, ein Gericht oder ein Rezept mit dem spezifischen
+        Kochstil, der kulturellen Tradition oder dem regionalen Geschmacksprofil,
+        das es charakterisiert.
+      fr: >-
+        Relie un établissement de restauration, un plat ou une recette au style de
+        cuisine spécifique, à la tradition culturelle ou au profil de saveurs
+        régionales qui le caractérise.
+      ar: >-
+        يربط مؤسسة طعام أو طبقًا أو وصفة بأسلوب الطهي المحدد أو التقليد الثقافي
+        أو نكهة المنطقة التي تميزه.
+      id: >-
+        Menghubungkan tempat makan, hidangan, atau resep dengan gaya memasak
+        tertentu, tradisi budaya, atau profil rasa regional yang menjadi cirinya.
+      zh: >-
+        将餐饮场所、菜肴或食谱与其所体现的特定烹饪风格、文化传统或地区风味特征相关联。
+      es: >-
+        Relaciona un establecimiento de comida, plato o receta con el estilo de
+        cocina específico, tradición cultural o perfil de sabores regionales que
+        lo caracteriza.
+    structured_aliases:
+      - literal_form: Keuken
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Küche
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Cuisine
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: المطبخ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Masakan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 菜系
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Cocina
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:servesCuisine  # schemaorg.owl:34869-34889 — "The cuisine of the restaurant." Domain: FoodEstablishment only. Same core concept but our slot also covers dishes and recipes.
+      - schema:recipeCuisine  # schemaorg.owl:32182-32202 — "The cuisine of the recipe." Domain: Recipe only. Our slot also covers food establishments and dishes.
+    aliases:
+      - cuisine_type

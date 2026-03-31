@@ -1,0 +1,112 @@
+id: https://nde.nl/ontology/hc/class/AdministrativeUnit
+name: AdministrativeUnit
+title: Administrative Unit
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_name
+- ../slots/has_description
+- ../slots/identified_by
+classes:
+  AdministrativeUnit:
+    class_uri: org:OrganizationalUnit
+    description: >-
+      Administrative division or unit within an organization.
+    alt_descriptions:
+      nl: "Administratieve afdeling of eenheid binnen een organisatie."
+      de: "Administrative Abteilung oder Einheit innerhalb einer Organisation."
+      fr: "Division administrative ou unité au sein d'une organisation."
+      es: "División administrativa o unidad dentro de una organización."
+      ar: "قسم إداري أو وحدة داخل منظمة."
+      id: "Divisi administratif atau unit dalam organisasi."
+      zh: "组织内的行政部门或单位。"
+    examples:
+    - value:
+        has_name: Conservation Department
+        has_description: Responsible for preservation and restoration of collection items
+      description: Conservation department within a museum
+    - value:
+        has_name: Digital Services Division
+        has_description: Manages digitization, digital preservation, and online access
+      description: Digital services division
+    close_mappings:
+    - org:OrganizationalUnit
+    - schema:Organization
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: administratieve eenheid
+      in_language: nl
+    - literal_form: afdeling
+      in_language: nl
+    - literal_form: Verwaltungseinheit
+      in_language: de
+    - literal_form: Abteilung
+      in_language: de
+    - literal_form: unité administrative
+      in_language: fr
+    - literal_form: département
+      in_language: fr
+    - literal_form: unidad administrativa
+      in_language: es
+    - literal_form: departamento
+      in_language: es
+    - literal_form: وحدة إدارية
+      in_language: ar
+    - literal_form: قسم
+      in_language: ar
+    - literal_form: unit administratif
+      in_language: id
+    - literal_form: departemen
+      in_language: id
+    - literal_form: 行政单位
+      in_language: zh
+    - literal_form: 部门
+      in_language: zh
+    keywords:
+    - administrative unit
+    - department
+    - division
+    - team
+    - organizational unit
+    - organizational structure
+    slots:
+    - has_name
+    - has_description
+    - identified_by
+    slot_usage:
+      has_name:
+        required: true
+        examples:
+        - value: Conservation Department
+        - value: Digital Services Division
+        - value: Reader Services Team
+      has_description:
+        required: false
+        examples:
+        - value: Responsible for preservation and restoration of collection items
+      identified_by:
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/admin-unit/conservation-dept
+    annotations:
+      specificity_score: "0.10"
+      specificity_rationale: "Generic utility class - administrative units are broadly applicable across all organizational contexts."
+      custodian_types: "['*']"
+      unit_types: "Department, Division, Team, Section, Unit"
+    comments:
+    - Represents internal organizational divisions
+    - May be hierarchical (departments within divisions)
+    - Used for staff assignment and responsibility tracking
+    - 'Preserved from prior description: Administrative division or unit within an organization. Represents a distinct organizational component with defined responsibilities, reporting structure, and operational scope. May be a department, division, team, or other organizational subdivision.'
+    see_also:
+    - https://www.w3.org/TR/vocab-org/#org:OrganizationalUnit
+    - Administration
+    - AdministrativeLevel

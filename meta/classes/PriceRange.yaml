@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/PriceRange
+name: PriceRange
+title: Price Range Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_name
+  - ../slots/symbolized_by
+default_prefix: hc
+classes:
+  PriceRange:
+    class_uri: skos:Concept
+    description: >-
+      Classification category for pricing levels used in hospitality and service contexts,
+      indicating relative cost from budget to luxury using symbolic notation.
+    alt_descriptions:
+      nl: >-
+        Classificatiecategorie voor prijsniveaus gebruikt in gastvrijheids- en dienstverleningscontexten,
+        die relatieve kosten van budget tot luxe aangeeft met symbolische notatie.
+      de: >-
+        Klassifizierungskategorie für Preisniveaus in Gastgewerbe- und Dienstleistungskontexten,
+        die relative Kosten von Budget bis Luxus mit symbolischer Notation angibt.
+      fr: >-
+        Catégorie de classification pour les niveaux de prix utilisés dans les contextes d'hôtellerie
+        et de services, indiquant le coût relatif du budget au luxe avec une notation symbolique.
+      es: >-
+        Categoría de clasificación para niveles de precios utilizados en contextos de hostelería
+        y servicios, indicando el costo relativo desde económico hasta lujo usando notación simbólica.
+      ar: >-
+        فئة تصنيف لمستويات التسعير المستخدمة في سياقات الضيافة والخدمات،
+        تشير إلى التكلفة النسبية من الميزانية إلى الفخامة باستخدام رموز.
+      id: >-
+        Kategori klasifikasi untuk tingkat harga yang digunakan dalam konteks perhotelan
+        dan layanan, menunjukkan biaya relatif dari anggaran hingga mewah dengan notasi simbolik.
+      zh: >-
+        用于酒店和服务环境的定价级别分类类别，
+        使用符号表示法指示从预算到奢华的相对成本。
+    exact_mappings:
+      - schema:priceRange
+    broad_mappings:
+      - skos:Concept
+    slots:
+      - has_name
+      - has_description
+      - symbolized_by
+    slot_usage:
+      has_name:
+        required: true
+      symbolized_by:
+      has_description:
+    comments:
+      - Standard categories: Budget (€), Moderate (€€), Upscale (€€€), Luxury (€€€€)
+      - Used for restaurants, cafes, and hospitality services
+      - Created per slot_fixes.yaml migration (Rule 53/56)
+    examples:
+      - value:
+          has_name: Budget
+          symbolized_by: "€"
+          has_description: "Under €15 per person"
+        description: Budget category
+      - value:
+          has_name: Moderate
+          symbolized_by: "€€"
+          has_description: "€15-30 per person"
+        description: Moderate category
+      - value:
+          has_name: Upscale
+          symbolized_by: "€€€"
+          has_description: "€30-60 per person"
+        description: Upscale category
+      - value:
+          has_name: Luxury
+          symbolized_by: "€€€€"
+          has_description: "Over €60 per person"
+        description: Luxury category
+    keywords:
+      - price range
+      - budget
+      - luxury
+      - pricing category
+      - hospitality
+    annotations:
+      specificity_score: 0.40
+      specificity_rationale: Universal pricing category classification
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: prijsklasse
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: prijsbereik
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Preisklasse
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fourchette de prix
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: rango de precios
+        predicate: EXACT_SYNONYM
+        in_language: es

@@ -1,0 +1,115 @@
+# ==============================================================================
+# LinkML Slot Definition: observed_in
+# ==============================================================================
+# Links an extracted entity to the source observation from which it was derived.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology          | Property                  | File/Line                     | Mapping         | Notes                                                                     |
+# |-------------------|---------------------------|-------------------------------|-----------------|---------------------------------------------------------------------------|
+# | **PROV-O**        | `prov:wasDerivedFrom`     | prov.ttl:1099-1114            | slot_uri        | "A derivation is a transformation of an entity into another…" E→E.        |
+# | **PROV-O**        | `prov:hadPrimarySource`   | prov.ttl:661-674              | narrow          | Subproperty of wasDerivedFrom; credits originating source. E→E.           |
+# | **Dublin Core**   | `dcterms:source`          | dcterms.rdf:1920-1943         | close           | "A related resource from which the described resource is derived."         |
+# | **OntoLex-FrAC**  | `frac:observedIn`         | ontolex-frac.ttl:98-111       | related         | "URI of data source this observation was made in." Observation→DataSource. |
+# | **CIDOC CRM**     | `crm:P40i_was_observed_in`| CIDOC_CRM_v7.1.3.rdf:2171-83 | related         | "was observed in" E54_Dimension→E16_Measurement. Physical measurement.    |
+# | **Schema.org**    | `schema:observationAbout` | schemaorg.owl:27893-27915     | related         | Inverse direction: Observation→Thing.                                     |
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/observed_in
+name: observed_in
+title: Observed In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  frac: http://www.w3.org/ns/lemon/frac#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  observed_in:
+    slot_uri: prov:wasDerivedFrom
+    description: >-
+      Links an extracted entity to the source observation from which it was
+      derived, enabling provenance tracking. The target is typically a
+      WebObservation instance that records the source URL, retrieval timestamp,
+      and extraction confidence, allowing verification of extracted data against
+      the original source.
+    alt_descriptions:
+      nl: >-
+        Koppelt een geëxtraheerde entiteit aan de bronobservatie waaruit deze is
+        afgeleid, waardoor herkomstregistratie mogelijk wordt.
+      de: >-
+        Verknüpft eine extrahierte Entität mit der Quellbeobachtung, aus der sie
+        abgeleitet wurde, und ermöglicht die Herkunftsverfolgung.
+      fr: >-
+        Relie une entité extraite à l'observation source dont elle est dérivée,
+        permettant le suivi de la provenance.
+      ar: >-
+        يربط كيانًا مستخلصًا بالملاحظة المصدرية التي اشتُق منها، مما يتيح تتبع
+        مصدر البيانات.
+      id: >-
+        Menghubungkan entitas yang diekstraksi ke observasi sumber dari mana
+        entitas tersebut diturunkan, memungkinkan pelacakan asal-usul.
+      zh: >-
+        将提取的实体链接到其来源观察，实现数据溯源跟踪。
+      es: >-
+        Vincula una entidad extraída a la observación fuente de la que fue
+        derivada, permitiendo el seguimiento de la procedencia.
+    structured_aliases:
+      - literal_form: Waargenomen in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beobachtet in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Observé dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لوحظ في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Diamati dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 观察于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Observado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    narrow_mappings:
+      - prov:hadPrimarySource  # prov.ttl:661-674 - Subproperty of wasDerivedFrom; credits the originating source
+    close_mappings:
+      - dcterms:source  # dcterms.rdf:1920-1943 - "A related resource from which the described resource is derived"
+    related_mappings:
+      - frac:observedIn  # ontolex-frac.ttl:98-111 - "URI of data source this observation was made in"; inverse direction (Observation→DataSource)
+      - crm:P40i_was_observed_in  # CIDOC_CRM_v7.1.3.rdf:2171-2183 - "was observed in" E54_Dimension→E16_Measurement; physical measurement context
+      - schema:observationAbout  # schemaorg.owl:27893-27915 - Inverse direction: Observation→Thing
+    aliases: []
+    examples:
+      - value: "https://nde.nl/ontology/hc/observation/web/2026-01-01/rijksmuseum-support"
+        description: >-
+          URI of a WebObservation recording the retrieval of
+          https://www.rijksmuseum.nl/nl/steun-het-rijksmuseum on 2026-01-01.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Part of observation-reconstruction pattern: links extracted entities
+        (DonationScheme, FundingRequirement, etc.) to a WebObservation instance
+        that captures source_url, retrieved_on, and extraction confidence.
+      - >-
+        PROV-O pattern: extracted entity (prov:Entity) → wasDerivedFrom →
+        source observation (prov:Entity).
+      - >-
+        The WebObservation itself may carry additional provenance such as the
+        extraction tool, scraping timestamp, and data quality annotations.

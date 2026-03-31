@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: current
+# ==============================================================================
+# Whether the entity is current or active.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:status`       | schemaorg.owl        | related | Status (more general)              |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/current
+name: current
+title: Current
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  current:
+    slot_uri: hc:current
+    description: >-
+      Whether the entity is presently active, valid, or in effect at the
+      current point in time.
+    alt_descriptions:
+      nl: >-
+        Of de entiteit momenteel actief, geldig of van kracht is op het
+        huidige tijdstip.
+      de: >-
+        Ob die Entität derzeit aktiv, gültig oder zum aktuellen Zeitpunkt
+        in Kraft ist.
+      fr: >-
+        Si l'entité est actuellement active, valide ou en vigueur au
+        moment présent.
+      ar: >-
+        ما إذا كان الكيان نشطًا أو صالحًا أو ساري المفعول حاليًا في
+        الوقت الحالي.
+      id: >-
+        Apakah entitas saat ini aktif, valid, atau berlaku pada titik
+        waktu saat ini.
+      zh: >-
+        实体目前是否处于活动、有效或生效状态。
+      es: >-
+        Si la entidad está actualmente activa, válida o en vigor en el
+        momento actual.
+    structured_aliases:
+      - literal_form: huidig
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aktuell
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: actuel
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: حالي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: saat ini
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 当前
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: actual
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    related_mappings:
+      - schema:status  # General status property
+    aliases:
+      - is_or_was_current
+      - is_active
+      - is_current_version
+    annotations:
+      custodian_types: '["*"]'

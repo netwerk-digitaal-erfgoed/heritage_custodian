@@ -1,0 +1,149 @@
+id: https://nde.nl/ontology/hc/class/BackupType
+name: backup_type_class
+title: Backup Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  dqv: http://www.w3.org/ns/dqv#
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/equivalent_to
+- ../slots/related_to
+classes:
+  BackupType:
+    class_uri: skos:Concept
+    description: >-
+      Classification type for backup and disaster recovery strategies used by
+      heritage institutions, providing a SKOS-based hierarchy for categorizing
+      backup frequencies, strategies, locations, and storage media.
+    alt_descriptions:
+      nl: Classificatietype voor back-up en disaster recovery strategieën die door erfgoedinstellingen worden gebruikt, met een SKOS-gebaseerde hiërarchie voor het categoriseren van back-upfrequenties, strategieën, locaties en opslagmedia.
+      de: Klassifizierungstyp für Backup- und Disaster-Recovery-Strategien, die von Heritage-Institutionen verwendet werden, mit einer SKOS-basierten Hierarchie zur Kategorisierung von Backup-Häufigkeiten, Strategien, Standorten und Speichermedien.
+      fr: Type de classification pour les stratégies de sauvegarde et de reprise après sinistre utilisées par les institutions patrimoniales, fournissant une hiérarchie SKOS pour catégoriser les fréquences, stratégies, emplacements et supports de sauvegarde.
+      es: Tipo de clasificación para estrategias de respaldo y recuperación ante desastres utilizadas por instituciones patrimoniales, proporcionando una jerarquía SKOS para categorizar frecuencias, estrategias, ubicaciones y medios de almacenamiento de respaldo.
+      ar: نوع التصنيف لاستراتيجيات النسخ الاحتياطي واستعادة البيانات المستخدمة من قبل مؤسسات التراث، مع توفير تسلسل هرمي SKOS لتصنيف تكرارات النسخ الاحتياطي والاستراتيجيات والمواقع ووسائط التخزين.
+      id: Jenis klasifikasi untuk strategi cadangan dan pemulihan bencana yang digunakan oleh lembaga warisan, menyediakan hierarki berbasis SKOS untuk mengkategorikan frekuensi, strategi, lokasi, dan media penyimpanan cadangan.
+      zh: 遗产机构使用的备份和灾难恢复策略的分类类型，提供基于SKOS的层次结构， 用于分类备份频率、策略、位置和存储介质。
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - premis:fixity
+    - dqv:QualityMeasurement
+    related_mappings:
+    - dcterms:isReferencedBy
+    slots:
+    - identified_by
+    - has_code
+    - has_label
+    - has_description
+    - has_hypernym
+    - has_hyponym
+    - related_to
+    - equivalent_to
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/backup-type/[a-z0-9-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/backup-type/daily-automated
+      has_code:
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+        examples:
+        - value: DAILY_AUTOMATED
+        - value: CLOUD_AZURE
+        - value: NOT_BACKED_UP
+      has_label:
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Daily automated backup@en
+          - Dagelijkse geautomatiseerde backup@nl
+        - value:
+          - Cloud backup (Azure)@en
+          - Cloud backup (Azure)@nl
+      has_description:
+        examples:
+        - value: Daily automated backup to off-site storage with 30-day retention.
+      has_hypernym:
+        range: BackupType
+      has_hyponym:
+        range: BackupType
+        multivalued: true
+        inlined_as_list: true
+      equivalent_to:
+        range: WikiDataIdentifier
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - qid: Q5227350
+    structured_aliases:
+    - literal_form: back-uptype
+      in_language: nl
+    - literal_form: Backup-Typ
+      in_language: de
+    - literal_form: type de sauvegarde
+      in_language: fr
+    - literal_form: tipo de respaldo
+      in_language: es
+    - literal_form: نوع النسخ الاحتياطي
+      in_language: ar
+    - literal_form: jenis cadangan
+      in_language: id
+    - literal_form: 备份类型
+      in_language: zh
+    comments:
+    - SKOS-based classification for backup strategies
+    - Categories include frequency, strategy, location, medium, and status
+    - Aligned with PREMIS fixity concepts for data integrity
+    - Supports hierarchical type relationships
+    - 'MIGRATED 2026-01-13: Now uses shared slots (Rule 38)'
+    keywords:
+    - backup classification
+    - disaster recovery
+    - data protection strategy
+    - storage medium
+    - SKOS concept
+    see_also:
+    - http://www.loc.gov/premis/rdf/v3/
+    - https://www.w3.org/TR/vocab-dqv/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/backup-type/daily-automated
+        has_code: DAILY_AUTOMATED
+        has_label:
+        - Daily automated backup@en
+        - Dagelijkse geautomatiseerde backup@nl
+        has_description: Daily automated backup to off-site storage location. Typically includes 30-day retention policy.
+      description: Daily automated backup type
+    notes:
+    - |
+      Preserved from prior description (commit 51480891):
+
+      "Classification type for backup and disaster recovery strategies in heritage custodian contexts.\n\n**DEFINITION**:\n\nBackupType provides a SKOS-based classification hierarchy for categorizing\ndifferent types of backup strategies, frequencies, and storage locations\nused by heritage institutions for data protection.\n\n**ONTOLOGY ALIGNMENT**:\n\n| Ontology | Class/Property | Notes |\n|----------|----------------|-------|\n| **SKOS** | `skos:Concept` | Primary - controlled vocabulary concept |\n| **PREMIS** | `premis:fixity` | Related - data integrity verification |\n| **DQV** | `dqv:QualityMeasurement` | Data quality measurement |\n| **Dublin Core** | `dcterms:isReferencedBy` | Backup documentation |\n\n**BACKUP TYPE CATEGORIES** (from slot definition):\n\n| Category | Description |\n|----------|-------------|\n| **FREQUENCY** | How often backups occur (daily, weekly, continuous) |\n| **STRATEGY** | Backup approach (full, incremental, differential) |\n| **LOCATION** |\
+    annotations:
+      specificity_score: '0.60'
+      specificity_rationale: Relevant to all heritage custodians with digital assets.
+      has_score:
+      slot_migration: "2026-01-13: Migrated from backup_status string slot to BackupType class hierarchy\n- backup_status (string) → has_status (BackupStatus) → has_type (BackupType)\n"
+      custodian_types: "['*']"

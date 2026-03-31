@@ -1,0 +1,120 @@
+id: https://nde.nl/ontology/hc/class/ClassificationStatus
+name: ClassificationStatus
+title: Classification Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_type
+- ../slots/temporal_extent
+default_prefix: hc
+classes:
+  ClassificationStatus:
+    class_uri: prov:Activity
+    description: >-
+      Assessment activity recording why custodian typing remains unresolved, contested, or pending verification.
+    alt_descriptions:
+      nl: Beoordelingsactiviteit die vastlegt waarom de typering van een beheerder onopgelost, betwist of nog te verifiëren is.
+      de: Bewertungsaktivität, die dokumentiert, warum die Typisierung eines Verwahrers ungeklärt, strittig oder noch zu verifizieren ist.
+      fr: Activité d'évaluation consignant pourquoi la typologie d'un dépositaire reste non résolue, contestée ou en attente de vérification.
+      es: Actividad de evaluación que registra por qué la tipificación del custodio sigue sin resolverse, disputada o pendiente de verificación.
+      ar: نشاط تقييم يسجل سبب بقاء تصنيف الجهة الحافظة غير محسوم أو محل نزاع أو بانتظار التحقق.
+      id: Aktivitas penilaian yang mencatat alasan pengetikan kustodian masih belum terselesaikan, diperdebatkan, atau menunggu verifikasi.
+      zh: 用于记录保管机构类型判定为何仍未确定、存在争议或待核验的评估活动。
+    broad_mappings:
+    - prov:Activity
+    close_mappings:
+    - schema:StatusEnumeration
+    slots:
+    - has_type
+    - has_description
+    - temporal_extent
+    slot_usage:
+      has_type:
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_label: "Indeterminate"
+        - value:
+            has_label: "Ambiguous"
+      has_description:
+#         range: string
+        required: true
+        examples:
+        - value: "Type indeterminate - insufficient evidence"
+        - value: "Sources conflict: museum (website) vs archive (ISIL registry)"
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        inlined: true
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      Structured status of a custodian type classification attempt.
+
+      Describes why classification is unspecified, including:
+      - The type of classification issue (indeterminate, ambiguous, etc.)
+      - Description of the specific situation
+      - Temporal context of when status was assessed
+
+      **CLASSIFICATION STATUS TYPES**:
+
+      | Type | Description |
+      |------|-------------|
+      | IndeterminateStatus | Cannot determine from available evidence |
+      | AmbiguousStatus | Conflicting evidence about institutional function |
+      | TransitionalStatus | Institution changing type, outcome unclear |
+      | NovelStatus | Doesn't fit existing taxonomy categories |
+      | UnderReviewStatus | Classification being researched |
+      | PendingVerificationStatus | Type suspected but needs confirmation |
+
+      **EXAMPLE**:
+
+
+
+      **MIGRATION NOTE (2026-01-19)**:
+      Created per slot_fixes.yaml revision for classification_status migration.
+      Replaces simple string with structured class.
+    annotations:
+      custodian_types: '["U"]'
+      custodian_types_rationale: >-
+        Classification status applies to Unspecified (U) custodian type.
+      custodian_types_primary: "U"
+      specificity_score: 0.85
+      specificity_rationale: >-
+        Highly specific - only applies to unclassified heritage custodians.
+    examples:
+    - value: |
+        ClassificationStatus:
+          has_type:
+            has_label: "Indeterminate"
+          has_description: "Type indeterminate - insufficient evidence. Defunct organization, minimal records."
+    - value: |
+        ClassificationStatus:
+          has_type:
+            has_label: "Ambiguous"
+          has_description: "Sources conflict: museum (website) vs archive (ISIL registry)"
+          temporal_extent:
+            begin_of_the_begin: "2026-01-19T00:00:00Z"
+    - value: |
+        ClassificationStatus:
+          has_type:
+            has_label: "Transitional"
+          has_description: "Merger in progress between museum and archive, final type TBD"
+    - value: |
+        ClassificationStatus:
+        has_type:
+          type: AmbiguousStatus
+          has_label: "Ambiguous"
+        has_description: "Sources conflict: museum (website) vs archive (ISIL registry)"
+        temporal_extent:
+          begin_of_the_begin: "2026-01-19T00:00:00Z"

@@ -1,0 +1,55 @@
+id: https://nde.nl/ontology/hc/parsimony/class/SourceResource
+name: SourceResource
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/has_uri_literal
+  - ../slots/available_via
+  - ../slots/contactable_through
+  - ../slots/made_available_by
+  - ../slots/addressed_at
+  - ../slots/has_spatial_scope
+  - ../slots/expressed_in
+  - ../slots/made_public_on
+  - ../slots/associated_with
+  - ../slots/equivalent_to
+  - ../slots/typed_as
+classes:
+  SourceResource:
+    class_uri: schema:CreativeWork
+    description: Semantic class for a source, source file, archival object, or documentary carrier.
+    broad_mappings:
+      - crm:E73_Information_Object
+    close_mappings:
+      - dcterms:BibliographicResource
+    narrow_mappings:
+      - hc:CustodianSourceFile
+    examples:
+      - value:
+          has_label_literal:
+            - Municipal registry page
+          available_via:
+            - https://example.org/registry/city-archive
+          made_available_by:
+            - Agent:CityRecordsOffice
+        description: Semantic source resource used as the documentary carrier for an observation.
+    slots:
+      - has_label_literal
+      - has_uri_literal
+      - available_via
+      - contactable_through
+      - made_available_by
+      - addressed_at
+      - has_spatial_scope
+      - expressed_in
+      - made_public_on
+      - associated_with
+      - equivalent_to
+      - typed_as

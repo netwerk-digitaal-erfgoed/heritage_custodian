@@ -1,0 +1,112 @@
+# ==============================================================================
+# LinkML Slot Definition: martyred_through
+# ==============================================================================
+# Links a martyr to the event or incident that caused their death.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line                        | Mapping | Notes                                                          |
+# |----------------|-----------------------|----------------------------------|---------|----------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P100i_died_in`  | CIDOC_CRM_v7.1.3.rdf:3407-3418  | close   | "died in." Domain: E21_Person. Range: E69_Death. Links person to death event; our slot implies martyrdom cause specifically. |
+# | **Schema.org** | `schema:deathDate`    | schemaorg.owl:14424-14442        | related | "Date of death." About temporal aspect of death, not the causing event. |
+#
+# NOTE: No standard ontology has a dedicated "martyred through" property.
+# NOTE: Wikidata P1196 (manner of death) is semantically related but is a Wikidata
+#       property identifier, not an RDF predicate in local ontology files.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/martyred_through
+name: martyred_through
+title: Martyred Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+  - ../metadata
+default_prefix: hc
+slots:
+  martyred_through:
+    slot_uri: hc:martyredThrough
+    description: >-
+      Links a martyr to the specific event, attack, battle, or incident that
+      caused their death.
+    comments:
+      - >-
+        Important distinction from deceased: deceased covers natural death or
+        death from any cause; martyred_through specifically documents death due
+        to conflict, persecution, or targeted violence against heritage
+        institutions.
+      - >-
+        A person with martyred_through set implies deceased is true.
+      - >-
+        Particularly relevant for documenting heritage workers killed during
+        armed conflicts, information professionals targeted for their work,
+        cultural heritage workers killed while protecting collections, and
+        librarians, archivists, and museum staff killed in attacks on
+        institutions.
+      - >-
+        When setting martyred_through, also provide date_of_death (TimeSpan)
+        with temporal bounds, circumstances_of_death describing the event, and
+        source documentation for verification.
+      - >-
+        Wikidata property P1196 (manner of death) is semantically related but
+        is an identifier, not an RDF predicate.
+    alt_descriptions:
+      nl: >-
+        Koppelt een martelaar aan de specifieke gebeurtenis, aanval, veldslag
+        of incident dat hun dood heeft veroorzaakt.
+      de: >-
+        Verknüpft einen Märtyrer mit dem spezifischen Ereignis, Angriff, der
+        Schlacht oder dem Vorfall, der seinen Tod verursacht hat.
+      fr: >-
+        Relie un martyr à l'événement spécifique, l'attaque, la bataille ou
+        l'incident qui a causé sa mort.
+      ar: >-
+        يربط شهيداً بالحدث أو الهجوم أو المعركة أو الحادثة المحددة التي تسببت
+        في وفاته.
+      id: >-
+        Menghubungkan seorang martir dengan peristiwa, serangan, pertempuran,
+        atau insiden tertentu yang menyebabkan kematian mereka.
+      zh: >-
+        将殉难者与导致其死亡的特定事件、袭击、战斗或事故相关联。
+      es: >-
+        Vincula a un mártir con el evento específico, ataque, batalla o
+        incidente que causó su muerte.
+    structured_aliases:
+      - literal_form: Gemarteld Door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Martyrium Durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Martyrisé Par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استشهد بسبب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Menjadi Martir Melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 殉难经过
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Martirizado Por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    ifabsent: 'false'
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - martyred
+    close_mappings:
+      - crm:P100i_died_in  # CIDOC_CRM_v7.1.3.rdf:3407-3418 - "died in." Domain: E21_Person. Range: E69_Death.
+    related_mappings:
+      - schema:deathDate  # schemaorg.owl:14424-14442 - "Date of death." Temporal aspect, not the causing event.

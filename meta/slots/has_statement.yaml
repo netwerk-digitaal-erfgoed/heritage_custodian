@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: has_statement
+# ==============================================================================
+# Links a resource to a formal declaration about copyright, rights, provenance,
+# or ethical considerations.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                  | Mapping | Notes                                                   |
+# |---------------|-------------------------|----------------------------|---------|---------------------------------------------------------|
+# | **RiC-O**     | `rico:note`             | RiC-O_1-1.rdf:22353-22372  | broad   | "A short textual statement about a feature of a Thing." |
+# | **DCTerms**   | `dcterms:rights`        | dcterms.rdf:1875-1898      | narrow  | "Information about rights held in and over the resource."|
+# | **DCTerms**   | `dcterms:provenance`    | dcterms.rdf:1740-1760      | narrow  | "Statement of changes in ownership and custody."        |
+# | **Schema.org**| `schema:copyrightNotice`| schemaorg.owl:12999-13018  | narrow  | "Text describing copyright aspects." (Pending)          |
+# | **Schema.org**| `schema:usageInfo`      | schemaorg.owl:39185-39208  | narrow  | "Further info about licensing options." (Pending)       |
+# | **Schema.org**| `schema:creditText`     | schemaorg.owl:13525-13545  | related | "Text to credit persons/orgs." (Pending; attribution)   |
+#
+# No exact match — slot generalizes across copyright, rights, provenance, and
+# ethical statements. Each standard property covers only a subset.
+# slot_uri stays hc:hasStatement.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_statement
+name: has_statement
+title: Has Statement
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_statement:
+    slot_uri: hc:hasStatement
+    description: >-
+      Links a resource to a formal declaration, assertion, or text that
+      describes its copyright status, usage rights, provenance, or ethical
+      considerations.
+    alt_descriptions:
+      nl: >-
+        Koppelt een bron aan een formele verklaring, bewering of tekst die de
+        auteursrechtstatus, gebruiksrechten, herkomst of ethische overwegingen
+        beschrijft.
+      de: >-
+        Verknuepft eine Ressource mit einer formellen Erklaerung, Behauptung
+        oder einem Text, der den Urheberrechtsstatus, die Nutzungsrechte, die
+        Provenienz oder ethische Ueberlegungen beschreibt.
+      fr: >-
+        Relie une ressource a une declaration formelle, une assertion ou un
+        texte qui decrit le statut du droit d'auteur, les droits d'utilisation,
+        la provenance ou les considerations ethiques.
+      ar: >-
+        يربط مصدرا باعلان رسمي او تاكيد او نص يصف حالة حقوق النشر او حقوق
+        الاستخدام او المصدر او الاعتبارات الاخلاقية.
+      id: >-
+        Menghubungkan sumber daya ke pernyataan formal, penegasan, atau teks
+        yang menjelaskan status hak cipta, hak penggunaan, asal-usul, atau
+        pertimbangan etis.
+      zh: >-
+        将资源链接到描述其版权状态、使用权、来源或伦理考量的正式声明、断言或文本。
+      es: >-
+        Vincula un recurso a una declaracion formal, afirmacion o texto que
+        describe su estado de derechos de autor, derechos de uso, procedencia
+        o consideraciones eticas.
+    structured_aliases:
+      - literal_form: Verklaring
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Erklaerung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Declaration
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: اعلان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pernyataan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 声明
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Declaracion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - rico:note  # RiC-O_1-1.rdf:22353-22372 - "A short textual statement, that gives a little information on a specific feature of a Thing."
+    narrow_mappings:
+      - dcterms:rights  # dcterms.rdf:1875-1898 - "Information about rights held in and over the resource."
+      - dcterms:provenance  # dcterms.rdf:1740-1760 - "A statement of any changes in ownership and custody."
+      - schema:copyrightNotice  # schemaorg.owl:12999-13018 - "Text describing the copyright aspects of this Creative Work."
+      - schema:usageInfo  # schemaorg.owl:39185-39208 - "Further information about licensing options."
+    related_mappings:
+      - schema:creditText  # schemaorg.owl:13525-13545 - "Text to credit person(s) and/or organization(s) associated with a published Creative Work."
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - rights_statement_url
+      - rights_statement

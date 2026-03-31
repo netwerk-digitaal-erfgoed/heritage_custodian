@@ -1,0 +1,164 @@
+# ==============================================================================
+# LinkML Slot Definition: has_content
+# ==============================================================================
+# Describes possession of substantive material, information, or media elements.
+# Used to indicate what content a resource contains or encompasses.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property                         | File/Line              | Mapping | Notes                                           |
+# |--------------|----------------------------------|------------------------|---------|------------------------------------------------|
+# | **RiC-O**    | `rico:scopeAndContent`           | RiC-O_1-1:23025-23040  | exact   | Summary of scope and content of Record Resource |
+# | **RiC-O**    | `rico:hasContentOfType`          | RiC-O_1-1:4147-4148    | close   | Content type classification (ObjectProperty)    |
+# | **RiC-O**    | `rico:hasContentWhichRepresents` | RiC-O_1-1:4218-4220    | close   | What the content represents                     |
+# | **CIDOC-CRM**| `crm:P190_has_symbolic_content`  | CIDOC_CRM:5028-5037    | close   | Symbolic content of E90 Symbolic Object         |
+# | **Schema.org**| `schema:mainContentOfPage`      | schemaorg.owl:25261    | close   | Main content of a web page                      |
+# | **RiC-O**    | `rico:generalDescription`        | RiC-O_1-1:21455-21470  | broad   | General information about an entity             |
+# | **DC Terms** | `dcterms:description`            | dcterms.rdf            | broad   | General description (broader scope)             |
+# | **RiC-O**    | `rico:describesOrDescribed`      | RiC-O_1-1:2249-2260    | related | Connects resource to thing it describes         |
+#
+# NOTE: Previous exact mapping to rico:describesOrDescribed was incorrect.
+# rico:describesOrDescribed relates a RecordResource to a Thing it describes,
+# not the content itself. rico:scopeAndContent is the proper match for
+# describing substantive content within a resource.
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added multilingual support, corrected ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_content
+name: has_content
+title: has content
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+
+default_prefix: hc
+
+description: |
+  To possess or encompass substantive material, information, or media elements as integral components.
+
+imports:
+  - linkml:types
+
+slots:
+  has_content:
+    slot_uri: rico:scopeAndContent
+    description: |
+      To possess or encompass substantive material, information, or media elements as integral components
+    alt_descriptions:
+      nl: >-
+        Inhoud of materiaal, informatie of media-elementen bevatten of omvatten als integrale onderdelen.
+      de: >-
+        Substantielles Material, Informationen oder Medienelemente als integrale Bestandteile besitzen oder umfassen.
+      fr: >-
+        Posséder ou englober du matériel substantiel, des informations ou des éléments médiatiques comme composants intégraux.
+      ar: >-
+        امتلاك أو احتواء مواد جوهرية أو معلومات أو عناصر وسائط كمكونات متكاملة.
+      id: >-
+        Memiliki atau mencakup materi substantif, informasi, atau elemen media sebagai komponen integral.
+      zh: >-
+        拥有或包含实质性材料、信息或媒体元素作为不可分割的组成部分。
+      es: >-
+        Poseer o abarcar material sustancial, información o elementos multimedia como componentes integrales.
+    structured_aliases:
+      - literal_form: heeft inhoud
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Inhalt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a du contenu
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له محتوى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki konten
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有内容
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene contenido
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.75
+    exact_mappings:
+      # RiC-O scopeAndContent - Summary of scope and content of a Record Resource
+      # Domain: rico:RecordResource, Range: rdfs:Literal
+      # Lines 23025-23040 in RiC-O_1-1.rdf
+    close_mappings:
+      # RiC-O hasContentOfType - Classifies type of content (ObjectProperty)
+      # Lines 4147-4148 in RiC-O_1-1.rdf
+      - rico:hasContentOfType
+      # RiC-O hasContentWhichRepresents - What the content represents
+      # Lines 4218-4220 in RiC-O_1-1.rdf
+      - rico:hasContentWhichRepresents
+      # CIDOC-CRM P190 has symbolic content - String representation of symbolic object
+      # Lines 5028-5037 in CIDOC_CRM_v7.1.3.rdf
+      - crm:P190_has_symbolic_content
+      # Schema.org mainContentOfPage - Main content of a web page
+      # Line 25261 in schemaorg.owl
+      - schema:mainContentOfPage
+    broad_mappings:
+      # RiC-O generalDescription - General information about an entity
+      # scopeAndContent is a subproperty of generalDescription
+      # Lines 21455-21470 in RiC-O_1-1.rdf
+      - rico:generalDescription
+      # Dublin Core description - General description (broader scope)
+      - dcterms:description
+    related_mappings:
+      # RiC-O describesOrDescribed - Relates resource to thing it describes (not content itself)
+      # Lines 2249-2260 in RiC-O_1-1.rdf
+      - rico:describesOrDescribed
+      # Dublin Core coverage - Spatial/temporal extent
+      - dcterms:coverage
+      # Schema.org about - Subject matter (not content itself)
+      - schema:about
+    aliases:
+      - has_or_had_content
+      - content_category
+      - content_type
+      - note_content
+      - profile_data
+    examples:
+      - value: "hc:TextualContent"
+        description: Indicates the resource contains textual content
+      - value: "hc:PhotographicContent"
+        description: Indicates the resource contains photographic materials
+      - value: "hc:AudioVisualContent"
+        description: Indicates the resource contains audio-visual media
+    comments:
+      - Updated 2026-02-03 with verified ontology mappings and translations
+      - |
+        **PURPOSE**: Describes what substantive material, information, or media
+        elements a heritage resource possesses or encompasses. Used to characterize
+        the nature of content within records, collections, or other resources.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | RiC-O | rico:scopeAndContent | 23025 | exact | Summary of scope/content |
+        | RiC-O | rico:hasContentOfType | 4147 | close | Content type classification |
+        | RiC-O | rico:hasContentWhichRepresents | 4218 | close | What content represents |
+        | CIDOC-CRM | crm:P190_has_symbolic_content | 5028 | close | Symbolic content string |
+        | Schema.org | schema:mainContentOfPage | 25261 | close | Web page content |
+        | RiC-O | rico:generalDescription | 21455 | broad | General entity info |
+        | DC Terms | dcterms:description | - | broad | General description |
+      - |
+        **USAGE NOTES**:
+        - Use for describing what content type(s) a resource contains
+        - Aligns with RiC-O scopeAndContent for archival descriptions
+        - Can be used with content type URIs or text descriptions
+        - Previous mapping to rico:describesOrDescribed was incorrect
+          (that property relates resource to subject, not content)

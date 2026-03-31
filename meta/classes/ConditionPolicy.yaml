@@ -1,0 +1,120 @@
+id: https://nde.nl/ontology/hc/class/ConditionPolicy
+name: ConditionPolicy
+title: Condition Policy
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  odrl: http://www.w3.org/ns/odrl/2/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/Policy
+  - ../slots/approved_by
+  - ../slots/has_standard
+classes:
+  ConditionPolicy:
+    class_uri: hc:ConditionPolicy
+    is_a: Policy
+    description: >-
+      Normative specification that sets required environmental, handling, and
+      preservation parameters for heritage resources and infrastructure.
+    alt_descriptions:
+      nl: >-
+        Normatieve specificatie die vereiste omgevings-, behandelings- en
+        conserveringsparameters vastlegt voor erfgoedobjecten en infrastructuur.
+      de: >-
+        Normative Festlegung, die erforderliche Umwelt-, Handhabungs- und
+        Erhaltungsparameter fuer Kulturerbeobjekte und Infrastruktur definiert.
+      fr: >-
+        Specification normative fixant les parametres environnementaux, de
+        manipulation et de preservation requis pour les ressources patrimoniales et
+        les infrastructures.
+      es: >-
+        Especificacion normativa que fija los parametros ambientales, de manejo y de
+        preservacion requeridos para recursos e infraestructura patrimonial.
+      ar: >-
+        مواصفة معيارية تحدد معايير البيئة والتعامل والحفظ المطلوبة للموارد والبنية
+        التحتية التراثية.
+      id: >-
+        Spesifikasi normatif yang menetapkan parameter lingkungan, penanganan, dan
+        pelestarian yang diwajibkan untuk sumber daya serta infrastruktur warisan.
+      zh: >-
+        为遗产资源与设施设定环境、处理和保存必备参数的规范性要求。
+    structured_aliases:
+      - literal_form: behoudsnormenkader
+        in_language: nl
+      - literal_form: Erhaltungsrichtlinie
+        in_language: de
+      - literal_form: cadre normatif de preservation
+        in_language: fr
+      - literal_form: marco normativo de preservacion
+        in_language: es
+      - literal_form: إطار معايير الحفظ
+        in_language: ar
+      - literal_form: kerangka standar pelestarian
+        in_language: id
+      - literal_form: 保护规范框架
+        in_language: zh
+    broad_mappings:
+      - odrl:Policy
+    close_mappings:
+      - crm:E29_Design_or_Procedure
+      - dcterms:Policy
+    slots:
+      - has_standard
+      - approved_by
+    slot_usage: {}
+    notes:
+      - |
+        Preserved from prior description (commit 2e1e6e5f):
+
+        Preserved from prior description (commit 2e1e6e5f):
+
+        Policy specifying required conditions for heritage materials.
+        **DEFINITION**:
+        A ConditionPolicy defines normative environmental, handling, or
+        preservation conditions that SHOULD be maintained. This contrasts
+        with Condition classes which describe ACTUAL observed states.
+        **SUBCLASSES**:
+        - **StorageConditionPolicy**: Conditions for storage facilities
+        - **DisplayConditionPolicy**: Conditions for exhibition display
+        - **TransportConditionPolicy**: Conditions during transit
+        - **LoanConditionPolicy**: Conditions required for loans
+        **POLICY vs OBSERVATION PATTERN**:
+
+        **USE CASES**:
+        1. **Storage Policy**: Climate requirements for archive storage
+        2. **Loan Policy**: Conditions required before lending objects
+        3. **Display Policy**: Light and climate limits for exhibition
+        4. **Handling Policy**: Environmental controls during movement
+        Created as part of condition_policy migration per slot_fixes.yaml (Rule 53).
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Condition policies apply to all heritage types.
+      specificity_score: "0.45"
+      specificity_rationale: Specialized policy type for condition management.
+    comments:
+      - Subclass of Policy for normative preservation and handling requirements.
+      - Distinct from observation classes that capture measured real-world states.
+    examples:
+      - value:
+          has_standard: EN 16893:2018
+          approved_by: Institutional Conservation Board
+        description: Storage specification requiring preventive conservation controls
+      - value:
+          has_standard: CIE 157:2004
+          approved_by: Exhibitions Committee
+        description: Display specification limiting light exposure for sensitive materials
+      - value: |
+          Heritage Object
+          │
+          ├── has_policy → ConditionPolicy (what SHOULD be)
+          │     ├── policy_name: "Conservation-grade storage"
+          │     ├── temperature_setpoint: 18°C ±2°C
+          │     └── humidity_setpoint: 50% ±5%
+          │
+          └── has_condition → Condition (what IS)
+                ├── temperature: 22°C ✗ (exceeds policy)
+                └── humidity: 48% ✓ (within policy)

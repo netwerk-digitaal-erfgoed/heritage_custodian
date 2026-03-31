@@ -1,0 +1,150 @@
+# ==============================================================================
+# LinkML Slot Definition: responsible_for
+# ==============================================================================
+# Legal accountability or liability for a specific entity, collection, or outcome.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:hasOrHadHolder`      | RiC-O_1-1.rdf:6436-6460 | close | Agent holds/held Record Resource   |
+# | **RiC-O**     | `rico:isOrWasHolderOf`     | RiC-O_1-1.rdf:13639-13694 | close | Inverse: Agent is holder of      |
+# | **PROV-O**    | `prov:actedOnBehalfOf`     | prov.ttl:428         | close   | Accountability towards agent       |
+# | **PROV-O**    | `prov:wasAttributedTo`     | prov.ttl:116         | related | Entity attributed to agent         |
+#
+# HIERARCHY: rico:hasOrHadHolder rdfs:subPropertyOf rico:hasOrHadManager (RiC-O_1-1.rdf:6438)
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Fixed corrupted description, added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/responsible_for
+name: responsible_for
+title: Responsible For
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  responsible_for:
+    slot_uri: hc:responsibleFor
+    description: >-
+      To be legally accountable or liable for a specific action, entity, or
+      outcome, encompassing the duty to ensure compliance or remedy harm.
+    alt_descriptions:
+      nl: >-
+        Wettelijk verantwoordelijk of aansprakelijk zijn voor een specifieke
+        actie, entiteit of uitkomst, met inbegrip van de plicht om naleving
+        te waarborgen of schade te herstellen.
+      de: >-
+        Rechtlich verantwortlich oder haftbar sein für eine bestimmte Handlung,
+        Einheit oder ein Ergebnis, einschließlich der Pflicht, die Einhaltung
+        sicherzustellen oder Schaden zu beheben.
+      fr: >-
+        Être légalement responsable d'une action, d'une entité ou d'un résultat
+        spécifique, incluant le devoir d'assurer la conformité ou de réparer
+        les dommages.
+      ar: >-
+        أن يكون مسؤولاً قانونياً عن إجراء أو كيان أو نتيجة معينة، بما في ذلك
+        واجب ضمان الامتثال أو إصلاح الضرر.
+      id: >-
+        Bertanggung jawab secara hukum atas tindakan, entitas, atau hasil
+        tertentu, termasuk kewajiban untuk memastikan kepatuhan atau
+        memperbaiki kerugian.
+      zh: >-
+        对特定行为、实体或结果承担法律责任或义务，包括确保合规或补救损害的义务。
+      es: >-
+        Ser legalmente responsable de una acción, entidad o resultado específico,
+        incluyendo el deber de garantizar el cumplimiento o remediar daños.
+    structured_aliases:
+      - literal_form: verantwoordelijk voor
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verantwortlich für
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: responsable de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مسؤول عن
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: bertanggung jawab atas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 负责
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: responsable de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - rico:hasOrHadHolder  # RiC-O_1-1.rdf:6436-6460 - Agent holds/held Record Resource
+      - tooi:verantwoordelijke  # tooiont.ttl:728 - TOOI responsible entity (sub of dcterms:creator)
+      - prov:actedOnBehalfOf  # prov.ttl:428 - Accountability relationship
+    related_mappings:
+      - prov:wasAttributedTo  # prov.ttl - Entity attributed to agent
+      - schema:accountablePerson  # schema.org - Person accountable
+      - rico:isOrWasResponsibleForEnforcing  # RiC-O - Responsible for enforcing rule
+    broad_mappings:
+      - rico:hasOrHadManager  # RiC-O_1-1.rdf:6438 - Parent of hasOrHadHolder
+    aliases:
+      - is_or_was_responsible_for
+      - holds
+      - has_holder
+      - has_or_had_responsibility
+      - has_responsibility
+    examples:
+      - value: https://nde.nl/ontology/hc/collection/rm-national-collection
+        description: Rijksmuseum foundation responsible for National Collection
+      - value: https://nde.nl/ontology/hc/collection/nha-provincial-archive
+        description: Noord-Hollands Archief responsible for Provincial Archive
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **TEMPORAL SEMANTICS**:
+        - The relationship may be current (active responsibility)
+        - The relationship may be historical (past responsibility, now transferred)
+        - Temporal validity is tracked via the range class (e.g., Collection.temporal_extent)
+      - |
+        **USAGE**:
+        Used for:
+        - Legal responsibility for heritage collections
+        - Custodial responsibility for archival holdings
+        - Formal accountability for cultural property
+      - |
+        **RELATIONSHIP TO TOOI**:
+        - Forward direction from legal entity to collection
+        - Replaces collections_under_responsibility slot
+        - Maps to tooi:verantwoordelijke semantics
+      - |
+        **BIDIRECTIONAL PATTERN**:
+        - Forward: CustodianLegalStatus → Collection (is_or_was_responsible_for)
+        - Inverse: Collection → CustodianLegalStatus (is_or_was_held_by or has_or_had_holder)
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **RiC-O** | `rico:hasOrHadHolder` | 6436-6460 | close | Agent holds Record Resource |
+        | **RiC-O** | `rico:hasOrHadManager` | 6438 | broad | Parent property |
+        | **PROV-O** | `prov:actedOnBehalfOf` | 428 | close | Accountability |

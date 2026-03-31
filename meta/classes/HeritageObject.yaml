@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/HeritageObject
+name: HeritageObject
+title: Heritage Object Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_custodian
+- ../slots/located_at
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  HeritageObject:
+    class_uri: crm:E18_Physical_Thing
+    abstract: true
+    description: >-
+      Abstract parent class for persistent physical items managed by heritage
+      custodians, used as a common typing anchor across object subclasses.
+    alt_descriptions:
+      nl: Abstracte bovenklasse voor duurzame fysieke items die door erfgoedbeheerders worden beheerd als gemeenschappelijk typeanker voor subklassen.
+      de: Abstrakte Oberklasse fuer bestaendige physische Objekte die von Kulturerbe-Institutionen verwaltet werden als gemeinsamer Typanker.
+      fr: Classe parente abstraite pour les objets physiques persistants geres par des detenteurs patrimoniaux servant d ancrage de typage commun.
+      es: Clase padre abstracta para objetos fisicos persistentes gestionados por custodios patrimoniales usada como ancla comun de tipado.
+      ar: فئة أصلية مجردة للعناصر المادية المستمرة التي تديرها جهات حفظ التراث، وتستخدم كمرتكز تصنيفي مشترك للفئات الفرعية.
+      id: Kelas induk abstrak untuk objek fisik persisten yang dikelola kustodian warisan sebagai jangkar pengetikan bersama lintas subkelas.
+      zh: 由遗产保管机构管理的持久性实体物件之抽象父类，用作各子类共享的类型锚点。
+    structured_aliases:
+    - {literal_form: abstract erfgoedobject, in_language: nl}
+    - {literal_form: abstraktes Erbeobjekt, in_language: de}
+    - {literal_form: objet patrimonial abstrait, in_language: fr}
+    - {literal_form: objeto patrimonial abstracto, in_language: es}
+    - {literal_form: كائن تراثي مجرد, in_language: ar}
+    - {literal_form: objek warisan abstrak, in_language: id}
+    - {literal_form: 抽象遗产实体物, in_language: zh}
+    exact_mappings:
+    - crm:E18_Physical_Thing
+    close_mappings:
+    - crm:E19_Physical_Object
+    - schema:Thing
+    - rico:RecordResource
+    related_mappings:
+    - crm:E72_Legal_Object
+    - schema:CreativeWork
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_custodian
+    - located_at
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        multivalued: true
+      has_label:
+        required: true
+      has_custodian:
+        inlined: false
+      located_at:
+        range: CustodianPlace
+        inlined: true
+    comments:
+    - Abstract superclass; instantiate concrete subclasses for operational data.
+    - Supports polymorphic querying across physical heritage object types.
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Abstract base class for all physical heritage objects that may be stored,\nexhibited, or managed by heritage custodians.\n\n**CIDOC-CRM Alignment**:\n\nMaps to `crm:E18_Physical_Thing` - \"All persistent physical items with a \nrelatively stable form, human-made or natural.\"\n\n**Class Hierarchy**:\n\n```\nHeritageObject (crm:E18_Physical_Thing) - THIS CLASS (abstract)\n    \u2502\n    \u251C\u2500\u2500 ExhibitedObject (crm:E22_Human-Made_Object)\n    \u2502       \u2502\n    \u2502       \u2514\u2500\u2500 BiologicalObject (crm:E20_Biological_Object)\n    \u2502\n    \u2514\u2500\u2500 (future: ArchivalObject, DigitalObject, etc.)\n```\n\n**Purpose**:\n\nHeritageObject serves as:\n1. Common parent for all heritage object types\n2. Typed range for storage relationships (e.g., stores_or_stored slot)\n3. Base for polymorphic queries across object types\n\n**Core Slots Defined**:\n\nAll heritage objects inherit these fundamental properties:\n- `object_id` - Unique identifier\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Universal parent class for physical heritage object types.
+      custodian_types: "['*']"

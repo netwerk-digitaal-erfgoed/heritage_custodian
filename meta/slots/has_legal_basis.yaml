@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_legal_basis
+# ==============================================================================
+# Law, regulation, or legal principle providing authority for an action or policy
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                     | File/Line                    | Mapping | Notes                                                          |
+# |-------------|------------------------------|------------------------------|---------|----------------------------------------------------------------|
+# | **PREMIS**  | `premis:basis`               | premis3.owl:336-343          | close   | "Links RightsStatus to RightsBasis." Domain: RightsStatus.     |
+# | **RiC-O**   | `rico:isOrWasRegulatedBy`    | RiC-O_1-1.rdf:15054-15088   | close   | Connects Thing to regulating Rule; about regulatory relation.  |
+# | **RiC-O**   | `rico:authorizingMandate`    | RiC-O_1-1.rdf:20838-20863   | close   | DatatypeProperty; Mandate authorizing Agent. Domain: Agent.    |
+# | **RiC-O**   | `rico:ruleFollowed`          | RiC-O_1-1.rdf:23001-23024   | related | DatatypeProperty; "Rule governing existence of a Thing."       |
+#
+# No standard exact match for the specific concept of "legal basis/grounds for an action."
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_legal_basis
+name: has_legal_basis
+title: Has Legal Basis
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_legal_basis:
+    slot_uri: hc:hasLegalBasis
+    description: >-
+      Identifies the specific law, regulation, contract, or legal principle that provides
+      the authority, justification, or valid grounds for an action, processing activity,
+      or policy.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke wet, verordening, overeenkomst of het rechtsbeginsel dat
+        de bevoegdheid, rechtvaardiging of geldige gronden biedt voor een handeling,
+        verwerkingsactiviteit of beleid.
+      de: >-
+        Identifiziert das spezifische Gesetz, die Verordnung, den Vertrag oder das Rechtsprinzip,
+        das die Befugnis, Rechtfertigung oder gueltige Grundlage fuer eine Handlung,
+        Verarbeitungstaetigkeit oder Richtlinie bietet.
+      fr: >-
+        Identifie la loi specifique, le reglement, le contrat ou le principe juridique qui fournit
+        l'autorite, la justification ou les fondements valables d'une action, d'une activite de
+        traitement ou d'une politique.
+      ar: >-
+        يحدد القانون أو اللائحة أو العقد أو المبدأ القانوني المحدد الذي يوفر السلطة أو
+        التبرير أو الأسس الصحيحة لإجراء أو نشاط معالجة أو سياسة.
+      id: >-
+        Mengidentifikasi undang-undang, peraturan, kontrak, atau prinsip hukum tertentu yang
+        memberikan wewenang, pembenaran, atau dasar yang sah untuk suatu tindakan, aktivitas
+        pemrosesan, atau kebijakan.
+      zh: >-
+        识别为某项行为、处理活动或政策提供权限、正当理由或有效依据的具体法律、法规、合同或法律原则。
+      es: >-
+        Identifica la ley especifica, regulacion, contrato o principio juridico que proporciona
+        la autoridad, justificacion o fundamentos validos para una accion, actividad de
+        procesamiento o politica.
+    structured_aliases:
+      - literal_form: Rechtsgrondslag
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rechtsgrundlage
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Base juridique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: Asas qanuni
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Dasar hukum
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: Falü yiju
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Base juridica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - "PREMIS: premis:Statute (a Class, subclass of RightsBasis) models 'a law that grants or revokes rights' - relevant conceptually but is a class, not a property."
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - premis:basis  # premis3.owl:336-343 - "Links from a RightsStatus to the RightsBasis instance that supports or documents it." Domain: RightsStatus, Range: RightsBasis
+      - rico:isOrWasRegulatedBy  # RiC-O_1-1.rdf:15054-15088 - Connects Thing to regulating Rule; about regulatory relationship, not specifically legal grounds
+      - rico:authorizingMandate  # RiC-O_1-1.rdf:20838-20863 - DatatypeProperty; "Information on a Mandate that authorizes an Agent to perform an Activity." Domain: Agent
+    related_mappings:
+      - rico:ruleFollowed  # RiC-O_1-1.rdf:23001-23024 - DatatypeProperty; "The rule or conditions that govern the existence or lifecycle of a Thing." Broader - any rule, not specifically legal basis
+    aliases:
+      - legalBasis
+      - legal_responsibility_basis
+      - legal_basis

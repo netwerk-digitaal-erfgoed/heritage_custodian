@@ -1,0 +1,58 @@
+id: https://nde.nl/ontology/hc/class/ClaimType
+name: ClaimType
+title: ClaimType Class - Base class for web claim types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  ClaimType:
+    class_uri: skos:Concept
+    description: >-
+      Abstract taxonomy concept defining assertion categories for extraction, validation, and downstream interpretation workflows.
+    alt_descriptions:
+      nl: Abstract taxonomieconcept dat categorieen van beweringen definieert voor extractie-, validatie- en interpretatieworkflows.
+      de: Abstraktes Taxonomiekonzept zur Definition von Behauptungskategorien für Extraktions-, Validierungs- und Interpretationsabläufe.
+      fr: Concept taxonomique abstrait définissant des catégories d'assertions pour les workflows d'extraction, de validation et d'interprétation.
+      es: Concepto taxonómico abstracto que define categorías de afirmaciones para flujos de extracción, validación e interpretación.
+      ar: مفهوم تصنيفي مجرد يحدد فئات الادعاءات لسير عمل الاستخراج والتحقق والتفسير.
+      id: Konsep taksonomi abstrak yang mendefinisikan kategori klaim untuk alur ekstraksi, validasi, dan interpretasi.
+      zh: 用于定义断言类别的抽象分类概念，服务于抽取、校验与解释流程。
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - dcterms:type
+    - schema:PropertyValueSpecification
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+      has_description:
+    annotations:
+      specificity_score: '0.65'
+      specificity_rationale: Claim types are moderately specific - useful for web extraction workflows but not universally applicable to all heritage queries.
+      template_specificity: '{"archive_search": 0.40, "museum_search": 0.40, "library_search": 0.40, "collection_discovery": 0.50, "person_research": 0.30, "location_browse": 0.35, "identifier_lookup": 0.45, "organizational_change": 0.25, "digital_platform": 0.85, "general_heritage": 0.50}'
+      custodian_types: "['*']"
+    comments:
+    - Abstract base class; concrete claim categories are defined in `ClaimTypes.yaml`.
+    - Follows Type/Types naming conventions for base versus concrete taxonomies.
+    - Migrated from legacy ClaimTypeEnum to class-based modeling.
+    see_also:
+    - ClaimTypes.yaml
+    - WebClaim.yaml
+    examples:
+    - value:
+        has_label: full_name
+        has_description: 'Official full name of the organization. Expected in: <title>, <h1>, logo text, og:title'
+    - value:
+        has_label: email
+        has_description: 'Contact email address. Expected in: <a href=''mailto:...''>, contact page, footer'

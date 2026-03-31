@@ -1,0 +1,80 @@
+# ==============================================================================
+# LinkML Slot Definition: has_medium
+# ==============================================================================
+# Physical material, substance, or carrier used to store or display content.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property          | File/Line              | Mapping | Notes                                          |
+# |-------------|-------------------|------------------------|---------|--------------------------------------------|
+# | **DCTerms** | `dcterms:medium`  | dcterms.rdf:1686-1710  | close   | "The material or physical carrier of the   |
+# |             |                   |                        |         | resource." Domain: PhysicalResource.       |
+# |             |                   |                        |         | Range: PhysicalMedium. Resource-focused.   |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_medium
+name: has_medium
+title: has_medium
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_medium:
+    name: has_medium
+    slot_uri: hc:hasMedium
+    description: >-
+      To specify the physical material, substance, or carrier used to store, convey, or display the content of an entity (e.g., oil on canvas, magnetic tape, paper, or stone).
+    alt_descriptions:
+      nl: >-
+        Het specificeren van het fysieke materiaal, de stof of de drager die wordt gebruikt om de inhoud van een entiteit op te slaan, over te brengen of weer te geven (bijv. olieverf op doek, magneetband, papier of steen).
+      de: >-
+        Angabe des physischen Materials, der Substanz oder des Traegers, der zum Speichern, Uebermitteln oder Anzeigen des Inhalts einer Entitaet verwendet wird (z. B. Oel auf Leinwand, Magnetband, Papier oder Stein).
+      fr: >-
+        Specifier le materiau physique, la substance ou le support utilise pour stocker, transmettre ou afficher le contenu d'une entite (par ex. huile sur toile, bande magnetique, papier ou pierre).
+      ar: >-
+        تحديد المادة الفيزيائية أو المادة أو الحامل المستخدم لتخزين أو نقل أو عرض محتوى كيان ما (مثل الزيت على القماش أو الشريط المغناطيسي أو الورق أو الحجر).
+      id: >-
+        Menentukan bahan fisik, zat, atau pembawa yang digunakan untuk menyimpan, menyampaikan, atau menampilkan konten suatu entitas (misalnya, minyak di atas kanvas, pita magnetik, kertas, atau batu).
+      zh: >-
+        指定用于存储、传递或展示实体内容的物理材料、物质或载体（例如油彩画布、磁带、纸张或石材）。
+      es: >-
+        Especificar el material fisico, la sustancia o el soporte utilizado para almacenar, transmitir o mostrar el contenido de una entidad (p. ej., oleo sobre lienzo, cinta magnetica, papel o piedra).
+    structured_aliases:
+      - literal_form: medium
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Medium
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: support
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: وسيط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: media
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 介质
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: soporte
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_medium
+    close_mappings:
+      - dcterms:medium  # dcterms.rdf:1686-1710 - "The material or physical carrier of the resource." Domain: PhysicalResource. Range: PhysicalMedium. Resource-focused; this slot is slightly broader (includes conveyance/display).
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_medium for conciseness (2026-02-03).
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: expose_to
+# ==============================================================================
+# Relates a subject to a condition, substance, risk, or environment they are
+# subjected to or made contact with.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line                   | Mapping | Notes                                            |
+# |---------------|--------------------------------|-----------------------------|---------|--------------------------------------------------|
+# | **RiC-O**     | `rico:isOrWasAffectedBy`       | RiC-O_1-1.rdf:12585-12617  | close   | "is or was affected by" Thing→Event.             |
+# | **CIDOC-CRM** | `crm:P15_was_influenced_by`    | CIDOC_CRM_v7.1.3.rdf:1517-29| broad  | "had some bearing upon" Activity→Entity.         |
+# | **PROV-O**    | `prov:wasInfluencedBy`         | prov.ttl:1147-1170          | broad   | Very general influence relation.                 |
+#
+# NOTE: schema:about ("the subject matter of an object") is about topicality,
+# NOT exposure/subjection. Removed as slot_uri and exact_mapping.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/expose_to
+name: expose_to
+title: expose to
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  expose_to:
+    slot_uri: hc:expose_to
+    description: >-
+      Relates a subject (person, object, system) to the specific condition,
+      substance, risk, or environment they are subjected to or made contact
+      with.
+    alt_descriptions:
+      nl: >-
+        Relateert een onderwerp (persoon, object, systeem) aan de specifieke
+        conditie, stof, risico of omgeving waaraan het is blootgesteld of
+        waarmee het in contact is gekomen.
+      de: >-
+        Setzt ein Subjekt (Person, Objekt, System) in Beziehung zu der
+        spezifischen Bedingung, Substanz, dem Risiko oder der Umgebung, der
+        es ausgesetzt ist oder mit der es in Kontakt gekommen ist.
+      fr: >-
+        Relie un sujet (personne, objet, système) à la condition, substance,
+        risque ou environnement spécifique auquel il est soumis ou avec
+        lequel il est entré en contact.
+      ar: >-
+        يربط موضوعًا (شخص، كائن، نظام) بالحالة أو المادة أو المخاطر أو
+        البيئة المحددة التي تعرض لها أو اتصل بها.
+      id: >-
+        Menghubungkan subjek (orang, objek, sistem) dengan kondisi, zat,
+        risiko, atau lingkungan tertentu yang dialami atau disentuhnya.
+      zh: >-
+        将主体（人、物体、系统）与其所接触或暴露于的特定条件、物质、风险或环境相关联。
+      es: >-
+        Relaciona un sujeto (persona, objeto, sistema) con la condición,
+        sustancia, riesgo o entorno específico al que está sometido o con
+        el que ha entrado en contacto.
+    structured_aliases:
+      - literal_form: Blootstelling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Exposition
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Exposition
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تعرض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Paparan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 暴露
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Exposición
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - rico:isOrWasAffectedBy  # RiC-O_1-1.rdf:12585-12617 - "is or was affected by" Thing→Event; closest structural match, though "affected" implies impact occurred while "exposed" implies contact/subjection
+    broad_mappings:
+      - crm:P15_was_influenced_by  # CIDOC_CRM_v7.1.3.rdf:1517-1529 - "had some bearing upon" Activity→Entity; influence is broader than exposure
+      - prov:wasInfluencedBy  # prov.ttl:1147-1170 - very general influence relation across Activity/Agent/Entity
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - exposes_or_exposed
+    comments:
+      - >-
+        Previous slot_uri was schema:about, which means "the subject matter of
+        an object" (topicality). This is semantically incorrect for exposure/
+        subjection. Changed to hc:expose_to.

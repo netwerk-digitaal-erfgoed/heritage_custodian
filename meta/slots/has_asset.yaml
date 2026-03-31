@@ -1,0 +1,181 @@
+# ==============================================================================
+# LinkML Slot Definition: has_asset
+# ==============================================================================
+# Possess a resource with economic value that is owned or controlled with the
+# expectation of future benefit.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **ODRL**      | `odrl:Asset`          | odrl.ttl:387-392     | related | Asset class (not property)         |
+# | **Schema.org**| `schema:owns`         | schemaorg.owl:28732  | close   | Ownership of things                |
+# | **Schema.org**| `schema:ownedThrough` | schemaorg.owl        | related | Ownership via event                |
+# | **RiC-O**     | `rico:hasOrHadHolder` | RiC-O_1-1:6437       | related | Holder relationship                |
+# | **CIDOC-CRM** | `crm:P52_has_current_owner` | CIDOC_CRM     | related | Current ownership                  |
+#
+# CREATED: 2026-01-16
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_asset
+name: has_asset
+title: has asset
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  odrl: http://www.w3.org/ns/odrl/2/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_asset:
+    slot_uri: hc:hasAsset
+    description: >-
+      To possess a resource with economic value that is owned or controlled
+      with the expectation of future benefit.
+    alt_descriptions:
+      nl: >-
+        Het bezitten van een bron met economische waarde die eigendom is of
+        gecontroleerd wordt met de verwachting van toekomstig voordeel.
+      de: >-
+        Das Besitzen einer Ressource mit wirtschaftlichem Wert, die im
+        Eigentum steht oder kontrolliert wird, in Erwartung eines
+        zukünftigen Nutzens.
+      fr: >-
+        Posséder une ressource ayant une valeur économique, détenue ou
+        contrôlée dans l'attente d'un bénéfice futur.
+      ar: >-
+        امتلاك مورد ذي قيمة اقتصادية يُملك أو يُسيطر عليه مع توقع
+        فائدة مستقبلية.
+      id: >-
+        Memiliki sumber daya dengan nilai ekonomi yang dimiliki atau
+        dikendalikan dengan harapan manfaat di masa depan.
+      zh: >-
+        拥有具有经济价值的资源，该资源被拥有或控制，并期望获得未来利益。
+      es: >-
+        Poseer un recurso con valor económico que es propiedad o está
+        controlado con la expectativa de beneficio futuro.
+    structured_aliases:
+      - literal_form: heeft activa
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Vermögenswert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un actif
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه أصل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki aset
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 拥有资产
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene activo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    
+    # VERIFIED MAPPINGS (2026-02-02)
+    # Source files: data/ontology/odrl.ttl, data/ontology/schemaorg.owl,
+    #               data/ontology/RiC-O_1-1.rdf, data/ontology/CIDOC_CRM_v7.1.3.rdf
+    
+    close_mappings:
+      # schemaorg.owl line 28732-28736: owns
+      # "Products owned by the organization or person."
+      # Close: ownership semantics, but schema:owns is for products/things
+      - schema:owns  # from schemaorg.owl - ownership of products/things
+    
+    related_mappings:
+      # RiC-O_1-1.rdf line 6437: hasOrHadHolder
+      # "Connects a Record Resource or Instantiation to an Agent that holds it"
+      # Related: holding/custody relationship, broader than asset ownership
+      - rico:hasOrHadHolder  # from RiC-O_1-1.rdf - holder relationship
+      
+      # CIDOC_CRM_v7.1.3.rdf: P52_has_current_owner
+      # "This property identifies the instance of E21 Person or E74 Group that
+      # was the owner of an instance of E18 Physical Thing at the time of validity"
+      # Related: current ownership of physical things
+      - crm:P52_has_current_owner  # from CIDOC_CRM - current owner of physical thing
+      
+      # CIDOC_CRM_v7.1.3.rdf: P51_has_former_or_current_owner
+      # Broader ownership including historical owners
+      - crm:P51_has_former_or_current_owner  # from CIDOC_CRM - ownership history
+    
+    aliases:
+      - has_or_had_asset
+      - owns_asset
+      - possesses_asset
+      - has_or_had_net_asset
+      - has_net_asset
+    
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        Asset ownership applicable to all heritage custodian types for
+        financial reporting and resource management.
+      specificity_score: 0.35
+      specificity_rationale: >-
+        Moderate specificity - assets are a general financial/accounting
+        concept applicable to all organizations.
+    
+    examples:
+      - value: https://example.org/asset/building-main-museum
+        description: Museum's main building as a fixed asset
+      - value: https://example.org/asset/endowment-fund
+        description: Foundation's endowment fund as a financial asset
+      - value: https://example.org/asset/collection-dutch-masters
+        description: Museum's Dutch Masters collection as an asset
+      - value: hc:Asset/total-assets-2023
+        description: Total assets at end of fiscal year 2023
+    
+    comments:
+      - Updated 2026-02-02 with verified ontology mappings and translations
+      - |
+        **PURPOSE**:
+        Captures asset ownership for heritage institutions. Assets are resources
+        with economic value owned or controlled by an organization with the
+        expectation of future benefit. Used for financial reporting and
+        resource management.
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "has_or_had_asset" alias to indicate temporal relationship -
+        an organization has assets currently or had them in the past
+        (assets may be sold, transferred, or written off over time).
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **Schema.org** | `schema:owns` | 28732 | close | Ownership of things |
+        | **RiC-O** | `rico:hasOrHadHolder` | 6437 | related | Holder relationship |
+        | **CIDOC-CRM** | `crm:P52_has_current_owner` | - | related | Current owner |
+        | **CIDOC-CRM** | `crm:P51_has_former_or_current_owner` | - | related | Ownership history |
+      - |
+        **FINANCIAL STATEMENT CONTEXT**:
+        Assets = Liabilities + Net Assets (Statement of Financial Position)
+        
+        Used for:
+        - Total assets on balance sheet
+        - Fixed assets (buildings, equipment)
+        - Current assets (cash, receivables)
+        - Intangible assets (intellectual property)
+        - Collection assets (artwork, artifacts)
+      - |
+        **ODRL NOTE**:
+        ODRL defines `odrl:Asset` as a class, not a property. In ODRL, an Asset
+        is "any form of identifiable resource, such as data/information,
+        content/media, applications, or services." This slot captures the
+        relationship of having/owning assets rather than the Asset class itself.
+    
+    see_also:
+      - https://schema.org/owns
+      - https://www.w3.org/ns/odrl/2/Asset

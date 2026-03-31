@@ -1,0 +1,223 @@
+# ==============================================================================
+# LinkML Slot Definition: derive_from
+# ==============================================================================
+# Originate or be extracted from a source entity, resulting in a new entity
+# that retains a fundamental connection to its origin.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasDerivedFrom`      | prov.ttl:1099-1104   | slot_uri| Primary derivation property        |
+# | **PROV-O**    | `prov:wasInfluencedBy`     | prov.ttl:1073        | broad   | Parent of wasDerivedFrom           |
+# | **PROV-O**    | `prov:hadPrimarySource`    | prov.ttl:667         | narrow  | subPropertyOf wasDerivedFrom       |
+# | **PROV-O**    | `prov:wasQuotedFrom`       | prov.ttl:1216        | narrow  | subPropertyOf wasDerivedFrom       |
+# | **PROV-O**    | `prov:wasRevisionOf`       | prov.ttl:1232        | narrow  | subPropertyOf wasDerivedFrom       |
+# | **Schema.org**| `schema:isBasedOn`         | schemaorg.owl:22729  | close   | CreativeWork based on another      |
+# | **PAV**       | `pav:derivedFrom`          | pav.rdf:338-349      | close   | Derived with modifications         |
+# | **Dublin Core**| `dcterms:source`          | dcterms.rdf:1920     | related | Related resource from which derived|
+# | **RiC-O**     | `rico:hasGeneticLinkToRecordResource` | RiC-O_1-1:5239 | related | Genetic link between records  |
+#
+# CREATED: 2026-01-19
+# UPDATED: 2026-02-03 - Added broad_mappings (prov:wasInfluencedBy), narrow_mappings (hadPrimarySource, wasQuotedFrom, wasRevisionOf)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/derive_from
+name: derive_from
+title: derive from
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  pav: http://purl.org/pav/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  derive_from:
+    slot_uri: prov:wasDerivedFrom
+    description: >-
+      To originate or be extracted from a source entity, resulting in a new
+      entity that retains a fundamental connection to its origin.
+    alt_descriptions:
+      nl: >-
+        Afgeleid zijn van of geëxtraheerd zijn uit een bronentiteit, wat
+        resulteert in een nieuwe entiteit die een fundamentele verbinding
+        met zijn oorsprong behoudt.
+      de: >-
+        Von einer Quellentität stammen oder daraus extrahiert werden, was
+        zu einer neuen Entität führt, die eine grundlegende Verbindung zu
+        ihrem Ursprung behält.
+      fr: >-
+        Provenir ou être extrait d'une entité source, résultant en une
+        nouvelle entité qui conserve un lien fondamental avec son origine.
+      ar: >-
+        أن ينشأ أو يُستخرج من كيان مصدر، مما ينتج عنه كيان جديد يحتفظ
+        باتصال أساسي بأصله.
+      id: >-
+        Berasal atau diekstraksi dari entitas sumber, menghasilkan entitas
+        baru yang mempertahankan hubungan mendasar dengan asalnya.
+      zh: >-
+        源自或从源实体中提取，产生一个与其起源保持根本联系的新实体。
+      es: >-
+        Originarse o ser extraído de una entidad fuente, resultando en una
+        nueva entidad que mantiene una conexión fundamental con su origen.
+    structured_aliases:
+      - literal_form: afgeleid van
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_derive_from
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgeleitet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dérivé de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مشتق من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berasal dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 派生自
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: derivado de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    
+    # VERIFIED MAPPINGS (2026-02-02)
+    # Source files: data/ontology/prov.ttl, data/ontology/schemaorg.owl,
+    #               data/ontology/pav.rdf, data/ontology/dcterms.rdf,
+    #               data/ontology/RiC-O_1-1.rdf
+    
+    exact_mappings:
+      # prov.ttl line 1099-1104: wasDerivedFrom
+      # "A derivation is a transformation of an entity into another, an update
+      # of an entity resulting in a new one, or the construction of a new entity
+      # based on a pre-existing entity."
+    broad_mappings:
+      # prov.ttl line 1073: wasDerivedFrom rdfs:subPropertyOf wasInfluencedBy
+      # Broad: general influence relation (parent of derivation)
+      - prov:wasInfluencedBy  # from prov.ttl - parent of wasDerivedFrom
+    
+    narrow_mappings:
+      # prov.ttl line 667: hadPrimarySource rdfs:subPropertyOf wasDerivedFrom
+      # Narrow: specific derivation - primary/original source
+      - prov:hadPrimarySource  # from prov.ttl - primary source (subPropertyOf)
+      
+      # prov.ttl line 1216: wasQuotedFrom rdfs:subPropertyOf wasDerivedFrom
+      # Narrow: specific derivation - quotation from source
+      - prov:wasQuotedFrom  # from prov.ttl - quoted from source (subPropertyOf)
+      
+      # prov.ttl line 1232: wasRevisionOf rdfs:subPropertyOf wasDerivedFrom
+      # Narrow: specific derivation - revision of previous version
+      - prov:wasRevisionOf  # from prov.ttl - revision (subPropertyOf)
+    
+    close_mappings:
+      # schemaorg.owl line 22729-22732: isBasedOn
+      # "A resource from which this work is derived or from which it is a
+      # modification or adaptation."
+      - schema:isBasedOn  # from schemaorg.owl - CreativeWork based on another
+      
+      # pav.rdf line 338-349: derivedFrom
+      # "Derived from a different resource. Derivation concerns itself with
+      # derived knowledge. If content has been further refined or modified,
+      # pav:derivedFrom should be used."
+      - pav:derivedFrom  # from pav.rdf - derived with modifications
+    
+    related_mappings:
+      # dcterms.rdf line 1920-1943: source
+      # "A related resource from which the described resource is derived."
+      # Related: broader - may be abstract, not necessarily a derivation
+      - dcterms:source  # from dcterms.rdf - related resource from which derived
+      
+      # RiC-O_1-1.rdf line 5239: hasGeneticLinkToRecordResource
+      # "Connects a Record Resource to another Record Resource to which it has
+      # a genetic link" - archival records that share origin
+      - rico:hasGeneticLinkToRecordResource  # from RiC-O_1-1.rdf - genetic link
+    
+    aliases:
+      - derives_or_derived_from
+      - is_based_on
+      - was_derived_from
+      - originates_from
+      - is_or_was_derive_from
+      - is_or_was_derived_from
+      - was_derived_from
+      - derived_from
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        Derivation relationships applicable to all custodian types for
+        provenance tracking of derived media and content.
+      specificity_score: 0.30
+      specificity_rationale: >-
+        Low-medium specificity - derivation is a general provenance concept
+        applicable across many media and content types.
+      migration_date: '2026-01-19'
+      migration_rule: Rule 53 (no bespoke slots), Rule 56 (semantic consistency)
+    
+    examples:
+      - value: https://example.org/video/ABC123
+        description: Thumbnail derived from video ABC123
+      - value: https://example.org/audio/interview-001
+        description: Transcript derived from audio interview
+      - value: https://example.org/image/original-photo-456
+        description: Cropped image derived from original photograph
+      - value: https://example.org/document/full-report
+        description: Summary derived from full document
+    
+    comments:
+      - Created from slot_fixes.yaml migration (2026-01-19)
+      - Updated 2026-02-02 with verified ontology mappings and translations
+      - |
+        **PURPOSE**:
+        Indicates a derivation relationship where one entity is created based on,
+        or extracted from, another source entity. This follows PROV-O derivation
+        semantics for W3C-compliant provenance tracking.
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "derives_or_derived_from" alias to indicate temporal relationship -
+        derivation can be established at different points in time:
+        - A thumbnail may be derived from a video at creation time
+        - A transcription may be derived from audio later
+        - A derivative work may reference its source
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **PROV-O** | `prov:wasDerivedFrom` | 1099-1104 | slot_uri | Primary derivation property |
+        | **PROV-O** | `prov:wasInfluencedBy` | 1073 | broad | Parent of wasDerivedFrom |
+        | **PROV-O** | `prov:hadPrimarySource` | 667 | narrow | subPropertyOf wasDerivedFrom |
+        | **PROV-O** | `prov:wasQuotedFrom` | 1216 | narrow | subPropertyOf wasDerivedFrom |
+        | **PROV-O** | `prov:wasRevisionOf` | 1232 | narrow | subPropertyOf wasDerivedFrom |
+        | **Schema.org** | `schema:isBasedOn` | 22729 | close | CreativeWork based on |
+        | **PAV** | `pav:derivedFrom` | 338-349 | close | Derived with modifications |
+        | **Dublin Core** | `dcterms:source` | 1920 | related | Related source |
+        | **RiC-O** | `rico:hasGeneticLinkToRecordResource` | 5239 | related | Genetic link |
+      - |
+        **USE CASES**:
+        - Thumbnail derived from Video (specific frame extraction)
+        - Transcript derived from Audio recording
+        - Cropped image derived from original photograph
+        - Summary derived from full document
+        - Translation derived from original text
+      - |
+        **PROV-O SEMANTICS**:
+        PROV-O defines wasDerivedFrom as indicating "a transformation of an entity
+        into another, an update of an entity resulting in a new one, or the
+        construction of a new entity based on a pre-existing entity." More specific
+        subproperties include hadPrimarySource, wasQuotedFrom, and wasRevisionOf.
+    
+    see_also:
+      - https://www.w3.org/TR/prov-o/#wasDerivedFrom
+      - https://schema.org/isBasedOn
+      - http://purl.org/pav/derivedFrom

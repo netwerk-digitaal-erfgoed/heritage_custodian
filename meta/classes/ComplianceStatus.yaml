@@ -1,0 +1,75 @@
+id: https://nde.nl/ontology/hc/class/ComplianceStatus
+name: compliance_status_class
+title: Compliance Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+default_prefix: hc
+classes:
+  ComplianceStatus:
+    class_uri: hc:ComplianceStatus
+    description: >-
+      Structured assessment outcome indicating whether a target satisfies
+      policy, regulatory, or technical requirements.
+    alt_descriptions:
+      nl: Gestructureerde beoordelingsuitkomst die aangeeft of een doelobject voldoet aan beleids- wettelijke of technische eisen.
+      de: Strukturierter Bewertungsstatus der angibt ob ein Gegenstand festgelegte Richtlinien- Rechts- oder Technikanforderungen erfuellt.
+      fr: Resultat d evaluation structure indiquant si une entite respecte des exigences politiques reglementaires ou techniques.
+      es: Resultado estructurado de evaluacion que indica si una entidad cumple requisitos normativos regulatorios o tecnicos.
+      ar: نتيجة تقييم منظمة توضح ما إذا كان الكيان يستوفي متطلبات سياساتية أو تنظيمية أو تقنية.
+      id: Hasil penilaian terstruktur yang menunjukkan apakah entitas memenuhi persyaratan kebijakan regulasi atau teknis.
+      zh: 用于表明对象是否满足政策、监管或技术要求的结构化评估结果。
+    structured_aliases:
+    - {literal_form: nalevingsstatus, in_language: nl}
+    - {literal_form: Konformitaetsstatus, in_language: de}
+    - {literal_form: statut de conformite, in_language: fr}
+    - {literal_form: estado de cumplimiento, in_language: es}
+    - {literal_form: حالة الامتثال, in_language: ar}
+    - {literal_form: status kepatuhan, in_language: id}
+    - {literal_form: 合规状态, in_language: zh}
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    - require
+    slot_usage:
+      has_type:
+        required: true
+        examples:
+        - value: COMPLIANT
+        - value: NON_COMPLIANT
+        - value: PARTIALLY_COMPLIANT
+        - value: NOT_ASSESSED
+      has_label:
+        required: false
+      has_description:
+        required: false
+    close_mappings:
+    - dcterms:conformsTo
+    annotations:
+      custodian_types: '["A", "L", "M"]'
+      custodian_types_rationale: Compliance tracking is common for archives, libraries, and museums with preservation mandates.
+      custodian_types_primary: A
+      specificity_score: 0.55
+      specificity_rationale: Moderately specific - used for governance and standards tracking.
+      migration_source_slot: compliance_status
+      migration_date: '2026-01-22'
+      migration_rule: Rule 53
+    comments:
+    - Structured status object replacing free-text compliance indicators
+    - Supports explicit status values, references, and remediation context
+    examples:
+    - value:
+        has_type: COMPLIANT
+        has_label: ISO 11799 Conformant
+    - value:
+        has_type: PARTIALLY_COMPLIANT
+        has_label: Requires HVAC Remediation

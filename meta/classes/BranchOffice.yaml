@@ -1,0 +1,158 @@
+id: https://nde.nl/ontology/hc/class/branch-office
+name: branch_office_class
+title: Branch Office Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/QuantityTypeEnum
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_quantity
+  - ../slots/has_score
+  - ../slots/has_service_area
+  - ../slots/derive_from
+  - ../slots/generated_by
+  - ../slots/face_public
+  - ../slots/has_operating_hours
+  - ../slots/has_service
+classes:
+  BranchOffice:
+    is_a: ReconstructedEntity
+    class_uri: org:Site
+    description: >-
+      Regional or satellite office of a heritage custodian organization
+      providing services to a specific geographic area or community.
+    alt_descriptions:
+      nl: >-
+        Regionaal of satellietkantoor van een erfgoedbewaarderorganisatie dat
+        diensten levert aan een specifiek geografisch gebied of gemeenschap.
+      de: >-
+        Regionales oder Satellitenbüro einer Kulturerbe-Verwahrerorganisation,
+        das Dienstleistungen für ein bestimmtes geografisches Gebiet oder
+        eine Gemeinschaft erbringt.
+      fr: >-
+        Bureau régional ou satellite d'une organisation de dépositaire du
+        patrimoine fournissant des services à une zone géographique ou
+        communauté spécifique.
+      es: >-
+        Oficina regional o satelital de una organización depositaria del
+        patrimonio que proporciona servicios a un área geográfica o
+        comunidad específica.
+      ar: >-
+        مكتب إقليمي أو تابع لمنظمة حارسة للتراث توفر خدمات لمنطقة جغرافية
+        أو مجتمع محدد.
+      id: >-
+        Kantor regional atau satelit dari organisasi penjaga warisan budaya
+        yang menyediakan layanan untuk area geografis atau komunitas tertentu.
+      zh: >-
+        遗产保管组织的区域或卫星办公室，为特定地理区域或社区提供服务。
+    structured_aliases:
+    - literal_form: bijkantoor
+      in_language: nl
+    - literal_form: Zweigbüro
+      in_language: de
+    - literal_form: bureau secondaire
+      in_language: fr
+    - literal_form: oficina secundaria
+      in_language: es
+    - literal_form: مكتب فرعي
+      in_language: ar
+    - literal_form: kantor cabang
+      in_language: id
+    - literal_form: 分支办公室
+      in_language: zh
+    close_mappings:
+    - schema:Place
+    - schema:LocalBusiness
+    - crm:E27_Site
+    related_mappings:
+    - org:OrganizationalUnit
+    - schema:branch
+    broad_mappings:
+    - skos:Concept
+    - org:Site
+    slots:
+    - has_description
+    - identified_by
+    - has_label
+    - has_service_area
+    - has_quantity
+    - face_public
+    - has_opening_hour
+    - has_service
+    - has_score
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/nha-zaanstreek-branch
+      has_label:
+        required: true
+        multivalued: false
+        examples:
+        - value: Noord-Hollands Archief - Zaanstreek-Waterland
+      has_description:
+        examples:
+        - value: Regional branch serving Zaanstreek-Waterland area.
+      has_service_area:
+        range: ServiceArea
+        inlined: true
+      face_public:
+        range: boolean
+        required: true
+        ifabsent: "true"
+      has_service:
+        multivalued: true
+        examples:
+        - value: Archival research access
+      has_quantity:
+        range: integer
+        inlined: false
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    comments:
+    - BranchOffice models regional/satellite locations of heritage custodians
+    - Distinguished from AdministrativeOffice by public-facing nature
+    - W3C ORG org:Site specialized for branch locations
+    see_also:
+    - https://www.w3.org/TR/vocab-org/#org:Site
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/nha-zaanstreek-branch
+        has_label: Noord-Hollands Archief - Zaanstreek-Waterland
+        has_description: Regional branch serving Zaanstreek-Waterland area.
+        face_public: true
+      description: Regional archive branch
+    keywords:
+    - branch office
+    - satellite office
+    - regional office
+    - service location
+    - public-facing
+    notes:
+      - |
+        Preserved from prior description (commit 51480891):
+
+        "Regional or satellite office of a heritage custodian organization.\n\n**DEFINITION**:\n\nA BranchOffice is a secondary physical location where a heritage custodian\nmaintains operational presence, typically providing services to a specific\ngeographic area or community. Unlike the main headquarters, branch offices\nusually have more limited scope of activities.\n\n**W3C ORG ALIGNMENT**:\n\n`org:Site` - \"An office or other premise at which the organization is located.\"\n\nBranchOffice specializes org:Site for heritage custodian branch locations:\n- Regional archives serving provincial communities\n- Satellite library branches in neighborhoods\n- Museum outposts or study centers\n\n**DISTINCTION FROM OTHER AUXILIARY PLACE TYPES**:\n\n| Type | Purpose | Example |\n|------|---------|---------|\n| **BranchOffice** | Service delivery to geographic area | Regional archive office |\n| AdministrativeOffice | Non-public administrative functions | Finance department building |\n\
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to heritage custodian branch locations
+      custodian_types: "['*']"

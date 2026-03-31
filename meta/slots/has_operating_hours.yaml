@@ -1,0 +1,91 @@
+# ==============================================================================
+# LinkML Slot Definition: has_opening_hour
+# ==============================================================================
+# The time or interval a location, organization, or service is open/available.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                            | File/Line               | Mapping | Notes                                          |
+# |------------|-------------------------------------|-------------------------|---------|-------------------------------------------------|
+# | Schema.org | `schema:openingHoursSpecification`  | schemaorg.owl:28180-198 | close   | Place-specific, returns OpeningHoursSpec object.|
+# | Schema.org | `schema:openingHours`               | schemaorg.owl:28150-161 | exact   | CivicStructure/LocalBusiness, text format.     |
+#
+# Both Schema.org properties are domain-restricted (Place, CivicStructure,
+# LocalBusiness). This slot is broader: any entity type.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_opening_hour
+name: has_opening_hour
+title: Has Opening Hour
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_opening_hour:
+    slot_uri: hc:hasOpeningHour
+    description: >-
+      To specify the specific time or time interval during which a location, organization, or service is open for business or available to the public.
+    alt_descriptions:
+      nl: >-
+        Om het specifieke tijdstip of tijdsinterval te specificeren gedurende welke een locatie, organisatie of dienst geopend is of beschikbaar is voor het publiek.
+      de: >-
+        Um die spezifische Zeit oder das Zeitintervall anzugeben, während dessen ein Standort, eine Organisation oder ein Dienst geöffnet oder für die Öffentlichkeit verfügbar ist.
+      fr: >-
+        Pour spécifier l'heure ou l'intervalle de temps pendant lequel un lieu, une organisation ou un service est ouvert ou accessible au public.
+      ar: >-
+        لتحديد الوقت المحدد أو الفاصل الزمني الذي يكون خلاله موقع أو منظمة أو خدمة مفتوحًا أو متاحًا للجمهور.
+      id: >-
+        Untuk menentukan waktu atau interval waktu tertentu selama lokasi, organisasi, atau layanan buka atau tersedia untuk umum.
+      zh: >-
+        用于指定场所、组织或服务向公众开放或可用的具体时间或时间间隔。
+      es: >-
+        Para especificar el horario o intervalo de tiempo específico durante el cual un lugar, organización o servicio está abierto o disponible para el público.
+    structured_aliases:
+      - literal_form: Openingstijden
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Öffnungszeiten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Heures d'ouverture
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ساعات العمل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Jam buka
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 开放时间
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Horario de apertura
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_opening_hour
+      - has_operating_hours
+      - opening_hour
+      - operating_hour
+      - seasonal_hour
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+      - schema:openingHours  # schemaorg.owl:28150-28161 - CivicStructure/LocalBusiness text format
+    close_mappings:
+      - schema:openingHoursSpecification  # schemaorg.owl:28180-28198 - Place-specific structured hours
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_opening_hour for conciseness."
+
+  # Backwards/alternate naming: many class modules use has_operating_hours
+  has_operating_hours:
+    is_a: has_opening_hour
+    description: >-
+      Alias slot for opening hours/operating hours. Use as a synonym of has_opening_hour.

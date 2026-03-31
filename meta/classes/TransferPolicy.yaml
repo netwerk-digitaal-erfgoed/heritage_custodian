@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/TransferPolicy
+name: TransferPolicy
+title: TransferPolicy Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+  odrl: http://www.w3.org/ns/odrl/2/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_description  # migrated from has_description per Rule 55
+  - ../slots/has_score  # was: template_specificity
+  - ../slots/has_label
+  - ../slots/has_text
+classes:
+  TransferPolicy:
+    is_a: Policy  # Added 2026-01-22 per condition_policy migration (Rule 53)
+    class_uri: hc:TransferPolicy  # Changed from odrl:Policy to avoid collision with base class
+    description: >-
+      Governance rules that define conditions and constraints for custody or
+      ownership handover of heritage materials between parties.
+    alt_descriptions:
+      nl: Beleidskader dat voorwaarden en beperkingen vastlegt voor overdracht van bewaring of eigendom van erfgoedmateriaal tussen partijen.
+      de: Regelwerk mit Bedingungen und Einschraenkungen fuer den Uebergang von Verwahrung oder Eigentum an Kulturgut zwischen Parteien.
+      fr: Politique definissant les conditions et contraintes de transfert de garde ou de propriete de materiaux patrimoniaux entre parties.
+      es: Politica que define condiciones y restricciones para la transferencia de custodia o propiedad de materiales patrimoniales entre partes.
+      ar: سياسة تحدد الشروط والقيود لنقل الحيازة أو الملكية لمواد تراثية بين الأطراف.
+      id: Kebijakan yang menetapkan syarat dan batasan perpindahan kustodi atau kepemilikan materi warisan antar pihak.
+      zh: 规定遗产材料在各方之间转移保管或所有权条件与约束的政策。
+    structured_aliases:
+    - literal_form: overdrachtsbeleid
+      in_language: nl
+    - literal_form: Transferregel
+      in_language: de
+    - literal_form: politique de transfert
+      in_language: fr
+    - literal_form: politica de transferencia
+      in_language: es
+    - literal_form: سياسة النقل
+      in_language: ar
+    - literal_form: kebijakan transfer
+      in_language: id
+    - literal_form: 移交政策
+      in_language: zh
+    broad_mappings:
+      - odrl:Policy
+    
+    close_mappings:
+      - rico:RecordResourceTransferRule
+    
+    related_mappings:
+      - dcterms:RightsStatement
+    
+    slots:
+      - has_label
+      - has_text
+      - has_description  # was: has_description
+      - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    
+    slot_usage:
+      has_label:
+      has_score:
+#         range: string
+        required: false
+      has_text:
+#         range: string
+        required: false
+      has_description:  # was: has_description
+#         range: string
+        required: false
+        inlined: false # Fixed invalid inline for primitive type
+    
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Transfer policies apply to all heritage types.
+      custodian_types_primary: null
+      specificity_score: 0.55
+      specificity_rationale: Specialized policy type for transfer governance.
+    
+    examples:
+      - value: |
+          policy_name: "Donor Transfer Restriction"
+          policy_text: "Materials may not be transferred to institutions outside the Netherlands without donor consent."

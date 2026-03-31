@@ -1,0 +1,69 @@
+id: https://nde.nl/ontology/hc/class/ExtractionRule
+name: extraction_rule
+title: ExtractionRule Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rml: http://semweb.mmlab.be/ns/rml#
+  oa: http://www.w3.org/ns/oa#
+imports:
+- linkml:types
+classes:
+  ExtractionRule:
+    class_uri: hc:ExtractionRule
+    description: >-
+      A single field extraction rule within a WebExtractionProfile.
+      Specifies how to locate a value within a source document (via XPath,
+      JSONPath, or CSS selector), what target field to map it to, and what
+      optional transformation to apply. Aligns with RML (rml:reference)
+      for interoperability with RMLMapper/RMLStreamer.
+    alt_descriptions:
+      nl: Extractieregel die beschrijft hoe een waarde uit een brondocument wordt gelokaliseerd en getransformeerd.
+      de: Extraktionsregel die beschreibt wie ein Wert aus einem Quelldokument lokalisiert und transformiert wird.
+    attributes:
+      source_path:
+        description: >-
+          XPath, JSONPath, or CSS selector expression that locates the value
+          within a single record of the source document. For HTML tables this
+          might be "td[1]", for JSON APIs "$.name", for XML "//dc:title".
+        range: string
+        required: true
+        exact_mappings:
+          - rml:reference
+        close_mappings:
+          - oa:hasSelector
+      target_field:
+        description: >-
+          Name of the field in the output record that this extracted value
+          maps to. This is the slot name in the meta ontology or the
+          predicate local name in the RDF output.
+        range: string
+        required: true
+      target_predicate:
+        description: >-
+          Full or prefixed RDF predicate URI for the target field
+          (e.g., "schema:identifier", "rdfs:label"). Used when generating
+          RDF Turtle output.
+        range: string
+      transform:
+        description: >-
+          Name of the transform function to apply to the extracted value.
+          Built-in transforms: identity, trim, to_lowercase, enum_map,
+          template, parse_datetime. Aligns with FnO (Function Ontology)
+          used by RML for function-based value transformations.
+        range: string
+        ifabsent: "string(identity)"
+      datatype:
+        description: >-
+          Datatype hint for the extracted value: "string" (default), "uri",
+          "integer", "datetime", "boolean". Determines how the value is
+          serialized in the RDF output (quoted literal vs. URI reference).
+        range: string
+        ifabsent: "string(string)"
+    exact_mappings:
+      - rml:PredicateObjectMap
+    comments:
+      - "source_path aligns with rml:reference (the actual selector expression)"
+      - "target_predicate aligns with rr:predicate in R2RML/RML"
+      - "transform aligns with fnml:functionValue in RML+FnO"
+      - "See docs/plan/fetch_kos_regs/digital-resource-profiles.md"

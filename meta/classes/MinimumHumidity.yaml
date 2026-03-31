@@ -1,0 +1,50 @@
+id: https://nde.nl/ontology/hc/class/MinimumHumidity
+name: MinimumHumidity
+title: Minimum Humidity Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  qudt: http://qudt.org/schema/qudt/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_measurement_unit
+- ../slots/has_value
+classes:
+  MinimumHumidity:
+    class_uri: schema:QuantitativeValue
+    description: Lower bound of relative humidity accepted or observed for a context.
+    alt_descriptions:
+      nl: Ondergrens van de relatieve luchtvochtigheid die is toegestaan of waargenomen in een context.
+      de: Untergrenze der relativen Luftfeuchtigkeit die in einem Kontext zulaessig oder beobachtet ist.
+      fr: Limite inferieure de l humidite relative autorisee ou observee dans un contexte.
+      es: Limite inferior de humedad relativa permitida u observada en un contexto.
+      ar: الحد الأدنى للرطوبة النسبية المسموح بها أو المرصودة في سياق محدد.
+      id: Batas bawah kelembapan relatif yang diizinkan atau diamati dalam suatu konteks.
+      zh: 某一情境下允许或观测到的相对湿度下限值。
+    structured_aliases:
+    - {literal_form: minimale luchtvochtigheid, in_language: nl}
+    - {literal_form: minimale Luftfeuchtigkeit, in_language: de}
+    - {literal_form: humidite minimale, in_language: fr}
+    - {literal_form: humedad minima, in_language: es}
+    - {literal_form: الحد الأدنى للرطوبة, in_language: ar}
+    - {literal_form: kelembapan minimum, in_language: id}
+    - {literal_form: 最低湿度, in_language: zh}
+    broad_mappings:
+    - schema:QuantitativeValue
+    related_mappings:
+    - qudt:QuantityValue
+    slots:
+    - has_value
+    - has_measurement_unit
+    slot_usage:
+      has_value:
+        range: float
+        required: true
+      has_measurement_unit:
+        ifabsent: string(%)
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class.
+      custodian_types: "['*']"

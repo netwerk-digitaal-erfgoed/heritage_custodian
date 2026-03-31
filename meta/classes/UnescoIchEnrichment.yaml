@@ -1,0 +1,62 @@
+id: https://nde.nl/ontology/hc/classes/UnescoIchEnrichment
+name: UnescoIchEnrichment
+title: UnescoIchEnrichment
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+- ../slots/in_country
+# default_range: string
+classes:
+  UnescoIchEnrichment:
+    alt_descriptions:
+      nl: Verrijkingsdataset met UNESCO ICH-elementen voor een land.
+      de: Anreicherungsdatensatz mit UNESCO-ICH-Elementen fuer ein Land.
+      fr: Jeu de donnees d enrichissement des elements UNESCO ICH pour un pays.
+      es: Conjunto de enriquecimiento con elementos ICH de la UNESCO para un pais.
+      ar: مجموعة إثراء تتضمن عناصر التراث الثقافي غير المادي لليونسكو لدولة ما.
+      id: Dataset pengayaan elemen ICH UNESCO untuk suatu negara.
+      zh: 某一国家的 UNESCO 非物质文化遗产（ICH）要素丰富数据集。
+    structured_aliases:
+    - {literal_form: ICH-verrijking, in_language: nl}
+    - {literal_form: ICH-Anreicherung, in_language: de}
+    - {literal_form: enrichissement ICH, in_language: fr}
+    - {literal_form: enriquecimiento ICH, in_language: es}
+    - {literal_form: إثراء ICH, in_language: ar}
+    - {literal_form: pengayaan ICH, in_language: id}
+    - {literal_form: ICH 丰富, in_language: zh}
+    description: >-
+      Country-level aggregation record summarizing registered
+      intangible-heritage entries.
+    class_uri: prov:Entity
+    close_mappings:
+    - crm:E89_Propositional_Object
+    related_mappings:
+    - schema:Dataset
+    - prov:Collection
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+      modeling_notes: |
+        Content
+
+        This class represents enrichment data extracted from the UNESCO ICH registry,
+        not the heritage elements themselves.
+
+        Mapping rationale
+
+        - class_uri: prov:Entity (enrichment result as a provenance entity)
+        - close_mappings: crm:E89_Propositional_Object (conceptual/propositional cultural assets)
+        - related_mappings: schema:Dataset and prov:Collection (grouped enrichment results)
+    slots:
+    - in_country

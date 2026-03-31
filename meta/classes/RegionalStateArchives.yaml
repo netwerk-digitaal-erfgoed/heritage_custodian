@@ -1,0 +1,65 @@
+id: https://w3id.org/nde/ontology/RegionalStateArchives
+name: RegionalStateArchives
+title: Regional State Archives (Sweden)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  RegionalStateArchives:
+    description: >-
+      Regional state archives in Sweden, part of Riksarkivet (National Archives of Sweden),
+      serving specific regions of the country.
+    alt_descriptions:
+      sv: Landsarkiv i Sverige, en del av Riksarkivet som betjänar specifika regioner.
+      de: Regionale Staatsarchive in Schweden, Teil des Riksarkivet.
+      fr: Archives régionales d'État en Suède, faisant partie des Archives nationales suédoises.
+    structured_aliases:
+    - literal_form: Landsarkiv
+      in_language: sv
+    - literal_form: Provinzarchiv
+      in_language: de
+    - literal_form: archives régionales d'État
+      in_language: fr
+    comments:
+    - Preserves government records, court records, church archives, and other materials of regional significance.
+    - Part of Swedish Riksarkivet system.
+    - Complements the central national archives.
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q8727648
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Regional State Archives
+      skos:altLabel: "Provinzarchiv, archivo regional, archives régionales, Swedish Regional Archives"
+      admin_level: regional
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - RegionalArchive
+    - Landsarkiv
+    - NationalArchives

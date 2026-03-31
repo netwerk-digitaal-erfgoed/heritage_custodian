@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/class/CITESAppendix
+name: CITESAppendix
+title: CITES Appendix Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/effective_at
+default_prefix: hc
+classes:
+  CITESAppendix:
+    class_uri: hc:CITESAppendix
+    description: >-
+      Regulatory listing category used to represent international wildlife-trade protection status for specimen-related records.
+    alt_descriptions:
+      nl: Regelgevende lijstcategorie om internationale beschermingsstatus voor handel in wilde soorten binnen specimen-gerelateerde registraties vast te leggen.
+      de: Regulatorische Listenkategorie zur Abbildung des internationalen Schutzstatus im Wildtierhandel in exemplarbezogenen Datensätzen.
+      fr: Catégorie réglementaire de liste utilisée pour représenter le statut international de protection du commerce d'espèces dans les enregistrements liés aux spécimens.
+      es: Categoría de listado regulatorio usada para representar el estado internacional de protección del comercio de especies en registros relacionados con especímenes.
+      ar: فئة إدراج تنظيمية تُستخدم لتمثيل حالة الحماية الدولية لتجارة الأنواع في السجلات المرتبطة بالعينات.
+      id: Kategori daftar regulatif untuk merepresentasikan status perlindungan perdagangan satwa liar internasional pada rekod terkait spesimen.
+      zh: 用于表示标本相关记录中野生动植物国际贸易保护状态的监管清单类别。
+    structured_aliases:
+    - literal_form: CITES-bijlage
+      in_language: nl
+    - literal_form: CITES-Anhang
+      in_language: de
+    - literal_form: annexe CITES
+      in_language: fr
+    - literal_form: apéndice CITES
+      in_language: es
+    - literal_form: ملحق سايتس
+      in_language: ar
+    - literal_form: lampiran CITES
+      in_language: id
+    - literal_form: CITES附录
+      in_language: zh
+    slots:
+    - has_type
+    - has_label
+    - effective_at
+    slot_usage:
+      has_type:
+#         range: string
+        required: true
+        pattern: '^(APPENDIX_I|APPENDIX_II|APPENDIX_III|NOT_LISTED)$'
+        examples:
+        - value: APPENDIX_I
+        - value: APPENDIX_II
+        - value: APPENDIX_III
+        - value: NOT_LISTED
+      has_label:
+#         range: string
+        required: false
+        examples:
+        - value: CITES Appendix I - Trade Prohibited
+        - value: CITES Appendix II - Trade Regulated
+    broad_mappings:
+    - schema:PropertyValue
+    see_also:
+    - https://cites.org/eng/app/appendices.php
+    - https://speciesplus.net/
+    examples:
+    - value:
+        has_type: APPENDIX_I
+        has_label: CITES Appendix I - Most Endangered
+        effective_at: '1975-07-01'
+    - value:
+        has_type: NOT_LISTED
+        has_label: Not regulated under CITES
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

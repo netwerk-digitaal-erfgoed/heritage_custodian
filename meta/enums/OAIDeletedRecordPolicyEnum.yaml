@@ -1,0 +1,34 @@
+id: https://nde.nl/ontology/hc/enum/OAIDeletedRecordPolicyEnum
+name: oai_deleted_record_policy_enum
+title: OAI Deleted Record Policy Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  OAIDeletedRecordPolicyEnum:
+    description: |
+      OAI-PMH deleted record support policy.
+
+      Determines how the repository handles records that have been deleted.
+    permissible_values:
+      'no':
+        description: |
+          Repository does not maintain information about deletions.
+
+          No "deleted" status will ever be returned.
+          Harvesters cannot detect deleted records.
+      TRANSIENT:
+        description: |
+          Repository maintains deleted records for an unspecified period.
+
+          Harvesters may see "deleted" status, but it's not guaranteed
+          to persist indefinitely.
+      PERSISTENT:
+        description: |
+          Repository persistently maintains deleted records.
+
+          Once a record is assigned "deleted" status, it remains
+          queryable with that status.
+
+          Recommended for reliable incremental harvesting.

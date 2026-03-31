@@ -1,0 +1,102 @@
+id: https://w3id.org/nde/ontology/PrintRoom
+name: PrintRoom
+title: Print Room Organization Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_type
+classes:
+  PrintRoom:
+    description: >-
+      Specialized collection within a museum or library focused on works on paper
+      including prints, drawings, watercolors, and photographs requiring controlled
+      viewing conditions due to light sensitivity.
+    alt_descriptions:
+      nl: >-
+        Gespecialiseerde collectie binnen een museum of bibliotheek gericht op werken op papier
+        inclusief prenten, tekeningen, aquarellen en foto's die gecontroleerde
+        bezichtigingsomstandigheden vereisen vanwege lichtgevoeligheid.
+      de: >-
+        Spezialisierte Sammlung innerhalb eines Museums oder einer Bibliothek, die sich auf Arbeiten
+        auf Papier konzentriert, einschließlich Drucke, Zeichnungen, Aquarelle und Fotografien,
+        die aufgrund der Lichtempfindlichkeit kontrollierte Besichtigungsbedingungen erfordern.
+      fr: >-
+        Collection spécialisée au sein d'un musée ou d'une bibliothèque axée sur les œuvres sur papier
+        y compris les estampes, dessins, aquarelles et photographies nécessitant des conditions
+        de visionnement contrôlées en raison de la sensibilité à la lumière.
+      es: >-
+        Colección especializada dentro de un museo o biblioteca enfocada en obras sobre papel
+        incluyendo grabados, dibujos, acuarelas y fotografías que requieren condiciones
+        de visualización controladas debido a la sensibilidad a la luz.
+      ar: >-
+        مجموعة متخصصة داخل متحف أو مكتبة تركز على الأعمال الورقية
+        بما في ذلك المطبوعات والرسومات والألوان المائية والصور التي تتطلب
+        ظروف عرض محكومة بسبب الحساسية للضوء.
+      id: >-
+        Koleksi khusus dalam museum atau perpustakaan yang berfokus pada karya di atas kertas
+        termasuk cetakan, gambar, cat air, dan foto yang memerlukan kondisi
+        penayangan terkontrol karena sensitivitas cahaya.
+      zh: >-
+        博物馆或图书馆内的专门馆藏，专注于纸上作品，
+        包括版画、素描、水彩和照片，由于光敏感性需要受控的观看条件。
+    broad_mappings:
+      - skos:Concept
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    slots:
+      - has_type
+      - has_score
+      - identified_by
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+          - equals_string: "hc:PrintRoom"
+    see_also:
+      - IconographicArchives
+      - PhotoArchive
+      - MuseumArchive
+    comments:
+      - Specialized collection for prints and drawings
+      - Requires controlled lighting and handling
+      - Often part of larger museum or library
+      - Materials are light-sensitive
+      - Removed prior wd mapping after Wikidata check showed the referenced item is a person, not a print-room concept.
+    examples:
+      - value:
+          has_type: hc:PrintRoom
+          has_score: 0.80
+        description: Works on paper collection
+    keywords:
+      - prints
+      - drawings
+      - works on paper
+      - kupferstichkabinett
+      - light-sensitive
+    annotations:
+      skos:prefLabel: Print Room
+      media_type: prints/works on paper
+      specificity_score: 0.80
+      specificity_rationale: Specialized collection type for works on paper
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: prentenkabinet
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kupferstichkabinett
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: cabinet des estampes
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: gabinete de estampas
+        predicate: EXACT_SYNONYM
+        in_language: es

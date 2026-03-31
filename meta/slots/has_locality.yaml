@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: has_locality
+# ==============================================================================
+# The city, town, or settlement where an entity or address is situated.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line                  | Mapping | Notes                                                          |
+# |---------------|----------------------------|----------------------------|---------|----------------------------------------------------------------|
+# | **vCard**     | `vcard:locality`           | vcard.ttl:839-843          | close   | "The locality (e.g. city or town) associated with the address of the object." |
+# | **LOCN**      | `locn:postName`            | locn.ttl:204-211           | close   | "The key postal division of the address, usually the city." Domain: locn:Address. |
+# | **Schema.org**| `schema:addressLocality`   | schemaorg.owl:7285-7304    | close   | "The locality in which the street address is, and which is in the region." Domain: PostalAddress. |
+# | **DwC**       | `dwc:locality`             | dwc.rdf:1004-1010          | related | Specimen collection location context, not address subdivision.  |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_locality
+name: has_locality
+title: Has Locality
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  vcard: http://www.w3.org/2006/vcard/ns#
+  locn: http://www.w3.org/ns/locn#
+  schema: https://schema.org/
+  dwc: http://rs.tdwg.org/dwc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_locality:
+    slot_uri: hc:has_locality
+    description: >-
+      Designates the specific city, town, village, settlement or distinct
+      neighborhood where an entity or address is situated, often functioning
+      as a subdivision of a larger region.
+    comments:
+      - >-
+        Use official local name or standardized English name.
+      - >-
+        For precise identification, use Settlement class with GeoNames ID.
+      - >-
+        Distinct from city slot which maps to schema:addressLocality.
+    alt_descriptions:
+      nl: >-
+        Duidt de specifieke stad, gemeente, dorp, nederzetting of aparte wijk
+        aan waar een entiteit of adres is gelegen, vaak als onderdeel van een
+        grotere regio.
+      de: >-
+        Bezeichnet die spezifische Stadt, Gemeinde, das Dorf, die Siedlung oder
+        das eigenständige Viertel, in dem sich eine Entität oder Adresse
+        befindet, oft als Unterteilung einer größeren Region.
+      fr: >-
+        Désigne la ville, le village, la commune, l'agglomération ou le quartier
+        spécifique où une entité ou une adresse est située, fonctionnant souvent
+        comme une subdivision d'une région plus grande.
+      ar: >-
+        يحدد المدينة أو البلدة أو القرية أو المستوطنة أو الحي المميز الذي
+        تقع فيه كيان أو عنوان، وغالبًا ما يعمل كتقسيم فرعي لمنطقة أكبر.
+      id: >-
+        Menunjukkan kota, kotamadya, desa, permukiman, atau lingkungan tertentu
+        tempat suatu entitas atau alamat berada, sering berfungsi sebagai
+        subdivisi dari wilayah yang lebih besar.
+      zh: >-
+        指定实体或地址所在的特定城市、城镇、村庄、定居点或独立社区，通常作为更大区域的细分。
+      es: >-
+        Designa la ciudad, pueblo, villa, asentamiento o barrio específico donde
+        se encuentra una entidad o dirección, funcionando a menudo como una
+        subdivisión de una región más grande.
+    structured_aliases:
+      - literal_form: Plaats
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ortschaft
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Localité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: محلة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Lokalitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 地点
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Localidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    examples:
+      - value: Amsterdam
+        description: City name
+      - value: "'s-Gravenhage"
+        description: Official Dutch name for The Hague
+      - value: Haarlem
+        description: Historic city name
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - locality
+      - major_city
+      - settlement_name
+      - settlement
+    close_mappings:
+      - vcard:locality  # vcard.ttl:839-843 - "The locality (e.g. city or town) associated with the address of the object."
+      - locn:postName  # locn.ttl:204-211 - "The key postal division of the address, usually the city." Domain: locn:Address.
+      - schema:addressLocality  # schemaorg.owl:7285-7304 - "The locality in which the street address is, and which is in the region." Domain: PostalAddress.
+    related_mappings:
+      - dwc:locality  # dwc.rdf:1004-1010 - Specimen collection location; different context than address subdivision.

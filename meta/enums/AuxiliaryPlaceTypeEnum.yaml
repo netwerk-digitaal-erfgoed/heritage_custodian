@@ -1,0 +1,188 @@
+# AuxiliaryPlaceTypeEnum - Types of secondary/subordinate physical locations
+# 
+# Used by AuxiliaryPlace class to classify types of secondary locations
+# that heritage custodians operate at beyond their main headquarters.
+# 
+# Each enum value now references a specialized class for detailed modeling.
+# 
+# Generation date: 2025-11-25
+# Updated: 2025-12-01 - Added class_reference annotations
+# 
+id: https://nde.nl/ontology/hc/enum/auxiliary-place-type
+name: auxiliary_place_type_enum
+title: Auxiliary Place Type Enumeration
+
+imports:
+  - linkml:types
+
+enums:
+  AuxiliaryPlaceTypeEnum:
+    description: |
+      Types of secondary or subordinate physical locations for heritage custodians.
+      
+      These represent physical sites beyond the main headquarters where custodians
+      operate, including storage facilities, branch offices, research centers, etc.
+      
+      Aligns with W3C ORG org:Site concept for organizational premises.
+      
+      **CLASS-BASED TYPING**:
+      
+      Each enum value references a specialized class that provides:
+      - Detailed slots specific to that place type
+      - Type-specific enums for further classification
+      - Appropriate ontology mappings (CIDOC-CRM, Schema.org, etc.)
+      
+      When creating an AuxiliaryPlace with a specific type, the corresponding
+      specialized class can be used for richer modeling.
+    
+    permissible_values:
+      BRANCH_OFFICE:
+        title: branch office
+        description: |
+          Regional or satellite office providing services in a different location
+          from the main headquarters. May have reading room, public services.
+        meaning: org:Site
+        annotations:
+          examples: "Noord-Hollands Archief regional reading room, University library branch campus"
+          class_reference: BranchOffice
+      
+      STORAGE_FACILITY:
+        title: storage facility
+        description: |
+          Off-site storage depot, warehouse, or vault for collections. Typically
+          climate-controlled, staff-access only, not public-facing.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Rijksmuseum Depot Amersfoort, Archive document center"
+          class_reference: Storage
+      
+      RESEARCH_CENTER:
+        title: research center
+        description: |
+          Specialized research facility separate from main building. Conservation
+          labs, digitization centers, scholarly research units.
+        meaning: org:Site
+        annotations:
+          examples: "Conservation lab, Digitization center, Research library annex"
+          class_reference: ResearchCenter
+      
+      EXHIBITION_SPACE:
+        title: exhibition space
+        description: |
+          Satellite gallery or exhibition pavilion separate from main museum.
+          May be temporary or permanent installation.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Rijksmuseum Schiphol, Pop-up museum, Outdoor sculpture garden"
+          class_reference: ExhibitionSpace
+      
+      HISTORIC_BUILDING:
+        title: historic building
+        description: |
+          Secondary historic property managed by same custodian. Historic houses,
+          heritage buildings, archaeological sites.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Historic house museum annex, Heritage property, Preserved building"
+          class_reference: HistoricBuilding
+      
+      TEMPORARY_LOCATION:
+        title: temporary location
+        description: |
+          Temporary facility during renovation, relocation, or special events.
+          Has defined valid_from/valid_to dates.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Renovation storage, Temporary exhibition venue, Event pavilion"
+          class_reference: TemporaryLocation
+      
+      ADMINISTRATIVE_OFFICE:
+        title: administrative office
+        description: |
+          Non-public administrative building for staff operations, HR, finance,
+          IT services. Not a public-facing heritage facility.
+        meaning: org:Site
+        annotations:
+          examples: "Administrative headquarters, Back-office facility, IT data center"
+          class_reference: AdministrativeOffice
+      
+      EDUCATION_CENTER:
+        title: education center
+        description: |
+          Dedicated educational facility for workshops, classes, public programs.
+          May be at different location from main institution.
+        meaning: org:Site
+        annotations:
+          examples: "Youth education center, Teacher training facility, Workshop space"
+          class_reference: EducationCenter
+      
+      CONSERVATION_LAB:
+        title: conservation lab
+        description: |
+          Specialized conservation and restoration facility with technical equipment.
+          May serve multiple institutions.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Paper conservation lab, Paintings restoration studio, Digital preservation lab"
+          class_reference: ConservationLab
+      
+      READING_ROOM:
+        title: reading room
+        description: |
+          Primary research/reading room for patron access to collections.
+          The main space where researchers consult materials.
+        meaning: org:Site
+        annotations:
+          examples: "Main reading room, Special collections reading room, Manuscript study room"
+          class_reference: ReadingRoom
+      
+      READING_ROOM_ANNEX:
+        title: reading room annex
+        description: |
+          Overflow or specialized reading room separate from main building.
+          For peak periods or specialized collections.
+        meaning: org:Site
+        annotations:
+          examples: "Manuscript reading room, Genealogy research center, Microfilm reading room"
+          class_reference: ReadingRoomAnnex
+      
+      WAREHOUSE:
+        title: warehouse
+        description: |
+          Large-scale storage building for bulk materials, supplies, or
+          non-collection items. Industrial facility.
+        meaning: crm:E27_Site
+        annotations:
+          examples: "Equipment warehouse, Supplies storage, Exhibition materials storage"
+          class_reference: Warehouse
+      
+      OUTDOOR_SITE:
+        title: outdoor site
+        description: |
+          Open-air heritage site, garden, park, or landscape feature managed
+          by the custodian. Archaeological site, sculpture garden.
+        meaning: crm:E53_Place
+        annotations:
+          examples: "Sculpture garden, Archaeological excavation site, Historic park"
+          class_reference: OutdoorSite
+      
+      RETAIL_SPACE:
+        title: retail space
+        description: |
+          Commercial retail location for gift shop, bookshop, or museum store.
+          May be within main building, separate building, or external location
+          (airport, train station, shopping center).
+        meaning: schema:Store
+        annotations:
+          examples: "Rijksmuseum Shop at Schiphol, Museum bookshop annex, Pop-up store location"
+          class_reference: GiftShop
+      
+      CAFE_RESTAURANT:
+        title: cafe or restaurant
+        description: |
+          Food service facility operated by or for the custodian.
+          May be in-house or outsourced, within building or separate location.
+        meaning: schema:FoodEstablishment
+        annotations:
+          examples: "Museum cafe, Restaurant terrace, Coffee corner, Event catering kitchen"
+          class_reference: CateringPlace

@@ -1,0 +1,439 @@
+id: https://nde.nl/ontology/hc/class/ProvenanceEvent
+name: ProvenanceEvent
+title: Provenance Event Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  aat: http://vocab.getty.edu/aat/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+  - ../enums/ProvenanceEventTypeEnum
+  - ../metadata
+  - ../slots/change_ownership_from
+  - ../slots/change_ownership_to
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_level
+  - ../slots/has_note
+  - ../slots/has_provenance
+  - ../slots/has_reference
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_url
+  - ../slots/associated_with
+  - ../slots/conducted_by
+  - ../slots/has_numeric_value
+  - ../slots/has_flag
+  - ../slots/refer_to
+  - ../slots/has_price
+  - ../slots/has_currency
+  - ../slots/has_text
+  - ../slots/publish
+  - ../slots/require
+  - ../slots/temporal_extent
+default_prefix: hc
+classes:
+  ProvenanceEvent:
+    class_uri: crm:E8_Acquisition
+    description: >-
+      Event representing a transfer of legal ownership or custody of a heritage object
+      from one party to another, documenting the chain of provenance throughout its history.
+    alt_descriptions:
+      nl: >-
+        Gebeurtenis die een overdracht van juridisch eigendom of bewaring van een erfgoedobject
+        van de ene partij naar de andere vertegenwoordigt, documenterend de herkomstketen throughout zijn geschiedenis.
+      de: >-
+        Ereignis, das die Übertragung des rechtlichen Eigentums oder der Verwahrung eines Kulturguts
+        von einer Partei an eine andere darstellt und die Provenienzkette dokumentiert.
+      fr: >-
+        Événement représentant un transfert de propriété légale ou de garde d'un objet patrimonial
+        d'une partie à une autre, documentant la chaîne de provenance tout au long de son histoire.
+      es: >-
+        Evento que representa una transferencia de propiedad legal o custodia de un objeto patrimonial
+        de una parte a otra, documentando la cadena de procedencia a lo largo de su historia.
+      ar: >-
+        حدث يمثل نقل الملكية القانونية أو الحيازة لقطعة تراثية
+        من طرف إلى آخر، يوثق سلسلة المنشأ عبر تاريخها.
+      id: >-
+        Peristiwa yang mewakili transfer kepemilikan legal atau pengawasan objek warisan budaya
+        dari satu pihak ke pihak lain, mendokumentasikan rantai provenance sepanjang sejarahnya.
+      zh: >-
+        表示文化遗产物品的法律所有权或保管权从一方转移到另一方的事件，
+        记录其历史上的来源链条。
+    exact_mappings:
+      - crm:E8_Acquisition
+    close_mappings:
+      - crm:E10_Transfer_of_Custody
+      - prov:Activity
+      - schema:TransferAction
+      - aat:300055863
+    related_mappings:
+      - crm:E7_Activity
+      - schema:Action
+    broad_mappings:
+      - crm:E7_Activity
+    keywords:
+      - provenance event
+      - ownership transfer
+      - acquisition
+      - chain of custody
+    slots:
+    - conducted_by
+    - publish
+    - associated_with
+    - has_reference
+    - has_url
+    - identified_by
+    - has_note
+    - temporal_extent
+    - has_type
+    - change_ownership_from
+    - has_numeric_value
+    - has_flag
+    - refer_to
+    - has_price
+    - has_currency
+    - has_text
+    - has_provenance
+    - require
+    - has_score
+    - change_ownership_to
+    - has_description
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+#         range: string # uriorcurie
+        examples:
+        - value: https://nde.nl/ontology/hc/provenance/mauritshuis-670-001
+        - value: https://nde.nl/ontology/hc/provenance/rijksmuseum-sk-c-5-005
+      refer_to:
+        required: true
+#         range: string # uriorcurie
+        inlined: false
+        examples:
+        - value: https://nde.nl/ontology/hc/object/mauritshuis-girl-pearl-earring
+      has_type:
+        required: true
+        range: ProvenanceEventTypeEnum
+        examples:
+        - value: BEQUEST
+        - value: AUCTION
+        - value: CONFISCATION
+      temporal_extent:
+        required: false
+        range: TimeSpan
+        inlined: true
+        examples:
+        - value:
+            begin_of_the_begin: '1664-01-01'
+            end_of_the_end: '1674-12-31'
+            has_label: c. 1665-74
+        - value:
+            begin_of_the_begin: '1696-05-16'
+            end_of_the_end: '1696-05-16'
+            has_label: May 16, 1696
+      change_ownership_from:
+        required: false
+#         range: string # uriorcurie
+        inlined: false
+        examples:
+        - value: https://nde.nl/ontology/hc/person/des-tombe
+      change_ownership_to:
+        required: false
+#         range: string # uriorcurie
+        inlined: false
+        examples:
+        - value: https://nde.nl/ontology/hc/custodian/nl/mauritshuis
+      has_description:
+        required: false
+        multivalued: true
+        examples:
+        - value:
+            description_text: A.A. des Tombe, The Hague (1881-1903)
+            description_type: from_owner
+        - value:
+            description_text: Pieter van Ruijven, Delft (c. 1665-1674)
+            description_type: from_owner
+        - value:
+            description_text: Unknown German collector
+            description_type: from_owner
+        - value:
+            description_text: Mauritshuis, The Hague
+            description_type: to_owner
+        - value:
+            description_text: Maria de Knuijt, widow of van Ruijven
+            description_type: to_owner
+      has_price:
+        required: false
+        range: decimal
+        examples:
+        - value: 30
+        - value: 30000000
+      has_currency:
+        required: false
+#         range: string
+        examples:
+        - value: NLG
+        - value: EUR
+        - value: USD
+        - value: RM
+      has_text:
+        required: false
+#         range: string
+        examples:
+        - value: 30 guilders
+        - value: Purchased for 2 stuivers 10 guilders
+        - value: Forced sale for nominal sum
+      has_numeric_value:
+        required: false
+#         range: string
+        examples:
+        - value: '36'
+        - value: Lot 127A
+      associated_with:
+        required: false
+        range: ArtDealer
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_name:
+              has_label: Paul Cassirer
+        - value:
+            has_name:
+              has_label: Goupil & Cie
+      has_reference:
+        required: false
+        range: Reference
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_label: Dissius sale catalogue, Amsterdam, May 16, 1696, lot 36
+        - value:
+            has_label: Hofstede de Groot, vol. 1, no. 44
+      has_url:
+        required: false
+        range: uri
+        inlined: false # Fixed invalid inline for primitive type
+        multivalued: true
+        examples:
+        - value:
+            url_value: https://rkd.nl/explore/provenance/12345
+            url_type: provenance_record
+        - value:
+            url_value: https://www.getty.edu/research/provenance/sales
+            url_type: sales_database
+      has_level:
+        required: false
+        range: CertaintyLevel
+        inlined: true
+        examples:
+        - value:
+            level_value: CERTAIN
+            has_note:
+            - note_type: certainty
+              note_content: Confirmed by sale catalogue and receipt
+        - value:
+            level_value: PROBABLE
+            has_note:
+            - note_type: certainty
+              note_content: Inferred from stylistic analysis and collection history
+        - value:
+            level_value: UNCERTAIN
+            has_note:
+            - note_type: certainty
+              note_content: Provenance gap 1933-1945 requires further research
+      has_provenance:
+        required: false
+        range: Provenance
+        inlined: true
+        examples:
+        - value:
+            has_description:
+            - description_text: A.A. des Tombe, The Hague (purchased 1881, d. 1903)
+              description_type: provenance_text
+        - value:
+            has_description:
+            - description_text: Dissius sale, Amsterdam, May 16, 1696, lot 36
+              description_type: provenance_text
+      has_note:
+        required: false
+#         range: string
+        multivalued: true
+        examples:
+        - value: des Tombe purchased at auction for 30 guilders, a bargain price
+        - value: The painting's attribution to Vermeer was not recognized until later
+        - value: '[1] Montias 1989, p. 256, doc. 437'
+        - value: '[2] The painting was catalogued as ''A Tronij painted in Turkish fashion'''
+    comments:
+    - ProvenanceEvent models ownership transfers in an object's history
+    - Links to ExhibitedObject via object_ref relationship
+    - Uses ProvenanceEventTypeEnum for event classification
+    - Uses CIDOC-CRM E8_Acquisition as primary ontology mapping
+    - Supports Nazi-era provenance research with nazi_era_flag
+    - Certainty levels allow scholarly documentation of evidence quality
+    see_also:
+    - https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E8
+    - https://www.aamd.org/object-registry
+    - https://www.lootedart.com/
+    - https://www.getty.edu/research/tools/provenance/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/provenance/mauritshuis-670-001
+        object_ref: https://nde.nl/ontology/hc/object/mauritshuis-girl-pearl-earring
+        has_type: CREATION
+        temporal_extent:
+          begin_of_the_begin: '1664-01-01'
+          end_of_the_end: '1667-12-31'
+          has_label: c. 1665
+        has_description:
+        - description_text: Johannes Vermeer, Delft
+          description_type: to_owner
+        - place_name: Delft
+          country: NL
+        has_level:
+          level_value: CERTAIN
+        has_provenance:
+          has_description:
+          - description_text: Created by Johannes Vermeer, Delft, c. 1665
+            description_type: provenance_text
+    - value:
+        identified_by: https://nde.nl/ontology/hc/provenance/mauritshuis-670-002
+        object_ref: https://nde.nl/ontology/hc/object/mauritshuis-girl-pearl-earring
+        has_type: PURCHASE
+        temporal_extent:
+          begin_of_the_begin: '1665-01-01'
+          end_of_the_end: '1674-12-31'
+          has_label: c. 1665-1674
+        has_description:
+        - description_text: Johannes Vermeer
+          description_type: from_owner
+        - description_text: Pieter van Ruijven, Delft (c. 1665-1674)
+          description_type: to_owner
+        has_level:
+          level_value: PROBABLE
+          has_note:
+          - note_type: certainty
+            note_content: Van Ruijven was Vermeer's patron; likely acquired directly from artist
+        has_reference:
+        - has_label: Montias, Vermeer and His Milieu (1989), pp. 247-252
+        has_provenance:
+          has_description:
+          - description_text: Possibly Pieter van Ruijven, Delft (c. 1665-1674)
+            description_type: provenance_text
+    - value:
+        identified_by: https://nde.nl/ontology/hc/provenance/mauritshuis-670-005
+        object_ref: https://nde.nl/ontology/hc/object/mauritshuis-girl-pearl-earring
+        has_type: AUCTION
+        temporal_extent:
+          begin_of_the_begin: '1696-05-16'
+          end_of_the_end: '1696-05-16'
+          has_label: May 16, 1696
+        has_description:
+        - description_text: Estate of Jacob Dissius
+          description_type: from_owner
+        - description_text: Unknown buyer
+          description_type: to_owner
+        - place_name: Amsterdam
+          country: NL
+        publish:
+        - has_name: Dissius sale
+        lot_number: '36'
+        price_text: Unknown
+        has_level:
+          level_value: CERTAIN
+        has_reference:
+        - has_label: Dissius sale catalogue, Amsterdam, May 16, 1696, lot 36
+        has_note:
+        - Catalogued as 'Een Tronij in Antique Klederen, ongemeen konstig' (A Tronie in Antique Dress, uncommonly artful)
+        has_provenance:
+          has_description:
+          - description_text: Dissius sale, Amsterdam, May 16, 1696, lot 36
+            description_type: provenance_text
+    - value:
+        identified_by: https://nde.nl/ontology/hc/provenance/mauritshuis-670-008
+        object_ref: https://nde.nl/ontology/hc/object/mauritshuis-girl-pearl-earring
+        has_type: PURCHASE
+        temporal_extent:
+          begin_of_the_begin: '1881-01-01'
+          end_of_the_end: '1881-12-31'
+          has_label: '1881'
+        has_description:
+        - description_text: Unknown seller
+          description_type: from_owner
+        - description_text: A.A. des Tombe, The Hague
+          description_type: to_owner
+        price: 30
+        price_currency: NLG
+        price_text: 30 guilders
+        has_level:
+          level_value: CERTAIN
+        has_provenance:
+          has_description:
+          - description_text: A.A. des Tombe, The Hague (purchased 1881 for 30 guilders)
+            description_type: provenance_text
+        has_note:
+        - Des Tombe purchased at auction for a bargain price
+        - Painting was in poor condition and not yet attributed to Vermeer
+    - value:
+        identified_by: https://nde.nl/ontology/hc/provenance/mauritshuis-670-009
+        object_ref: https://nde.nl/ontology/hc/object/mauritshuis-girl-pearl-earring
+        has_type: BEQUEST
+        temporal_extent:
+          begin_of_the_begin: '1903-01-01'
+          end_of_the_end: '1903-12-31'
+          has_label: '1903'
+        has_description:
+        - description_text: A.A. des Tombe (d. 1903)
+          description_type: from_owner
+        - description_text: Mauritshuis, The Hague
+          description_type: to_owner
+        change_ownership_to: https://nde.nl/ontology/hc/custodian/nl/mauritshuis
+        has_level:
+          level_value: CERTAIN
+        has_reference:
+        - has_label: Will of A.A. des Tombe
+        - has_label: Mauritshuis accession records
+        has_provenance:
+          has_description:
+          - description_text: Bequeathed to Mauritshuis, 1903
+            description_type: provenance_text
+    - value:
+        identified_by: https://nde.nl/ontology/hc/provenance/example-nazi-confiscation
+        object_ref: https://nde.nl/ontology/hc/object/example-painting
+        has_type: CONFISCATION
+        temporal_extent:
+          begin_of_the_begin: '1938-01-01'
+          end_of_the_end: '1938-12-31'
+          has_label: '1938'
+        has_description:
+        - description_text: Jewish collector, Vienna
+          description_type: from_owner
+        - description_text: Nazi authorities
+          description_type: to_owner
+        nazi_era_flag: true
+        requires_research: true
+        has_level:
+          level_value: PROBABLE
+          has_note:
+          - note_type: certainty
+            note_content: Documentation incomplete; collector fled Vienna 1938
+        has_note:
+        - Provenance gap requires further research
+        - Listed on Art Loss Register
+    notes:
+      - |
+        Preserved from prior description (commit 6251b84d):
+
+        "An event representing a change in ownership or custody of a heritage object.\n\nProvenanceEvent models the CHAIN OF OWNERSHIP - who owned the object, when,\nand how ownership transferred between parties.\n\n**Key Distinction**:\n\n| Concept | Class | Description |\n|---------|-------|-------------|\n| **Ownership change** | **ProvenanceEvent** | **Sale, gift, confiscation** |\n| Temporary custody | Loan | Exhibition loan, study loan |\n| Physical condition | ConservationRecord | Condition, treatment |\n\n**Ontology Alignment**:\n\n- **CIDOC-CRM**: crm:E8_Acquisition (primary)\n  \"Comprises the actions by which legal ownership of physical objects \n  is transferred from one person or institution to another.\"\n- **CIDOC-CRM**: crm:E10_Transfer_of_Custody (for custody without ownership)\n- **PROV-O**: prov:Activity (provenance activity)\n- **Schema.org**: schema:TransferAction\n\n**Provenance Research Standards**:\n\nSupports key provenance research requirements:\n- **Nazi-era\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

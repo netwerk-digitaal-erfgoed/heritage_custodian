@@ -1,0 +1,80 @@
+# ==============================================================================
+# LinkML Slot Definition: hold_session
+# ==============================================================================
+# Conducting or hosting a meeting, presentation, or gathering.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                | Mapping  | Notes                                                      |
+# |---------------|-----------------------------|--------------------------|----------|------------------------------------------------------------|
+# | **Schema.org**| `schema:event`              | schemaorg.owl:17315-17339| broad    | "Upcoming or past event associated with this place, organization, or action." Any event. |
+# | **Schema.org**| `schema:organizer`          | schemaorg.owl:28512-28534| related  | "An organizer of an Event." Event→Person/Organization direction. |
+# | **CIDOC-CRM** | `crm:P11_had_participant`   | CIDOC:1406-1421          | related  | "Describes participation of Actors in an Event." Participation, not hosting. |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/hold_session
+name: hold_session
+title: Hold Session
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  hold_session:
+    slot_uri: hc:holdSession
+    description: >-
+      Conducts, hosts, or facilitates a specific meeting, presentation, or gathering for a defined audience and purpose.
+    alt_descriptions:
+      nl: >-
+        Voert een specifieke vergadering, presentatie of bijeenkomst uit, organiseert of faciliteert deze voor een bepaald publiek en doel.
+      de: >-
+        Führt eine bestimmte Sitzung, Präsentation oder Versammlung für ein definiertes Publikum und einen bestimmten Zweck durch, veranstaltet oder erleichtert diese.
+      fr: >-
+        Conduit, accueille ou facilite une réunion, une présentation ou un rassemblement spécifique pour un public et un objectif définis.
+      ar: >-
+        يقوم بإجراء أو استضافة أو تسهيل اجتماع أو عرض تقديمي أو تجمع محدد لجمهور وغرض محددين.
+      id: >-
+        Menyelenggarakan, menyelenggarakan, atau memfasilitasi pertemuan, presentasi, atau pertemuan tertentu untuk audiens dan tujuan yang ditentukan.
+      zh: >-
+        为特定受众和目的举办、主持或促进特定会议、演示或聚会。
+      es: >-
+        Conduce, organiza o facilita una reunión, presentación o encuentro específico para una audiencia y propósito definidos.
+    structured_aliases:
+      - literal_form: Sessie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sitzung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Séance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: جلسة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Sesi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 会议
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Sesión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - info_session_date
+    broad_mappings:
+      - schema:event  # schemaorg.owl:17315-17339 - "Upcoming or past event associated with this place, organization, or action."
+    related_mappings:
+      - schema:organizer  # schemaorg.owl:28512-28534 - "An organizer of an Event." Event→Person/Organization direction.
+      - crm:P11_had_participant  # CIDOC:1406-1421 - "Describes participation of Actors in an Event." Participation, not hosting.

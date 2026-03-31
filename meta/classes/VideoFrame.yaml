@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/VideoFrame
+name: VideoFrame
+title: VideoFrame Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  oa: http://www.w3.org/ns/oa#
+imports:
+- linkml:types
+- ../slots/has_quantity
+- ../slots/has_measurement_unit
+default_prefix: hc
+classes:
+  VideoFrame:
+    class_uri: schema:VideoObject
+    description: >-
+      Still-image segment representing a discrete temporal sample extracted from moving-image media.
+    alt_descriptions:
+      nl: >-
+        Stilstaand beeldsegment dat een discreet tijdsmonster vertegenwoordigt dat uit bewegende beeldmedia is geëxtraheerd.
+      de: >-
+        Standbildsegment, das eine diskrete zeitliche Probe darstellt, die aus Bewegtbildmedien extrahiert wurde.
+      fr: >-
+        Segment d'image fixe représentant un échantillon temporel discret extrait de médias d'images animées.
+      es: >-
+        Segmento de imagen fija que representa una muestra temporal discreta extraída de medios de imágenes en movimiento.
+      ar: >-
+        مقطع صورة ثابتة يمثل عينة زمنية منفصلة مستخرجة من وسائط الصور المتحركة.
+      id: >-
+        Segmen gambar diam yang mewakili sampel temporal diskrit yang diekstrak dari media gambar bergerak.
+      zh: >-
+        表示从运动图像媒体中提取的离散时间样本的静止图像片段。
+    structured_aliases:
+
+      - literal_form: Videoframe
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: Videobild
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: Image vidéo
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: Fotograma de video
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: إطار فيديو
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: Bingkai Video
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: 视频帧
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+    annotations:
+      custodian_types: '["D"]'
+      custodian_types_rationale: Video frames are primarily relevant for digital platforms (D) that host or process video content.
+      custodian_types_primary: D
+      specificity_score: 0.7
+      specificity_rationale: Moderately specific - applies only to video analysis contexts.
+    examples:
+    - value: "VideoFrame:\n  has_quantity:\n    has_unit:\n"
+    - value: "VideoFrame:\n  has_quantity:\n    has_unit:\n"
+    comments:
+    - Created from slot_fixes.yaml migration (2026-01-22)
+    - Use with analyze slot to track frame analysis
+    - Sample rate affects both coverage and compute cost
+    - 'Preserved from prior description: A video frame or set of frames analyzed during video processing. **PURPOSE**: Represents frames from a video that have been analyzed by computer vision or multimodal AI models. Used to track frame-based analysis parameters such as sample rate (frames per second analyzed) and total frames processed. **USE CASES**: - Video annotation (object detection, scene analysis) - Frame sampling configuration - Analysis throughput tracking - Computer vision pipeline configuration **FRAME SAMPLE RATE**: The sample rate determines how many frames are analyzed per second of video: | Sample Rate | Frames/sec | Use Case | |-------------|------------|----------| | 0.1 fps | 1 every 10s | Overview/thumbnails | | 1.0 fps | 1 per second | Standard analysis | | 5.0 fps | 5 per second | Detailed analysis | | 30.0 fps | Every frame | Exhaustive analysis | Higher sample rates capture more detail but increase compute cost. **MIGRATION SUPPORT**: This class supports migration from the frame_sample_rate slot per slot_fixes.yaml. Use with has_quantity + Quantity + has_unit + Unit.'

@@ -1,0 +1,118 @@
+id: https://nde.nl/ontology/hc/class/Appointment
+name: appointment_class
+title: Appointment Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_label
+  - ../slots/temporal_extent
+classes:
+  Appointment:
+    class_uri: schema:Reservation
+    description: >-
+      Scheduled arrangement for accessing heritage collections or services,
+      capturing lead time requirements, booking methods, confirmation needs,
+      and cancellation policies.
+    alt_descriptions:
+      nl: >-
+        Geplande regeling voor toegang tot erfgoedcollecties of -diensten,
+        waarbij doorlooptijdvereisten, boekingsmethoden, bevestigingsbehoeften
+        en annuleringsbeleid worden vastgelegd.
+      de: >-
+        Geplante Vereinbarung fur den Zugang zu Kulturerbesammlungen oder -diensten,
+        die Vorlaufzeitanforderungen, Buchungsmethoden, Bestatigungsbedarfe und
+        Stornierungsrichtlinien erfasst.
+      fr: >-
+        Arrangement planifie pour l'acces aux collections ou services patrimoniaux,
+        capturant les delais d'anticipation, les methodes de reservation, les besoins
+        de confirmation et les politiques d'annulation.
+      es: >-
+        Arreglo programado para acceder a colecciones o servicios patrimoniales,
+        capturando requisitos de tiempo de anticipacion, metodos de reserva,
+        necesidades de confirmacion y politicas de cancelacion.
+      ar: >-
+        ترتيب مجدول للوصول إلى مجموعات أو خدمات التراث، يلتقط متطلبات الوقت
+        المسبق وطرق الحجز ومتطلبات التأكيد وسياسات الإلغاء.
+      id: >-
+        Pengaturan terjadwal untuk mengakses koleksi atau layanan warisan budaya,
+        menangkap persyaratan waktu tunggu, metode pemesanan, kebutuhan konfirmasi,
+        dan kebijakan pembatalan.
+      zh: >-
+        访问遗产馆藏或服务的预定安排，捕获提前时间要求、预订方法、确认需求
+        和取消政策。
+    structured_aliases:
+    - literal_form: afspraak
+      in_language: nl
+    - literal_form: Termin
+      in_language: de
+    - literal_form: rendez-vous
+      in_language: fr
+    - literal_form: cita
+      in_language: es
+    - literal_form: موعد
+      in_language: ar
+    - literal_form: janji temu
+      in_language: id
+    - literal_form: 预约
+      in_language: zh
+    close_mappings:
+    - rico:Rule
+    broad_mappings:
+    - schema:Reservation
+    - skos:Concept
+    slots:
+    - has_label
+    - has_description
+    - temporal_extent
+    slot_usage:
+      has_label:
+        examples:
+        - value: Reading Room Appointment
+        - value: Special Collections Viewing
+        - value: Conservation Lab Access
+        - value: Guided Tour
+      has_description:
+        examples:
+        - value: "Appointments for the Special Collections reading room must be made at least 48 hours in advance. Please specify which materials you wish to consult. Maximum 5 items per visit."
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    comments:
+    - Models appointments as entities rather than boolean flags
+    - Captures lead time, booking methods, and policies
+    - Replaces simple appointment_required boolean with structured data
+    - Common for special collections, reading rooms, conservation labs
+    see_also:
+    - https://schema.org/Reservation
+    - AccessPolicy
+    examples:
+    - value:
+        has_label: Special Collections Appointment
+        has_description: Advance appointment required for manuscript and map collections
+        temporal_extent:
+          begin_of_the_begin: "2025-01-15T10:00:00Z"
+          end_of_the_end: "2025-01-15T12:00:00Z"
+      description: Special collections appointment with time slot
+    - value:
+        has_label: Reading Room Reservation
+        has_description: Reservations recommended but walk-ins accepted based on availability
+      description: Reading room reservation (optional booking)
+    keywords:
+    - appointment
+    - reservation
+    - booking
+    - reading room
+    - special collections
+    - lead time
+    - cancellation
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to heritage access scheduling
+      custodian_types: "['*']"

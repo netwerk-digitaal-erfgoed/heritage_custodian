@@ -1,0 +1,114 @@
+id: https://nde.nl/ontology/hc/class/Bookplate
+name: bookplate_class
+title: Bookplate Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  bf: http://id.loc.gov/ontologies/bibframe/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_label
+  - ../slots/owned_by
+  - ../slots/has_score
+classes:
+  Bookplate:
+    class_uri: bf:Bookplate
+    description: >-
+      Printed or decorative label pasted inside a book indicating ownership.
+      Also known as "ex libris", crucial for provenance research in rare book collections.
+    alt_descriptions:
+      nl: >-
+        Gedrukt of decoratief etiket in een boek geplakt dat eigendom aangeeft.
+        Ook bekend als "ex libris", cruciaal voor herkomstonderzoek in zeldzame boekencollecties.
+      de: >-
+        Gedrucktes oder dekoratives Etikett, das in ein Buch geklebt wird und den Besitz anzeigt.
+        Auch als "Exlibris" bekannt, entscheidend für die Provenienzforschung in seltenen Büchern.
+      fr: >-
+        Étiquette imprimée ou décorative collée dans un livre indiquant la propriété.
+        Aussi connue comme "ex libris", cruciale pour la recherche de provenance dans les collections de livres rares.
+      es: >-
+        Etiqueta impresa o decorativa pegada dentro de un libro que indica propiedad.
+        También conocida como "ex libris", crucial para la investigación de procedencia en colecciones de libros raros.
+      ar: >-
+        ملصق مطبوع أو زخرفي يلصق داخل الكتاب للإشارة إلى الملكية.
+        معروف أيضًا باسم "إكس ليبريس"، حاسم لأبحاث المصدر في مجموعات الكتب النادرة.
+      id: >-
+        Label cetak atau dekoratif yang ditempel di dalam buku menunjukkan kepemilikan.
+        Juga dikenal sebagai "ex libris", penting untuk penelitian provenans dalam koleksi buku langka.
+      zh: >-
+        贴在书中的印刷或装饰标签，表示所有权。
+        也称为"藏书票"，对珍本馆藏的来源研究至关重要。
+    exact_mappings:
+      - bf:Bookplate
+    close_mappings:
+      - crm:E37_Mark
+    broad_mappings:
+      - schema:Thing
+    slots:
+      - has_label
+      - has_description
+      - owned_by
+      - has_score
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+          - value: Ex Libris Johann Wolfgang von Goethe
+          - value: Bibliotheca Regia
+      owned_by:
+        examples:
+          - value: Johann Wolfgang von Goethe
+          - value: Royal Library of Prussia
+    comments:
+      - Used for provenance research in rare book collections
+      - Links library items to historical owners
+      - Multiple bookplates may appear in single volume
+    see_also:
+      - http://id.loc.gov/ontologies/bibframe/Bookplate
+    examples:
+      - value:
+          has_label: Ex Libris J.W. von Goethe
+          owned_by: Johann Wolfgang von Goethe
+          has_description: Armorial bookplate of the German poet
+        description: Historical armorial bookplate
+      - value:
+          has_label: Bibliotheca Publica Amstelodamensis
+          owned_by: Amsterdam Public Library
+          has_description: Institutional library stamp
+        description: Institutional ownership mark
+    keywords:
+      - bookplate
+      - ex libris
+      - provenance
+      - ownership
+      - rare books
+    annotations:
+      specificity_score: 0.75
+      specificity_rationale: Specific to rare book provenance research.
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: ex libris
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: boekplaat
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bezittersmerk
+        predicate: RELATED_SYNONYM
+        in_language: nl
+      - literal_form: Exlibris
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Buchplatte
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: ex-libris
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ex libris
+        predicate: EXACT_SYNONYM
+        in_language: es

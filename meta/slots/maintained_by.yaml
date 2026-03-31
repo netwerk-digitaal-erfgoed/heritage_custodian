@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: maintained_by
+# ==============================================================================
+# Identifies the agent responsible for ongoing support or management of a resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line                  | Mapping | Notes                                                          |
+# |----------------|---------------------------|----------------------------|---------|----------------------------------------------------------------|
+# | **GLEIF**      | `gleif_base:isManagedBy`  | gleif_base.ttl:409-412     | close   | "Relates something to another thing that has some role in directing its affairs." Managing is broader than maintaining. |
+# | **Schema.org** | `schema:maintainer`       | schemaorg.owl:25330-25352  | close   | "A maintainer of a Dataset, software package, or other Project." Domain restricted to CreativeWork. |
+# | **DOAP**       | `doap:maintainer`         | doap.rdf:687-703           | narrow  | "Maintainer of a project, a project leader." Domain: doap:Project. Range: foaf:Person only. |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/maintained_by
+name: maintained_by
+title: Maintained By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  gleif_base: https://www.gleif.org/ontology/Base/
+  schema: https://schema.org/
+  doap: http://usefulinc.com/ns/doap#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  maintained_by:
+    slot_uri: hc:maintainedBy
+    description: >-
+      Identifies the agent, organization, or community responsible for the
+      ongoing support, updates, repair, or management of a resource or asset.
+    comments:
+      - >-
+        Links to RegistrationAuthority class.
+      - >-
+        Examples: KvK (Kamer van Koophandel) maintains NL Handelsregister,
+        Companies House maintains UK Companies Register, local courts
+        (Amtsgericht) maintain German Handelsregister.
+    alt_descriptions:
+      nl: >-
+        Identificeert de instantie, organisatie of gemeenschap die
+        verantwoordelijk is voor de voortdurende ondersteuning, updates,
+        reparatie of het beheer van een bron of middel.
+      de: >-
+        Identifiziert den Akteur, die Organisation oder die Gemeinschaft, die
+        für die laufende Unterstützung, Aktualisierung, Reparatur oder
+        Verwaltung einer Ressource oder eines Vermögenswerts verantwortlich ist.
+      fr: >-
+        Identifie l'agent, l'organisation ou la communauté responsable du
+        soutien continu, des mises à jour, de la réparation ou de la gestion
+        d'une ressource ou d'un actif.
+      ar: >-
+        يحدد الجهة أو المنظمة أو المجتمع المسؤول عن الدعم المستمر أو
+        التحديثات أو الإصلاح أو إدارة مورد أو أصل.
+      id: >-
+        Mengidentifikasi agen, organisasi, atau komunitas yang bertanggung jawab
+        atas dukungan berkelanjutan, pembaruan, perbaikan, atau pengelolaan suatu
+        sumber daya atau aset.
+      zh: >-
+        标识负责对资源或资产进行持续支持、更新、修复或管理的代理、组织或社区。
+      es: >-
+        Identifica al agente, organización o comunidad responsable del soporte
+        continuo, actualizaciones, reparación o gestión de un recurso o activo.
+    structured_aliases:
+      - literal_form: Beheerder
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Betreuer
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Mainteneur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مسؤول الصيانة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pengelola
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 维护者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Mantenedor
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: true
+    inlined: false
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - gleif_base:isManagedBy  # gleif_base.ttl:409-412 - "Relates something to another thing that has some role in directing its affairs."
+      - schema:maintainer  # schemaorg.owl:25330-25352 - "A maintainer of a Dataset, software package, or other Project." Domain: CreativeWork.
+    narrow_mappings:
+      - doap:maintainer  # doap.rdf:687-703 - "Maintainer of a project, a project leader." Domain: doap:Project. Range: foaf:Person only.

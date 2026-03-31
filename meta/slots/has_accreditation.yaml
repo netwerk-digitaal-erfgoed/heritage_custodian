@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: has_accreditation
+# ==============================================================================
+# Links an entity to its official accreditation or certification.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                  | File/Line      | Mapping | Notes                              |
+# |------------|---------------------------|----------------|---------|-------------------------------------|
+# | **DQV**    | `dqv:QualityCertificate`  | dqv.ttl:85     | close   | "Resource that certifies the        |
+# |            |                           |                |         | resource's quality" - class, not    |
+# |            |                           |                |         | property                            |
+#
+# No exact standard property mapping exists for accreditation.
+# This is a domain-specific property for quality recognition.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (removed migration note), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_accreditation
+name: has_accreditation
+title: Has Accreditation
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dqv: http://www.w3.org/ns/dqv#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_accreditation:
+    slot_uri: hc:hasAccreditation
+    description: >-
+      To have received official recognition, certification, or approval from 
+      a recognized authority indicating adherence to specific standards or 
+      quality requirements.
+    alt_descriptions:
+      nl: >-
+        Officiële erkenning, certificering of goedkeuring hebben ontvangen 
+        van een erkende autoriteit die aangeeft dat aan specifieke normen 
+        of kwaliteitseisen wordt voldaan.
+      de: >-
+        Offizielle Anerkennung, Zertifizierung oder Genehmigung von einer 
+        anerkannten Behörde erhalten haben, die die Einhaltung bestimmter 
+        Standards oder Qualitätsanforderungen anzeigt.
+      fr: >-
+        Avoir reçu une reconnaissance officielle, une certification ou une 
+        approbation d'une autorité reconnue indiquant le respect de normes 
+        ou d'exigences de qualité spécifiques.
+      ar: >-
+        أن يكون قد حصل على اعتراف رسمي أو شهادة أو موافقة من سلطة معترف 
+        بها تشير إلى الالتزام بمعايير أو متطلبات جودة محددة.
+      id: >-
+        Telah menerima pengakuan resmi, sertifikasi, atau persetujuan dari 
+        otoritas yang diakui yang menunjukkan kepatuhan terhadap standar 
+        atau persyaratan kualitas tertentu.
+      zh: >-
+        已获得认可机构的官方认可、认证或批准，表明符合特定标准或质量要求。
+      es: >-
+        Haber recibido reconocimiento oficial, certificación o aprobación 
+        de una autoridad reconocida que indica el cumplimiento de estándares 
+        o requisitos de calidad específicos.
+    structured_aliases:
+      - literal_form: heeft accreditatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Akkreditierung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une accréditation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له اعتماد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki akreditasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有认证
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene acreditación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - has_or_had_accreditation
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link institutions to their quality 
+        accreditations, certifications, or standards compliance recognitions.
+      - |
+        **MIGRATION NOTE (2026-02-03)**: Renamed from `has_or_had_accreditation` 
+        for conciseness.

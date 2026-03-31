@@ -1,0 +1,46 @@
+id: https://nde.nl/ontology/hc/enum/ProfileExtractionMethodEnum
+name: profile_extraction_method_enum
+title: Profile Extraction Method Enum
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+
+enums:
+  ProfileExtractionMethodEnum:
+    description: |
+      Enumeration of extraction methods/tools used for person profile data extraction.
+      Used for LinkedIn profiles, web scraping of staff pages, and similar person data sources.
+    permissible_values:
+      exa_crawling_exa:
+        description: Exa AI crawling API - primary LinkedIn extraction
+        meaning: schema:SoftwareApplication
+      exa_contents:
+        description: Exa contents endpoint - cached content retrieval
+        meaning: schema:SoftwareApplication
+      exa_crawling_glm47:
+        description: Exa crawling with GLM 4.7 processing
+        meaning: schema:SoftwareApplication
+      linkedin_html_parser:
+        description: Local HTML parsing of saved LinkedIn pages
+        meaning: schema:SoftwareApplication
+      manual:
+        description: Manual data entry by human operator
+        meaning: prov:Person
+      firecrawl:
+        description: Firecrawl web scraping service
+        meaning: schema:SoftwareApplication
+      playwright:
+        description: Playwright browser automation
+        meaning: schema:SoftwareApplication
+      web_archive:
+        description: Internet Archive Wayback Machine
+        meaning: schema:SoftwareApplication
+      institutional_website:
+        description: Direct scraping from institutional website
+        meaning: schema:SoftwareApplication

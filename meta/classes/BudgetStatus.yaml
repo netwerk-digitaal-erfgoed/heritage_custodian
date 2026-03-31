@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/BudgetStatus
+name: budget_status_class
+title: Budget Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/effective_at
+  - ../slots/has_label
+  - ../slots/has_description
+classes:
+  BudgetStatus:
+    class_uri: hc:BudgetStatus
+    description: >-
+      Status of a budget document throughout its approval and execution
+      lifecycle, from draft through active to closed.
+    alt_descriptions:
+      nl: >-
+        Status van een begrotingsdocument gedurende de goedkeurings- en
+        uitvoeringslevenscyclus, van concept tot actief tot gesloten.
+      de: >-
+        Status eines Budgetdokuments während seines Genehmigungs- und
+        Ausführungslebenszyklus, vom Entwurf bis aktiv bis geschlossen.
+      fr: >-
+        Statut d'un document budgétaire tout au long de son cycle de vie
+        d'approbation et d'exécution, du projet à l'actif au fermé.
+      es: >-
+        Estado de un documento presupuestario durante su ciclo de vida de
+        aprobación y ejecución, desde el borrador hasta el activo hasta el cerrado.
+      ar: >-
+        حالة وثيقة الميزانية خلال دورة حياة الموافقة والتنفيذ، من المسودة
+        إلى النشط إلى المغلق.
+      id: >-
+        Status dokumen anggaran sepanjang siklus hidup persetujuan dan
+        pelaksanaannya, dari draf hingga aktif hingga ditutup.
+      zh: >-
+        预算文件在其审批和执行生命周期中的状态，从草案到活跃到关闭。
+    structured_aliases:
+    - literal_form: begrotingsstatus
+      in_language: nl
+    - literal_form: Budgetstatus
+      in_language: de
+    - literal_form: statut budgétaire
+      in_language: fr
+    - literal_form: estado presupuestario
+      in_language: es
+    - literal_form: حالة الميزانية
+      in_language: ar
+    - literal_form: status anggaran
+      in_language: id
+    - literal_form: 预算状态
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - effective_at
+    - has_score
+    - has_label
+    - has_description
+    comments:
+    - Budget lifecycle status tracking.
+    - Supports audit trail of budget state changes.
+    - Typical values include DRAFT, PROPOSED, APPROVED, ACTIVE, REVISED, CLOSED, REJECTED, and SUPERSEDED.
+    see_also:
+    - Budget
+    examples:
+    - value:
+        has_label: ACTIVE
+        has_description: Budget currently in effect for the fiscal period
+        effective_at: "2024-01-01"
+      description: Active budget status
+    - value:
+        has_label: DRAFT
+        has_description: Budget under development, not yet submitted for approval
+      description: Draft budget status
+    keywords:
+    - budget status
+    - approval status
+    - lifecycle
+    - DRAFT
+    - APPROVED
+    - ACTIVE
+    - CLOSED
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Status classification for budget lifecycle
+      custodian_types: "['*']"

@@ -1,0 +1,54 @@
+id: https://nde.nl/ontology/hc/enum/LegalStatusEnum
+name: LegalStatusEnum
+title: Legal Status Enumeration
+
+imports:
+  - linkml:types
+
+enums:
+  LegalStatusEnum:
+    description: "Legal status of custodian (aligned with GLEIF EntityStatus)"
+    reachable_from:
+      source_ontology: gleif-base
+      source_nodes:
+        - gleif_base:EntityStatus
+        - gleif_base:RegistrationStatus
+    permissible_values:
+      ACTIVE:
+        description: "Currently active and operational"
+        meaning: gleif_base:EntityStatusActive
+        annotations:
+          gleif_tag: "ACTIVE"
+      DISSOLVED:
+        description: "Legally dissolved"
+        meaning: gleif_base:EntityExpirationReasonDissolved
+        annotations:
+          gleif_tag: "DISSOLVED"
+      MERGED:
+        description: "Merged with another entity"
+        meaning: gleif_base:EntityExpirationReasonCorporateAction
+        annotations:
+          gleif_tag: "CORPORATE_ACTION"
+          notes: "Includes mergers, acquisitions, reorganizations"
+      SUSPENDED:
+        description: "Operations suspended (temporarily inactive)"
+        meaning: gleif_base:EntityStatusInactive
+        annotations:
+          gleif_tag: "INACTIVE"
+          notes: "Temporary suspension, may reactivate"
+      BANKRUPTCY:
+        description: "In bankruptcy proceedings"
+        close_mappings:
+          - wikidata:Q152074
+        annotations:
+          notes: "Legal insolvency proceedings, not in GLEIF taxonomy"
+      LIQUIDATION:
+        description: "In liquidation"
+        close_mappings:
+          - wikidata:Q1888958
+        annotations:
+          notes: "Asset liquidation process, not in GLEIF taxonomy"
+      UNKNOWN:
+        description: "Status unknown"
+        annotations:
+          notes: "Use when status cannot be determined from available sources"

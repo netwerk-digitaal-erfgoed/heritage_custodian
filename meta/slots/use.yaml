@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: use
+# ==============================================================================
+# Employ or operate an object, tool, resource, or method to achieve a result.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                                                       |
+# |---------------|-----------------------|--------------------------|---------|-----------------------------------------------------------------------------|
+# | **PROV-O**    | `prov:used`           | prov.ttl:1039-1054       | close   | "A prov:Entity that was used by this prov:Activity." Domain: Activity,      |
+# |               |                       |                          |         | Range: Entity. Specifically about an Activity using an Entity; this slot    |
+# |               |                       |                          |         | is more general (any entity using a tool/resource, not just Activities).    |
+# | **Schema.org**| `schema:usesDevice`   | schemaorg.owl:39250-39280| related | "Device used to perform the test." Domain: MedicalTest, Range:             |
+# |               |                       |                          |         | MedicalDevice. Medical-domain-specific; too narrowly scoped.               |
+#
+# NOTE: Original had schema:softwareApplication as close_mapping, but that is
+# a Class (not a property) in Schema.org (schemaorg.owl:5300-5304). Removed.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/use
+name: use
+title: Use
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  use:
+    slot_uri: hc:use
+    description: >-
+      Employs, utilizes, or operates an object, tool, resource, or method
+      to achieve a specific result or perform a task.
+    alt_descriptions:
+      nl: >-
+        Gebruikt, benut of bedient een object, hulpmiddel, bron of methode
+        om een specifiek resultaat te bereiken of een taak uit te voeren.
+      de: >-
+        Verwendet, nutzt oder bedient ein Objekt, Werkzeug, eine Ressource
+        oder Methode, um ein bestimmtes Ergebnis zu erzielen oder eine
+        Aufgabe auszufuhren.
+      fr: >-
+        Emploie, utilise ou fait fonctionner un objet, un outil, une
+        ressource ou une methode pour atteindre un resultat specifique
+        ou accomplir une tache.
+      ar: >-
+        يستخدم أو يوظف أو يشغل كائنًا أو أداة أو موردًا أو طريقة
+        لتحقيق نتيجة محددة أو أداء مهمة.
+      id: >-
+        Menggunakan, memanfaatkan, atau mengoperasikan objek, alat,
+        sumber daya, atau metode untuk mencapai hasil tertentu atau
+        melaksanakan tugas.
+      zh: >-
+        使用、利用或操作对象、工具、资源或方法以实现特定结果或执行任务。
+      es: >-
+        Emplea, utiliza u opera un objeto, herramienta, recurso o metodo
+        para lograr un resultado especifico o realizar una tarea.
+    structured_aliases:
+      - literal_form: Gebruik
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Verwendung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Utilisation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استخدام
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penggunaan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 使用
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Uso
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    required: false
+    aliases:
+      - uses_or_used
+      - techniques_used
+      - uses_or_used_technique
+    close_mappings:
+      - prov:used  # prov.ttl:1039-1054 - "A prov:Entity that was used by this prov:Activity." Domain: Activity, Range: Entity. Activity-specific; this slot is more general.
+    related_mappings:
+      - schema:usesDevice  # schemaorg.owl:39250-39280 - "Device used to perform the test." Domain: MedicalTest, Range: MedicalDevice. Medical-domain-specific.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - "NOTE: Original had slot_uri: prov:used and exact_mappings: prov:used, but prov:used requires an Activity as domain. Reverted slot_uri to hc:use and demoted to close_mapping."
+      - "NOTE: Original had schema:softwareApplication as close_mapping, but schema:SoftwareApplication is a Class (not a property) in Schema.org (schemaorg.owl:5300-5304). Removed."
+      - "Examples of things used: Library catalog systems (ALMA, Koha, Sierra), collection management systems (Adlib, TMS, CollectiveAccess), digital preservation systems (Archivematica, Preservica), metadata standards (Dublin Core, MARC21, EAD)."
+      - "Follows RiC-O temporal naming convention (Rule 39) to indicate relationship may be current or historical."

@@ -1,0 +1,143 @@
+id: https://nde.nl/ontology/hc/class/AudioEventSegment
+name: audio_event_segment_class
+title: Audio Event Segment Class
+imports:
+- linkml:types
+- ../enums/AudioEventTypeEnum
+- ../slots/has_score
+- ../slots/has_time_interval
+- ../slots/has_type
+- ../slots/generated_by
+- ../slots/indexed_as
+- ../slots/has_text
+- ../slots/begin_of_the_begin
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+  ma: http://www.w3.org/ns/ma-ont#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+classes:
+  AudioEventSegment:
+    class_uri: hc:AudioEventSegment
+    description: >-
+      Temporal segment of audio containing a detected audio event.
+    alt_descriptions:
+      nl: "Tijdsegment van audio met een gedetecteerd audio-evenement."
+      de: "Zeitliches Segment eines Audios mit einem erkannten Audioereignis."
+      fr: "Segment temporel d'un audio contenant un événement audio détecté."
+      es: "Segmento temporal de audio que contiene un evento de audio detectado."
+      ar: "مقطع زمني للصوت يحتوي على حدث صوتي مكتشف."
+      id: "Segmen temporal audio yang berisi peristiwa audio yang terdeteksi."
+      zh: "包含检测到的音频事件的音频时间片段。"
+    examples:
+    - value:
+        has_type: SPEECH
+        has_time_interval:
+          start_seconds: 0
+          end_seconds: 45
+        has_text: Welcome to the Rijksmuseum
+        has_score: 0.95
+      description: Speech segment with transcription
+    - value:
+        has_type: MUSIC
+        has_time_interval:
+          start_seconds: 45
+          end_seconds: 120
+        has_text: Classical background music
+        has_score: 0.88
+      description: Music segment detected
+    - value:
+        has_type: SILENCE
+        has_time_interval:
+          start_seconds: 120
+          end_seconds: 125
+        has_score: 0.99
+      description: Silence gap between segments
+    close_mappings:
+    - crm:E52_Time-Span
+    - ma:MediaFragment
+    related_mappings:
+    - oa:FragmentSelector
+    structured_aliases:
+    - literal_form: audio-evenementsegment
+      in_language: nl
+    - literal_form: audio-gebeurtenissegment
+      in_language: nl
+    - literal_form: Audioereignissegment
+      in_language: de
+    - literal_form: segment d'événement audio
+      in_language: fr
+    - literal_form: segmento de evento de audio
+      in_language: es
+    - literal_form: مقطع حدث صوتي
+      in_language: ar
+    - literal_form: segmen peristiwa audio
+      in_language: id
+    - literal_form: 音频事件片段
+      in_language: zh
+    keywords:
+    - audio event
+    - speech segment
+    - music detection
+    - silence detection
+    - audio analysis
+    - temporal segment
+    slots:
+    - has_time_interval
+    - indexed_as
+    - has_text
+    - generated_by
+    - has_type
+    - has_score
+    - begin_of_the_begin
+    slot_usage:
+      has_type:
+        range: AudioEventTypeEnum
+        required: true
+        examples:
+        - value: SPEECH
+        - value: MUSIC
+        - value: SILENCE
+        - value: SOUND_EVENT
+        - value: NOISE
+      has_time_interval:
+        range: TimeInterval
+        required: true
+        inlined: true
+      has_text:
+        required: false
+        examples:
+        - value: Welcome to the Rijksmuseum
+        - value: Classical background music
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+        examples:
+        - value:
+            has_score:
+              has_score: 0.95
+              has_method: audio_classification
+    comments:
+    - Audio event segment for speech, music, silence, sound event detection
+    - Temporal boundaries with start/end seconds (primary) and ISO 8601 (secondary)
+    - Confidence scoring for AI-generated detections
+    - Part of Rule 53 slot migration from audio_event_segments
+    - Audio types: SPEECH, MUSIC, SILENCE, SOUND_EVENT, NOISE, MIXED
+    - 'Preserved from prior description: Temporal segment of audio containing a detected audio event. Represents a bounded temporal portion of audio content where a specific type of audio event has been detected, including speech segments, music, silence, sound events, and noise segments.'
+    see_also:
+    - https://www.w3.org/TR/media-frags/
+    - https://www.w3.org/ns/ma-ont
+    - TimeInterval
+    - GenerationEvent
+    annotations:
+      specificity_score: "0.55"
+      specificity_rationale: "AudioEventSegment is specific to audio analysis workflows in heritage digitization."
+      custodian_types: "['*']"
+      audio_event_types: "SPEECH, MUSIC, SILENCE, SOUND_EVENT, NOISE, MIXED"
+      heritage_use_cases: "Oral histories, virtual tours, lecture recordings, archival footage"

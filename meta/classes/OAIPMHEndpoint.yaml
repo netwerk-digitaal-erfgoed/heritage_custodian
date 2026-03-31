@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/OAIPMHEndpoint
+name: oai_pmh_endpoint
+title: OAIPMHEndpoint Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  sosa: http://www.w3.org/ns/sosa/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../enums/OAIDeletedRecordPolicyEnum
+- ../enums/OAIGranularityEnum
+- ../enums/OAIPMHVerbEnum
+- ../metadata
+- ../slots/has_score
+- ../slots/has_format
+- ../slots/supports_verb
+classes:
+  OAIPMHEndpoint:
+    is_a: DataServiceEndpoint
+    class_uri: hc:OAIPMHEndpoint
+    description: OAI-PMH service endpoint used to expose and harvest repository metadata.
+    alt_descriptions:
+      nl: OAI-PMH-service-endpoint voor het aanbieden en oogsten van repositorymetadata.
+      de: OAI-PMH-Dienstendpunkt zur Bereitstellung und Ernte von Repositoriumsmetadaten.
+      fr: Point d acces de service OAI-PMH pour exposer et moissonner les metadonnees de depot.
+      es: Endpoint de servicio OAI-PMH para exponer y cosechar metadatos de repositorio.
+      ar: نقطة نهاية خدمة OAI-PMH لعرض بيانات المستودع الوصفية وحصدها.
+      id: Endpoint layanan OAI-PMH untuk mengekspos dan memanen metadata repositori.
+      zh: 用于暴露并收割资源库元数据的 OAI-PMH 服务端点。
+    structured_aliases:
+    - {literal_form: OAI-PMH-endpoint, in_language: nl}
+    - {literal_form: OAI-PMH-Endpunkt, in_language: de}
+    - {literal_form: point d acces OAI-PMH, in_language: fr}
+    - {literal_form: endpoint OAI-PMH, in_language: es}
+    - {literal_form: نقطة نهاية OAI-PMH, in_language: ar}
+    - {literal_form: endpoint OAI-PMH, in_language: id}
+    - {literal_form: OAI-PMH端点, in_language: zh}
+    slot_usage:
+      has_format:
+        ifabsent: string(application/xml)
+      supports_verb:
+        range: OAIPMHVerbEnum
+        multivalued: true
+    comments:
+    - Primary protocol for metadata harvesting in heritage sector
+    - All compliant repositories MUST support oai_dc (Dublin Core) format
+    - Use incremental harvesting with from/until parameters for efficiency
+    see_also:
+    - http://www.openarchives.org/OAI/openarchivesprotocol.html
+    - https://www.openarchives.org/OAI/2.0/guidelines.htm
+    slots:
+    - has_score
+    - has_version
+    - supports_verb
+    annotations:
+      protocol_name: OAI-PMH
+      protocol_full_name: Open Archives Initiative Protocol for Metadata Harvesting
+      protocol_version: "2.0"
+      protocol_verbs_enum: OAIPMHVerbEnum
+      harvesting_workflow:
+      - Identify
+      - ListMetadataFormats
+      - ListSets
+      - ListRecords
+      required_metadata_prefixes:
+      - oai_dc
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    examples:
+    - value:
+        endpoint_name: Nationaal Archief OAI-PMH
+        base_url: https://www.nationaalarchief.nl/onderzoeken/oai-pmh
+        protocol_version: "2.0"
+        metadata_prefixes: [oai_dc, ese, edm]
+      description: Example OAI-PMH endpoint configuration
+  OAIPMHSet:
+    class_uri: hc:OAIPMHSet
+    description: Selective-harvesting set exposed by an OAI-PMH repository.
+    alt_descriptions:
+      nl: Selectieve-oogstset die door een OAI-PMH-repository wordt aangeboden.
+      de: Selektiver Erntesatz der von einem OAI-PMH-Repositorium bereitgestellt wird.
+      fr: Ensemble de moissonnage selectif expose par un depot OAI-PMH.
+      es: Conjunto de cosecha selectiva expuesto por un repositorio OAI-PMH.
+      ar: مجموعة حصاد انتقائي يقدّمها مستودع OAI-PMH.
+      id: Set pemanenan selektif yang diekspos oleh repositori OAI-PMH.
+      zh: 由 OAI-PMH 资源库公开的选择性收割集合。
+    structured_aliases:
+    - {literal_form: OAI-PMH-set, in_language: nl}
+    - {literal_form: OAI-PMH-Satz, in_language: de}
+    - {literal_form: ensemble OAI-PMH, in_language: fr}
+    - {literal_form: conjunto OAI-PMH, in_language: es}
+    - {literal_form: مجموعة OAI-PMH, in_language: ar}
+    - {literal_form: set OAI-PMH, in_language: id}
+    - {literal_form: OAI-PMH集合, in_language: zh}
+    annotations:
+      set_spec_hierarchy_separator: ":"
+      set_spec_example: category:subcategory:item
+    slots:
+    - has_score
+    - has_name
+    - record_count

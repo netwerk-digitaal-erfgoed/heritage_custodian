@@ -1,0 +1,85 @@
+id: https://nde.nl/ontology/hc/classes/AnnotatorAnnotationMetadata
+name: AnnotatorAnnotationMetadata
+title: Annotator Annotation Metadata
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  oa: http://www.w3.org/ns/oa#
+  dqv: http://www.w3.org/ns/dqv#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+- ../slots/generated_by
+- ../classes/GenerationEvent
+classes:
+  AnnotatorAnnotationMetadata:
+    description: >-
+      Quality metrics and verification information for cultural heritage annotations.
+    alt_descriptions:
+      nl: Kwaliteitsstatistieken en verificatie-informatie voor cultureel erfgoed annotaties.
+      de: Qualitätsmetriken und Verifikationsinformationen für Annotationsdaten zum kulturellen Erbe.
+      fr: Métriques de qualité et informations de vérification pour les annotations du patrimoine culturel.
+      es: Métricas de calidad e información de verificación para anotaciones de patrimonio cultural.
+      ar: مقاييس الجودة ومعلومات التحقق للتعليقات التراثية الثقافية.
+      id: Metrik kualitas dan informasi verifikasi untuk anotasi warisan budaya.
+      zh: 文化遗产注释的质量指标和验证信息。
+    structured_aliases:
+    - literal_form: annotatiemetagegevens
+      in_language: nl
+    - literal_form: Annotationsmetadaten
+      in_language: de
+    - literal_form: métadonnées d'annotation
+      in_language: fr
+    - literal_form: metadatos de anotación
+      in_language: es
+    - literal_form: بيانات التعليق الوصفية
+      in_language: ar
+    - literal_form: metadata anotasi
+      in_language: id
+    - literal_form: 注释元数据
+      in_language: zh
+    class_uri: oa:Annotation
+    close_mappings:
+    - dqv:QualityAnnotation
+    related_mappings:
+    - prov:Entity
+    - schema:Rating
+    keywords:
+    - annotation metadata
+    - confidence score
+    - quality metrics
+    - verification
+    - Annotator
+    examples:
+    - value:
+        generated_by:
+          has_score:
+            has_score: 0.92
+            has_method: annotation_validation
+    comments:
+    - MIGRATED 2026-01-19: confidence_score → generated_by + ConfidenceScore
+    - Part of Annotator annotation pipeline
+    slots:
+    - generated_by
+    slot_usage:
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+        description: Generation event containing confidence score for annotation.
+        examples:
+        - value:
+            has_score:
+              has_score: 0.92
+              has_method: annotation_validation
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

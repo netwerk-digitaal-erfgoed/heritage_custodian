@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: has_expense
+# ==============================================================================
+# To specify a financial cost, charge, or payment required for or incurred by
+# the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property        | File/Line               | Mapping | Notes                                      |
+# |----------------|-----------------|-------------------------|---------|--------------------------------------------|
+# | **Schema.org** | `schema:price`  | schemaorg.owl:30600-636 | related | Offer price of a product (commerce domain) |
+#
+# No exact standard mapping exists. schema:price is about product offer prices
+# in a commerce context, not general financial costs/charges incurred by an
+# organization. schema:totalPrice similarly relates to transaction totals.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, no standard exact match
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_expense
+name: has_expense
+title: has_expense
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_expense:
+    name: has_expense
+    title: has_expense
+    description: >-
+      To specify a financial cost, charge, or payment required for or incurred
+      by the entity.
+    alt_descriptions:
+      nl: >-
+        Een financiële kost, toeslag of betaling specificeren die vereist is
+        voor of gemaakt is door de entiteit.
+      de: >-
+        Einen finanziellen Aufwand, eine Gebühr oder eine Zahlung angeben, die
+        für die Entität erforderlich ist oder von ihr getragen wird.
+      fr: >-
+        Spécifier un coût financier, une charge ou un paiement requis pour ou
+        engagé par l'entité.
+      ar: >-
+        تحديد تكلفة مالية أو رسوم أو دفعة مطلوبة من الكيان أو تكبدها.
+      id: >-
+        Menentukan biaya finansial, beban, atau pembayaran yang diperlukan
+        untuk atau ditanggung oleh entitas.
+      zh: >-
+        指定实体所需或产生的财务成本、费用或付款。
+      es: >-
+        Especificar un costo financiero, cargo o pago requerido por o incurrido
+        por la entidad.
+    structured_aliases:
+      - literal_form: kosten
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ausgaben
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dépense
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نفقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pengeluaran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 费用
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: gasto
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasExpense
+    range: string # uriorcurie
+    # range: MonetaryAmount
+    multivalued: true
+    aliases:
+      - has_or_had_expense
+      - cost_usd
+      - cost
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:price  # schemaorg.owl:30600-636 - offer price of a product (commerce domain)

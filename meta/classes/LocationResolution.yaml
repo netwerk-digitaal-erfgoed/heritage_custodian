@@ -1,0 +1,67 @@
+id: https://nde.nl/ontology/hc/classes/LocationResolution
+name: LocationResolution
+title: Location Resolution Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/LocationResolutionMethodEnum
+- ../slots/has_method
+- ../slots/has_code
+- ../slots/in_country
+- ../slots/has_url
+- ../slots/has_latitude
+- ../slots/has_longitude
+- ../slots/has_note
+- ../slots/based_on
+classes:
+  LocationResolution:
+    class_uri: prov:Location
+    description: >-
+      Result record documenting the geocoding process that transformed a textual
+      place reference into normalized coordinates.
+    alt_descriptions:
+      nl: >-
+        Resultaatrecord dat het geocodingproces documenteert dat een tekstuele plaatsverwijzing
+        transformeerde naar genormaliseerde coördinaten.
+      de: >-
+        Ergebnisdatensatz, der den Geokodierungsprozess dokumentiert, der eine textliche
+        Ortsreferenz in normalisierte Koordinaten umwandelte.
+      fr: >-
+        Enregistrement de résultat documentant le processus de géocodage qui a transformé
+        une référence de lieu textuelle en coordonnées normalisées.
+      es: >-
+        Registro de resultado que documenta el proceso de geocodificación que transformó
+        una referencia de lugar textual en coordenadas normalizadas.
+      ar: >-
+        سجل نتيجة يوثق عملية الترميز الجغرافي التي حولت مرجع مكان نصي إلى إحداثيات موحدة.
+      id: >-
+        Rekaman hasil yang mendokumentasikan proses geocoding yang mengubah referensi
+        tempat tekstual menjadi koordinat ternormalisasi.
+      zh: >-
+        记录将文本地点引用转换为规范化坐标的地理编码过程的结果记录。
+    broad_mappings:
+    - prov:Location
+    slots:
+    - has_method
+    - has_code
+    - in_country
+    - has_url
+    - has_latitude
+    - has_longitude
+    - has_note
+    - based_on
+    slot_usage:
+      has_method:
+        range: LocationResolutionMethodEnum
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Provenance-aware geolocation normalization record for place disambiguation workflows.
+      custodian_types: '["*"]'
+    comments:
+    - 'Preserved from prior description: Resolution result describing how a place reference was normalized to a geographic location.'

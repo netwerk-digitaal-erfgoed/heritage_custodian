@@ -1,0 +1,127 @@
+id: https://nde.nl/ontology/hc/class/BackupStatus
+name: backup_status_class
+title: Backup Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  premis: http://www.loc.gov/premis/rdf/v3/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/begin_of_the_begin
+- ../slots/end_of_the_end
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_note
+- ../slots/has_type
+classes:
+  BackupStatus:
+    class_uri: prov:Entity
+    description: >-
+      Current backup and disaster recovery configuration state for a heritage custodian,
+      capturing backup types, status descriptions, and temporal validity of the
+      data protection measures in place.
+    alt_descriptions:
+      nl: Huidige back-up en disaster recovery configuratiestatus voor een erfgoedinstelling, die back-uptypes, statusbeschrijvingen en temporele geldigheid van de genomen gegevensbeschermingsmaatregelen vastlegt.
+      de: Aktueller Backup- und Disaster-Recovery-Konfigurationsstatus für eine Heritage-Institution, der Backup-Typen, Statusbeschreibungen und die zeitliche Gültigkeit der getroffenen Datenschutzmaßnahmen erfasst.
+      fr: État actuel de la configuration de sauvegarde et de reprise après sinistre pour une institution patrimoniale, capturant les types de sauvegarde, les descriptions de statut et la validité temporelle des mesures de protection des données.
+      es: Estado actual de configuración de respaldo y recuperación ante desastres para una institución patrimonial, capturando tipos de respaldo, descripciones de estado y validez temporal de las medidas de protección de datos.
+      ar: حالة تكوين النسخ الاحتياطي واستعادة البيانات الحالية لمؤسسة تراثية، مع تسجيل أنواع النسخ الاحتياطي وأوصاف الحالة والصلاحية الزمنية لتدابير حماية البيانات المتخذة.
+      id: Status konfigurasi cadangan dan pemulihan bencana saat ini untuk lembaga warisan, menangkap jenis cadangan, deskripsi status, dan validitas temporal dari langkah-langkah perlindungan data yang diambil.
+      zh: 遗产机构当前的备份和灾难恢复配置状态，捕获备份类型、状态描述 以及所采取的数据保护措施的时间有效性。
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - premis:fixity
+    slots:
+    - identified_by
+    - has_type
+    - has_label
+    - has_description
+    - has_note
+    - begin_of_the_begin
+    - end_of_the_end
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        pattern: ^https://nde\.nl/ontology/hc/backup-status/[a-z0-9-]+$
+      has_type:
+        range: BackupType
+        description: Type(s) of backup in place (e.g., daily automated, cloud provider).
+        multivalued: true
+        inlined_as_list: false
+        examples:
+        - value:
+          - has_code: DAILY_AUTOMATED
+          - has_code: CLOUD_AZURE
+      has_description:
+        examples:
+        - value: Daily backup to Azure, replicated to secondary site in Rotterdam.
+      has_note:
+        multivalued: true
+        examples:
+        - value: Encryption at rest enabled since 2024-01
+        - value: Annual disaster recovery test passed 2025-06
+      begin_of_the_begin:
+      end_of_the_end:
+    structured_aliases:
+    - literal_form: back-upstatus
+      in_language: nl
+    - literal_form: Backup-Status
+      in_language: de
+    - literal_form: état de sauvegarde
+      in_language: fr
+    - literal_form: estado de respaldo
+      in_language: es
+    - literal_form: حالة النسخ الاحتياطي
+      in_language: ar
+    - literal_form: status cadangan
+      in_language: id
+    - literal_form: 备份状态
+      in_language: zh
+    comments:
+    - Represents current backup configuration state
+    - Linked to BackupType for structured type classification
+    - Supports temporal validity tracking
+    - 'MIGRATED 2026-01-13: Replaces backup_status string slot'
+    keywords:
+    - backup
+    - disaster recovery
+    - data protection
+    - configuration state
+    - archival safety
+    see_also:
+    - http://www.loc.gov/premis/rdf/v3/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/backup-status/example-001
+        has_type:
+        - has_code: DAILY_AUTOMATED
+        - has_code: CLOUD_AZURE
+        has_description: Daily automated backup to Azure with replication to secondary site. 30-day retention, encrypted at rest.
+        begin_of_the_begin: '2024-01-15T00:00:00Z'
+      description: Active backup configuration with cloud replication
+    - value:
+        identified_by: https://nde.nl/ontology/hc/backup-status/critical-001
+        has_type:
+        - has_code: NOT_BACKED_UP
+        has_description: Legacy system not yet included in backup. Migration planned for Q2 2026.
+        has_note:
+        - 'CRITICAL: Data at risk until migration complete'
+      description: Critical - no backup in place
+    notes:
+    - |
+      Preserved from prior description (commit 51480891):
+
+      "Represents the current backup and disaster recovery status for a heritage custodian.\n\n**DEFINITION**:\n\nBackupStatus captures the current state of backup configurations including:\n- The type(s) of backup being used (via has_type \u2192 BackupType)\n- Status description (free text details)\n- Temporal validity (when this status was recorded/changed)\n\n**ONTOLOGY ALIGNMENT**:\n\n| Ontology | Class/Property | Notes |\n|----------|----------------|-------|\n| **PROV-O** | `prov:Entity` | Primary - entity with provenance |\n| **PREMIS** | `premis:fixity` | Related - data integrity |\n| **SKOS** | `skos:Concept` | For type classification |\n\n**RELATIONSHIP TO OTHER CLASSES**:\n\n```\nCustodianAdministration\n  \u2502\n  \u2514\u2500\u2500 has_status \u2192 BackupStatus (THIS CLASS)\n        \u2502\n        \u251C\u2500\u2500 has_type \u2192 BackupType (type hierarchy)\n        \u251C\u2500\u2500 has_description (free text details)\n        \u2514\
+    annotations:
+      specificity_score: '0.60'
+      specificity_rationale: Relevant to all heritage custodians with digital assets.
+      has_score:
+      slot_migration: "2026-01-13: Migrated from backup_status string slot\n- backup_status (string) → has_status (BackupStatus)\n"
+      custodian_types: "['*']"

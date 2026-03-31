@@ -1,0 +1,91 @@
+# ==============================================================================
+# LinkML Slot Definition: has_style
+# ==============================================================================
+# Distinctive appearance, design aesthetic, or manner of execution.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property       | File/Line                | Mapping  | Notes                                                                          |
+# |----------------|----------------|--------------------------|----------|--------------------------------------------------------------------------------|
+# | **Schema.org** | `schema:genre` | schemaorg.owl:19005-19028 | related | "Genre of the creative work, broadcast channel or group." Genre is content categorization; style is visual/aesthetic — different concepts. |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_style
+name: has_style
+title: Has Style
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_style:
+    slot_uri: hc:hasStyle
+    description: >-
+      To specify the distinctive appearance, design aesthetic, or manner of
+      execution of an entity or artifact.
+    alt_descriptions:
+      nl: >-
+        Om het kenmerkende uiterlijk, de ontwerpesthetiek of de wijze van
+        uitvoering van een entiteit of artefact aan te geven.
+      de: >-
+        Zur Angabe des charakteristischen Erscheinungsbildes, der Designästhetik
+        oder der Ausführungsweise einer Entität oder eines Artefakts.
+      fr: >-
+        Pour spécifier l'apparence distinctive, l'esthétique de conception ou
+        la manière d'exécution d'une entité ou d'un artefact.
+      ar: >-
+        لتحديد المظهر المميز أو الجمالية التصميمية أو أسلوب تنفيذ كيان أو
+        قطعة أثرية.
+      id: >-
+        Untuk menentukan tampilan khas, estetika desain, atau cara pelaksanaan
+        suatu entitas atau artefak.
+      zh: >-
+        用于指定实体或工艺品的独特外观、设计美学或执行方式。
+      es: >-
+        Para especificar la apariencia distintiva, la estética de diseño o la
+        forma de ejecución de una entidad o artefacto.
+    structured_aliases:
+      - literal_form: Stijl
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Stil
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Style
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أسلوب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Gaya
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 风格
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Estilo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_style
+      - has_architectural_style
+    related_mappings:
+      - schema:genre  # schemaorg.owl:19005-19028 — "Genre of the creative work, broadcast channel or group." Genre != style.
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_style for conciseness."
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value:
+          has_label: "Gothic Revival"
+        description: Architectural style
+      - value:
+          has_label: "Art Deco"
+        description: Design style

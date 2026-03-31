@@ -1,0 +1,204 @@
+id: https://nde.nl/ontology/hc/class/TaxScheme
+name: TaxScheme
+title: TaxScheme Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+- ../slots/expired_at
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/effective_at
+- ../slots/in_jurisdiction
+- ../slots/has_legal_basis
+- ../slots/offer
+- ../slots/regulated_by
+default_prefix: hc
+classes:
+  TaxScheme:
+    class_uri: schema:GovernmentService
+    description: >-
+      Government fiscal incentive program governing charitable donation benefits and institutional tax status.
+    alt_descriptions:
+      nl: Overheidsfiscaal stimuleringsprogramma dat voordelen voor liefdadigheidsdonaties en institutionele belastingstatus regelt.
+      de: Staatliches Förderungsprogramm für steuerliche Anreize für Wohltätigkeitsspenden und institutionellen Steuerstatus.
+      fr: Programme d'incitation fiscale gouvernemental régissant les avantages des dons caritatifs et le statut fiscal institutionnel.
+      es: Programa de incentivo fiscal gubernamental que regula los beneficios de donaciones benéficas y el estatus fiscal institucional.
+      ar: برنامج حكومي للحوافز الضريبية ينظم فوائد التبرعات الخيرية والوضع الضريبي المؤسسي.
+      id: Program insentif fiskal pemerintah yang mengatur manfaat donasi amal dan status pajak kelembagaan.
+      zh: 管理慈善捐赠优惠和机构税务地位的政府财政激励计划。
+    structured_aliases:
+    - literal_form: fiscale regeling
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Steuerschema
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: régime fiscal
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: esquema fiscal
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: 税务方案
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    - literal_form: scheme
+      in_language: ar
+    - literal_form: scheme
+      in_language: id
+    keywords:
+    - tax scheme
+    - fiscal incentive
+    - charitable giving
+    - ANBI
+    - Gift Aid
+    exact_mappings:
+    - schema:GovernmentService
+    close_mappings:
+    - skos:Concept
+    - org:Organization
+    related_mappings:
+    - prov:Entity
+    - schema:Legislation
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    - identified_by
+    - in_jurisdiction
+    - offer
+    - regulated_by
+    - has_legal_basis
+    - effective_at
+    - expired_at
+    slot_usage:
+      has_type:
+#         range: string # uriorcurie
+        required: true
+        examples:
+        - value: CulturalANBI
+        - value: GiftAid
+        - value: Section501c3
+      has_label:
+#         range: string
+        examples:
+        - value: Cultural ANBI (125%)
+        - value: Gift Aid eligible
+      has_description:
+#         range: string
+      identified_by:
+#         range: string
+        examples:
+        - value: RSIN 123456789
+        - value: Charity No. 1234567
+      in_jurisdiction:
+#         range: string
+        required: true
+        examples:
+        - value: NL
+        - value: UK
+        - value: US
+        - value: DE
+      offer:
+        range: TaxDeductibility
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_type:
+              has_label: Fully Deductible
+            has_percentage:
+              has_percentage_value: 100
+        - value:
+            has_type:
+              has_label: Enhanced Cultural
+            has_percentage:
+              has_percentage_value: 125
+      regulated_by:
+#         range: string
+        examples:
+        - value: Belastingdienst
+        - value: HMRC
+        - value: IRS
+      has_legal_basis:
+        examples:
+        - value: Wet inkomstenbelasting 2001
+        - value: Finance Act 1990
+        - value: Internal Revenue Code Section 501(c)(3)
+      effective_at:
+        range: date
+      expired_at:
+        range: TimeSpan
+        inlined: true
+    comments:
+    - Tax schemes vary significantly by jurisdiction - always document jurisdiction
+    - Cultural institutions often qualify for enhanced rates beyond standard charity status
+    - Scheme status may need periodic renewal - track effective_date and expiration_date
+    - Link to regulatory body websites for current requirements
+    see_also:
+    - https://www.belastingdienst.nl/wps/wcm/connect/nl/aftrek-en-kortingen/content/gift-aftrekken
+    - https://www.gov.uk/donating-to-charity/gift-aid
+    - https://www.irs.gov/charities-non-profits/charitable-organizations
+    - https://www.impots.gouv.fr/professionnel/dons-et-mecenat
+    examples:
+    - value:
+        has_type: CulturalANBI
+        has_label: Cultural ANBI (125%)
+        has_description: Rijksmuseum is registered as Cultural ANBI, providing donors with 125% tax deduction (100% standard + 25% cultural bonus).
+        identified_by: RSIN 002006066
+        jurisdiction: NL
+        offer:
+        - has_type:
+            has_label: Enhanced Cultural Deductibility
+          has_percentage:
+        regulatory_body: Belastingdienst
+        legal_basis: Wet inkomstenbelasting 2001, Art. 6.39a
+        effective_at: '2008-01-01'
+    - value:
+        has_type: GiftAid
+        has_label: Gift Aid eligible
+        has_description: "British Library is registered for Gift Aid, allowing the library to reclaim 25p for every £1 donated by UK taxpayers."
+        identified_by: Charity No. 1034686
+        jurisdiction: UK
+        offer:
+        - has_type:
+            has_label: Fully Deductible
+          has_percentage:
+        regulatory_body: HMRC
+        legal_basis: Finance Act 1990
+        effective_at: '1990-10-01'
+    - value:
+        has_type: Section501c3
+        has_label: 501(c)(3) tax-exempt
+        has_description: Smithsonian Institution is recognized as a 501(c)(3) organization, allowing donors to deduct contributions on federal income taxes.
+        identified_by: EIN 53-0206027
+        jurisdiction: US
+        offer:
+        - has_type:
+            has_label: Fully Deductible
+          has_percentage:
+        regulatory_body: IRS
+        legal_basis: Internal Revenue Code Section 501(c)(3)
+    annotations:
+      specificity_score: 0.5
+      specificity_rationale: 'Moderately specific - tax scheme details are primarily relevant
+
+        for donation and fiscal compliance queries, not general heritage
+
+        discovery.
+
+        '
+      replaces_slot: tax_scheme
+      migration_date: '2026-01-16'
+      custodian_types: "['*']"
+      modeling_notes: |
+        TaxScheme captures jurisdiction-specific incentive programs (e.g., ANBI,
+        Gift Aid) and links them to deductibility details via TaxDeductibility.

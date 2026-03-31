@@ -1,0 +1,119 @@
+# ==============================================================================
+# LinkML Slot Definition: operate
+# ==============================================================================
+# Records systems, platforms, or infrastructure that an entity operates.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                             | File/Line                     | Mapping | Notes                                                                      |
+# |----------------|--------------------------------------|-------------------------------|---------|----------------------------------------------------------------------------|
+# | **Schema.org** | `schema:owns`                        | schemaorg.owl:28732-28755     | related | "Things owned by the organization or person." Person|Org→Thing. Related:   |
+# |                |                                      |                               |         | ownership ≠ operation. An entity may operate a system it does not own.     |
+# | **CIDOC CRM**  | `crm:P49i_is_former_or_current_keeper_of` | CIDOC_CRM_v7.1.3.rdf:2398-2408 | related | "is former or current keeper of." E39_Actor→E18_Physical_Thing. Related:   |
+# |                |                                      |                               |         | custodial responsibility, not operational control of systems.              |
+#
+# No exact external match for "controls, runs, or manages the functioning of a
+# system, platform, or device." schema:owns is about ownership, not operation;
+# CRM P49i is about physical custody. Retaining hc:operate as slot_uri.
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/operate
+name: operate
+title: Operate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  operate:
+    slot_uri: hc:operate
+    description: >-
+      Controls, runs, or manages the functioning of a machine, device, system,
+      platform, or organisation to ensure it performs its intended task. Records
+      the systems or infrastructure that an entity actively operates, as
+      distinct from what it owns (schema:owns) or has custody of
+      (crm:P49_has_former_or_current_keeper). An entity may operate a system
+      it does not own, and may own a system it does not operate.
+    alt_descriptions:
+      nl: >-
+        Bestuurt, draait of beheert de werking van een machine, apparaat,
+        systeem, platform of organisatie om te zorgen dat het de beoogde taak
+        uitvoert.
+      de: >-
+        Steuert, betreibt oder verwaltet den Betrieb einer Maschine, eines
+        Geräts, Systems, einer Plattform oder Organisation, um sicherzustellen,
+        dass sie ihre vorgesehene Aufgabe erfüllt.
+      fr: >-
+        Contrôle, fait fonctionner ou gère le fonctionnement d'une machine,
+        d'un appareil, d'un système, d'une plateforme ou d'une organisation
+        pour garantir qu'il accomplit sa tâche prévue.
+      ar: >-
+        يتحكم في أو يشغّل أو يدير عمل آلة أو جهاز أو نظام أو منصة أو منظمة
+        لضمان أداء المهمة المقصودة.
+      id: >-
+        Mengendalikan, menjalankan, atau mengelola fungsi mesin, perangkat,
+        sistem, platform, atau organisasi untuk memastikan ia menjalankan tugas
+        yang dimaksudkan.
+      zh: >-
+        控制、运行或管理机器、设备、系统、平台或组织的运作，以确保其执行预定任务。
+      es: >-
+        Controla, ejecuta o gestiona el funcionamiento de una máquina,
+        dispositivo, sistema, plataforma u organización para asegurar que
+        realice su tarea prevista.
+    structured_aliases:
+      - literal_form: Bedienen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Betreiben
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Exploiter
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تشغيل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Mengoperasikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 操作
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Operar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:owns  # schemaorg.owl:28732-28755 - "Things owned by the organization or person." Ownership ≠ operation; may operate without owning and vice versa.
+      - crm:P49i_is_former_or_current_keeper_of  # CIDOC_CRM_v7.1.3.rdf:2398-2408 - "is former or current keeper of" E39_Actor→E18_Physical_Thing. Custodial responsibility, not operational control.
+    aliases:
+      - operates_or_operated
+    examples:
+      - value: "Adlib Museum"
+        description: >-
+          A museum operates the Adlib collection management system.
+      - value: "https://www.archivesspace.org"
+        description: >-
+          An archive operates an ArchivesSpace installation for finding aids.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Semantically distinct from ownership (schema:owns): an entity may
+        operate a system hosted by a third party, or may own infrastructure
+        operated by a vendor. This slot captures operational responsibility.
+      - >-
+        The original slot_uri was schema:owns, which was semantically incorrect.
+        Remapped to hc:operate because no standard ontology property precisely
+        captures "operates a system or platform."
+      - >-
+        The range is string but the original design intended Platform references
+        (range: Platform was commented out). Classes may override the range in
+        slot_usage to use a typed entity reference.

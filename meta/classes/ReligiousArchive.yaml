@@ -1,0 +1,103 @@
+id: https://w3id.org/nde/ontology/ReligiousArchive
+name: ReligiousArchive
+title: Religious Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - ../classes/AgentType
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+classes:
+  ReligiousArchive:
+    description: >-
+      Repository dedicated to preserving records documenting the activities, governance,
+      spiritual heritage, and historical development of faith-based organizations.
+    alt_descriptions:
+      nl: >-
+        Bewaarplaats die zich toelegt op het bewaren van archieven die de activiteiten, het bestuur,
+        het spirituele erfgoed en de historische ontwikkeling van geloofsgebonden organisaties documenteren.
+      de: >-
+        Archiv, das der Erhaltung von Unterlagen gewidmet ist, die die Aktivitäten, Verwaltung,
+        das geistliche Erbe und die historische Entwicklung von Glaubensgemeinschaften dokumentieren.
+      fr: >-
+        Dépôt dédié à la préservation des documents sur les activités, la gouvernance,
+        le patrimoine spirituel et le développement historique des organisations confessionnelles.
+      es: >-
+        Repositorio dedicado a preservar registros que documentan las actividades, gobernanza,
+        patrimonio espiritual y desarrollo histórico de organizaciones religiosas.
+      ar: >-
+        مستودع مكرس للحفاظ على السجلات التي توثق أنشطة وحوكمة
+        التراث الروحي والتطور التاريخي للمنظمات الدينية.
+      id: >-
+        Repositori yang didedikasikan untuk melestarikan catatan yang mendokumentasikan aktivitas, tata kelola,
+        warisan spiritual, dan perkembangan historis organisasi berbasis iman.
+      zh: >-
+        专门保存记录信仰组织活动、治理、精神遗产和历史发展文献的存储库。
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    exact_mappings:
+      - wd:Q85545753
+    close_mappings:
+      - rico:CorporateBody
+    broad_mappings:
+      - wd:Q166118
+      - skos:Concept
+    keywords:
+      - religious archive
+      - church archive
+      - faith-based archive
+      - spiritual heritage
+    structured_aliases:
+      - literal_form: religieus archief
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Religionsarchiv
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: archives religieuses
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: archivo religioso
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - Broad category encompassing archives of various faith traditions
+      - Includes churches, denominations, religious orders, and faith-based organizations
+    slots:
+      - has_type
+      - hold_record_set
+      - has_score
+      - identified_by
+    slot_usage:
+      identified_by: null
+      has_type:
+        any_of:
+          - equals_string: hc:ArchiveOrganizationType
+          - equals_string: hc:HolySacredSiteType
+    annotations:
+      skos:prefLabel: Religious Archive
+      skos:altLabel: Religionsarchiv, archivo religioso, Church Archive, Faith-based Archive
+      subject_domain: religion
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+      - DiocesanArchive
+      - ParishArchive
+      - MonasteryArchive
+      - ChurchArchive

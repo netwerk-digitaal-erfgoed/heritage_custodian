@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/DepositArchiveRecordSetTypes
+name: DepositArchiveRecordSetTypes
+title: DepositArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./DepositArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  DepositedRecordsFonds:
+    is_a: DepositArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation arranged as a fonds for externally deposited
+      records under retention management.
+    alt_descriptions:
+      nl: >-
+        Documentaire aggregatie ingericht als fonds voor extern in bewaring
+        gegeven bronnen onder retentiebeheer.
+      de: >-
+        Dokumentarische Aggregation als Fonds fuer extern hinterlegte
+        Unterlagen unter Aufbewahrungs- und Retentionsverwaltung.
+      fr: >-
+        Agregation documentaire organisee en fonds pour des documents deposes
+        de l'exterieur sous gestion de retention.
+      es: >-
+        Agregacion documental dispuesta como fondo para registros depositados
+        externamente bajo gestion de retencion.
+      ar: >-
+        تجميع وثائقي منظم كرصيد لمواد مودعة من جهات خارجية
+        ضمن إدارة فترات الاحتفاظ.
+      id: >-
+        Agregasi dokumenter yang disusun sebagai fonds untuk catatan titipan
+        dari luar di bawah manajemen retensi.
+      zh: >-
+        以全宗方式组织的外部寄存记录文献聚合体，纳入保管期限管理。
+    structured_aliases:
+      - literal_form: fonds in bewaring gegeven bronnen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Fonds hinterlegter Unterlagen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds de documents deposes
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de registros depositados
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: رصيد سجلات مودعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds arsip titipan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 寄存记录文献全宗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Retention-management context and external provenance remain explicit.
+    keywords:
+      - external deposit
+      - retention management
+      - custody transfer
+      - fonds provenance
+    examples:
+      - value:
+          has_type: hc:DepositedRecordsFonds
+          has_custodian: hc:DepositArchive
+          has_note: Deposited corporate files managed under fixed retention schedules.
+        description: Externally deposited documentation grouped as a fonds under retention policy.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DepositedRecordsFonds
+      has_custodian:
+        equals_string: hc:DepositArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by DepositArchive custodians.

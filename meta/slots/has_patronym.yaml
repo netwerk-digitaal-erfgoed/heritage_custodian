@@ -1,0 +1,123 @@
+# ==============================================================================
+# LinkML Slot Definition: has_patronym
+# ==============================================================================
+# A name element derived from the given name of one's father or male ancestor.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property                | File/Line                  | Mapping  | Notes                                                                                      |
+# |--------------|-------------------------|----------------------------|----------|--------------------------------------------------------------------------------------------|
+# | **PNV**      | `pnv:patronym`          | pnv.ttl:267-278            | slot_uri | "A Patronym is a name element based on the given name of one's father or grandfather."     |
+# |              |                         |                            |          | DatatypeProperty, domain PersonName, range xsd:string. Also preferred for matronyms.       |
+# | **PNV**      | `pnv:trailingPatronym`  | pnv.ttl:325-332            | narrow   | SubProperty of pnv:patronym. Trailing patronym suffixes the family name for disambiguation.|
+# | **Schema**   | `schema:additionalName` | schemaorg.owl:7120-7124    | related  | Generic "additional name" (middle name, etc.) — not specifically patronymic.               |
+# | **Schema**   | `schema:familyName`     | schemaorg.owl:17899-17902  | related  | Family name — patronyms sometimes evolve into hereditary family names.                     |
+# | **FOAF**     | `foaf:familyName`       | foaf.ttl:214-221           | related  | "The family name of some person." DatatypeProperty, domain Person, range Literal.          |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_patronym
+name: has_patronym
+title: Has Patronym
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  pnv: https://w3id.org/pnv#
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_patronym:
+    slot_uri: pnv:patronym
+    description: >-
+      A name element derived from the given name of one's father or male
+      ancestor (patronym), or mother or female ancestor (matronym). This slot
+      captures the patronymic component of a person's name as used in historical
+      records, genealogical databases, and cultural naming traditions. The
+      complete patronymic element should be stored, including any prefix such as
+      "ibn", "ben", "bat", or "bint".
+    alt_descriptions:
+      nl: >-
+        Een naamelement afgeleid van de voornaam van iemands vader of mannelijke
+        voorouder (patroniem), of moeder of vrouwelijke voorouder (metroniem).
+      de: >-
+        Ein Namenselement, das vom Vornamen des Vaters oder eines männlichen
+        Vorfahren (Patronym) oder der Mutter oder einer weiblichen Vorfahrin
+        (Metronym) abgeleitet ist.
+      fr: >-
+        Un élément de nom dérivé du prénom du père ou d'un ancêtre masculin
+        (patronyme), ou de la mère ou d'une ancêtre féminine (matronyme).
+      ar: >-
+        عنصر اسم مشتق من الاسم الأول للأب أو سلف ذكر (اسم أبوي)، أو الأم أو
+        سلف أنثى (اسم أمومي).
+      id: >-
+        Elemen nama yang berasal dari nama depan ayah atau leluhur laki-laki
+        (patronim), atau ibu atau leluhur perempuan (matronim).
+      zh: >-
+        源自父亲或男性祖先名字的姓名元素（父名），或母亲或女性祖先名字的姓名元素（母名）。
+      es: >-
+        Un elemento de nombre derivado del nombre de pila del padre o un
+        ancestro masculino (patronímico), o de la madre o una ancestro femenina
+        (matronímico).
+    structured_aliases:
+      - literal_form: patroniem
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Patronym
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: patronyme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: اسم أبوي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: patronim
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 父名
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: patronímico
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    narrow_mappings:
+      - pnv:trailingPatronym  # pnv.ttl:325-332 - subProperty of pnv:patronym, trailing patronym for disambiguation
+    related_mappings:
+      - schema:additionalName  # schemaorg.owl:7120-7124 - generic additional name, not specifically patronymic
+      - schema:familyName  # schemaorg.owl:17899-17902 - patronyms sometimes evolve into hereditary family names
+      - foaf:familyName  # foaf.ttl:214-221 - "The family name of some person." broader name concept
+    aliases:
+      - patronym
+    examples:
+      - value: "Pieterszoon"
+        description: "Dutch historical patronym meaning 'son of Pieter' (Jan Pieterszoon)"
+      - value: "Guðmundsdóttir"
+        description: "Icelandic patronym meaning 'daughter of Guðmundur' (Björk Guðmundsdóttir)"
+      - value: "ibn Abdullah"
+        description: "Arabic patronym meaning 'son of Abdullah' (Muhammad ibn Abdullah)"
+      - value: "Jansdochter"
+        description: "Dutch historical patronym meaning 'daughter of Jan' (Anna Jansdochter)"
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        The pnv:patronym property is also the preferred property for matronyms
+        (name elements based on the given name of one's mother or grandmother),
+        per the PNV ontology specification.
+      - >-
+        Patronymic patterns by culture: Dutch Historical uses -zoon/-szoon/-z.
+        (son of) and -dochter (daughter of); Icelandic uses -son and -dóttir;
+        Arabic uses ibn/bin (son of) and bint (daughter of); Hebrew uses ben
+        (son of) and bat (daughter of); Slavic uses -ovich/-evich (son of) and
+        -ovna/-evna (daughter of).
+      - >-
+        Store the complete patronymic element including any prefix like "ibn",
+        "ben", "bat", or "bint" to preserve the full cultural naming convention.
+      - >-
+        The Dutch label "patroniem" is confirmed from the PNV ontology itself
+        (pnv.ttl:273-274).

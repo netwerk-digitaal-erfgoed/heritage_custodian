@@ -1,0 +1,193 @@
+# ============================================================================
+# DEPRECATED - Use DigitalPlatformType class hierarchy instead
+# ============================================================================
+# 
+# This enum is DEPRECATED as of 2025-01-04.
+#
+# MIGRATION:
+#   - Use DigitalPlatformType.yaml (abstract base class)
+#   - Use DigitalPlatformTypes.yaml (69 concrete subclasses)
+#   - Auxiliary platform types are now in the AUXILIARY category
+#
+# RATIONALE:
+#   - Unified type system for both DigitalPlatform and AuxiliaryDigitalPlatform
+#   - Class-based approach enables polymorphic slot references
+#   - Better Wikidata alignment with class_uri mappings
+#   - Richer semantic modeling (multilingual labels, examples)
+#
+# This file is retained for backwards compatibility but should not be
+# imported by new schemas.
+# ============================================================================
+
+# AuxiliaryDigitalPlatformTypeEnum - Types of secondary/subordinate digital platforms
+# 
+# DEPRECATED - Use DigitalPlatformType class hierarchy instead.
+# The AUXILIARY category in DigitalPlatformTypes.yaml contains equivalent types.
+# 
+# Used by AuxiliaryDigitalPlatform class to classify types of secondary digital
+# properties beyond the main website/platform.
+# 
+# Generation date: 2025-11-25
+# 
+id: https://nde.nl/ontology/hc/enum/auxiliary-digital-platform-type
+name: auxiliary_digital_platform_type_enum
+title: Auxiliary Digital Platform Type Enumeration
+deprecated: "Use DigitalPlatformType class hierarchy instead (see DigitalPlatformTypes.yaml AUXILIARY category)"
+
+imports:
+  - linkml:types
+
+enums:
+  AuxiliaryDigitalPlatformTypeEnum:
+    description: |
+      Types of secondary or subordinate digital platforms for heritage custodians.
+      
+      These represent digital properties beyond the main website, including project
+      sites, exhibition microsites, specialized APIs, mobile apps, etc.
+      
+      Aligns with DCAT dcat:Catalog concept for secondary data catalogs/services.
+    
+    permissible_values:
+      PROJECT_WEBSITE:
+        title: project website
+        description: |
+          Dedicated website for a specific project, research initiative, or
+          long-term program. May have finite lifespan matching project duration.
+        meaning: dcat:Catalog
+        annotations:
+          examples: "Rijksstudio, Operation Night Watch, Digitization project portal"
+      
+      EXHIBITION_MICROSITE:
+        title: exhibition microsite
+        description: |
+          Temporary website for specific exhibition or event. Has defined
+          valid_from/valid_to matching exhibition dates.
+        meaning: dcat:Catalog
+        annotations:
+          examples: "Temporary exhibition site, Virtual tour for exhibition, Exhibition archive"
+      
+      API_ENDPOINT:
+        title: API endpoint
+        description: |
+          Programmatic interface separate from main API. Developer tools,
+          specialized data access, experimental APIs.
+        meaning: dcat:DataService
+        annotations:
+          examples: "Data API, IIIF API, Search API, Metadata API"
+      
+      MOBILE_APP:
+        title: mobile app
+        description: |
+          Native or hybrid mobile application for iOS/Android. May be guide app,
+          collection browser, or interactive experience.
+        meaning: schema:MobileApplication
+        annotations:
+          examples: "Museum guide app, Collection browser app, AR experience app"
+      
+      COLLECTION_BROWSER:
+        title: collection browser
+        description: |
+          Specialized tool for exploring specific collection or dataset.
+          Rich interface beyond main catalog search.
+        meaning: dcat:Catalog
+        annotations:
+          examples: "Paintings explorer, Photograph viewer, Interactive map"
+      
+      CROWDSOURCING_PLATFORM:
+        title: crowdsourcing platform
+        description: |
+          Platform for user contributions: transcription, tagging, identification,
+          georeferencing, citizen science.
+        meaning: dcat:Catalog
+        annotations:
+          examples: "Transcription portal, Tagging tool, Citizen science project"
+      
+      EDUCATIONAL_PORTAL:
+        title: educational portal
+        description: |
+          Learning resources, lesson plans, educational games, teacher materials.
+          May be separate platform or subdomain.
+        meaning: schema:LearningResource
+        annotations:
+          examples: "Teacher resources, Student portal, Educational games"
+      
+      DATA_PORTAL:
+        title: data portal
+        description: |
+          Platform for downloading datasets, bulk exports, open data access.
+          May have different access policies than main platform.
+        meaning: dcat:Catalog
+        annotations:
+          examples: "Open data portal, Dataset downloads, Bulk export service"
+      
+      LEGACY_PLATFORM:
+        title: legacy platform
+        description: |
+          Deprecated but maintained platform, old website version, sunset service.
+          No longer actively developed but still accessible.
+        meaning: dcat:Catalog
+        annotations:
+          examples: "Old website archive, Deprecated API version, Legacy search"
+      
+      VIRTUAL_TOUR:
+        title: virtual tour
+        description: |
+          360-degree tours, VR experiences, immersive gallery views.
+          Interactive spatial exploration of physical spaces.
+        meaning: schema:VirtualLocation
+        annotations:
+          examples: "360° gallery tour, VR museum, Google Arts & Culture street view"
+      
+      BLOG_NEWS:
+        title: blog and news
+        description: |
+          Blog, news section, or content marketing platform separate from
+          main website. May be on different domain or platform.
+        meaning: schema:Blog
+        annotations:
+          examples: "Institutional blog, News portal, Stories section"
+      
+      SOCIAL_MEDIA:
+        title: social media presence
+        description: |
+          Official social media accounts and channels. Instagram, Twitter,
+          Facebook, YouTube, TikTok institutional accounts.
+        meaning: schema:SocialMediaPosting
+        annotations:
+          examples: "Instagram account, YouTube channel, Twitter/X profile"
+      
+      PODCAST_CHANNEL:
+        title: podcast channel
+        description: |
+          Audio podcast or video series hosted on dedicated platform.
+          Spotify, Apple Podcasts, YouTube, SoundCloud.
+        meaning: schema:PodcastSeries
+        annotations:
+          examples: "Museum podcast, Archive stories, Curator talks"
+      
+      BOOKING_SYSTEM:
+        title: booking system
+        description: |
+          Online reservation and ticketing system, may be third-party platform
+          or custom solution. Reading room appointments, event tickets.
+        meaning: schema:ReservationPackage
+        annotations:
+          examples: "Ticket booking, Reading room reservations, Tour scheduling"
+      
+      WEBSHOP:
+        title: webshop
+        description: |
+          E-commerce platform for museum shop, print-on-demand, merchandise.
+          May be separate domain or integrated.
+        meaning: schema:OnlineStore
+        annotations:
+          examples: "Museum shop, Print shop, Publications store"
+      
+      NEWSLETTER:
+        title: newsletter platform
+        description: |
+          Email newsletter signup and archive. Mailchimp, Campaign Monitor,
+          or institutional email marketing.
+        meaning: schema:NewsArticle
+        annotations:
+          examples: "Monthly newsletter, Exhibition announcements, Member updates"

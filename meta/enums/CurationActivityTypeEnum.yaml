@@ -1,0 +1,378 @@
+# CurationActivityTypeEnum - Types of collection curation activities
+#
+# Enumeration of curation activities for ongoing collection management.
+#
+# Aligned with:
+# - CIDOC-CRM E87_Curation_Activity
+# - SPECTRUM (UK Collections Management Standard) procedures
+# - AAM (American Alliance of Museums) standards
+# - ICOM collection management guidelines
+#
+# Created: January 2026
+
+id: https://nde.nl/ontology/hc/enum/CurationActivityTypeEnum
+name: CurationActivityTypeEnum
+title: Curation Activity Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  aat: http://vocab.getty.edu/aat/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  CurationActivityTypeEnum:
+    description: |
+      Types of ongoing curation activities for heritage collection management.
+      
+      **CIDOC-CRM Context**:
+      
+      E87_Curation_Activity - "The continuous activities performed on a 
+      curated holding to preserve it for public access." Distinguished from
+      discrete events like exhibitions.
+      
+      **Key Distinction**:
+      
+      | Concept | Class | Duration |
+      |---------|-------|----------|
+      | **Curation Activity** | CurationActivity | Ongoing/recurring |
+      | Exhibition | Exhibition | Time-bounded event |
+      | Conservation treatment | ConservationRecord | Discrete action |
+      
+      **Categories**:
+      
+      1. **Acquisition/Disposal**: Accessioning, deaccessioning
+      2. **Documentation**: Cataloging, inventorying, research
+      3. **Physical Management**: Rehousing, relocation, storage
+      4. **Preservation**: Condition surveys, preventive conservation
+      5. **Access**: Digitization, interpretation, outreach
+      
+      **SPECTRUM Alignment**:
+      
+      Maps to SPECTRUM primary procedures for museum documentation.
+    
+    permissible_values:
+      # Acquisition Activities
+      ACCESSIONING:
+        description: |
+          Formal acceptance and registration of objects into the collection.
+          Includes legal transfer, accession numbering, and initial documentation.
+          
+          **SPECTRUM**: Object Entry, Acquisition
+          
+          **Deliverables**: Accession records, legal documents, initial catalog
+        meaning: aat:300055652  # accessioning (museum functions)
+        annotations:
+          category: "acquisition"
+          spectrum_procedure: "acquisition"
+      
+      ACQUISITION_RESEARCH:
+        description: |
+          Research conducted before acquisition decision.
+          Includes provenance research, valuation, collection fit assessment.
+          
+          **Deliverables**: Acquisition proposal, provenance report
+        annotations:
+          category: "acquisition"
+          spectrum_procedure: "pre-entry"
+      
+      DEACCESSIONING:
+        description: |
+          Formal removal of objects from the permanent collection.
+          Includes legal process, board approval, disposition planning.
+          
+          **SPECTRUM**: Deaccession and Disposal
+          
+          **Methods**: Sale, exchange, donation, destruction
+        meaning: aat:300055654  # deaccessioning (museum functions)
+        annotations:
+          category: "disposal"
+          spectrum_procedure: "deaccession"
+      
+      COLLECTION_REVIEW:
+        description: |
+          Systematic review of collection for disposal candidates.
+          Assessment against collection policy and mission.
+          
+          **Deliverables**: Review report, deaccession recommendations
+        annotations:
+          category: "disposal"
+      
+      # Documentation Activities
+      CATALOGING:
+        description: |
+          Creation and maintenance of catalog records.
+          Full documentation of object metadata.
+          
+          **SPECTRUM**: Cataloguing
+          
+          **Standards**: CCO, CDWA, Dublin Core, ISAD(G)
+        meaning: aat:300054505  # cataloging (information processing)
+        annotations:
+          category: "documentation"
+          spectrum_procedure: "cataloguing"
+      
+      INVENTORY:
+        description: |
+          Physical count and verification of collection objects.
+          Reconciliation with catalog records.
+          
+          **SPECTRUM**: Inventory Control
+          
+          **Types**: Spot check, rolling inventory, full inventory
+        meaning: aat:300054503  # inventories (documents)
+        annotations:
+          category: "documentation"
+          spectrum_procedure: "inventory"
+      
+      PROVENANCE_RESEARCH:
+        description: |
+          Research into ownership history of collection objects.
+          Includes Nazi-era provenance, indigenous heritage research.
+          
+          **Deliverables**: Provenance reports, chain of ownership
+        annotations:
+          category: "documentation"
+          spectrum_procedure: "cataloguing"
+      
+      OBJECT_RESEARCH:
+        description: |
+          Scholarly research on collection objects.
+          Attribution, dating, context, significance assessment.
+          
+          **Deliverables**: Research files, publications, attributions
+        annotations:
+          category: "documentation"
+      
+      RIGHTS_RESEARCH:
+        description: |
+          Research into intellectual property and reproduction rights.
+          Copyright status, licensing, permissions.
+          
+          **Deliverables**: Rights metadata, licensing agreements
+        annotations:
+          category: "documentation"
+      
+      # Physical Management
+      REHOUSING:
+        description: |
+          Transfer of objects to new storage containers or mounts.
+          Upgrade of housing materials for preservation.
+          
+          **SPECTRUM**: Object Storage
+          
+          **Examples**: Acid-free boxes, custom mounts, archival folders
+        annotations:
+          category: "physical"
+          spectrum_procedure: "object-storage"
+      
+      RELOCATION:
+        description: |
+          Movement of objects to new storage location.
+          Internal moves within institution.
+          
+          **SPECTRUM**: Location and Movement Control
+        meaning: crm:E9_Move
+        annotations:
+          category: "physical"
+          spectrum_procedure: "movement"
+      
+      STORAGE_REORGANIZATION:
+        description: |
+          Systematic reorganization of storage areas.
+          May include reclassification, consolidation, or expansion.
+          
+          **Deliverables**: New location records, finding aids
+        annotations:
+          category: "physical"
+          spectrum_procedure: "object-storage"
+      
+      ENVIRONMENTAL_MONITORING:
+        description: |
+          Ongoing monitoring of storage/display environment.
+          Temperature, humidity, light, pests.
+          
+          **SPECTRUM**: Collections Care and Conservation
+          
+          **Deliverables**: Environmental logs, incident reports
+        annotations:
+          category: "preservation"
+      
+      # Preservation Activities
+      CONDITION_SURVEY:
+        description: |
+          Systematic assessment of condition across collection.
+          Identifies conservation priorities and risks.
+          
+          **SPECTRUM**: Condition Checking and Technical Assessment
+          
+          **Deliverables**: Condition reports, priority lists
+        annotations:
+          category: "preservation"
+          spectrum_procedure: "condition-assessment"
+      
+      PREVENTIVE_CONSERVATION:
+        description: |
+          Ongoing preventive conservation measures.
+          IPM, environmental control, handling protocols.
+          
+          **SPECTRUM**: Collections Care and Conservation
+          
+          **Distinct from**: Active treatment (ConservationRecord)
+        meaning: aat:300054631  # preventive conservation
+        annotations:
+          category: "preservation"
+      
+      DISASTER_PLANNING:
+        description: |
+          Development and maintenance of disaster response plans.
+          Risk assessment, salvage priorities, emergency procedures.
+          
+          **Deliverables**: Disaster plan, training materials
+        annotations:
+          category: "preservation"
+      
+      # Access Activities
+      DIGITIZATION:
+        description: |
+          Systematic digitization of collection objects.
+          Photography, scanning, 3D capture, metadata creation.
+          
+          **Deliverables**: Digital surrogates, digital asset management
+        meaning: aat:300265725  # digitizing (processes)
+        annotations:
+          category: "access"
+      
+      PHOTOGRAPHY:
+        description: |
+          Professional photography of collection objects.
+          Documentation photography for catalog and publication.
+          
+          **SPECTRUM**: Documentation (Images)
+          
+          **Standards**: FADGI, AIC imaging guidelines
+        annotations:
+          category: "access"
+      
+      INTERPRETATION:
+        description: |
+          Development of interpretive content for collection.
+          Labels, educational materials, online content.
+          
+          **Deliverables**: Gallery text, educational programs
+        annotations:
+          category: "access"
+      
+      ONLINE_PUBLICATION:
+        description: |
+          Publication of collection information online.
+          Database publishing, digital exhibitions, APIs.
+          
+          **Deliverables**: Online catalog, digital collections
+        annotations:
+          category: "access"
+      
+      # Loan Activities
+      OUTGOING_LOAN_MANAGEMENT:
+        description: |
+          Management of objects lent to other institutions.
+          Loan agreements, condition reporting, courier arrangements.
+          
+          **SPECTRUM**: Loans Out
+        annotations:
+          category: "loans"
+          spectrum_procedure: "loans-out"
+      
+      INCOMING_LOAN_MANAGEMENT:
+        description: |
+          Management of borrowed objects.
+          Facility reports, condition documentation, display.
+          
+          **SPECTRUM**: Loans In
+        annotations:
+          category: "loans"
+          spectrum_procedure: "loans-in"
+      
+      # Administrative
+      COLLECTION_DEVELOPMENT:
+        description: |
+          Strategic planning for collection growth.
+          Collection policy development and review.
+          
+          **Deliverables**: Collection development policy, strategic plan
+        annotations:
+          category: "administration"
+      
+      REGISTRATION:
+        description: |
+          Maintenance of registration records and systems.
+          Legal documentation, insurance, valuation records.
+          
+          **SPECTRUM**: Audit
+        annotations:
+          category: "administration"
+      
+      VALUATION:
+        description: |
+          Assessment of monetary value of collection.
+          Insurance valuation, fair market value.
+          
+          **SPECTRUM**: Valuation
+          
+          **Deliverables**: Valuation reports, insurance schedules
+        meaning: aat:300054642  # appraisal (evaluation)
+        annotations:
+          category: "administration"
+          spectrum_procedure: "valuation"
+      
+      AUDIT:
+        description: |
+          Systematic audit of collection records and holdings.
+          Compliance review, gap analysis.
+          
+          **SPECTRUM**: Audit
+          
+          **Deliverables**: Audit report, corrective actions
+        annotations:
+          category: "administration"
+          spectrum_procedure: "audit"
+      
+      # Integration Activities
+      DATABASE_MIGRATION:
+        description: |
+          Migration of collection data to new system.
+          Data cleaning, mapping, validation.
+          
+          **Deliverables**: Migrated database, data quality report
+        annotations:
+          category: "documentation"
+      
+      VOCABULARY_ALIGNMENT:
+        description: |
+          Alignment of local terminology with standard vocabularies.
+          AAT, TGN, ULAN mapping and enrichment.
+          
+          **Deliverables**: Vocabulary mappings, enriched records
+        annotations:
+          category: "documentation"
+      
+      LINKED_DATA_PUBLICATION:
+        description: |
+          Publication of collection data as linked open data.
+          RDF generation, SPARQL endpoints, data APIs.
+          
+          **Deliverables**: RDF datasets, linked data services
+        annotations:
+          category: "access"
+      
+      OTHER:
+        description: |
+          Curation activity not covered by other categories.
+        annotations:
+          category: "other"

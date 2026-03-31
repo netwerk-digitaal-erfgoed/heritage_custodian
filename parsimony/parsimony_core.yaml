@@ -1,0 +1,111 @@
+id: https://nde.nl/ontology/hc/parsimony/core
+name: heritage_custodian_parsimony
+title: Heritage Custodian Parsimony Ontology
+description: >-
+  Semantic facade over the engineering ontology in ../modules/, created through
+  a parsimony methodology. This package keeps a deliberately small class and
+  slot set and explains how semantic nodes map to richer engineering classes,
+  enums, and slots.
+version: 0.2.0
+license: https://creativecommons.org/licenses/by-sa/4.0/
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  pico: https://personsincontext.org/model#
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+  - linkml:types
+  - metadata
+  - modules/slots/addressed_at
+  - modules/slots/designated_by
+  - modules/slots/affiliated_with
+  - modules/slots/comes_into_existence_through
+  - modules/slots/comes_to_an_end_through
+  - modules/slots/functions_as
+  - modules/slots/has_label_literal
+  - modules/slots/has_note_literal
+  - modules/slots/has_spatial_scope
+  - modules/slots/has_uri_literal
+  - modules/slots/contactable_through
+  - modules/slots/equivalent_to
+  - modules/slots/expressed_in
+  - modules/slots/available_via
+  - modules/slots/has_affiliate
+  - modules/slots/made_available_by
+  - modules/slots/made_public_on
+  - modules/slots/associated_with
+  - modules/slots/realized_through
+  - modules/slots/accessed_under
+  - modules/slots/attested_in
+  - modules/slots/included_in
+  - modules/slots/marked_as
+  - modules/slots/received_from
+  - modules/slots/passed_to
+  - modules/slots/situated_in_time
+  - modules/slots/carried_out_by
+  - modules/slots/holds
+  - modules/slots/located_in
+  - modules/slots/indicates
+  - modules/slots/yields
+  - modules/slots/typed_as
+  - modules/slots/addresses
+  - modules/slots/attests
+  - modules/slots/carries_out
+  - modules/slots/gives_rise_to_existence_of
+  - modules/slots/brings_to_end
+  - modules/slots/provides_contact_for
+  - modules/slots/designates
+  - modules/slots/expresses
+  - modules/slots/is_function_of
+  - modules/slots/is_spatial_scope_of
+  - modules/slots/held_by
+  - modules/slots/includes
+  - modules/slots/indicated_by
+  - modules/slots/is_location_of
+  - modules/slots/makes_available
+  - modules/slots/realizes
+  - modules/slots/is_type_of
+  - modules/slots/yielded_by
+  - modules/classes/Activity
+  - modules/classes/Agent
+  - modules/classes/CustodialEntity
+  - modules/classes/Holding
+  - modules/classes/Designation
+  - modules/classes/Observation
+  - modules/classes/PlaceContext
+  - modules/classes/SourceResource
+  - modules/classes/Classification
+  - modules/classes/LegalStatus
+  - modules/classes/EncompassingBody
+  - modules/mappings/parsimony_engineering_bridge
+  - modules/mappings/parsimony_engineering_class_alignments
+  - modules/mappings/custodial_entity_realizations
+  - modules/mappings/holding_realizations
+  - modules/mappings/observation_realizations
+  - modules/mappings/agent_realizations
+  - modules/mappings/source_resource_realizations
+  - modules/mappings/activity_realizations
+  - modules/mappings/parsimony_engineering_slot_alignments
+  - modules/mappings/parsimony_engineering_type_bridge
+  - modules/mappings/parsimony_engineering_type_realizations
+  - modules/mappings/classification_realizations
+  - modules/mappings/encompassing_body_realizations
+  - modules/mappings/legal_status_realizations
+comments:
+  - >-
+    This schema is intentionally small. Engineering detail remains in
+    schemas/20251121/linkml/modules/ and must be connected through explicit
+    mapping files.
+  - >-
+    v0.2.0: Removed Reconstruction as a class. Observations now directly
+    indicate semantic targets (CustodialEntity, PlaceContext, Holding,
+    LegalStatus, SourceResource, EncompassingBody) via the indicates predicate.
+    Activity.reconstructs replaced by Activity.yields (range: Observation).
+    Added LegalStatus and EncompassingBody as parsimony-layer classes.
+    Removed grounded_in slot (absorbed by indicates + attested_in).

@@ -1,0 +1,305 @@
+id: https://nde.nl/ontology/hc/class/auxiliary-digital-platform
+name: auxiliary_digital_platform_class
+title: AuxiliaryDigitalPlatform Class
+imports:
+- linkml:types
+- ../slots/has_documentation
+- ../slots/has_endpoint
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/has_technological_infrastructure
+- ../slots/has_type
+- ../slots/auxiliary_of
+- ../slots/archived_at
+- ../slots/based_on
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/has_linked_data
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_objective
+- ../slots/has_url
+- ../slots/receive
+- ../slots/refer_to
+- ../slots/related_to
+- ../slots/has_finding_aid
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  doap: http://usefulinc.com/ns/doap#
+  premis: http://www.loc.gov/premis/rdf/v3/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+classes:
+  AuxiliaryDigitalPlatform:
+    is_a: ReconstructedEntity
+    class_uri: dcat:Catalog
+    description: >-
+      Subordinate or project-based digital platform associated with a heritage custodian, representing secondary digital properties such as project sites, exhibition microsites, specialized tools, and legacy platforms distinct from the primary web presence.
+    alt_descriptions:
+      nl: Ondergeschikt of projectgebaseerd digitaal platform gekoppeld aan een erfgoedinstelling, dat secundaire digitale eigenschappen vertegenwoordigt zoals projectsites, tentoonstellingsmicrosites, gespecialiseerde tools en verouderde platforms.
+      de: Untergeordnete oder projektbasierte digitale Plattform, die mit einer Heritage-Institution verbunden ist und sekundäre digitale Eigenschaften wie Projektseiten, Ausstellungs-Microsites, spezialisierte Tools und Legacy-Plattformen repräsentiert.
+      fr: Plateforme numérique subordonnée ou basée sur un projet associée à une institution patrimoniale, représentant des propriétés numériques secondaires telles que des sites de projet, des microsites d'exposition, des outils spécialisés et des plateformes héritées.
+      es: Plataforma digital subordinada o basada en proyectos asociada con una institución patrimonial, que representa propiedades digitales secundarias como sitios de proyectos, micrositios de exposiciones, herramientas especializadas y plataformas heredadas.
+      ar: منصة رقمية تابعة أو قائمة على المشروع مرتبطة بمؤسسة تراثية، تمثل الخصائص الرقمية الثانوية مثل مواقع المشاريع والمواقع المصغرة للمعارض والأدوات المتخصصة والمنصات القديمة.
+      id: Platform digital bawahan atau berbasis proyek yang terkait dengan lembaga warisan, mewakili properti digital sekunder seperti situs proyek, microsite pameran, alat khusus, dan platform lama.
+      zh: 与遗产机构关联的从属或基于项目的数字平台，代表次要数字属性， 如项目站点、展览微网站、专业工具和遗留平台。
+    close_mappings:
+    - dcat:Catalog
+    - schema:WebSite
+    - schema:WebApplication
+    - dcat:DataService
+    - foaf:Document
+    - doap:Project
+    related_mappings:
+    - dcterms:isPartOf
+    - schema:isRelatedTo
+    - dcat:servesDataset
+    slots:
+    - has_documentation
+    - archived_at
+    - identified_by
+    - has_type
+    - based_on
+    - has_endpoint
+    - receive
+    - auxiliary_of
+    - has_linked_data
+    - has_description
+    - has_label
+    - has_objective
+    - has_url
+    - refer_to
+    - related_to
+    - has_finding_aid
+    - has_technological_infrastructure
+    - has_score
+    - temporal_extent
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux-platform/rijksmuseum-rijksstudio
+      has_label:
+        required: true
+        examples:
+        - value: Rijksstudio
+        - value: Operation Night Watch
+        - value: WW2 Portal
+      has_type:
+        required: false
+        examples:
+        - value: web_harvest
+        - value: migration
+      has_url:
+        range: uri
+        required: true
+        pattern: ^https?://
+        examples:
+        - value: https://www.rijksmuseum.nl/nl/rijksstudio
+        - value: https://data.rijksmuseum.nl/
+      has_objective:
+        examples:
+        - value: Personal collection creation and high-res image downloads
+        - value: Interactive exploration of Night Watch research project
+      has_description:
+        examples:
+        - value: Rijksstudio allows users to create personal collections from the Rijksmuseum's digitized artworks, download high-resolution images, and share curated sets with others.
+      has_documentation:
+        range: uri
+        multivalued: true
+        examples:
+        - value: https://data.rijksmuseum.nl/object-metadata/api/
+      has_technological_infrastructure:
+        multivalued: true
+        inlined_as_list: false
+        examples:
+        - value:
+            identified_by: tech-react-frontend
+            has_type: FrontendFramework
+            has_label: React
+            has_version: '18.2'
+        - value:
+            identified_by: tech-django-backend
+            has_type: BackendFramework
+            has_label: Python/Django
+            has_version: '4.2'
+            include:
+            - Django REST Framework
+      auxiliary_of:
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/platform/rijksmuseum-website
+      related_to:
+        examples:
+        - value: Operation Night Watch
+        - value: 'EU Horizon 2020 Grant #123456'
+      receive:
+        inlined: false
+        examples:
+        - value:
+            has_label: European Commission Horizon 2020
+        - value:
+            has_label: Mondriaan Fund
+      has_linked_data:
+        range: boolean
+        examples:
+        - value: true
+      temporal_extent:
+        range: TimeSpan
+        examples:
+        - value:
+            begin_of_the_begin: '2018-06-01'
+            end_of_the_end: '2021-12-31'
+      has_status:
+        inlined: false
+        examples:
+        - value:
+            has_code: ACTIVE
+            has_label: Active
+        - value:
+            has_code: DEPRECATED
+            has_label: Deprecated
+        - value:
+            has_code: MIGRATED
+            has_label: Migrated
+      archived_at:
+        range: uri
+        examples:
+        - value: https://web.archive.org/web/20211231/https://example.nl/exhibition/
+      based_on:
+        multivalued: true
+        inlined_as_list: false
+        required: false
+        examples:
+        - value:
+            cms_version: 6.4.2
+            has_type: CustomCMS
+            detected_at: '2026-01-19T12:00:00Z'
+        - value:
+            cms_version: 4.0.1
+            has_type: MuseumCMS
+      derive_from:
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+      refer_to:
+        range: Custodian
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+      has_finding_aid:
+        multivalued: true
+        inlined_as_list: false
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/finding-aid/rm/night-watch-guide
+    structured_aliases:
+    - literal_form: hulpplatform
+      in_language: nl
+    - literal_form: Hilfsplattform
+      in_language: de
+    - literal_form: plateforme auxiliaire
+      in_language: fr
+    - literal_form: plataforma auxiliar
+      in_language: es
+    - literal_form: منصة مساعدة
+      in_language: ar
+    - literal_form: platform bantu
+      in_language: id
+    - literal_form: 辅助平台
+      in_language: zh
+    comments:
+    - Represents SUBORDINATE digital properties (vs DigitalPlatform for PRIMARY entry)
+    - Three-tier model: DigitalPlatform (main), AuxiliaryDigitalPlatform (subordinate), DigitalPlatformType (classification)
+    - DCAT dcat:Catalog for secondary data catalogs/services
+    - Temporal validity tracks platform lifecycle (launched/deprecated/archived)
+    - Links back to DigitalPlatform via is_auxiliary_of_platform
+    - Use cases: project websites, exhibition microsites, specialized tools, legacy platforms, grant-funded projects, educational platforms
+    - 'Preserved from prior description: Subordinate or project-based digital platform associated with a heritage custodian, representing secondary digital properties such as project sites, exhibition microsites, specialized tools, and legacy platforms distinct from the primary web presence.'
+    keywords:
+    - digital platform
+    - project website
+    - microsite
+    - API endpoint
+    - exhibition portal
+    - subordinate platform
+    see_also:
+    - https://www.w3.org/TR/vocab-dcat-2/#Class:Catalog
+    - https://www.w3.org/TR/vocab-dcat-2/#Property:catalog_service
+    - https://schema.org/archivedAt
+    - http://usefulinc.com/ns/doap#
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux-platform/rijksmuseum-rijksstudio
+        platform_name: Rijksstudio
+        has_type:
+          has_label: ProjectWebsite
+        platform_url: https://www.rijksmuseum.nl/nl/rijksstudio
+        platform_purpose: Personal collection creation and high-res image downloads
+        platform_description: Rijksstudio allows users to create personal collections from the Rijksmuseum's digitized artworks, download high-resolution images, and share curated sets with others.
+        is_auxiliary_of_platform: https://nde.nl/ontology/hc/platform/rijksmuseum-website
+        linked_data: false
+        has_status:
+          has_code: ACTIVE
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+      description: Rijksmuseum project website for personal collections
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux-platform/rijksmuseum-data-api
+        platform_name: Rijksmuseum Data API
+        has_type:
+          has_label: APIEndpoint
+        platform_url: https://data.rijksmuseum.nl/
+        platform_purpose: Developer access to collection metadata and images
+        has_documentation: https://data.rijksmuseum.nl/object-metadata/api/
+        has_technological_infrastructure:
+        - identified_by: tech-rest-api
+          has_type: RESTful
+          has_label: REST API
+          has_description: RESTful API protocol for data access
+        - identified_by: tech-json-format
+          has_type: APIProtocol
+          has_label: JSON
+          has_description: JSON data format for API responses
+        is_auxiliary_of_platform: https://nde.nl/ontology/hc/platform/rijksmuseum-website
+        linked_data: true
+        has_status:
+          has_code: ACTIVE
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+      description: Rijksmuseum API endpoint
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux-platform/rm-night-watch-experience
+        platform_name: Operation Night Watch
+        has_type:
+          has_label: ExhibitionMicrosite
+        platform_url: https://www.rijksmuseum.nl/en/stories/operation-night-watch
+        platform_purpose: Interactive exploration of Night Watch research project
+        related_project: Operation Night Watch
+        receive:
+          has_label: ING Bank
+        is_auxiliary_of_platform: https://nde.nl/ontology/hc/platform/rijksmuseum-website
+        has_status:
+          has_code: ACTIVE
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+      description: Exhibition microsite
+    notes:
+    - |
+      Preserved from prior description (commit 51480891):
+
+      "Subordinate or project-based digital platform associated with a heritage custodian.\n\n**CRITICAL DISTINCTION - THREE-TIER DIGITAL PLATFORM MODEL**:\n\n1. **DigitalPlatform** (main digital entry point):\n   - Primary web presence of the custodian\n   - Main website, primary API, flagship digital platform\n   - Like CustodianPlace is the preferred place reference\n   - Examples: rijksmuseum.nl, europeana.eu, nationaalarchief.nl\n   \n2. **AuxiliaryDigitalPlatform** (subordinate platforms) - THIS CLASS:\n   - Secondary digital properties: project sites, exhibition microsites\n   - Like CustodianAppellation is to CustodianName\n   - Examples: project websites, temporary exhibition portals, specialized tools\n   \n3. **DigitalPlatformType** (custodian type classification):\n   - For digital-FIRST custodians (no physical building)\n   - Applied at Custodian.custodian_type level\n   - Examples: Europeana (aggregation platform), Internet Archive\n\n**DCAT ALIGNMENT**:\n\n`dcat:Catalog`\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

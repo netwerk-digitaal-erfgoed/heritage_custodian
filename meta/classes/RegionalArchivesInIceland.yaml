@@ -1,0 +1,64 @@
+id: https://w3id.org/nde/ontology/RegionalArchivesInIceland
+name: RegionalArchivesInIceland
+title: Regional Archives in Iceland
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  RegionalArchivesInIceland:
+    description: >-
+      Regional archives in Iceland serving specific regions, preserving local government
+      records, parish registers, and materials of regional significance.
+    alt_descriptions:
+      is: Héraðsskjalasöfun á Íslandi sem þjóna tilteknum landsvæðum.
+      de: Regionale Archive in Island, die spezifische Regionen des Landes bedienen.
+    structured_aliases:
+    - literal_form: Héraðsskjalasafn
+      in_language: is
+    - literal_form: Regionalarchiv (Island)
+      in_language: de
+    - literal_form: Archives régionales d'Islande
+      in_language: fr
+    comments:
+    - Complements the National Archives of Iceland (Þjóðskjalasafn Íslands).
+    - Iceland-specific institution type.
+    - Preserves local and regional records.
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q16428785
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Regional Archives in Iceland
+      skos:altLabel: Regionalarchiv (Island), Icelandic Regional Archive
+      admin_level: regional
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - RegionalArchive
+    - NationalArchives
+    - MunicipalArchive

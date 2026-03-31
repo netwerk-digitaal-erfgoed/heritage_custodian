@@ -1,0 +1,42 @@
+id: https://nde.nl/ontology/hc/enum/ReconstructionActivityTypeEnum
+name: ReconstructionActivityTypeEnum
+title: Reconstruction Activity Type Enumeration
+
+imports:
+  - linkml:types
+
+enums:
+  ReconstructionActivityTypeEnum:
+    description: "Types of reconstruction activities (PROV-O Activity subtypes)"
+    reachable_from:
+      source_ontology: prov
+      source_nodes:
+        - prov:Activity
+    permissible_values:
+      MANUAL_CURATION:
+        description: "Manual entity resolution by human curator"
+        meaning: prov:Activity
+        annotations:
+          method_class: "manual"
+          automation_level: 0.0
+      ALGORITHMIC_MATCHING:
+        description: "Automated entity resolution using algorithms"
+        meaning: prov:Activity
+        close_mappings:
+          - wikidata:Q11426
+        annotations:
+          method_class: "algorithmic"
+          automation_level: 1.0
+      HYBRID:
+        description: "Combination of manual and algorithmic methods"
+        meaning: prov:Activity
+        annotations:
+          method_class: "semi-automated"
+          automation_level: 0.5
+      EXPERT_REVIEW:
+        description: "Expert review of existing reconstruction"
+        meaning: prov:Activity
+        annotations:
+          method_class: "validation"
+          automation_level: 0.0
+          notes: "Quality assurance step after initial reconstruction"

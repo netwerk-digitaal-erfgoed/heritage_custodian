@@ -1,0 +1,138 @@
+id: https://nde.nl/ontology/hc/class/AdministrativeLevel
+name: AdministrativeLevel
+title: Administrative Level Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  AdministrativeLevel:
+    class_uri: skos:Concept
+    description: >-
+      Level or tier within an administrative or government hierarchy.
+
+      Represents the hierarchical position of an administrative unit within  a governance structure, from national/federal down to municipal/local levels.
+    alt_descriptions:
+      nl: "Niveau of laag binnen een administratieve of overheidshiërarchie.\nVertegenwoordigt de hiërarchische positie van een administratieve eenheid  binnen een bestuursstructuur, van nationaal/federaal tot gemeentelijk/lokaal."
+      de: "Ebene oder Stufe innerhalb einer Verwaltungs- oder Regierungshierarchie.\nRepräsentiert die hierarchische Position einer Verwaltungseinheit innerhalb  einer Regierungsstruktur, von national/bundesweit bis kommunal/lokal."
+      fr: "Niveau ou échelon dans une hiérarchie administrative ou gouvernementale.\nReprésente la position hiérarchique d'une unité administrative dans  une structure de gouvernance, du niveau national/fédéral au niveau municipal/local."
+      es: "Nivel o escalón dentro de una jerarquía administrativa o gubernamental.\nRepresenta la posición jerárquica de una unidad administrativa dentro  de una estructura de gobernanza, desde nacional/federal hasta municipal/local."
+      ar: "مستوى أو طبقة ضمن التسلسل الإداري أو الحكومي.\nيمثل الموقع الهرمي لوحدة إدارية داخل هيكل الحوكمة،  من المستوى الوطني/الفيدرالي إلى المستوى البلدي/المحلي."
+      id: "Tingkat atau jenjang dalam hierarki administratif atau pemerintahan.\nMewakili posisi hierarkis unit administratif dalam struktur tata kelola,  dari nasional/federal hingga kotamadya/lokal."
+      zh: "行政或政府层级中的级别或层次。\n代表行政单位在治理结构中的层级位置，从国家/联邦到市/地方级别。"
+    examples:
+    - value:
+        has_label: National
+        has_code: NATIONAL
+        has_description: Highest level of government administration for a sovereign state
+      description: National/federal administrative level
+    - value:
+        has_label: Municipal
+        has_code: MUNICIPAL
+        has_description: Local government administration for a city, town, or municipality
+      description: Municipal/local administrative level
+    broad_mappings:
+    - crm:E55_Type
+    - skos:Concept
+    structured_aliases:
+    - literal_form: administratief niveau
+      in_language: nl
+    - literal_form: bestuurlijk niveau
+      in_language: nl
+    - literal_form: Verwaltungsebene
+      in_language: de
+    - literal_form: Verwaltungsstufe
+      in_language: de
+    - literal_form: niveau administratif
+      in_language: fr
+    - literal_form: échelon administratif
+      in_language: fr
+    - literal_form: nivel administrativo
+      in_language: es
+    - literal_form: escalón administrativo
+      in_language: es
+    - literal_form: المستوى الإداري
+      in_language: ar
+    - literal_form: الدرجة الإدارية
+      in_language: ar
+    - literal_form: tingkat administratif
+      in_language: id
+    - literal_form: jenjang administratif
+      in_language: id
+    - literal_form: 行政级别
+      in_language: zh
+    - literal_form: 行政层次
+      in_language: zh
+    keywords:
+    - administrative level
+    - government level
+    - federal
+    - state
+    - provincial
+    - regional
+    - municipal
+    - local
+    - hierarchy
+    slots:
+    - has_label
+    - has_code
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: National
+        - value: State
+        - value: Provincial
+        - value: Regional
+        - value: Municipal
+        - value: Local
+      has_code:
+        required: false
+        examples:
+        - value: NATIONAL
+        - value: STATE
+        - value: PROVINCIAL
+        - value: REGIONAL
+        - value: MUNICIPAL
+        - value: LOCAL
+      has_description:
+        required: false
+        examples:
+        - value: Highest level of government administration for a sovereign state
+    annotations:
+      specificity_score: "0.10"
+      specificity_rationale: "Generic utility class - administrative levels are broadly applicable across all governance contexts."
+      custodian_types: "['*']"
+      standard_levels: "National, State/Provincial, Regional, Municipal/Local"
+    comments:
+    - Represents hierarchical position in governance structures
+    - Standard levels: National, State/Provincial, Regional, Municipal/Local
+    - Used for classifying the scope of administrative authority
+    - |
+      Preserved from prior description:
+
+      **Examples**:
+      - National/Federal
+      - State/Provincial
+      - Regional
+      - Municipal/Local
+
+      **Ontological Alignment**:
+      - `skos:Concept`: Concept in a hierarchy scheme.
+    see_also:
+    - AdministrativeUnit
+    - Administration

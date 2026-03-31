@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/Fee
+name: Fee
+title: Fee Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_quantity
+- ../slots/has_measurement_unit
+- ../slots/has_description
+classes:
+  Fee:
+    class_uri: schema:PriceSpecification
+    description: >-
+      Monetary amount charged for access to services, facilities, or transactions
+      within heritage institutional contexts.
+    alt_descriptions:
+      nl: >-
+        Geldbedrag in rekening gebracht voor toegang tot diensten, faciliteiten of transacties
+        binnen erfgoedinstellingen.
+      de: >-
+        Geldbetrag, der für den Zugang zu Diensten, Einrichtungen oder Transaktionen
+        im Heritage-Institutionskontext berechnet wird.
+      fr: >-
+        Montant monétaire facturé pour l'accès aux services, installations ou transactions
+        dans les contextes institutionnels patrimoniaux.
+      es: >-
+        Cantidad monetaria cobrada por acceso a servicios, instalaciones o transacciones
+        en contextos institucionales patrimoniales.
+      ar: >-
+        مبلغ نقدي يُفرض مقابل الوصول إلى الخدمات أو المرافق أو المعاملات
+        في سياقات المؤسسات التراثية.
+      id: >-
+        Jumlah uang yang dibebankan untuk akses ke layanan, fasilitas, atau transaksi
+        dalam konteks lembaga warisan.
+      zh: >-
+        在遗产机构环境中收取的用于访问服务、设施或交易的货币金额。
+    structured_aliases:
+    - literal_form: toeslag
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Gebühr
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: tarif
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: tarifa
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رسم
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: biaya
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 费用
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - schema:PriceSpecification
+    slots:
+    - has_quantity
+    - has_measurement_unit
+    - has_description
+    slot_usage:
+      has_quantity:
+        required: true
+    comments:
+    - Used for admission charges, membership fees, and service costs.
+    - May include tiered pricing or concession rates.
+    - 'Preserved from prior description: Monetary charge associated with access, service, or transaction.'
+    keywords:
+    - admission charge
+    - service fee
+    - monetary cost
+    - pricing specification
+    examples:
+    - value:
+        has_quantity: 15.00
+        has_measurement_unit: EUR
+        has_description: Adult admission
+      description: Museum entrance fee specification
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Monetary pricing class used across operational and visitor contexts.
+      custodian_types: '["*"]'

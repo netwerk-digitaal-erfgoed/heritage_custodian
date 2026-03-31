@@ -1,0 +1,123 @@
+id: https://nde.nl/ontology/hc/class/ArchiveNetwork
+name: ArchiveNetwork
+title: Archive Network Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/applicable_in
+  - ../slots/has_label
+classes:
+  ArchiveNetwork:
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    description: >-
+      Consortium or federation of archives cooperating for shared services,
+      resource discovery, coordinated collection development, and joint
+      preservation infrastructure.
+    alt_descriptions:
+      nl: >-
+        Consortium of federatie van archieven die samenwerken voor gedeelde
+        diensten, bronnendetectie, gecoördineerde collectieontwikkeling en
+        gezamenlijke bewaarinfrastructuur.
+      de: >-
+        Konsortium oder Föderation von Archiven, die für gemeinsame Dienste,
+        Ressourcenentdeckung, koordinierte Sammlungsentwicklung und gemeinsame
+        Erhaltungsinfrastruktur zusammenarbeiten.
+      fr: >-
+        Consortium ou federation d'archives cooperant pour des services partages,
+        la decouverte de ressources, le developpement coordonne des collections
+        et l'infrastructure de preservation commune.
+      es: >-
+        Consorcio o federacion de archivos que cooperan para servicios compartidos,
+        descubrimiento de recursos, desarrollo coordinado de colecciones e
+        infraestructura de preservacion conjunta.
+      ar: >-
+        اتحاد أو شبكة من الأرشيفات تتعاون من أجل الخدمات المشتركة واكتشاف
+        الموارد وتطوير المجموعات المنسقة والبنية التحتية للحفظ المشترك.
+      id: >-
+        Konsorsium atau federasi arsip yang bekerja sama untuk layanan bersama,
+        penemuan sumber daya, pengembangan koleksi terkoordinasi, dan infrastruktur
+        pelestarian bersama.
+      zh: >-
+        为共享服务、资源发现、协调馆藏发展和联合保存基础设施而合作的
+        档案联盟或联合会。
+    structured_aliases:
+    - literal_form: archiefnetwerk
+      in_language: nl
+    - literal_form: Archivverbund
+      in_language: de
+    - literal_form: reseau d'archives
+      in_language: fr
+    - literal_form: red de archivos
+      in_language: es
+    - literal_form: شبكة الأرشيف
+      in_language: ar
+    - literal_form: jaringan arsip
+      in_language: id
+    - literal_form: 档案网络
+      in_language: zh
+    close_mappings:
+    - rico:CorporateBody
+    - org:Organization
+    related_mappings:
+    - wd:Q96636857
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    slots:
+    - has_type
+    - has_score
+    - applicable_in
+    - has_label
+    slot_usage:
+      applicable_in:
+        range: Country
+        required: true
+        examples:
+        - value:
+            identified_by: FR
+            has_name: France
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+    comments:
+    - Archive networks function as encompassing bodies for member archives
+    - Provides shared cataloging, digitization, and preservation services
+    - Geographic restriction may apply (e.g., France-specific networks)
+    - Notable examples: Archives Portal Europe network, regional consortia
+    see_also:
+    - EncompassingBody
+    - ArchiveOrganizationType
+    examples:
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: "Regional Archive Network"
+        applicable_in:
+          identified_by: FR
+        has_score: 1.0
+      description: French regional archive network
+    keywords:
+    - archive network
+    - consortium
+    - federation
+    - shared services
+    - cooperative
+    - infrastructure
+    notes:
+      - |
+        Preserved from prior description (commit 1fe1d1ad):
+
+        "Consortium or network of archives cooperating for shared services,\nresource sharing, and coordinated collection development.\n\n**Wikidata**: Q96636857\n\n**Geographic Restriction**: France only\n\nThis type is ONLY valid for French archive networks. The `applicable_countries`\nslot MUST contain \"FR\". Validation rules enforce this geographic constraint.\n\nThe concept of \"Archivverbund\" (archive network) as a formal consortium \nis primarily a French organizational pattern. Use this type ONLY for \nFrench archive networks.\n\nFor other countries, use:\n- EncompassingBody for general consortium/network patterns\n- JointArchives for archives with shared holdings\n\n**Scope**:\nArchive networks (Archivverb\xFCnde) provide:\n- Shared cataloging and discovery systems\n- Coordinated collection development\n- Joint digitization projects\n- Shared preservation infrastructure\n- Professional development and training\n- Advocacy and policy coordination\n- Inter-institutional\
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to archive consortium/network structures
+      custodian_types: "['ArchiveNetwork']"

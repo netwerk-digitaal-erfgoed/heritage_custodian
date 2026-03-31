@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: registered_on
+# ==============================================================================
+# The date when an entity was officially entered into a registry or system.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                                | File/Line               | Mapping  | Notes                                                        |
+# |----------------|-----------------------------------------|-------------------------|----------|--------------------------------------------------------------|
+# | **HC**         | `hc:registeredOn`                       | —                       | slot_uri | No general "registration date" property in standard onts.    |
+# | **GLEIF**      | `gleif-base:hasInitialRegistrationDate` | gleif_base.ttl:91-96    | close    | "Date on which an item was first registered" — domain-spec.  |
+# | **DCTerms**    | `dcterms:date`                          | dcterms.rdf:1122-1145   | broad    | "A point or period of time in the lifecycle" — very general.  |
+# | **DCTerms**    | `dcterms:created`                       | dcterms.rdf:1065-1090   | related  | "Date of creation of the resource" — creation ≠ registration. |
+# | **Schema.org** | `schema:dateCreated`                    | schemaorg.owl:14173-14195 | related | "Date on which CreativeWork was created" — creation ≠ reg.   |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/registered_on
+name: registered_on
+title: Registered On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  gleif-base: https://www.gleif.org/ontology/Base/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  registered_on:
+    slot_uri: hc:registeredOn
+    description: >-
+      Specifies the particular date when an entity, user, account, or item was
+      officially entered into a system, database, or registry.
+    alt_descriptions:
+      nl: >-
+        Specificeert de datum waarop een entiteit, gebruiker, account of item
+        officieel is opgenomen in een systeem, database of register.
+      de: >-
+        Gibt das Datum an, an dem eine Entität, ein Benutzer, ein Konto oder
+        ein Element offiziell in ein System, eine Datenbank oder ein Register
+        eingetragen wurde.
+      fr: >-
+        Précise la date à laquelle une entité, un utilisateur, un compte ou un
+        élément a été officiellement inscrit dans un système, une base de
+        données ou un registre.
+      ar: >-
+        يحدد التاريخ الذي تم فيه إدخال كيان أو مستخدم أو حساب أو عنصر رسميًا
+        في نظام أو قاعدة بيانات أو سجل.
+      id: >-
+        Menentukan tanggal ketika suatu entitas, pengguna, akun, atau item
+        secara resmi dimasukkan ke dalam sistem, basis data, atau registri.
+      zh: >-
+        指定实体、用户、账户或项目被正式录入系统、数据库或登记簿的具体日期。
+      es: >-
+        Especifica la fecha en que una entidad, usuario, cuenta o elemento fue
+        inscrito oficialmente en un sistema, base de datos o registro.
+    structured_aliases:
+      - literal_form: geregistreerd op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: registriert am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: enregistré le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ التسجيل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didaftarkan pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 登记日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: registrado el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    close_mappings:
+      - gleif-base:hasInitialRegistrationDate  # gleif_base.ttl:91-96 - "Date on which an identifier or other registered item was first registered"
+    broad_mappings:
+      - dcterms:date  # dcterms.rdf:1122-1145 - "A point or period of time associated with an event in the lifecycle"
+    related_mappings:
+      - dcterms:created  # dcterms.rdf:1065-1090 - "Date of creation of the resource"
+      - schema:dateCreated  # schemaorg.owl:14173-14195 - "Date on which the CreativeWork was created"
+    aliases:
+      - registration_date
+    examples:
+      - value: "2024-03-15"
+        description: The date an organization was registered with the Chamber of Commerce.
+      - value: "1998-07-01"
+        description: The date a museum was officially entered into the national heritage register.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Temporal validity details (e.g., expiration or renewal) should be
+        captured in the RegistrationNumber class rather than in this slot.
+      - >-
+        For the agent who performed the registration, see registered_by. For
+        the act of registration itself, see register.

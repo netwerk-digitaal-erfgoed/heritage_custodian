@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: embedded_on
+# ==============================================================================
+# Specifies the host medium, surface, or digital file where content is fixed
+# or integrated.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                  | Mapping | Notes                                                    |
+# |---------------|---------------------------|----------------------------|---------|----------------------------------------------------------|
+# | **DCTerms**   | `dcterms:medium`          | dcterms.rdf:1686-1710      | close   | "The material or physical carrier of the resource."      |
+# | **CIDOC-CRM** | `crm:P128i_is_carried_by` | CIDOC:3953-3964            | related | "is carried by." Physical Thing carries Symbolic Object. |
+# | **Schema**    | `schema:embedUrl`         | schemaorg.owl:16455-16475  | narrow  | "URL pointing to a player for a video." URL-only facet.  |
+#
+# No standard ontology defines an exact "embedded on" property for host
+# medium/surface/file. Retains hc:embeddedOn.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/embedded_on
+name: embedded_on
+title: Embedded On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  embedded_on:
+    slot_uri: hc:embeddedOn
+    description: >-
+      Specifies the host medium, surface, or digital file where a specific object, piece of content, or metadata is fixed, integrated, or displayed.
+    alt_descriptions:
+      nl: >-
+        Specificeert het hostmedium, oppervlak of digitaal bestand waarop een specifiek object, stuk inhoud of metadata is vastgelegd, geïntegreerd of weergegeven.
+      de: >-
+        Gibt das Trägermedium, die Oberfläche oder die digitale Datei an, auf der ein bestimmtes Objekt, ein Inhalt oder Metadaten fixiert, integriert oder angezeigt werden.
+      fr: >-
+        Spécifie le support hôte, la surface ou le fichier numérique sur lequel un objet, un contenu ou des métadonnées spécifiques sont fixés, intégrés ou affichés.
+      ar: >-
+        يحدد الوسط المضيف أو السطح أو الملف الرقمي الذي يتم فيه تثبيت كائن معين أو محتوى أو بيانات وصفية أو دمجها أو عرضها.
+      id: >-
+        Menentukan media induk, permukaan, atau berkas digital tempat objek, konten, atau metadata tertentu ditetapkan, diintegrasikan, atau ditampilkan.
+      zh: >-
+        指定特定对象、内容或元数据被固定、集成或显示于其上的宿主介质、表面或数字文件。
+      es: >-
+        Especifica el medio anfitrión, la superficie o el archivo digital donde un objeto, contenido o metadatos específicos están fijados, integrados o mostrados.
+    structured_aliases:
+      - literal_form: Ingebed Op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Eingebettet Auf
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Intégré Sur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مضمّن على
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tertanam Pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 嵌入于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Integrado En
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Publisher-controlled setting.
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_embeddable
+    close_mappings:
+      - dcterms:medium  # dcterms.rdf:1686-1710 - "The material or physical carrier of the resource."
+    narrow_mappings:
+      - schema:embedUrl  # schemaorg.owl:16455-16475 - "URL pointing to a player for a video." URL-only facet.
+    related_mappings:
+      - crm:P128i_is_carried_by  # CIDOC:3953-3964 - "is carried by." Physical Thing carrying Symbolic Object.

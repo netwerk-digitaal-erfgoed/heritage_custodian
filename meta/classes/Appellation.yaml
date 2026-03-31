@@ -1,0 +1,134 @@
+id: https://nde.nl/ontology/hc/class/CustodianAppellation
+name: custodian_appellation_class
+title: Custodian Appellation Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  dcterms: http://purl.org/dc/terms/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/AppellationTypeEnum
+  - ../metadata
+  - ../slots/has_score
+  - ../slots/alternative_form_of
+classes:
+  CustodianAppellation:
+    class_uri: crm:E41_Appellation
+    description: >-
+      Alternative name or label variant for a heritage custodian institution,
+      including abbreviations, translations, historical names, and colloquial forms.
+    alt_descriptions:
+      nl: >-
+        Alternatieve naam of labelvariant voor een erfgoedbewaarderinstelling,
+        inclusief afkortingen, vertalingen, historische namen en volksnamen.
+      de: >-
+        Alternativer Name oder Bezeichnungsvariante fur eine Kulturerbe-Verwahrerinstitution,
+        einschliesslich Abkurzungen, Ubersetzungen, historischer Namen und umgangssprachlicher Formen.
+      fr: >-
+        Nom alternatif ou variante d'etiquette pour une institution deprepositaire
+        du patrimoine, y compris les abreviations, traductions, noms historiques et formes familiers.
+      es: >-
+        Nombre alternativo o variante de etiqueta para una institucion depositaria
+        del patrimonio, incluyendo abreviaturas, traducciones, nombres historicos y formas coloquiales.
+      ar: >-
+        اسم بديل أو متغير التسمية لمؤسسة حارسة للتراث، بما في ذلك الاختصارات
+        والترجمات والأسماء التاريخية والأشكال العامية.
+      id: >-
+        Nama alternatif atau varian label untuk lembaga penjaka warisan budaya,
+        termasuk singkatan, terjemahan, nama historis, dan bentuk sehari-hari.
+      zh: >-
+        遗产保管机构的替代名称或标签变体，包括缩写、翻译、历史名称和通俗形式。
+    structured_aliases:
+    - literal_form: bewaardersbenaming
+      in_language: nl
+    - literal_form: Verwahrer-Bezeichnung
+      in_language: de
+    - literal_form: appellation de depositeur
+      in_language: fr
+    - literal_form: apelacion de depositario
+      in_language: es
+    - literal_form: تسمية الحارس
+      in_language: ar
+    - literal_form: sebutan penjaga
+      in_language: id
+    - literal_form: 保管者名称
+      in_language: zh
+    exact_mappings:
+    - crm:E41_Appellation
+    close_mappings:
+    - schema:name
+    - foaf:name
+    - rdfs:label
+    - dcterms:title
+    - skos:altLabel
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_score
+    - alternative_form_of
+    slot_usage:
+      alternative_form_of:
+        inlined: false
+        examples:
+        - value: "Label:\n  label_value: \"Rijksmuseum\"\n  label_language: \"nl\"\n"
+    comments:
+    - Represents names that are NOT the most common emic designator
+    - Linked to CustodianName (NOT directly to Custodian)
+    - Enables multilingual name representation via appellation_language
+    - Supports name type classification (official, vernacular, historical, translation)
+    - |
+        Preserved from prior description:
+        
+        CRITICAL: CustodianAppellations are linked to CustodianName (NOT directly to Custodian).
+        Only CustodianIdentifier can identify the Custodian hub.
+        
+        CIDOC-CRM E41_Appellation: Any identifier expressed as text (names, titles, labels).
+        SKOS: altLabel for alternative lexical labels (trading names, colloquial names, abbreviations).
+        
+        **Use for**:
+        - Alternative names and abbreviations (e.g., "BnF" for "Bibliothèque nationale de France")
+        - Translations and multilingual variants
+        - Historical names and spelling variants
+        - Colloquial/informal names
+        
+        **Connection Architecture**:
+        - CustodianName (preferred label) → skos:altLabel → CustodianAppellation (variants)
+        - Enables multiple variant appellations per canonical name
+        
+        **Enables**:
+        - Multilingual name representation (via appellation_language)
+        - Name type classification (official, vernacular, historical, translation)
+        - Relationship to naming authority
+        - Temporal validity (when name was used)
+    see_also:
+    - CustodianName
+    - AppellationType
+    - http://www.cidoc-crm.org/cidoc-crm/E41_Appellation
+    examples:
+    - value:
+        alternative_form_of: "Bibliotheque nationale de France"
+        has_score: 0.95
+      description: Abbreviated appellation "BnF" for the French National Library
+    - value:
+        alternative_form_of: "Koninklijke Bibliotheek"
+        has_score: 0.9
+      description: Abbreviated appellation "KB" for the Dutch National Library
+    keywords:
+    - alternative name
+    - abbreviation
+    - translation
+    - historical name
+    - colloquial name
+    - variant
+    - alias
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Specific to custodian name variants
+      custodian_types: "['*']"

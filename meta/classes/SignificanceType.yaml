@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/class/SignificanceType
+name: significance_type_class
+title: Significance Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  SignificanceType:
+    class_uri: crm:E55_Type
+    abstract: true
+    description: >-
+      Abstract base class for significance type classifications.
+    alt_descriptions:
+      nl: Abstracte basisklasse voor betekenistype-classificaties.
+      de: Abstrakte Basisklasse für Bedeutungstyp-Klassifizierungen.
+      fr: Classe de base abstraite pour les classifications de types d'importance.
+    structured_aliases:
+    - literal_form: betekenistype
+      in_language: nl
+    - literal_form: Bedeutungstyp
+      in_language: de
+    - literal_form: type d'importance
+      in_language: fr
+    comments:
+    - Provides type taxonomy for categorizing different kinds of significance.
+    - Categories include Community, Economic, Historical, Scientific, Aesthetic, Terroir, Diplomatic.
+    - Follows Rule 0b Type/Types naming pattern.
+    broad_mappings:
+    - crm:E55_Type
+    close_mappings:
+    - skos:Concept
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: "Community Significance"
+        - value: "Economic Significance"
+      has_description:
+        required: false
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      Abstract base class for significance type classifications.
+
+      **DESIGN PATTERN** (Rule 0b - Type/Types Convention):
+
+      | File | Purpose |
+      |------|---------|
+      | `SignificanceType.yaml` (this file) | Abstract base class |
+      | `SignificanceTypes.yaml` | Concrete subclasses (CommunitySignificance, etc.) |
+
+      **Purpose**:
+      Provides type taxonomy for categorizing different kinds of significance:
+      - Community/cultural significance
+      - Economic significance
+      - Historical significance
+      - Scientific significance
+      - Aesthetic significance
+
+      **Ontological Alignment**:
+      - **Primary** (`class_uri`): `crm:E55_Type` - CIDOC-CRM type
+      - **Close**: `skos:Concept` - SKOS concept vocabulary
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Significance types applicable across all heritage domains.
+      custodian_types_primary: T
+      specificity_score: 0.35
+      specificity_rationale: >-
+        Moderately specific - significance categorization is fundamental but has
+        domain-specific nuances.
+      design_pattern: "Type/Types (Rule 0b)"
+      migration_source_slot: community_significance
+      migration_date: "2026-01-22"
+      migration_rule: "Rule 53"

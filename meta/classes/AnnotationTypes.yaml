@@ -1,0 +1,248 @@
+id: https://nde.nl/ontology/hc/class/AnnotationTypes
+name: annotation_types_classes
+title: Annotation Types Classes
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  oa: http://www.w3.org/ns/oa#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- ./AnnotationType
+- linkml:types
+classes:
+  CommentAnnotation:
+    is_a: AnnotationType
+    class_uri: hc:Comment
+    description: >-
+      Textual commentary or opinion added to a resource by a user or system.
+    alt_descriptions:
+      nl: >-
+        Tekstuele toelichting of mening toegevoegd aan een bron door een gebruiker of systeem.
+      de: >-
+        Textlicher Kommentar oder Meinung, die einem Benutzer oder System hinzugefugt wurde.
+      fr: >-
+        Commentaire textuel ou opinion ajoute a une ressource par un utilisateur ou un systeme.
+      es: >-
+        Comentario textual u opinion agregado a un recurso por un usuario o sistema.
+      ar: >-
+        تعليق نصي أو رأي أضيف إلى مورد من قبل مستخدم أو نظام.
+      id: >-
+        Komentar tekstual atau pendapat yang ditambahkan ke sumber daya oleh pengguna atau sistem.
+      zh: >-
+        由用户或系统添加到资源的文本评论或意见。
+    structured_aliases:
+    - literal_form: opmerkingannotatie
+      in_language: nl
+    - literal_form: Kommentaranmerkung
+      in_language: de
+    - literal_form: annotation de commentaire
+      in_language: fr
+    - literal_form: anotacion de comentario
+      in_language: es
+    - literal_form: تعليق توضيحي
+      in_language: ar
+    - literal_form: anotasi komentar
+      in_language: id
+    - literal_form: 评论注释
+      in_language: zh
+    close_mappings:
+    - schema:Comment
+    - schema:UserComments
+    broad_mappings:
+    - skos:Concept
+    comments:
+    - Corresponds to oa:commenting motivation
+    - Used for scholarly notes, curatorial comments, user feedback
+    examples:
+    - value:
+        has_code: comment
+        has_label: Scholarly Note
+        has_description: "Research observation about provenance"
+      description: Scholarly comment annotation
+    keywords:
+    - comment
+    - opinion
+    - feedback
+    - scholarly note
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Concrete annotation type for comments
+      custodian_types: "['*']"
+    related_mappings:
+    - oa:commenting
+  TagAnnotation:
+    is_a: AnnotationType
+    class_uri: hc:Tag
+    description: >-
+      Keyword or label associated with a resource for categorization and discovery.
+    alt_descriptions:
+      nl: >-
+        Trefwoord of label gekoppeld aan een bron voor categorisatie en vindbaarheid.
+      de: >-
+        Schlusselwort oder Label, das einer Ressource zur Kategorisierung und Entdeckung zugeordnet ist.
+      fr: >-
+        Mot-cle ou etiquette associe a une ressource pour la categorisation et la decouverte.
+      es: >-
+        Palabra clave o etiqueta asociada con un recurso para categorizacion y descubrimiento.
+      ar: >-
+        كلمة مفتاحية أو تسمية مرتبطة بمورد للتصنيف والاكتشاف.
+      id: >-
+        Kata kunci atau label yang dikaitkan dengan sumber daya untuk kategorisasi dan penemuan.
+      zh: >-
+        与资源关联的关键词或标签，用于分类和发现。
+    structured_aliases:
+    - literal_form: tagannotatie
+      in_language: nl
+    - literal_form: Tag-Anmerkung
+      in_language: de
+    - literal_form: annotation de balise
+      in_language: fr
+    - literal_form: anotacion de etiqueta
+      in_language: es
+    - literal_form: تعليق توضيحي للوسم
+      in_language: ar
+    - literal_form: anotasi tag
+      in_language: id
+    - literal_form: 标签注释
+      in_language: zh
+    close_mappings:
+    - schema:keywords
+    broad_mappings:
+    - skos:Concept
+    comments:
+    - Corresponds to oa:tagging motivation
+    - Used for folksonomies, crowdsourced tagging, social tagging
+    examples:
+    - value:
+        has_code: tag
+        has_label: User Tag
+        has_description: "Community-generated keyword"
+      description: User-generated tag annotation
+    keywords:
+    - tag
+    - keyword
+    - folksonomy
+    - crowdsourcing
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Concrete annotation type for tags
+      custodian_types: "['*']"
+    related_mappings:
+    - oa:tagging
+  Highlight:
+    is_a: AnnotationType
+    class_uri: hc:Highlight
+    description: >-
+      Marked segment of a resource for emphasis or later reference.
+    alt_descriptions:
+      nl: >-
+        Gemarkeerd segment van een bron voor nadruk of latere verwijzing.
+      de: >-
+        Markiertes Segment einer Ressource zur Hervorhebung oder spateren Referenz.
+      fr: >-
+        Segment mis en evidence d'une ressource pour l'emphase ou reference ulterieure.
+      es: >-
+        Segmento resaltado de un recurso para enfasis o referencia posterior.
+      ar: >-
+        جزء مميز من مورد للتأكيد أو المرجعية اللاحقة.
+      id: >-
+        Segmen yang disorot dari sumber daya untuk penekanan atau referensi nanti.
+      zh: >-
+        资源中标记的片段，用于强调或后续参考。
+    structured_aliases:
+    - literal_form: markeringannotatie
+      in_language: nl
+    - literal_form: Hervorhebungs-Anmerkung
+      in_language: de
+    - literal_form: annotation de mise en evidence
+      in_language: fr
+    - literal_form: anotacion de resaltado
+      in_language: es
+    - literal_form: تعليق توضيحي للإبراز
+      in_language: ar
+    - literal_form: anotasi sorotan
+      in_language: id
+    - literal_form: 高亮注释
+      in_language: zh
+    close_mappings:
+    - oa:highlighting
+    broad_mappings:
+    - skos:Concept
+    comments:
+    - Used to mark important passages or regions
+    - Often combined with comments for explanation
+    examples:
+    - value:
+        has_code: highlight
+        has_label: Important Passage
+        has_description: "Key passage for research"
+      description: Highlighted segment annotation
+    keywords:
+    - highlight
+    - emphasis
+    - selection
+    - bookmark
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Concrete annotation type for highlights
+      custodian_types: "['*']"
+  Correction:
+    is_a: AnnotationType
+    class_uri: hc:Correction
+    description: >-
+      Suggested or applied fix to errors in a resource's metadata or content.
+    alt_descriptions:
+      nl: >-
+        Voorgestelde of toegepaste correctie van fouten in de metadata of inhoud van een bron.
+      de: >-
+        Vorgeschlagene oder angewandte Korrektur von Fehlern in den Metadaten oder Inhalten einer Ressource.
+      fr: >-
+        Correction proposee ou appliquee des erreurs dans les metadonnees ou le contenu d'une ressource.
+      es: >-
+        Correccion propuesta o aplicada de errores en los metadatos o contenido de un recurso.
+      ar: >-
+        تصحيح مقترح أو مطبق للأخطاء في البيانات الوصفية أو محتوى مورد.
+      id: >-
+        Koreksi yang diusulkan atau diterapkan untuk kesalahan dalam metadata atau konten sumber daya.
+      zh: >-
+        对资源元数据或内容中错误的建议或已应用的修正。
+    structured_aliases:
+    - literal_form: correctieannotatie
+      in_language: nl
+    - literal_form: Korrektur-Anmerkung
+      in_language: de
+    - literal_form: annotation de correction
+      in_language: fr
+    - literal_form: anotacion de correccion
+      in_language: es
+    - literal_form: تعليق توضيحي للتصحيح
+      in_language: ar
+    - literal_form: anotasi koreksi
+      in_language: id
+    - literal_form: 更正注释
+      in_language: zh
+    close_mappings:
+    - oa:editing
+    broad_mappings:
+    - skos:Concept
+    comments:
+    - Used for crowdsourced corrections and metadata improvements
+    - May require review before application
+    examples:
+    - value:
+        has_code: correction
+        has_label: Metadata Correction
+        has_description: "Suggested fix for date error"
+      description: Metadata correction annotation
+    keywords:
+    - correction
+    - fix
+    - edit
+    - improvement
+    - crowdsourcing
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Concrete annotation type for corrections
+      custodian_types: "['*']"

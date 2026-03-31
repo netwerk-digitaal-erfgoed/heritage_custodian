@@ -1,0 +1,345 @@
+# EncompassingBodyTypeEnum
+# Six types of extra-organizational governance
+#
+# Extended November 2025 to include:
+# - COOPERATIVE: Member-owned organizations (OCLC model) - typically closed/mixed data
+# - SOCIAL_MOVEMENT: Value-driven movements (Wikimedia model) - typically open data
+# - FUNDING_BODY: Grant-giving organizations (Mondriaan Fund, ERC) - provide financial resources
+#
+# These additions support modeling data openness policies (DataLicensePolicy)
+
+id: https://nde.nl/ontology/hc/enum/EncompassingBodyType
+name: EncompassingBodyTypeEnum
+
+enums:
+  EncompassingBodyTypeEnum:
+    description: |
+      Type of encompassing body that governs, coordinates, or provides services to
+      heritage custodian organizations. Six types reflect different governance models:
+      legal hierarchy (umbrella), service provision (network), peer collaboration (consortium),
+      member-owned cooperative (cooperative), value-driven movement (social movement),
+      and grant-giving funding bodies (funding body).
+      
+      **Six Governance Models**:
+      
+      1. **UMBRELLA** - Legal parent organizations (permanent hierarchical structure)
+      2. **NETWORK** - Service provider networks (temporary agreements, centralized services)
+      3. **CONSORTIUM** - Mutual assistance bodies (temporary agreements, peer-to-peer)
+      4. **COOPERATIVE** - Member-owned organizations (permanent, member governance)
+      5. **SOCIAL_MOVEMENT** - Value-driven movements (ideological, open participation)
+      6. **FUNDING_BODY** - Grant-giving organizations (provide financial resources to custodians)
+      
+      **Decision Tree for Classification**:
+      ```
+      Is the relationship defined in legal documents (statutes, laws, articles)?
+        YES → UMBRELLA (legal parent-child)
+        NO  → Continue...
+      
+      Is it a member-OWNED organization with member governance?
+        YES → COOPERATIVE (OCLC, credit unions)
+        NO  → Continue...
+      
+      Is it a value-driven movement with open participation?
+        YES → SOCIAL_MOVEMENT (Wikimedia, Creative Commons)
+        NO  → Continue...
+      
+      Does the body provide GRANTS or FUNDING to heritage custodians?
+        YES → FUNDING_BODY (Mondriaan Fund, ERC, Creative Europe)
+        NO  → Continue...
+      
+      Does the body provide centralized services TO members?
+        YES → NETWORK (service provider)
+        NO  → Continue...
+      
+      Do members provide services TO EACH OTHER (peer-to-peer)?
+        YES → CONSORTIUM (mutual assistance)
+      ```
+      
+      **CRITICAL: Data Openness Correlation**:
+      
+      - **COOPERATIVE** (OCLC): Typically MIXED or CLOSED data policy
+        - Members contribute data, organization controls access
+        - Business model may depend on subscription revenue
+        
+      - **SOCIAL_MOVEMENT** (Wikimedia): Typically FULLY OPEN data policy
+        - Ideological commitment to open access
+        - Data openness is core value, not business decision
+    
+    permissible_values:
+      UMBRELLA:
+        description: |
+          Legal parent organization with formal governance authority defined in
+          articles of association, foundation statutes, or legislation. Represents
+          PERMANENT hierarchical legal structures.
+          
+          **Characteristics**:
+          - Legal basis in founding documents/statutes/laws
+          - Strong governance authority (budgets, appointments, policy)
+          - Permanent structure (changes require legal amendments)
+          - Legal subordination relationship
+          
+          **Examples**:
+          - Ministry of OCW governing National Archives (Dutch Heritage Act)
+          - Foundation board governing museum (foundation statutes)
+          - University governing university libraries (university charter)
+          - Religious order governing monastery archives (religious constitution)
+          
+          **Ontology Mappings**:
+          - `org:FormalOrganization` (W3C ORG - legally recognized entity)
+          - `tooi:Ministerie` (TOOI - Dutch ministries)
+          - `cpov:PublicOrganisation` (CPOV - public sector organizations)
+        meaning: org:FormalOrganization
+        comments:
+          - "UMBRELLA = legal parent-child hierarchy"
+          - "Permanent structure requiring legal amendments to change"
+          - "Strong governance authority over member custodians"
+      
+      NETWORK:
+        description: |
+          Service provider network that coordinates and delivers centralized services
+          to member heritage custodians through TEMPORARY agreements or treaties.
+          Members choose to participate to access services; participation is NOT legally imposed.
+          
+          **Characteristics**:
+          - Service-oriented (infrastructure, platforms, training, coordination)
+          - Voluntary membership (join for service benefits)
+          - Temporary agreements (contracts/treaties, not permanent legal structure)
+          - Limited authority (coordinates services, no direct governance)
+          
+          **Examples**:
+          - Digital Heritage Network (digital preservation services)
+          - DPLA (metadata aggregation services)
+          - Europeana (digitization aggregation)
+          - Regional conservation lab networks (shared equipment/expertise)
+          
+          **Ontology Mappings**:
+          - `schema:Organization` (Schema.org - general organization)
+          - `tooi:Samenwerkingsorganisatie` (TOOI - collaborative organizations)
+        meaning: schema:Organization
+        comments:
+          - "NETWORK = centralized service provider TO members"
+          - "Voluntary membership driven by service needs"
+          - "Temporary agreements, not permanent legal subordination"
+      
+      CONSORTIUM:
+        description: |
+          Collaborative body where member heritage custodians provide MUTUAL assistance
+          to each other through TEMPORARY agreements. Unlike networks (centralized service
+          provider), consortia are PEER-TO-PEER collaboration models.
+          
+          **Characteristics**:
+          - Mutual assistance (members help each other, not centralized services)
+          - Peer-to-peer (equal participation, shared responsibility)
+          - Temporary agreements (memoranda of understanding, not permanent structure)
+          - Coordination only (facilitates collaboration, no authority)
+          
+          **Examples**:
+          - Library consortia for shared cataloging
+          - Bulk licensing consortia (collective database subscriptions)
+          - Interlibrary loan consortia (reciprocal borrowing)
+          - Conservation consortia (shared expertise/equipment)
+          - Digitization consortia (collaborative projects)
+          
+          **Distinction from NETWORK**:
+          - CONSORTIUM: Peer-to-peer mutual assistance (members → members)
+          - NETWORK: Centralized service provision (network → members)
+          
+          **Distinction from COOPERATIVE**:
+          - CONSORTIUM: Temporary agreement, no ownership
+          - COOPERATIVE: Permanent organization owned by members
+          
+          **Ontology Mappings**:
+          - `schema:Consortium` (Schema.org - membership organization)
+          - `tooi:Samenwerkingsorganisatie` (TOOI - collaborative organizations)
+        meaning: schema:Consortium
+        comments:
+          - "CONSORTIUM = peer-to-peer mutual assistance"
+          - "Distinguished from NETWORK (centralized vs. distributed)"
+          - "Distinguished from COOPERATIVE (temporary vs. permanent, no ownership)"
+          - "Temporary collaborative agreements, not permanent legal structure"
+      
+      COOPERATIVE:
+        description: |
+          A member-OWNED organization where members both contribute to and benefit from
+          shared services. Distinguished from CONSORTIUM by PERMANENT structure and
+          OWNERSHIP model - members are legal owners of the cooperative.
+          
+          **Characteristics**:
+          - Member ownership (members hold shares/ownership stake)
+          - Member governance (one member, one vote principle)
+          - Permanent legal structure (not temporary agreements)
+          - Shared services AND shared ownership
+          - Typically operates as non-profit or mutual benefit corporation
+          - May have closed/proprietary data model (data as organizational asset)
+          
+          **CRITICAL: Data Openness**:
+          Cooperatives often have MIXED or CLOSED data policies because:
+          - Data contributed by members is organizational asset
+          - Business model may depend on subscription/membership revenue
+          - Balancing member value vs. open access
+          
+          **Examples**:
+          - **OCLC** (Online Computer Library Center)
+            - Member-owned library cooperative since 1967
+            - 30,000+ member libraries worldwide
+            - WorldCat: Proprietary (subscription-based)
+            - VIAF: Open (ODC-BY) - strategic choice for linked data
+            - Members both contribute data AND receive services
+          - **Credit unions** (financial cooperatives)
+          - **Agricultural cooperatives**
+          - **Worker cooperatives**
+          
+          **Distinction from CONSORTIUM**:
+          - COOPERATIVE: Members OWN the organization (permanent legal structure)
+          - CONSORTIUM: Members PARTICIPATE in agreements (temporary, no ownership)
+          
+          **Distinction from NETWORK**:
+          - COOPERATIVE: Members are owners AND contributors AND consumers
+          - NETWORK: Members are consumers of centralized services only
+          
+          **Ontology Mappings**:
+          - `schema:Organization` with `additionalType: Cooperative`
+          - `org:FormalOrganization` (W3C ORG - formal legal entity)
+          - Not directly in TOOI (Dutch-specific, but could extend)
+        meaning: org:FormalOrganization
+        comments:
+          - "COOPERATIVE = member-owned permanent organization"
+          - "Distinguished from CONSORTIUM (ownership, permanence)"
+          - "Distinguished from NETWORK (members contribute, not just consume)"
+          - "Typically MIXED or CLOSED data policy (data as organizational asset)"
+          - "Examples: OCLC, credit unions, agricultural co-ops"
+      
+      SOCIAL_MOVEMENT:
+        description: |
+          A value-driven movement organized around shared ideological principles,
+          with open participation and commitment to public benefit. Distinguished from
+          other types by ideological motivation and OPEN data policies as core value.
+          
+          **Characteristics**:
+          - Value-driven (ideological commitment to principles like free knowledge)
+          - Open participation (anyone can join/contribute based on shared values)
+          - Decentralized governance (community-driven decision making)
+          - Non-proprietary by design (open data is core value, not business decision)
+          - May include formal organizational structures (foundations) supporting movement
+          - Global, often grassroots participation
+          
+          **CRITICAL: Data Openness**:
+          Social movements typically have FULLY OPEN data policies because:
+          - Openness is ideological value, not business strategy
+          - Mission centers on public access and benefit
+          - Data openness is prerequisite for participation
+          - No proprietary business model to protect
+          
+          **Examples**:
+          - **Wikimedia Foundation / Movement**
+            - Mission: Free knowledge for everyone
+            - Wikidata: CC0 (public domain)
+            - Wikipedia: CC-BY-SA (copyleft)
+            - Global volunteer contributor base
+            - Foundation supports movement, doesn't own content
+          - **Creative Commons**
+            - Mission: Enable sharing and reuse
+            - License steward and open advocate
+            - All materials openly licensed
+          - **Open Knowledge Foundation**
+            - Mission: Promote open data worldwide
+            - Advocacy for open access and transparency
+          - **Mozilla Foundation / Movement**
+            - Mission: Open, accessible internet for all
+            - Open source software, open standards advocacy
+          - **Internet Archive**
+            - Mission: Universal access to all knowledge
+            - Preservation and open access
+          
+          **Distinction from COOPERATIVE**:
+          - SOCIAL_MOVEMENT: Open participation, ideological commitment, open data
+          - COOPERATIVE: Membership-based ownership, may have closed data
+          
+          **Distinction from NETWORK**:
+          - SOCIAL_MOVEMENT: Value-driven, open participation
+          - NETWORK: Service-driven, membership-based access
+          
+          **Ontology Mappings**:
+          - `schema:Organization` with `additionalType: SocialMovement`
+          - Aligns with sociological concept of "social movement"
+          - May have formal foundation (e.g., Wikimedia Foundation) but movement is broader
+        meaning: schema:Organization
+        comments:
+          - "SOCIAL_MOVEMENT = value-driven, open participation, open data"
+          - "Distinguished from COOPERATIVE (ideology vs. ownership)"
+          - "Distinguished from NETWORK (values vs. services)"
+          - "Typically FULLY OPEN data policy (openness as core value)"
+          - "Examples: Wikimedia, Creative Commons, Open Knowledge Foundation"
+      
+      FUNDING_BODY:
+        description: |
+          A grant-giving organization that provides FINANCIAL RESOURCES to heritage
+          custodians through funding schemes, grants, and subsidies. Distinguished from
+          other types by the FINANCIAL relationship (funding) rather than governance,
+          services, or collaboration.
+          
+          **Characteristics**:
+          - Provides financial resources (grants, subsidies, funding)
+          - Implements funding schemes with application processes
+          - No governance authority over recipients (unlike UMBRELLA)
+          - No ongoing services to recipients (unlike NETWORK)
+          - Evaluates applications, awards grants, monitors outcomes
+          - May be government agency, foundation, or EU institution
+          
+          **Relationship Model**:
+          - Funder → (provides grant) → Custodian
+          - Uses `schema:funder` / `schema:sponsor` properties
+          - Funds specific projects or operational costs
+          - Time-limited funding relationships (grant periods)
+          
+          **Examples**:
+          - **Mondriaan Fund** (Mondriaan Fonds, Q2714299)
+            - Dutch public fund for visual arts and cultural heritage
+            - Instance of "funding body" (Q5509032) in Wikidata
+            - Provides grants for exhibitions, acquisitions, conservation
+            - Government-funded, operates independently
+          - **European Research Council** (ERC, Q1377836)
+            - EU agency funding basic research
+            - Starting, Consolidator, Advanced grants
+            - Not governance - purely financial support
+          - **Creative Europe** (Q17084973)
+            - EU programme supporting cultural/creative sectors
+            - Funds transnational cooperation projects
+          - **National Endowment for the Humanities** (NEH)
+            - US federal agency for humanities funding
+            - Grants for preservation, research, education
+          - **Heritage Lottery Fund** (UK)
+            - Distributes lottery proceeds to heritage projects
+            - Major funder of UK heritage custodians
+          
+          **Distinction from UMBRELLA**:
+          - FUNDING_BODY: Provides money, no governance authority
+          - UMBRELLA: Legal parent with governance authority
+          - Ministries may BOTH fund AND govern (use UMBRELLA for that)
+          
+          **Distinction from NETWORK**:
+          - FUNDING_BODY: One-way financial relationship (funder → recipient)
+          - NETWORK: Ongoing service provision relationship
+          
+          **Ontology Mappings**:
+          - `schema:FundingAgency` - "An organization that implements FundingSchemes
+            and manages the granting process"
+          - `schema:funder` - Property linking funder to funded entity
+          - Wikidata: Q5509032 (funding body)
+        meaning: schema:FundingAgency
+        comments:
+          - "FUNDING_BODY = grant-giving, financial support"
+          - "Distinguished from UMBRELLA (no governance authority)"
+          - "Distinguished from NETWORK (no ongoing services)"
+          - "Uses schema:FundingAgency for ontology mapping"
+          - "Examples: Mondriaan Fund, ERC, Creative Europe, NEH, Heritage Lottery Fund"
+    
+    comments:
+      - "Six types map to distinct governance models and data openness patterns"
+      - "UMBRELLA = legal hierarchy (permanent)"
+      - "NETWORK = service provision (temporary, centralized)"
+      - "CONSORTIUM = mutual assistance (temporary, peer-to-peer)"
+      - "COOPERATIVE = member ownership (permanent, shared governance, often mixed/closed data)"
+      - "SOCIAL_MOVEMENT = value-driven (ideological, open participation, open data)"
+      - "FUNDING_BODY = grant-giving (financial support, no governance)"
+      - "Classification based on governance model, ownership, and data openness stance"

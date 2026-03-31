@@ -1,0 +1,115 @@
+# ==============================================================================
+# LinkML Slot Definition: has_detail
+# ==============================================================================
+# Associates an entity with a specific piece of information or elaboration that
+# provides deeper insight or specification.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                       | File/Line                          | Mapping  | Notes                                                        |
+# |----------------|--------------------------------|------------------------------------|----------|--------------------------------------------------------------|
+# | **DC Terms**   | `dcterms:description`          | dcterms.rdf:1227-1244              | broad    | "An account of the resource." General description is         |
+# |                |                                |                                    |          | broader than a specific detail or elaboration.               |
+# | **Schema.org** | `schema:description`           | schemaorg.owl:14844-14847          | broad    | "A description of the item." General-purpose description     |
+# |                |                                |                                    |          | of any Thing; broader than a specific detail.                |
+# | **CIDOC-CRM**  | `crm:P3_has_note`              | CIDOC_CRM_v7.1.3.rdf:1227-1240    | broad    | "Container for all informal descriptions about an object."   |
+# |                |                                |                                    |          | General note; encompasses details but is broader.            |
+# | **RiC-O**      | `rico:generalDescription`      | RiC-O_1-1.rdf:21456-21470         | broad    | "General information about an entity." Broader than a        |
+# |                |                                |                                    |          | specific detail or elaboration.                              |
+#
+# No external property specifically models "detail" as a targeted piece of
+# elaboration or specification. Using hc: namespace.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_detail
+name: has_detail
+title: Has Detail
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_detail:
+    slot_uri: hc:hasDetail
+    description: >-
+      Associates an entity with a specific piece of information, elaboration, fact,
+      or minor component that provides deeper insight or specification beyond its
+      primary description. Used to capture granular details that supplement but do
+      not replace the main description of an entity.
+    alt_descriptions:
+      nl: >-
+        Koppelt een entiteit aan een specifiek stuk informatie, uitwerking of feit dat
+        dieper inzicht of nadere specificatie biedt.
+      de: >-
+        Verknüpft eine Entität mit einem spezifischen Informationsstück, einer Ausarbeitung
+        oder einem Fakt, das tiefere Einsicht oder nähere Spezifikation bietet.
+      fr: >-
+        Associe une entité à une information spécifique, une élaboration ou un fait qui
+        fournit un aperçu plus approfondi ou une spécification supplémentaire.
+      ar: >-
+        يربط كيانًا بمعلومة محددة أو تفصيل أو حقيقة توفر رؤية أعمق أو تحديدًا إضافيًا.
+      id: >-
+        Mengaitkan entitas dengan informasi spesifik, elaborasi, atau fakta yang memberikan
+        wawasan lebih mendalam atau spesifikasi tambahan.
+      zh: >-
+        将实体与提供更深入见解或额外规范的特定信息、阐述或事实相关联。
+      es: >-
+        Asocia una entidad con una información específica, elaboración o hecho que proporciona
+        una visión más profunda o una especificación adicional.
+    structured_aliases:
+      - literal_form: detail
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Einzelheit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: détail
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تفصيل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: detail
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 细节
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: detalle
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - dcterms:description  # dcterms.rdf:1227-1244 - "An account of the resource."
+      - schema:description  # schemaorg.owl:14844-14847 - "A description of the item."
+      - crm:P3_has_note  # CIDOC_CRM_v7.1.3.rdf:1227-1240 - "Container for all informal descriptions about an object."
+      - rico:generalDescription  # RiC-O_1-1.rdf:21456-21470 - "General information about an entity."
+    aliases:
+      - preservative_detail
+    examples:
+      - value: "Gold leaf applied to frame corners using oil gilding technique"
+        description: >-
+          Conservation detail about a specific decorative treatment.
+      - value: "Stored in acid-free tissue within a climate-controlled vault at 18°C"
+        description: >-
+          Storage detail for a heritage object preservation record.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Use has_detail for granular, supplementary information that elaborates on an
+        entity's characteristics. For primary descriptions, prefer dcterms:description
+        or schema:description directly.
+      - >-
+        Set to multivalued since an entity may have multiple independent details
+        covering different aspects (e.g. material detail, condition detail,
+        provenance detail).

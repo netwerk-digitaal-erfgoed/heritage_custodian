@@ -1,0 +1,216 @@
+id: https://nde.nl/ontology/hc/class/administrative-office
+name: administrative_office_class
+title: AdministrativeOffice Class
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_function
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_staff
+- ../slots/leased_by
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/lease
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  vcard: http://www.w3.org/2006/vcard/ns#
+classes:
+  AdministrativeOffice:
+    is_a: ReconstructedEntity
+    class_uri: org:Site
+    description: >-
+      Non-public administrative building or office space of a heritage custodian.
+    alt_descriptions:
+      nl: "Niet-openbaar administratief gebouw of kantoorruimte van een erfgoedbeheerder."
+      de: "Nicht-öffentliches Verwaltungsgebäude oder Büroraum eines Kulturgüterverwalters."
+      fr: "Bâtiment administratif non public ou espace de bureau d'un dépositaire du patrimoine."
+      es: "Edificio administrativo no público o espacio de oficina de un custodio del patrimonio."
+      ar: "مبنى إداري غير عام أو مساحة مكتبية لأمين التراث."
+      id: "Bangunan administratif non-publik atau ruang kantor pengelola warisan."
+      zh: "遗产保管人的非公共行政建筑或办公空间。"
+    examples:
+    - value:
+        identified_by:
+          identifier_value: https://nde.nl/ontology/hc/aux/rijksmuseum-admin-zuidas
+        has_label:
+          has_label: Rijksmuseum Administrative Offices - Zuidas
+        has_description:
+          has_content:
+            has_description: Administrative support offices housing finance, HR, and IT departments. Staff access only. Located in Zuidas business district.
+          description_type: admin_office
+        has_function:
+        - function_category: ADMINISTRATIVE
+          function_name: Finance and accounting
+        - function_category: ADMINISTRATIVE
+          function_name: Human resources
+        - function_category: SUPPORT
+          function_name: Information technology
+        has_staff:
+        - has_quantity:
+            has_value: 45
+            has_unit:
+              has_label: FTE
+          has_type:
+            has_label: Administrative Staff
+        leased_by: true
+        lease: '2028-12-31'
+      description: Administrative annex in business district
+    broad_mappings:
+    - org:Site
+    close_mappings:
+    - schema:Place
+    - crm:E27_Site
+    related_mappings:
+    - schema:Corporation
+    - org:OrganizationalUnit
+    structured_aliases:
+    - literal_form: administratief kantoor
+      in_language: nl
+    - literal_form: backoffice
+      in_language: nl
+    - literal_form: Verwaltungsbüro
+      in_language: de
+    - literal_form: Backoffice
+      in_language: de
+    - literal_form: bureau administratif
+      in_language: fr
+    - literal_form: oficinas administrativas
+      in_language: es
+    - literal_form: مكتب إداري
+      in_language: ar
+    - literal_form: kantor administratif
+      in_language: id
+    - literal_form: 行政办公室
+      in_language: zh
+    keywords:
+    - administrative office
+    - back-office
+    - support services
+    - staff-only
+    - non-public
+    - headquarters
+    - annex
+    slots:
+    - has_description
+    - identified_by
+    - has_label
+    - has_staff
+    - has_function
+    - leased_by
+    - lease
+    - has_score
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        examples:
+        - value:
+            identifier_value: https://nde.nl/ontology/hc/aux/rijksmuseum-admin-zuidas
+      has_label:
+        required: true
+        examples:
+        - value: Rijksmuseum Administrative Offices - Zuidas
+      has_description:
+        required: false
+        examples:
+        - value: Administrative support offices housing finance, HR, and IT departments. Staff access only.
+      has_function:
+        range: FunctionType
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+            function_category: ADMINISTRATIVE
+            function_name: Finance and accounting
+        - value:
+            function_category: ADMINISTRATIVE
+            function_name: Human resources
+        - value:
+            function_category: SUPPORT
+            function_name: Information technology
+      has_staff:
+        range: Staff
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_quantity:
+              has_value: 25
+              has_measurement_unit:
+                has_label: FTE
+            has_type:
+              has_label: Administrative Staff
+      leased_by:
+        range: boolean
+        examples:
+        - value: true
+        - value: false
+      lease:
+        range: date
+        examples:
+        - value: '2028-12-31'
+      derive_from:
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: "Administrative offices are common across heritage custodians but represent a specific auxiliary place type."
+      custodian_types: "['*']"
+      distinction_from_branch: "No public access - distinguished from BranchOffice by lack of public service delivery"
+      typical_functions: "Finance, HR, IT, Management, Legal affairs"
+      cost_consideration: "Often in lower-cost location than main building"
+    comments:
+    - AdministrativeOffice models non-public back-office locations
+    - Distinguished from BranchOffice by lack of public access
+    - W3C ORG org:Site specialized for administrative functions
+    - Often in separate building from main heritage operations
+    - May be leased rather than owned for cost efficiency
+    - has_administrative_function replaced by generic has_function (Rule 53)
+    - |
+      Preserved from prior description:
+
+      2. **Executive Offices**:
+         - Foundation board meeting space
+         - Director's office separate from main building
+
+      3. **Support Services**:
+         - Facilities management office
+         - Marketing/communications department
+
+      **Example - Administrative Annex**: ```yaml AdministrativeOffice:
+        has_admin_office_identifier: "https://nde.nl/ontology/hc/aux/rijksmuseum-admin-zuidas"
+        has_admin_office_name: "Rijksmuseum Administrative Offices - Zuidas"
+        has_admin_office_description: |
+          Administrative support offices housing finance, HR, and IT departments.
+          Staff access only. Located in Zuidas business district for cost efficiency.
+        has_function:
+          - function_category: ADMINISTRATIVE
+            function_name: "Finance and accounting"
+          - function_category: ADMINISTRATIVE
+            function_name: "Human resources"
+          - function_category: SUPPORT
+            function_name: "Information technology"
+          - function_category: ADMINISTRATIVE
+            function_name: "Legal affairs"
+        has_access_restriction: "Staff badge required"
+      ```
+    - 'Preserved from prior description: Non-public administrative building or office space of a heritage custodian. Secondary physical location where back-office, administrative, or support functions are performed that do not directly serve the public. Typically houses staff performing finance, HR, IT, management, or other operational activities.'
+    see_also:
+    - https://www.w3.org/TR/vocab-org/#org:Site
+    - https://schema.org/Corporation
+    - BranchOffice
+    - StorageFacility

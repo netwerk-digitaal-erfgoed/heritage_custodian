@@ -1,0 +1,148 @@
+id: https://nde.nl/ontology/hc/class/VideoChapterList
+name: video_chapter_list_class
+title: Video Chapter List Class
+imports:
+- linkml:types
+- ../slots/cover
+- ../slots/has_chapter
+- ../slots/identified_by
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_source
+- ../slots/generated_by
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+classes:
+  VideoChapterList:
+    class_uri: schema:ItemList
+    description: >-
+      Ordered segmentation structure enabling temporal navigation within moving-image
+      content through timestamped divisions.
+    alt_descriptions:
+      nl: >-
+        Geordende segmenteringsstructuur die temporele navigatie binnen bewegend-beeldinhoud
+        mogelijk maakt via tijdstempelafdelingen.
+      de: >-
+        Geordnete Segmentierungsstruktur, die zeitliche Navigation innerhalb von Bewegtbildinhalten
+        durch Zeitstempelunterteilungen ermöglicht.
+      fr: >-
+        Structure de segmentation ordonnée permettant la navigation temporelle dans le contenu
+        d'image animée via des divisions horodatées.
+      es: >-
+        Estructura de segmentación ordenada que permite la navegación temporal dentro del contenido
+        de imagen en movimiento a través de divisiones con marca de tiempo.
+      ar: >-
+        هيكل تجزئة مرتب يتيح التنقل الزمني داخل محتوى الصور المتحركة
+        عبر تقسيمات موقوتة.
+      id: >-
+        Struktur segmentasi terurut yang memungkinkan navigasi temporal dalam konten gambar bergerak
+        melalui pembagian berstempel waktu.
+      zh: >-
+        通过时间戳划分实现动态图像内容内时间导航的有序分段结构。
+    structured_aliases:
+    - literal_form: hoofdstukkenlijst
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Kapitelliste
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: liste de chapitres
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: lista de capítulos
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: قائمة الفصول
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: daftar bab
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 章节列表
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - schema:ItemList
+    slots:
+    - has_chapter
+    - generated_by
+    - has_source
+    - cover
+    - has_quantity
+    - has_score
+    - identified_by
+    slot_usage:
+      identified_by:
+        range: VideoIdentifier
+        required: true
+        inlined: true
+        examples:
+        - value: '{"has_code": "dQw4w9WgXcQ", "platform": "YouTube"}'
+      has_chapter:
+        range: VideoChapter
+        multivalued: true
+        required: true
+        inlined_as_list: true
+      has_quantity:
+        range: integer
+        required: false
+        inlined: false
+        examples:
+        - value:
+            has_measurement_unit:
+              has_type: CHAPTER
+              has_symbol: chapters
+      has_source:
+        range: Source
+        required: false
+        inlined: true
+        examples:
+        - value:
+            has_type: MANUAL
+            has_label: Creator-defined chapters
+        - value:
+            has_type: YOUTUBE_AI
+            has_label: YouTube Auto-Chapters
+        - value:
+            has_type: WHISPER_CHAPTERS
+            has_label: Whisper Analysis
+            has_description: Generated from transcript topic segmentation
+      generated_by:
+        description: 'Generation event capturing when and how the chapter list was created. MIGRATED 2026-01-19: Replaces chapters_generated_at slot (Rule 53).'
+        range: GenerationEvent
+        required: false
+        inlined: true
+        examples:
+        - value:
+            temporal_extent:
+              begin_of_the_begin: '2024-01-15T10:30:00Z'
+              end_of_the_end: '2024-01-15T10:30:00Z'
+            has_provenance:
+              has_agent:
+                has_type: SOFTWARE
+                has_name: YouTube Auto-Chapters
+            has_description: AI-generated chapters from video analysis
+        - value:
+            temporal_extent:
+              begin_of_the_begin: '2024-03-20T14:00:00Z'
+            has_description: Manually created by content creator
+      cover:
+        range: boolean
+        required: false
+    comments:
+    - Supports both manual creator-defined chapters and AI-generated segmentation.
+    - Used for video navigation, content indexing, and accessibility features.
+    - 'Preserved from prior description: A collection of chapters for a video. Groups all chapters for a video with metadata about the chapter set. Enables bulk operations on chapters: - Import/export of chapter lists - Validation of chapter coverage - Source tracking for entire chapter set'
+    keywords:
+    - video segmentation
+    - temporal navigation
+    - chapter markers
+    - content indexing
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

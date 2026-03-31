@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: environmental_control
+# ==============================================================================
+# Environmental control features such as climate, lighting, and air quality.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                 | File/Line                | Mapping | Notes                                                       |
+# |----------------|--------------------------|--------------------------|---------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:amenityFeature`  | schemaorg.owl:7869-7893  | broad   | Generic amenity of Place/Accommodation — environmental       |
+# |                |                          |                          |         | controls are a specific subcategory of amenity features.     |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, changed slot_uri to hc:environmental_control,
+#                        demoted amenityFeature exact→broad
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/environmental_control
+name: environmental_control_slot
+title: Environmental Controls
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  environmental_control:
+    slot_uri: hc:environmental_control
+    description: >-
+      To maintain or regulate specific atmospheric conditions (such as temperature, relative humidity, and light levels) within a storage area to preserve the condition and longevity of the items stored.
+    alt_descriptions:
+      nl: >-
+        Specifieke atmosferische omstandigheden (zoals temperatuur, relatieve
+        vochtigheid en lichtniveaus) in een opslagruimte handhaven of reguleren
+        om de staat en levensduur van de opgeslagen voorwerpen te behouden.
+      de: >-
+        Bestimmte atmosphärische Bedingungen (wie Temperatur, relative Luftfeuchtigkeit
+        und Lichtniveaus) in einem Lagerbereich aufrechterhalten oder regulieren, um
+        den Zustand und die Langlebigkeit der gelagerten Objekte zu bewahren.
+      fr: >-
+        Maintenir ou réguler des conditions atmosphériques spécifiques (telles que la
+        température, l'humidité relative et les niveaux d'éclairage) dans un espace
+        de stockage afin de préserver l'état et la longévité des objets conservés.
+      ar: >-
+        الحفاظ على ظروف جوية محددة أو تنظيمها (مثل درجة الحرارة والرطوبة النسبية
+        ومستويات الإضاءة) داخل منطقة التخزين للحفاظ على حالة المواد المخزنة
+        وطول عمرها.
+      id: >-
+        Memelihara atau mengatur kondisi atmosfer tertentu (seperti suhu,
+        kelembaban relatif, dan tingkat pencahayaan) dalam area penyimpanan untuk
+        menjaga kondisi dan umur panjang barang yang disimpan.
+      zh: >-
+        在存储区域内维持或调节特定的大气条件（如温度、相对湿度和光照水平），以保护所存放
+        物品的状态和使用寿命。
+      es: >-
+        Mantener o regular condiciones atmosféricas específicas (como temperatura,
+        humedad relativa y niveles de iluminación) dentro de un área de almacenamiento
+        para preservar el estado y la longevidad de los objetos almacenados.
+    structured_aliases:
+      - literal_form: omgevingsbeheersing
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Umgebungskontrolle
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: contrôle environnemental
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: التحكم البيئي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pengendalian lingkungan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 环境控制
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: control ambiental
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - is_or_was_environmental_control
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7893 — generic amenity feature of Place/Accommodation
+    comments:
+      - |
+        **MAPPING NOTE**: `schema:amenityFeature` demoted from exact to broad because it
+        covers all amenity features (WiFi, parking, pool, etc.), while this slot is specifically
+        about environmental controls (climate, lighting, air quality). The slot_uri was changed
+        from `schema:amenityFeature` to `hc:environmental_control` to avoid producing
+        misleadingly generic RDF triples.

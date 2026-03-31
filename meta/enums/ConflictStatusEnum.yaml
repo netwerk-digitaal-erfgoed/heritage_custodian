@@ -1,0 +1,189 @@
+# Conflict Status Enumeration
+# Status of heritage custodians affected by armed conflict, natural disaster, or deliberate destruction
+
+id: https://nde.nl/ontology/hc/enum/ConflictStatusEnum
+name: conflict_status_enum
+title: Conflict Status Enumeration
+
+imports:
+  - linkml:types
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  wd: http://www.wikidata.org/entity/
+
+enums:
+  ConflictStatusEnum:
+    description: |
+      Status of heritage custodian affected by armed conflict, natural disaster, 
+      or deliberate destruction.
+      
+      **PURPOSE**:
+      Tracks the current condition of heritage institutions impacted by:
+      - Armed conflict (Gaza 2023-2024, Syria, Ukraine, Iraq, Yemen)
+      - Natural disasters (earthquakes, floods, fires)
+      - Deliberate destruction (heritage crimes, arson)
+      - State actions (forced demolition, closure)
+      
+      **RELATIONSHIP TO time_of_destruction**:
+      - `conflict_status`: Summary status (DESTROYED, DAMAGED, etc.)
+      - `time_of_destruction`: Detailed temporal evidence (TimeSpan with fuzzy bounds)
+      
+      Both should be populated when documenting heritage destruction.
+      
+      **USE CASES**:
+      
+      1. **Gaza 2023-2024 Conflict**:
+         - 30+ heritage institutions with documented destruction
+         - Status: DESTROYED or DAMAGED
+         
+      2. **Rebuilding Institutions**:
+         - Status: DESTROYED with `is_rebuilding: true`
+         - Shows "💥 Destroyed (rebuilding)" in UI
+         
+      3. **Threatened Sites**:
+         - Active conflict zones with at-risk institutions
+         - Status: THREATENED for monitoring
+      
+      **CIDOC-CRM ALIGNMENT**:
+      - DESTROYED → crm:E6_Destruction occurred
+      - DAMAGED → crm:E11_Modification (undesired) occurred
+      
+    enum_uri: hc:ConflictStatusEnum
+    permissible_values:
+      DESTROYED:
+        description: |
+          Institution completely destroyed and non-operational.
+          Physical structure demolished or rendered unusable.
+          Collections lost, scattered, or unrecoverable.
+          
+          **Examples**:
+          - Great Omari Mosque Library (Gaza, December 2023)
+          - Mosul Museum (Iraq, 2015)
+          - Ivankiv Historical Museum (Ukraine, 2022)
+          
+          **Timeline Display**: "💥 Vernietigd" (Destroyed)
+          When `is_rebuilding: true`: "💥 Vernietigd (herbouwend)"
+        meaning: crm:E6_Destruction
+        annotations:
+          timeline_icon: "💥"
+          timeline_label_nl: "Vernietigd"
+          timeline_label_en: "Destroyed"
+          css_class: "destroyed-event"
+      
+      DAMAGED:
+        description: |
+          Institution significantly damaged but potentially recoverable.
+          Physical structure partially intact.
+          Collections partially preserved or salvageable.
+          May continue limited operations.
+          
+          **Examples**:
+          - Al-Quds Open University Library - Gaza (damaged December 2023)
+          - Aleppo Museum (Syria, 2012-2016)
+          
+          **Timeline Display**: "⚠️ Beschadigd" (Damaged)
+        meaning: crm:E11_Modification
+        annotations:
+          timeline_icon: "⚠️"
+          timeline_label_nl: "Beschadigd"
+          timeline_label_en: "Damaged"
+          css_class: "damaged-event"
+      
+      THREATENED:
+        description: |
+          Institution at imminent risk of destruction or damage.
+          Located in active conflict zone or disaster-prone area.
+          Requires monitoring and potential evacuation of collections.
+          
+          **Examples**:
+          - Institutions in active conflict zones
+          - Sites in earthquake/flood risk areas after warnings
+          
+          **Timeline Display**: "⚠️ Bedreigd" (Threatened)
+        meaning: hc:Threatened
+        annotations:
+          timeline_icon: "⚠️"
+          timeline_label_nl: "Bedreigd"
+          timeline_label_en: "Threatened"
+          css_class: "threatened-status"
+      
+      LOOTED:
+        description: |
+          Institution looted with significant collection losses.
+          Physical structure may be intact but contents removed.
+          Provenance research needed for recovery efforts.
+          
+          **Examples**:
+          - National Museum of Iraq (2003)
+          - Archaeological sites during Syrian conflict
+          
+          **Timeline Display**: "🏚️ Geplunderd" (Looted)
+        meaning: hc:Looted
+        annotations:
+          timeline_icon: "🏚️"
+          timeline_label_nl: "Geplunderd"
+          timeline_label_en: "Looted"
+          css_class: "looted-event"
+      
+      OCCUPIED:
+        description: |
+          Institution occupied by military or hostile forces.
+          Access restricted, normal operations suspended.
+          Collections potentially at risk of damage or looting.
+          
+          **Examples**:
+          - Institutions in occupied territories
+          - Sites used as military positions
+        meaning: hc:Occupied
+        annotations:
+          timeline_icon: "🚫"
+          timeline_label_nl: "Bezet"
+          timeline_label_en: "Occupied"
+          css_class: "occupied-status"
+      
+      INACCESSIBLE:
+        description: |
+          Institution physically inaccessible due to conflict/disaster.
+          Status unknown but presumed at risk.
+          Unable to verify condition on the ground.
+          
+          **Examples**:
+          - Sites in besieged areas
+          - Institutions in areas with travel restrictions
+        meaning: hc:Inaccessible
+        annotations:
+          timeline_icon: "❓"
+          timeline_label_nl: "Ontoegankelijk"
+          timeline_label_en: "Inaccessible"
+          css_class: "inaccessible-status"
+      
+      RECOVERED:
+        description: |
+          Institution previously damaged/destroyed but now recovered.
+          Rebuilt, restored, or reopened after conflict/disaster.
+          May have reduced capacity or modified operations.
+          
+          **Examples**:
+          - Institutions rebuilt after WWII
+          - Sites restored after natural disasters
+        meaning: hc:Recovered
+        annotations:
+          timeline_icon: "🔄"
+          timeline_label_nl: "Hersteld"
+          timeline_label_en: "Recovered"
+          css_class: "recovered-status"
+      
+      UNKNOWN:
+        description: |
+          Conflict/disaster impact status cannot be determined.
+          Insufficient documentation or conflicting reports.
+          Requires verification when access is possible.
+        meaning: hc:Unknown
+        annotations:
+          timeline_icon: "❓"
+          timeline_label_nl: "Onbekend"
+          timeline_label_en: "Unknown"
+          css_class: "unknown-status"

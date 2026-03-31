@@ -1,0 +1,397 @@
+# ProvenanceEventTypeEnum - Types of ownership and custody transfer events
+#
+# Enumeration of provenance event types for tracking object ownership history.
+#
+# Aligned with:
+# - AAT (Getty Art & Architecture Thesaurus) provenance concepts
+# - CIDOC-CRM E8 Acquisition and related events
+# - AAMD Object Registry guidelines for provenance research
+# - Washington Conference Principles on Nazi-Confiscated Art
+#
+# Created: January 2026
+
+id: https://nde.nl/ontology/hc/enum/ProvenanceEventTypeEnum
+name: ProvenanceEventTypeEnum
+title: Provenance Event Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  aat: http://vocab.getty.edu/aat/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  ProvenanceEventTypeEnum:
+    description: |
+      Types of ownership and custody transfer events in an object's provenance history.
+      
+      Covers the full range of ways objects change hands:
+      
+      1. **Creation Events**: How object came into existence
+      2. **Commercial Transactions**: Sales, purchases, auctions
+      3. **Non-commercial Transfers**: Gifts, bequests, inheritance
+      4. **Forced Transfers**: Confiscation, looting, theft
+      5. **Restitution Events**: Return of improperly transferred objects
+      6. **Discovery Events**: Archaeological finds, rediscoveries
+      7. **Institutional Transfers**: Between museums, government entities
+      
+      **Provenance Research Standards**:
+      
+      This enum supports provenance research standards including:
+      - AAMD Object Registry for Nazi-era provenance
+      - Washington Conference Principles (1998)
+      - Terezín Declaration (2009)
+      - UNESCO 1970 Convention
+      
+      **Example Provenance Chain**:
+      
+      ```
+      CREATION (1665) → COMMISSION (patron) → SALE (1696) → 
+      PURCHASE (collector) → BEQUEST (1903) → museum
+      ```
+    
+    permissible_values:
+      # Creation Events
+      CREATION:
+        description: |
+          Object was created by artist/maker.
+          First event in provenance chain.
+          
+          **Use When**: Recording original creation of artwork.
+          **from_owner**: null (or nature/materials source)
+          **to_owner**: Artist/maker
+        meaning: crm:E12_Production
+        annotations:
+          category: "creation"
+          cidoc_crm: "E12_Production"
+      
+      COMMISSION:
+        description: |
+          Object was commissioned from artist by patron.
+          Combines creation with patronage relationship.
+          
+          **Use When**: Patron commissioned work from artist.
+          **from_owner**: Artist (upon completion)
+          **to_owner**: Commissioning patron
+        meaning: aat:300055864
+        annotations:
+          category: "creation"
+      
+      # Commercial Transactions
+      PURCHASE:
+        description: |
+          Object acquired through direct purchase from seller.
+          Standard commercial transaction.
+          
+          **Use When**: Buyer purchased directly from seller.
+          **from_owner**: Seller
+          **to_owner**: Buyer
+        meaning: crm:E8_Acquisition
+        annotations:
+          category: "commercial"
+          cidoc_crm: "E8_Acquisition"
+      
+      SALE:
+        description: |
+          Object sold by owner to buyer.
+          Inverse perspective of PURCHASE.
+          
+          **Use When**: Recording from seller's perspective.
+          **from_owner**: Seller
+          **to_owner**: Buyer
+        meaning: schema:SellAction
+        annotations:
+          category: "commercial"
+      
+      AUCTION:
+        description: |
+          Object sold at public auction.
+          Includes auction house, lot number, price realized.
+          
+          **Use When**: Sale occurred through auction house.
+          **from_owner**: Consignor
+          **to_owner**: Winning bidder
+        meaning: aat:300054751
+        annotations:
+          category: "commercial"
+          documentation_fields: '["auction_house", "sale_date", "lot_number", "price_realized"]'
+      
+      DEALER_SALE:
+        description: |
+          Object sold through art dealer or gallery.
+          Dealer acted as intermediary between parties.
+          
+          **Use When**: Sale facilitated by dealer/gallery.
+          **from_owner**: Seller (via dealer)
+          **to_owner**: Buyer (via dealer)
+        annotations:
+          category: "commercial"
+          documentation_fields: '["dealer_name", "sale_date"]'
+      
+      EXCHANGE:
+        description: |
+          Object exchanged for another object or consideration.
+          Non-monetary or partial-monetary transaction.
+          
+          **Use When**: Objects traded between parties.
+        meaning: aat:300055860
+        annotations:
+          category: "commercial"
+      
+      # Non-commercial Transfers
+      GIFT:
+        description: |
+          Object given as gift during owner's lifetime.
+          Voluntary transfer without monetary exchange.
+          
+          **Use When**: Owner gave object as gift while alive.
+          **from_owner**: Donor
+          **to_owner**: Recipient
+        meaning: schema:DonateAction
+        annotations:
+          category: "non_commercial"
+          documentation_fields: '["gift_date", "gift_circumstances"]'
+      
+      DONATION:
+        description: |
+          Object donated to institution.
+          Often tax-deductible gift to museum, library, etc.
+          
+          **Use When**: Donor gave to institution (not individual).
+          **from_owner**: Donor
+          **to_owner**: Receiving institution
+        meaning: aat:300263428
+        annotations:
+          category: "non_commercial"
+      
+      BEQUEST:
+        description: |
+          Object transferred by will upon death of owner.
+          Testamentary gift effective upon death.
+          
+          **Use When**: Transfer via deceased's will.
+          **from_owner**: Deceased testator
+          **to_owner**: Beneficiary (individual or institution)
+        meaning: aat:300055907
+        annotations:
+          category: "non_commercial"
+          documentation_fields: '["testator_death_date", "will_date"]'
+      
+      INHERITANCE:
+        description: |
+          Object inherited through estate/succession.
+          May be intestate (no will) or estate distribution.
+          
+          **Use When**: Transfer through inheritance not specifically bequeathed.
+          **from_owner**: Deceased
+          **to_owner**: Heir
+        meaning: aat:300055848
+        annotations:
+          category: "non_commercial"
+      
+      # Forced Transfers (Critical for Nazi-era provenance)
+      CONFISCATION:
+        description: |
+          Object seized by government or authority.
+          Includes Nazi confiscation, government seizure.
+          
+          **CRITICAL for Nazi-era provenance research.**
+          
+          **Use When**: Object forcibly taken by state/authority.
+          **from_owner**: Original owner (victim)
+          **to_owner**: Confiscating authority
+        meaning: aat:300055867
+        annotations:
+          category: "forced_transfer"
+          requires_research: "true"
+          nazi_era_indicator: "true"
+      
+      LOOTING:
+        description: |
+          Object taken by looting during war or civil unrest.
+          Includes wartime plunder, archaeological looting.
+          
+          **Use When**: Object stolen during conflict/unrest.
+          **from_owner**: Original owner/site
+          **to_owner**: Looter (if known)
+        meaning: aat:300055908
+        annotations:
+          category: "forced_transfer"
+          requires_research: "true"
+      
+      THEFT:
+        description: |
+          Object stolen by criminal theft.
+          Non-conflict related illegal taking.
+          
+          **Use When**: Object criminally stolen.
+          **from_owner**: Victim
+          **to_owner**: Unknown/thief (if identified)
+        meaning: aat:300055861
+        annotations:
+          category: "forced_transfer"
+          art_loss_register: "check_required"
+      
+      FORCED_SALE:
+        description: |
+          Object sold under duress or coercion.
+          Includes Nazi-era forced sales, fire sales.
+          
+          **CRITICAL for Nazi-era provenance research.**
+          
+          **Use When**: Sale occurred under duress/threat.
+          **from_owner**: Coerced seller
+          **to_owner**: Buyer
+        annotations:
+          category: "forced_transfer"
+          requires_research: "true"
+          nazi_era_indicator: "true"
+      
+      SEQUESTRATION:
+        description: |
+          Object sequestered/impounded by authority.
+          Temporary seizure pending legal resolution.
+          
+          **Use When**: Object temporarily held by authority.
+        annotations:
+          category: "forced_transfer"
+      
+      # Restitution Events
+      RESTITUTION:
+        description: |
+          Object returned to rightful owner after wrongful taking.
+          Return of confiscated, looted, or stolen property.
+          
+          **Use When**: Object returned after forced transfer.
+          **from_owner**: Current holder
+          **to_owner**: Original owner or heirs
+        meaning: aat:300266131
+        annotations:
+          category: "restitution"
+          documentation_fields: '["claim_date", "settlement_date", "legal_basis"]'
+      
+      REPATRIATION:
+        description: |
+          Object returned to country or culture of origin.
+          Often involves archaeological or ethnographic objects.
+          
+          **Use When**: Object returned to originating nation/people.
+          **from_owner**: Current institution
+          **to_owner**: Originating nation/community
+        meaning: aat:300265976
+        annotations:
+          category: "restitution"
+          documentation_fields: '["repatriation_date", "receiving_nation", "legal_basis"]'
+      
+      LEGAL_SETTLEMENT:
+        description: |
+          Ownership transferred through legal settlement.
+          Court judgment, mediation, or negotiated settlement.
+          
+          **Use When**: Transfer resulted from legal proceeding.
+        annotations:
+          category: "restitution"
+          documentation_fields: '["case_number", "jurisdiction", "settlement_date"]'
+      
+      # Discovery Events
+      DISCOVERY:
+        description: |
+          Object discovered or found.
+          Includes chance finds, estate discoveries.
+          
+          **Use When**: Previously unknown object found.
+          **from_owner**: null
+          **to_owner**: Finder/discoverer
+        meaning: crm:E9_Move
+        annotations:
+          category: "discovery"
+      
+      EXCAVATION:
+        description: |
+          Object recovered through archaeological excavation.
+          Scientific recovery from archaeological site.
+          
+          **Use When**: Archaeological excavation recovery.
+          **from_owner**: null (ground context)
+          **to_owner**: Excavating institution/state
+        meaning: aat:300054223
+        annotations:
+          category: "discovery"
+          documentation_fields: '["excavation_date", "site_name", "excavation_permit"]'
+      
+      REDISCOVERY:
+        description: |
+          Previously known object found after being lost.
+          Object was documented but location unknown.
+          
+          **Use When**: Known object's location rediscovered.
+        annotations:
+          category: "discovery"
+      
+      # Institutional Transfers
+      TRANSFER:
+        description: |
+          General transfer between parties.
+          Use when specific transfer type unclear.
+          
+          **Use When**: Transfer type not specified in sources.
+          **from_owner**: Previous owner
+          **to_owner**: New owner
+        meaning: crm:E10_Transfer_of_Custody
+        annotations:
+          category: "institutional"
+      
+      INSTITUTIONAL_TRANSFER:
+        description: |
+          Transfer between government/institutional entities.
+          Often administrative rather than ownership change.
+          
+          **Use When**: Transfer between museums, government bodies.
+          **from_owner**: Transferring institution
+          **to_owner**: Receiving institution
+        annotations:
+          category: "institutional"
+      
+      DEPOSIT:
+        description: |
+          Object deposited with institution (not donated).
+          Long-term deposit, ownership retained by depositor.
+          
+          **Use When**: Object on permanent deposit (not loan).
+          **from_owner**: Depositor (retains ownership)
+          **to_owner**: Institution (custodianship only)
+        meaning: aat:300055862
+        annotations:
+          category: "institutional"
+          ownership_transfer: "false"
+      
+      DEACCESSION:
+        description: |
+          Object removed from museum collection.
+          May precede sale, transfer, or disposal.
+          
+          **Use When**: Museum formally deaccessioned object.
+          **from_owner**: Museum
+          **to_owner**: (varies by disposal method)
+        meaning: aat:300055866
+        annotations:
+          category: "institutional"
+      
+      # Unknown/Unclear
+      UNKNOWN_TRANSFER:
+        description: |
+          Transfer occurred but type unknown.
+          Gap in provenance documentation.
+          
+          **Use When**: Transfer documented but method unclear.
+          **from_owner**: Previous known owner
+          **to_owner**: Next known owner
+        annotations:
+          category: "unknown"
+          provenance_gap: "true"

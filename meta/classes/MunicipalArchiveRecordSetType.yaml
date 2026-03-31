@@ -1,0 +1,65 @@
+id: https://nde.nl/ontology/hc/class/MunicipalArchiveRecordSetType
+name: MunicipalArchiveRecordSetType
+title: Municipal Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+classes:
+  MunicipalArchiveRecordSetType:
+    abstract: true
+    is_a: CollectionType
+    class_uri: rico:RecordSetType
+    description: Abstract record-set classifier for collection categories held in municipal archival custody.
+    alt_descriptions:
+      nl: Abstracte recordsetclassificatie voor collectiecategorieen in gemeentelijke archiefzorg.
+      de: Abstrakter Recordset-Klassifikator fuer Sammlungskategorien in kommunaler Archivverwahrung.
+      fr: Classificateur abstrait de lots documentaires pour categories conservees en archives municipales.
+      es: Clasificador abstracto de conjuntos documentales para categorias en custodia archivistica municipal.
+      ar: مصنف مجرد لمجموعات السجلات لفئات المقتنيات في الحفظ الأرشيفي البلدي.
+      id: Pengklasifikasi abstrak record set untuk kategori koleksi dalam kustodi arsip kota.
+      zh: 面向市政档案保管类别的抽象记录集分类器。
+    structured_aliases:
+    - {literal_form: type gemeentearchiefrecordset, in_language: nl}
+    - {literal_form: Typ Stadtarchiv-Recordset, in_language: de}
+    - {literal_form: type de lot d archive municipale, in_language: fr}
+    - {literal_form: tipo de conjunto de archivo municipal, in_language: es}
+    - {literal_form: نوع مجموعة سجلات أرشيف بلدي, in_language: ar}
+    - {literal_form: tipe record set arsip kota, in_language: id}
+    - {literal_form: 市政档案记录集类型, in_language: zh}
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    keywords:
+    - municipal
+    - city
+    - local government
+    - archive
+    - record set
+    - classifier
+    slots:
+    - has_type
+    - has_score
+    - has_scope
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:MunicipalArchiveRecordSetType
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      "Abstract base class for all municipal archive record set types.\n\n**Definition**:\nA rico:RecordSetType that classifies collections held by municipal archives.\nMunicipal archives preserve records documenting local governance, public \nservices, civic life, and community history.\n\n**Subclasses**:\n- CouncilGovernanceFonds (council minutes, ordinances, resolutions)\n- CivilRegistrySeries (births, marriages, deaths, population registers)\n- MunicipalAdministrationFonds (departments, services, personnel)\n- UrbanPlanningCollection (maps, building permits, zoning records)\n- LocalHistoryCollection (photographs, ephemera, community documentation)\n\n**RiC-O Alignment**:\nThis is an abstract type classifier. Subclasses specify both the domain \n(type of municipal records) and organizational principle (fonds, series, collection).\n\n**Dual-Class Pattern**:\nMunicipalArchive (ArchiveOrganizationType) = the custodian institution.\nMunicipalArchiveRecordSetType (rico:RecordSetType)\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

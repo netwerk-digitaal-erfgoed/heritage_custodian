@@ -1,0 +1,185 @@
+id: https://nde.nl/ontology/hc/class/SearchAPI
+name: SearchAPI
+title: Search API
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  hydra: http://www.w3.org/ns/hydra/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/HTTPMethodEnum
+- ../enums/PaginationMethodEnum
+- ../enums/SearchResponseFormatEnum
+- ../metadata
+- ../slots/has_score
+- ../slots/has_format
+- ../slots/has_url
+- ../slots/has_name
+- ../slots/has_description
+- ../slots/required
+classes:
+  SearchAPI:
+    is_a: DataServiceEndpoint
+    class_uri: hc:SearchAPI
+    description: >-
+      Programmable HTTP interface for querying heritage catalogs and returning
+      filtered result lists in machine-readable form.
+    alt_descriptions:
+      nl: >-
+        Programmeerbare HTTP-interface voor het doorzoeken van
+        erfgoedcatalogi en het teruggeven van gefilterde resultaten in
+        machineleesbare vorm.
+      de: >-
+        Programmierbare HTTP-Schnittstelle zur Abfrage von Kulturerbe-Katalogen
+        mit gefilterten Ergebnislisten in maschinenlesbarer Form.
+      fr: >-
+        Interface HTTP programmable pour interroger des catalogues patrimoniaux
+        et renvoyer des listes de résultats filtrées en format lisible par
+        machine.
+      es: >-
+        Interfaz HTTP programable para consultar catálogos patrimoniales y
+        devolver listas de resultados filtradas en formato legible por máquina.
+      ar: >-
+        واجهة HTTP قابلة للبرمجة للاستعلام عن فهارس التراث وإرجاع قوائم نتائج
+        مصفاة بصيغة قابلة للقراءة آلياً.
+      id: >-
+        Antarmuka HTTP yang dapat diprogram untuk menelusuri katalog warisan
+        budaya dan mengembalikan daftar hasil tersaring dalam format
+        terbaca mesin.
+      zh: >-
+        用于查询遗产目录并以机器可读格式返回筛选结果列表的可编程 HTTP 接口。
+    comments:
+    - Primary interface for programmatic collection discovery
+    - Most heritage institutions expose REST/JSON search APIs
+    - Consider rate limits and pagination for large-scale harvesting
+    - |
+      Common capabilities:
+      - Full-text and field-specific search
+      - Faceted filtering
+      - Pagination and sorting
+    - |
+      Typical response fields (varies by API):
+      - total
+      - results/items/records
+      - facets
+      - pagination links or cursors
+    - 'Preserved from prior description: REST/JSON search API endpoint for heritage collection discovery.'
+    see_also:
+    - https://opensearch.org/
+    - https://www.hydra-cg.com/spec/latest/core/
+    slots:
+    - has_score
+    - has_name
+    - has_url
+    - has_format
+    structured_aliases:
+    - literal_form: doorzoekbare catalogusinterface
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Katalogabfrage-Schnittstelle
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: interface d'interrogation de catalogue
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: interfaz de consulta de catálogo
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: واجهة استعلام الفهارس
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: antarmuka kueri katalog
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 目录检索接口
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - catalog query
+    - HTTP endpoint
+    - machine-readable results
+    - discovery workflow
+    examples:
+    - value:
+        has_name: Nationaal Archief Search API
+        has_url: https://www.nationaalarchief.nl/onderzoeken/api/zoeken
+        has_format:
+        - https://www.iana.org/assignments/media-types/application/json
+      description: Example search API endpoint.
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  SearchQueryParameter:
+    class_uri: hydra:IriTemplateMapping
+    description: >-
+      Named request input in an IRI template that constrains retrieval,
+      ordering, paging, or field selection behavior.
+    alt_descriptions:
+      nl: >-
+        Benoemde invoer in een IRI-sjabloon die beperking, sortering,
+        paginering of veldselectie bij ophalen stuurt.
+      de: >-
+        Benannter Anfrageeingabewert in einer IRI-Vorlage, der Einschränkung,
+        Sortierung, Paginierung oder Feldauswahl steuert.
+      fr: >-
+        Entrée nommée dans un modèle IRI qui contrôle les contraintes,
+        le tri, la pagination ou la sélection de champs.
+      es: >-
+        Entrada nombrada en una plantilla IRI que controla restricciones,
+        ordenación, paginación o selección de campos.
+      ar: >-
+        مُدخل طلب مسمى داخل قالب IRI يحدد القيود أو الترتيب أو التقسيم
+        إلى صفحات أو اختيار الحقول.
+      id: >-
+        Masukan permintaan bernama dalam templat IRI yang mengatur pembatasan,
+        pengurutan, paginasi, atau pemilihan bidang.
+      zh: >-
+        IRI 模板中的命名请求输入，用于约束检索、排序、分页或字段选择行为。
+    slots:
+    - has_score
+    - has_name
+    - has_description
+    - required
+    structured_aliases:
+    - literal_form: benoemde IRI-aanvraaginvoer
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: benannter IRI-Anfragewert
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: entrée de requête IRI nommée
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: entrada de solicitud IRI nombrada
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مُدخل طلب IRI مسمى
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: masukan permintaan IRI bernama
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 命名 IRI 请求输入
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Encodes request semantics such as filtering, paging, and sorting controls.
+    - Typically documented with cardinality and required/optional usage.
+    - 'Preserved from prior description: Query parameter supported by a search API.'
+    keywords:
+    - IRI template
+    - request input
+    - paging control
+    - filter constraint
+    examples:
+    - value:
+        has_name: q
+        has_description: Free-text term matched against title and description fields.
+        required: false
+      description: Optional input controlling text matching behavior

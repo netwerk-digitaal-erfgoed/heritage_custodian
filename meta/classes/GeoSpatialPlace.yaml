@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/GeoSpatialPlace
+name: GeoSpatialPlace
+title: Geo Spatial Place Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  geosparql: http://www.opengis.net/ont/geosparql#
+  geo: http://www.opengis.net/ont/geosparql#
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/GeometryTypeEnum
+  - ../metadata
+  - ../slots/has_coordinates
+  - ../slots/has_altitude
+  - ../slots/geographic_extent
+  - ../slots/geometric_extent
+  - ../slots/has_reference_system
+  - ../slots/has_geofeature
+  - ../slots/identified_by
+  - ../slots/has_resolution
+  - ../slots/temporal_extent
+  - ../slots/has_score
+types:
+  WktLiteral:
+    uri: geosparql:wktLiteral
+    base: str
+    description: Well-Known Text representation of geometry.
+classes:
+  GeoSpatialPlace:
+    class_uri: geosparql:Feature
+    description: >-
+      Geometrically defined geographic entity with coordinate reference, spatial
+      extent, and optional temporal validity boundaries.
+    alt_descriptions:
+      nl: >-
+        Geometrisch gedefinieerde geografische entiteit met coördinaatreferentie, ruimtelijke
+        omvang en optionele temporele geldigheidsgrenzen.
+      de: >-
+        Geometrisch definierte geografische Entität mit Koordinatenreferenz, räumlicher
+        Ausdehnung und optionalen zeitlichen Gültigkeitsgrenzen.
+      fr: >-
+        Entité géographique géométriquement définie avec référence de coordonnées, étendue
+        spatiale et limites de validité temporelle optionnelles.
+      es: >-
+        Entidad geográfica geométricamente definida con referencia de coordenadas, extensión
+        espacial y límites de validez temporal opcionales.
+      ar: >-
+        كيان جغرافي محدد هندسياً مع مرجع إحداثي ونطاق مكاني وحدود صلاحية زمنية اختيارية.
+      id: >-
+        Entitas geografis yang didefinisikan secara geometris dengan referensi koordinat,
+        luas spasial, dan batas validitas temporal opsional.
+      zh: >-
+        具有坐标参考、空间范围和可选时间有效性边界的几何定义地理实体。
+    broad_mappings:
+      - geosparql:Feature
+    slots:
+      - identified_by
+      - has_coordinates
+      - has_altitude
+      - has_reference_system
+      - has_geofeature
+      - geographic_extent
+      - geometric_extent
+      - has_resolution
+      - temporal_extent
+      - has_score
+    slot_usage:
+      has_coordinates:
+        range: Coordinates
+        inlined: true
+        required: true
+      has_reference_system:
+        ifabsent: string(EPSG:4326)
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    comments:
+      - Use this class for measurable geodata, not nominal place references.
+      - Link nominal place references through dedicated place classes.
+      - Temporal extent tracks boundary or footprint change over time.
+    annotations:
+      specificity_score: 0.55
+      specificity_rationale: Primary geospatial feature class for coordinates and geometry.
+      custodian_types: '["*"]'

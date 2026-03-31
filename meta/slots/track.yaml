@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: track
+# ==============================================================================
+# Indicates whether object identity is maintained across frames or time intervals.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property                      | File/Line            | Mapping | Notes                                                          |
+# |-----------|-------------------------------|----------------------|---------|----------------------------------------------------------------|
+# | **SOSA**  | `sosa:observes`               | sosa.ttl:159-166     | broad   | "Sensor→ObservableProperty" — general observation capability.  |
+# | **SOSA**  | `sosa:hasFeatureOfInterest`   | sosa.ttl:203-214     | related | "Observation→entity observed" — what is observed, not tracking.|
+#
+# No exact or close match. Object tracking (maintaining identity across frames)
+# is a computer vision concept not directly modeled in standard ontologies.
+# Note: schema:track (schemaorg.owl:38388-38411) is a homonym meaning
+# "music recording (track)" — semantically unrelated.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/track
+name: track
+title: Track
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  track:
+    slot_uri: hc:track
+    description: >-
+      Indicates whether the identity, position, and status of a specific
+      object or entity is followed and maintained across a sequence of
+      frames, time intervals, or sensor readings.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of de identiteit, positie en status van een specifiek
+        object of entiteit worden gevolgd en bijgehouden over een reeks
+        frames, tijdsintervallen of sensormetingen.
+      de: >-
+        Gibt an, ob die Identität, Position und der Status eines bestimmten
+        Objekts oder einer Entität über eine Folge von Frames, Zeitintervallen
+        oder Sensormessungen verfolgt und beibehalten wird.
+      fr: >-
+        Indique si l'identité, la position et l'état d'un objet ou d'une
+        entité spécifique sont suivis et maintenus à travers une séquence
+        d'images, d'intervalles de temps ou de lectures de capteurs.
+      ar: >-
+        يشير إلى ما إذا كانت هوية كائن أو كيان معيّن وموقعه وحالته
+        يُتتبَّعون ويُحافَظ عليهم عبر سلسلة من الإطارات أو الفواصل
+        الزمنية أو قراءات المستشعرات.
+      id: >-
+        Menunjukkan apakah identitas, posisi, dan status objek atau entitas
+        tertentu dilacak dan dipertahankan di seluruh rangkaian bingkai,
+        interval waktu, atau pembacaan sensor.
+      zh: >-
+        表示是否在一系列帧、时间间隔或传感器读数中跟踪并维护特定对象或实体的身份、位置和状态。
+      es: >-
+        Indica si la identidad, posición y estado de un objeto o entidad
+        específica se siguen y mantienen a lo largo de una secuencia de
+        fotogramas, intervalos de tiempo o lecturas de sensores.
+    structured_aliases:
+      - literal_form: Objectvolging
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Objektverfolgung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Suivi d'objet
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تتبع الكائنات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pelacakan Objek
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 对象跟踪
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Seguimiento de objetos
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Tracking maintains object identity over time: true means the same
+        object has a consistent ID across frames; false means independent
+        per-frame detections.
+      - >-
+        Tracking enables counting unique objects and understanding object
+        movement and presence.
+    range: boolean
+    broad_mappings:
+      - sosa:observes  # sosa.ttl:159-166 - "Sensor→ObservableProperty it can sense" — general observation; tracking is a specific continuous form
+    related_mappings:
+      - sosa:hasFeatureOfInterest  # sosa.ttl:203-214 - "Observation→entity whose quality was observed" — what is observed, not identity maintenance
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - includes_object_tracking

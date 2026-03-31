@@ -1,0 +1,24 @@
+id: https://nde.nl/ontology/hc/parsimony/slot/located_in
+name: located_in
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  owl: http://www.w3.org/2002/07/owl#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  located_in:
+    slot_uri: schema:location
+    description: Places a concept or activity in a named place context.
+    range: PlaceContext
+    inverse: is_location_of
+    implements:
+      - owl:ObjectProperty
+    multivalued: true
+    close_mappings:
+      - crm:P53_has_former_or_current_location
+      - prov:atLocation

@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: has_affected_territory
+# ==============================================================================
+# Territory affected by an event or condition.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property             | File/Line             | Mapping | Notes                                      |
+# |---------------|----------------------|-----------------------|---------|--------------------------------------------|
+# | **Schema.org**| `schema:areaServed`  | schemaorg.owl:8403    | close   | "Geographic area where service is provided"|
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description, added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_affected_territory
+name: has_affected_territory
+title: Has Affected Territory
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_affected_territory:
+    slot_uri: hc:hasAffectedTerritory
+    description: >-
+      The geographic territory or region affected by an event, condition, policy, or activity.
+    alt_descriptions:
+      nl: >-
+        Het geografische gebied of de regio die door een gebeurtenis, toestand, beleid 
+        of activiteit wordt beïnvloed.
+      de: >-
+        Das geografische Gebiet oder die Region, die von einem Ereignis, Zustand, einer 
+        Politik oder Aktivität betroffen ist.
+      fr: >-
+        Le territoire géographique ou la région affectée par un événement, une condition, 
+        une politique ou une activité.
+      ar: >-
+        الإقليم الجغرافي أو المنطقة المتأثرة بحدث أو حالة أو سياسة أو نشاط.
+      id: >-
+        Wilayah atau region geografis yang terpengaruh oleh suatu peristiwa, kondisi, 
+        kebijakan, atau aktivitas.
+      zh: >-
+        受事件、状况、政策或活动影响的地理区域或地区。
+      es: >-
+        El territorio geográfico o región afectada por un evento, condición, política o actividad.
+    structured_aliases:
+      - literal_form: beïnvloed gebied
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: betroffenes Gebiet
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: territoire affecté
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الإقليم المتأثر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: wilayah terpengaruh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 受影响区域
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: territorio afectado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_affected_territory
+    close_mappings:
+      - schema:areaServed  # schemaorg.owl:8403-8425 - "The geographic area where a service is provided" (different semantics)
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - MIGRATED 2026-02-03 from has_or_had_affected_territory for conciseness.
+      - |
+        **USAGE**: Used for events like natural disasters, conflicts, policy changes, 
+        or any situation affecting a geographic area relevant to heritage resources.
+      - 'Mapping Note: schema:areaServed describes service coverage area, while this slot describes territories impacted by conditions/events.'

@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/CarrierType
+name: CarrierType
+title: Carrier Type Class (Abstract Base)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  rda: http://rdaregistry.info/termList/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  CarrierType:
+    class_uri: bf:Carrier
+    abstract: true
+    description: >-
+      Abstract base taxonomy for classifying physical media formats on which information is recorded.
+    alt_descriptions:
+      nl: Abstracte basistaxonomie voor het classificeren van fysieke mediaformaten waarop informatie wordt vastgelegd.
+      de: Abstrakte Basistaxonomie zur Klassifizierung physischer Medienformate, auf denen Informationen aufgezeichnet werden.
+      fr: Taxonomie de base abstraite pour classer les formats de supports physiques sur lesquels des informations sont enregistrées.
+      es: Taxonomía base abstracta para clasificar formatos de medios físicos en los que se registra información.
+      ar: تصنيف أساسي مجرد لتصنيف تنسيقات الوسائط المادية التي يتم تسجيل المعلومات عليها.
+      id: Taksonomi dasar abstrak untuk mengklasifikasikan format media fisik tempat informasi direkam.
+      zh: 用于分类记录信息的物理媒体格式的抽象基础分类法。
+    structured_aliases:
+    - literal_form: dragertype
+      in_language: nl
+    - literal_form: informatiedragertype
+      in_language: nl
+    - literal_form: Trägertyp
+      in_language: de
+    - literal_form: Datenträgertyp
+      in_language: de
+    - literal_form: type de support
+      in_language: fr
+    - literal_form: type de porte-document
+      in_language: fr
+    - literal_form: tipo de soporte
+      in_language: es
+    - literal_form: tipo de portador
+      in_language: es
+    - literal_form: نوع الحامل
+      in_language: ar
+    - literal_form: jenis pembawa
+      in_language: id
+    - literal_form: 载体类型
+      in_language: zh
+    exact_mappings:
+    - bf:Carrier
+    broad_mappings:
+    - rda:Carrier
+    - skos:Concept
+    keywords:
+    - carrier type
+    - physical format
+    - medium classification
+    - bibliographic format
+    examples:
+    - value:
+        has_code: CODEX
+        has_label: Codex
+    comments:
+    - Abstract base class - use concrete subclasses from CarrierTypes.yaml
+    - Replaces CarrierTypeEnum per Rule 53 (enum-to-class promotion)
+    see_also:
+    - https://www.loc.gov/bibframe/docs/
+    - http://www.rdaregistry.info/termList/RDACarrierType/
+    slots:
+    - has_code
+    - has_label
+    - has_description
+    slot_usage:
+      has_code:
+        required: true
+        identifier: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+      has_label:
+        required: true
+      has_description:
+        required: false
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

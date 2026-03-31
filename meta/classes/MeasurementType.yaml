@@ -1,0 +1,102 @@
+id: https://nde.nl/ontology/hc/class/MeasurementType
+name: MeasurementType
+title: Measurement Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  qudt: http://qudt.org/schema/qudt/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_name
+- ../slots/has_description
+- ../slots/has_measurement_unit
+classes:
+  MeasurementType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomic concept for categories of quantifiable phenomena used in
+      conservation monitoring and environmental assessment.
+    alt_descriptions:
+      nl: >-
+        Abstract taxonomisch concept voor categorieën van kwantificeerbare fenomenen die worden gebruikt
+        in conserveringsmonitoring en milieu-evaluatie.
+      de: >-
+        Abstraktes taxonomisches Konzept für Kategorien quantifizierbarer Phänomene, die in
+        Konservierungsüberwachung und Umweltbewertung verwendet werden.
+      fr: >-
+        Concept taxonomique abstrait pour les catégories de phénomènes quantifiables utilisés
+        dans la surveillance de conservation et l'évaluation environnementale.
+      es: >-
+        Concepto taxonómico abstracto para categorías de fenómenos cuantificables utilizados
+        en monitoreo de conservación y evaluación ambiental.
+      ar: >-
+        مفهوم تصنيفي تجريدي لفئات الظواهر القابلة للقياس المستخدمة
+        في مراقبة الحفظ والتقييم البيئي.
+      id: >-
+        Konsep taksonomi abstrak untuk kategori fenomena terkuantifikasi yang digunakan
+        dalam pemantauan konservasi dan evaluasi lingkungan.
+      zh: >-
+        用于保护监测和环境评估的可量化现象类别的抽象分类概念。
+    structured_aliases:
+    - literal_form: meettype
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Messtyp
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: type de mesure
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: tipo de medición
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نوع القياس
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: tipe pengukuran
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 测量类型
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - qudt:QuantityKind
+    - crm:E55_Type
+    slots:
+    - has_name
+    - has_description
+    - has_measurement_unit
+    slot_usage:
+      has_name:
+        required: true
+      has_measurement_unit:
+        range: MeasureUnit
+    comments:
+    - Base class for environmental and conservation measurement categories.
+    - Includes temperature, humidity, light levels, UV radiation, and air quality.
+    - 'Preserved from prior description: Abstract taxonomy concept for categories of measured phenomena.'
+    keywords:
+    - measurement category
+    - environmental monitoring
+    - conservation metrics
+    - quantifiable phenomena
+    notes:
+    - |
+      Common measurement type categories:
+      - Temperature measurements (°C, °F)
+      - Humidity measurements (% RH)
+      - Light level measurements (lux)
+      - UV radiation measurements
+      - Air quality measurements
+      - Vibration measurements
+      - Pest monitoring counts
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Measurement-kind taxonomy for consistent observation typing.
+      custodian_types: '["*"]'

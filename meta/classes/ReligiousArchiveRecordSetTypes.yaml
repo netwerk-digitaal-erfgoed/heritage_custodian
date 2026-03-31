@@ -1,0 +1,193 @@
+id: https://nde.nl/ontology/hc/class/ReligiousArchiveRecordSetTypes
+name: ReligiousArchiveRecordSetTypes
+title: ReligiousArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./ReligiousArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  ReligiousInstitutionFonds:
+    is_a: ReligiousArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation created by faith-based
+      institutions in governance, ministry, and community administration.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie die is gevormd door
+        geloofsgebonden instellingen in bestuur, bediening en gemeenschapsbeheer.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen religioeser
+        Einrichtungen in Leitung, Seelsorge und Gemeinschaftsverwaltung.
+      fr: >-
+        Agrégation fondée sur la provenance de documentation produite par des
+        institutions religieuses dans la gouvernance et l'administration communautaire.
+      es: >-
+        Agregación basada en procedencia de documentación creada por
+        instituciones de fe en gobierno, ministerio y gestión comunitaria.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق أنشأتها مؤسسات دينية في مجالات
+        الحوكمة والخدمة وإدارة المجتمع.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi yang dibentuk lembaga
+        keagamaan dalam tata kelola, pelayanan, dan administrasi komunitas.
+      zh: >-
+        基于来源原则聚合由宗教机构在治理、牧灵与社群管理中形成的文献。
+    structured_aliases:
+    - literal_form: religieus instellingsarchief
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: religiöser Institutionsbestand
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds d'institution religieuse
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo institucional religioso
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رصيد مؤسسة دينية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds institusi keagamaan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 宗教机构文献全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Follows the fonds organizational principle as defined by rico-rst:Fonds.
+    - Note preserved: Institutional provenance remains primary even when content spans pastoral and administrative functions.
+    - 'Preserved from prior description: A rico:RecordSetType for religious organization records.'
+    keywords:
+    - faith institution
+    - ministry governance
+    - community administration
+    - provenance aggregation
+    examples:
+    - value:
+        has_type: hc:ReligiousInstitutionFonds
+        has_custodian: hc:ReligiousArchive
+        has_note: Governance statutes, ministry registers, and institutional correspondence.
+      description: Faith-institution documentation grouped by originating body.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - ReligiousArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ReligiousInstitutionFonds
+      has_custodian:
+        equals_string: hc:ReligiousArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by ReligiousArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  CongregationalRecordsSeries:
+    is_a: ReligiousArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of congregation-level activities,
+      pastoral administration, and recurring community operations.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van activiteiten op gemeentelijk niveau,
+        pastorale administratie en terugkerende gemeenschapspraktijken.
+      de: >-
+        Geordnete Dokumentationsfolge auf Gemeindeebene zu pastoraler
+        Verwaltung und wiederkehrenden Gemeinschaftsablaeufen.
+      fr: >-
+        Sequence documentaire ordonnee des activites congregationnelles,
+        de l'administration pastorale et des operations communautaires.
+      es: >-
+        Secuencia documental ordenada de actividades congregacionales,
+        administración pastoral y operaciones comunitarias recurrentes.
+      ar: >-
+        تسلسل وثائقي منظم لأنشطة الجماعة الدينية والإدارة الرعوية
+        والعمليات المجتمعية المتكررة.
+      id: >-
+        Urutan dokumenter teratur dari kegiatan jemaat,
+        administrasi pastoral, dan operasi komunitas yang berulang.
+      zh: >-
+        由会众层级活动、牧灵管理与周期性社群运作形成的有序文献序列。
+    structured_aliases:
+    - literal_form: gemeente-archiefserie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Gemeindeakten-Serie
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: série de registres paroissiaux
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: serie de registros congregacionales
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة سجلات جماعية دينية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: seri dokumentasi jemaat
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 会众事务文献序列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Follows the series organizational principle as defined by rico-rst:Series.
+    - Note preserved: Sequence ordering supports continuity across recurring congregation workflows.
+    - 'Preserved from prior description: A rico:RecordSetType for congregation documentation.'
+    keywords:
+    - congregation activity
+    - pastoral administration
+    - recurring operation
+    - community record
+    examples:
+    - value:
+        has_type: hc:CongregationalRecordsSeries
+        has_custodian: hc:ReligiousArchive
+        has_note: Membership lists, service logs, and recurring pastoral notices.
+      description: Congregation workflow documentation arranged as a recurring sequence.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - ReligiousArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:CongregationalRecordsSeries
+      has_custodian:
+        equals_string: hc:ReligiousArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by ReligiousArchive custodians. Inverse of rico:isOrWasHolderOf.

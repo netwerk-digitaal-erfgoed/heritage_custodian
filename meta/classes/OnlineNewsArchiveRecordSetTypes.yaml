@@ -1,0 +1,109 @@
+id: https://nde.nl/ontology/hc/class/OnlineNewsArchiveRecordSetTypes
+name: OnlineNewsArchiveRecordSetTypes
+title: OnlineNewsArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./OnlineNewsArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  DigitalNewsCollection:
+    is_a: OnlineNewsArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: Collection-oriented record set type for digital news content.
+    alt_descriptions:
+      nl: Collectiegerichte recordsettype voor digitaal nieuwscontent.
+      de: Sammlungsorientierter Recordset-Typ fuer digitale Nachrichteninhalte.
+      fr: Type de jeu de documents oriente collection pour des contenus d actualite numeriques.
+      es: Tipo de conjunto documental orientado a coleccion para contenidos de noticias digitales.
+      ar: نوع مجموعة سجلات موجّه بنمط المجموعات لمحتوى الأخبار الرقمية.
+      id: Tipe set rekaman berorientasi koleksi untuk konten berita digital.
+      zh: 面向数字新闻内容的集合型记录集类型。
+    structured_aliases:
+    - {literal_form: digitale nieuwscollectie, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: digitale Nachrichtensammlung, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: collection d actualites numeriques, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: coleccion de noticias digitales, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: مجموعة أخبار رقمية, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: koleksi berita digital, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 数字新闻集合, predicate: EXACT_SYNONYM, in_language: zh}
+    comments:
+    - Note preserved: Digital news content may combine article text, embedded media, and metadata from publishing workflows.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - OnlineNewsArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DigitalNewsCollection
+      has_custodian:
+        equals_string: hc:OnlineNewsArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by OnlineNewsArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+  WebPublicationFonds:
+    is_a: OnlineNewsArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: Fonds-oriented record set type for online publication records.
+    alt_descriptions:
+      nl: Fondsgerichte recordsettype voor online-publicatierecords.
+      de: Fondsorientierter Recordset-Typ fuer Unterlagen zu Online-Publikationen.
+      fr: Type de jeu de documents oriente fonds pour les documents de publication en ligne.
+      es: Tipo de conjunto documental orientado a fondo para registros de publicaciones en linea.
+      ar: نوع مجموعة سجلات موجّه بنمط الفوندس لسجلات النشر الإلكتروني.
+      id: Tipe set rekaman berorientasi fonds untuk arsip publikasi daring.
+      zh: 面向在线出版记录的全宗型记录集类型。
+    structured_aliases:
+    - {literal_form: fonds online publicaties, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Fonds Online-Publikationen, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: fonds de publications en ligne, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: fondo de publicaciones en linea, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: فوندس منشورات إلكترونية, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: fonds publikasi daring, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 在线出版全宗, predicate: EXACT_SYNONYM, in_language: zh}
+    comments:
+    - Note preserved: Online publication provenance remains tied to the originating editorial/publishing organization.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - OnlineNewsArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:WebPublicationFonds
+      has_custodian:
+        equals_string: hc:OnlineNewsArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by OnlineNewsArchive custodians. Inverse of rico:isOrWasHolderOf.

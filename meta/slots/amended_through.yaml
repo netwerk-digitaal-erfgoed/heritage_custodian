@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: amended_through
+# ==============================================================================
+# Legal instrument, formal process, or event that introduced changes.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **PROV-O**    | `prov:wasRevisionOf`  | prov.ttl:1106-1121   | close   | Revision relationship - similar but entity-to-entity     |
+# | **DCTerms**   | `dcterms:isReplacedBy`| dcterms.rdf          | related | Replacement - different semantic                         |
+#
+# SEMANTIC NOTES:
+# - Amendment "through" captures the legal/formal mechanism of change
+# - Common in legal, policy, and regulatory contexts
+# - Custom hc: URI is appropriate for this formal amendment context
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, close_mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/amended_through
+name: amended_through
+title: Amended Through
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  amended_through:
+    slot_uri: hc:amendedThrough
+    description: >-
+      To be modified, revised, or altered via a specific legal instrument, formal 
+      process, or subsequent event that introduces changes to the original content.
+    alt_descriptions:
+      nl: >-
+        Gewijzigd, herzien of aangepast via een specifiek juridisch instrument, formeel 
+        proces of daaropvolgende gebeurtenis die wijzigingen in de oorspronkelijke 
+        inhoud introduceert.
+      de: >-
+        Geändert, überarbeitet oder verändert durch ein bestimmtes Rechtsinstrument, 
+        einen formellen Prozess oder ein nachfolgendes Ereignis, das Änderungen am 
+        ursprünglichen Inhalt einführt.
+      fr: >-
+        Modifié, révisé ou altéré via un instrument juridique spécifique, un processus 
+        formel ou un événement ultérieur qui introduit des changements au contenu original.
+      ar: >-
+        أن يتم تعديله أو مراجعته أو تغييره عبر صك قانوني محدد أو عملية رسمية 
+        أو حدث لاحق يُدخل تغييرات على المحتوى الأصلي.
+      id: >-
+        Dimodifikasi, direvisi, atau diubah melalui instrumen hukum, proses formal, 
+        atau peristiwa berikutnya yang memperkenalkan perubahan pada konten asli.
+      zh: >-
+        通过特定的法律文书、正式程序或后续事件进行修改、修订或更改，对原始内容进行变更。
+      es: >-
+        Modificado, revisado o alterado mediante un instrumento legal específico, 
+        proceso formal o evento posterior que introduce cambios al contenido original.
+    structured_aliases:
+      - literal_form: gewijzigd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geändert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: modifié par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معدَّل بموجب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diamendemen melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...修订
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: enmendado mediante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - prov:wasRevisionOf  # prov.ttl:1106-1121 - revision relationship
+    aliases:
+      - is_or_was_amended_through
+    annotations:
+      custodian_types: '["*"]'

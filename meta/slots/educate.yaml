@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: educate
+# ==============================================================================
+# Educational programs and activities offered by the institution.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                              |
+# |---------------|-----------------------|-------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:teaches`      | schemaorg.owl:37538-37560| close   | "Intended to help a person learn   |
+# |               |                       |                         |         | the competency or learning outcome"|
+# | **Schema.org**| `schema:EducationEvent`| schemaorg.owl:1793-1797 | related | Class for education events         |
+#
+# schema:teaches focuses on competencies taught, while this slot describes
+# educational programs offered. Hence close, not exact.
+#
+# CREATED: 2026-02-04
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/educate
+name: educate
+title: Educate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  educate:
+    slot_uri: hc:educate
+    description: >-
+      Educational programs and activities offered by the institution to
+      provide instruction, knowledge, or training to individuals or groups.
+    alt_descriptions:
+      nl: >-
+        Educatieve programma's en activiteiten die door de instelling worden
+        aangeboden om instructie, kennis of training te bieden aan individuen
+        of groepen.
+      de: >-
+        Bildungsprogramme und Aktivitäten, die von der Einrichtung angeboten
+        werden, um Einzelpersonen oder Gruppen Unterricht, Wissen oder
+        Schulung zu vermitteln.
+      fr: >-
+        Programmes et activités éducatifs offerts par l'institution pour
+        fournir instruction, connaissances ou formation aux individus
+        ou groupes.
+      ar: >-
+        البرامج والأنشطة التعليمية التي تقدمها المؤسسة لتوفير التعليم
+        أو المعرفة أو التدريب للأفراد أو المجموعات.
+      id: >-
+        Program dan kegiatan pendidikan yang ditawarkan oleh institusi untuk
+        memberikan instruksi, pengetahuan, atau pelatihan kepada individu
+        atau kelompok.
+      zh: >-
+        机构提供的教育项目和活动，为个人或团体提供指导、知识或培训。
+      es: >-
+        Programas y actividades educativas ofrecidos por la institución para
+        proporcionar instrucción, conocimiento o formación a individuos
+        o grupos.
+    structured_aliases:
+      - literal_form: educeren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bilden
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: éduquer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تثقيف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mendidik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 教育
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: educar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:teaches  # schemaorg.owl:37538-37560 - focuses on competencies
+    related_mappings:
+      - schema:EducationEvent  # schemaorg.owl:1793-1797 - class, not property
+      - schema:LearningResource
+    aliases:
+      - is_or_was_public_education
+    comments:
+      - |
+        **ONTOLOGY NOTE**: schema:EducationalEvent is a class, not a predicate.
+        Using hc namespace for the slot_uri.
+      - |
+        **PROGRAM TYPES**:
+        - School Programs: K-12 educational tours, multi-day immersive learning
+        - Visitor Engagement: Guided tours, keeper talks, demonstrations
+        - Lifelong Learning: Adult courses, citizen science, volunteer training
+        - Children's Programs: Summer camps, junior programs, storytelling
+        - Digital Learning: Virtual tours, webcams, online modules
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.6
+      specificity_rationale: Public programming slot for educational activities.

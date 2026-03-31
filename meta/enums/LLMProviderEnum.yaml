@@ -1,0 +1,54 @@
+id: https://nde.nl/ontology/hc/enum/LLMProviderEnum
+name: llm_provider_enum
+title: LLM Provider Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+
+enums:
+  LLMProviderEnum:
+    description: |
+      Enumeration of LLM providers/platforms supported by DSPy integration.
+      Used for routing, cost tracking, and provider-specific behavior.
+    permissible_values:
+      zai:
+        description: |
+          ZhipuAI (Z.AI) - Chinese AI provider offering GLM models.
+          Primary provider for this project via Z.AI Coding Plan.
+          Endpoint: https://api.z.ai/api/coding/paas/v4/chat/completions
+          Models: glm-4.5, glm-4.6, glm-4.7 (with Interleaved Thinking)
+        meaning: schema:Organization
+      anthropic:
+        description: |
+          Anthropic - Provider of Claude models.
+          Models: claude-3-opus, claude-3-sonnet, claude-3-haiku
+        meaning: schema:Organization
+      openai:
+        description: |
+          OpenAI - Provider of GPT models.
+          Models: gpt-4-turbo, gpt-4o, gpt-3.5-turbo
+        meaning: schema:Organization
+      huggingface:
+        description: |
+          HuggingFace - Open model hosting and inference.
+          Models: Various open-source models via Inference API
+        meaning: schema:Organization
+      groq:
+        description: |
+          Groq - High-speed inference provider.
+          Models: llama, mixtral, gemma via Groq hardware
+        meaning: schema:Organization
+      together:
+        description: |
+          Together AI - Open model inference platform.
+          Models: Various open-source models
+        meaning: schema:Organization
+      local:
+        description: |
+          Local inference (Ollama, llama.cpp, vLLM).
+          No external API calls, runs on local hardware.
+        meaning: schema:SoftwareApplication

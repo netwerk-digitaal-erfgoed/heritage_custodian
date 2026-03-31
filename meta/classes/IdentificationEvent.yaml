@@ -1,0 +1,96 @@
+id: https://nde.nl/ontology/hc/class/IdentificationEvent
+name: IdentificationEvent
+title: Identification Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_score
+- ../slots/temporal_extent
+classes:
+  IdentificationEvent:
+    class_uri: hc:IdentificationEvent
+    description: >-
+      Time-bounded activity during which an object, specimen, or record undergoes
+      identity determination or receives a classification assignment.
+    alt_descriptions:
+      nl: >-
+        Tijdsgebonden activiteit waarbij een object, specimen of record
+        identificatie of classificatietoewijzing ondergaat.
+      de: >-
+        Zeitgebundene Aktivität, bei der ein Objekt, Exemplar oder Datensatz
+        eine Identifizierung oder Klassifikationszuweisung erhält.
+      fr: >-
+        Activité temporelle pendant laquelle un objet, spécimen ou enregistrement
+        subit une détermination d'identité ou reçoit une assignation de classification.
+      es: >-
+        Actividad temporal durante la cual un objeto, espécimen o registro
+        se somete a determinación de identidad o recibe asignación de clasificación.
+      ar: >-
+        نشاط محدد زمنيًا يخضع فيه كائن أو عينة أو سجل
+        لتحديد الهوية أو receives تلقي تصنيف.
+      id: >-
+        Aktivitas terikat-waktu saat objek, spesimen, atau catatan
+        menjalani penentuan identitas atau menerima penugasan klasifikasi.
+      zh: >-
+        在此时间受限活动中，物体、标本或记录
+        接受身份确定或分类分配。
+    slots:
+    - temporal_extent
+    - has_description
+    - has_score
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    broad_mappings:
+    - prov:Activity
+    close_mappings:
+    - dwc:Identification
+    structured_aliases:
+    - literal_form: identificatiegebeurtenis
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Identifikationsereignis
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: événement d'identification
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: evento de identificación
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: حدث التعريف
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: peristiwa identifikasi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 鉴定事件
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Captures when and how identity was established
+    - Supports provenance of taxonomic determinations
+    - May include confidence scores for automated identification
+    - 'Preserved from prior description: Time-bounded activity in which an object, specimen, or record receives an identity determination or classification assignment.'
+    keywords:
+    - identification
+    - classification
+    - determination
+    - taxonomic event
+    - provenance
+    examples:
+    - value:
+        has_description: Specimen identified as Quercus robur
+        has_score: 0.95
+      description: Botanical identification with confidence score
+    annotations:
+      specificity_score: 0.3
+      specificity_rationale: Generic event type for identification activities
+      custodian_types: "['*']"

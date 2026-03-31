@@ -1,0 +1,110 @@
+id: https://nde.nl/ontology/hc/class/ProvincialHistoricalArchiveRecordSetTypes
+name: ProvincialHistoricalArchiveRecordSetTypes
+title: ProvincialHistoricalArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./ProvincialHistoricalArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  ProvincialHistoricalFonds:
+    is_a: ProvincialHistoricalArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation preserved from earlier
+      provincial governance periods and legacy administrative formations.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie die bewaard is uit
+        eerdere perioden van provinciaal bestuur en historische bestuursvormen.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen aus frueheren
+        Phasen provinzieller Verwaltung und historischen Verwaltungsstrukturen.
+      fr: >-
+        Agrégation fondée sur la provenance de documentation conservée des
+        périodes antérieures de gouvernance provinciale et d'anciennes formations.
+      es: >-
+        Agregación basada en procedencia de documentación conservada de
+        etapas anteriores de gobernanza provincial y formaciones administrativas.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق محفوظة من فترات سابقة من الحكم
+        الإقليمي ومن تشكيلات إدارية تاريخية.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi yang dipertahankan dari
+        periode tata kelola provinsi terdahulu dan formasi administrasi lama.
+      zh: >-
+        基于来源原则聚合来自早期省级治理阶段与历史行政形态的保存文献。
+    structured_aliases:
+    - literal_form: historisch provinciefonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: historischer Provinzfonds
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds historique provincial
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo historico provincial
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: فوندس تاريخي إقليمي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds sejarah provinsi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 省级历史全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: This class is intended for historical holdings that retain provincial provenance.
+    - Includes material from superseded offices, predecessor administrations, and long-term memory functions.
+    - 'Preserved from prior description: Fonds-oriented record set type for historical provincial records.'
+    keywords:
+    - historical governance
+    - legacy administration
+    - provincial memory
+    - provenance retention
+    examples:
+    - value:
+        has_type: hc:ProvincialHistoricalFonds
+        has_custodian: hc:ProvincialHistoricalArchive
+        has_note: Pre-reform provincial decrees, legacy registers, and predecessor office files.
+      description: Historical provincial documentation grouped by original administrative provenance
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - ProvincialHistoricalArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ProvincialHistoricalFonds
+      has_custodian:
+        equals_string: hc:ProvincialHistoricalArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ProvincialHistoricalArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

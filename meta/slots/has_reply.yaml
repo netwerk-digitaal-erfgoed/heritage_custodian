@@ -1,0 +1,78 @@
+# ==============================================================================
+# LinkML Slot Definition: has_reply
+# ==============================================================================
+# A response, answer, or counter-statement to a previous communication.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property         | File/Line              | Mapping | Notes                                             |
+# |---------------|------------------|------------------------|---------|----------------------------------------------------|
+# | **Schema.org**| `schema:comment` | schemaorg.owl:12267-12289| related | "Comments, typically from users." Domain:          |
+# |               |                  |                        |         | RsvpAction/CreativeWork. Range: Comment.           |
+#
+# schema:comment is about general comments/feedback on content, not a
+# directed response or reply to a specific message. Semantically different.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_reply
+name: has_reply
+title: Has Reply
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_reply:
+    slot_uri: hc:hasReply
+    description: >-
+      To specify a response, answer, or counter-statement provided in reaction to a previous message, communication, or action.
+    alt_descriptions:
+      nl: >-
+        Om een reactie, antwoord of tegenverklaring te specificeren die wordt gegeven als reactie op een eerder bericht, communicatie of handeling.
+      de: >-
+        Um eine Antwort, Erwiderung oder Gegenaussage anzugeben, die als Reaktion auf eine vorherige Nachricht, Mitteilung oder Handlung bereitgestellt wird.
+      fr: >-
+        Pour spécifier une réponse, une réplique ou une contre-déclaration fournie en réaction à un message, une communication ou une action antérieure.
+      ar: >-
+        لتحديد رد أو إجابة أو بيان مضاد مقدم كاستجابة لرسالة أو اتصال أو إجراء سابق.
+      id: >-
+        Untuk menentukan tanggapan, jawaban, atau pernyataan balasan yang diberikan sebagai reaksi terhadap pesan, komunikasi, atau tindakan sebelumnya.
+      zh: >-
+        用于指定针对先前消息、通信或行动作出的回应、回答或反驳声明。
+      es: >-
+        Para especificar una respuesta, contestación o contradeclaración proporcionada en reacción a un mensaje, comunicación o acción previos.
+    structured_aliases:
+      - literal_form: Antwoord
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Antwort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Reponse
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: رد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Balasan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 回复
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Respuesta
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:comment  # schemaorg.owl:12267-12289 - "Comments, typically from users." Domain: RsvpAction/CreativeWork. A comment is general feedback, not a directed reply to a specific message.
+    aliases:
+      - has_or_had_reply
+    annotations:
+      custodian_types: '["*"]'

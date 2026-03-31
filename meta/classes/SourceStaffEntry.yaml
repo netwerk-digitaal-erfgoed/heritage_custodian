@@ -1,0 +1,96 @@
+id: https://nde.nl/ontology/hc/classes/SourceStaffEntry
+name: SourceStaffEntry
+title: SourceStaffEntry
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+- linkml:types
+- ../slots/has_staff
+- ../slots/has_name
+- ../slots/has_title
+- ../slots/has_profile
+default_prefix: hc
+# default_range: string
+classes:
+  SourceStaffEntry:
+    description: >-
+      Provenance reference to a staff-related source snippet captured during
+      parsing or extraction workflows.
+    alt_descriptions:
+      nl: >-
+        Provenantieverwijzing naar een personeelsgerelateerd bronfragment dat
+        is vastgelegd tijdens parseer- of extractieworkflows.
+      de: >-
+        Provenienzverweis auf einen personalbezogenen Quellausschnitt, der
+        während Parsing- oder Extraktionsabläufen erfasst wurde.
+      fr: >-
+        Référence de provenance vers un extrait source lié au personnel,
+        capturé lors de workflows d'analyse ou d'extraction.
+      es: >-
+        Referencia de procedencia a un fragmento de fuente relacionado con
+        personal, capturado durante flujos de análisis o extracción.
+      ar: >-
+        مرجع منشأ إلى مقطع مصدر متعلق بالموظفين تم التقاطه أثناء عمليات
+        التحليل أو الاستخراج.
+      id: >-
+        Referensi provenance ke cuplikan sumber terkait staf yang ditangkap
+        selama alur parsing atau ekstraksi.
+      zh: >-
+        指向解析或抽取流程中捕获的人员相关来源片段的来源引用。
+    class_uri: prov:Entity
+    broad_mappings:
+    - prov:Entity
+    related_mappings:
+    - foaf:Person
+    - schema:Person
+    - prov:PrimarySource
+    structured_aliases:
+    - literal_form: herkomstverwijzing personeelsfragment
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Herkunftsverweis auf Personalausschnitt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: référence de provenance d'extrait de personnel
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: referencia de procedencia de fragmento de personal
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مرجع منشأ لمقتطف متعلق بالموظفين
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: referensi asal cuplikan staf
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 人员片段来源引用
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - has_staff
+    - has_name
+    - has_title
+    - has_profile
+    comments:
+    - Captures a provenance pointer to parsed staff data; the actual person entity may be modeled separately.
+    - 'Preserved from prior description: Reference to an original staff entry from parsing or extraction.'
+    keywords:
+    - provenance pointer
+    - extracted snippet
+    - personnel parsing
+    - source traceability
+    examples:
+    - value:
+        has_name: Anna de Vries
+        has_title: Conservator
+        has_profile: /profiles/anna-de-vries
+      description: Source snippet reference captured during staff extraction.

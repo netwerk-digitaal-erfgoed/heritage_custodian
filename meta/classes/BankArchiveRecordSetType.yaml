@@ -1,0 +1,95 @@
+id: https://nde.nl/ontology/hc/class/BankArchiveRecordSetType
+name: BankArchiveRecordSetType
+title: Bank Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+classes:
+  BankArchiveRecordSetType:
+    class_uri: hc:BankArchiveRecordSetType
+    description: >-
+      Classification category for record sets containing banking and financial
+      institution records, including transaction histories, customer accounts,
+      and corporate documentation within bank archives.
+    alt_descriptions:
+      nl: >-
+        Classificatiecategorie voor recordsets met bank- en financiële
+        instellingsarchieven, inclusief transactiegeschiedenissen,
+        klantenrekeningen en bedrijfsdocumentatie.
+      de: >-
+        Klassifizierungskategorie fuer Datensatzgruppen mit Bank- und
+        Finanzinstitutsunterlagen, einschliesslich Transaktionshistorien,
+        Kundenkonten und Unternehmensdokumentation.
+      fr: >-
+        Categorie de classification pour les ensembles d'enregistrements
+        contenant des documents bancaires et financiers, y compris les
+        historiques de transactions, les comptes clients et la documentation
+        d'entreprise.
+      es: >-
+        Categoria de clasificacion para conjuntos de registros que contienen
+        documentos bancarios y financieros, incluidos historiales de
+        transacciones, cuentas de clientes y documentacion corporativa.
+      ar: >-
+        فئة تصنيف لمجموعات السجلات التي تحتوي على سجلات مصرفية ومالية، بما في
+        ذلك سجلات المعاملات وحسابات العملاء والوثائق المؤسسية.
+      id: >-
+        Kategori klasifikasi untuk kumpulan rekaman yang berisi arsip perbankan
+        dan keuangan, termasuk riwayat transaksi, rekening nasabah, dan
+        dokumentasi korporat.
+      zh: >-
+        包含银行和金融机构记录的记录集分类类别，包括交易历史、客户账户和企业文件。
+    is_a: CollectionType
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+    structured_aliases:
+      - literal_form: bankarchief-recordsettype
+        in_language: nl
+      - literal_form: Bankarchiv-Bestandsart
+        in_language: de
+      - literal_form: type de fonds d'archives bancaires
+        in_language: fr
+      - literal_form: tipo de fondo de archivo bancario
+        in_language: es
+      - literal_form: نوع مجموعة سجلات الأرشيف المصرفي
+        in_language: ar
+      - literal_form: tipe kumpulan rekaman arsip bank
+        in_language: id
+      - literal_form: 银行档案记录集类型
+        in_language: zh
+    examples:
+      - value:
+          has_type: ArchiveOrganizationType
+          has_score: 1.0
+        description: Bank archive collection type
+    keywords:
+      - banking records
+      - financial documents
+      - record set type
+      - classification
+    slots:
+      - has_type
+      - has_score
+      - has_scope
+    slot_usage:
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+    comments:
+      - Abstract classification for bank archive collections
+      - See BankArchiveRecordSetTypes.yaml for concrete subclasses
+    see_also:
+      - BankArchive
+      - rico:RecordSetType
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Specific record set type for banking records
+      custodian_types: "['BankArchive']"

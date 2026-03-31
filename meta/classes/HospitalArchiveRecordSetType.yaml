@@ -1,0 +1,67 @@
+id: https://nde.nl/ontology/hc/class/HospitalArchiveRecordSetType
+name: HospitalArchiveRecordSetType
+title: Hospital Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/CollectionType
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+classes:
+  HospitalArchiveRecordSetType:
+    abstract: true
+    class_uri: hc:HospitalArchiveRecordSetType
+    is_a: CollectionType
+    description: >-
+      Taxonomy root for categorizing documentary materials maintained by healthcare institutions.
+    alt_descriptions:
+      nl: >-
+        Taxonomiewortel voor het categoriseren van documentaire materialen die door zorginstellingen worden beheerd.
+      de: >-
+        Taxonomiewurzel zur Kategorisierung von Dokumentenmaterialien, die von Gesundheitseinrichtungen verwaltet wurden.
+      fr: >-
+        Racine taxonomique pour catégoriser les documents matériels gérés par les établissements de santé.
+      es: >-
+        Raíz taxonómica para categorizar materiales documentales mantenidos por instituciones de salud.
+      ar: >-
+        جذر تصنيفي لتصنيف المواد الوثائقية التي تحتفظ بها مؤسسات الرعاية الصحية.
+      id: >-
+        Akar taksonomi untuk mengkategorikan bahan dokumenter yang dikelola oleh institusi layanan kesehatan.
+      zh: >-
+        用于分类医疗机构保存的文献资料的分类根。
+    structured_aliases:
+    - {literal_form: Ziekenhuisarchiefrecordsettype, in_language: nl}
+    - {literal_form: Krankenhausarchiv-Bestandstyp, in_language: de}
+    - {literal_form: Type de fonds d'archives hospitalières, in_language: fr}
+    - {literal_form: Tipo de fondo de archivo hospitalario, in_language: es}
+    - {literal_form: نوع مجموعة أرشيف المستشفى, in_language: ar}
+    - {literal_form: Tipe Set Rekaman Arsip Rumah Sakit, in_language: id}
+    - {literal_form: 医院档案记录集类型, in_language: zh}
+    keywords:
+    - healthcare institution
+    - medical documentation
+    - hospital records
+    - clinical materials
+    - taxonomic category
+    slots:
+      - has_type
+      - has_score
+      - has_scope
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    notes:
+      - |
+        Preserved from prior description (commit 6e634651):
+
+        Preserved from prior description (commit 6e634651):
+
+        "Abstract base class for all hospital archive record set types.\n\n**Definition**:\nA rico:RecordSetType that classifies collections held by hospital and healthcare \narchives. Hospital archives preserve records documenting patient care, medical \nadministration, research activities, and institutional history.\n\n**Subclasses**:\n- HospitalAdministrationFonds (institutional governance and administration)\n- PatientRecordsSeries (patient care documentation)\n- MedicalResearchCollection (clinical research and trials)\n- NursingRecordsCollection (nursing administration and education)\n- MedicalPhotographyCollection (medical imaging and documentation)\n\n**RiC-O Alignment**:\nThis is an abstract type classifier. Subclasses specify both the domain \n(type of healthcare records) and organizational principle (fonds, series, collection).\n\n**Dual-Class Pattern**:\nHospitalArchive (ArchiveOrganizationType) = the custodian institution.\nHospitalArchiveRecordSetType (rico:RecordSetType)

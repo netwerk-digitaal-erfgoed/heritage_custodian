@@ -1,0 +1,58 @@
+id: https://nde.nl/ontology/hc/classes/OriginalEntryLocation
+name: OriginalEntryLocation
+title: OriginalEntryLocation
+prefixes:
+  geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  locn: http://www.w3.org/ns/locn#
+imports:
+  - linkml:types
+# default_range: string
+classes:
+  OriginalEntryLocation:
+    description: >-
+      Geographic and address fields preserved from an unmodified source record
+      before normalization or geocoding.
+    alt_descriptions:
+      nl: >-
+        Geografische en adresvelden bewaard uit een ongewijzigd bronrecord vóór
+        normalisatie of geocoding.
+      de: >-
+        Geografische und Adressfelder, die aus einem unveränderten Quelldatensatz vor
+        Normalisierung oder Geokodierung bewahrt wurden.
+      fr: >-
+        Champs géographiques et d'adresse préservés d'un enregistrement source non modifié
+        avant normalisation ou géocodage.
+      es: >-
+        Campos geográficos y de dirección preservados de un registro fuente sin modificar
+        antes de normalización o geocodificación.
+      ar: >-
+        الحقول الجغرافية والعنوانية المحفوظة من سجل مصدر غير معدل قبل التسوية أو الترميز الجغرافي.
+      id: >-
+        Bidang geografis dan alamat yang dilestarikan dari rekaman sumber yang tidak
+        dimodifikasi sebelum normalisasi atau geocoding.
+      zh: >-
+        在规范化或地理编码之前从未修改的源记录中保存的地理和地址字段。
+    class_uri: schema:Place
+    close_mappings:
+    - locn:Address
+    related_mappings:
+    - prov:Location
+    - geo:SpatialThing
+    comments:
+      - "Typically captures address components (city/region/country/postal code) and optional coordinates and GeoNames identifiers."
+      - "Ontology alignment: schema:Place for a place-like location wrapper; locn:Address for structured address information."
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - has_geographic_subdivision
+    - in_country
+    - has_postal_code
+    - has_latitude
+    - has_longitude

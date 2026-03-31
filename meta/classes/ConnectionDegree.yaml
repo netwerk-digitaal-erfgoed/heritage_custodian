@@ -1,0 +1,66 @@
+id: https://nde.nl/ontology/hc/class/ConnectionDegree
+name: connection_degree_class
+title: Connection Degree Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_type
+classes:
+  ConnectionDegree:
+    class_uri: hc:ConnectionDegree
+    description: >-
+      Relative network-distance marker expressing how many intermediate profiles separate a viewer from a contact.
+    alt_descriptions:
+      nl: Relatieve netwerkafstandsaanduiding die uitdrukt hoeveel tussenprofielen kijker en contact scheiden.
+      de: Relative Netzwerkdistanzangabe, die ausdrueckt, wie viele Zwischenprofile Betrachter und Kontakt trennen.
+      fr: Indicateur de distance relationnelle exprimant le nombre de profils intermediaires entre l'observateur et un contact.
+      es: Marcador de distancia de red que expresa cuantos perfiles intermedios separan al observador de un contacto.
+      ar: مؤشر مسافة شبكية نسبي يوضح عدد الملفات الوسيطة بين المشاهد وجهة الاتصال.
+      id: Penanda jarak jejaring relatif yang menyatakan jumlah profil perantara antara peninjau dan kontak.
+      zh: 表示观察者与联系人之间中间档案数量的相对网络距离标记。
+    close_mappings:
+    - schema:QuantitativeValue
+    slots:
+    - has_type
+    - has_description
+    slot_usage:
+      has_type:
+        range: ConnectionDegreeType
+        description: Classification of the viewer-relative connection distance band.
+        required: true
+    examples:
+    - value:
+        has_type: FirstDegreeConnection
+    - value:
+        has_type: SecondDegreeConnection
+    - value: |
+        PersonConnection
+          │
+          └── has_degree → ConnectionDegree (THIS CLASS)
+                └── has_type → ConnectionDegreeType (FIRST, SECOND, THIRD_PLUS)
+    notes:
+    - |
+      Preserved from prior description (commit 2e1e6e5f):
+
+      Represents the degree of connection between two people in a social network.
+
+      **DEFINITION**:
+
+      ConnectionDegree captures the "distance" in a social network graph:
+      - **1st degree**: Direct mutual connection
+      - **2nd degree**: One person between viewer and connection
+      - **3rd+ degree**: Two or more people between
+
+      **IMPORTANT**: The degree is relative to the VIEWER (person conducting
+      the search), NOT the target profile being analyzed. See AGENTS.md Rule 17.
+
+      **SEMANTIC PATTERN**:
+
+      **MIGRATION NOTE** (Rule 53, 2026-01-22):
+      Created as part of connection_degree migration. Wraps the simple enum
+      in a structured class for consistency with other Type/Types patterns.

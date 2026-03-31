@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: take_comission
+# ==============================================================================
+# Acceptance of a formal commission to produce work or perform a service for a fee
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                             | File/Line                  | Mapping | Notes                                                      |
+# |---------------|--------------------------------------|----------------------------|---------|-------------------------------------------------------------|
+# | **Schema.org**| `schema:priceComponent`              | schemaorg.owl:30637-30658  | related | Domain: CompoundPriceSpecification. About price spec nodes. |
+# | **Schema.org**| `schema:feesAndCommissionsSpecification` | schemaorg.owl:17987-18008 | related | Domain: FinancialService/FinancialProduct. Mentions commissions directly. |
+#
+# CHANGES:
+# - schema:priceComponent demoted close → related (domain CompoundPriceSpecification
+#   is too specific; commission is only tangentially a price component)
+# - schema:feesAndCommissionsSpecification added as related (mentions commissions
+#   directly but domain is FinancialService/FinancialProduct, not art galleries)
+# - No exact or close mappings exist — this is a domain-specific GLAM concept
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/take_comission
+name: take_comission
+title: Take Commission
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  take_comission:
+    slot_uri: hc:takeComission
+    description: >-
+      To accept a formal request, assignment, or order to produce a specific work,
+      perform a service, or execute a task, typically for an agreed-upon fee.
+    alt_descriptions:
+      nl: >-
+        Het aanvaarden van een formeel verzoek, opdracht of bestelling om een specifiek
+        werk te produceren, een dienst te verlenen of een taak uit te voeren, doorgaans
+        tegen een overeengekomen vergoeding.
+      de: >-
+        Die Annahme eines formellen Auftrags, einer Zuweisung oder Bestellung zur
+        Erstellung eines bestimmten Werks, zur Erbringung einer Dienstleistung oder
+        zur Ausführung einer Aufgabe, in der Regel gegen ein vereinbartes Entgelt.
+      fr: >-
+        Accepter une demande formelle, une mission ou une commande pour produire une
+        œuvre spécifique, fournir un service ou exécuter une tâche, généralement
+        moyennant des honoraires convenus.
+      ar: >-
+        قبول طلب رسمي أو تكليف أو أمر لإنتاج عمل محدد أو تقديم خدمة أو تنفيذ مهمة،
+        عادةً مقابل أجر متفق عليه.
+      id: >-
+        Menerima permintaan formal, penugasan, atau pesanan untuk menghasilkan karya
+        tertentu, memberikan layanan, atau melaksanakan tugas, biasanya dengan imbalan
+        yang telah disepakati.
+      zh: >-
+        接受正式请求、委托或订单，以制作特定作品、提供服务或执行任务，通常按约定收取费用。
+      es: >-
+        Aceptar una solicitud formal, asignación o encargo para producir una obra
+        específica, prestar un servicio o ejecutar una tarea, generalmente por una
+        tarifa acordada.
+    structured_aliases:
+      - literal_form: Commissie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Provision
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Commission
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عمولة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Komisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 佣金
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Comisión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    # range: CommissionRate
+    inlined: false
+    related_mappings:
+      - schema:priceComponent  # schemaorg.owl:30637-30658 - "Links UnitPriceSpecification nodes in CompoundPriceSpecification." Domain: CompoundPriceSpecification.
+      - schema:feesAndCommissionsSpecification  # schemaorg.owl:17987-18008 - "Description of fees, commissions, and other terms." Domain: FinancialService/FinancialProduct.
+    comments:
+      - "Links a service (like art sales) to its commission structure. Used for modeling gallery commission on artwork sales."
+      - "Uses 'takes_or_took_' prefix indicating temporal relationship — commission rates may change over time (Rule 39)."
+      - "Created from migration of commission_rate slot per slot_fixes.yaml. Provides structured commission representation via CommissionRate class."
+      - "Spelling 'comission' matches revision specification per Rule 57."
+      - "Example: primary_market commission at 50%; secondary_market resale commission at 10-20%."
+    annotations:
+      custodian_types: '["G"]'
+      custodian_types_rationale: Primarily for galleries and commercial art dealers.
+    aliases:
+      - takes_or_took_comission

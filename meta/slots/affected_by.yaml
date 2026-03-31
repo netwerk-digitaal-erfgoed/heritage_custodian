@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: affected_by
+# ==============================================================================
+# Agent, event, or condition that influenced or impacted something.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line            | Mapping | Notes                                                    |
+# |---------------|---------------------------|----------------------|---------|----------------------------------------------------------|
+# | **PROV-O**    | `prov:wasInfluencedBy`    | prov.ttl:706-714     | exact   | "influenced" - inverse of wasInfluencedBy                |
+# | **DBpedia**   | `dbo:influencedBy`        | dbpedia_ontology.owl:11772 | close | For creative/intellectual influence                      |
+#
+# SEMANTIC NOTES:
+# - prov:wasInfluencedBy is the canonical provenance property for influence relationships
+# - Our slot captures passive voice: entity WAS affected BY agent/event
+# - prov:influenced is the inverse (active: agent INFLUENCED entity)
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, exact_mapping prov:wasInfluencedBy
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/affected_by
+name: affected_by
+title: Affected By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  affected_by:
+    slot_uri: prov:wasInfluencedBy
+    description: >-
+      To be influenced, altered, or impacted by a specific agent, event, or condition, 
+      resulting in a change of state or circumstance.
+    alt_descriptions:
+      nl: >-
+        Beïnvloed, gewijzigd of beïnvloed door een specifieke actor, gebeurtenis of 
+        omstandigheid, resulterend in een verandering van staat of situatie.
+      de: >-
+        Beeinflusst, verändert oder beeinträchtigt durch einen bestimmten Akteur, ein 
+        Ereignis oder eine Bedingung, was zu einer Zustandsänderung führt.
+      fr: >-
+        Être influencé, modifié ou impacté par un agent, événement ou condition 
+        spécifique, entraînant un changement d'état ou de circonstance.
+      ar: >-
+        أن يتأثر أو يتغير أو يتعرض لتأثير من قبل عامل أو حدث أو ظرف معين، 
+        مما يؤدي إلى تغيير في الحالة أو الظروف.
+      id: >-
+        Dipengaruhi, diubah, atau terdampak oleh agen, peristiwa, atau kondisi 
+        tertentu, yang mengakibatkan perubahan keadaan atau situasi.
+      zh: >-
+        受到特定代理人、事件或条件的影响、改变或冲击，导致状态或情况的变化。
+      es: >-
+        Ser influenciado, alterado o impactado por un agente, evento o condición 
+        específica, resultando en un cambio de estado o circunstancia.
+    structured_aliases:
+      - literal_form: beïnvloed door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: beeinflusst von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: affecté par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متأثر بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dipengaruhi oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 受...影响
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: afectado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - dbo:influencedBy  # dbpedia_ontology.owl:11772 - creative/intellectual influence
+    aliases:
+      - is_or_was_affected_by_event
+      - affected_by_event
+    annotations:
+      custodian_types: '["*"]'

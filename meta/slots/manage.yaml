@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: manage
+# ==============================================================================
+# Oversees or controls the operation and administration of resources or systems.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                     | File/Line                     | Mapping | Notes                                                        |
+# |----------------|------------------------------|-------------------------------|---------|--------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P109_has_current_or_former_curator` | CIDOC_CRM_v7.1.3.rdf:3639-3654 | related | E78→E39; curator of a curated holding, narrower role.       |
+# | **CIDOC-CRM**  | `crm:P147_curated`           | CIDOC_CRM_v7.1.3.rdf:4378-4389 | related | E87→E78; curation activity on a holding, narrower scope.     |
+# | **RiC-O**      | `rico:hasOrHadManager`       | RiC-O_1-1.rdf:6926-6960       | close   | RecordResource/Instantiation→Agent; management relationship. |
+# | **PROV-O**     | `prov:wasAttributedTo`       | prov.ttl:1082-1098             | related | Entity→Agent; attribution, not management.                   |
+#
+# rico:hasOrHadManager is close but its domain is limited to
+# RecordResource/Instantiation. Our slot is more general, applicable to any
+# managed resource, system, or collection.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/manage
+name: manage
+title: Manage
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  manage:
+    slot_uri: hc:manage
+    description: >-
+      Oversees or controls the operation, administration, and coordination of
+      resources, systems, or people to achieve defined objectives. Records the
+      management relationship between a heritage custodian and the collections,
+      facilities, or programs it administers.
+    alt_descriptions:
+      nl: >-
+        Houdt toezicht op of controleert de werking, administratie en
+        coördinatie van middelen, systemen of mensen om vastgestelde doelen
+        te bereiken.
+      de: >-
+        Überwacht oder kontrolliert den Betrieb, die Verwaltung und
+        Koordination von Ressourcen, Systemen oder Personen zur Erreichung
+        festgelegter Ziele.
+      fr: >-
+        Supervise ou contrôle le fonctionnement, l'administration et la
+        coordination des ressources, systèmes ou personnes pour atteindre
+        des objectifs définis.
+      ar: >-
+        يشرف على أو يتحكم في تشغيل وإدارة وتنسيق الموارد أو الأنظمة أو
+        الأشخاص لتحقيق أهداف محددة.
+      id: >-
+        Mengawasi atau mengendalikan operasi, administrasi, dan koordinasi
+        sumber daya, sistem, atau orang untuk mencapai tujuan yang ditetapkan.
+      zh: >-
+        监督或控制资源、系统或人员的运营、管理和协调，以实现既定目标。
+      es: >-
+        Supervisa o controla la operación, administración y coordinación de
+        recursos, sistemas o personas para alcanzar objetivos definidos.
+    structured_aliases:
+      - literal_form: beheren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verwalten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: gérer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يدير
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengelola
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 管理
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: gestionar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - rico:hasOrHadManager  # RiC-O_1-1.rdf:6926-6960 - RecordResource/Instantiation→Agent; management
+    related_mappings:
+      - crm:P109_has_current_or_former_curator  # CIDOC_CRM_v7.1.3.rdf:3639-3654 - E78→E39; curator role
+      - crm:P147_curated  # CIDOC_CRM_v7.1.3.rdf:4378-4389 - E87→E78; curation activity
+      - prov:wasAttributedTo  # prov.ttl:1082-1098 - Entity→Agent; attribution, not management
+    aliases:
+      - manages_collection
+      - manages_or_managed
+    examples:
+      - value: "Prints and Drawings collection"
+        description: >-
+          A department manages the Prints and Drawings collection within
+          a national museum.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Distinct from crm:P109 (curator of curated holding) and crm:P147
+        (curation activity on holding) which are specific to curation contexts.
+        This slot is broader, covering any management relationship.

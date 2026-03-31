@@ -1,0 +1,406 @@
+id: https://nde.nl/ontology/hc/class/WebPortal
+name: WebPortal
+imports:
+- linkml:types
+- ../slots/aggregate_from
+- ../slots/created_by
+- ../slots/has_endpoint
+- ../slots/identified_by
+- ../slots/has_policy
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/aggregated_by
+- ../slots/associated_with
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/related_to
+- ../slots/begin_of_the_begin
+- ../slots/has_standard
+- ../slots/operated_by
+- ../slots/has_participant
+- ../slots/has_description
+- ../slots/has_language
+- ../slots/has_label
+- ../slots/has_status
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/has_quantity
+- ../slots/has_finding_aid
+- ../slots/supersede
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  edm: http://www.europeana.eu/schemas/edm/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  ore: http://www.openarchives.org/ore/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  odrl: http://www.w3.org/ns/odrl/2/
+  org: http://www.w3.org/ns/org#
+  dcmitype: http://purl.org/dc/dcmitype/
+default_prefix: hc
+classes:
+  WebPortal:
+    is_a: ReconstructedEntity
+    class_uri: ore:Aggregation
+    description: >-
+      Cross-institution discovery service that aggregates or provides access to
+      heritage metadata from multiple custodians.
+    alt_descriptions:
+      nl: >-
+        Een webportaal dat erfgoedmetadata van meerdere instellingen samenvoegt.
+      de: >-
+        Ein Webportal, das Kulturerbemetadaten von mehreren Einrichtungen aggregiert.
+      fr: >-
+        Un portail web qui agrège les métadonnées patrimoniales de plusieurs institutions.
+      es: >-
+        Un portal web que agrega metadatos patrimoniales de múltiples instituciones.
+      ar: >-
+        بوابة ويب تجمع بيانات التراث من عدة مؤسسات.
+      id: >-
+        Portal web yang mengagregasi metadata warisan dari beberapa lembaga.
+      zh: >-
+        聚合多个保管机构遗产元数据的门户网站。
+    structured_aliases:
+    - literal_form: webportaal
+      in_language: nl
+    - literal_form: Web-Portal
+      in_language: de
+    - literal_form: portail web
+      in_language: fr
+    - literal_form: portal web
+      in_language: es
+    - literal_form: بوابة ويب
+      in_language: ar
+    - literal_form: portal web
+      in_language: id
+    - literal_form: 网络门户
+      in_language: zh
+    comments:
+    - Distinguished from a single-custodian DigitalPlatform.
+    - Aggregates and exposes cross-institution heritage metadata for discovery.
+    - Typically operated by a network, consortium, or other encompassing body.
+    - 'Preserved from prior description: Web-based discovery platform that aggregates or provides access to heritage metadata from multiple custodian institutions.'
+    broad_mappings:
+    - ore:Aggregation
+    close_mappings:
+    - schema:WebSite
+    - schema:DataCatalog
+    - dcmitype:Collection
+    slots:
+    - aggregated_by
+    - aggregate_from
+    - has_endpoint
+    - associated_with
+    - created_by
+    - has_policy
+    - has_scope
+    - identified_by
+    - related_to
+    - begin_of_the_begin
+    - has_standard
+    - operated_by
+    - has_participant
+    - has_description
+    - has_language
+    - has_label
+    - has_status
+    - has_type
+    - has_url
+    - has_quantity
+    - has_finding_aid
+    - supersede
+    - has_score
+    - temporal_extent
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        multivalued: true
+        inlined_as_list: false
+#         range: string # uriorcurie
+        pattern: ^https://nde\.nl/ontology/hc/portal/[a-z-]+/[a-z0-9-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/portal/nl/archieven-nl
+        - value: https://nde.nl/ontology/hc/portal/eu/europeana
+        - value: http://www.wikidata.org/entity/Q209441
+        - value: https://viaf.org/viaf/316748507
+      has_label:
+        required: true
+#         range: string
+        examples:
+        - value: Archieven.nl
+        - value: Deutsche Digitale Bibliothek
+        - value: Europeana
+      has_type:
+        required: true
+        range: WebPortalType
+        examples:
+        - value: ARCHIVAL_PORTAL
+        - value: CROSS_DOMAIN_AGGREGATOR
+        - value: REGIONAL_AGGREGATOR
+      has_url:
+        required: true
+        range: uri
+        examples:
+        - value: https://archieven.nl
+        - value: https://www.europeana.eu
+        - value: https://www.deutsche-digitale-bibliothek.de
+      has_description:
+#         range: string
+        examples:
+        - value: Archieven.nl is the Dutch national portal for archival finding aids, providing unified search across 80+ Dutch archives.
+        - value: DE-BW
+        - value: EU
+      has_scope:
+        range: GeographicScope
+        inlined: true
+        examples:
+        - value:
+            has_label: National (Netherlands)
+        - value:
+            has_label: European
+      operated_by:
+        required: true
+#         range: string # uriorcurie
+        examples:
+        - value: https://nde.nl/ontology/hc/encompassing-body/network/nde
+        - value: https://nde.nl/ontology/hc/encompassing-body/network/europeana-foundation
+      aggregate_from:
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: https://nde.nl/ontology/hc/portal/de/ddb
+      aggregated_by:
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: https://nde.nl/ontology/hc/portal/eu/europeana
+      has_standard:
+#         range: string
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: EDM (Europeana Data Model)
+        - value: EAD (Encoded Archival Description)
+        - value: Dublin Core
+        - value: LIDO
+      has_endpoint:
+        any_of:
+        - range: APIEndpoint
+          inlined: true
+          examples:
+          - value:
+              has_url: https://api.europeana.eu/record/v2/
+              has_description: Europeana REST API
+        - range: uri
+          examples:
+          - value: https://sparql.europeana.eu/
+          - value: https://oai.europeana.eu/oai
+      has_language:
+#         range: string
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: nl
+        - value: en
+        - value: de
+      begin_of_the_begin:
+        range: date
+        examples:
+        - value: '2008-11-20'
+      has_status:
+#         range: string
+        examples:
+        - value: ACTIVE
+        - value: LEGACY
+      supersede:
+#         range: string # uriorcurie
+        examples:
+        - value: https://nde.nl/ontology/hc/portal/nl/new-archieven-portal
+      has_quantity:
+        range: integer
+        examples:
+        - value: 50000000
+          description: 'Europeana: 50M+ objects'
+        - value: 15000000
+          description: 'DDB: 15M+ objects'
+      has_participant:
+        range: integer
+        examples:
+        - value: 80
+          description: 'Archieven.nl: 80+ archives'
+        - value: 4000
+          description: 'Europeana: 4000+ institutions'
+      temporal_extent:
+        range: TimeSpan
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+      generated_by:
+        range: ReconstructionActivity
+      has_policy:
+#         range: string
+        examples:
+        - value: https://nde.nl/ontology/hc/policy/europeana
+        - value: https://nde.nl/ontology/hc/policy/archieven-nl
+      created_by:
+        range: Project
+        examples:
+        - value: https://nde.nl/ontology/hc/project/nde/nde-portal-development-2023
+      associated_with:
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: https://nde.nl/ontology/hc/encompassing-body/consortium/dans
+        - value: https://nde.nl/ontology/hc/encompassing-body/network/europeana-aggregators
+      related_to:
+        range: DigitalPlatform
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            identified_by: https://nde.nl/ontology/hc/platform/rijksmuseum-website
+            has_label: Rijksmuseum Website
+        - value: https://nde.nl/ontology/hc/aux-platform/europeana-api-v3
+      has_finding_aid:
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/finding-aid/gelders-archief/ead-main
+        - value: https://nde.nl/ontology/hc/finding-aid/na/collection-guide
+    see_also:
+    - https://pro.europeana.eu/page/edm-documentation
+    - https://www.openarchives.org/ore/
+    - https://www.openarchives.org/pmh/
+    examples:
+    - value:
+        portal_id: https://nde.nl/ontology/hc/portal/nl/archieven-nl
+        portal_name: Archieven.nl
+        portal_type: ARCHIVAL_PORTAL
+        portal_url: https://archieven.nl
+        portal_description: 'Archieven.nl is the Dutch national portal for archival finding aids, providing unified search across 80+ Dutch archives. Users can search EAD-encoded finding aids and access scanned documents. '
+        has_scope:
+        - scope_description: Archival finding aids
+        operated_by: https://nde.nl/ontology/hc/encompassing-body/network/kvan
+        aggregated_by:
+        - https://nde.nl/ontology/hc/portal/eu/archives-portal-europe
+        has_standard:
+        - EAD (Encoded Archival Description)
+        - EAC-CPF
+        oai_pmh_endpoint: https://oai.archieven.nl/
+        has_language:
+        - nl
+        - en
+        portal_status: ACTIVE
+        participating_institutions: 80
+    - value:
+        portal_id: https://nde.nl/ontology/hc/portal/eu/europeana
+        portal_name: Europeana
+        portal_type: CROSS_DOMAIN_AGGREGATOR
+        portal_url: https://www.europeana.eu
+        portal_description: 'Europeana provides access to over 50 million digitised items from European museums, galleries, libraries, and archives. It is the European Union''s digital platform for cultural heritage. '
+        has_scope:
+        - scope_description: Art and cultural heritage
+        operated_by: https://nde.nl/ontology/hc/encompassing-body/network/europeana-foundation
+        aggregate_from:
+        - https://nde.nl/ontology/hc/portal/de/ddb
+        - https://nde.nl/ontology/hc/portal/fr/gallica
+        - https://nde.nl/ontology/hc/portal/nl/collectie-nederland
+        has_standard:
+        - EDM (Europeana Data Model)
+        - Dublin Core
+        has_endpoint:
+          has_url: https://api.europeana.eu/record/v2/
+        sparql_endpoint: https://sparql.europeana.eu/
+        oai_pmh_endpoint: https://oai.europeana.eu/oai
+        has_language:
+        - en
+        - de
+        - fr
+        - nl
+        launch_date: '2008-11-20'
+        portal_status: ACTIVE
+        record_count: 50000000
+        participating_institutions: 4000
+        identified_by:
+        - http://www.wikidata.org/entity/Q209441
+        has_policy:
+        - policy_id: https://nde.nl/ontology/hc/policy/europeana-data-exchange
+          policy_name: Europeana Data Exchange Agreement
+          data_licenses:
+          - license_id: https://creativecommons.org/publicdomain/zero/1.0/
+            license_name: CC0 1.0 Universal (Public Domain)
+            license_scope: Metadata provided to Europeana
+          temporal_extent:
+            begin_of_the_begin: '2011-09-01'
+            end_of_the_end:
+        created_by:
+          identified_by: https://nde.nl/ontology/hc/project/europeana-dsi
+          has_label: Europeana DSI (Digital Service Infrastructure)
+          has_description: "EU-funded project under CEF Telecom to develop and maintain the \nEuropeana digital platform as core European cultural heritage infrastructure.\n"
+          funding_sources:
+          - https://nde.nl/ontology/hc/funding-org/eu/cef-telecom
+          project_period:
+            begin_of_the_begin: '2015-01-01'
+            end_of_the_end: '2025-12-31'
+        associated_with:
+        - https://nde.nl/ontology/hc/encompassing-body/government/european-commission
+        - https://nde.nl/ontology/hc/encompassing-body/network/europeana-foundation
+        - https://nde.nl/ontology/hc/encompassing-body/consortium/europeana-network-association
+        related_to:
+        - identified_by: https://nde.nl/ontology/hc/platform/europeana-collections
+          has_label: Europeana Collections
+          has_url: https://www.europeana.eu/collections
+          temporal_extent:
+            begin_of_the_begin: '2008-11-20'
+        - identified_by: https://nde.nl/ontology/hc/platform/europeana-pro
+          has_label: Europeana Pro
+          has_url: https://pro.europeana.eu
+          temporal_extent:
+            begin_of_the_begin: '2014-01-01'
+        - identified_by: https://nde.nl/ontology/hc/auxiliary/europeana-iiif
+          has_label: Europeana IIIF APIs
+          has_url: https://iiif.europeana.eu
+          has_type: IIIF_SERVER
+          temporal_extent:
+            begin_of_the_begin: '2018-01-01'
+        - identified_by: https://nde.nl/ontology/hc/auxiliary/europeana-entity-api
+          has_label: Europeana Entity API
+          has_url: https://api.europeana.eu/entity
+          has_type: REST_API
+          temporal_extent:
+            begin_of_the_begin: '2017-01-01'
+    - value:
+        portal_id: https://nde.nl/ontology/hc/portal/de/archivportal-d
+        portal_name: Archivportal-D
+        portal_type: ARCHIVAL_PORTAL
+        portal_url: https://www.archivportal-d.de
+        portal_description: 'Archivportal-D is the German national portal for archival finding aids, aggregating EAD descriptions from German archives and providing unified search and access. '
+        has_scope:
+        - scope_description: Archival finding aids
+        operated_by: https://nde.nl/ontology/hc/encompassing-body/network/archivportal-d-koordination
+        aggregated_by:
+        - https://nde.nl/ontology/hc/portal/eu/archives-portal-europe
+        - https://nde.nl/ontology/hc/portal/de/ddb
+        has_standard:
+        - EAD
+        - EAC-CPF
+        has_language:
+        - de
+        - en
+        portal_status: ACTIVE
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: associated_with
+# ==============================================================================
+# General association with another entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line            | Mapping | Notes                              |
+# |---------------|-------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:about`    | schemaorg.owl        | close   | Subject matter (narrower scope)    |
+# | **DC Terms**  | `dcterms:relation`| dcterms.rdf          | broad   | Related resource (broader)         |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, ontology alignment table
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/associated_with
+name: associated_with
+title: Associated With
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  associated_with:
+    slot_uri: hc:associatedWith
+    description: >-
+      A connection, link, or relationship to another entity, person, or concept
+      in a significant way, often indicating a partnership, affiliation, or
+      shared context.
+    alt_descriptions:
+      nl: >-
+        Een verbinding, koppeling of relatie met een andere entiteit, persoon of concept
+        op een significante manier, vaak wijzend op een partnerschap, affiliatie of
+        gedeelde context.
+      de: >-
+        Eine Verbindung, Verknüpfung oder Beziehung zu einer anderen Entität, Person
+        oder einem Konzept auf bedeutsame Weise, die oft auf eine Partnerschaft,
+        Zugehörigkeit oder einen gemeinsamen Kontext hinweist.
+      fr: >-
+        Une connexion, un lien ou une relation avec une autre entité, personne ou
+        concept de manière significative, indiquant souvent un partenariat, une
+        affiliation ou un contexte partagé.
+      ar: >-
+        اتصال أو ارتباط أو علاقة بكيان أو شخص أو مفهوم آخر بطريقة مهمة، غالبًا ما
+        تشير إلى شراكة أو انتماء أو سياق مشترك.
+      id: >-
+        Koneksi, tautan, atau hubungan dengan entitas, orang, atau konsep lain
+        secara signifikan, sering menunjukkan kemitraan, afiliasi, atau konteks
+        bersama.
+      zh: >-
+        与另一实体、人员或概念之间的重要联系、链接或关系，通常表示合作关系、隶属关系或共享背景。
+      es: >-
+        Una conexión, enlace o relación con otra entidad, persona o concepto de
+        manera significativa, a menudo indicando una asociación, afiliación o
+        contexto compartido.
+    structured_aliases:
+      - literal_form: geassocieerd met
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: assoziiert mit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: associé à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مرتبط بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: terkait dengan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 关联于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: asociado con
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:about  # Subject matter relationship
+    broad_mappings:
+      - dcterms:relation  # General related resource
+    aliases:
+      - is_or_was_associated_with
+      - connection_organization
+      - institution_name
+      - logo_organization
+      - responsible_actor
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: regulate
+# ==============================================================================
+# Controls, governs, or adjusts a process, activity, system, or entity
+# according to a rule, law, or standard.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                | File/Line           | Mapping  | Notes                                                       |
+# |-------------|-------------------------|---------------------|----------|-------------------------------------------------------------|
+# | **HC**      | `hc:regulate`           | —                   | slot_uri | No external "regulate" verb property exists.                |
+# | **PROV**    | `prov:wasInfluencedBy`  | prov.ttl:1147-1165  | broad    | Very broad influence relation; regulation is a subtype.     |
+# | **DCTerms** | `dcterms:conformsTo`    | dcterms.rdf:987-1008 | related | "Standard to which the resource conforms" — inverse dir.   |
+# | **ODRL**    | `odrl:target`           | odrl.ttl:697-708    | related  | "Asset that a Rule applies to" — policy→asset link.        |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/regulate
+name: regulate
+title: Regulate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  odrl: http://www.w3.org/ns/odrl/2/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  regulate:
+    slot_uri: hc:regulate
+    description: >-
+      Controls, governs, or adjusts a process, activity, system, or entity
+      according to a specific rule, principle, law, or standard. Links
+      policies to the entities or systems they regulate.
+    alt_descriptions:
+      nl: >-
+        Beheert, bestuurt of past een proces, activiteit, systeem of entiteit
+        aan volgens een specifieke regel, principe, wet of norm.
+      de: >-
+        Kontrolliert, steuert oder reguliert einen Prozess, eine Aktivität,
+        ein System oder eine Entität gemäß einer bestimmten Regel, einem
+        Prinzip, Gesetz oder Standard.
+      fr: >-
+        Contrôle, régit ou ajuste un processus, une activité, un système ou
+        une entité conformément à une règle, un principe, une loi ou une norme
+        spécifique.
+      ar: >-
+        يتحكم أو يحكم أو يضبط عملية أو نشاطًا أو نظامًا أو كيانًا وفقًا
+        لقاعدة أو مبدأ أو قانون أو معيار محدد.
+      id: >-
+        Mengendalikan, mengatur, atau menyesuaikan proses, aktivitas, sistem,
+        atau entitas sesuai dengan aturan, prinsip, hukum, atau standar
+        tertentu.
+      zh: >-
+        根据特定规则、原则、法律或标准控制、管理或调整流程、活动、系统或实体。
+      es: >-
+        Controla, rige o ajusta un proceso, actividad, sistema o entidad de
+        acuerdo con una regla, principio, ley o norma específica.
+    structured_aliases:
+      - literal_form: reguleren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: regulieren
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: réguler
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تنظيم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengatur
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 监管
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: regular
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - prov:wasInfluencedBy  # prov.ttl:1147-1165 - "Broad relation from influenced to influencing entity/activity/agent"
+    related_mappings:
+      - dcterms:conformsTo  # dcterms.rdf:987-1008 - "An established standard to which the resource conforms"
+      - odrl:target  # odrl.ttl:697-708 - "The Asset that is the primary subject to which the Rule action applies"
+    aliases:
+      - regulates_or_regulated
+    examples:
+      - value: "Climate control policy"
+        description: A policy regulating the climate control system in a storage facility.
+      - value: "Access policy"
+        description: A policy regulating public access to a heritage collection.
+      - value: "Preservation standards"
+        description: Standards regulating storage conditions for archival materials.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Links policies to what they regulate. For the inverse relationship
+        (what authority regulates an entity), see regulated_by.
+      - >-
+        The "OrRegulated" alias suffix follows RiC-O convention indicating
+        the regulation relationship may be current or historical.

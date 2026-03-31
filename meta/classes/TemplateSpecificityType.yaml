@@ -1,0 +1,64 @@
+id: https://nde.nl/ontology/hc/class/TemplateSpecificityType
+name: TemplateSpecificityType
+title: Template Specificity Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  TemplateSpecificityType:
+    class_uri: skos:Concept
+    description: >-
+      Category for classifying retrieval-augmented generation query patterns by domain relevance.
+    alt_descriptions:
+      nl: Abstracte basisklasse voor RAG-gesprekstemplatetypen.
+      de: Abstrakte Basisklasse für RAG-Konversationsvorlagentypen.
+      fr: Classe de base abstraite pour les types de modèles de conversation RAG.
+      es: 'Concepto para: Category for classifying retrieval-augmented generation query patterns by domain relevance.'
+      ar: 'مفهوم لـ: Category for classifying retrieval-augmented generation query patterns by domain relevance.'
+      id: 'Konsep untuk: Category for classifying retrieval-augmented generation query patterns by domain relevance.'
+      zh: 用于以下内容的概念：Category for classifying retrieval-augmented generation query patterns by domain relevance.
+    structured_aliases:
+    - literal_form: templatespecificatietype
+      in_language: nl
+    - literal_form: Vorlagenspezifitätstyp
+      in_language: de
+    - literal_form: type de spécificité de modèle
+      in_language: fr
+    - literal_form: template specificity type
+      in_language: es
+    - literal_form: template specificity type
+      in_language: ar
+    - literal_form: template specificity type
+      in_language: id
+    - literal_form: template specificity type
+      in_language: zh
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+      has_description:
+    comments:
+    - Purpose (Rule 37): Template specificity types enable intelligent RAG retrieval filtering by classifying schema classes according to their relevance to different conversation templates
+    - Type/Types Pattern (Rule 0b): TemplateSpecificityType.yaml (this file) = Abstract base class; TemplateSpecificityTypes.yaml = Concrete subclasses
+    - Related classes: TemplateSpecificityScore (score instance with type and value), TemplateSpecificityTypes (concrete type taxonomy)
+    annotations:
+      specificity_score: 0.15
+      specificity_rationale: Low specificity (meta-class) - TemplateSpecificityType is part of the RAG scoring infrastructure, not a domain concept.
+      migration_source: template_specificity
+      migration_date: '2026-01-17'
+      rule_compliance: Rules 0b, 37, 53, 56 (Type/Types convention, specificity, full migration, semantic consistency)
+      custodian_types: "['*']"
+    examples:
+    - value: "archive_search_type:\n  has_label: Archive Search\n  has_description: Queries about archival institutions, finding aids, and records management.\n"

@@ -1,0 +1,225 @@
+id: https://nde.nl/ontology/hc/class/WebClaim
+name: WebClaim
+title: WebClaim Class - Verifiable Web-Extracted Claims
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  pav: http://purl.org/pav/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  oa: http://www.w3.org/ns/oa#
+  nif: http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+- ../enums/ExtractionPipelineStageEnum
+- ../classes/ClaimType
+- ../classes/XPath
+- ../classes/FilePath
+- ../classes/RetrievalEvent
+- ../classes/ExtractionMethod
+- ../slots/has_content
+- ../slots/has_file_location
+- ../slots/identified_by
+- ../slots/has_note
+- ../slots/has_provenance
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/extracted_through
+- ../slots/retrieved_through
+- ../slots/has_stage
+- ../slots/retrieved_at
+- ../slots/has_url
+- ../slots/temporal_extent
+default_prefix: hc
+classes:
+  WebClaim:
+    is_a: Claim
+    class_uri: prov:Entity
+    description: >-
+      Single verifiable assertion extracted from an online page with XPath
+      provenance, enabling source verification and audit trails.
+    alt_descriptions:
+      nl: Een verifieerbare claim geëxtraheerd van een webpagina met XPath-provenance.
+      de: Ein verifizierbarer Anspruch.
+      fr: Une affirmation vérifiable extraite d'une page web avec provenance XPath.
+      es: Una afirmación verificable extraída de una página web con provenancia XPath.
+      ar: ادعاء قابل للتحقق مستخرج من صفحة ويب مع مصدر XPath.
+      id: Klaim yang dapat diverifikasi diekstrak dari halaman web dengan provenance XPath.
+      zh: 从网页提取的带有XPath溯源的可验证声明。
+    structured_aliases:
+    - literal_form: webclaim
+      in_language: nl
+    - literal_form: Web-Claim
+      in_language: de
+    - literal_form: affirmation web
+      in_language: fr
+    - literal_form: afirmación web
+      in_language: es
+    - literal_form: ادعاء ويب
+      in_language: ar
+    - literal_form: klaim web
+      in_language: id
+    - literal_form: 网页声明
+      in_language: zh
+    comments:
+    - Requires XPath provenance - claims without it are fabricated.
+    - Archived HTML files are Playwright-rendered (NOT WARC format).
+    - Follows 4-stage GLAM-NER pipeline: recognition → layout → resolution → linking.
+    - 'Preserved from prior description: Single verifiable assertion extracted from a web page with XPath provenance, enabling source verification and audit trails.'
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:PropertyValue
+    - oa:Annotation
+    slots:
+    - extracted_through
+    - identified_by
+    - has_note
+    - has_type
+    - has_content
+    - retrieved_through
+    - has_file_location
+    - has_stage
+    - retrieved_at
+    - has_url
+    - has_score
+    - has_provenance
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+        examples:
+        - value:
+      has_type:
+        range: ClaimType
+        inlined: true
+        required: true
+        examples:
+        - value:
+            has_label: full_name
+        - value:
+            has_label: facebook
+      has_note:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        multivalued: true
+        required: false
+        examples:
+        - value:
+            note_type: claim
+            note_content: Additional verification required for this claim.
+            note_date: '2026-01-18'
+        - value:
+            note_type: extraction
+            note_content: Biography truncated from longer text on page.
+            note_date: '2025-11-29'
+      has_content:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+        multivalued: false
+        examples:
+        - value:
+            has_label: Historische Vereniging Nijeveen
+        - value:
+            has_label: '6253'
+        - value:
+            has_label: https://www.facebook.com/HistorischeVerenigingNijeveen/
+      has_url:
+        required: true
+      retrieved_at:
+        required: true
+      has_provenance:
+        required: true
+        range: XPath
+        inlined: true
+      has_file_location:
+        required: true
+        range: FilePath
+        inlined: true
+        examples:
+        - value:
+            has_label: web/0021/historischeverenigingnijeveen.nl/rendered.html
+      retrieved_through:
+        range: RetrievalEvent
+        inlined: true
+        required: false
+      extracted_through:
+        range: ExtractionMethod
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_label: xpath_exact_match
+        - value:
+            has_label: nlp_ner
+
+    see_also:
+    - rules/WEB_OBSERVATION_PROVENANCE_RULES.md
+    - scripts/fetch_website_playwright.py
+    - scripts/add_xpath_provenance.py
+    - docs/convention/schema/20251202/entity_annotation_rules_v1.6.0_unified.yaml
+    examples:
+    - value:
+        has_type:
+          has_label: full_name
+        has_content:
+          has_label: Historische Vereniging Nijeveen
+        source_url: https://historischeverenigingnijeveen.nl/
+        retrieved_on: '2025-11-29T12:28:00Z'
+        has_provenance:
+        has_file_location:
+          has_label: web/0021/historischeverenigingnijeveen.nl/rendered.html
+        pipeline_stage: layout_analysis
+    - value:
+        has_type:
+          has_label: beeldbank_total_photos
+        has_content:
+          has_label: '6253'
+        source_url: https://historischeverenigingnijeveen.nl/nl/hvn
+        retrieved_on: '2025-11-29T12:28:00Z'
+        has_provenance:
+        has_file_location:
+          has_label: web/0021/historischeverenigingnijeveen.nl/rendered.html
+        pipeline_stage: layout_analysis
+    - value:
+        has_type:
+          has_label: facebook
+        has_content:
+          has_label: https://www.facebook.com/HistorischeVerenigingNijeveen/
+        source_url: https://historischeverenigingnijeveen.nl/
+        retrieved_on: '2025-11-29T12:28:00Z'
+        has_provenance:
+        has_file_location:
+          has_label: web/0021/historischeverenigingnijeveen.nl/rendered.html
+        pipeline_stage: entity_linking
+    - value:
+        has_type:
+          has_label: website
+        has_content:
+          has_label: https://www.historischeverenigingnijeveen.nl/
+        source_url: https://historischeverenigingnijeveen.nl/nl/hvn
+        retrieved_on: '2025-11-28T12:00:00Z'
+        has_provenance:
+        has_file_location:
+          has_label: web/0021/historischeverenigingnijeveen.nl/rendered.html
+        pipeline_stage: layout_analysis
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      "A single verifiable claim extracted from a web page.\n\n**CORE PRINCIPLE: XPATH OR REMOVE**\n\nEvery claim extracted from a webpage MUST have:\n1. `has_provenance_path` - XPath object pointing to exact element in archived HTML\n2. `html_file` - path to the archived HTML (Playwright-rendered, NOT WARC)\n\nThe XPath object contains:\n- `expression` - the XPath string\n- `match_score` - quality of match (0.0-1.0)\n- `matched_text` - actual text found (for verification)\n\nClaims without these fields are FABRICATED and must be REMOVED.\n\n**ARCHIVE FORMAT: PLAYWRIGHT-RENDERED HTML**\n\nWe use Playwright (headless browser) to:\n1. Navigate to the target URL\n2. Wait for JavaScript to fully render\n3. Save the complete DOM as an HTML file\n\nThis differs from WARC archives which capture raw HTTP responses.\nPlaywright rendering captures the final DOM state including:\n- JavaScript-rendered content\n- Dynamically loaded elements\n- Client-side state\n\n**WHY NOT CONFIDENCE\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: transmission
+# ==============================================================================
+# Describes the process of passing on knowledge or skills across generations.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                           | File/Line                     | Mapping | Notes                                                         |
+# |---------------|------------------------------------|-------------------------------|---------|---------------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P32_used_general_technique`   | CIDOC_CRM:1957-1971           | related | "Technique or method employed in E7 Activity." General method. |
+# | **CIDOC-CRM** | `crm:P33_used_specific_technique`  | CIDOC_CRM:1985-2000           | related | "Specific E29 Design or Procedure for E7 Activity."           |
+# | **Schema.org**| `schema:teaches`                   | schemaorg.owl:37538-37555     | related | "Intended to help learn a competency." Teaching outcomes.      |
+# | **PROV-O**    | `prov:wasInfluencedBy`             | prov.ttl:1147-1174            | broad   | Very broad influence relation; transmission is specific.       |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/transmission
+name: transmission
+title: Transmission
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  transmission:
+    slot_uri: hc:transmission
+    range: string
+    description: >-
+      Describes the act or process of passing on, communicating, or spreading knowledge, skills, signals, or diseases
+      from a source to a recipient or across generations.
+    alt_descriptions:
+      nl: >-
+        Beschrijft de handeling of het proces van het doorgeven, communiceren of verspreiden van kennis, vaardigheden,
+        signalen of ziekten van een bron naar een ontvanger of over generaties heen.
+      de: >-
+        Beschreibt den Akt oder Prozess der Weitergabe, Vermittlung oder Verbreitung von Wissen, Fähigkeiten,
+        Signalen oder Krankheiten von einer Quelle an einen Empfänger oder über Generationen hinweg.
+      fr: >-
+        Décrit l'acte ou le processus de transmission, de communication ou de diffusion de connaissances, de
+        compétences, de signaux ou de maladies d'une source à un destinataire ou à travers les générations.
+      ar: >-
+        يصف فعل أو عملية نقل أو توصيل أو نشر المعرفة أو المهارات أو الإشارات أو الأمراض من مصدر إلى متلقٍ أو عبر
+        الأجيال.
+      id: >-
+        Menjelaskan tindakan atau proses penyampaian, pengomunikasian, atau penyebaran pengetahuan, keterampilan,
+        sinyal, atau penyakit dari sumber ke penerima atau lintas generasi.
+      zh: >-
+        描述将知识、技能、信号或疾病从来源传递、传达或传播给接收者或跨代传承的行为或过程。
+      es: >-
+        Describe el acto o proceso de transmitir, comunicar o difundir conocimientos, habilidades, señales o
+        enfermedades desde una fuente a un destinatario o a través de generaciones.
+    structured_aliases:
+      - literal_form: Overdracht
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Übertragung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Transmission
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: انتقال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Transmisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 传承
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Transmisión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    related_mappings:
+      - crm:P32_used_general_technique  # CIDOC_CRM_v7.1.3.rdf:1957-1971 - "technique or method employed in E7 Activity"
+      - crm:P33_used_specific_technique  # CIDOC_CRM_v7.1.3.rdf:1985-2000 - "specific E29 Design or Procedure for E7 Activity"
+      - schema:teaches  # schemaorg.owl:37538-37555 - "intended to help learn a competency or learning outcome"
+    broad_mappings:
+      - prov:wasInfluencedBy  # prov.ttl:1147-1174 - very broad influence relation
+    comments:
+      - >-
+        Describes transmission mechanisms: formal apprenticeship (structured training, certification),
+        informal mentorship (master-apprentice, family succession), demonstration programs (public events),
+        educational partnerships (culinary schools, universities), documentation projects (video, oral history,
+        recipe archiving), professional networks (guilds, trade associations), intergenerational transfer
+        (family recipes, community succession), embodied learning (learning by doing, sensory skill development).
+      - "Knowledge transmission ensures heritage continuity."
+    examples:
+      - value: "Monastic apprenticeship, Direct demonstration, No written recipe publication"
+      - value: "Apprentice perfumer program (3 years), Nose training, Formula access after 10 years"
+      - value: "Family succession, Public cheese-making demos, Protected PDO training"
+      - value: "Master distiller mentorship, Distillery tours, Whisky academy courses"
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - knowledge_transmission

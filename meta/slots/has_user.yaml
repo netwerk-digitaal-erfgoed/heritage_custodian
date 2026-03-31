@@ -1,0 +1,120 @@
+# ==============================================================================
+# LinkML Slot Definition: has_user
+# ==============================================================================
+# Identifies the specific type of user group or customer segment for which a
+# heritage custodian's service, facility, or resource is intended or available.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                         | File/Line                        | Mapping        | Notes                                                        |
+# |----------------|----------------------------------|----------------------------------|----------------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:audienceType`            | schemaorg.owl:9178-9198          | close_mappings | "The target group associated with a given audience."         |
+# |                |                                  |                                  |                | Audience→Text. Captures user group type as text.             |
+# | **DCTerms**    | `dcterms:audience`               | dcterms.rdf:912-932              | broad_mappings | "A class of agents for whom the resource is intended or      |
+# |                |                                  |                                  |                | useful." Broader: covers the audience itself, not the type.  |
+# | **Schema.org** | `schema:eligibleCustomerType`    | schemaorg.owl:16287-16309        | related        | "The type(s) of customers for which the given offer is       |
+# |                |                                  |                                  |                | valid." Offer/Demand→BusinessEntityType. Commercial focus.   |
+# | **Schema.org** | `schema:audience`                | schemaorg.owl:9151-9177          | broad_mappings | "An intended audience, i.e. a group for whom something was   |
+# |                |                                  |                                  |                | created." Links to Audience object, not type string.         |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_user
+name: has_user
+title: Has User
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_user:
+    slot_uri: hc:hasUser
+    description: >-
+      Identifies the specific type of user group or customer segment for which
+      a heritage custodian's service, facility, or resource is intended or
+      available. Used to classify audiences at a more granular level than the
+      general serve slot, distinguishing between staff users, public visitors,
+      researchers, and other stakeholder categories.
+    alt_descriptions:
+      nl: >-
+        Identificeert het specifieke type gebruikersgroep of klantsegment
+        waarvoor de dienst, faciliteit of bron van een erfgoedinstelling
+        bedoeld of beschikbaar is.
+      de: >-
+        Identifiziert den spezifischen Typ der Nutzergruppe oder des
+        Kundensegments, für den der Dienst, die Einrichtung oder die Ressource
+        einer Kulturerbeeinrichtung bestimmt oder verfügbar ist.
+      fr: >-
+        Identifie le type spécifique de groupe d'utilisateurs ou de segment
+        de clientèle auquel le service, l'installation ou la ressource d'une
+        institution patrimoniale est destiné ou accessible.
+      ar: >-
+        يحدد النوع المحدد لمجموعة المستخدمين أو شريحة العملاء التي تستهدفها
+        خدمة أو منشأة أو مورد مؤسسة التراث الثقافي أو المتاحة لها.
+      id: >-
+        Mengidentifikasi jenis kelompok pengguna atau segmen pelanggan tertentu
+        yang menjadi sasaran atau tersedia untuk layanan, fasilitas, atau sumber
+        daya lembaga pemangku warisan budaya.
+      zh: >-
+        识别遗产保管机构的服务、设施或资源所面向或可供使用的特定用户群体类型或
+        客户细分。
+      es: >-
+        Identifica el tipo específico de grupo de usuarios o segmento de
+        clientes al que está destinado o disponible el servicio, instalación
+        o recurso de una institución patrimonial.
+    structured_aliases:
+      - literal_form: heeft gebruiker
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Nutzer
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un utilisateur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه مستخدم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki pengguna
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 拥有用户
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene usuario
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:audienceType  # schemaorg.owl:9178-9198 - "The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.)."
+    broad_mappings:
+      - dcterms:audience  # dcterms.rdf:912-932 - "A class of agents for whom the resource is intended or useful."
+      - schema:audience  # schemaorg.owl:9151-9177 - "An intended audience, i.e. a group for whom something was created."
+    related_mappings:
+      - schema:eligibleCustomerType  # schemaorg.owl:16287-16309 - "The type(s) of customers for which the given offer is valid." Offer/Demand domain; commercial focus.
+    aliases:
+      - serves_staff
+    examples:
+      - value: "Internal Staff"
+        description: "Service or facility is intended for institution staff members."
+      - value: "Visiting Researchers"
+        description: "Reading room access designated for visiting researchers."
+      - value: "School Groups"
+        description: "Educational programme designed for school group visits."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        The original file used schema:eligibleCustomerType as the slot_uri, but
+        that property is Offer/Demand-domain-specific and commercially focused.
+        The hc namespace is more appropriate for heritage custodian user types.
+      - >-
+        The original range was boolean, which is incorrect for identifying user
+        types. Changed to string with multivalued true to allow listing multiple
+        user group types.

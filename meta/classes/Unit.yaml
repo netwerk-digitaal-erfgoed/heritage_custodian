@@ -1,0 +1,71 @@
+id: https://nde.nl/ontology/hc/classes/Unit
+name: Unit
+title: Unit
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  schema: http://schema.org/
+imports:
+  - linkml:types
+  - ../slots/has_label
+# default_range: string
+default_prefix: hc
+classes:
+  Unit:
+    description: >-
+      Lightweight measurement denomination for quantity expressions when a
+      label-based representation is sufficient.
+    alt_descriptions:
+      nl: Eenvoudige meeteenheid voor hoeveelheidsuitdrukking wanneer een label volstaat.
+      de: Einfache Masseinheit fuer Mengenausdruecke, wenn eine labelbasierte Angabe ausreicht.
+      fr: Unite de mesure legere pour exprimer des quantites lorsqu un libelle suffit.
+      es: Unidad de medida ligera para expresar cantidades cuando una etiqueta es suficiente.
+      ar: وحدة قياس خفيفة للتعبير عن الكميات عندما يكفي الاسم النصي.
+      id: Satuan ukur ringan untuk menyatakan kuantitas ketika label sudah memadai.
+      zh: 在标签即可满足需求时用于表达数量的轻量计量单位。
+    structured_aliases:
+    - literal_form: meeteenheid
+      in_language: nl
+    - literal_form: Masseinheit
+      in_language: de
+    - literal_form: unite de mesure
+      in_language: fr
+    - literal_form: unidad de medida
+      in_language: es
+    - literal_form: وحدة قياس
+      in_language: ar
+    - literal_form: satuan ukur
+      in_language: id
+    - literal_form: 计量单位
+      in_language: zh
+    class_uri: qudt:Unit
+    broad_mappings:
+    - qudt:Unit
+    slots:
+    - has_label
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Units apply to all heritage custodian types for measurement.
+      custodian_types_primary: '*'
+      specificity_score: 0.2
+      specificity_rationale: Very low specificity - fundamental measurement concept.
+      mapping_predicate: schema:unitCode,schema:unitText
+      modeling_notes: |
+        Use this class for simple label-based units.
+        Use MeasureUnit when conversion metadata or dimensional semantics are required.
+    examples:
+    - value: "Unit:\n  unit_value: \"item\"\n  has_label:\n    - label_text:\
+        \ \"Items\"\n"
+      description: Simple item count unit.
+    - value: "Unit:\n  unit_value: \"species\"\n  has_label:\n    - label_text:\
+        \ \"Species\"\n  unit_uri: \"dwc:individualCount\"\n"
+      description: Biological species count unit.
+    - value: "Unit:\n  unit_value: \"linear_meter\"\n  has_label:\n    - label_text:\
+        \ \"Linear Meters\"\n  unit_uri: \"qudt:M\"\n"
+      description: Archival extent unit.
+    comments:
+    - Created from slot_fixes.yaml migration (2026-01-19)
+    - Lightweight alternative to MeasureUnit class
+    - Use with has_unit slot
+    - For collection_size migration - default unit is "item"

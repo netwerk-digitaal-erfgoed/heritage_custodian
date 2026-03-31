@@ -1,0 +1,83 @@
+# ==============================================================================
+# LinkML Slot Definition: has_contact_point
+# ==============================================================================
+# A contact point (structured contact information) for the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:contactPoint` | schemaorg.owl:12577-12595  | exact   | "A contact point for a person or organization" — domain Organization/Person, range ContactPoint |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, changed slot_uri to schema:contactPoint (exact match)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_contact_point
+name: has_contact_point
+title: Has Contact Point
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_contact_point:
+    slot_uri: schema:contactPoint
+    description: >-
+      To feature a specific person, department, or location designated as the primary interface to receive communications, inquiries, or service requests.
+    alt_descriptions:
+      nl: >-
+        Een specifieke persoon, afdeling of locatie aanwijzen die is aangewezen als de primaire interface voor het ontvangen van communicatie, vragen of serviceverzoeken.
+      de: >-
+        Eine bestimmte Person, Abteilung oder einen Standort aufweisen, die/der als primäre Schnittstelle für den Empfang von Mitteilungen, Anfragen oder Serviceanforderungen bestimmt ist.
+      fr: >-
+        Présenter une personne, un département ou un lieu spécifique désigné comme interface principale pour recevoir les communications, les demandes de renseignements ou les demandes de service.
+      ar: >-
+        تحديد شخص أو قسم أو موقع معين مُعيّن كواجهة رئيسية لاستقبال الاتصالات أو الاستفسارات أو طلبات الخدمة.
+      id: >-
+        Menampilkan orang, departemen, atau lokasi tertentu yang ditunjuk sebagai antarmuka utama untuk menerima komunikasi, pertanyaan, atau permintaan layanan.
+      zh: >-
+        具有被指定为接收通信、咨询或服务请求的主要接口的特定人员、部门或地点。
+      es: >-
+        Presentar una persona, departamento o ubicación específica designada como la interfaz principal para recibir comunicaciones, consultas o solicitudes de servicio.
+    structured_aliases:
+      - literal_form: heeft contactpunt
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Kontaktpunkt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un point de contact
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه نقطة اتصال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki titik kontak
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有联系点
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene punto de contacto
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_contact_point
+      - has_or_had_key_contact
+      - has_key_contact
+      - contact_point
+      - lender_contact
+    exact_mappings:
+    annotations:
+      custodian_types: '["*"]'

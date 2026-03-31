@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/DetectedEntity
+name: DetectedEntity
+title: Detected Entity Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/geographic_extent
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_time_interval
+- ../slots/has_type
+- ../slots/generated_by
+classes:
+  DetectedEntity:
+    class_uri: prov:Entity
+    description: >-
+      Observation artifact produced by automated analysis indicating a
+      machine-detected item with confidence and localization metadata.
+    alt_descriptions:
+      nl: Observatieartefact uit geautomatiseerde analyse dat een machinaal gedetecteerd item met confidence- en lokalisatiemetadata vastlegt.
+      de: Beobachtungsartefakt aus automatisierter Analyse das ein maschinell erkanntes Element mit Konfidenz- und Lokalisierungsmetadaten festhaelt.
+      fr: Artefact d observation issu d une analyse automatisee indiquant un element detecte avec metadonnees de confiance et de localisation.
+      es: Artefacto de observacion generado por analisis automatizado que indica un elemento detectado con metadatos de confianza y localizacion.
+      ar: أثر ملاحظاتي ناتج عن تحليل آلي يشير إلى عنصر مكتشف آلياً مع بيانات الثقة والتموضع.
+      id: Artefak observasi hasil analisis otomatis yang menunjukkan item terdeteksi mesin beserta metadata kepercayaan dan lokalisasi.
+      zh: 由自动分析产生的观测实体，表示机器检测项及其置信度与定位元数据。
+    structured_aliases:
+    - {literal_form: gedetecteerde entiteit, in_language: nl}
+    - {literal_form: erkannte Entitaet, in_language: de}
+    - {literal_form: entite detectee, in_language: fr}
+    - {literal_form: entidad detectada, in_language: es}
+    - {literal_form: كيان مكتشف, in_language: ar}
+    - {literal_form: entitas terdeteksi, in_language: id}
+    - {literal_form: 检测实体, in_language: zh}
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - crm:E73_Information_Object
+    related_mappings:
+    - schema:Thing
+    slots:
+    - identified_by
+    - has_label
+    - has_type
+    - generated_by
+    - has_time_interval
+    - geographic_extent
+    - begin_of_the_begin
+    slot_usage:
+      has_type:
+        required: true
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+      has_time_interval:
+        range: TimeInterval
+        required: false
+        inlined: true
+      geographic_extent:
+        range: float
+        multivalued: true
+        required: false
+    annotations:
+      specificity_score: '0.65'
+      specificity_rationale: Fairly specific for media-analysis and extraction workflows
+      custodian_types: "['*']"

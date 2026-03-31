@@ -1,0 +1,116 @@
+id: https://nde.nl/ontology/hc/class/StateRegionalArchiveCzechiaRecordSetTypes
+name: StateRegionalArchiveCzechiaRecordSetTypes
+title: StateRegionalArchiveCzechia Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./StateRegionalArchiveCzechiaRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  CzechiaRegionalStateFonds:
+    is_a: StateRegionalArchiveCzechiaRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation produced by regional
+      state authorities in the Czech administrative context.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie geproduceerd door
+        regionale staatsautoriteiten in de Tsjechische bestuurlijke context.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen regionaler
+        Staatsbehoerden im tschechischen Verwaltungskontext.
+      fr: >-
+        Agrégation fondée sur la provenance de documentation produite par des
+        autorités étatiques régionales dans le contexte administratif tchèque.
+      es: >-
+        Agregación basada en procedencia de documentación producida por
+        autoridades estatales regionales en el contexto administrativo checo.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق صادرة عن سلطات الدولة الإقليمية
+        ضمن السياق الإداري التشيكي.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi yang dihasilkan otoritas
+        negara tingkat regional dalam konteks administrasi Ceko.
+      zh: >-
+        基于来源原则聚合捷克行政语境中区域国家机关形成的文献。
+      cs: >-
+        Proveniencne zalozena agregace dokumentace vytvorene regionalnimi
+        statnimi organy v ceskem spravnim kontextu.
+    structured_aliases:
+    - literal_form: český regionální státní fond
+      predicate: EXACT_SYNONYM
+      in_language: cs
+    - literal_form: tschechischer Regionalbestand
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: regionaal staatsarchieffonds Tsjechie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: fonds etatique regional tcheque
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo estatal regional checo
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رصيد أرشيف دولة إقليمي في التشيك
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds arsip negara regional Ceko
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 捷克区域国家文献全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Follows the fonds organizational principle as defined by rico-rst:Fonds.
+    - Note preserved: The Czech-language terminology is retained for local administrative interoperability.
+    - 'Preserved from prior description: A rico:RecordSetType for Czech regional state records.'
+    keywords:
+    - regional state authority
+    - Czech administration
+    - government provenance
+    - fonds arrangement
+    examples:
+    - value:
+        has_type: hc:CzechiaRegionalStateFonds
+        has_custodian: hc:StateRegionalArchiveCzechia
+        has_note: Regional office directives, registers, and state administration correspondence.
+      description: Czech regional-state administrative documentation grouped by provenance
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - StateRegionalArchiveCzechiaRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:CzechiaRegionalStateFonds
+      has_custodian:
+        equals_string: hc:StateRegionalArchiveCzechia
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by StateRegionalArchiveCzechia custodians.
+          Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

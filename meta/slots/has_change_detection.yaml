@@ -1,0 +1,22 @@
+id: https://nde.nl/ontology/hc/slot/has_change_detection
+name: has_change_detection
+title: has_change_detection
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+imports:
+- linkml:types
+- ../enums/ChangeDetectionMethodEnum
+slots:
+  has_change_detection:
+    slot_uri: hc:hasChangeDetection
+    description: >-
+      Method for detecting upstream data changes in the web resource.
+      Determines how the background sync pipeline checks whether the
+      source has been updated since the last ingestion.
+    range: ChangeDetectionMethodEnum
+    comments:
+      - "ETAG/LAST_MODIFIED for sources with proper HTTP caching headers"
+      - "CONTENT_HASH for sources without caching headers"
+      - "DELTA for sources requiring field-level change tracking via DeltaService"
+      - "NONE for sources where change detection is impossible (JS-rendered pages)"

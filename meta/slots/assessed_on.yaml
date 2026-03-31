@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: assessed_on
+# ==============================================================================
+# Date when an assessment or evaluation was performed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line            | Mapping | Notes                              |
+# |---------------|-------------------|----------------------|---------|------------------------------------|
+# | **DC Terms**  | `dcterms:date`    | dcterms.rdf          | broad   | General date (broader scope)       |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/assessed_on
+name: assessed_on
+title: Assessed On
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  assessed_on:
+    slot_uri: hc:assessedOn
+    description: >-
+      The date or point in time when an evaluation, appraisal, or judgment
+      regarding value, quality, or status was performed.
+    alt_descriptions:
+      nl: >-
+        De datum of het moment waarop een evaluatie, taxatie of beoordeling
+        met betrekking tot waarde, kwaliteit of status werd uitgevoerd.
+      de: >-
+        Das Datum oder der Zeitpunkt, an dem eine Bewertung, Beurteilung
+        oder Einschätzung bezüglich Wert, Qualität oder Status durchgeführt wurde.
+      fr: >-
+        La date ou le moment où une évaluation, une estimation ou un jugement
+        concernant la valeur, la qualité ou le statut a été effectué.
+      ar: >-
+        التاريخ أو نقطة الوقت التي تم فيها إجراء تقييم أو تثمين أو حكم
+        بشأن القيمة أو الجودة أو الحالة.
+      id: >-
+        Tanggal atau titik waktu ketika evaluasi, penilaian, atau pertimbangan
+        mengenai nilai, kualitas, atau status dilakukan.
+      zh: >-
+        对价值、质量或状态进行评估、评价或判断的日期或时间点。
+      es: >-
+        La fecha o momento en que se realizó una evaluación, tasación o juicio
+        sobre el valor, la calidad o el estado.
+    structured_aliases:
+      - literal_form: beoordeeld op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bewertet am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: évalué le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُقيَّم في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dinilai pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 评估于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: evaluado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    broad_mappings:
+      - dcterms:date  # General date property
+    aliases:
+      - is_or_was_assessed_on
+    annotations:
+      custodian_types: '["*"]'

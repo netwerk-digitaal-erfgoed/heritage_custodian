@@ -1,0 +1,51 @@
+id: https://nde.nl/ontology/hc/class/RetrievalEvent
+name: RetrievalEvent
+title: Retrieval Event Class
+description: >-
+  Event of retrieving data from a source.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/temporal_extent
+default_prefix: hc
+classes:
+  RetrievalEvent:
+    class_uri: prov:Activity
+    description: >-
+      Event representing the retrieval of data.
+    alt_descriptions:
+      nl: Gebeurtenis die het ophalen van gegevens vertegenwoordigt.
+      de: Ereignis, das den Datenabruf darstellt.
+      fr: Événement représentant la récupération de données.
+    structured_aliases:
+    - literal_form: ophaalgebeurtenis
+      in_language: nl
+    - literal_form: Abrufereignis
+      in_language: de
+    - literal_form: événement de récupération
+      in_language: fr
+    comments:
+    - Rule 53 compliant - created for extraction_timestamp migration.
+    broad_mappings:
+    - prov:Activity
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - temporal_extent
+    - has_score
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,105 @@
+id: https://nde.nl/ontology/hc/class/EnvironmentalZone
+name: EnvironmentalZone
+title: Environmental Zone
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  sosa: http://www.w3.org/ns/sosa/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/contain_unit
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/has_setpoint
+  - ../slots/has_type
+  - ../slots/maximum_of_maximum
+  - ../slots/part_of
+  - ../slots/temporal_extent
+classes:
+  EnvironmentalZone:
+    class_uri: hc:EnvironmentalZone
+    description: >-
+      Delimited storage area configured with monitored climate targets for the
+      long-term care of designated collection materials.
+    alt_descriptions:
+      nl: Afgebakend opslaggebied met bewaakte klimaatdoelen voor langdurige zorg van aangewezen collectiematerialen.
+      de: Abgegrenzter Lagerbereich mit ueberwachten Klimasollwerten fuer die langfristige Erhaltung zugewiesener Sammlungsmaterialien.
+      fr: Zone de stockage delimitee avec objectifs climatiques surveilles pour la conservation a long terme de materiaux de collection designes.
+      es: Area de almacenamiento delimitada con objetivos climaticos monitorizados para el cuidado a largo plazo de materiales de coleccion designados.
+      ar: منطقة تخزين محددة بحدود مع أهداف مناخية مُراقبة للعناية طويلة الأمد بمواد مجموعات محددة.
+      id: Area penyimpanan terbatasi dengan target iklim terpantau untuk perawatan jangka panjang material koleksi yang ditetapkan.
+      zh: 为指定馆藏材料长期保存而设置并监测气候目标的界定存储区域。
+    structured_aliases:
+      - literal_form: klimaatzone
+        in_language: nl
+      - literal_form: Klimazone
+        in_language: de
+      - literal_form: zone climatique de stockage
+        in_language: fr
+      - literal_form: zona climatica de almacenamiento
+        in_language: es
+      - literal_form: منطقة مناخية
+        in_language: ar
+      - literal_form: zona iklim penyimpanan
+        in_language: id
+      - literal_form: 环境分区
+        in_language: zh
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+      - has_type
+      - has_setpoint
+      - max_light_lux
+      - contain_unit
+      - part_of
+      - temporal_extent
+      - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_label:
+        required: true
+      has_type:
+        required: true
+      has_setpoint:
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      part_of:
+        required: true
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/zone/archive-a
+          has_label: Archive Zone A
+          has_type: ARCHIVE_STANDARD
+          has_description: Paper-focused area with stable temperature and humidity controls.
+        description: Standard paper storage zone
+      - value:
+          identified_by: https://nde.nl/ontology/hc/zone/cold-film-1
+          has_label: Cold Film Vault 1
+          has_type: COLD_STORAGE
+          has_description: Refrigerated area for acetate and color film materials.
+          max_light_lux: 0.0
+        description: Low-light cold zone for vulnerable audiovisual materials
+    keywords:
+      - climate-controlled storage
+      - preservation zone
+      - humidity management
+      - temperature setpoint
+      - light limits
+    broad_mappings:
+      - crm:E27_Site
+      - sosa:FeatureOfInterest
+    comments:
+      - Represents an individual operational area, not a category definition.
+      - Category definitions are modeled by EnvironmentalZoneType.
+    annotations:
+      specificity_score: "0.45"
+      specificity_rationale: Physical preservation area with operational climate constraints.
+      custodian_types: "['*']"

@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/CantonalArchive
+name: CantonalArchive
+title: Cantonal Archive Type (Switzerland)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+  - ../slots/has_label
+classes:
+  CantonalArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    description: >-
+      State archives of one of the 26 cantons of Switzerland, preserving
+      cantonal government records and historical documentation.
+    alt_descriptions:
+      nl: >-
+        Staatsarchieven van een van de 26 kantons van Zwitserland, die kantonnale
+        overheidsarchieven en historische documentatie bewaren.
+      de: >-
+        Staatsarchive eines der 26 Schweizer Kantone, die kantonale
+        Regierungsunterlagen und historische Dokumentation bewahren.
+      fr: >-
+        Archives d'État de l'un des 26 cantons suisses, préservant les
+        documents gouvernementaux cantonaux et la documentation historique.
+      es: >-
+        Archivos estatales de uno de los 26 cantones de Suiza, preservando
+        registros gubernamentales cantonales y documentación histórica.
+      ar: >-
+        أرشيفات حكومية لأحد كانتونات سويسرا الـ 26، تحفظ السجلات الحكومية
+        الكانتونية والوثائق التاريخية.
+      id: >-
+        Arsip negara bagian dari salah satu dari 26 kanton Swiss, melestarikan
+        catatan pemerintah kanton dan dokumentasi historis.
+      zh: >-
+        瑞士26个州之一的州档案馆，保存州政府记录和历史文献。
+    structured_aliases:
+    - literal_form: kantonnaal archief
+      in_language: nl
+    - literal_form: Kantonsarchiv
+      in_language: de
+    - literal_form: archives cantonales
+      in_language: fr
+    - literal_form: archivo cantonal
+      in_language: es
+    - literal_form: أرشيف كانتوني
+      in_language: ar
+    - literal_form: arsip kanton
+      in_language: id
+    - literal_form: 州档案馆
+      in_language: zh
+    close_mappings:
+    - rico:CorporateBody
+    related_mappings:
+    - wd:Q2860410
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    slots:
+    - hold_record_set
+    - has_scope
+    - has_score
+    - has_type
+    - has_label
+    slot_usage:
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+    comments:
+    - Geographic restriction: Switzerland only (CH)
+    - Part of Swiss federated archival system
+    - Examples: Staatsarchiv Zürich, Archives cantonales vaudoises
+    see_also:
+    - CantonalArchiveRecordSetType
+    examples:
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: Staatsarchiv Zürich
+        has_scope: cantonal
+      description: Zurich cantonal archive
+    keywords:
+    - cantonal archive
+    - Swiss archive
+    - Kantonsarchiv
+    - state archive
+    - Switzerland
+    notes:
+      - |
+        Preserved from prior description (commit 51480891):
+
+        "State archives of one of the cantons of Switzerland, preserving cantonal\ngovernment records and historical documentation.\n\n**Wikidata**: Q2860410\n\n**Geographic Restriction**: Switzerland only\n\nThis type is ONLY valid for Swiss cantonal archives. The `applicable_countries`\nslot MUST contain \"CH\". Validation rules enforce this geographic constraint.\n\n**Scope**:\nCantonal archives (Kantonsarchive) preserve:\n- Cantonal government records (Grosser Rat, Regierungsrat)\n- Administrative and judicial records\n- Land registers and cadastral records\n- Civil registry records (historical)\n- Notarial archives\n- Private deposits (families, businesses, associations)\n- Photographs and audiovisual materials\n\n**Swiss Archival System**:\nSwitzerland has a federated archival structure:\n- Schweizerisches Bundesarchiv (federal level)\n- Kantonsarchive (26 cantonal archives) \u2190 This type\n- Gemeindearchive (municipal archives)\n- Burgergemeindearchive (civic community\
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to Swiss cantonal archives
+      custodian_types: "['CantonalArchive']"

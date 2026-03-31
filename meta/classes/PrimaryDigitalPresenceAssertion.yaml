@@ -1,0 +1,158 @@
+id: https://nde.nl/ontology/hc/class/PrimaryDigitalPresenceAssertion
+name: primary_digital_presence_assertion
+title: Primary Digital Presence Assertion Class
+imports:
+  - linkml:types
+  - ../slots/assert
+  - ../slots/identified_by
+  - ../slots/has_rationale
+  - ../slots/has_score
+  - ../slots/has_value
+  - ../slots/has_digital_presence
+  - ../slots/asserted_by
+  - ../slots/asserted_on
+  - ../slots/generated_by
+  - ../slots/superseded_by
+  - ../slots/supersede
+  - ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+classes:
+  PrimaryDigitalPresenceAssertion:
+    class_uri: crm:E13_Attribute_Assignment
+    description: >-
+      Temporal assertion documenting whether a digital presence serves as the primary
+      online representation for a heritage custodian, with provenance tracking
+      for status changes over time.
+    alt_descriptions:
+      nl: >-
+        Tijdelijke bewering die documenteert of een digitale aanwezigheid fungeert als de primaire
+        online vertegenwoordiging voor een erfgoedbeheerder, met herkomsttracking
+        voor statuswijzigingen in de loop van de tijd.
+      de: >-
+        Zeitliche Assertion, die dokumentiert, ob eine digitale Präsenz als primäre
+        Online-Vertretung für einen Heritage-Kustoden dient, mit Provenienz-Tracking
+        für Statusänderungen im Zeitverlauf.
+      fr: >-
+        Assertion temporelle documentant si une présence numérique sert de représentation
+        en ligne principale pour un dépositaire patrimonial, avec suivi de la provenance
+        des changements de statut au fil du temps.
+      es: >-
+        Afirmación temporal que documenta si una presencia digital sirve como representación
+        en línea principal para un custodio patrimonial, con seguimiento de procedencia
+        para cambios de estado a lo largo del tiempo.
+    exact_mappings:
+      - crm:E13_Attribute_Assignment
+    close_mappings:
+      - prov:Activity
+      - schema:AssessAction
+    related_mappings:
+      - crm:P140_assigned_attribute_to
+      - crm:P141_assigned
+      - prov:wasGeneratedBy
+    slots:
+      - has_digital_presence
+      - asserted_by
+      - asserted_on
+      - identified_by
+      - has_rationale
+      - has_value
+      - generated_by
+      - assert
+      - superseded_by
+      - supersede
+      - has_score
+      - temporal_extent
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+          - value: https://nde.nl/ontology/hc/assertion/primary-presence/hvn-facebook-2025
+      has_digital_presence:
+        required: true
+        examples:
+          - value: https://nde.nl/ontology/hc/social-media/hvn-facebook
+          - value: https://nde.nl/ontology/hc/platform/rijksmuseum-website
+      assert:
+        range: DigitalPresence
+        required: false
+        inlined: true
+      has_value:
+        required: true
+        inlined: false
+      has_rationale:
+        range: Rationale
+        required: false
+        inlined: true
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        inlined: true
+      asserted_on:
+        range: TimeSpan
+        required: false
+        inlined: true
+      asserted_by:
+        range: Asserter
+        inlined: true
+        required: false
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+      superseded_by:
+        required: false
+      supersede:
+        required: false
+    comments:
+      - Models primary presence status as temporal assertion
+      - Based on CIDOC-CRM E13_Attribute_Assignment pattern
+      - Supports change tracking via superseded_by links
+      - Provenance via WebObservation references
+    see_also:
+      - https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E13
+      - https://www.w3.org/TR/prov-o/
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/assertion/primary-presence/hvn-facebook-2025
+          has_digital_presence: https://nde.nl/ontology/hc/social-media/hvn-facebook
+          has_value: true
+          has_rationale:
+            has_rationale: No formal website exists. Facebook page is the only discoverable online presence.
+        description: Facebook as primary digital presence
+    keywords:
+      - digital presence
+      - primary status
+      - assertion
+      - temporal
+      - provenance
+    notes:
+      - |
+        Preserved from prior description (commit c2cdbed6):
+
+        "A temporal assertion about whether a digital presence (SocialMediaProfile,\nDigitalPlatform, AuxiliaryDigitalPlatform, or InternetOfThings) serves as \nthe PRIMARY or MAIN digital presence for a heritage custodian.\n\n**SUPPORTED DIGITAL PRESENCE TYPES**:\n\n1. **DigitalPlatform** - Primary websites, discovery portals, repositories\n2. **AuxiliaryDigitalPlatform** - Project sites, exhibition microsites\n3. **SocialMediaProfile** - Third-party platform accounts (Facebook, Instagram)\n4. **InternetOfThings** - Physical devices with digital connectivity\n\nUse `digital_presence_type` slot to classify which TYPE of presence is\nbeing characterized, using DigitalPresenceTypeEnum values.\n\n**WHY TEMPORAL ASSERTIONS?**\n\nThe \"primary digital presence\" status can change over time:\n\n- 2020: Heritage society has ONLY Facebook \u2192 Facebook is primary (true)\n- 2022: Society launches website \u2192 Facebook becomes secondary (false)\n- 2024: Website abandoned, back to Facebook\
+    annotations:
+      specificity_score: 0.65
+      specificity_rationale: Specialized assertion class for digital presence status
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: primaire digitale aanwezigheidsbewering
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: primäre digitale Präsenz-Assertion
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: assertion présence numérique principale
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: afirmación presencia digital principal
+        predicate: EXACT_SYNONYM
+        in_language: es

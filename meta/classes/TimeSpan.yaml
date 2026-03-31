@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/TimeSpan
+name: timespan_class
+title: Time Span
+prefixes:
+  rov: http://www.w3.org/ns/regorg#
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  time: http://www.w3.org/2006/time#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../slots/begin_of_the_begin
+- ../slots/begin_of_the_end
+- ../slots/end_of_the_begin
+- ../slots/end_of_the_end
+- ../slots/has_notation
+- ../slots/has_score
+classes:
+  TimeSpan:
+    class_uri: crm:E52_Time-Span
+    description: >-
+      Bounded temporal extent with fuzzy boundary support following CIDOC-CRM E52 pattern for uncertain or approximate dates.
+    alt_descriptions:
+      nl: Begrensde tijdsduur met ondersteuning voor vage grenzen volgens het CIDOC-CRM E52-patroon voor onzekere of benaderde data.
+      de: Begrenzte zeitliche Ausdehnung mit Unterstützung für unscharfe Grenzen nach dem CIDOC-CRM E52-Muster für unsichere oder ungefähre Daten.
+      fr: Étendue temporelle bornée avec prise en charge des limites floues selon le modèle CIDOC-CRM E52 pour les dates incertaines ou approximatives.
+      es: Extensión temporal delimitada con soporte de límites difusos según el patrón CIDOC-CRM E52 para fechas inciertas o aproximadas.
+      ar: نطاق زمني محدود يدعم الحدود الضبابية وفق نمط CIDOC-CRM E52 للتواريخ غير المؤكدة أو التقريبية.
+      id: Rentang waktu terbatas dengan dukungan batas kabur mengikuti pola CIDOC-CRM E52 untuk tanggal yang tidak pasti atau perkiraan.
+      zh: 采用 CIDOC-CRM E52 模式的有界时间范围，支持不确定/近似日期的模糊边界。
+    structured_aliases:
+    - literal_form: tijdspanne
+      in_language: nl
+    - literal_form: Zeitspanne
+      in_language: de
+    - literal_form: étendue temporelle
+      in_language: fr
+    - literal_form: lapso de tiempo
+      in_language: es
+    - literal_form: فترة زمنية
+      in_language: ar
+    - literal_form: rentang waktu
+      in_language: id
+    - literal_form: 时间跨度
+      in_language: zh
+    exact_mappings:
+    - crm:E52_Time-Span
+    close_mappings:
+    - schema:DateTime
+    - time:Interval
+    related_mappings:
+    - prov:InstantaneousEvent
+    slots:
+    - begin_of_the_begin
+    - begin_of_the_end
+    - end_of_the_begin
+    - end_of_the_end
+    - has_score
+    - has_notation
+    slot_usage:
+      has_notation:
+        required: false
+        examples:
+        - value: '1970-08-15'
+        - value: 197X
+        - value: 1970~
+    comments:
+    - E52_Time-Span models uncertainty through four properties (P82a begin_of_the_begin, P81a end_of_the_begin, P81b begin_of_the_end, P82b end_of_the_end)
+    - Example - Founded 1800-1805, closed 1950-1955 with begin_of_the_begin 1800, end_of_the_begin 1805, begin_of_the_end 1950, end_of_the_end 1955
+    - Use cases include custodian founding/dissolution dates with uncertainty, historical event temporal bounds, archival record date ranges
+    - DO NOT USE FOR database record metadata, use schema:dateCreated/dateModified instead
+    - Handles temporal uncertainty common in heritage contexts
+    - Precise dates have begin_of_the_begin equal to end_of_the_begin (same for end)
+    - Unknown start sets begin_of_the_begin to earliest plausible date
+    - Unknown end leaves end_of_the_end as null (ongoing/present)
+    see_also:
+    - https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E52
+    - https://www.w3.org/TR/owl-time/
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

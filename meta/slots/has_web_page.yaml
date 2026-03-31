@@ -1,0 +1,143 @@
+# ==============================================================================
+# LinkML Slot Definition: has_web_page
+# ==============================================================================
+# Possess or reference a specific electronic document or resource accessible via
+# the World Wide Web, typically identified by a Uniform Resource Locator (URL).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line         | Mapping  | Notes                                    |
+# |----------------|-----------------------|-------------------|----------|------------------------------------------|
+# | **FOAF**       | `foaf:page`           | foaf.ttl:467-472  | close    | A page or document about this thing.     |
+# | **Schema.org** | `schema:url`          | schemaorg.owl     | close    | URL of the item.                         |
+# | **FOAF**       | `foaf:homepage`       | foaf.ttl:291-300  | narrow   | Homepage (subPropertyOf foaf:page).      |
+# | **FOAF**       | `foaf:weblog`         | foaf.ttl:604-612  | narrow   | Weblog (subPropertyOf foaf:page).        |
+#
+# CREATED: 2026-01-22
+# UPDATED: 2026-02-03 - Added header, narrow_mappings (subProperties of foaf:page)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_web_page
+name: has_web_page
+title: Has Web Page
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_web_page:
+    slot_uri: hc:hasWebPage
+    description: >-
+      To possess or reference a specific electronic document or resource
+      accessible via the World Wide Web, typically identified by a Uniform
+      Resource Locator (URL).
+    alt_descriptions:
+      nl: >-
+        Om een specifiek elektronisch document of bron te bezitten of te
+        verwijzen die toegankelijk is via het World Wide Web, meestal
+        geïdentificeerd door een Uniform Resource Locator (URL).
+      de: >-
+        Ein bestimmtes elektronisches Dokument oder eine Ressource zu besitzen
+        oder darauf zu verweisen, die über das World Wide Web zugänglich ist,
+        typischerweise identifiziert durch einen Uniform Resource Locator (URL).
+      fr: >-
+        Posséder ou référencer un document électronique ou une ressource
+        spécifique accessible via le World Wide Web, généralement identifié
+        par un Uniform Resource Locator (URL).
+      ar: >-
+        امتلاك أو الإشارة إلى مستند إلكتروني محدد أو مورد يمكن الوصول إليه
+        عبر شبكة الويب العالمية، عادةً ما يتم تحديده بواسطة محدد موقع الموارد
+        الموحد (URL).
+      id: >-
+        Memiliki atau mereferensikan dokumen elektronik atau sumber daya
+        tertentu yang dapat diakses melalui World Wide Web, biasanya
+        diidentifikasi oleh Uniform Resource Locator (URL).
+      zh: >-
+        拥有或引用可通过万维网访问的特定电子文档或资源，通常由统一资源定位符（URL）标识。
+      es: >-
+        Poseer o hacer referencia a un documento electrónico o recurso
+        específico accesible a través de la World Wide Web, típicamente
+        identificado por un Localizador Uniforme de Recursos (URL).
+    structured_aliases:
+      - literal_form: webpagina
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Webseite
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: page web
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: صفحة ويب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: halaman web
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 网页
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: página web
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    required: false
+    multivalued: true
+    inlined: false # Fixed invalid inline for primitive type
+    inlined_as_list: false # Fixed invalid inline for primitive type
+    exact_mappings: []
+    close_mappings:
+    - foaf:page
+    - schema:url
+    narrow_mappings:
+    - foaf:homepage           # FOAF: Homepage (rdfs:subPropertyOf foaf:page, line 300)
+    - foaf:weblog             # FOAF: Weblog (rdfs:subPropertyOf foaf:page, line 612)
+    - foaf:interest           # FOAF: Interest page (rdfs:subPropertyOf foaf:page, line 336)
+    - foaf:workplaceHomepage  # FOAF: Workplace homepage (rdfs:subPropertyOf foaf:page)
+    aliases:
+      - has_or_had_web_page
+    annotations:
+      replaces_slots: collection_web_address
+      migration_date: '2026-01-22'
+      custodian_types: '["*"]'
+      custodian_types_rationale: Web pages apply to all heritage custodian types.
+      specificity_score: 0.2
+      specificity_rationale: Generic web page slot applicable across most contexts.
+    comments:
+      - Generic web page association slot.
+      - 'Temporal: Web pages may change over time.'
+      - 'RiC-O naming: hasOrHad indicates potentially historical.'
+      - Replaces collection_web_address per slot_fixes.yaml (2026-01-22).
+      - |
+        **USE CASES**:
+        - Collection browse pages (e.g., Rijksstudio)
+        - Search interfaces
+        - Catalog pages
+        - Finding aid pages
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **FOAF** | `foaf:page` | 467-472 | close | Page about this thing |
+        | **Schema.org** | `schema:url` | - | close | URL of item |
+        | **FOAF** | `foaf:homepage` | 291-300 | narrow | Homepage (subPropertyOf page) |
+        | **FOAF** | `foaf:weblog` | 604-612 | narrow | Weblog (subPropertyOf page) |
+    examples:
+    - value:
+        page_name: Digital Collections
+        has_or_had_url:
+        - has_or_had_url: https://www.rijksmuseum.nl/nl/rijksstudio
+          has_or_had_type: collection_browse
+      description: Rijksstudio collections browse page

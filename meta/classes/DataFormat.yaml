@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/class/DataFormat
+name: data_format_class
+title: Data Format
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dct: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+classes:
+  DataFormat:
+    class_uri: hc:DataFormat
+    description: >-
+      Serialization profile specification used for file exchange, API payloads,
+      and machine-to-machine transfer.
+    alt_descriptions:
+      nl: Specificatie van serialisatieprofielen voor bestandsuitwisseling API-payloads en machine-naar-machine overdracht.
+      de: Spezifikation eines Serialisierungsprofils fuer Dateiaustausch API-Payloads und maschinelle Uebertragung.
+      fr: Specification de profil de serialisation pour echange de fichiers charges API et transfert machine a machine.
+      es: Especificacion de perfil de serializacion para intercambio de archivos cargas API y transferencia maquina a maquina.
+      ar: مواصفة ملف تسلسلي لتبادل الملفات وحمولات واجهات البرمجة والنقل بين الآلات.
+      id: Spesifikasi profil serialisasi untuk pertukaran berkas payload API dan transfer antarmesin.
+      zh: 用于文件交换、API负载与机器间传输的序列化规范。
+    structured_aliases:
+    - {literal_form: bestandsindeling, in_language: nl}
+    - {literal_form: Datenformatprofil, in_language: de}
+    - {literal_form: profil de serialisation, in_language: fr}
+    - {literal_form: perfil de serializacion, in_language: es}
+    - {literal_form: صيغة تمثيل بيانات, in_language: ar}
+    - {literal_form: profil format data, in_language: id}
+    - {literal_form: 数据序列化格式, in_language: zh}
+    close_mappings:
+    - dct:MediaTypeOrExtent
+    - schema:encodingFormat
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+        examples:
+        - value: JsonFormat
+        - value: CsvFormat
+      has_label:
+        examples:
+        - value: application/json
+        - value: text/csv
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Data representation specifications apply across digital systems.
+      specificity_score: 0.55
+      specificity_rationale: Moderately specific to exchange and interoperability contexts
+
+  DataFormatType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomy node for representation-profile categories used in
+      system integration.
+    alt_descriptions:
+      nl: Abstract taxonomieknooppunt voor categorieen van representatieprofielen in systeemintegratie.
+      de: Abstrakter Taxonomieknoten fuer Kategorien von Darstellungsprofilen in der Systemintegration.
+      fr: Noeud taxonomique abstrait pour les categories de profils de representation en integration systeme.
+      es: Nodo taxonomico abstracto para categorias de perfiles de representacion en integracion de sistemas.
+      ar: عقدة تصنيفية مجردة لفئات ملفات التمثيل المستخدمة في تكامل الأنظمة.
+      id: Simpul taksonomi abstrak untuk kategori profil representasi dalam integrasi sistem.
+      zh: 用于系统集成中表示配置类别的抽象分类节点。
+    structured_aliases:
+    - {literal_form: dataformaattype, in_language: nl}
+    - {literal_form: Datenformattyp, in_language: de}
+    - {literal_form: type de format de donnees, in_language: fr}
+    - {literal_form: tipo de formato de datos, in_language: es}
+    - {literal_form: نوع صيغة البيانات, in_language: ar}
+    - {literal_form: tipe format data, in_language: id}
+    - {literal_form: 数据格式类型, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_label
+    - has_description

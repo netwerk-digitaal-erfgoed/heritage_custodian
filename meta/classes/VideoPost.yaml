@@ -1,0 +1,390 @@
+id: https://nde.nl/ontology/hc/class/VideoPost
+name: video_post_class
+title: Video Post Class
+imports:
+- linkml:types
+- ../slots/has_author
+- ../slots/has_caption
+- ../slots/commented_on
+- ../slots/has_content
+- ../slots/has_degree
+- ../slots/identified_by
+- ../slots/has_language
+- ../slots/has_quantity
+- ../slots/has_reply
+- ../slots/has_resolution
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/has_time_interval
+- ../slots/embedded_on
+- ../slots/licensed_as
+- ../slots/appropriate_for
+- ../slots/appreciated
+- ../slots/dismissed
+- ../slots/updated_at
+- ../slots/part_of
+- ../slots/in_language
+- ../slots/broadcast
+- ../slots/observed_through
+- ../slots/temporal_extent
+- ../enums/LiveBroadcastStatusEnum
+default_prefix: hc
+classes:
+  VideoPost:
+    is_a: SocialMediaPost
+    class_uri: schema:VideoObject
+    alt_descriptions:
+      nl: Videopost op een sociaal mediaplatform (bijv. YouTube).
+      de: Videobeitrag auf einer Social-Media-Plattform (z. B. YouTube).
+      fr: Publication video sur une plateforme de medias sociaux (par ex. YouTube).
+      es: Publicacion de video en una plataforma de redes sociales (p. ej. YouTube).
+      ar: منشور فيديو على منصة تواصل اجتماعي (مثل يوتيوب).
+      id: Postingan video di platform media sosial (mis. YouTube).
+      zh: 社交媒体平台上的视频帖子（例如 YouTube）。
+    structured_aliases:
+    - {literal_form: videopost, in_language: nl}
+    - {literal_form: Video-Post, in_language: de}
+    - {literal_form: post video, in_language: fr}
+    - {literal_form: publicacion de video, in_language: es}
+    - {literal_form: منشور فيديو, in_language: ar}
+    - {literal_form: postingan video, in_language: id}
+    - {literal_form: 视频帖子, in_language: zh}
+    description: >-
+      Video post on a social media platform. Extends SocialMediaPost with
+      video-specific properties such as duration, resolution, caption tracks,
+      and observational metrics.
+    broad_mappings:
+    - schema:VideoObject
+    close_mappings:
+    - as:Video
+    slots:
+    - has_caption
+    - part_of
+    - has_language
+    - has_status
+    - has_resolution
+    - has_degree
+    - dismissed
+    - has_time_interval
+    - embedded_on
+    - licensed_as
+    - appropriate_for
+    - has_quantity
+    - broadcast
+    - observed_through
+    - has_score
+    - identified_by
+    - commented_on
+    slot_usage:
+      has_time_interval:
+        range: TimeInterval
+        required: false
+        inlined: true
+        examples:
+        - value:
+            has_value: PT3M20S
+      # MIGRATED 2026-01-24: definition → has_resolution + Resolution (Rule 53)
+      has_resolution:
+        range: Resolution
+        required: false
+        inlined: true
+        examples:
+        - value:
+            resolution_class: hd
+            aspect_ratio: "16:9"
+        - value:
+            resolution_class: "4k"
+        - value:
+            resolution_class: sd
+      has_degree:
+        range: AspectRatio
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_degree: '16:9'
+        - value:
+            has_degree: '9:16'
+      # MIGRATED 2026-01-22: frame_rate → has_quantity + Quantity + has_unit + Unit (Rule 53)
+      # frame_rate:
+      #   range: float
+      #   required: false
+      #   examples:
+      #   - value: 30.0
+      #     description: 30 frames per second
+      # MIGRATED 2026-01-22: caption_available → has_caption + Caption per slot_fixes.yaml feedback
+      has_caption:
+        range: Caption
+        multivalued: true
+        inlined: true
+        required: false
+        examples:
+        - value:
+            language: en
+        - value:
+            language: nl
+            caption_url: https://example.org/video/captions_nl.vtt
+        - value:
+            language:
+      # MIGRATED 2026-01-23: default_language, default_audio_language → has_language + Language + has_status + Status (Rule 53)
+      has_language:
+        range: Language
+        inlined: true
+        multivalued: true
+        required: false
+        examples:
+        - value:
+            language_code: "nl"
+            language_name: "Dutch"
+        - value:
+            language_code: "nl"
+            language_name: "Dutch"
+        - value:
+            language_code: "en"
+            language_name: "English"
+      has_status:
+        range: Status
+        inlined: true
+        multivalued: true
+        required: false
+        examples:
+        - value:
+            status_value: "nl"
+        - value:
+            status_value: "nl"
+      # has_available_caption_language REMOVED - migrated to has_language (Rule 53)
+      # has_available_caption_language:
+      #   range: string
+      #   multivalued: true
+      #   required: false
+      #   examples:
+      #   - value:
+      #     - nl
+      #     - en
+      #     - de
+      #     description: Captions available in Dutch, English, German
+      has_quantity:
+        range: Quantity
+        inlined: true
+        inlined_as_list: true
+        multivalued: true
+        required: false
+        examples:
+        - value:
+            has_type: VIEW_COUNT
+            has_value: "1200000"
+            has_measurement_unit:
+              has_type: VIEW
+              has_symbol: views
+            temporal_extent:
+              begin_of_the_begin: "2025-12-01T23:16:22Z"
+        - value:
+            has_type: ENGAGEMENT_COUNT
+            has_value: "3500"
+            has_measurement_unit:
+              has_type: COMMENT
+              has_symbol: comments
+            temporal_extent:
+              begin_of_the_begin: "2025-12-01T23:16:22Z"
+      dismissed:
+        range: DismissalEvent
+        required: false
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_quantity: 12
+            has_measurement_unit: dislike
+      # REMOVED 2026-01-18: comment_count - migrated to has_quantity + Quantity (Rule 53)
+      # comment_count:
+      #   range: integer
+      #   required: false
+      #   minimum_value: 0
+      #   examples:
+      #   - value: 0
+      #     description: No comments at observation time
+      # MIGRATED 2026-01-26: favorite_count → has_quantity + Quantity (Rule 53)
+      # favorite_count:
+      #   range: integer
+      #   required: false
+      #   minimum_value: 0
+      observed_through:
+        range: datetime
+        required: false
+        examples:
+        - value: '2025-12-01T23:16:22.294232+00:00'
+      # MIGRATED from video_category_id (2026-01-14, Rule 53)
+      # video_category_id:
+      #   range: string
+      #   required: false
+      #   examples:
+      #   - value: '22'
+      #     description: 'YouTube: People & Blogs'
+      #   - value: '27'
+      #     description: 'YouTube: Education'
+      identified_by:
+        range: VideoCategoryIdentifier
+        multivalued: true
+        required: false
+        inlined: true
+        examples:
+        - value: '{"has_code": "27", "category_name": "Education", "platform": "YouTube"}'
+          description: 'YouTube: Education category'
+      broadcast:
+        range: LiveBroadcastStatusEnum
+        required: false
+        examples:
+        - value: none
+        - value: live
+      licensed_as:
+        range: boolean
+        required: false
+      embedded_on:
+        range: boolean
+        required: false
+      appropriate_for:
+        range: boolean
+        required: false
+      # MIGRATED 2026-01-22: comments_fetched → retrieved_at + part_of_total + SourceCommentCount (Rule 53)
+      # comments_fetched:
+      #   range: integer
+      #   required: false
+      #   minimum_value: 0
+      #   examples:
+      #   - value: 0
+      #     description: No comments fetched
+      part_of:
+        range: SourceCommentCount
+        inlined: true
+        required: false
+        examples:
+        - value:
+            retrieved_at:
+              has_timestamp: '2025-12-01T23:16:22Z'
+            has_quantity: 100
+      commented_on:  # was: video_comment - migrated per Rule 53 (2025-01-15)
+        range: VideoComment
+        multivalued: true
+        required: false
+        inlined: true
+    comments:
+    - Extends SocialMediaPost with video-specific properties
+    - Maps to as:Video and schema:VideoObject
+    - Metrics are observational - always include metrics_observed_at
+    - Caption availability signals but not content (see VideoSubtitle)
+    - YouTube is primary platform for heritage institution video content
+    see_also:
+    - https://www.w3.org/ns/activitystreams#Video
+    - https://schema.org/VideoObject
+    - https://developers.google.com/youtube/v3/docs/videos
+
+  VideoComment:
+    class_uri: schema:Comment
+    description: >-
+      A comment on a video post.
+      Models user-generated comments with author, text, timestamp,
+      and engagement metrics. Supports nested reply threads.
+    broad_mappings:
+    - schema:Comment
+    close_mappings:
+    - as:Note
+    slots:
+    # MIGRATED 2026-01-18: comment_author → has_author + Author (Rule 53)
+    - has_author
+    # MIGRATED 2026-01-22: comment_author_channel_id → identified_by + DigitalPlatformUserIdentifier (Rule 53)
+    # NOTE: identified_by already present - used for both comment_id and comment_author_channel_id
+    # REMOVED 2026-01-18: comment_id - migrated to identified_by + Identifier (Rule 53)
+    - identified_by
+    # MIGRATED 2026-01-22: comment_like_count → appreciated + AppreciationEvent (Rule 53)
+    - appreciated
+    # REMOVED 2026-01-18: comment_published_at - migrated to temporal_extent + TimeSpan (Rule 53)
+    - temporal_extent
+    # MIGRATED 2026-01-22: comment_reply_count → has_reply + CommentReply (Rule 53)
+    - has_reply
+    # REMOVED 2026-01-18: comment_text - migrated to has_content + Content (Rule 53)
+    - has_content
+    # REMOVED 2026-01-18: comment_updated_at - migrated to was_last_updated_at + Timestamp (Rule 53)
+    - updated_at
+    - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    slot_usage:
+      # MIGRATED 2026-01-18: comment_id → identified_by + Identifier (Rule 53/56)
+      identified_by:
+#         range: string # uriorcurie
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/video-comment/youtube/abc123
+      # REMOVED 2026-01-18: comment_author - migrated to has_author + Author (Rule 53)
+      # MIGRATED 2026-01-18: comment_author → has_author + Author (Rule 53)
+      # MIGRATED 2026-01-22: comment_author_channel_id is now captured via Author.identified_by (Rule 53)
+      has_author:
+        range: Author
+        inlined: true
+        required: true
+        examples:
+        - value:
+            has_name: "Visitor123"
+        - value:
+            has_name: "MuseumFan2024"
+            identified_by:
+            - identifier_scheme: youtube_channel_id
+              identifier_value: "UC1234..."
+              platform_type: "youtube"
+      # MIGRATED 2026-01-22: comment_author_channel_id → identified_by + DigitalPlatformUserIdentifier (Rule 53)
+      # NOTE: identified_by slot_usage updated above to handle BOTH comment_id AND comment_author_channel_id
+      # The Author class already has identified_by slot, so channel_id can be linked via:
+      #   has_author:
+      #     identified_by:
+      #       - identifier_scheme: youtube_channel_id
+      #         identifier_value: "UC1234..."
+      #         platform_type: "youtube"
+      # MIGRATED 2026-01-18: comment_text → has_content + Content (Rule 53/56)
+      has_content:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+        examples:
+        - value:
+            has_description: "Great video about the collection!"
+      # MIGRATED 2026-01-18: comment_published_at → temporal_extent + TimeSpan (Rule 53/56)
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: true
+        examples:
+        - value:
+            begin_of_the_begin: "2025-01-14T10:30:00Z"
+      # MIGRATED 2026-01-18: comment_updated_at → was_last_updated_at + Timestamp (Rule 53/56)
+      updated_at:
+        range: Timestamp
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_timestamp: "2025-01-15T10:30:00Z"
+            has_level: second
+      # MIGRATED 2026-01-22: comment_like_count → appreciated + AppreciationEvent (Rule 53)
+      appreciated:
+        range: AppreciationEvent
+        inlined: true
+        inlined_as_list: true
+        required: false
+        examples:
+        - value:
+            has_quantity: 100
+            has_measurement_unit: likes
+            temporal_extent:
+              begin_of_the_begin: "2025-01-15T10:30:00Z"
+      # MIGRATED 2026-01-22: comment_reply_count → has_reply + CommentReply (Rule 53)
+      has_reply:
+        range: CommentReply
+        inlined: true
+        inlined_as_list: true
+        required: false
+        examples:
+        - value:
+            has_quantity: 12
+            has_measurement_unit: replies
+            temporal_extent:
+              begin_of_the_begin: "2025-01-15T10:30:00Z"
+      has_score:

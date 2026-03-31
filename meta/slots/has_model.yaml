@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: has_model
+# ==============================================================================
+# Identifies the machine learning or language model used in an automated
+# processing activity, or a product/design model identifier.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                  | Mapping  | Notes                                                      |
+# |---------------|---------------------------|----------------------------|----------|-------------------------------------------------------------|
+# | **Schema.org**| `schema:model`            | schemaorg.owl:26495-26499  | exact    | "The model of the product." Domain: Product.                |
+# | **PROV-O**    | `prov:wasAssociatedWith`  | prov.ttl:1066-1080         | related  | "Agent that had responsibility for the Activity."           |
+# | **Schema.org**| `schema:softwareVersion`  | schemaorg.owl:35770-35781  | narrow   | "Version of the software instance." Domain: SoftwareApp.    |
+#
+# HIERARCHY:
+# - schema:model → ObjectProperty, domain Product
+# - prov:wasAssociatedWith → ObjectProperty, domain Activity, range Agent
+# - schema:softwareVersion is narrower (version only, not full model identity)
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-10 - Full polish; improved ontology alignment, multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_model
+name: has_model
+title: Has Model
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_model:
+    slot_uri: hc:hasModel
+    description: >-
+      Identifies a specific design, pattern, or model used to define, simulate,
+      or predict an entity or system. In the heritage-custodian context, this
+      commonly captures the machine learning or language model identifier used
+      in automated processing activities (e.g., enrichment, classification,
+      transcription). Critical for reproducibility, provenance, and quality
+      assessment of AI-generated or AI-enriched heritage data.
+    alt_descriptions:
+      nl: >-
+        Identificeert een specifiek ontwerp, patroon of model dat wordt
+        gebruikt om een entiteit of systeem te definiëren, simuleren of
+        voorspellen. Cruciaal voor reproduceerbaarheid en herkomstregistratie.
+      de: >-
+        Identifiziert ein bestimmtes Design, Muster oder Modell, das
+        verwendet wird, um eine Entität oder ein System zu definieren,
+        zu simulieren oder vorherzusagen.
+      fr: >-
+        Identifie une conception, un modèle ou un patron spécifique utilisé
+        pour définir, simuler ou prédire une entité ou un système.
+      ar: >-
+        يحدد تصميمًا أو نمطًا أو نموذجًا محددًا يُستخدم لتعريف أو محاكاة
+        أو التنبؤ بكيان أو نظام.
+      id: >-
+        Mengidentifikasi desain, pola, atau model tertentu yang digunakan
+        untuk mendefinisikan, mensimulasikan, atau memprediksi suatu
+        entitas atau sistem.
+      zh: >-
+        标识用于定义、模拟或预测实体或系统的特定设计、模式或模型。
+        对于可重复性和来源追踪至关重要。
+      es: >-
+        Identifica un diseño, patrón o modelo específico utilizado para
+        definir, simular o predecir una entidad o sistema.
+    structured_aliases:
+      - literal_form: model
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Modell
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: modèle
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نموذج
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: model
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 模型
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: modelo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_model
+      - model_architecture
+    exact_mappings:
+      - schema:model  # schemaorg.owl:26495-26499 - "The model of the product" (Product domain only)
+    narrow_mappings:
+      - schema:softwareVersion  # schemaorg.owl:35770-35781 - "Version of the software instance." Narrower: version only.
+    related_mappings:
+      - prov:wasAssociatedWith  # prov.ttl:1066-1080 - "Agent that had responsibility for the Activity."
+    examples:
+      - value: "claude-3-opus-20240229"
+        description: Anthropic Claude 3 Opus model identifier
+      - value: "ResNet-50"
+        description: CV model architecture for heritage image classification
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Common ML/LLM model families: GPT (OpenAI), Claude (Anthropic),
+        GLM (ZhipuAI), Gemini (Google), LLaMA (Meta), and CV models like
+        ResNet, ViT, CLIP, DETR for heritage image analysis.
+      - >-
+        Part of prov:wasAssociatedWith pattern — the model is conceptually
+        the agent responsible for the automated processing activity.

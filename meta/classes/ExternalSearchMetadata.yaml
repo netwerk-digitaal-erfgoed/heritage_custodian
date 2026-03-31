@@ -1,0 +1,97 @@
+id: https://nde.nl/ontology/hc/classes/ExternalSearchMetadata
+name: ExternalSearchMetadata
+title: External Search Metadata Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_tool
+- ../slots/has_timestamp
+- ../slots/has_url
+- ../slots/has_agent
+- ../slots/has_method
+- ../slots/has_note
+classes:
+  ExternalSearchMetadata:
+    class_uri: prov:Activity
+    description: >-
+      Provenance record capturing the execution context, parameters, and results
+      of a search or retrieval operation performed against an external system.
+    alt_descriptions:
+      nl: >-
+        Herkomstrecord dat de uitvoeringscontext, parameters en resultaten vastlegt
+        van een zoek- of ophaalbewerking op een extern systeem.
+      de: >-
+        Herkunftsaufzeichnung, die Ausführungskontext, Parameter und Ergebnisse
+        einer Such- oder Abrufoperation auf einem externen System erfasst.
+      fr: >-
+        Enregistrement de provenance capturant le contexte d'exécution, les paramètres et les résultats
+        d'une opération de recherche ou de récupération sur un système externe.
+      es: >-
+        Registro de procedencia que captura el contexto de ejecución, parámetros y resultados
+        de una operación de búsqueda o recuperación en un sistema externo.
+      ar: >-
+        سجل المصدر الذي يلتقط سياق التنفيذ والمعلمات والنتائج
+        لعملية بحث أو استرجاع على نظام خارجي.
+      id: >-
+        Catatan asal-usul yang menangkap konteks eksekusi, parameter, dan hasil
+        dari operasi pencarian atau pengambilan pada sistem eksternal.
+      zh: >-
+        捕获对外部系统执行的搜索或检索操作的执行上下文、参数和结果的来源记录。
+    close_mappings:
+    - schema:SearchAction
+    slots:
+    - has_tool
+    - has_timestamp
+    - has_url
+    - has_agent
+    - has_method
+    - has_note
+    structured_aliases:
+    - literal_form: externe zoekmetadata
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: externe Suchmetadaten
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: métadonnées de recherche externe
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: metadatos de búsqueda externa
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: بيانات البحث الخارجي الوصفية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: metadata pencarian eksternal
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 外部搜索元数据
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Tracks external API calls and web searches for provenance
+    - Supports reproducibility of enrichment processes
+    - 'Preserved from prior description: Provenance record for a third-party search or retrieval operation and its execution context.'
+    keywords:
+    - search
+    - provenance
+    - external query
+    - retrieval
+    - execution context
+    examples:
+    - value:
+        has_tool: Wikidata API
+        has_method: entity_search
+        has_timestamp: "2025-01-15T10:30:00Z"
+      description: Metadata for Wikidata entity lookup
+    annotations:
+      specificity_score: 0.3
+      specificity_rationale: Operational provenance for external search and retrieval.
+      custodian_types: '["*"]'
+    broad_mappings:
+    - prov:Activity

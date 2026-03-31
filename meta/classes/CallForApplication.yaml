@@ -1,0 +1,155 @@
+id: https://nde.nl/ontology/hc/class/CallForApplication
+name: CallForApplication
+title: Call For Application Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  org: http://www.w3.org/ns/org#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/CallForApplicationStatusEnum
+  - ../enums/FundingRequirementTypeEnum
+  - ../slots/end_of_the_end
+  - ../slots/has_budget
+  - ../slots/has_description
+  - ../slots/fund
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_provenance
+  - ../slots/has_range
+  - ../slots/require
+  - ../slots/has_score
+  - ../slots/has_status
+  - ../slots/has_url
+  - ../slots/hold_session
+  - ../slots/categorized_as
+  - ../slots/due_on
+  - ../slots/initiate_on
+  - ../slots/published_by
+  - ../slots/has_keyword
+  - ../slots/minimum_of_minimum
+  - ../slots/offer
+  - ../slots/part_of
+  - ../slots/related_to
+  - ../slots/has_roadmap
+  - ../slots/begin_of_the_begin
+classes:
+  CallForApplication:
+    class_uri: schema:Offer
+    description: >-
+      Funding call or grant application opportunity issued by a heritage funding
+      organization, inviting heritage custodians to apply for project funding.
+    alt_descriptions:
+      nl: >-
+        Financieringsoproep of subsidieaanvraagkans uitgegeven door een erfgoed-
+        financieringsorganisatie, waarbij erfgoedbewaarders worden uitgenodigd
+        om projectfinanciering aan te vragen.
+      de: >-
+        Förderaufruf oder Zuschussantragsmöglichkeit, die von einer
+        Kulturerbe-Finanzierungsorganisation herausgegeben wird und
+        Kulturerbe-Verwahrer zur Beantragung von Projektförderung einlädt.
+      fr: >-
+        Appel à financement ou opportunité de demande de subvention publié par
+        une organisation de financement du patrimoine, invitant les dépositaires
+        du patrimoine à demander un financement de projet.
+      es: >-
+        Convocatoria de financiación u oportunidad de solicitud de subvención
+        emitida por una organización de financiación patrimonial, invitando a
+        los depositarios del patrimonio a solicitar financiación de proyectos.
+      ar: >-
+        دعوة تمويل أو فرصة تقديم طلب منحة تصدرها منظمة تمويل التراث،
+        تدعو حاملي التراث للتقدم بطلب تمويل المشروع.
+      id: >-
+        Panggilan pendanaan atau kesempatan aplikasi hibah yang diterbitkan oleh
+        organisasi pendanaan warisan budaya, mengundang penjaga warisan untuk
+        mengajukan pendanaan proyek.
+      zh: >-
+        遗产资助组织发布的资助呼吁或赠款申请机会，邀请遗产保管者申请项目资助。
+    structured_aliases:
+    - literal_form: subsidieoproep
+      in_language: nl
+    - literal_form: Förderaufruf
+      in_language: de
+    - literal_form: appel à projets
+      in_language: fr
+    - literal_form: convocatoria
+      in_language: es
+    - literal_form: دعوة تقديم الطلبات
+      in_language: ar
+    - literal_form: panggilan aplikasi
+      in_language: id
+    - literal_form: 申请征集
+      in_language: zh
+    exact_mappings:
+    - schema:Offer
+    close_mappings:
+    - prov:Activity
+    related_mappings:
+    - org:Organization
+    - dcterms:BibliographicResource
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - due_on
+    - initiate_on
+    - has_label
+    - has_description
+    - has_budget
+    - published_by
+    - has_provenance
+    - offer
+    - has_url
+    - has_status
+    - identified_by
+    - has_score
+    slot_usage:
+      due_on:
+        range: TimeSpan
+      offer:
+        range: FundingRate
+        multivalued: true
+        inlined: true
+        required: false
+      initiate_on:
+        range: TimeSpan
+      has_budget:
+        range: Budget
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      published_by:
+        required: true
+      has_provenance:
+        range: WebObservation
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    comments:
+    - Funding opportunity for heritage custodians
+    - Links to budget allocation and funding rates
+    - Supports application deadlines and requirements
+    see_also:
+    - Budget
+    - FundingRate
+    examples:
+    - value:
+        has_label: Heritage Digitization Grant 2025
+        has_description: Grant for digitizing heritage collections
+        published_by: https://nde.nl/ontology/hc/funding/example-funder
+        has_status: OPEN
+      description: Grant funding call
+    keywords:
+    - funding call
+    - grant application
+    - heritage funding
+    - project funding
+    - call for proposals
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to heritage funding opportunities
+      custodian_types: "['*']"

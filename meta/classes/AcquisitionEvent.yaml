@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/AcquisitionEvent
+name: AcquisitionEvent
+title: Acquisition Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - ./Entity
+  - linkml:types
+  - ../slots/has_method
+  - ../slots/originate_from
+  - ../slots/has_provenance
+  - ../slots/temporal_extent
+classes:
+  AcquisitionEvent:
+    description: >-
+      Occurrence documenting the transfer of materials from a source to a
+      heritage institution, capturing origin, method, and temporal context.
+    alt_descriptions:
+      nl: >-
+        Gebeurtenis die de overdracht van materialen van een bron naar een
+        erfgoedinstelling documenteert, met vastlegging van herkomst, methode
+        en temporele context.
+      de: >-
+        Ereignis, das die Uebertragung von Materialien von einer Quelle an eine
+        Kulturerbeeinrichtung dokumentiert und Herkunft, Methode und zeitlichen
+        Kontext erfasst.
+      fr: >-
+        Evenement documentant le transfert de materiaux d'une source vers une
+        institution patrimoniale, capturant l'origine, la methode et le contexte
+        temporel.
+      es: >-
+        Evento que documenta la transferencia de materiales de una fuente a una
+        institucion patrimonial, capturando origen, metodo y contexto temporal.
+      ar: >-
+        حدث يوثق نقل المواد من مصدر إلى مؤسسة تراثية، مع تسجيل المصدر والطريقة
+        والسياق الزمني.
+      id: >-
+        Peristiwa yang mendokumentasikan transfer materi dari sumber ke lembaga
+        warisan, menangkap asal, metode, dan konteks temporal.
+      zh: >-
+        记录材料从来源转移到遗产机构的事件，包括来源、方法和时间背景。
+    examples:
+    - value:
+        originate_from:
+          has_label: Van der Berg Collection
+        has_method:
+          has_label: Donation
+        temporal_extent:
+          begin_of_the_begin: "2024-01-15"
+          end_of_the_end: "2024-01-15"
+      description: Donation from private collector
+    - value:
+        originate_from:
+          has_label: Ministry of Culture
+        has_method:
+          has_label: Government Transfer
+        temporal_extent:
+          begin_of_the_begin: "2001-06-01"
+          end_of_the_end: "2001-06-30"
+      description: Transfer from government archives
+    class_uri: crm:E10_Transfer_of_Custody
+    slots:
+    - originate_from
+    - temporal_extent
+    - has_method
+    - has_provenance
+    structured_aliases:
+    - literal_form: verwervingsgebeurtenis
+      in_language: nl
+    - literal_form: Erwerbungsereignis
+      in_language: de
+    - literal_form: evenement d'acquisition
+      in_language: fr
+    - literal_form: evento de adquisicion
+      in_language: es
+    - literal_form: حدث الاستحواذ
+      in_language: ar
+    - literal_form: peristiwa akuisisi
+      in_language: id
+    - literal_form: 获取事件
+      in_language: zh
+    keywords:
+    - custody transfer
+    - acquisition source
+    - provenance event
+    - collection entry
+    slot_usage:
+      originate_from:
+        range: Entity
+        required: true
+    close_mappings:
+    - rico:Instantiation
+    broad_mappings:
+    - crm:E10_Transfer_of_Custody
+    - skos:Concept
+    comments:
+    - Migrated from has_acquisition_source per Rule 53
+    - Links materials to their source before entering the collection
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to acquisition transfer events
+      custodian_types: "['*']"

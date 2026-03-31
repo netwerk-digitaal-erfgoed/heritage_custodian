@@ -1,0 +1,129 @@
+id: https://nde.nl/ontology/hc/class/climate_control_type
+name: climate_control_type_class
+title: Climate Control Type Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  aat: http://vocab.getty.edu/aat/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/include
+classes:
+  ClimateControlType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomy node for categorizing environmental regulation
+      approaches used in preservation facilities.
+    alt_descriptions:
+      nl: Abstract taxonomieknooppunt voor het categoriseren van benaderingen voor omgevingsregeling in behoudsvoorzieningen.
+      de: Abstrakter Taxonomieknoten zur Kategorisierung von Umgebungsregelungsansaetzen in Erhaltungseinrichtungen.
+      fr: Noeud taxonomique abstrait pour classer les approches de regulation environnementale dans les installations de conservation.
+      es: Nodo taxonomico abstracto para categorizar enfoques de regulacion ambiental en instalaciones de preservacion.
+      ar: عقدة تصنيفية مجردة لتصنيف أساليب الضبط البيئي في مرافق الحفظ.
+      id: Simpul taksonomi abstrak untuk mengategorikan pendekatan pengaturan lingkungan pada fasilitas preservasi.
+      zh: 用于分类保存设施环境调控方式的抽象分类节点。
+    structured_aliases:
+    - literal_form: type omgevingsregeling
+      in_language: nl
+    - literal_form: Typ der Umgebungsregelung
+      in_language: de
+    - literal_form: type de regulation environnementale
+      in_language: fr
+    - literal_form: tipo de regulacion ambiental
+      in_language: es
+    - literal_form: نوع الضبط البيئي
+      in_language: ar
+    - literal_form: tipe pengendalian lingkungan
+      in_language: id
+    - literal_form: 环境调控类型
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - aat:300264752
+    keywords:
+    - environmental classification
+    - preservation facilities
+    - control strategy taxonomy
+
+    slots:
+    - has_label
+    - has_description
+    - include
+
+    slot_usage:
+      has_label:
+#         range: string
+        required: true
+        examples:
+        - value: "HVAC"
+      has_description:
+        examples:
+        - value:
+            description_text: "Full heating, ventilation, and air conditioning with temperature and humidity control."
+            description_type: definition
+      include:
+        range: ClimateControlType
+        multivalued: true
+
+    examples:
+    - value: |
+        ClimateControlType (abstract base)
+          │
+          ├── HEATED - Heating only (prevent freezing)
+          ├── HVAC - Full heating, ventilation, air conditioning
+          ├── DEHUMIDIFIED - Humidity control only
+          ├── COOLED - Cooling only (no heating)
+          ├── PASSIVE - Passive environmental control (building design)
+          └── NONE - No climate control
+    - value: |
+        ClimateControl:
+        has_label: "Main Stack HVAC"
+        has_type: HVAC  # ← ClimateControlType
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      Abstract base class for climate control type taxonomy.
+
+      **DESIGN PATTERN** (Rule 0b - Type/Types Naming):
+
+      This file (`ClimateControlType.yaml`) defines the **singular abstract base class**.
+      Concrete subclasses are defined in `ClimateControlTypes.yaml` (plural).
+
+      **TYPE HIERARCHY**:
+
+
+
+      **ONTOLOGICAL ALIGNMENT**:
+
+      - **Primary** (`class_uri`): `skos:Concept` - SKOS concept scheme
+      - **Related**: `aat:300264752` - Getty AAT climate control systems
+
+      **USE CASES**:
+
+      The ClimateControlType is used as the range for the `has_type`
+      slot in the ClimateControl class:
+    annotations:
+      type_types_pattern: |
+        This is the SINGULAR "Type" class per Rule 0b.
+        Concrete subclasses in ClimateControlTypes.yaml (plural).
+      custodian_types: '["*"]'
+      custodian_types_rationale: Climate control types apply to all heritage facility contexts.
+      specificity_score: 0.50
+      specificity_rationale: Type taxonomy - moderately specific to facility management.
+      replaces_slots: "climate_control_type (the old string-valued slot)"
+      migration_date: "2026-01-19"
+    comments:
+    - Abstract parent with concrete values defined in ClimateControlTypes.yaml
+    - Use as range for has_type when describing environmental regulation infrastructure

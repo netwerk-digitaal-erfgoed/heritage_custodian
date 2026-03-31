@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/classes/GoogleReview
+name: GoogleReview
+title: Google Review Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_author
+- ../slots/has_url
+- ../slots/has_rating
+- ../slots/has_description
+- ../slots/has_text
+- ../slots/published_on
+classes:
+  GoogleReview:
+    class_uri: schema:Review
+    description: >-
+      Crowd-sourced evaluation and commentary submitted by visitors
+      regarding a heritage institution or cultural venue.
+    alt_descriptions:
+      nl: >-
+        Door het publiek ingediende evaluatie en commentaar met betrekking tot
+        een erfgoedinstituut of culturele locatie.
+      de: >-
+        Von Besuchern eingereichte Bewertung und Kommentar zu
+        einer Heritage-Institution oder kulturellen Einrichtung.
+      fr: >-
+        Évaluation et commentaire soumis par les visiteurs concernant
+        une institution patrimoniale ou un lieu culturel.
+      es: >-
+        Evaluación y comentario enviados por visitantes sobre
+        una institución patrimonial o lugar cultural.
+      ar: >-
+        تقييم وتعليق مقدم من الزوار حول
+        مؤسسة تراثية أو مكان ثقافي.
+      id: >-
+        Evaluasi dan komentar yang dikirimkan pengunjung mengenai
+        lembaga warisan atau lokasi budaya.
+      zh: >-
+        访客提交的关于遗产机构或文化场所的评价和评论。
+    broad_mappings:
+    - schema:Review
+    close_mappings:
+    - schema:UserReview
+    related_mappings:
+    - schema:Rating
+    - prov:Entity
+    slots:
+    - has_author
+    - has_url
+    - has_rating
+    - has_description
+    - has_text
+    - published_on
+    slot_usage:
+      has_rating:
+        range: integer
+    structured_aliases:
+    - literal_form: Google-beoordeling
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Google-Bewertung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: avis Google
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: reseña de Google
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مراجعة جوجل
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: ulasan Google
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 谷歌评论
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Rating scale typically 1-5 stars
+    - Used for crowd-sourced quality assessment
+    - Includes author, rating, text, and timestamp
+    - 'Preserved from prior description: Crowd-authored review metadata for a place profile.'
+    keywords:
+    - review
+    - rating
+    - crowd-sourced
+    - visitor feedback
+    examples:
+    - value:
+        has_author: "John D."
+        has_rating: 5
+        has_text: "Excellent collection and helpful staff"
+        published_on: "2024-06-15"
+      description: Sample visitor review
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Review entity for reputational and quality-signal enrichment.
+      custodian_types: '["*"]'

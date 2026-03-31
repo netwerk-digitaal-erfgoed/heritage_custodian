@@ -1,0 +1,72 @@
+id: https://nde.nl/ontology/hc/class/Policy
+name: policy_class
+title: Policy Base Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  odrl: http://www.w3.org/ns/odrl/2/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/effective_at
+- ../slots/expired_at
+- ../slots/has_note
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  Policy:
+    class_uri: odrl:Policy
+    abstract: true
+    exact_mappings:
+    - odrl:Policy
+    close_mappings:
+    - schema:GovernmentService
+    - dcterms:Policy
+    description: >-
+      Abstract base class for all policy types, defining rules, constraints, and
+      conditions that govern activities, resources, or entities.
+    alt_descriptions:
+      nl: Abstracte basisklasse voor alle beleidstypen.
+      de: Abstrakte Basisklasse für alle Richtlinientypen.
+      fr: Classe de base abstraite pour tous les types de politiques.
+    structured_aliases:
+    - literal_form: beleid
+      in_language: nl
+    - literal_form: Richtlinie
+      in_language: de
+    - literal_form: politique
+      in_language: fr
+    comments:
+    - Abstract base class - use subclasses for specific policy types.
+    - Follows ODRL policy model for rule-based systems.
+    - Subclasses: TransferPolicy, ConditionPolicy, AccessPolicy, RetentionPolicy.
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - effective_at
+    - expired_at
+    - has_note
+    slot_usage:
+      identified_by:
+        required: true
+      has_label:
+        required: true
+      has_description:
+      effective_at:
+        range: date
+        required: true
+      expired_at:
+        range: date
+        required: true
+      has_note:
+    annotations:

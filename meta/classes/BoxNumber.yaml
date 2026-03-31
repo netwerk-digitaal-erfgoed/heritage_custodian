@@ -1,0 +1,100 @@
+id: https://nde.nl/ontology/hc/class/BoxNumber
+name: box_number_class
+title: Box Number Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_numeric_value
+classes:
+  BoxNumber:
+    class_uri: hc:BoxNumber
+    description: >-
+      Numeric position identifier for a storage container on a shelf.
+      Part of hierarchical storage location addressing in heritage facilities.
+    alt_descriptions:
+      nl: >-
+        Numerieke positie-identificatie voor een opslagcontainer op een plank.
+        Onderdeel van hiërarchische opslaglocatie-adressering in erfgoedfaciliteiten.
+      de: >-
+        Numerische Positionskennung für einen Lagerbehälter auf einem Regal.
+        Teil der hierarchischen Lagerort-Adressierung in Heritage-Einrichtungen.
+      fr: >-
+        Identifiant de position numérique pour un conteneur de stockage sur une étagère.
+        Fait partie de l'adressage hiérarchique des emplacements de stockage dans les institutions patrimoniales.
+      es: >-
+        Identificador de posición numérica para un contenedor de almacenamiento en un estante.
+        Parte del direccionamiento jerárquico de ubicaciones de almacenamiento en instituciones patrimoniales.
+      ar: >-
+        معرف موقع رقمي لحاوية تخزين على رف.
+        جزء من عنونة موقع التخزين الهرمي في المؤسسات التراثية.
+      id: >-
+        Pengidentifikasi posisi numerik untuk wadah penyimpanan di rak.
+        Bagian dari pengalamatan lokasi penyimpanan hierarkis di institusi warisan.
+      zh: >-
+        货架上存储容器的数字位置标识符。
+        遗产机构中分层存储位置寻址的一部分。
+    broad_mappings:
+      - crm:E42_Identifier
+    related_mappings:
+      - schema:identifier
+    slots:
+      - has_numeric_value
+      - has_score
+    slot_usage:
+      has_numeric_value:
+        required: true
+        minimum_value: 1
+    comments:
+      - Numeric position on shelf or inventory number
+      - Part of Rule 53 slot migration from box_number
+      - 'Updated 2026-01-16: Migrated from inline attributes to proper slots'
+    see_also:
+      - https://nde.nl/ontology/hc/StorageUnit
+      - https://www.wikidata.org/wiki/Q854619
+    examples:
+      - value:
+          has_numeric_value: 1
+          has_score: 0.1
+        description: First container on shelf
+      - value:
+          has_numeric_value: 42
+          has_score: 0.1
+        description: Sequential inventory number
+    keywords:
+      - storage
+      - container
+      - position
+      - archive box
+      - identifier
+    notes:
+      - |
+        Preserved from prior description (commit bd8368df):
+
+        "An identifier for a storage box or its position on a shelf.\n\n**DEFINITION**:\n\nBoxNumber represents the position or identifier of a storage box within \na storage unit hierarchy. Archive boxes are the most common physical \ncontainers for heritage materials, particularly in archives.\n\n```\nShelf\n  \u2514\u2500\u2500 Box 1 (THIS CLASS - position on shelf)\n  \u2514\u2500\u2500 Box 2\n  \u2514\u2500\u2500 Box 3\n  ...\n```\n\n**TYPICAL VALUES**:\n\n| Type | Example | Description |\n|------|---------|-------------|\n| Sequential | 1, 2, 3, 12 | Position on shelf left-to-right |\n| Inventory | 145, 2024-0042 | Unique box inventory number |\n| Combined | 12.3 | Bay 12, Box 3 |\n\n**ARCHIVE BOX STANDARDS**:\n\nHeritage institutions typically use acid-free archive boxes conforming to:\n- ISO 16245 (Boxes for documents)\n- ANSI/NISO Z39.77 (Guidelines for materials in archives)\n\n**HERITAGE USE CASES**:\n\n| Material Type | Box Format |\n|---------------|------------|\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: doosnummer
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: box number
+        predicate: EXACT_SYNONYM
+        in_language: en
+      - literal_form: Kastennummer
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: numéro de boîte
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: número de caja
+        predicate: EXACT_SYNONYM
+        in_language: es

@@ -1,0 +1,119 @@
+# ==============================================================================
+# LinkML Slot Definition: has_religion
+# ==============================================================================
+# The religious affiliation of an individual, group, or organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property            | File/Line          | Mapping  | Notes                                                       |
+# |---------------|---------------------|--------------------|----------|-------------------------------------------------------------|
+# | **PiCo**      | `pico:hasReligion`  | pico.ttl:558-567   | slot_uri | "Religious conviction related to a person in an obs."       |
+# | **CIDOC-CRM** | `crm:P2_has_type`   | CIDOC_CRM_v7.1.3.rdf:1200-1214 | broad | "Sub-typing via E55 Type" — very generic typing.   |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_religion
+name: has_religion
+title: Has Religion
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  pico: https://personsincontext.org/model#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_religion:
+    slot_uri: pico:hasReligion
+    description: >-
+      Identifies or associates an individual, group, or organization with a
+      specific system of faith, worship, or religious affiliation. Records
+      the religion as mentioned in the source document.
+    alt_descriptions:
+      nl: >-
+        Identificeert of associeert een individu, groep of organisatie met een
+        specifiek geloofssysteem, eredienst of religieuze affiliatie.
+      de: >-
+        Identifiziert oder verbindet eine Person, Gruppe oder Organisation mit
+        einem bestimmten Glaubenssystem, Gottesdienst oder einer religiösen
+        Zugehörigkeit.
+      fr: >-
+        Identifie ou associe un individu, un groupe ou une organisation à un
+        système de foi, de culte ou d'affiliation religieuse spécifique.
+      ar: >-
+        يحدد أو يربط فردًا أو مجموعة أو منظمة بنظام إيمان أو عبادة أو انتماء
+        ديني محدد.
+      id: >-
+        Mengidentifikasi atau mengaitkan individu, kelompok, atau organisasi
+        dengan sistem kepercayaan, ibadah, atau afiliasi keagamaan tertentu.
+      zh: >-
+        标识或关联个人、团体或组织与特定的信仰体系、崇拜或宗教归属。
+      es: >-
+        Identifica o asocia a un individuo, grupo u organización con un
+        sistema específico de fe, culto o afiliación religiosa.
+    structured_aliases:
+      - literal_form: religie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Religion
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: religion
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: دين
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: agama
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 宗教
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: religión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - crm:P2_has_type  # CIDOC_CRM_v7.1.3.rdf:1200-1214 - "Sub-typing of CRM entities via E55 Type hierarchy"
+    aliases:
+      - religion
+    examples:
+      - value: "Roman Catholic"
+        description: A simple literal recording of religious affiliation.
+      - value: "Nederduits Gereformeerd"
+        description: Historical Dutch term for Dutch Reformed, recorded as stated in the source.
+      - value: "http://www.wikidata.org/entity/Q170208"
+        description: Wikidata URI for Dutch Reformed Church, used for standardized linking.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Record the religious affiliation exactly as stated in the source
+        document, preserving historical terms such as "Nederduits Gereformeerd"
+        or period-specific phrasing like "of the Roman persuasion".
+      - >-
+        When possible, link to thesauri for standardization. Wikidata is
+        recommended (e.g., Q5043 Christianity, Q432 Islam, Q9268 Judaism,
+        Q748 Buddhism, Q9089 Hinduism). The Getty AAT is also useful for
+        religious contexts in art history.
+      - >-
+        Religious data is sensitive personal information. Only record when
+        relevant to the heritage or archival context. Follow GDPR and local
+        privacy regulations. Historical records (pre-1900) are generally
+        less restricted; for living persons, use only publicly available
+        information.
+      - >-
+        A person's religion may change over time through conversion, apostasy,
+        or multiple affiliations. Use separate PersonObservations for different
+        time periods, each with its own source and observation date.
+      - >-
+        Religion is particularly relevant for heritage institutions managing
+        holy sites, religious archives, parish records, ecclesiastical
+        documents, provenance research involving persecution or confiscation,
+        and genealogical records (baptism, marriage, burial).
+      - >-
+        Wikidata property P140 (religion or worldview) is semantically
+        equivalent but is an identifier, not an RDF predicate.

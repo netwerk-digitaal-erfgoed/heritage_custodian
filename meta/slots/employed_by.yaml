@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: employed_by
+# ==============================================================================
+# Hired or engaged to work for a specific person or organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                                           |
+# |---------------|-----------------------|-------------------------|---------|-------------------------------------------------|
+# | **Schema.org**| `schema:worksFor`     | schemaorg:40619-40640   | exact   | "Organizations that the person works for."      |
+# | **W3C Org**   | `org:memberOf`        | org.rdf:743-758         | close   | "Person is a member of the Organization."       |
+#
+# NOTE: schema:worksFor (line 40619-40640) has domain Person and range Organization.
+# This is semantically exact for "employed by". org:memberOf is broader (includes
+# membership, affiliation, volunteering - not just employment).
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, verified ontology mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/employed_by
+name: employed_by
+title: Employed By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  employed_by:
+    slot_uri: schema:worksFor
+    description: >-
+      To be hired, engaged, or contracted to work for a specific person or 
+      organization in exchange for wages or a salary.
+    alt_descriptions:
+      nl: >-
+        In dienst genomen, geëngageerd of gecontracteerd om te werken voor een 
+        specifieke persoon of organisatie in ruil voor loon of salaris.
+      de: >-
+        Angestellt, engagiert oder vertraglich verpflichtet, für eine bestimmte 
+        Person oder Organisation gegen Lohn oder Gehalt zu arbeiten.
+      fr: >-
+        Être embauché, engagé ou sous contrat pour travailler pour une personne 
+        ou une organisation spécifique en échange d'un salaire.
+      ar: >-
+        أن يتم توظيفه أو الاستعانة به أو التعاقد معه للعمل لدى شخص 
+        أو منظمة محددة مقابل أجر أو راتب.
+      id: >-
+        Dipekerjakan, dilibatkan, atau dikontrak untuk bekerja untuk orang atau 
+        organisasi tertentu dengan imbalan upah atau gaji.
+      zh: >-
+        被雇用、聘用或签约为特定人员或组织工作，以换取工资或薪水。
+      es: >-
+        Ser contratado, empleado o comprometido para trabajar para una persona 
+        u organización específica a cambio de un salario.
+    structured_aliases:
+      - literal_form: in dienst bij
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: beschäftigt bei
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: employé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موظف لدى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dipekerjakan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 受雇于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: empleado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - is_or_was_employed_by
+      - source_organization
+    exact_mappings:
+    close_mappings:
+      - org:memberOf  # org.rdf:743-758 - broader (membership includes employment)
+    comments:
+      - |
+        **USAGE**: Use to indicate the employer organization for a person. 
+        The subject is the employee, the object is the employing organization.
+      - |
+        **DISTINCTION**: Use org:memberOf for general membership/affiliation 
+        that may not involve formal employment (e.g., board membership, volunteering).
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Organization/Rijksmuseum"
+        description: "Person employed by the Rijksmuseum"

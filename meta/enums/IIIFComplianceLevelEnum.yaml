@@ -1,0 +1,44 @@
+id: https://nde.nl/ontology/hc/enum/IIIFComplianceLevelEnum
+name: iiif_compliance_level_enum
+title: IIIF Compliance Level Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  IIIFComplianceLevelEnum:
+    description: |
+      IIIF Image API compliance levels.
+
+      Higher levels support more features.
+    permissible_values:
+      LEVEL_0:
+        description: |
+          Level 0 - Basic.
+
+          Only supports predefined image sizes listed in info.json.
+          No region extraction, rotation limited.
+
+          Minimum viable IIIF implementation.
+      LEVEL_1:
+        description: |
+          Level 1 - Intermediate.
+
+          Supports:
+          - Region by pixel and percentage
+          - Size by width, height, or percentage
+          - 0 and 90 degree rotation
+          - Default quality
+
+          Most common compliance level.
+      LEVEL_2:
+        description: |
+          Level 2 - Full.
+
+          Supports all Level 1 features plus:
+          - Arbitrary rotation (0-360)
+          - Mirroring
+          - All quality modes (color, gray, bitonal)
+          - Multiple output formats
+
+          Full Image API implementation.

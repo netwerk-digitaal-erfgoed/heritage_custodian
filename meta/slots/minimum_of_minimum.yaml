@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: minimum_of_minimum
+# ==============================================================================
+# Lower bound value of a dimensional range (CIDOC-CRM E54 Dimension pattern).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                        | File/Line                          | Mapping | Notes                                                   |
+# |----------------|---------------------------------|------------------------------------|---------|----------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P90a_has_lower_value_limit`| CIDOC_CRM_v7.1.3.rdf:3129-3134    | slot_uri| "has lower value limit" E54→Literal, subProp of P90.     |
+# | **Schema.org** | `schema:minValue`               | schemaorg.owl:26400-26416          | close   | "The lower value of some characteristic or property."    |
+# | **CIDOC-CRM**  | `crm:P90_has_value`             | CIDOC_CRM_v7.1.3.rdf:3122-3128    | broad   | General value property; P90a is subPropertyOf P90.       |
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-10 - Full polish: multilingual, clean description, header
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/minimum_of_minimum
+name: minimum_of_minimum
+title: Minimum of Minimum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  minimum_of_minimum:
+    slot_uri: crm:P90a_has_lower_value_limit
+    description: >-
+      Lower bound value of a range, following the CIDOC-CRM pattern for
+      dimensional ranges. Maps to P90a_has_lower_value_limit, which defines
+      the lowest value that a dimension may have within an instance of
+      E54 Dimension. Named "minimum of minimum" to acknowledge that the
+      lower bound itself may have uncertainty.
+    alt_descriptions:
+      nl: >-
+        Ondergrenswaarde van een bereik, volgend op het CIDOC-CRM-patroon
+        voor dimensionale bereiken. Geeft de laagste waarde aan die een
+        dimensie kan hebben.
+      de: >-
+        Unterer Grenzwert eines Bereichs, gemäß dem CIDOC-CRM-Muster für
+        dimensionale Bereiche. Definiert den niedrigsten Wert, den eine
+        Dimension haben kann.
+      fr: >-
+        Valeur de la limite inférieure d'une plage, suivant le modèle
+        CIDOC-CRM pour les plages dimensionnelles. Définit la valeur la
+        plus basse qu'une dimension peut avoir.
+      ar: >-
+        قيمة الحد الأدنى لنطاق، وفقًا لنمط CIDOC-CRM للنطاقات البُعدية.
+        يحدد أدنى قيمة يمكن أن يكون عليها بُعد ما.
+      id: >-
+        Nilai batas bawah dari suatu rentang, mengikuti pola CIDOC-CRM
+        untuk rentang dimensi. Mendefinisikan nilai terendah yang dapat
+        dimiliki suatu dimensi.
+      zh: >-
+        范围的下限值，遵循CIDOC-CRM维度范围模式。定义维度实例中可能具有的最低值。
+      es: >-
+        Valor del límite inferior de un rango, siguiendo el patrón CIDOC-CRM
+        para rangos dimensionales. Define el valor más bajo que una dimensión
+        puede tener.
+    structured_aliases:
+      - literal_form: Minimum van Minimum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Minimum des Minimums
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Minimum du Minimum
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الحد الأدنى للأدنى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Minimum dari Minimum
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 最小值中的最小值
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Mínimo del Mínimo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    multivalued: false
+    close_mappings:
+      - schema:minValue  # schemaorg.owl:26400-26416 - "The lower value of some characteristic or property." DatatypeProperty on QuantitativeValue/MonetaryAmount.
+    broad_mappings:
+      - crm:P90_has_value  # CIDOC_CRM_v7.1.3.rdf:3122-3128 - General value property; P90a is subPropertyOf P90.
+    aliases:
+      - minimal_of_minimal
+      - minimum_amount
+      - minimum_donation
+      - minimum_partner
+      - setpoint_min
+    examples:
+      - value: "100000"
+        description: Lower bound of €100K for grant range (works with maximum_of_maximum for complete range)
+      - value: "50"
+        description: Minimum donation amount for participation in a scheme
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.35
+      specificity_rationale: General utility slot for expressing lower bounds of any measured range.
+    comments:
+      - >-
+        Works with maximum_of_maximum (P90b) for complete range specification.
+      - >-
+        For grant funding ranges like "€100K–€500K":
+        minimum_of_minimum = 100000, maximum_of_maximum = 500000.
+      - >-
+        The slot_uri uses crm:P90a_has_lower_value_limit directly since the
+        semantics are equivalent. The redundant exact_mapping has been removed.
+      - Created from slot_fixes.yaml migration (2026-01-14).

@@ -1,0 +1,64 @@
+id: https://w3id.org/nde/ontology/PersonalLibrary
+name: PersonalLibrary
+title: Personal Library
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+classes:
+  PersonalLibrary:
+    description: Private book collection held by an individual, often preserved as part of a personal archive or literary estate.
+    alt_descriptions:
+      nl: Persoonlijke bibliotheek van een individu vaak bewaard als onderdeel van een nalatenschap of persoonlijk archief.
+      de: Private Bibliothek einer Person haeufig als Teil eines Nachlasses oder persoenlichen Archivs erhalten.
+      fr: Bibliotheque personnelle d un individu souvent conservee dans un fonds personnel ou un legs litteraire.
+      es: Biblioteca personal de un individuo a menudo conservada como parte de un archivo personal o legado literario.
+      ar: مكتبة شخصية لفرد، غالبا ما تُحفظ ضمن أرشيف شخصي أو تركة أدبية.
+      id: Perpustakaan pribadi milik individu sering dipelihara sebagai bagian dari arsip pribadi atau warisan sastra.
+      zh: 个人所藏的私人图书馆，常作为个人档案或文学遗产的一部分保存。
+    structured_aliases:
+    - {literal_form: persoonlijke bibliotheek, in_language: nl}
+    - {literal_form: Privatbibliothek, in_language: de}
+    - {literal_form: bibliotheque personnelle, in_language: fr}
+    - {literal_form: biblioteca personal, in_language: es}
+    - {literal_form: مكتبة شخصية, in_language: ar}
+    - {literal_form: perpustakaan pribadi, in_language: id}
+    - {literal_form: 个人藏书, in_language: zh}
+    is_a: CustodianType
+    class_uri: skos:Concept
+    annotations:
+      skos:prefLabel: Personal Library
+      skos:altLabel: "Autorenbibliothek, biblioteca de autor, bibliothèque personnelle, Private Library"
+      collection_type: personal collection
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_type
+    - has_score
+    - identified_by
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+          - equals_string: hc:LibraryType
+          - equals_string: hc:PersonalCollectionType
+    see_also:
+    - Nachlass
+    - LiteraryArchive
+    - PersonalArchive
+    - SpecialCollection
+    comments:
+    - Autorenbibliothek (de)
+    - biblioteca de autor (es)
+    - "bibliothèque personnelle (fr)"
+    - Private book collection of an individual
+    - May include annotated books and marginalia
+    - Often preserved with personal papers

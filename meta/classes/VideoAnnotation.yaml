@@ -1,0 +1,183 @@
+id: https://nde.nl/ontology/hc/class/VideoAnnotation
+name: video_annotation_class
+title: Video Annotation Class
+imports:
+- linkml:types
+- ../enums/AnnotationTypeEnum
+- ../slots/analyze
+- ../slots/contain
+- ../slots/filter
+- ../slots/has_quantity
+- ../slots/has_rationale
+- ../slots/has_score
+- ../slots/has_threshold
+- ../slots/has_type
+- ../slots/has_measurement_unit
+- ../slots/has_bounding_box
+- ../slots/mask
+- ../slots/has_method
+- ../slots/has_model
+- ../slots/has_objective
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+  as: https://www.w3.org/ns/activitystreams#
+default_prefix: hc
+classes:
+  VideoAnnotation:
+    is_a: VideoTextContent
+    class_uri: oa:Annotation
+    abstract: true
+    alt_descriptions:
+      nl: Abstracte basisklasse voor computer-vision en multimodale video-annotaties.
+      de: Abstrakte Basisklasse fuer Computer-Vision- und multimodale Videoannotationen.
+      fr: Classe de base abstraite pour les annotations video en vision par ordinateur et multimodales.
+      es: Clase base abstracta para anotaciones de video por vision por computador y multimodales.
+      ar: فئة أساس مجردة لتعليقات الفيديو المعتمدة على الرؤية الحاسوبية ومتعددة الوسائط.
+      id: Kelas dasar abstrak untuk anotasi video berbasis visi komputer dan multimodal.
+      zh: 用于计算机视觉/多模态视频注释的抽象基类。
+    structured_aliases:
+    - literal_form: videoannotatie
+      in_language: nl
+    - literal_form: Videoannotation
+      in_language: de
+    - literal_form: annotation video
+      in_language: fr
+    - literal_form: anotacion de video
+      in_language: es
+    - literal_form: وسم فيديو
+      in_language: ar
+    - literal_form: anotasi video
+      in_language: id
+    - literal_form: 视频注释
+      in_language: zh
+    description: >-
+      Abstract base class for structured annotations derived from visual or
+      multimodal analysis of video content.
+    exact_mappings:
+    - oa:Annotation
+    close_mappings:
+    - crm:E13_Attribute_Assignment
+    related_mappings:
+    - as:Activity
+    - schema:ClaimReview
+    slots:
+    - has_rationale
+    - contain
+    - has_type
+    - filter
+    - has_bounding_box
+    - mask
+    - has_method
+    - has_model
+    - has_objective
+    - has_score
+    - analyze
+    slot_usage:
+      has_type:
+#         range: string # uriorcurie
+        required: true
+        examples:
+        - value:
+            has_code: OBJECT_DETECTION
+            has_label: Object Detection
+      contain:
+#         range: string
+        multivalued: true
+        required: false
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_label: Night Watch painting visible
+            has_description: 30.0 - 35.0 seconds
+      has_rationale:
+#         range: string
+        required: false
+        examples:
+        - value:
+            has_label: ClassifyingMotivation
+      filter:
+        description: Detection filtering metadata including count and threshold settings.
+        range: DetectedEntity
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_quantity:
+              has_measurement_unit: detections
+            has_threshold:
+              has_value: 0.5
+        - value:
+            has_quantity:
+              has_measurement_unit: detections
+            has_threshold:
+              has_label: High Precision
+      analyze:
+        description: Frame analysis metadata (e.g., sample rate and analyzed frames).
+        range: VideoFrame
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_quantity:
+              has_measurement_unit: frames
+        - value:
+            has_quantity:
+              has_measurement_unit: samples per second
+      has_method:
+        range: boolean
+        required: false
+        examples:
+        - value: true
+      has_model:
+#         range: string
+        required: false
+        examples:
+        - value: Transformer
+        - value: CNN
+      has_objective:
+#         range: string
+        required: false
+        examples:
+        - value: detection
+        - value: captioning
+      has_bounding_box:
+        range: boolean
+        required: false
+        examples:
+        - value: true
+      mask:
+        range: boolean
+        required: false
+        examples:
+        - value: false
+    comments:
+    - Abstract base for all CV/multimodal video annotations
+    - Extends VideoTextContent with frame-based analysis parameters
+    - W3C Web Annotation compatible structure
+    - Supports both temporal and spatial annotation
+    - Tracks detection thresholds and model architecture
+    see_also:
+    - https://www.w3.org/TR/annotation-model/
+    - http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment
+    - https://iiif.io/api/presentation/3.0/
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Typical subclasses
+
+        - VideoSceneAnnotation (shot/scene structure)
+        - VideoObjectAnnotation (objects/faces/logos/landmarks)
+        - VideoOCRAnnotation (text visible in frames)
+
+        Alignment
+
+        Uses oa:Annotation for annotation semantics and extends VideoTextContent
+        for provenance and quality metadata.

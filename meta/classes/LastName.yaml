@@ -1,0 +1,70 @@
+id: https://nde.nl/ontology/hc/class/LastName
+name: LastName
+title: Last Name
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  pnv: https://w3id.org/pnv#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_base
+- ../slots/has_label
+classes:
+  LastName:
+    class_uri: hc:LastName
+    description: >-
+      Family-name component of a personal name, including optional sortable base
+      form for prefix-sensitive naming traditions.
+    alt_descriptions:
+      nl: Achternaamcomponent van een persoonsnaam met optionele stamvorm voor sortering bij voorvoegsels.
+      de: Nachnamenskomponente eines Personennamens mit optionaler Stammform fuer Sortierung bei Praefixen.
+      fr: Composant nom de famille d un nom de personne avec forme de base optionnelle pour le tri avec prefixes.
+      es: Componente de apellido de un nombre personal con forma base opcional para ordenar en tradiciones con prefijos.
+      ar: مكون اسم العائلة في الاسم الشخصي، مع صيغة أساسية اختيارية للفرز عند وجود بادئات.
+      id: Komponen nama keluarga dari nama pribadi dengan bentuk dasar opsional untuk pengurutan saat ada awalan.
+      zh: 人名中的姓氏成分，包含可选的基础形式以支持带前缀姓氏的排序。
+    structured_aliases:
+    - {literal_form: achternaam, in_language: nl}
+    - {literal_form: Nachname, in_language: de}
+    - {literal_form: nom de famille, in_language: fr}
+    - {literal_form: apellido, in_language: es}
+    - {literal_form: اسم العائلة, in_language: ar}
+    - {literal_form: nama keluarga, in_language: id}
+    - {literal_form: 姓氏, in_language: zh}
+    slots:
+    - has_label
+    - has_base
+    slot_usage:
+      has_base:
+        description: Base surname without prefixes used for alphabetical sorting.
+        required: false
+        examples:
+        - value: Berg
+        - value: Vries
+      has_label:
+        required: true
+        examples:
+        - value: van der Berg
+        - value: de Vries
+    close_mappings:
+    - schema:familyName
+    - pnv:surname
+    comments:
+    - "PNV alignment: supports Dutch surname representation where prefixes may be separated for sorting."
+    - "Sorting behavior example: Johannes de Vries sorts under V using base Vries."
+    - "Sorting behavior example: Anna van den Berg sorts under B using base Berg."
+    examples:
+    - value:
+        has_label: van der Berg
+        has_base: Berg
+      description: Dutch surname with prefix; base used for sorting
+    - value:
+        has_label: de Vries
+        has_base: Vries
+      description: Dutch surname with prefix; base used for sorting
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.6
+      specificity_rationale: Moderately specific person-name component used in staff/contact contexts.

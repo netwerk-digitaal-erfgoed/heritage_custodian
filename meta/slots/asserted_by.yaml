@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: asserted_by
+# ==============================================================================
+# Links an assertion to the agent who made it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property              | File/Line          | Mapping | Notes                                |
+# |------------|-----------------------|--------------------|---------|--------------------------------------|
+# | **PROV-O** | `prov:wasAttributedTo`| prov.ttl:1082-1097 | close   | "Attribution is the ascribing of an  |
+# |            |                       |                    |         | entity to an agent" - agent focus    |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/asserted_by
+name: asserted_by
+title: Asserted By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  asserted_by:
+    slot_uri: hc:assertedBy
+    description: >-
+      To be stated, claimed, or declared to be true or valid by a specific 
+      agent, source, or authority.
+    alt_descriptions:
+      nl: >-
+        Verklaard, beweerd of gedeclareerd te zijn als waar of geldig door 
+        een specifieke agent, bron of autoriteit.
+      de: >-
+        Von einem bestimmten Agenten, einer Quelle oder Autorität als wahr 
+        oder gültig erklärt, behauptet oder deklariert zu werden.
+      fr: >-
+        Être déclaré, affirmé ou proclamé vrai ou valide par un agent, 
+        une source ou une autorité spécifique.
+      ar: >-
+        أن يُصرح به أو يُدعى أو يُعلن أنه صحيح أو صالح من قبل وكيل 
+        أو مصدر أو سلطة محددة.
+      id: >-
+        Dinyatakan, diklaim, atau dideklarasikan benar atau valid oleh 
+        agen, sumber, atau otoritas tertentu.
+      zh: >-
+        由特定代理、来源或权威声明、主张或宣布为真实或有效。
+      es: >-
+        Ser declarado, afirmado o proclamado como verdadero o válido por 
+        un agente, fuente o autoridad específica.
+    structured_aliases:
+      - literal_form: beweerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: behauptet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: affirmé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُصرح به من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dinyatakan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...声明
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: afirmado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1097 - "Attribution is the ascribing of an entity to an agent"
+    aliases:
+      - is_or_was_asserted_by
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link claims, statements, or assertions 
+        to the agent (person, organization, or system) that made them.
+      - |
+        **MAPPING NOTE**: `prov:wasAttributedTo` is close but not exact - 
+        PROV-O focuses on entity-to-agent attribution in provenance contexts, 
+        while this slot specifically captures assertion/claim authorship.

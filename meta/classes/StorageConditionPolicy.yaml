@@ -1,0 +1,207 @@
+id: https://nde.nl/ontology/hc/class/StorageConditionPolicy
+name: storage_condition_policy_class
+title: Storage Condition Policy Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  odrl: http://www.w3.org/ns/odrl/2/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/allow
+- ../slots/has_description
+- ../slots/has_policy
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_setpoint
+- ../slots/has_tolerance
+- ../slots/has_measurement_unit
+- ../slots/approved_by
+- ../slots/effective_at
+- ../slots/expired_at
+- ../slots/specify
+- ../slots/has_note
+- ../slots/has_particulate
+- ../slots/require
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_roadmap
+- ../slots/has_standard
+- ../enums/StorageStandardEnum
+classes:
+  StorageConditionPolicy:
+    class_uri: premis:PreservationPolicy
+    description: >-
+      Policy defining intended target storage conditions and requirements for a
+      facility or zone.
+    alt_descriptions:
+      nl: Beleid dat beoogde bewaarcondities en eisen voor een opslagruimte of zone vastlegt.
+      de: Richtlinie mit Soll-Lagerbedingungen und Anforderungen fuer einen Raum oder eine Zone.
+      fr: Politique definissant les conditions de conservation visees et les exigences pour un espace ou une zone.
+      es: Politica que define condiciones objetivo de almacenamiento y requisitos para una instalacion o zona.
+      ar: سياسة تحدد شروط التخزين المستهدفة والمتطلبات لمنشأة أو منطقة.
+      id: Kebijakan yang menetapkan kondisi penyimpanan target dan persyaratan untuk fasilitas atau zona.
+      zh: 为设施或分区规定目标存储条件与要求的政策。
+    structured_aliases:
+    - {literal_form: bewaarconditiebeleid, in_language: nl}
+    - {literal_form: Lagerbedingungenrichtlinie, in_language: de}
+    - {literal_form: politique de conservation, in_language: fr}
+    - {literal_form: politica de conservacion, in_language: es}
+    - {literal_form: سياسة شروط التخزين, in_language: ar}
+    - {literal_form: kebijakan kondisi penyimpanan, in_language: id}
+    - {literal_form: 存储条件政策, in_language: zh}
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_policy
+    - has_setpoint
+    - has_tolerance
+    - has_particulate
+    - specify
+    - require
+    - has_standard
+    - effective_at
+    - expired_at
+    - approved_by
+    - has_roadmap
+    - has_note
+    - allow
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/policy/storage/rijksmuseum-depot-climate-2020
+      has_label:
+        required: true
+        examples:
+        - value: Rijksmuseum Depot Climate Control Policy
+      has_setpoint:
+        required: false
+        multivalued: true
+        examples:
+        - value: "Temperature: 18C +- 2C"
+        - value: "Relative Humidity: 50% +- 5%"
+        - value: "Light Level: 50 lux maximum"
+      has_tolerance:
+        required: false
+        multivalued: true
+        examples:
+        - value: "+/- 5% RH"
+      has_particulate:
+        required: false
+        examples:
+        - value: 35.0
+      specify:
+        required: false
+        multivalued: true
+        examples:
+        - value: "UV filtered lighting required"
+        - value: "Two-person rule for vault access"
+      require:
+        required: false
+        multivalued: true
+        examples:
+        - value: pest_management_required
+        - value: requires_uv_filter
+        - value: staff_access_only
+      has_standard:
+        range: StorageStandardEnum
+        required: false
+        multivalued: true
+        examples:
+        - value: EN_15757_2010
+        - value: EN_16893_2018
+      effective_at:
+        range: date
+        required: true
+        examples:
+        - value: '2020-01-01'
+      expired_at:
+        range: date
+        required: false
+      approved_by:
+        range: Approver
+        required: false
+        inlined: true
+        examples:
+        - value:
+            approver_name: Collections Committee
+      has_roadmap:
+        range: date
+        required: false
+        examples:
+        - value: '2025-12-31'
+    comments:
+    - Policy defines intended conditions, not actual measured state
+    - Actual conditions should be tracked in observation classes (e.g., StorageCondition)
+    - Refer to applicable standards (ISO/EN/PAS) where possible
+    - Policies may vary by storage zone and collection type
+    see_also:
+    - https://www.iso.org/standard/68893.html
+    - https://www.en-standard.eu/bs-en-16893-2018/
+    - https://www.en-standard.eu/bs-en-15757-2010/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/policy/storage/rijksmuseum-depot-climate-2020
+        has_label: Rijksmuseum Depot Climate Control Policy
+        has_description: Climate control policy for off-site art storage depot.
+        has_setpoint:
+        - "Temperature: 18C +- 2C"
+        - "Relative Humidity: 50% +- 5%"
+        require:
+        - staff_access_only
+        - pest_management_required
+        has_standard:
+        - EN_15757_2010
+        - EN_16893_2018
+        effective_at: '2020-01-01'
+        approved_by:
+          approver_name: Collections Committee
+    - value:
+        identified_by: https://nde.nl/ontology/hc/policy/storage/nationaal-archief-cold-storage
+        has_label: National Archives Cold Storage Policy
+        has_description: Cold storage policy for photographic materials.
+        has_setpoint:
+        - "Temperature: -18C +- 2C"
+        - "Relative Humidity: 30% +- 5%"
+        require:
+        - restricted_access
+        - gloves_required
+        effective_at: '2015-06-01'
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Modeling intent
+
+        - This class expresses intended targets and requirements.
+        - Measured environmental conditions should be recorded as observations.
+
+        Prior migrations
+
+        Earlier versions attempted to model setpoints as structured objects and
+        overloaded require for multiple purposes. Canonical slots used here:
+        - has_setpoint / has_tolerance as string-based setpoint profiles
+        - require as requirement codes/labels
+
+      legacy_examples: |
+        Preserved from earlier migration examples; includes fields not currently
+        modeled as slots on this class.
+
+        - policy_id, policy_name, policy_description
+        - has_setpoint with setpoint_type/setpoint_value/setpoint_unit
+        - standards_compliance
+        - policy_review_date

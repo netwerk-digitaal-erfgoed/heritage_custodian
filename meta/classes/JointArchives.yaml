@@ -1,0 +1,61 @@
+id: https://w3id.org/nde/ontology/JointArchives
+name: JointArchives
+title: Joint Archives
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/ArchiveOrganizationType
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+classes:
+  JointArchives:
+    class_uri: hc:JointArchives
+    is_a: ArchiveOrganizationType
+    description: >-
+      Archival institution jointly governed by two or more organizations to
+      preserve and provide access to shared records.
+    alt_descriptions:
+      nl: Archiefinstelling die gezamenlijk door twee of meer organisaties wordt bestuurd voor gedeeld documentenbeheer.
+      de: Archiveinrichtung unter gemeinsamer Traegerschaft mehrerer Organisationen zur Bewahrung gemeinsamer Unterlagen.
+      fr: Institution archivistique gouvernee conjointement par plusieurs organisations pour conserver des archives communes.
+      es: Institucion archivistica gobernada conjuntamente por dos o mas organizaciones para custodiar registros compartidos.
+      ar: مؤسسة أرشيفية تُدار بشكل مشترك من جهتين أو أكثر لحفظ السجلات المشتركة وإتاحتها.
+      id: Institusi arsip yang dikelola bersama oleh dua atau lebih organisasi untuk melestarikan rekaman bersama.
+      zh: 由两个或以上组织共同治理、用于保管与开放共享记录的档案机构。
+    structured_aliases:
+      - literal_form: gezamenlijk archief
+        in_language: nl
+      - literal_form: gemeinsames Archiv
+        in_language: de
+      - literal_form: archives conjointes
+        in_language: fr
+      - literal_form: archivo conjunto
+        in_language: es
+      - literal_form: أرشيف مشترك
+        in_language: ar
+      - literal_form: arsip bersama
+        in_language: id
+      - literal_form: 联合档案馆
+        in_language: zh
+    slots:
+      - has_type
+      - hold_record_set
+      - has_score
+      - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    broad_mappings:
+      - schema:ArchiveOrganization
+      - wd:Q166118
+    close_mappings:
+      - wd:Q117442301
+      - rico:CorporateBody

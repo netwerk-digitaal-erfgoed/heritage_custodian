@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: charge_fee
+# ==============================================================================
+# To specify the monetary charge or payment required to access a service,
+# participate in an event, or utilize a resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property        | File/Line               | Mapping | Notes                                            |
+# |----------------|-----------------|-------------------------|---------|--------------------------------------------------|
+# | **Schema.org** | `schema:price`  | schemaorg.owl:30600-636 | close   | "The offer price of a product." (commerce domain) |
+#
+# schema:price is close but not exact: it is about product offer prices in a
+# commerce context (domain: DonateAction/TradeAction/PriceSpecification/Offer),
+# while charge_fee is about fees/charges for accessing services or events in a
+# heritage context.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, demoted schema:price exact→close
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/charge_fee
+name: charge_fee
+title: charge fee
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  charge_fee:
+    name: charge_fee
+    title: charge fee
+    description: >-
+      To specify the monetary charge or payment required to access a service,
+      participate in an event, or utilize a resource.
+    alt_descriptions:
+      nl: >-
+        De geldelijke toeslag of betaling specificeren die vereist is om
+        toegang te krijgen tot een dienst, deel te nemen aan een evenement
+        of een bron te gebruiken.
+      de: >-
+        Die monetäre Gebühr oder Zahlung angeben, die erforderlich ist, um
+        auf einen Dienst zuzugreifen, an einer Veranstaltung teilzunehmen
+        oder eine Ressource zu nutzen.
+      fr: >-
+        Spécifier le montant monétaire ou le paiement requis pour accéder à
+        un service, participer à un événement ou utiliser une ressource.
+      ar: >-
+        تحديد الرسوم المالية أو الدفعة المطلوبة للوصول إلى خدمة أو المشاركة
+        في حدث أو استخدام مورد.
+      id: >-
+        Menentukan biaya moneter atau pembayaran yang diperlukan untuk
+        mengakses layanan, berpartisipasi dalam acara, atau memanfaatkan
+        sumber daya.
+      zh: >-
+        指定访问服务、参加活动或使用资源所需的货币费用或付款。
+      es: >-
+        Especificar el cargo monetario o pago requerido para acceder a un
+        servicio, participar en un evento o utilizar un recurso.
+    structured_aliases:
+      - literal_form: tarief rekenen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Gebühr erheben
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: facturer des frais
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: فرض رسوم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: membebankan biaya
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 收取费用
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cobrar tarifa
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:chargeFee
+    range: string # uriorcurie
+    # range: MonetaryAmount
+    aliases:
+      - has_or_had_fee
+      - has_or_had_admission_fee
+      - has_fee
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:price  # schemaorg.owl:30600-636 - "The offer price of a product." (commerce domain)

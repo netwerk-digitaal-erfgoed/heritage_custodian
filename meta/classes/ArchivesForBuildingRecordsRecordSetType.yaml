@@ -1,0 +1,91 @@
+id: https://nde.nl/ontology/hc/class/ArchivesForBuildingRecordsRecordSetType
+name: ArchivesForBuildingRecordsRecordSetType
+title: Archives for Building Records Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+classes:
+  ArchivesForBuildingRecordsRecordSetType:
+    class_uri: hc:ArchivesForBuildingRecordsRecordSetType
+    description: >-
+      Classification category for record sets containing building permits,
+      construction documentation, and architectural records within building
+      records archives.
+    alt_descriptions:
+      nl: >-
+        Classificatiecategorie voor recordsets met bouwvergunningen,
+        bouwdocumentatie en architectuurarchieven binnen bouwdossiersarchieven.
+      de: >-
+        Klassifizierungskategorie fuer Datensatzgruppen mit Baugenehmigungen,
+        Baudokumentation und Architekturunterlagen in Bauaktenarchiven.
+      fr: >-
+        Categorie de classification pour les ensembles d'enregistrements contenant
+        des permis de construire, de la documentation de construction et des
+        archives architecturales dans les archives de dossiers de construction.
+      es: >-
+        Categoria de clasificacion para conjuntos de registros que contienen
+        permisos de construccion, documentacion de construccion y registros
+        arquitectonicos en archivos de expedientes de obra.
+      ar: >-
+        فئة تصنيف لمجموعات السجلات التي تحتوي على تصاريح البناء ووثائق البناء
+        والسجلات المعمارية في أرشيفات سجلات البناء.
+      id: >-
+        Kategori klasifikasi untuk kumpulan rekaman yang berisi izin bangunan,
+        dokumentasi konstruksi, dan arsip arsitektur dalam arsip dokumen bangunan.
+      zh: >-
+        建筑档案中包含建筑许可证、施工文件和建筑记录的记录集分类类别。
+    is_a: CollectionType
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+    structured_aliases:
+      - literal_form: bouwdossiers-recordsettype
+        in_language: nl
+      - literal_form: Bauakten-Bestandsart
+        in_language: de
+      - literal_form: type de fonds de dossiers de construction
+        in_language: fr
+      - literal_form: tipo de fondo de expedientes de obra
+        in_language: es
+      - literal_form: نوع مجموعة سجلات البناء
+        in_language: ar
+      - literal_form: tipe kumpulan rekaman dokumen bangunan
+        in_language: id
+      - literal_form: 建筑记录集类型
+        in_language: zh
+    examples:
+      - value:
+          has_type: ArchiveOrganizationType
+          has_score: 1.0
+        description: Building permit collection type
+    keywords:
+      - building permit
+      - construction records
+      - record set type
+      - classification
+    slots:
+      - has_type
+      - has_score
+      - has_scope
+    slot_usage:
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+    comments:
+      - Abstract classification for building records collections
+      - See ArchivesForBuildingRecordsRecordSetTypes.yaml for concrete subclasses
+    see_also:
+      - ArchivesForBuildingRecords
+      - rico:RecordSetType
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Specific record set type for building/construction records
+      custodian_types: "['ArchivesForBuildingRecords']"

@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: in_jurisdiction
+# ==============================================================================
+# Assigns an entity or matter within a particular legal or geographic authority.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property               | File/Line                  | Mapping | Notes                                                         |
+# |----------------|------------------------|----------------------------|---------|---------------------------------------------------------------|
+# | **Schema.org** | `schema:jurisdiction`  | schemaorg.owl:23809-23810  | close   | "jurisdiction" Legislation/GovService→AdminArea; close match. |
+# | **RiC-O**      | `rico:isOrWasRegulatedBy` | RiC-O_1-1.rdf:15054-15065 | related | Thing→Rule; about regulatory relationship, not jurisdiction.  |
+#
+# schema:jurisdiction is close but its domain is restricted to Legislation
+# and GovernmentService. Our slot is more general, applicable to any heritage
+# entity or legal matter. dcterms:Jurisdiction is a class, not a property.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/in_jurisdiction
+name: in_jurisdiction
+title: In Jurisdiction
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_jurisdiction:
+    slot_uri: hc:inJurisdiction
+    description: >-
+      Assigns or locates a specific legal matter, entity, or event within the
+      geographic or legal authority of a particular court, government body, or
+      system of law. Records under which jurisdiction a heritage custodian
+      operates, is registered, or is subject to regulatory oversight.
+    alt_descriptions:
+      nl: >-
+        Wijst een specifieke juridische zaak, entiteit of gebeurtenis toe aan
+        het geografische of juridische gezag van een bepaalde rechtbank,
+        overheidsorgaan of rechtsstelsel.
+      de: >-
+        Ordnet eine bestimmte Rechtssache, Entität oder ein Ereignis dem
+        geografischen oder rechtlichen Zuständigkeitsbereich eines bestimmten
+        Gerichts, einer Behörde oder eines Rechtssystems zu.
+      fr: >-
+        Assigne une affaire juridique, une entité ou un événement spécifique
+        à l'autorité géographique ou juridique d'un tribunal, d'un organisme
+        gouvernemental ou d'un système juridique particulier.
+      ar: >-
+        يعين أو يحدد مسألة قانونية أو كيانًا أو حدثًا معينًا ضمن السلطة
+        الجغرافية أو القانونية لمحكمة أو هيئة حكومية أو نظام قانوني معين.
+      id: >-
+        Menetapkan atau menempatkan masalah hukum, entitas, atau peristiwa
+        tertentu dalam otoritas geografis atau hukum dari pengadilan, badan
+        pemerintah, atau sistem hukum tertentu.
+      zh: >-
+        将特定法律事务、实体或事件分配或定位到特定法院、政府机构或法律体系的地理或法律管辖范围内。
+      es: >-
+        Asigna o ubica un asunto legal, entidad o evento específico dentro de
+        la autoridad geográfica o legal de un tribunal, organismo gubernamental
+        o sistema jurídico particular.
+    structured_aliases:
+      - literal_form: in jurisdictie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: in Zuständigkeitsbereich
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dans la juridiction
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: في الاختصاص القضائي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dalam yurisdiksi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 在管辖范围内
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: en jurisdicción
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    close_mappings:
+      - schema:jurisdiction  # schemaorg.owl:23809-23810 - Legislation/GovService→AdminArea; narrower domain
+    related_mappings:
+      - rico:isOrWasRegulatedBy  # RiC-O_1-1.rdf:15054-15065 - Thing→Rule; regulatory relationship
+    aliases:
+      - jurisdiction_id
+      - jurisdiction_level
+      - jurisdiction_type
+      - jurisdiction
+      - legal_jurisdiction
+      - oversight_jurisdiction
+    examples:
+      - value: "Netherlands"
+        description: >-
+          A heritage institution operates under the legal jurisdiction of
+          the Netherlands.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        dcterms:Jurisdiction is a class (not a property) representing the
+        extent or range of judicial authority. schema:jurisdiction is close
+        but restricted to Legislation and GovernmentService domains.

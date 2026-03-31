@@ -1,0 +1,56 @@
+id: https://nde.nl/ontology/hc/class/SupplierType
+name: supplier_type
+title: Supplier Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  gr: http://purl.org/goodrelations/v1#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  SupplierType:
+    class_uri: skos:Concept
+    description: >-
+      Abstract base class for supplier type taxonomy.
+    alt_descriptions:
+      nl: Abstracte basisklasse voor leverancierstype-taxonomie.
+      de: Abstrakte Basisklasse für Lieferantentyp-Taxonomie.
+      fr: Classe de base abstraite pour la taxonomie des types de fournisseurs.
+    structured_aliases:
+    - literal_form: leverancierstype
+      in_language: nl
+    - literal_form: Lieferantentyp
+      in_language: de
+    - literal_form: type de fournisseur
+      in_language: fr
+    comments:
+    - Classifies types of suppliers in business relationships with heritage custodians.
+    - Concrete subclasses in SupplierTypes.yaml include PrintSupplier, ReproductionSupplier, etc.
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - gr:BusinessEntity
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        inlined: false
+        examples:
+        - value:
+            label_text: Print Supplier
+      has_description:
+        inlined: false
+        examples:
+        - value:
+            description_text: Suppliers providing print-on-demand and art reproduction services
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Supplier types applicable to any custodian with commercial operations.
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration

@@ -1,0 +1,185 @@
+id: https://nde.nl/ontology/hc/parsimony/mappings/parsimony-engineering-slot-alignments
+name: parsimony_engineering_slot_alignments
+title: Semantic to Engineering Slot Alignments
+description: >-
+  Detailed slot-level bridge showing how semantic predicates map to richer
+  engineering slots.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../slots/addressed_at
+  - ../slots/affiliated_with
+  - ../slots/comes_into_existence_through
+  - ../slots/comes_to_an_end_through
+  - ../slots/contactable_through
+  - ../slots/equivalent_to
+  - ../slots/expressed_in
+  - ../slots/functions_as
+  - ../slots/has_affiliate
+  - ../slots/has_spatial_scope
+  - ../slots/made_public_on
+  - ../slots/available_via
+  - ../slots/made_available_by
+  - ../slots/associated_with
+  - ../slots/accessed_under
+  - ../slots/designated_by
+  - ../slots/holds
+  - ../slots/attested_in
+  - ../slots/indicates
+  - ../slots/yields
+  - ../slots/realized_through
+  - ../slots/received_from
+  - ../slots/passed_to
+  - ../slots/included_in
+  - ../slots/located_in
+  - ../slots/marked_as
+  - ../slots/situated_in_time
+  - ../slots/typed_as
+  - ../slots/carried_out_by
+  - ../../../modules/slots/derive_from
+  - ../../../modules/slots/encompassed_by
+  - ../../../modules/slots/generated_by
+  - ../../../modules/slots/has_degree
+  - ../../../modules/slots/has_level
+  - ../../../modules/slots/dissolved_by
+  - ../../../modules/slots/founded_through
+  - ../../../modules/slots/has_address
+  - ../../../modules/slots/has_access_policy
+  - ../../../modules/slots/has_contact_point
+  - ../../../modules/slots/has_language
+  - ../../../modules/slots/has_member
+  - ../../../modules/slots/has_status
+  - ../../../modules/slots/hold
+  - ../../../modules/slots/has_position
+  - ../../../modules/slots/has_role
+  - ../../../modules/slots/identified_by
+  - ../../../modules/slots/member_of
+  - ../../../modules/slots/equivalent_to
+  - ../../../modules/slots/has_source
+  - ../../../modules/slots/has_publisher
+  - ../../../modules/slots/observe
+  - ../../../modules/slots/part_of
+  - ../../../modules/slots/published_on
+  - ../../../modules/slots/related_to
+  - ../../../modules/slots/refer_to
+  - ../../../modules/slots/temporal_extent
+  - ../../../modules/slots/transferred_from
+  - ../../../modules/slots/transferred_to
+  - ../../../modules/slots/cover_country
+  - ../../../modules/slots/cover_geographic_subdivision
+  - ../../../modules/slots/cover_place
+comments:
+  - >-
+    SLOT ALIGNMENT: equivalent_to provides the semantic-level equivalence bridge
+    for cross-authority or cross-system matching. Engineering equivalent_to is
+    the narrower operational relation used when the equivalence claim is made explicit.
+  - >-
+    SLOT ALIGNMENT: comes_into_existence_through and comes_to_an_end_through add
+    explicit lifecycle relations at the semantic layer. Engineering founded_through
+    and dissolved_by remain narrower operational realizations, while CRM, PROV,
+    Org, and Schema.org variants cover event, invalidation, authority-change, and
+    date-focused aspects of lifecycle semantics.
+  - >-
+    SLOT ALIGNMENT: affiliated_with and has_affiliate capture affiliation and
+    member aggregation distinctly from generic association and containment.
+    Engineering member_of and has_member remain the narrower network-specific
+    realizations.
+  - >-
+    SLOT ALIGNMENT: contactable_through and addressed_at introduce semantic
+    service-contact and address relations without collapsing them into generic
+    availability or place context. Engineering has_contact_point and has_address
+    remain narrower realizations.
+  - >-
+    SLOT ALIGNMENT: expressed_in isolates language as a semantic relation when
+    needed, while engineering has_language carries the richer metadata-heavy
+    implementation detail.
+  - >-
+    SLOT ALIGNMENT: functions_as is the semantic hypernym for contextual role,
+    position, rank, seniority, and qualification. Engineering has_position,
+    has_role, has_degree, and selected has_level patterns are narrower
+    realizations that preserve operational distinctions the semantic layer does
+    not need to maintain separately.
+  - >-
+    SLOT ALIGNMENT: has_spatial_scope distinguishes territorial remit,
+    jurisdiction, or area served from physical address and current location.
+    Engineering cover_country, cover_geographic_subdivision, and cover_place
+    are narrower realizations of this broader semantic scope relation.
+  - >-
+    SLOT ALIGNMENT: made_public_on is the semantic publication-date predicate.
+    Engineering published_on is the narrower operational release/publication date slot.
+  - >-
+    SLOT ALIGNMENT: available_via is a broader semantic availability
+    predicate
+    that bridges to engineering URL, portal, and access-point slots without
+    reproducing all delivery mechanics.
+  - >-
+    SLOT ALIGNMENT: made_available_by is the semantic publication and issuance
+    predicate. Engineering has_publisher is the narrower implementation-facing
+    publishing relation.
+  - >-
+    SLOT ALIGNMENT: associated_with is the preferred generic associative
+    predicate. Engineering related_to is a narrower operational relation used
+    for many project- and data-shaped links.
+  - >-
+    SLOT ALIGNMENT: holds is broader than engineering hold. The semantic slot
+    should cover custody, stewardship, and holding relations that are split across
+    multiple engineering slots and class contexts.
+  - >-
+    SLOT ALIGNMENT: designated_by is a broader semantic predicate covering
+    names, identifiers, codes, and appellations. Engineering identified_by is a
+    narrower hyponym used when the designation is expressed in operational form.
+  - >-
+    SLOT ALIGNMENT: attested_in is a semantic hypernym over engineering
+    has_source and related provenance/documentation slots.
+  - >-
+    SLOT ALIGNMENT: indicates is the semantic predicate connecting observations
+    to the entities they provide evidence about (CustodialEntity, PlaceContext,
+    Holding, LegalStatus, SourceResource, EncompassingBody). It absorbs the
+    former Reconstruction bridge concept. Engineering observe, refer_to,
+    derive_from, and generated_by distribute this indication pattern across
+    source derivation, workflow provenance, referential targeting, and observed-
+    target relations.
+  - >-
+    SLOT ALIGNMENT: yields is the semantic predicate connecting activities to
+    the observations they produce. It replaces the former reconstructs slot.
+    Engineering generated_by is a narrower hyponym used in operational
+    provenance chains.
+  - >-
+    SLOT ALIGNMENT: realized_through is the broader semantic predicate for
+    process- or activity-based realization. Engineering generated_by is a
+    narrower hyponym used in operational provenance chains.
+  - >-
+    SLOT ALIGNMENT: received_from and passed_to provide semantic transfer
+    directionality. Engineering transferred_from and transferred_to are their
+    narrower operational counterparts, while CRM and Schema.org variants cover
+    more specific actor-only or location-only cases.
+  - >-
+    SLOT ALIGNMENT: accessed_under is the semantic hypernym for access
+    conditions, restrictions, rights, and policies. Engineering has_access_policy
+    is a narrower hyponym within this broader conceptual predicate.
+  - >-
+    SLOT ALIGNMENT: marked_as is the broader semantic predicate for status or
+    standing. Engineering has_status is a narrower hyponym carrying operational
+    state values.
+  - >-
+    SLOT ALIGNMENT: located_in is broader than engineering place-related slots such
+    as located_at, has_location, and locality-bearing reconstruction slots.
+  - >-
+    SLOT ALIGNMENT: included_in is the preferred semantic containment
+    predicate. It bridges to engineering encompassed_by and part_of, depending on
+    whether the containment is organizational, conceptual, or constituent.
+  - >-
+    SLOT ALIGNMENT: situated_in_time is the broader semantic temporal
+    placement predicate. Engineering temporal_extent is a narrower hyponym used
+    for more explicit time-span modeling.
+  - >-
+    SLOT ALIGNMENT: typed_as is a hypernym over engineering has_type and many
+    narrower enum-backed or type-class-backed patterns.
+  - >-
+    SLOT ALIGNMENT: carried_out_by is close to engineering conducted_by and related
+    provenance slots, but remains intentionally generic in the semantic layer.

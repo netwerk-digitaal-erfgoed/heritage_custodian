@@ -1,0 +1,101 @@
+id: https://nde.nl/ontology/hc/class/CustodianArchive
+name: custodian_archive_class
+title: CustodianArchive Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_description
+- ../slots/has_type
+- ../slots/has_quantity
+- ../slots/has_status
+- ../slots/refer_to
+- ../slots/temporal_extent
+- ../slots/has_score
+classes:
+  CustodianArchive:
+    is_a: ReconstructedEntity
+    class_uri: rico:RecordSet
+    description: >-
+      Inactive administrative record aggregation transferred from operational use and awaiting
+      archival processing into managed heritage holdings.
+    alt_descriptions:
+      nl: >-
+        Inactieve administratieve recordaggregatie overgebracht vanuit operationeel gebruik
+        en in afwachting van archiefverwerking tot beheerde erfgoedcollecties.
+      de: >-
+        Inaktive administrative Datensatzaggregation, die aus dem operativen Gebrauch überführt wurde
+        und auf die Archivierung in verwalteten Heritage-Beständen wartet.
+      fr: >-
+        Agrégation de documents administratifs inactifs transférés de l'usage opérationnel
+        et en attente de traitement archivistique dans les fonds patrimoniaux gérés.
+      es: >-
+        Agregación de registros administrativos inactivos transferidos del uso operativo
+        y en espera de procesamiento archivístico en fondos patrimoniales gestionados.
+      ar: >-
+        تجميع سجلات إدارية غير نشطة منقولة من الاستخدام التشغيلي
+        وفي انتظار المعالجة الأرشيفية إلى المجموعات التراثية المُدارة.
+      id: >-
+        Agregasi catatan administratif tidak aktif yang ditransfer dari penggunaan operasional
+        dan menunggu pengarsipan ke dalam koleksi warisan yang dikelola.
+      zh: >-
+        从运营使用中移交并等待档案处理成受管遗产藏品的非活跃行政记录聚合。
+    structured_aliases:
+    - literal_form: beheerdersarchief
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Verwaltungsarchiv
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: archive de gestion
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: archivo de gestión
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: أرشيف الإدارة
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: arsip pengelola
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 管理档案
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - rico:RecordSet
+    close_mappings:
+    - rico:RecordResource
+    - crm:E78_Curated_Holding
+    keywords:
+    - administrative records
+    - archival processing
+    - inactive records
+    - institutional archives
+    slots:
+    - has_label
+    - has_description
+    - has_type
+    - has_quantity
+    - has_status
+    - refer_to
+    - temporal_extent
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+      refer_to:
+        range: Custodian
+        required: true
+    notes:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      "Represents OPERATIONAL ARCHIVES created by a heritage custodian through its\ndaily activities that are NOT YET integrated into the formal heritage collection\n(CustodianCollection).\n\n**CRITICAL DISTINCTION - THREE-TIER RECORDS LIFECYCLE**:\n\n```\n\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  CustodianAdministration                                            \u2502\n\u2502  \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550                                           \u2502\n\u2502  ACTIVE records\
+    comments:
+    - 'Preserved from prior description: Inactive record aggregation transferred from administration and awaiting archival processing into managed heritage holdings.'

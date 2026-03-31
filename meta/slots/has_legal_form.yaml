@@ -1,0 +1,112 @@
+# ==============================================================================
+# LinkML Slot Definition: has_legal_form
+# ==============================================================================
+# Specifies the official legal status or structure of an organization under law.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                 | File/Line            | Mapping | Notes                                                              |
+# |-------------|--------------------------|----------------------|---------|--------------------------------------------------------------------|
+# | **GLEIF**   | `gleif-L1:hasLegalForm`  | gleif_l1.ttl:352-357 | exact   | "The legal form of the entity, taken from ISO 20275 ELF." Domain: Entity, Range: EntityLegalForm. |
+# | **ROV**     | `rov:orgType`            | regorg.ttl:68-74     | close   | "Records the type of organization. SA, PLC, LLC, GmbH etc." subPropertyOf org:classification. Slightly broader than legal form. |
+# | **W3C Org** | `org:classification`     | org.rdf:371-386      | broad   | "A classification for this Organization within some classification scheme." General classification, not legal-form-specific. |
+#
+# REMOVED (not found in ontology files):
+#   - tooi:rechtsvorm — not found in tooiont.ttl
+#   - schema:legalForm — not found in schemaorg.owl
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_legal_form
+name: has_legal_form
+title: Has Legal Form
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  gleif-L1: https://www.gleif.org/ontology/L1/
+  rov: http://www.w3.org/ns/regorg#
+  org: http://www.w3.org/ns/org#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_legal_form:
+    slot_uri: hc:hasLegalForm
+    description: >-
+      Specifies the official legal status, structure, or type of an organization
+      under the law, which determines its liability, tax obligations, and governance.
+    alt_descriptions:
+      nl: >-
+        Specificeert de officiële juridische status, structuur of het type van een
+        organisatie volgens de wet, die de aansprakelijkheid, belastingverplichtingen
+        en governance bepaalt.
+      de: >-
+        Gibt den offiziellen Rechtsstatus, die Struktur oder den Typ einer Organisation
+        nach dem Gesetz an, der ihre Haftung, Steuerpflichten und Governance bestimmt.
+      fr: >-
+        Spécifie le statut juridique officiel, la structure ou le type d'une
+        organisation en vertu de la loi, qui détermine sa responsabilité, ses
+        obligations fiscales et sa gouvernance.
+      ar: >-
+        يحدد الوضع القانوني الرسمي أو الهيكل أو النوع لمنظمة بموجب القانون، مما
+        يحدد مسؤوليتها والتزاماتها الضريبية وحوكمتها.
+      id: >-
+        Menentukan status hukum resmi, struktur, atau jenis organisasi menurut
+        hukum, yang menentukan tanggung jawab, kewajiban pajak, dan tata kelolanya.
+      zh: >-
+        指定组织在法律下的正式法律地位、结构或类型，决定其责任、税务义务和治理方式。
+      es: >-
+        Especifica el estatus legal oficial, la estructura o el tipo de una
+        organización según la ley, que determina su responsabilidad, obligaciones
+        fiscales y gobernanza.
+    structured_aliases:
+      - literal_form: Rechtsvorm
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rechtsform
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Forme Juridique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: شكل قانوني
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Bentuk Hukum
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 法律形式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Forma Jurídica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - 'Specific legal form based on ISO 20275 Entity Legal Forms (ELF) codes.'
+      - Links to LegalForm class with jurisdiction-specific legal form details.
+      - 'ROV: rov:orgType for legal form classification (subPropertyOf org:classification).'
+      - 'W3C Org: org:classification links to skos:Concept.'
+      - Required for ORGANIZATION entities, not applicable for PERSON.
+      - Values MUST be valid ELF codes from /data/ontology/2023-09-28-elf-code-list-v1.5.csv.
+    examples:
+      - value:
+          elf_code: '8888'
+          country_code: NL
+          local_name: Stichting
+          abbreviation: St.
+        description: Dutch foundation (Rijksmuseum)
+    exact_mappings:
+      - gleif-L1:hasLegalForm  # gleif_l1.ttl:352-357 — "The legal form of the entity, taken from ISO 20275 ELF."
+    close_mappings:
+      - rov:orgType  # regorg.ttl:68-74 — "Records the type of organization. SA, PLC, LLC, GmbH etc." Slightly broader.
+    broad_mappings:
+      - org:classification  # org.rdf:371-386 — "A classification for this Organization within some classification scheme."
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - legal_form
+      - legal_responsibility_end_date
+      - legal_responsibility_start_date
+      - organization_legal_form

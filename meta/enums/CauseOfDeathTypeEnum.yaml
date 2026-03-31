@@ -1,0 +1,105 @@
+# CauseOfDeathTypeEnum
+# Enumeration of death cause types for heritage workers
+#
+# Generation date: 2026-01-19
+# Rule compliance: 53 (slot_fixes.yaml migration)
+
+id: https://nde.nl/ontology/hc/enum/CauseOfDeathTypeEnum
+name: cause_of_death_type_enum
+title: Cause Of Death Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  wd: http://www.wikidata.org/entity/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+  - ../metadata
+
+enums:
+  CauseOfDeathTypeEnum:
+    description: |
+      Categories of death causes for heritage workers and cultural professionals.
+      
+      **Purpose**:
+      Provides structured classification of death circumstances, enabling:
+      - Statistical analysis of heritage worker deaths
+      - Documentation of conflict-related deaths
+      - Historical research and commemoration
+      
+      **Wikidata Alignment**:
+      Values align with Wikidata P1196 (manner of death) concepts.
+      
+    permissible_values:
+      NATURAL:
+        description: |
+          Death from natural causes including age, illness, or medical conditions.
+          Not related to conflict, violence, or occupational hazards.
+        meaning: wd:Q3739104  # natural causes
+      
+      CONFLICT:
+        description: |
+          Death during armed conflict, including airstrikes, military operations,
+          shelling, or combat. Includes civilian casualties of war.
+          
+          **Examples**:
+          - Heritage workers killed in Gaza 2023-2024
+          - Cultural workers killed during Syrian civil war
+          - Museum staff killed during WWII bombing
+        meaning: wd:Q197821  # killed in action
+      
+      TARGETED_ATTACK:
+        description: |
+          Death from violence specifically targeting the individual due to their
+          role as a cultural worker, journalist, or heritage professional.
+          
+          **Examples**:
+          - Assassination of journalists
+          - Targeted attacks on cultural institution staff
+          - Hate crimes against heritage workers
+        meaning: wd:Q149086  # homicide
+      
+      OCCUPATIONAL:
+        description: |
+          Death from occupational hazards related to heritage work.
+          
+          **Examples**:
+          - Exposure to conservation chemicals
+          - Accidents during archaeological excavation
+          - Structural collapse during building survey
+        meaning: wd:Q211429  # occupational accident
+      
+      ACCIDENT:
+        description: |
+          Accidental death not related to occupation or conflict.
+          
+          **Examples**:
+          - Traffic accidents
+          - Domestic accidents
+          - Recreational accidents
+        meaning: wd:Q3882219  # accidental death
+      
+      PERSECUTION:
+        description: |
+          Death resulting from persecution based on identity, beliefs, ethnicity,
+          religion, or political views. Includes executions and ethnic cleansing.
+          
+          **Examples**:
+          - Holocaust victims
+          - Cultural Revolution victims
+          - Political prisoners
+        meaning: wd:Q3882218  # murder victim
+      
+      UNKNOWN:
+        description: |
+          Cause of death is unknown or undetermined.
+          Use when death is confirmed but circumstances are unclear.
+        meaning: wd:Q21171682  # unknown value
+    
+    comments:
+      - "Aligns with Wikidata P1196 (manner of death) concepts"
+      - "Used by CauseOfDeath class to categorize death circumstances"
+      - "Important for statistical analysis and historical documentation"

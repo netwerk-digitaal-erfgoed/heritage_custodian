@@ -1,0 +1,116 @@
+id: https://nde.nl/ontology/hc/class/CoFunding
+name: CoFunding
+title: CoFunding Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../enums/MeasureUnitEnum
+- ../slots/has_description
+- ../slots/has_quantity
+- ../slots/required
+default_prefix: hc
+classes:
+  CoFunding:
+    class_uri: schema:MonetaryAmount
+    description: >-
+      Requirement specifying counterpart resource contribution expected from an
+      applicant in addition to primary grant support.
+    alt_descriptions:
+      nl: Voorwaarde die de aanvullende eigen bijdrage van een aanvrager naast primaire subsidiefinanciering specificeert.
+      de: Anforderung, die den zusaetzlichen Eigenbeitrag eines Antragstellers neben der Hauptfoerderung festlegt.
+      fr: Exigence precisant la contribution complementaire attendue du demandeur en plus du financement principal.
+      es: Requisito que especifica la contribucion complementaria esperada del solicitante ademas de la financiacion principal.
+      ar: متطلب يحدد المساهمة المكملة المتوقعة من مقدم الطلب إضافة إلى التمويل الأساسي.
+      id: Persyaratan yang menentukan kontribusi pendamping yang diharapkan dari pemohon di samping dukungan hibah utama.
+      zh: 规定申请方除主要资助外需提供配套投入的要求。
+    structured_aliases:
+    - {literal_form: medefinanciering, in_language: nl}
+    - {literal_form: Kofinanzierung, in_language: de}
+    - {literal_form: cofinancement, in_language: fr}
+    - {literal_form: cofinanciacion, in_language: es}
+    - {literal_form: تمويل مشترك, in_language: ar}
+    - {literal_form: pendanaan pendamping, in_language: id}
+    - {literal_form: 配套资金要求, in_language: zh}
+    broad_mappings:
+    - schema:MonetaryAmount
+    close_mappings:
+    - schema:percentageValue
+    related_mappings:
+    - schema:Grant
+    - schema:FundingScheme
+    keywords:
+    - counterpart funding
+    - matching contribution
+    - grant eligibility
+    slots:
+    - required
+    - has_description
+    - has_quantity
+    slot_usage:
+      required:
+        required: true
+        range: boolean
+        examples:
+        - value: true
+        - value: false
+      has_description:
+#         range: string
+        examples:
+        - value: 30% co-funding required; in-kind contributions accepted up to 10%
+        - value: Partnership funding required ranging from 5% to 50% depending on grant size
+      has_quantity:
+        range: integer
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        description: "Quantified co-funding requirements expressed as:\n- Percentage (e.g., 30% of total project cost)\n- Minimum amount (e.g., €50,000)\n- Maximum amount (e.g., up to €1,000,000)\n"
+        examples:
+        - value:
+            has_measurement_unit:
+              unit_label: '%'
+        - value:
+            has_measurement_unit:
+              unit_label: EUR
+    comments:
+    - Replaces simple co_funding_required boolean with structured class
+    - Captures both percentage and absolute co-funding amounts
+    - In-kind contributions tracked via description field
+    - Links to Quantity for precise numerical requirements
+    see_also:
+    - https://schema.org/MonetaryAmount
+    - https://ec.europa.eu/research/participants/docs/h2020-funding-guide/grants/applying-for-funding/find-a-call/what-you-need-to-know_en.htm
+    examples:
+    - value:
+        required: true
+        has_description: 30% co-funding required for all project costs
+        has_quantity:
+        - quantity_value: 30
+          has_measurement_unit:
+            unit_label: '%'
+    - value:
+        required: true
+        has_description: Partnership funding 5-50% depending on grant size; in-kind contributions permitted
+        has_quantity:
+        - quantity_value: 5
+          has_measurement_unit:
+            unit_label: '%'
+        - quantity_value: 50
+          has_measurement_unit:
+            unit_label: '%'
+    - value:
+        required: false
+        has_description: 100% funding rate for academic and non-profit partners
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      "Co-funding or match funding requirement for a funding call or grant.\n\nCo-funding represents the financial contribution that an applicant must\nprovide alongside the grant funding. This may be expressed as:\n- A percentage of total project cost (e.g., 30% co-funding required)\n- A minimum absolute amount (e.g., \u20AC50,000 minimum co-funding)\n- In-kind contributions (staff time, facilities, equipment)\n\n**ONTOLOGY ALIGNMENT**:\n- schema:MonetaryAmount - For monetary co-funding amounts\n- schema:percentageValue - For percentage-based requirements\n\n**MIGRATION NOTE**:\nReplaces simple boolean `co_funding_required` slot with structured class\nthat captures co-funding amount, percentage, and type information.\n\n**USAGE**:\n- CallForApplication requires_or_required CoFunding\n- Grant has_cofunding CoFunding\n\n**EXAMPLES**:\n- Horizon Europe: 0% co-funding for academic partners (100% funding rate)\n- National Lottery Heritage Fund: 5-50% partnership funding required\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/HolySacredSiteType
+name: HolySacredSiteType
+title: Holy Sacred Site Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ./CustodianType
+  - ../slots/has_content
+  - ../slots/has_hyponym
+  - ../slots/has_policy
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/managed_by
+  - ../slots/has_function
+  - ../slots/has_tradition
+  - ../slots/has_status
+classes:
+  HolySacredSiteType:
+    is_a: CustodianType
+    class_uri: hc:HolySacredSiteType
+    description: >-
+      Custodian type for active worship sites that also steward archives,
+      libraries, objects, and other religious heritage collections.
+    alt_descriptions:
+      nl: Bewaarderstype voor actieve gebedsplaatsen die ook archieven, bibliotheken en religieuze erfgoedcollecties beheren.
+      de: Verwahrerprofil fuer aktive Gottesdienstorte, die zugleich Archive, Bibliotheken und religioese Sammlungen verwalten.
+      fr: Type de depositaire pour des lieux de culte actifs qui gerent aussi archives, bibliotheques et collections patrimoniales religieuses.
+      es: Tipo de custodio para lugares de culto activos que ademas gestionan archivos, bibliotecas y colecciones patrimoniales religiosas.
+      ar: نوع حارس لمواقع العبادة النشطة التي تدير كذلك أرشيفات ومكتبات ومجموعات تراث ديني.
+      id: Tipe kustodian untuk situs ibadah aktif yang juga mengelola arsip, perpustakaan, dan koleksi warisan keagamaan.
+      zh: 适用于仍在礼拜使用且同时保管宗教遗产档案、文献与藏品的保管者类型。
+    structured_aliases:
+      - literal_form: religieuze erfgoedlocatie
+        in_language: nl
+      - literal_form: religioeser Erbeort
+        in_language: de
+      - literal_form: site patrimonial sacre
+        in_language: fr
+      - literal_form: sitio patrimonial sagrado
+        in_language: es
+      - literal_form: موقع تراث ديني
+        in_language: ar
+      - literal_form: situs warisan suci
+        in_language: id
+      - literal_form: 宗教圣地类型
+        in_language: zh
+    slots:
+      - has_policy
+      - has_content
+      - has_type
+      - has_hyponym
+      - has_function
+      - has_tradition
+      - has_status
+      - managed_by
+      - has_score
+    slot_usage:
+      has_type:
+        equals_string: hc:HolySacredSiteType
+    broad_mappings:
+      - skos:Concept
+    close_mappings:
+      - schema:PlaceOfWorship
+    comments:
+      - |
+        Preserved from prior description (commit 6e634651):
+
+        "Specialized custodian type for religious institutions and sacred sites managing\nheritage collections (archives, libraries, artifacts, liturgical objects, art).\n\n**CRITICAL DISTINCTION - Religious Site vs. Religious Heritage Museum**:\n\n**HolySacredSite** (this type):\n- PRIMARY function = ACTIVE WORSHIP (religious practice)\n- SECONDARY function = Heritage collection (supports religious mission)\n- Example: Vatican Apostolic Archive (papal archive supporting Church operations)\n- Example: Canterbury Cathedral Library (church library for clergy and scholars)\n\n**Museum** (MuseumType, not this type):\n- PRIMARY function = PUBLIC EXHIBITION (heritage presentation)\n- SECONDARY function = Religious theme (subject matter)\n- Example: Museum Catharijneconvent (secular museum about religious art)\n- Example: Bible Museum Amsterdam (educational museum, not worship site)\n\n**Decision Rule**: Is the site's PRIMARY function active religious worship?\n- YES \u2192 HolySacredSiteType\n\

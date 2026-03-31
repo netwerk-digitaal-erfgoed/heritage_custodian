@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/Caption
+name: caption_class
+title: Caption Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/in_language
+default_prefix: hc
+classes:
+  Caption:
+    class_uri: hc:Caption
+    description: >-
+      Accessibility subtitle or closed caption information for audiovisual media
+      content, supporting WCAG compliance, multilingual subtitle support, and
+      caption metadata including language and format availability.
+    alt_descriptions:
+      nl: Toegankelijkheidsondertitels of gesloten ondertiteling voor audiovisuele media-inhoud, ter ondersteuning van WCAG-naleving, meertalige ondertitelings en ondertitelmetadata inclusief taal en beschikbaarheid van formaten.
+      de: Barrierefreiheit-Untertitel oder geschlossene Untertitel für audiovisuelle Medieninhalte, zur Unterstützung der WCAG-Konformität, mehrsprachiger Untertitel und Untertitel-Metadaten einschließlich Sprache und Formatverfügbarkeit.
+      fr: Sous-titres d'accessibilité ou sous-titrage codé pour le contenu média audiovisuel, prenant en charge la conformité WCAG, le sous-titrage multilingue et les métadonnées de sous-titres incluant la langue et la disponibilité des formats.
+      es: Subtítulos de accesibilidad o subtítulos cerrados para contenido audiovisual, apoyando el cumplimiento de WCAG, subtítulos multilingües y metadatos de subtítulos incluyendo idioma y disponibilidad de formato.
+      ar: ترجمات الوصول أو الترجمة المغلقة لمحتوى الوسائط السمعية البصرية، دعمًا للامتثال لـ WCAG والترجمة متعددة اللغات وبيانات الترجمة الوصفية بما في ذلك اللغة وتوافر التنسيق.
+      id: Subtitel aksesibilitas atau teks tertutup untuk konten media audiovisual, mendukung kepatuhan WCAG, subtitel multibahasa, dan metadata subtitel termasuk bahasa dan ketersediaan format.
+      zh: 视听媒体内容的无障碍字幕或隐藏字幕信息，支持WCAG合规、多语言字幕 以及包括语言和格式可用性在内的字幕元数据。
+    close_mappings:
+    - schema:caption
+    slots:
+    - has_label
+    - in_language
+    slot_usage:
+      has_label:
+        required: false
+        inlined: false
+      in_language:
+        required: false
+    structured_aliases:
+    - literal_form: ondertiteling
+      in_language: nl
+    - literal_form: Untertitel
+      in_language: de
+    - literal_form: sous-titres
+      in_language: fr
+    - literal_form: subtítulos
+      in_language: es
+    - literal_form: ترجمة
+      in_language: ar
+    - literal_form: subtitel
+      in_language: id
+    - literal_form: 字幕
+      in_language: zh
+    comments:
+    - Supports WCAG accessibility compliance
+    - Multilingual subtitle support
+    - MIGRATED 2026-01-22: Created per slot_fixes.yaml feedback
+    keywords:
+    - accessibility
+    - subtitles
+    - closed captions
+    - WCAG
+    - multilingual
+    see_also:
+    - https://schema.org/caption
+    - https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html
+    examples:
+    - value:
+        language: en
+      description: English captions available
+    - value:
+        language: nl
+        caption_url: https://example.org/video/captions_nl.srt
+      description: Dutch captions with URL
+    - value:
+        has_label:
+          has_text: Video beschrijving voor slechthorenden
+        language: nl
+      description: Dutch audio description for hearing impaired
+    annotations:
+      specificity_score: 0.6
+      specificity_rationale: Specific to media content, moderately relevant for digital heritage.
+      custodian_types: "['*']"

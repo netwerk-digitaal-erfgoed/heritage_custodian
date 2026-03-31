@@ -1,0 +1,67 @@
+id: https://nde.nl/ontology/hc/class/MilitaryArchiveRecordSetType
+name: MilitaryArchiveRecordSetType
+title: Military Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+classes:
+  MilitaryArchiveRecordSetType:
+    is_a: CollectionType
+    abstract: true
+    class_uri: rico:RecordSetType
+    description: >-
+      Abstract record-set classifier for holdings typically curated by military
+      archive organizations.
+    alt_descriptions:
+      nl: Abstracte recordsetclassificatie voor collecties die doorgaans door militaire archieven worden beheerd.
+      de: Abstrakter Recordset-Klassifikator fuer Bestaende die typischerweise von Militaerarchiven verwaltet werden.
+      fr: Classificateur abstrait de lots documentaires pour fonds generalement conserves par des archives militaires.
+      es: Clasificador abstracto de conjuntos documentales para fondos gestionados normalmente por archivos militares.
+      ar: مصنف مجرد لمجموعات السجلات الخاصة بالمقتنيات التي تديرها عادة الأرشيفات العسكرية.
+      id: Pengklasifikasi abstrak record set untuk koleksi yang umumnya dikelola oleh arsip militer.
+      zh: 面向军事档案机构常见馆藏的抽象记录集分类器。
+    structured_aliases:
+    - {literal_form: type militair-archiefrecordset, in_language: nl}
+    - {literal_form: Typ Militaerarchiv-Recordset, in_language: de}
+    - {literal_form: type de lot d archives militaires, in_language: fr}
+    - {literal_form: tipo de conjunto de archivo militar, in_language: es}
+    - {literal_form: نوع مجموعة سجلات أرشيف عسكري, in_language: ar}
+    - {literal_form: tipe record set arsip militer, in_language: id}
+    - {literal_form: 军事档案记录集类型, in_language: zh}
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    keywords:
+    - military
+    - armed forces
+    - defense
+    - archive
+    - record set
+    - classifier
+    slots:
+    - has_type
+    - has_score
+    - has_scope
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:MilitaryArchiveRecordSetType
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      "Abstract base class for all military archive record set types.\n\n**Definition**:\nA rico:RecordSetType that classifies collections held by military archives.\nMilitary archives preserve records documenting armed forces, defense \nactivities, military operations, and personnel service.\n\n**Subclasses**:\n- MilitaryOperationsFonds (campaigns, battles, strategic planning)\n- MilitaryPersonnelSeries (service records, personnel files)\n- UnitHistoryCollection (regimental histories, unit records)\n- MilitaryMapsCollection (strategic maps, battle plans, survey maps)\n- VeteransDocumentationCollection (veterans' affairs, commemorations)\n\n**RiC-O Alignment**:\nThis is an abstract type classifier. Subclasses specify both the domain \n(type of military records) and organizational principle (fonds, series, collection).\n\n**Dual-Class Pattern**:\nMilitaryArchive (ArchiveOrganizationType) = the custodian institution.\nMilitaryArchiveRecordSetType (rico:RecordSetType) = the collection\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,712 @@
+id: https://nde.nl/ontology/hc/class/EncompassingBodyTypes
+name: EncompassingBodyTypes
+title: Encompassing Body Type Subclasses
+description: >-
+  Concrete organizational body types for governance, coordination, collaboration,
+  movement, and funding roles within the heritage sector.
+alt_descriptions:
+  nl: >-
+    Concrete organisatorische lichaamstypen voor governance, coördinatie, samenwerking,
+    beweging en financieringsrollen binnen de erfgoedsector.
+  de: >-
+    Konkrete organisatorische Körperschaftstypen für Governance, Koordination, Zusammenarbeit,
+    Bewegung und Finanzierungsrollen im Heritage-Sektor.
+  fr: >-
+    Types concrets d'organismes pour la gouvernance, la coordination, la collaboration,
+    le mouvement et les rôles de financement dans le secteur patrimonial.
+  es: >-
+    Tipos concretos de organismos organizativos para gobernanza, coordinación, colaboración,
+    movimiento y roles de financiación en el sector patrimonial.
+  ar: >-
+    أنواع ملموسة من الهيئات التنظيمية للحوكمة والتنسيق والتعاون
+    والحركة وأدوار التمويل في قطاع التراث.
+  id: >-
+    Jenis badan organisasi konkret untuk tata kelola, koordinasi, kolaborasi,
+    gerakan, dan peran pendanaan di sektor warisan.
+  zh: >-
+    遗产部门内治理、协调、合作、运动和资助角色的具体组织机构类型。
+imports:
+- linkml:types
+- ../slots/has_authority
+- ../slots/has_budget
+- ../slots/focus_on
+- ../slots/has_policy
+- ../slots/has_schema
+- ../slots/has_source
+- ../slots/has_time_interval
+- ../slots/publish
+- ../slots/in_jurisdiction
+- ../slots/has_membership_criteria
+- ../slots/has_legal_form
+- ../slots/has_type
+- ../slots/provide
+- ../slots/receive
+- ../slots/has_service
+- ../enums/EncompassingBodyTypeEnum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  cpov: http://data.europa.eu/m8g/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+classes:
+  UmbrellaOrganisation:
+    is_a: EncompassingBody
+    class_uri: hc:UmbrellaOrganisation
+    description: Formal parent body with legal governance authority over member custodians.
+    alt_descriptions:
+      nl: Formele bovenliggende organisatie met wettelijk bestuursgezag over lid-instellingen.
+      de: Formale Dachorganisation mit rechtlicher Regierungsbefugnis über Mitglieder.
+      fr: Organisation parente formelle avec autorité de gouvernance légale sur les membres.
+      es: Organización matriz formal con autoridad de gobernanza legal sobre miembros.
+      ar: منظمة أم رسمية ذات سلطة حوكمة قانونية على الأعضاء.
+      id: Organisasi induk formal dengan otoritas tata kelola hukum atas anggota.
+      zh: 对成员拥有法律治理权的正式上级组织。
+    structured_aliases:
+    - literal_form: koepelorganisatie
+      in_language: nl
+    - literal_form: Dachorganisation
+      in_language: de
+    - literal_form: organisation faîtière
+      in_language: fr
+    - literal_form: organización paraguas
+      in_language: es
+    - literal_form: منظمة جامعة
+      in_language: ar
+    - literal_form: organisasi payung
+      in_language: id
+    - literal_form: 伞形组织
+      in_language: zh
+    keywords:
+    - umbrella
+    - governance
+    - parent
+    - authority
+    - legal
+    slot_usage:
+      has_type:
+        range: EncompassingBodyTypeEnum
+        required: true
+        ifabsent: string(UMBRELLA)
+      has_authority:
+        required: true
+        examples:
+        - value:
+            has_description: Ministry OCW exercises governance authority over National Archives under Dutch Heritage Act 2016. Authority includes budget approval, director appointment, and policy oversight.
+      has_legal_form:
+        required: true
+        examples:
+        - value: Government ministry
+        - value: Foundation board
+        - value: University governing body
+      in_jurisdiction:
+        required: true
+        range: Jurisdiction
+        examples:
+        - value:
+            jurisdiction_id: NL
+            jurisdiction_type: NATIONAL
+            in_country:
+              alpha_2: NL
+              alpha_3: NLD
+        - value:
+            jurisdiction_id: DE-BY
+            jurisdiction_type: SUBNATIONAL
+            in_country:
+              alpha_2: DE
+              alpha_3: DEU
+            subregion:
+              iso_3166_2_code: DE-BY
+    broad_mappings:
+    - org:FormalOrganization
+    close_mappings:
+    - tooi:Ministerie
+    - tooi:RegionaalOpenbaarLichaam
+    - cpov:PublicOrganisation
+    - schema:GovernmentOrganization
+    comments:
+    - UmbrellaOrganisation represents LEGAL parent-child relationships
+    - Changes to umbrella relationships require legal/statutory amendments
+    - Permanent structure - not temporary agreements
+    - 'Preserved from prior description: A legal parent organization with formal governance authority over heritage custodians, defined in articles of association, foundation statutes, or legislation. Represents PERMANENT hierarchical legal structures. **Characteristics**: - **Legal basis**: Defined in founding documents, statutes, or laws - **Authority**: Strong governance authority (budgets, appointments, policy) - **Permanence**: Permanent structure (changes require legal amendments) - **Relationship**: Legal subordination (parent-child hierarchy) **Examples**: - **Ministry governing national cultural institutions**: - Ministry of OCW → National Archives, Rijksmuseum, National Library - Defined in Dutch government legislation - **Foundation board governing museum**: - Museum Board of Trustees → Museum operations - Defined in foundation statutes - **University governing university libraries**: - University administration → University library system - Defined in university charter - **Religious order governing monastery archives**: - Franciscan Order → Franciscan Archive - Defined in religious constitution **Ontological Alignment**: - W3C ORG: `org:FormalOrganization` - "An Organization which is recognized in the world at large, in particular in legal jurisdictions, with associated rights and responsibilities." - TOOI: `tooi:Ministerie`, `tooi:RegionaalOpenbaarLichaam` (Dutch government bodies) - CPOV: `cpov:PublicOrganisation` (for public sector umbrella bodies) - Schema.org: `schema:GovernmentOrganization`, `schema:EducationalOrganization` **Temporal Dynamics**: Umbrella relationships typically persist over long periods. Changes occur through: - Government reorganizations (ministries merge/split) - Legal entity changes (foundation restructuring) - Policy reforms (agencies transferred between ministries)'
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/encompassing-body/umbrella/nl-ministry-ocw
+        organization_name: Ministerie van Onderwijs, Cultuur en Wetenschap
+        organization_type: UMBRELLA
+        organization_legal_form: Government ministry
+        begin_of_the_begin: '1965-07-01'
+        has_authority:
+          has_description: Exercises governance over Dutch national cultural heritage institutions under Heritage Act 2016. Authority includes budget oversight, director appointments, and strategic policy direction.
+        in_jurisdiction:
+          jurisdiction_id: NL
+          jurisdiction_type: NATIONAL
+          in_country:
+            alpha_2: NL
+            alpha_3: NLD
+        has_member:
+        - identified_by: https://nde.nl/ontology/hc/nl-na
+          preferred_label: Nationaal Archief
+        - identified_by: https://nde.nl/ontology/hc/nl-nh-ams-m-rm
+          preferred_label: Rijksmuseum
+        has_url: https://www.rijksoverheid.nl/ministeries/ocw
+    slots:
+    - has_score
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+  NetworkOrganisation:
+    is_a: EncompassingBody
+    class_uri: hc:NetworkOrganisation
+    description: Service-coordination network delivering shared capabilities under collaborative agreements.
+    alt_descriptions:
+      nl: Dienstverlenend netwerk dat gezamenlijke mogelijkheden levert onder samenwerkingsovereenkomsten.
+      de: Dienstleistungskoordinationsnetzwerk mit gemeinsam genutzten Fähigkeiten.
+      fr: Réseau de coordination de services fournissant des capacités partagées.
+      es: Red de coordinación de servicios que proporciona capacidades compartidas.
+      ar: شبكة تنسيق خدمات توفر قدرات مشتركة.
+      id: Jaringan koordinasi layanan yang menyediakan kapabilitas bersama.
+      zh: 根据合作协议提供共享能力的服务协调网络。
+    structured_aliases:
+    - literal_form: netwerkorganisatie
+      in_language: nl
+    - literal_form: Netzwerkorganisation
+      in_language: de
+    - literal_form: organisation réseau
+      in_language: fr
+    - literal_form: organización en red
+      in_language: es
+    - literal_form: منظمة شبكية
+      in_language: ar
+    - literal_form: organisasi jaringan
+      in_language: id
+    - literal_form: 网络组织
+      in_language: zh
+    keywords:
+    - network
+    - service
+    - coordination
+    - collaborative
+    - shared
+    slot_usage:
+      has_type:
+        range: EncompassingBodyTypeEnum
+        required: true
+        ifabsent: string(NETWORK)
+      has_service:
+        required: true
+        examples:
+        - value: Digital preservation storage infrastructure
+        - value: Shared cataloging platform (union catalog)
+        - value: Conservation services and expertise
+        - value: Professional development workshops
+      has_membership_criteria:
+        recommended: true
+        examples:
+        - value: "Dutch heritage institutions with digital collections seeking long-term preservation services. Membership fee: €5,000/year."
+      has_authority:
+        examples:
+        - value:
+            has_description: Network defines technical standards for digital preservation but members retain full autonomy over collection policies and operations.
+    broad_mappings:
+    - schema:Organization
+    close_mappings:
+    - tooi:Samenwerkingsorganisatie
+    - org:Organization
+    comments:
+    - NetworkOrganisation provides SERVICES, not governance
+    - Membership is voluntary and service-driven
+    - Temporary agreements - not permanent legal subordination
+    - 'Preserved from prior description: A service provider network that coordinates and delivers services to member heritage custodians through TEMPORARY agreements or treaties. Members choose to participate to access services; participation is NOT legally imposed. **Characteristics**: - **Service-oriented**: Provides infrastructure, platforms, training, coordination - **Voluntary membership**: Custodians choose to join for service benefits - **Temporary agreements**: Based on contracts/treaties, not permanent legal structure - **Limited authority**: Coordinates services but no direct governance over members **Examples**: - **Digital Heritage Network (Netherlands)**: - Provides digital preservation infrastructure to museums, archives, libraries - Members pay fees for services - No governance authority over member institutions - **DPLA (Digital Public Library of America)**: - Aggregates digital collections from libraries/archives - Members contribute metadata for aggregation - No control over member collection policies - **Europeana**: - European digital heritage aggregation network - Museums/archives contribute digitized collections - Coordination, not governance - **Regional archive networks**: - Shared conservation labs, digitization services - Temporary service agreements between institutions - Schema.org: `schema:Organization` (general organization type) - W3C ORG: `org:Organization` (parent class) - TOOI: `tooi:Samenwerkingsorganisatie` (Dutch collaborative organizations) **Temporal Dynamics**: Network memberships fluctuate - custodians join/leave based on service needs. Networks themselves may dissolve if service model becomes obsolete or funding ends. Track membership changes with temporal validity.'
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/encompassing-body/network/digital-heritage-nl
+        organization_name: Digital Heritage Network Netherlands
+        organization_type: NETWORK
+        begin_of_the_begin: '2015-03-01'
+        service_area:
+        - has_label: NL
+          has_description: Netherlands national coverage
+        service_offering:
+        - Long-term digital preservation storage (100TB+ capacity)
+        - Metadata aggregation and normalization services
+        - Technical training workshops (quarterly)
+        - Preservation format migration services
+        membership_criteria: Dutch museums, archives, and libraries with digital collections. Annual membership fee based on storage usage.
+        has_member:
+        - identified_by: https://nde.nl/ontology/hc/nl-nh-ams-m-am
+          preferred_label: Amsterdam Museum
+        - identified_by: https://nde.nl/ontology/hc/nl-ut-utr-l-ub
+          preferred_label: Utrecht University Library
+        has_url: https://digitalheritage.nl
+    slots:
+    - has_score
+    annotations:
+      custodian_types: '[''*'']'
+  Consortium:
+    is_a: EncompassingBody
+    class_uri: hc:Consortium
+    description: Peer collaboration body where members provide reciprocal support under shared agreements.
+    alt_descriptions:
+      nl: Samenwerkingsverband waar leden wederzijdse steun verlenen onder gedeelde overeenkomsten.
+      de: Peer-Kollaborationsorganisation mit gegenseitiger Unterstützung.
+      fr: Organisation de collaboration entre pairs avec soutien réciproque.
+      es: Organismo de colaboración entre pares con apoyo recíproco.
+      ar: هيئة تعاون بين الأقران مع دعم متبادل.
+      id: Badan kolaborasi sejawat dengan dukungan timbal balik.
+      zh: 成员根据共同协议提供互惠支持的同侪合作机构。
+    structured_aliases:
+    - literal_form: consortium
+      in_language: nl
+    - literal_form: Konsortium
+      in_language: de
+    - literal_form: consortium
+      in_language: fr
+    - literal_form: consorcio
+      in_language: es
+    - literal_form: اتحاد
+      in_language: ar
+    - literal_form: konsorsium
+      in_language: id
+    - literal_form: 联盟
+      in_language: zh
+    keywords:
+    - consortium
+    - peer
+    - reciprocal
+    - collaboration
+    - mutual
+    slot_usage:
+      has_type:
+        range: EncompassingBodyTypeEnum
+        required: true
+        ifabsent: string(CONSORTIUM)
+      has_service:
+        examples:
+        - value: Shared cataloging contributions to union catalog
+        - value: Reciprocal interlibrary loan services
+        - value: Peer review of conservation treatments
+        - value: Collaborative digitization equipment sharing
+      has_membership_criteria:
+        recommended: true
+        examples:
+        - value: Academic libraries with interlibrary loan capabilities and commitment to reciprocal lending. No membership fee.
+      has_authority:
+        examples:
+        - value:
+            has_description: Consortium coordinates shared cataloging standards and provides technical infrastructure, but members retain full autonomy.
+    broad_mappings:
+    - schema:Consortium
+    close_mappings:
+    - tooi:Samenwerkingsorganisatie
+    - org:Organization
+    comments:
+    - Consortium is PEER-TO-PEER mutual assistance model
+    - Distinguished from Network (centralized service provider)
+    - Temporary collaborative agreements, not permanent legal structure
+    - Mapping specificity: schema:Consortium is broader than this heritage-specific peer-collaboration subtype
+    - 'Preserved from prior description: A collaborative body where member heritage custodians provide MUTUAL assistance to each other through TEMPORARY agreements. Unlike networks (centralized service provider), consortia are PEER-TO-PEER collaboration models. **Characteristics**: - **Mutual assistance**: Members help each other (not centralized services) - **Peer-to-peer**: Equal participation, shared responsibility - **Temporary agreements**: Based on memoranda of understanding, not permanent structure - **Coordination only**: Facilitates collaboration, no authority over members **Examples**: - **Library consortia for shared cataloging**: - Members contribute catalog records to shared database - Peer-to-peer cataloging standards and quality control - Example: OCLC WorldCat participating libraries - **Bulk licensing consortia**: - Libraries collectively negotiate database subscriptions - Shared purchasing power, individual licenses - **Interlibrary loan consortia**: - Members lend materials to each other - Reciprocal borrowing agreements - **Conservation consortia**: - Museums share conservation expertise and equipment - Rotating access to specialized conservation labs - **Digitization consortia**: - Archives collaborate on large-scale digitization projects - Shared equipment, coordinated workflows **Distinction from NetworkOrganisation**: - **Consortium**: Peer-to-peer mutual assistance (members help each other) - **Network**: Centralized service provider (network provides services to members) **Ontological Alignment**: - Schema.org: `schema:Consortium` - "A Consortium is a membership Organization whose members are typically Organizations." - W3C ORG: `org:Organization` (parent class) - TOOI: `tooi:Samenwerkingsorganisatie` (Dutch collaborative organizations) **Temporal Dynamics**: Consortia form for specific collaborative goals and may dissolve when goals are achieved or collaboration model becomes obsolete. Short to medium-term duration (3-10 years typical).'
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/encompassing-body/consortium/dutch-univ-lib-consortium
+        organization_name: Dutch University Libraries Consortium
+        organization_type: CONSORTIUM
+        begin_of_the_begin: '2010-09-01'
+        service_offering:
+        - Shared union catalog contributions
+        - Collective database subscription negotiations
+        - Reciprocal interlibrary loan services
+        - Collaborative metadata enrichment projects
+        membership_criteria: Dutch university libraries accredited by VSNU (Association of Universities in the Netherlands). Members must contribute cataloging records and participate in interlibrary loan network.
+        has_member:
+        - identified_by: https://nde.nl/ontology/hc/nl-zh-lei-l-ub
+          preferred_label: Leiden University Library
+        - identified_by: https://nde.nl/ontology/hc/nl-nh-ams-l-uba
+          preferred_label: Amsterdam University Library
+        has_url: https://universiteitsbibliotheken.nl
+    slots:
+    - has_score
+    annotations:
+      custodian_types: '[''*'']'
+  Cooperative:
+    is_a: EncompassingBody
+    class_uri: hc:Cooperative
+    description: Member-owned body in which participants co-govern and co-benefit from shared services.
+    alt_descriptions:
+      nl: Door leden eigendom organisatie waarin deelnemers samen besturen en profiteren.
+      de: Mitgliedergetragene Organisation mit gemeinsamer Regierung und Nutzung.
+      fr: Organisation détenue par les membres avec gouvernance et bénéfices partagés.
+      es: Organización propiedad de miembros con gobernanza y beneficios compartidos.
+      ar: منظمة مملوكة للأعضاء بحوكمة ومنافع مشتركة.
+      id: Organisasi milik anggota dengan tata kelola dan manfaat bersama.
+      zh: 成员共同拥有、共同治理并共享利益的合作社组织。
+    structured_aliases:
+    - literal_form: coöperatie
+      in_language: nl
+    - literal_form: Genossenschaft
+      in_language: de
+    - literal_form: coopérative
+      in_language: fr
+    - literal_form: cooperativa
+      in_language: es
+    - literal_form: تعاونية
+      in_language: ar
+    - literal_form: koperasi
+      in_language: id
+    - literal_form: 合作社
+      in_language: zh
+    keywords:
+    - cooperative
+    - member-owned
+    - co-governance
+    - shared
+    - ownership
+    slot_usage:
+      has_type:
+        range: EncompassingBodyTypeEnum
+        required: true
+        ifabsent: string(COOPERATIVE)
+      has_legal_form:
+        required: true
+      has_authority:
+        required: true
+        examples:
+        - value:
+            has_description: OCLC is governed by a Global Council of library representatives elected by member libraries. Each member has voting rights proportional to their usage. Annual Members Council meeting.
+      has_membership_criteria:
+        required: true
+        examples:
+        - value: OCLC membership is open to libraries and cultural heritage organizations. Members pay annual fees based on usage. Members receive governance rights and access to services.
+      has_policy:
+        recommended: true
+    broad_mappings:
+    - org:FormalOrganization
+    close_mappings:
+    - schema:Organization
+    comments:
+    - Cooperative = member-owned permanent organization
+    - Distinguished from Consortium (ownership, permanence)
+    - Distinguished from Network (members contribute, not just consume)
+    - Typically MIXED or CLOSED data policy (data as organizational asset)
+    - 'Examples: OCLC, RERO, HathiTrust'
+    - 'Preserved from prior description: A member-OWNED organization where members both contribute to and benefit from shared services. Distinguished from Consortium by PERMANENT structure and OWNERSHIP model - members are legal owners of the cooperative. **Characteristics**: - **Member ownership**: Members hold shares/ownership stake - **Member governance**: One member, one vote principle (democratic) - **Permanent legal structure**: Formal organization, not temporary agreements - **Shared services AND shared ownership**: Dual benefit model - **Typically operates as non-profit**: Mutual benefit corporation - **May have closed/proprietary data model**: Data as organizational asset **CRITICAL: Data Openness Pattern**: Cooperatives often have MIXED or CLOSED data policies because: - Data contributed by members is organizational asset - Business model may depend on subscription/membership revenue - Balancing member value vs. public open access - Historical model predates open data movement **Examples**: - **OCLC** (Online Computer Library Center) - Member-owned library cooperative since 1967 - 30,000+ member libraries worldwide - WorldCat: Proprietary (subscription-based) - VIAF: Open (ODC-BY) - strategic choice for linked data - Members both contribute data AND receive services - **RERO** (Library Network of Western Switzerland) - Cooperative of Swiss academic libraries - Shared cataloging and discovery services - **HathiTrust** - Partnership of academic and research libraries - Shared digital preservation infrastructure **Distinction from Consortium**: - **Cooperative**: Members OWN the organization (permanent legal structure) - **Consortium**: Members PARTICIPATE in agreements (temporary, no ownership) **Distinction from NetworkOrganisation**: - **Cooperative**: Members are owners AND contributors AND consumers - **Network**: Members are consumers of centralized services only **Ontological Alignment**: - W3C ORG: `org:FormalOrganization` (formal legal entity) - Schema.org: `schema:Organization` with `additionalType: Cooperative` - Can align with ICA (International Cooperative Alliance) principles'
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/encompassing-body/cooperative/oclc
+        organization_name: OCLC
+        organization_type: COOPERATIVE
+        organization_legal_form: Non-profit library cooperative
+        begin_of_the_begin: '1967-07-05'
+        service_offering:
+        - WorldCat (shared cataloging database)
+        - VIAF (Virtual International Authority File)
+        - WorldShare Management Services
+        - Interlibrary loan services (WorldShare ILL)
+        - Digital preservation services
+        - CONTENTdm (digital collection management)
+        membership_criteria: Open to libraries and cultural heritage organizations worldwide. Membership includes governance rights (voting in Global Council), access to member pricing for services, and participation in cooperative programs.
+        has_authority:
+          has_description: Governed by Global Council of elected library representatives. Board of Trustees provides strategic oversight. Regional councils for Americas, EMEA, and Asia Pacific. Annual Members Council meeting.
+        has_policy:
+          policy_name: OCLC Data Usage Policy
+          applies_to:
+          - service_name: VIAF
+            license: odc-by-1.0
+          - service_name: WorldCat Identities
+            license: odc-by-1.0
+        identified_by:
+        - https://viaf.org/viaf/125315828
+        has_url: https://www.oclc.org/
+    slots:
+    - has_score
+    annotations:
+      custodian_types: '[''*'']'
+  SocialMovement:
+    is_a: EncompassingBody
+    class_uri: hc:SocialMovement
+    description: Values-driven collective with open participation and public-benefit orientation.
+    alt_descriptions:
+      nl: Waardengedreven collectief met open deelname en maatschappelijke oriëntatie.
+      de: Werteorientiertes Kollektiv mit offener Teilnahme und Gemeinwohlorientierung.
+      fr: Collectif axé sur les valeurs avec participation ouverte et intérêt public.
+      es: Colectivo basado en valores con participación abierta y beneficio público.
+      ar: حركة جماعية قيمية بمشاركة مفتوحة ومنفعة عامة.
+      id: Kolektif berbasis nilai dengan partisipasi terbuka dan orientasi manfaat publik.
+      zh: 以价值观为导向、开放参与并致力于公共利益的集体运动。
+    structured_aliases:
+    - literal_form: sociale beweging
+      in_language: nl
+    - literal_form: soziale Bewegung
+      in_language: de
+    - literal_form: mouvement social
+      in_language: fr
+    - literal_form: movimiento social
+      in_language: es
+    - literal_form: حركة اجتماعية
+      in_language: ar
+    - literal_form: gerakan sosial
+      in_language: id
+    - literal_form: 社会运动
+      in_language: zh
+    keywords:
+    - social movement
+    - values
+    - open participation
+    - public benefit
+    - grassroots
+    slot_usage:
+      has_type:
+        range: EncompassingBodyTypeEnum
+        required: true
+        ifabsent: string(SOCIAL_MOVEMENT)
+      has_service:
+        examples:
+        - value: Wikidata (open knowledge base, CC0)
+        - value: Wikipedia (free encyclopedia, CC-BY-SA)
+        - value: Wikimedia Commons (free media repository)
+      has_membership_criteria:
+        examples:
+        - value: Open participation - anyone can edit Wikipedia, contribute to Wikidata, or upload to Wikimedia Commons. No membership fee or application process. Contribution governed by community policies.
+      has_authority:
+        examples:
+        - value:
+            has_description: Wikimedia projects are governed by community consensus. The Wikimedia Foundation provides infrastructure and legal support but does not control content. Movement governance through affiliates, chapters, and community-elected bodies.
+      has_policy:
+        required: true
+    broad_mappings:
+    - schema:Organization
+    comments:
+    - SocialMovement = value-driven, open participation, open data
+    - Distinguished from Cooperative (ideology vs. ownership)
+    - Distinguished from Network (values vs. services)
+    - Typically FULLY OPEN data policy (openness as core value)
+    - 'Examples: Wikimedia, Creative Commons, Open Knowledge Foundation, Mozilla'
+    - "Preserved from prior description: A value-driven movement organized around shared ideological principles, with open participation and commitment to public benefit. Distinguished from other types by ideological motivation and OPEN data policies as core value. **Characteristics**: - **Value-driven**: Ideological commitment to principles (free knowledge, openness) - **Open participation**: Anyone can join/contribute based on shared values - **Decentralized governance**: Community-driven decision making - **Non-proprietary by design**: Open data is core value, not business decision - **Global grassroots participation**: Often volunteer-driven - **May include formal foundation**: Legal entity supports the movement **CRITICAL: Data Openness Pattern**: Social movements typically have FULLY OPEN data policies because: - Openness is ideological value, not business strategy - Mission centers on public access and benefit - Data openness is prerequisite for participation - No proprietary business model to protect - \"Information wants to be free\" philosophy **Examples**: - **Wikimedia Foundation / Movement** - Mission: \"Free knowledge for everyone\" - Wikidata: CC0 (public domain) - Wikipedia: CC-BY-SA (copyleft) - Global volunteer contributor base (300,000+ active editors) - Foundation supports movement, doesn't own content - **Creative Commons** - Mission: \"Enable sharing and reuse\" - License steward and open advocate - All materials openly licensed - **Open Knowledge Foundation** - Mission: \"Promote open data worldwide\" - Advocacy for open access and transparency - CKAN open source software - **Mozilla Foundation / Movement** - Mission: \"Open, accessible internet for all\" - Firefox (open source browser) - Open web standards advocacy - **Internet Archive** - Mission: \"Universal access to all knowledge\" - Wayback Machine, Open Library - Preservation and open access **Distinction from Cooperative**: - **SocialMovement**: Open participation, ideological commitment, open data - **Cooperative**: Membership-based ownership, may have closed data **Distinction from NetworkOrganisation**: - **SocialMovement**: Value-driven, open participation - **Network**: Service-driven, membership-based access **Ontological Alignment**: - Schema.org: `schema:Organization` (with movement characteristics) - Sociological concept of \"social movement\" - May have formal foundation (e.g., Wikimedia Foundation) but movement is broader"
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/encompassing-body/social-movement/wikimedia
+        organization_name: Wikimedia Foundation / Movement
+        organization_type: SOCIAL_MOVEMENT
+        organization_legal_form: 501(c)(3) non-profit foundation supporting broader movement
+        begin_of_the_begin: '2003-06-20'
+        service_offering:
+        - Wikipedia (free encyclopedia, 60M+ articles, 300+ languages)
+        - Wikidata (open knowledge base, 100M+ items, CC0)
+        - Wikimedia Commons (free media repository, 90M+ files)
+        - Wikisource (free library of source texts)
+        - Wiktionary (free dictionary)
+        - MediaWiki (open source wiki software)
+        membership_criteria: Open participation - anyone can edit Wikipedia, contribute to Wikidata, or upload to Wikimedia Commons. No membership fee or application. Contribution governed by community policies (neutral point of view, verifiability, no original research). The movement includes formal affiliates (chapters, user groups, thematic orgs).
+        has_authority:
+          has_description: Wikimedia projects are governed by community consensus through volunteer administrators, arbitration committees, and policy pages. The Wikimedia Foundation Board of Trustees provides strategic oversight. Movement governance through affiliates, chapters, and community-elected bodies (Movement Charter in development).
+        has_policy:
+          policy_name: Wikimedia Foundation Open Content Policy
+          applies_to:
+          - service_name: Wikidata
+            license: cc0-1.0
+          - service_name: Wikipedia
+            license: cc-by-sa-4.0
+          - service_name: Wikimedia Commons
+        identified_by:
+        - https://viaf.org/viaf/305375908
+        has_url: https://www.wikimedia.org/
+    slots:
+    - has_score
+    annotations:
+      custodian_types: '[''*'']'
+  FundingOrganisation:
+    is_a: EncompassingBody
+    class_uri: hc:FundingOrganisation
+    description: Grant-making body that allocates financial resources through schemes, calls, and subsidies.
+    alt_descriptions:
+      nl: Subsidieverlenende organisatie die financiële middelen toewijst via regelingen en oproepen.
+      de: Förderorganisation, die Finanzmittel durch Programme und Ausschreibungen vergibt.
+      fr: Organisation de financement allouant des ressources par programmes et appels.
+      es: Organismo financiador que asigna recursos mediante programas y convocatorias.
+      ar: منظمة تمويل تخصص الموارد المالية عبر البرامج والمكالمات.
+      id: Organisasi pendanaan yang mengalokasikan sumber daya melalui skema dan panggilan.
+      zh: 通过计划、征集和补贴分配财政资源的资助机构。
+    structured_aliases:
+    - literal_form: subsidiërende organisatie
+      in_language: nl
+    - literal_form: Förderorganisation
+      in_language: de
+    - literal_form: organisme de financement
+      in_language: fr
+    - literal_form: organización financiadora
+      in_language: es
+    - literal_form: منظمة تمويل
+      in_language: ar
+    - literal_form: organisasi pendanaan
+      in_language: id
+    - literal_form: 资助机构
+      in_language: zh
+    keywords:
+    - funding
+    - grant
+    - subsidy
+    - financial
+    - allocation
+    slots:
+    - focus_on
+    - provide
+    - receive
+    - publish
+    - has_time_interval
+    - has_score
+    - has_budget
+    slot_usage:
+      has_type:
+        range: EncompassingBodyTypeEnum
+        required: true
+        ifabsent: string(FUNDING_BODY)
+      publish:
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: https://nde.nl/ontology/hc/call/nwo/nwa-heritage-2025
+      focus_on:
+        range: FundingFocus
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_label: Visual arts and cultural heritage
+        - value:
+            has_label: Digital infrastructure
+      provide:
+        range: FundingScheme
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_label: Project Grants for Museums
+        - value:
+            has_label: Starting Grant
+      receive:
+        range: FundingSource
+        inlined: true
+        examples:
+        - value:
+            has_label: Dutch Ministry of OCW annual budget
+        - value:
+            has_label: National Lottery proceeds
+      has_time_interval:
+        range: TimeSpan
+        examples:
+        - value:
+            begin_of_the_begin: '2021-01-01T00:00:00Z'
+            end_of_the_begin: '2021-01-01T00:00:00Z'
+            begin_of_the_end: '2027-12-31T23:59:59Z'
+            end_of_the_end: '2027-12-31T23:59:59Z'
+      has_service:
+        examples:
+        - value: Application guidance and coaching
+        - value: Networking events for grantees
+        - value: Outcome evaluation support
+        - value:
+            has_label: EU
+            has_description: EU member states (Creative Europe)
+        - value:
+            has_label: GLOBAL
+            has_description: Worldwide eligibility
+    broad_mappings:
+    - schema:FundingAgency
+    close_mappings:
+    - schema:Organization
+    comments:
+    - FundingOrganisation provides FINANCIAL RESOURCES, not governance or services
+    - Relationship with custodians is transactional (grant-based)
+    - Distinguished from UMBRELLA (no governance authority)
+    - Distinguished from NETWORK (no ongoing services)
+    - Use schema:funder property to link to funded custodians
+    - Mapping specificity: schema:FundingAgency is broader than this domain-constrained funding-body subtype
+    - 'Preserved from prior description: A grant-giving organization that provides FINANCIAL RESOURCES to heritage custodians through funding schemes, grants, and subsidies. Distinguished from other EncompassingBody types by the FINANCIAL relationship rather than governance, services, or collaboration. **Characteristics**: - **Financial support**: Provides grants, subsidies, funding to custodians - **Funding schemes**: Implements structured programs with application processes - **No governance**: Does NOT govern recipients (unlike UmbrellaOrganisation) - **No ongoing services**: Does NOT provide operational services (unlike NetworkOrganisation) - **Evaluation and monitoring**: Assesses applications, monitors outcomes - **Time-limited relationships**: Grant periods define relationship duration **Relationship Model**: Unlike other EncompassingBody types that have ongoing structural relationships, FundingOrganisation has TRANSACTIONAL relationships: - Funder → (awards grant) → Custodian - Grant has start date, end date, amount, purpose - Multiple custodians may receive funding simultaneously - Same custodian may receive multiple grants over time **Examples**: - **Mondriaan Fund** (Mondriaan Fonds, Q2714299) - Dutch public fund for visual arts and cultural heritage - Instance of "funding body" (Q5509032) in Wikidata - Provides grants for exhibitions, acquisitions, conservation - Government-funded through Ministry of OCW, operates independently - **European Research Council** (ERC, Q1377836) - EU agency funding frontier research - Starting Grants, Consolidator Grants, Advanced Grants - Operates under Horizon Europe framework - **Creative Europe** (Q17084973) - EU programme supporting cultural and creative sectors - 2021-2027 programming period - Funds transnational cooperation projects - **DC4EU** (Digital Credentials for Europe) - EU Digital Europe Programme project - Funds digital infrastructure for heritage sector - **National Endowment for the Humanities** (NEH) - US federal agency for humanities funding - Preservation, research, public programs - **Heritage Lottery Fund** (now National Lottery Heritage Fund) - UK lottery distributor for heritage projects - Major funder of UK heritage custodians **Distinction from UmbrellaOrganisation**: - **FundingOrganisation**: Provides money, NO governance authority - **UmbrellaOrganisation**: Legal parent WITH governance authority - A ministry may BOTH fund AND govern - in that case use UMBRELLA (the governance relationship is primary) **Distinction from NetworkOrganisation**: - **FundingOrganisation**: One-way financial relationship (funder → recipient) - **NetworkOrganisation**: Ongoing service provision relationship **When a Ministry is UMBRELLA vs FUNDING_BODY**: - Ministry of OCW → National Archives: UMBRELLA (governs) - Ministry of OCW → Mondriaan Fund: UMBRELLA (governs the fund) - Mondriaan Fund → Museum X: FUNDING_BODY (only provides grant) **Ontological Alignment**: - Schema.org: `schema:FundingAgency` - "An organization that implements FundingSchemes and manages the granting process (via Grants)" - Schema.org: `schema:FundingScheme` - structured funding programs - Schema.org: `schema:Grant` / `schema:MonetaryGrant` - individual awards - Wikidata: Q5509032 (funding body) - FOAF: `foaf:fundedBy` (legacy, use schema:funder instead)'
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/encompassing-body/funding/mondriaan-fund
+        organization_name: Mondriaan Fonds
+        organization_type: FUNDING_BODY
+        organization_legal_form: Public fund (publiekrechtelijk fonds)
+        begin_of_the_begin: '1994-01-01'
+        has_focus:
+        - Visual arts
+        - Cultural heritage
+        - Museum acquisitions
+        - Conservation and restoration
+        - International cultural exchange
+        - Artist residencies
+        has_schema:
+        - Project Grants for Museums
+        - Conservation Subsidy
+        - International Heritage Programme
+        - Acquisition Grants
+        has_budget:
+        - has_label: Mondriaan Fund Annual Budget
+          has_budget: 30000000.0
+          has_currency:
+            currency_code: EUR
+            has_label: Euro
+            currency_symbol: "€"
+        has_source: Dutch Ministry of OCW annual appropriation
+        service_area:
+        - has_label: NL
+          has_description: Netherlands national coverage
+        service_offering:
+        - Application guidance
+        - Networking events for grantees
+        - Impact evaluation
+        membership_criteria: 'Eligibility depends on specific funding scheme. Generally: Dutch museums, archives, heritage organizations, and visual artists. International projects may have broader eligibility.'
+        identified_by:
+        has_url: https://www.mondriaanfonds.nl/
+    - value:
+        id: https://nde.nl/ontology/hc/encompassing-body/funding/erc
+        organization_name: European Research Council
+        organization_type: FUNDING_BODY
+        organization_legal_form: EU executive agency
+        begin_of_the_begin: '2007-02-27'
+        has_focus:
+        - has_label: Frontier Research
+        - has_label: All domains (including SH - Social Sciences and Humanities)
+        - has_label: Principal investigator-driven research
+        - has_label: High-risk/high-gain research
+        provide:
+        - has_label: Starting Grant
+        - has_label: Consolidator Grant
+        - has_label: Advanced Grant
+        - has_label: Synergy Grant
+        - has_label: Proof of Concept
+        has_budget:
+        - has_label: ERC Horizon Europe Share
+          has_budget: 2500000000.0
+          has_currency:
+            currency_code: EUR
+            has_label: Euro
+            currency_symbol: "€"
+          begin_of_the_begin: '2021-01-01'
+          end_of_the_end: '2027-12-31'
+        receive:
+          has_label: Horizon Europe Framework Programme (EU budget)
+        service_area:
+        - has_label: EU
+          has_description: European Union
+        - has_label: EEA
+          has_description: European Economic Area
+        - has_label: Associated Countries
+          has_description: Associated to Horizon Europe
+        membership_criteria: Open to researchers of any nationality. Host institution must be in EU Member State or Horizon Europe Associated Country. Selection based on scientific excellence only.
+        identified_by:
+        has_url: https://erc.europa.eu/
+    annotations:
+      custodian_types: '[''*'']'

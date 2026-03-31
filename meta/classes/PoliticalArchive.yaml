@@ -1,0 +1,103 @@
+id: https://w3id.org/nde/ontology/PoliticalArchive
+name: PoliticalArchive
+title: Political Archive Organization Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  PoliticalArchive:
+    description: >-
+      Organization dedicated to collecting and preserving materials documenting political movements, parties, governments, elections, and political figures.
+    alt_descriptions:
+      nl: >-
+        Organisatie gewijd aan het verzamelen en behouden van materialen over politieke
+        bewegingen, partijen, overheden, verkiezingen en politieke figuren.
+      de: >-
+        Organisation, die sich dem Sammeln und Bewahren von Materialien über politische
+        Bewegungen, Parteien, Regierungen, Wahlen und politische Persönlichkeiten widmet.
+      fr: >-
+        Organisation dédiée à la collecte et à la préservation de documents sur les mouvements
+        politiques, partis, gouvernements, élections et personnalités politiques.
+      es: >-
+        Organización dedicada a recopilar y preservar materiales que documentan movimientos
+        políticos, partidos, gobiernos, elecciones y figuras políticas.
+      ar: >-
+        منظمة مكرسة لجمع وحفظ المواد التي توثق الحركات السياسية والأحزاب
+        والحكومات والانتخابات والشخصيات السياسية.
+      id: >-
+        Organisasi yang didedikasikan untuk mengumpulkan dan melestarikan materi yang mendokumentasikan
+        gerakan politik, partai, pemerintah, pemilu, dan tokoh politik.
+      zh: >-
+        致力于收集和保存记录政治运动、政党、政府、选举和政治人物材料的组织。
+    exact_mappings:
+    - wd:Q27030921
+    broad_mappings:
+    - skos:Concept
+    - wd:Q166118
+    related_mappings:
+    - rico:CorporateBody
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: "hc:ArchiveOrganizationType"
+        - equals_string: "hc:PoliticalArchive"
+    see_also:
+    - PartyArchive
+    - ParliamentaryArchives
+    - GovernmentArchive
+    - TradeUnionArchive
+    comments:
+    - Institutional organization for political documentation
+    - May be governmental, independent, or party-affiliated
+    - Collects materials from parties, movements, and elections
+    - 'Preserved from prior description: Organization dedicated to collecting and preserving materials documenting political movements, parties, governments, elections, and political figures. Serves researchers studying political history and contemporary governance.'
+    examples:
+    - value:
+        has_type: hc:PoliticalArchive
+        has_score: 0.85
+      description: Political documentation organization
+    keywords:
+    - politics
+    - elections
+    - parties
+    - government
+    - movements
+    annotations:
+      skos:prefLabel: Political Archive
+      subject_domain: politics
+      specificity_score: 0.75
+      specificity_rationale: Specific archive organization type for political materials
+      custodian_types: "['*']"
+    structured_aliases:
+    - literal_form: politiek archief
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Politikarchiv
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: archives politiques
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: archivo político
+      predicate: EXACT_SYNONYM
+      in_language: es

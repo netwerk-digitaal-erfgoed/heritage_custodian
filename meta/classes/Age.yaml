@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/Age
+name: Age
+title: Age
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_quantity
+  - ../slots/has_measurement_unit
+classes:
+  Age:
+    class_uri: schema:QuantitativeValue
+    description: >-
+      Temporal span of existence measured in units of time, typically applied to
+      persons, objects, or entities. Expressed as a single value or range with
+      an optional unit of measurement.
+    alt_descriptions:
+      nl: >-
+        Tijdsduur van het bestaan gemeten in tijdseenheden, typisch toegepast op
+        personen, objecten of entiteiten. Uitgedrukt als een enkele waarde of
+        bereik met een optionele meeteenheid.
+      de: >-
+        Zeitlicher Bestandszeitraum gemessen in Zeiteinheiten, typischerweise auf
+        Personen, Objekte oder Entitaeten angewendet. Ausgedrueckt als einzelner
+        Wert oder Bereich mit optionaler Masseinheit.
+      fr: >-
+        Duree d'existence mesuree en unites de temps, generalement appliquee aux
+        personnes, objets ou entites. Exprimee comme une valeur unique ou une
+        plage avec une unite de mesure optionnelle.
+      es: >-
+        Extension temporal de existencia medida en unidades de tiempo,
+        tipicamente aplicada a personas, objetos o entidades. Expresada como un
+        valor unico o rango con una unidad de medida opcional.
+      ar: >-
+        المدة الزمنية للوجود مقاسة بوحدات الوقت، وتطبق عادة على الأشخاص أو
+        الكائنات أو الكيانات. معبراً عنها كقيمة مفردة أو نطاق مع وحدة قياس
+        اختيارية.
+      id: >-
+        Rentang waktu keberadaan yang diukur dalam satuan waktu, biasanya
+        diterapkan pada orang, benda, atau entitas. Dinyatakan sebagai nilai
+        tunggal atau rentang dengan satuan pengukuran opsional.
+      zh: >-
+        以时间单位衡量的存在时间跨度，通常应用于人、物体或实体。表示为单个值或
+        范围，带有可选的度量单位。
+    examples:
+    - value:
+        has_quantity: 18
+        has_measurement_unit: years
+      description: A person's age of 18 years
+    - value:
+        has_quantity: 25
+        has_measurement_unit: years
+      description: Minimum age in a range
+    structured_aliases:
+    - literal_form: leeftijd
+      in_language: nl
+    - literal_form: Alter
+      in_language: de
+    - literal_form: age
+      in_language: fr
+    - literal_form: edad
+      in_language: es
+    - literal_form: عمر
+      in_language: ar
+    - literal_form: usia
+      in_language: id
+    - literal_form: 年龄
+      in_language: zh
+    keywords:
+    - temporal span
+    - duration
+    - years
+    - time measurement
+    - demographic
+    slots:
+    - has_quantity
+    - has_measurement_unit
+    - has_description
+    slot_usage:
+      has_quantity:
+        range: integer
+        required: true
+      has_measurement_unit:
+        required: false
+    broad_mappings:
+    - schema:QuantitativeValue
+    comments:
+    - Generic utility class for representing age values
+    - Supports both point values and ranges via schema:QuantitativeValue
+    - |
+        Preserved from prior description:
+        
+        **Examples**:
+        - "18 years"
+        - "25-35 years"
+        
+        **Ontological Alignment**:
+        - `schema:QuantitativeValue`: Allows specifying value, minValue, maxValue, and unitCode.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class for temporal measurement
+      custodian_types: "['*']"

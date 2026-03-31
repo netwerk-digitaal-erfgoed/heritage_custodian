@@ -1,0 +1,80 @@
+id: https://nde.nl/ontology/hc/class/CustodianLegalStatus
+name: custodian_legal_status_class
+title: CustodianLegalStatus Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_status
+  - ../slots/has_legal_form
+  - ../slots/in_jurisdiction
+  - ../slots/has_label
+  - ../slots/refer_to
+  - ../slots/temporal_extent
+  - ../slots/derive_from
+  - ../slots/generated_by
+  - ../slots/has_score
+classes:
+  CustodianLegalStatus:
+    is_a: ReconstructedEntity
+    class_uri: org:FormalOrganization
+    description: >-
+      Reconstructed legal entity profile documenting formal registration, statutory
+      status, and jurisdictional incorporation of a heritage custodian.
+    alt_descriptions:
+      nl: >-
+        Gereconstrueerd rechtspersoonsprofiel dat formele registratie, wettelijke status
+        en jurisdictieke oprichting van een erfgoedbeheerder documenteert.
+      de: >-
+        Rekonstruiertes Rechtspersonenprofil, das formale Registrierung, gesetzlichen
+        Status und gerichtliche Gründung eines Kulturerbeverwalters dokumentiert.
+      fr: >-
+        Profil d'entité juridique reconstitué documentant l'enregistrement formel, le
+        statut légal et l'incorporation juridictionnelle d'un dépositaire patrimonial.
+      es: >-
+        Perfil de entidad legal reconstruido que documenta el registro formal, el estatus
+        legal y la incorporación jurisdiccional de un custodio patrimonial.
+      ar: >-
+        ملف كيان قانوني معاد بنائه يوثق التسجيل الرسمي والوضع القانوني والتأسيس القضائي لأمين التراث.
+      id: >-
+        Profil entitas hukum yang direkonstruksi yang mendokumentasikan pendaftaran formal,
+        status hukum, dan pendirian yurisdiksi kustodian warisan.
+      zh: >-
+        记录遗产保管人的正式注册、法定地位和司法管辖区成立的重建法律实体档案。
+    broad_mappings:
+      - org:FormalOrganization
+      - rico:CorporateBody
+      - schema:Organization
+    close_mappings:
+      - schema:Person
+    related_mappings:
+      - prov:Entity
+    slots:
+      - identified_by
+      - has_status
+      - has_legal_form
+      - in_jurisdiction
+      - has_label
+      - refer_to
+      - temporal_extent
+      - derive_from
+      - generated_by
+      - has_score
+    slot_usage:
+      refer_to:
+        range: Custodian
+        required: true
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: true
+      generated_by:
+        range: ReconstructionActivity
+        required: true

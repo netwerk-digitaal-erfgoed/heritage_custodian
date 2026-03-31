@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: offer_program
+# ==============================================================================
+# Organization provides a structured plan, curriculum, or program.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line               | Mapping | Notes                                    |
+# |---------------|----------------------------|-------------------------|---------|------------------------------------------|
+# | **Schema.org**| `schema:hasOfferCatalog`   | schemaorg.owl:20356-20380| related | "Indicates an OfferCatalog listing for   |
+# |               |                            |                         |         | Organization, Person, or Service." About |
+# |               |                            |                         |         | offer catalogs, not programs/curricula.  |
+#
+# schema:hasOfferCatalog is about commercial offer listings, not structured
+# educational/cultural programs. Related but distinct concept.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/offer_program
+name: offer_program
+title: Offer Program
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  offer_program:
+    description: >-
+      To specify that an organization or entity provides a structured plan, curriculum, broadcast schedule, or software package for use or participation.
+    alt_descriptions:
+      nl: >-
+        Specificeert dat een organisatie of entiteit een gestructureerd plan, curriculum, uitzendschema of softwarepakket aanbiedt voor gebruik of deelname.
+      de: >-
+        Gibt an, dass eine Organisation oder Entität einen strukturierten Plan, Lehrplan, Sendeplan oder ein Softwarepaket zur Nutzung oder Teilnahme bereitstellt.
+      fr: >-
+        Spécifie qu'une organisation ou entité fournit un plan structuré, un programme d'études, un calendrier de diffusion ou un logiciel pour utilisation ou participation.
+      ar: >-
+        يحدد أن منظمة أو كياناً يقدم خطة منظمة أو منهجاً دراسياً أو جدول بث أو حزمة برمجية للاستخدام أو المشاركة.
+      id: >-
+        Menentukan bahwa organisasi atau entitas menyediakan rencana terstruktur, kurikulum, jadwal siaran, atau paket perangkat lunak untuk penggunaan atau partisipasi.
+      zh: >-
+        指定组织或实体提供结构化计划、课程、广播时间表或软件包供使用或参与。
+      es: >-
+        Especifica que una organización o entidad proporciona un plan estructurado, plan de estudios, programación de emisión o paquete de software para uso o participación.
+    structured_aliases:
+      - literal_form: Programma-aanbod
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Programmangebot
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Offre de programme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عرض برنامج
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penawaran Program
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 项目提供
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Oferta de programa
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    slot_uri: hc:programsOffered
+    aliases:
+      - is_or_was_programs_offered
+      - is_or_was_program_activity
+      - program_activity
+      - conservation_breeding
+      - research_program
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:hasOfferCatalog  # schemaorg.owl:20356-20380 - commercial offer catalog listings
+    comments:
+      - "Schema.org's hasOfferCatalog relates to commercial offer listings, not structured educational/cultural programs."

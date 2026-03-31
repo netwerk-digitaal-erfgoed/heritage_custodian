@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: has_subject
+# ==============================================================================
+# Topic, theme, or domain of knowledge that a resource deals with.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property             | File/Line                   | Mapping  | Notes                                                                         |
+# |----------------|----------------------|-----------------------------|----------|-------------------------------------------------------------------------------|
+# | **DCTerms**    | `dcterms:subject`    | dcterms.rdf:1968-1988       | slot_uri | "A topic of the resource."                                                    |
+# | **Schema.org** | `schema:about`       | schemaorg.owl:6247-6270     | exact    | "The subject matter of an object." Domain: CreativeWork/Event/etc.            |
+# | **CIDOC-CRM**  | `crm:P62_depicts`    | CIDOC_CRM_v7.1.3.rdf:2649-2662 | close | "Identifies something depicted by E24 Physical Human-Made Thing." Visual depiction only. |
+# | **CIDOC-CRM**  | `crm:P129_is_about`  | CIDOC_CRM_v7.1.3.rdf:3966-3979 | close | "Documents that E89 Propositional Object has as subject E1 CRM Entity."       |
+# | **Schema.org** | `schema:keywords`    | schemaorg.owl:23832-23850   | related  | "Keywords or tags used to describe some item." Keywords != subject.            |
+#
+# REMOVED: skos:Concept (skos.rdf:35-36) — This is a CLASS, not a property. Invalid as a mapping target.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_subject
+name: has_subject
+title: Has Subject
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_subject:
+    slot_uri: dcterms:subject
+    description: >-
+      To specify the topic, theme, or domain of knowledge that a resource,
+      document, or event deals with or is about.
+    alt_descriptions:
+      nl: >-
+        Om het onderwerp, thema of kennisdomein aan te geven waar een bron,
+        document of evenement over gaat of betrekking op heeft.
+      de: >-
+        Zur Angabe des Themas, der Thematik oder des Wissensgebiets, mit dem
+        sich eine Ressource, ein Dokument oder eine Veranstaltung befasst.
+      fr: >-
+        Pour spécifier le sujet, le thème ou le domaine de connaissance dont
+        traite une ressource, un document ou un événement.
+      ar: >-
+        لتحديد الموضوع أو الفكرة أو مجال المعرفة الذي يتناوله أو يدور حوله
+        مورد أو مستند أو حدث.
+      id: >-
+        Untuk menentukan topik, tema, atau domain pengetahuan yang berkaitan
+        dengan suatu sumber daya, dokumen, atau acara.
+      zh: >-
+        用于指定资源、文档或事件所涉及或相关的主题、题材或知识领域。
+      es: >-
+        Para especificar el tema, la temática o el dominio de conocimiento
+        del que trata un recurso, documento o evento.
+    structured_aliases:
+      - literal_form: Onderwerp
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Thema
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Sujet
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موضوع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Subjek
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 主题
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Tema
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    multivalued: true
+    aliases:
+      - has_or_had_subject
+    exact_mappings:
+      - schema:about  # schemaorg.owl:6247-6270 — "The subject matter of an object." Domain: CreativeWork/Event/etc.
+    close_mappings:
+      - crm:P62_depicts  # CIDOC_CRM_v7.1.3.rdf:2649-2662 — "Identifies something depicted by E24 Physical Human-Made Thing." Visual depiction only.
+      - crm:P129_is_about  # CIDOC_CRM_v7.1.3.rdf:3966-3979 — "Documents that E89 Propositional Object has as subject E1 CRM Entity."
+    related_mappings:
+      - schema:keywords  # schemaorg.owl:23832-23850 — "Keywords or tags used to describe some item." Keywords != subject.
+    comments:
+      - "MIGRATED 2026-02-03: Renamed from has_or_had_subject for conciseness."
+    annotations:
+      controlled_vocabularies: AAT, Iconclass, LCSH, UNESCO Thesaurus
+      custodian_types: '["*"]'
+    examples:
+      - value: portrait
+        description: Simple string subject for artwork
+      - value: aat:300015637
+        description: AAT term for 'portraits' via CURIE

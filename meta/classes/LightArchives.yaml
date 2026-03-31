@@ -1,0 +1,74 @@
+id: https://w3id.org/nde/ontology/LightArchives
+name: LightArchives
+title: Light Archives
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_policy
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  LightArchives:
+    description: >-
+      Archive organization type with broadly accessible holdings and low access
+      restrictions for public or research use.
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    alt_descriptions:
+      nl: Type archieforganisatie met breed toegankelijke holdings en beperkte toegangsbeperkingen voor publiek of onderzoek.
+      de: Archivorganisationstyp mit breit zugaenglichen Bestaenden und geringen Zugangsbeschraenkungen fuer Oeffentlichkeit oder Forschung.
+      fr: Type d organisation archivistique avec fonds largement accessibles et restrictions d acces limitees pour usage public ou scientifique.
+      es: Tipo de organizacion archivistica con fondos ampliamente accesibles y pocas restricciones de acceso para uso publico o de investigacion.
+      ar: نوع منظمة أرشيفية ذات مقتنيات واسعة الإتاحة وقيود وصول منخفضة للاستخدام العام أو البحثي.
+      id: Tipe organisasi arsip dengan koleksi yang dapat diakses luas dan pembatasan akses minimal untuk penggunaan publik atau riset.
+      zh: 馆藏开放度较高、面向公众或研究使用且访问限制较少的档案机构类型。
+    structured_aliases:
+    - {literal_form: open archieforganisatie, in_language: nl}
+    - {literal_form: offenes Archiv, in_language: de}
+    - {literal_form: archive a acces ouvert, in_language: fr}
+    - {literal_form: archivo de acceso abierto, in_language: es}
+    - {literal_form: أرشيف مفتوح الوصول, in_language: ar}
+    - {literal_form: arsip akses terbuka, in_language: id}
+    - {literal_form: 开放访问档案机构, in_language: zh}
+    slots:
+    - has_policy
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q112815447
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Light Archives
+      skos:altLabel: Light Archive, Open Access Archive
+      access_model: broadly accessible
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - DarkArchive
+    - DimArchives
+    - PublicArchive
+    - AccessPolicy
+    comments:
+    - Light Archive (de)
+    - Contrasts with 'dark archives' that restrict access
+    - Emphasizes accessibility over preservation restrictions
+    - Part of light/dim/dark access spectrum

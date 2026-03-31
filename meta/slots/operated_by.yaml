@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: operated_by
+# ==============================================================================
+# Agent that actively controls, runs, or performs the functions of a device,
+# service, vehicle, or facility.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property           | File/Line                | Mapping | Notes                                                        |
+# |------------|--------------------|--------------------------|---------|--------------------------------------------------------------|
+# | Schema.org | `schema:provider`  | schemaorg.owl:31484-31510| close   | "The service provider, service operator, or service          |
+# |            |                    |                          |         | performer; the goods producer." Provider makes something     |
+# |            |                    |                          |         | available; operator actively runs/controls it.               |
+#
+# schema:provider is close but not exact: it emphasizes making a service available
+# (provider role), while this slot emphasizes active control/operation. Provider
+# includes goods producers and service performers — broader than operator.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/operated_by
+name: operated_by
+title: operated by
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  operated_by:
+    slot_uri: hc:operatedBy
+    description: >-
+      Identifies the agent, organization, or system that actively controls, runs, or performs the functions of a device, service, vehicle, or facility.
+    alt_descriptions:
+      nl: >-
+        Identificeert de actor, organisatie of het systeem dat actief de functies van een apparaat, dienst, voertuig of faciliteit bestuurt, beheert of uitvoert.
+      de: >-
+        Identifiziert den Akteur, die Organisation oder das System, das aktiv die Funktionen eines Geräts, Dienstes, Fahrzeugs oder einer Einrichtung steuert, betreibt oder ausführt.
+      fr: >-
+        Identifie l'agent, l'organisation ou le système qui contrôle, exploite ou exécute activement les fonctions d'un appareil, d'un service, d'un véhicule ou d'une installation.
+      ar: >-
+        يحدد الجهة أو المنظمة أو النظام الذي يتحكم أو يدير أو ينفذ بنشاط وظائف جهاز أو خدمة أو مركبة أو منشأة.
+      id: >-
+        Mengidentifikasi agen, organisasi, atau sistem yang secara aktif mengendalikan, menjalankan, atau melaksanakan fungsi perangkat, layanan, kendaraan, atau fasilitas.
+      zh: >-
+        标识主动控制、运行或执行设备、服务、车辆或设施功能的代理人、组织或系统。
+      es: >-
+        Identifica al agente, organización o sistema que controla, opera o ejecuta activamente las funciones de un dispositivo, servicio, vehículo o instalación.
+    structured_aliases:
+      - literal_form: Beheerder
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Betreiber
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Exploitant
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مشغل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Operator
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 运营者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Operador
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_operated_by
+      - operator
+    comments:
+      - "MIGRATED 2026-02-03 from is_or_was_operated_by for conciseness."
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:provider  # schemaorg.owl:31484-31510 - "The service provider, service operator, or service performer; the goods producer."

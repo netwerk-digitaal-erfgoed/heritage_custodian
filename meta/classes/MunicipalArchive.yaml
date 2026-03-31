@@ -1,0 +1,97 @@
+id: https://w3id.org/nde/ontology/MunicipalArchive
+name: MunicipalArchive
+title: Municipal Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  MunicipalArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    description: >-
+      Public-sector archive organization within city or town administration, mandated to steward municipal governance records, civil-administration files, and local public-memory docu.
+    alt_descriptions:
+      nl: Archieforganisatie met mandaat voor het beheer van records over gemeentebestuur en lokale administratie.
+      de: Archivorganisation mit Auftrag zur Verwahrung von Unterlagen der kommunalen Verwaltung und Selbstverwaltung.
+      fr: Organisation archivistique chargee de conserver les archives de gouvernance municipale et d administration locale.
+      es: Organizacion archivistica encargada de custodiar registros del gobierno municipal y la administracion local.
+      ar: جهة أرشيفية مكلفة بحفظ سجلات الحوكمة البلدية والإدارة المدنية المحلية.
+      id: Organisasi arsip yang diberi mandat untuk mengelola rekaman pemerintahan kota dan administrasi sipil lokal.
+      zh: 负责保管市政治理与地方行政记录的档案机构。
+    structured_aliases:
+    - {literal_form: gemeentearchief, in_language: nl}
+    - {literal_form: Stadtarchiv, in_language: de}
+    - {literal_form: archives communales, in_language: fr}
+    - {literal_form: archivo municipal, in_language: es}
+    - {literal_form: أرشيف بلدي, in_language: ar}
+    - {literal_form: arsip kota, in_language: id}
+    - {literal_form: 市政档案馆, in_language: zh}
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q604177
+    broad_mappings:
+    - wd:Q166118
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      hold_record_set:
+        any_of:
+        - equals_string: hc:CouncilGovernanceFonds
+        - equals_string: hc:CivilRegistrySeries
+        - equals_string: hc:MunicipalAdministrationFonds
+        - equals_string: hc:UrbanPlanningCollection
+        - equals_string: hc:LocalHistoryCollection
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    see_also:
+    - LocalGovernmentArchive
+    - RegionalArchive
+    - GovernmentArchive
+    - LocalHistoryArchive
+    - MunicipalArchiveRecordSetType
+    - CouncilGovernanceFonds
+    - CivilRegistrySeries
+    - MunicipalAdministrationFonds
+    - UrbanPlanningCollection
+    - LocalHistoryCollection
+    comments:
+    - Core institutional custodian for records of municipal governance and civic administration.
+    - Frequently the oldest continuous public-memory institution at local government level.
+    - Supports legal accountability, rights documentation, genealogy, and local-history research.
+    - Access conditions may vary by municipal privacy and public-records legislation.
+    - 'Preserved from prior description: Public-sector archive organization within city or town administration, mandated to steward municipal governance records, civil-administration files, and local public-memory documentation under municipal legal and policy frameworks.'
+    examples:
+    - value:
+        has_label: Gemeentearchief Rotterdam
+        hold_record_set:
+        - hc:CouncilGovernanceFonds
+        - hc:UrbanPlanningCollection
+    - value:
+        has_label: Stadtarchiv Koeln
+        hold_record_set:
+        - hc:CivilRegistrySeries
+        - hc:MunicipalAdministrationFonds
+    annotations:
+      skos:prefLabel: Municipal Archive
+      skos:altLabel: Stadtarchiv, archivo municipal, archives communales
+      admin_level: municipal
+      custodian_status: governmental
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

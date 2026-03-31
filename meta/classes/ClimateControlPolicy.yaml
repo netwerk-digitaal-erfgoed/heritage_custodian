@@ -1,0 +1,147 @@
+id: https://nde.nl/ontology/hc/class/climate_control_policy
+name: climate_control_policy_class
+title: Climate Control Policy Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  odrl: http://www.w3.org/ns/odrl/2/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ./ClimateControl
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/regulate
+classes:
+  ClimateControlPolicy:
+    class_uri: odrl:Policy
+    description: >-
+      Governance rule set defining acceptable environmental conditions,
+      monitoring thresholds, and response procedures for preservation spaces.
+    alt_descriptions:
+      nl: Beleidskader dat toegestane omgevingscondities, monitoringsdrempels en responsprocedures voor behoudsruimten vastlegt.
+      de: Regelwerk, das zulaessige Umgebungsbedingungen, Ueberwachungsschwellen und Reaktionsverfahren fuer Erhaltungsbereiche festlegt.
+      fr: Ensemble de gouvernance definissant les conditions environnementales admissibles, les seuils de suivi et les procedures de reponse pour les espaces de conservation.
+      es: Conjunto normativo que define condiciones ambientales aceptables, umbrales de monitoreo y procedimientos de respuesta para espacios de preservacion.
+      ar: مجموعة قواعد حوكمة تحدد الظروف البيئية المقبولة وحدود المراقبة وإجراءات الاستجابة لمساحات الحفظ.
+      id: Kerangka kebijakan yang menetapkan kondisi lingkungan yang dapat diterima, ambang pemantauan, dan prosedur respons untuk ruang preservasi.
+      zh: 规定保存空间可接受环境条件、监测阈值与应对流程的治理规则集。
+    structured_aliases:
+    - literal_form: klimaatbeheerbeleid
+      in_language: nl
+    - literal_form: Richtlinie zur Umgebungsregelung
+      in_language: de
+    - literal_form: politique de regulation environnementale
+      in_language: fr
+    - literal_form: politica de regulacion ambiental
+      in_language: es
+    - literal_form: سياسة الضبط البيئي
+      in_language: ar
+    - literal_form: kebijakan pengendalian lingkungan
+      in_language: id
+    - literal_form: 环境调控制度
+      in_language: zh
+    broad_mappings:
+    - odrl:Policy
+    close_mappings:
+    - crm:E29_Design_or_Procedure
+    related_mappings:
+    - schema:Action
+    keywords:
+    - environmental thresholds
+    - preservation governance
+    - monitoring requirements
+    - response protocol
+
+    slots:
+    - has_label
+    - has_description
+    - regulate
+
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: "Archives Preservation Environment Standard"
+      has_description:
+        examples:
+        - value:
+            description_text: "Temperature must be maintained between 18-22°C with relative humidity 45-55%. Continuous monitoring required."
+            description_type: policy
+      regulate:
+        range: ClimateControl
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+            has_label: "Main Stack HVAC"
+            has_type: HVAC
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      Policy governing climate control systems and environmental conditions.
+
+      **DEFINITION**:
+
+      A ClimateControlPolicy defines the rules, standards, and requirements
+      for environmental control within heritage facilities. This includes
+      temperature ranges, humidity levels, air quality standards, and
+      monitoring requirements.
+
+      **ONTOLOGICAL ALIGNMENT**:
+
+      - **Primary** (`class_uri`): `odrl:Policy` - ODRL policy construct
+      - **Related**: `crm:E29_Design_or_Procedure` - CIDOC-CRM procedures
+
+      **USE CASES**:
+
+      1. **Preservation Environment Policy**:
+         
+      ClimateControlPolicy
+          │
+          ├── regulates_or_regulated ──► ClimateControl
+          │                                  │
+          │                                  └── has_type ──► ClimateControlType
+          │
+          └── (may regulate multiple systems)
+      ```
+    annotations:
+      custodian_types: '["A", "L", "M", "R"]'
+      custodian_types_rationale: Climate policies primarily for archives, libraries, museums, and research centers with preservation needs.
+      custodian_types_primary: A
+      specificity_score: 0.60
+      specificity_rationale: Moderately specific - applies to facilities with climate-controlled storage.
+
+    comments:
+    - Represents governance and compliance requirements rather than mechanical equipment
+    - Regulate links policy rules to one or more environmental regulation systems
+
+    examples:
+    - value:
+        has_label: "Rijksmuseum Collection Storage Climate Policy"
+        has_description:
+          description_text: "All collection storage areas must maintain temperature 20±2°C, RH 50±5%. HVAC failure triggers immediate response protocol."
+          description_type: policy
+        regulates_or_regulated:
+        - has_label: "Depot A HVAC System"
+          has_type: HVAC
+        - has_label: "Depot B HVAC System"
+          has_type: HVAC
+    - value:
+        has_label: "Warehouse Basic Climate Requirements"
+        has_description:
+          description_text: "Non-collection warehouse areas must maintain temperature above freezing. Heating required October-April."
+          description_type: policy
+        regulates_or_regulated:
+        - has_label: "Logistics Warehouse Heating"
+          has_type: HEATED

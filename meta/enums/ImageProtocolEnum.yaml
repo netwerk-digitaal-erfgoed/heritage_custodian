@@ -1,0 +1,41 @@
+id: https://nde.nl/ontology/hc/enum/ImageProtocolEnum
+name: image_protocol_enum
+title: Image Protocol Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  ImageProtocolEnum:
+    description: |
+      Image delivery protocols supported by image servers.
+    permissible_values:
+      IIP:
+        description: |
+          Internet Imaging Protocol.
+
+          Original tiled image protocol.
+          Parameters: FIF, WID, HEI, RGN, QLT, CVT
+      IIIF_IMAGE:
+        description: |
+          IIIF Image API.
+
+          Modern standard for interoperable image delivery.
+          URL structure: {server}/{identifier}/{region}/{size}/{rotation}/{quality}.{format}
+      ZOOMIFY:
+        description: |
+          Zoomify tile format.
+
+          Pyramid tiles in folders: TileGroup0/, TileGroup1/...
+          Properties in ImageProperties.xml
+      DEEPZOOM:
+        description: |
+          Microsoft Deep Zoom format.
+
+          Pyramid tiles with .dzi descriptor file.
+          Common with OpenSeadragon viewer.
+      DJATOKA:
+        description: |
+          Djatoka JPEG 2000 image server.
+
+          Legacy LoC image server, deprecated in favor of IIIF.

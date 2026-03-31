@@ -1,0 +1,299 @@
+id: https://nde.nl/ontology/hc/class/catering-place
+name: catering_place_class
+title: CateringPlace Class
+imports:
+- linkml:types
+- ../slots/has_cuisine
+- ../slots/has_accessibility_feature
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_price
+- ../slots/has_score
+- ../slots/has_service
+- ../slots/has_type
+- ../slots/classified_as
+- ../slots/derive_from
+- ../slots/founded_through
+- ../slots/generated_by
+- ../slots/has_operating_hours
+- ../slots/operated_by
+- ../slots/has_capacity
+- ../slots/require
+- ../slots/has_user
+- ../slots/has_user_category
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+classes:
+  CateringPlace:
+    is_a: ReconstructedEntity
+    class_uri: schema:FoodEstablishment
+    description: >-
+      Food and beverage facility operated at or by a heritage custodian, including
+      museum cafés, archive tea rooms, library cafeterias, and other dining
+      facilities serving visitors and staff.
+    alt_descriptions:
+      nl: Eet- en drinkgelegenheid beheerd door of bij een erfgoedinstelling, inclusief museumcafés, archieftheesalons, bibliotheekkantines en andere eetgelegenheden voor bezoekers en personeel.
+      de: Speise- und Getränkeeinrichtung, die von oder bei einer Heritage-Institution betrieben wird, einschließlich Museumscafés, Archiv-Teesalons, Bibliothekskantinen und anderer Speiseeinrichtungen für Besucher und Personal.
+      fr: Établissement de restauration géré par ou auprès d'une institution patrimoniale, comprenant les cafés de musée, les salons de thé d'archives, les cantines de bibliothèque et autres installations de restauration pour les visiteurs et le personnel.
+      es: Establecimiento de comida y bebida operado por o en una institución patrimonial, incluyendo cafés de museo, salones de té de archivos, cafeterías de bibliotecas y otras instalaciones gastronómicas para visitantes y personal.
+      ar: منشأة طعام وشراب تديرها مؤسسة تراثية أو تعمل بالقرب منها، بما في ذلك مقاهي المتاحف وصالات الشاي في الأرشيف وكافيتريات المكتبات وغيرها من مرافق الطعام للزوار والموظفين.
+      id: Fasilitas makanan dan minuman yang dioperasikan oleh atau di lembaga warisan, termasuk kafe museum, ruang teh arsip, kantin perpustakaan, dan fasilitas makan lainnya untuk pengunjung dan staf.
+      zh: 由遗产机构运营或在其运营的餐饮设施，包括博物馆咖啡馆、档案馆茶室、 图书馆食堂以及其他为访客和员工提供服务的餐饮设施。
+    broad_mappings:
+    - schema:FoodEstablishment
+    close_mappings:
+    - schema:CafeOrCoffeeShop
+    - schema:Restaurant
+    - org:Site
+    related_mappings:
+    - hc:GiftShop
+    - wd:Q11707
+    - wd:Q30022
+    slots:
+    - has_accessibility_feature
+    - has_description
+    - identified_by
+    - has_label
+    - has_price
+    - has_type
+    - has_cuisine
+    - founded_through
+    - has_service
+    - classified_as
+    - has_score
+    - has_opening_hour
+    - operated_by
+    - has_capacity
+    - require
+    - has_user
+    - has_user_category
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/rijksmuseum-restaurant
+      has_label:
+        inlined: false
+        required: true
+        examples:
+        - value:
+            label_text: RIJKS Restaurant
+        - value:
+            label_text: "Nationaal Archief Café"
+        - value:
+            label_text: "Van Gogh Museum Café"
+      has_description:
+        inlined: false
+        examples:
+        - value:
+            description_text: Michelin-starred restaurant serving modern Dutch cuisine using seasonal ingredients. Located in the museum's atrium with views of the garden.
+      has_type:
+        range: CateringType
+        required: true
+        inlined: true
+        examples:
+        - value:
+            has_name: Restaurant
+        - value:
+            has_name: "Café"
+      classified_as:
+        range: HeritageType
+        required: false
+        examples:
+        - value:
+            has_label: HISTORIC_RESTAURANT
+      has_cuisine:
+        examples:
+        - value: Modern Dutch fine dining
+        - value: "Organic café fare"
+        - value: Traditional Dutch pancakes
+      has_capacity:
+        range: integer
+        examples:
+        - value: 80
+        - value: 40
+      has_service:
+        range: boolean
+        examples:
+        - value: true
+      has_opening_hour:
+        examples:
+        - value: Tu-Su 10:00-17:00
+        - value: Tu-Su 10:00-22:00
+      serves_visitors_only:
+        range: boolean
+        examples:
+        - value: true
+        - value: false
+      has_user:
+        range: boolean
+        examples:
+        - value: true
+      require:
+        range: boolean
+        examples:
+        - value: true
+      has_score:
+        range: integer
+        minimum_value: 1
+        maximum_value: 3
+        examples:
+        - value: 1
+      has_price:
+        range: Price
+        inlined: true
+        examples:
+        - value:
+            has_value: "€€€€"
+            has_type:
+              has_name: Luxury
+              has_description: "Over €60 per person"
+        - value:
+            has_value: "€€"
+            has_type:
+              has_name: Moderate
+        - value:
+            has_value: "€"
+            has_type:
+              has_name: Budget
+      has_accessibility_feature:
+        multivalued: true
+        examples:
+        - value: Wheelchair accessible
+        - value: Accessible restrooms
+      operated_by:
+        examples:
+        - value: Vermaat Groep
+        - value: In-house
+      founded_through:
+        range: FoundingEvent
+        inlined: true
+        examples:
+        - value:
+            temporal_extent:
+              begin_of_the_begin: '1902-01-01'
+              end_of_the_begin: '1902-12-31'
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    structured_aliases:
+    - literal_form: horecagelegenheid
+      in_language: nl
+    - literal_form: Catering-Einrichtung
+      in_language: de
+    - literal_form: établissement de restauration
+      in_language: fr
+    - literal_form: establecimiento de restauración
+      in_language: es
+    - literal_form: منشأة تموين
+      in_language: ar
+    - literal_form: tempat katering
+      in_language: id
+    - literal_form: 餐饮场所
+      in_language: zh
+    comments:
+    - Models food/beverage facilities at heritage custodians
+    - Distinguished from GiftShop (retail) by food service focus
+    - May be operated by heritage custodian or external caterer
+    - Includes museum cafés, restaurants, tea rooms, and historic cafés
+    keywords:
+    - catering
+    - restaurant
+    - café
+    - food service
+    - museum dining
+    see_also:
+    - https://schema.org/FoodEstablishment
+    - https://schema.org/Restaurant
+    - https://schema.org/CafeOrCoffeeShop
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/rijksmuseum-restaurant
+        has_label:
+          label_text: RIJKS Restaurant
+        has_description:
+          description_text: Michelin-starred restaurant serving modern Dutch cuisine. Located in museum atrium with garden views.
+        has_type:
+          has_name: Restaurant
+        cuisine_type: Modern Dutch fine dining
+        seating_capacity: 80
+        has_service: true
+        outdoor_seating_capacity: 30
+        opening_hour: Tu-Su 12:00-15:00, 18:00-22:00
+        serves_visitors_only: false
+        reservation_required: true
+        michelin_star: 1
+        has_price:
+          has_value: "€€€€"
+          has_type:
+            has_name: Luxury
+        operator: Vermaat Groep
+      description: Michelin-starred museum restaurant
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/na-cafe
+        has_label:
+          label_text: "Nationaal Archief Café"
+        has_description:
+          description_text: "Casual café for archive visitors. Light lunches, coffee, and pastries."
+        has_type:
+          has_name: "Café"
+        cuisine_type: "Café fare, sandwiches, soups"
+        seating_capacity: 40
+        opening_hour: Tu-Fr 09:30-16:30
+        serves_visitors_only: true
+        reservation_required: false
+        has_price:
+          has_value: "€"
+          has_type:
+            has_name: Budget
+        has_accessibility_feature:
+        - Wheelchair accessible
+      description: Archive visitor café
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/cafe-americain
+        has_label:
+          label_text: "Café Americain"
+        has_description:
+          description_text: "Historic art deco café dating from 1902. Literary landmark and protected monument."
+        has_type:
+          has_name: "Historic Café"
+        classified_as:
+          has_label: HISTORIC_RESTAURANT
+        cuisine_type: International brasserie
+        seating_capacity: 150
+        has_service: true
+        opening_hour: Daily 07:00-23:00
+        founded_through:
+          temporal_extent:
+            begin_of_the_begin: '1902-01-01'
+            end_of_the_begin: '1902-12-31'
+        has_price:
+          has_value: "€€€"
+          has_type:
+            has_name: Upscale
+      description: Historic heritage café
+    notes:
+    - |
+      Preserved from prior description (commit bd8368df):
+
+      "Catering facility, caf\xE9, or restaurant operated at a heritage custodian venue.\n\n**DEFINITION**:\n\nA CateringPlace is a food and beverage facility operated at or by a heritage\ncustodian. This includes museum caf\xE9s, archive tea rooms, library cafeterias,\nand other dining facilities that serve visitors and staff. May also include\nhistoric restaurants or caf\xE9s that are themselves heritage institutions.\n\n**SCHEMA.ORG ALIGNMENT**:\n\n`schema:FoodEstablishment` - \"A food-related business.\"\n\nSubclasses include:\n- `schema:CafeOrCoffeeShop` - Caf\xE9 or coffee shop\n- `schema:Restaurant` - Full-service restaurant\n\n**WIKIDATA TYPE LINKAGE (TasteScentHeritageTypeEnum Subset)**:\n\nFor heritage catering venues with cultural significance, can be classified\nusing TasteScentHeritageTypeEnum (15 types):\n\n- Q11707 (restaurant) - General restaurant\n- Q30022 (caf\xE9) - Coffee shop/caf\xE9\n- Q1569167 (tearoom) - Tea room\n- Q5765838 (historic restaurant) - Restaurant\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

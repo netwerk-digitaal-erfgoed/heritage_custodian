@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: has_location
+# ==============================================================================
+# Physical place, position, or site where an entity is situated.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property            | File/Line                  | Mapping | Notes                                              |
+# |---------------|---------------------|----------------------------|---------|----------------------------------------------------|
+# | **Schema.org**| `schema:location`   | schemaorg.owl:25018-25046  | exact   | "The location of, for example, where an event is   |
+# |               |                     |                            |         | happening, where an organization is located."      |
+# |               |                     |                            |         | Domain: Event/Organization/Action.                 |
+# | **PROV-O**    | `prov:atLocation`   | prov.ttl:486-504           | close   | "The Location of any resource." Provenance-focused.|
+#
+# CREATED: 2026-02-03
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_location
+name: has_location
+title: Has Location
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_location:
+    slot_uri: schema:location
+    description: >-
+      To specify the physical place, position, or site where an entity is situated, stored, or where an event occurred.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de fysieke plaats, positie of locatie waar een entiteit zich bevindt, is opgeslagen, of waar een gebeurtenis heeft plaatsgevonden.
+      de: >-
+        Angabe des physischen Ortes, der Position oder der Staette, an der sich eine Entitaet befindet, gelagert wird oder an der ein Ereignis stattfand.
+      fr: >-
+        Specifier le lieu physique, la position ou le site ou une entite est situee, stockee, ou ou un evenement s'est produit.
+      ar: >-
+        تحديد المكان المادي أو الموقع أو الموضع الذي يقع فيه كيان ما أو يُخزن فيه أو حيث وقع حدث ما.
+      id: >-
+        Menentukan tempat fisik, posisi, atau lokasi di mana suatu entitas berada, disimpan, atau di mana suatu peristiwa terjadi.
+      zh: >-
+        指定实体所在、存放的物理地点、位置或场所，或事件发生的地点。
+      es: >-
+        Especificar el lugar fisico, la posicion o el sitio donde una entidad esta situada, almacenada, o donde ocurrio un evento.
+    structured_aliases:
+      - literal_form: locatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Standort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: emplacement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موقع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: lokasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 位置
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: ubicacion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - prov:atLocation  # prov.ttl:486-504 - "The Location of any resource." Domain: Activity/Agent/Entity/InstantaneousEvent. Provenance-focused.
+    aliases:
+      - has_or_had_location
+      - is_or_was_ends_or_ended_at_location
+      - ends_or_ended_at_location
+      - performance_venue
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/class/Authentication
+name: Authentication
+title: Authentication
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/require
+- ../slots/has_label
+- ../slots/has_description
+default_prefix: hc
+classes:
+  Authentication:
+    class_uri: hc:Authentication
+    description: >-
+      Authentication requirements or status for accessing resources.
+
+      Defines authentication mechanisms, requirements, or current status  for accessing heritage custodian systems, APIs, or digital resources.
+    alt_descriptions:
+      nl: "Authenticatievereisten of -status voor toegang tot bronnen.\nDefinieert authenticatiemechanismen, vereisten of huidige status  voor toegang tot systemen, API's of digitale bronnen van erfgoedbeheerders."
+      de: "Authentifizierungsanforderungen oder -status für den Zugriff auf Ressourcen.\nDefiniert Authentifizierungsmechanismen, Anforderungen oder aktuellen Status  für den Zugriff auf Systeme, APIs oder digitale Ressourcen von Kulturgüterverwaltern."
+      fr: "Exigences ou état d'authentification pour l'accès aux ressources.\nDéfinit les mécanismes, exigences ou état actuel d'authentification  pour l'accès aux systèmes, API ou ressources numériques des dépositaires du patrimoine."
+      es: "Requisitos o estado de autenticación para acceder a recursos.\nDefine mecanismos, requisitos o estado actual de autenticación  para acceder a sistemas, API o recursos digitales de custodios del patrimonio."
+      ar: "متطلبات أو حالة المصادقة للوصول إلى الموارد.\nتحدد آليات المصادقة والمتطلبات أو الحالة الحالية  للوصول إلى أنظمة أو واجهات برمجة التطبيقات أو الموارد الرقمية لأمناء التراث."
+      id: "Persyaratan atau status autentikasi untuk mengakses sumber daya.\nMendefinisikan mekanisme, persyaratan, atau status autentikasi saat ini  untuk mengakses sistem, API, atau sumber daya digital pengelola warisan."
+      zh: "访问资源的认证要求或状态。\n定义访问遗产保管人系统、API或数字资源的认证机制、要求或当前状态。"
+    examples:
+    - value:
+        has_label: API Key Required
+        require: api_key
+      description: API key authentication required
+    - value:
+        has_label: OAuth 2.0
+        require: oauth2
+      description: OAuth 2.0 authentication
+    - value:
+        has_label: Open Access
+        require: none
+      description: No authentication required
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: authenticatie
+      in_language: nl
+    - literal_form: Authentifizierung
+      in_language: de
+    - literal_form: authentification
+      in_language: fr
+    - literal_form: autenticación
+      in_language: es
+    - literal_form: المصادقة
+      in_language: ar
+    - literal_form: autentikasi
+      in_language: id
+    - literal_form: 认证
+      in_language: zh
+    keywords:
+    - authentication
+    - access control
+    - login
+    - API key
+    - OAuth
+    - security
+    slots:
+    - require
+    - has_label
+    - has_description
+    slot_usage:
+      require:
+        required: false
+        examples:
+        - value: api_key
+        - value: oauth2
+        - value: basic_auth
+        - value: none
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: "Authentication is broadly applicable to digital platform access."
+      custodian_types: "['*']"
+      auth_types: "api_key, oauth2, basic_auth, openid_connect, none"
+    comments:
+    - Defines authentication requirements for system access
+    - May specify required authentication method
+    - None indicates open access without authentication

@@ -1,0 +1,130 @@
+# Heritage Custodian Observation and Reconstruction Pattern - Metadata Module
+# This module contains schema metadata, prefixes, and imports
+
+id: https://nde.nl/ontology/hc/metadata
+name: heritage_custodian_metadata
+title: Heritage Custodian Ontology - Metadata
+
+version: 0.1.0
+license: https://creativecommons.org/licenses/by-sa/4.0/
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  # Removed hc_class, hc_enum, hc_slot - use hc: namespace for all HC terms
+  # Removed heritage: - duplicate of hc:
+  # Wikidata shorthand (wd: is commonly used in SPARQL, wikidata: is longform)
+  wd: http://www.wikidata.org/entity/
+  wikidata: http://www.wikidata.org/entity/
+  skos: http://www.w3.org/2004/02/skos/core#
+  # Darwin Core vocabulary (biodiversity)
+  dwc: http://rs.tdwg.org/dwc/terms/
+  # GeoNames entity namespace (distinct from gn: ontology)
+  geonames: http://sws.geonames.org/
+  # BIBFRAME vocabulary (library cataloging)
+  bibframe: http://id.loc.gov/ontologies/bibframe/
+  # LIDO vocabulary (museum object description)
+  lido: http://www.lido-schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  cpov: http://data.europa.eu/m8g/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  pico: https://personsincontext.org/model#
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  # GLEIF prefixes (underscore for Python compatibility)
+  gleif_base: https://www.gleif.org/ontology/Base/
+  gleif_elf: https://www.gleif.org/ontology/EntityLegalForm/
+  gleif_ra: https://www.gleif.org/ontology/RegistrationAuthority/
+  gleif: https://www.gleif.org/ontology/Base/
+  dcterms: http://purl.org/dc/terms/
+  dct: http://purl.org/dc/terms/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  owl: http://www.w3.org/2002/07/owl#
+  dbo: http://dbpedia.org/ontology/
+  adms: http://www.w3.org/ns/adms#
+  time: http://www.w3.org/2006/time#
+  oa: http://www.w3.org/ns/oa#
+  bf: http://id.loc.gov/ontologies/bibframe/
+  # wd: already defined above (line 17)
+  dcat: http://www.w3.org/ns/dcat#
+  doap: http://usefulinc.com/ns/doap#
+  vcard: http://www.w3.org/2006/vcard/ns#
+  premis: http://www.loc.gov/premis/rdf/v3/
+  # GeoNames namespaces (ontology vs entity URIs)
+  gn: http://www.geonames.org/ontology#
+  gn_entity: http://sws.geonames.org/
+  # OGC Geospatial
+  geosparql: http://www.opengis.net/ont/geosparql#
+  sf: http://www.opengis.net/ont/sf#
+  wgs84: http://www.w3.org/2003/01/geo/wgs84_pos#
+  # LCC Country/Language codes (underscore for Python compatibility)
+  lcc_cr: https://www.omg.org/spec/LCC/Countries/CountryRepresentation/
+  lcc_3166_1: https://www.omg.org/spec/LCC/Countries/ISO3166-1-CountryCodes/
+  lcc_3166_2: https://www.omg.org/spec/LCC/Countries/ISO3166-2-SubdivisionCodes/
+  lcc_lr: https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/
+  lcc_639_1: https://www.omg.org/spec/LCC/Languages/ISO639-1-LanguageCodes/
+  ldp: http://www.w3.org/ns/ldp#
+  # Sensor ontologies
+  sosa: http://www.w3.org/ns/sosa/
+  ssn: http://www.w3.org/ns/ssn/
+  # Europeana/Cultural heritage
+  edm: http://www.europeana.eu/schemas/edm/
+  ore: http://www.openarchives.org/ore/terms/
+  # NLP Interchange Format (NIF) - for text extraction pipelines
+  nif: http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#
+
+default_prefix: hc
+# default_range: string
+
+imports:
+  - linkml:types
+
+# Workaround slots to force namespace generation for prefixes used only in enum meanings
+# LinkML Python generator only creates namespace constants for prefixes used in slot_uri/class_uri
+# These slots are not intended for actual use - they exist only to register namespace prefixes
+slots:
+  internal_wd_namespace_force:
+    description: "Internal slot to force WD namespace generation. Do not use."
+    slot_uri: wd:Q35120
+    range: string
+    
+  internal_sf_namespace_force:
+    description: "Internal slot to force SF namespace generation. Do not use."
+    slot_uri: sf:Point
+    range: string
+    
+  internal_nif_namespace_force:
+    description: "Internal slot to force NIF namespace generation. Do not use."
+    slot_uri: nif:String
+    range: string
+
+  # Annotations used across the schema
+  custodian_types:
+    description: "Annotation to indicate which heritage custodian types this element applies to."
+    range: string
+    multivalued: true
+  
+  custodian_types_rationale:
+    description: "Rationale for the custodian_types assignment."
+    range: string
+  
+  custodian_types_primary:
+    description: "Primary custodian type code for multi-type classes."
+    range: string
+    
+  template_specificity:
+    description: "Template-specific specificity scores."
+    range: string
+    
+  ontology_note:
+    description: "Note about ontology alignment or rationale."
+    range: string
+    
+  data_storage_pattern:
+    description: "Data storage pattern (e.g. LINKING, AGGREGATION)."
+    range: string
+

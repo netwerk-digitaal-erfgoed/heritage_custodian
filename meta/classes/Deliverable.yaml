@@ -1,0 +1,77 @@
+id: https://nde.nl/ontology/hc/class/Deliverable
+name: deliverable_class
+title: Deliverable Class
+description: Tangible output produced by a project or operational activity.
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_status
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+classes:
+  Deliverable:
+    class_uri: hc:Deliverable
+    description: >-
+      Concrete output artifact produced by a project or operational activity and
+      tracked for delivery status.
+    alt_descriptions:
+      nl: Concreet outputartefact van een project of operationele activiteit dat op opleverstatus wordt gevolgd.
+      de: Konkretes Ergebnisartefakt aus Projekt oder Betriebstaetigkeit dessen Lieferstatus verfolgt wird.
+      fr: Artefact de sortie concret produit par un projet ou une activite operationnelle et suivi selon son statut de livraison.
+      es: Artefacto de salida concreto producido por un proyecto o actividad operativa y seguido por estado de entrega.
+      ar: مخرَج ملموس ينتج عن مشروع أو نشاط تشغيلي ويتم تتبع حالة تسليمه.
+      id: Artefak keluaran konkret yang dihasilkan proyek atau aktivitas operasional dan dilacak status penyampaiannya.
+      zh: 由项目或运营活动产出的可交付成果实体，并按交付状态进行跟踪。
+    structured_aliases:
+    - {literal_form: oplevering, in_language: nl}
+    - {literal_form: Lieferergebnis, in_language: de}
+    - {literal_form: livrable, in_language: fr}
+    - {literal_form: entregable, in_language: es}
+    - {literal_form: مُخرَج قابل للتسليم, in_language: ar}
+    - {literal_form: deliverable, in_language: id}
+    - {literal_form: 交付成果, in_language: zh}
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:CreativeWork
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    - has_url
+    - has_status
+    - temporal_extent
+    slot_usage:
+      has_type:
+#         range: string
+        examples:
+        - value: software
+        - value: dataset
+        - value: finding_aid
+        - value: digitized_collection
+      has_label:
+#         range: string
+        examples:
+        - value: Heritage Data Model v2.0
+      has_url:
+        range: uri
+        examples:
+        - value: https://doi.org/10.1234/deliverable
+      has_status:
+#         range: string
+        examples:
+        - value: in_progress
+        - value: completed
+        - value: delayed
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

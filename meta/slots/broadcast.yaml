@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: broadcast
+# ==============================================================================
+# Disseminates content to a wide audience without targeting a specific recipient.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line                  | Mapping | Notes                                                          |
+# |---------------|----------------------------|----------------------------|---------|----------------------------------------------------------------|
+# | **Schema.org**| `schema:publication`       | schemaorg.owl:31622-31643  | broad   | "A publication event associated with the item." Broader: publication encompasses broadcast. |
+# | **Schema.org**| `schema:broadcastOfEvent`  | schemaorg.owl:10695-10716  | narrow  | "The event being broadcast." Domain: BroadcastEvent. Narrower: specifically about what event is broadcast. |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/broadcast
+name: broadcast
+title: Broadcast
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  broadcast:
+    slot_uri: hc:broadcast
+    description: >-
+      Disseminates a signal, message, or content to a wide audience or all nodes
+      in a network simultaneously, without targeting a specific recipient.
+    comments:
+      - >-
+        Values: none (not a live broadcast; standard video), live (currently
+        broadcasting live), upcoming (scheduled live stream not yet started).
+        When live or upcoming becomes none, the video is archived.
+    alt_descriptions:
+      nl: >-
+        Verspreidt een signaal, bericht of inhoud naar een breed publiek of alle
+        knooppunten in een netwerk tegelijkertijd, zonder een specifieke
+        ontvanger te targeten.
+      de: >-
+        Verbreitet ein Signal, eine Nachricht oder einen Inhalt an ein breites
+        Publikum oder alle Knoten in einem Netzwerk gleichzeitig, ohne einen
+        bestimmten Empfänger anzusprechen.
+      fr: >-
+        Diffuse un signal, un message ou un contenu à un large public ou à tous
+        les nœuds d'un réseau simultanément, sans cibler un destinataire
+        spécifique.
+      ar: >-
+        يبث إشارة أو رسالة أو محتوى إلى جمهور واسع أو جميع العقد في شبكة
+        بشكل متزامن، دون استهداف متلقٍّ محدد.
+      id: >-
+        Menyebarkan sinyal, pesan, atau konten kepada khalayak luas atau semua
+        simpul dalam jaringan secara bersamaan, tanpa menargetkan penerima
+        tertentu.
+      zh: >-
+        向广大受众或网络中的所有节点同时传播信号、消息或内容，而不针对特定接收者。
+      es: >-
+        Difunde una señal, mensaje o contenido a una audiencia amplia o a todos
+        los nodos de una red simultáneamente, sin dirigirse a un destinatario
+        específico.
+    structured_aliases:
+      - literal_form: Uitzending
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rundfunk
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Diffusion
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بث
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Siaran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 广播
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Difusión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - live_broadcast_content
+    broad_mappings:
+      - schema:publication  # schemaorg.owl:31622-31643 - "A publication event associated with the item."
+    narrow_mappings:
+      - schema:broadcastOfEvent  # schemaorg.owl:10695-10716 - "The event being broadcast such as a sporting event or awards ceremony."

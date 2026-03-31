@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: provided_by
+# ==============================================================================
+# Identifies the specific agent, organization, or system that supplies, funds,
+# or makes a resource or service available.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                 | File/Line                  | Mapping  | Notes                                                          |
+# |---------------|--------------------------|----------------------------|----------|----------------------------------------------------------------|
+# | **Schema.org**| `schema:provider`        | schemaorg.owl:31484-31512  | close    | "The service provider, service operator, or service performer."|
+# |               |                          |                            |          | Domain: Service|CreativeWork|Action. Range: Org|Person.        |
+# | **PROV-O**    | `prov:wasAttributedTo`   | prov.ttl:1082-1095         | close    | "Attribution is the ascribing of an entity to an agent."       |
+# |               |                          |                            |          | Domain: Entity, Range: Agent.                                  |
+#
+# HIERARCHY:
+# - schema:provider → ObjectProperty, broad domain (Service, CreativeWork, Action, etc.)
+# - prov:wasAttributedTo rdfs:subPropertyOf prov:wasInfluencedBy
+# - hc:providedBy is more generic than schema:provider (not tied to Service domain)
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10 - Full polish; ontology alignment, multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/provided_by
+name: provided_by
+title: Provided By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  provided_by:
+    slot_uri: hc:providedBy
+    description: >-
+      Identifies the specific agent, organization, or system that supplies,
+      funds, or makes a resource or service available. In the heritage-custodian
+      context, this captures the provider of a service (e.g., an API platform),
+      the supplier of a model or tool, or the organization funding an activity.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke agent, organisatie of het systeem dat een
+        bron of dienst levert, financiert of beschikbaar stelt.
+      de: >-
+        Identifiziert den spezifischen Agenten, die Organisation oder das
+        System, das eine Ressource oder Dienstleistung bereitstellt,
+        finanziert oder verfügbar macht.
+      fr: >-
+        Identifie l'agent, l'organisation ou le système spécifique qui
+        fournit, finance ou rend disponible une ressource ou un service.
+      ar: >-
+        يحدد الوكيل أو المنظمة أو النظام المحدد الذي يوفر أو يمول أو يجعل
+        مورداً أو خدمة متاحة.
+      id: >-
+        Mengidentifikasi agen, organisasi, atau sistem tertentu yang memasok,
+        mendanai, atau menyediakan sumber daya atau layanan.
+      zh: >-
+        标识提供、资助或提供资源或服务的特定代理、组织或系统。
+      es: >-
+        Identifica el agente, organización o sistema específico que suministra,
+        financia o pone a disposición un recurso o servicio.
+    structured_aliases:
+      - literal_form: geleverd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bereitgestellt von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fourni par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مقدم من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disediakan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...提供
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: proporcionado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - schema:provider  # schemaorg.owl:31484-31512 - "The service provider, service operator, or service performer." Domain: Service|CreativeWork|Action
+      - prov:wasAttributedTo  # prov.ttl:1082-1095 - "Attribution is the ascribing of an entity to an agent." Domain: Entity, Range: Agent
+    aliases:
+      - model_provider
+      - provider
+      - served_by
+    examples:
+      - value: "Anthropic"
+        description: Provider of the Claude language model used for enrichment
+      - value: "Netwerk Digitaal Erfgoed"
+        description: Organization providing a metadata aggregation service
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        hc:providedBy is more generic than schema:provider, which is tied to
+        Service/CreativeWork/Action domains. Our slot applies to any resource
+        or service provisioning relationship.

@@ -1,0 +1,131 @@
+# ==============================================================================
+# LinkML Slot Definition: change_ownership_from
+# ==============================================================================
+# To denote the specific agent or entity from whom the legal rights, possession,
+# or control of an entity are being transferred.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                        | File/Line             | Mapping | Notes                              |
+# |---------------|---------------------------------|-----------------------|---------|------------------------------------|
+# | **CIDOC-CRM** | `crm:P23_transferred_title_from`| CIDOC_CRM_v7.1.3.rdf  | exact   | Party who relinquished legal title |
+# | **PROV-O**    | `prov:wasInfluencedBy`          | prov.ttl:1059-1070    | broad   | General influence relationship     |
+# | **RiC-O**     | `rico:hasOrHadHolder`           | RiC-O_1-1.rdf:6436   | related | Previous holder of record          |
+#
+# HIERARCHY: crm:P23_transferred_title_from has no rdfs:subPropertyOf declaration
+#
+# CREATED: 2026-01-16
+# UPDATED: 2026-02-03 - Added header documentation
+# UPDATED: 2026-02-03 - Fixed corrupted description field, moved notes to comments
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/change_ownership_from
+name: change_ownership_from
+title: Change Ownership From
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  change_ownership_from:
+    slot_uri: crm:P23_transferred_title_from
+    description: >-
+      To denote the specific agent or entity from whom the legal rights,
+      possession, or control of an entity are being transferred.
+    alt_descriptions:
+      nl: >-
+        Om de specifieke agent of entiteit aan te duiden van wie de wettelijke
+        rechten, bezit of controle van een entiteit worden overgedragen.
+      de: >-
+        Zur Bezeichnung des spezifischen Akteurs oder der Entität, von der die
+        rechtlichen Ansprüche, der Besitz oder die Kontrolle einer Entität
+        übertragen werden.
+      fr: >-
+        Pour désigner l'agent ou l'entité spécifique dont les droits légaux,
+        la possession ou le contrôle d'une entité sont transférés.
+      ar: >-
+        للإشارة إلى الوكيل أو الكيان المحدد الذي يتم نقل الحقوق القانونية أو
+        الحيازة أو السيطرة على كيان منه.
+      id: >-
+        Untuk menunjukkan agen atau entitas tertentu dari siapa hak hukum,
+        kepemilikan, atau kontrol atas suatu entitas sedang dialihkan.
+      zh: >-
+        用于表示某实体的法定权利、所有权或控制权正在从哪个特定代理人或实体转让。
+      es: >-
+        Para denotar el agente o entidad específico del cual se están
+        transfiriendo los derechos legales, posesión o control de una entidad.
+    structured_aliases:
+      - literal_form: eigendomsoverdracht van
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_change_ownership_from
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Eigentumsübertragung von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: transfert de propriété de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نقل الملكية من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pengalihan kepemilikan dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 所有权转让自
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: transferencia de propiedad desde
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    required: false
+    multivalued: false
+    exact_mappings:
+    broad_mappings:
+      - prov:wasInfluencedBy
+    related_mappings:
+      - rico:hasOrHadHolder
+    aliases:
+      - changes_or_changed_ownership_from
+      - is_or_was_change_ownership_from
+    annotations:
+      replaces_slots: from_owner
+      migration_date: '2026-01-16'
+      migration_rule: Rule 56 (semantic consistency over simplicity)
+      custodian_types: '["*"]'
+    examples:
+      - value: https://nde.nl/ontology/hc/owner/des-tombe
+        description: Ownership transferred from A.A. des Tombe
+      - value: https://nde.nl/ontology/hc/owner/private-collector-002
+        description: Ownership transferred from private collector
+    comments:
+      - MIGRATED from from_owner per slot_fixes.yaml (Rule 56, 2026-01-16).
+      - |
+        TEMPORAL SEMANTICS: This relationship may be historical - ownership
+        may have changed multiple times.
+      - |
+        SEMANTIC DISTINCTION: This slot is for OWNERSHIP TRANSFER (legal title),
+        NOT physical movement. For physical movement origin, use
+        `is_or_was_transferred_from` with `crm:P27_moved_from`.
+        | Slot | Ontology | Semantics |
+        |------|----------|-----------|
+        | change_ownership_from | crm:P23 | Legal title transfer source |
+        | is_or_was_transferred_from | crm:P27 | Physical location origin |
+      - |
+        USAGE: Typical in ProvenanceEvent for documenting chain of custody:
+        - Null for CREATION events (no previous owner)
+        - Identifies seller in PURCHASE/AUCTION events
+        - Identifies donor in GIFT/BEQUEST events
+        - Identifies victim in CONFISCATION events

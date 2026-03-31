@@ -1,0 +1,120 @@
+# ==============================================================================
+# LinkML Slot Definition: has_chapter
+# ==============================================================================
+# Relates a work to its constituent chapters or structural divisions.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:hasPart`     | dcterms.rdf:1347-1368| broad   | General partitive relationship     |
+# | **Schema.org**| `schema:Chapter`      | schemaorg.owl:924-928| related | Chapter class definition           |
+# | **RiC-O**     | `rico:hasOrHadPart`   | RiC-O_1-1.rdf:2004   | broad   | General partitive relationship     |
+#
+# HIERARCHY: dcterms:hasPart is a general partitive property; has_chapter is a narrower
+# concept specifically for textual/media chapters.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-03 - Added header, multilingual support, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_chapter
+name: has_chapter
+title: Has Chapter
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  has_chapter:
+    slot_uri: dcterms:hasPart
+    description: >-
+      To comprise a distinct structural segment or division within a larger work,
+      such as a textual section in a book or a time-coded interval in audio-visual
+      media, used to organize content.
+    alt_descriptions:
+      nl: >-
+        Een afzonderlijk structureel segment of onderdeel binnen een groter werk,
+        zoals een tekstuele sectie in een boek of een tijdgecodeerd interval in
+        audiovisuele media, gebruikt om inhoud te organiseren.
+      de: >-
+        Ein eigenständiges strukturelles Segment oder eine Unterteilung innerhalb
+        eines größeren Werkes, wie ein Textabschnitt in einem Buch oder ein
+        zeitcodiertes Intervall in audiovisuellen Medien, zur Organisation von Inhalten.
+      fr: >-
+        Un segment structurel distinct ou une division au sein d'une œuvre plus
+        large, comme une section textuelle dans un livre ou un intervalle horodaté
+        dans des médias audiovisuels, utilisé pour organiser le contenu.
+      ar: >-
+        جزء هيكلي مميز أو قسم ضمن عمل أكبر، مثل قسم نصي في كتاب أو فترة زمنية
+        مشفرة في وسائط سمعية بصرية، يُستخدم لتنظيم المحتوى.
+      id: >-
+        Segmen struktural yang berbeda atau divisi dalam karya yang lebih besar,
+        seperti bagian tekstual dalam buku atau interval berkode waktu dalam media
+        audio-visual, digunakan untuk mengatur konten.
+      zh: >-
+        较大作品中的一个独特结构部分或分区，例如书籍中的文本章节或视听媒体中的
+        时间编码间隔，用于组织内容。
+      es: >-
+        Un segmento estructural distinto o división dentro de una obra más grande,
+        como una sección textual en un libro o un intervalo codificado en el tiempo
+        en medios audiovisuales, utilizado para organizar el contenido.
+    structured_aliases:
+      - literal_form: heeft hoofdstuk
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Kapitel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a pour chapitre
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له فصل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki bab
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有章节
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene capítulo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1368 - general partitive relationship
+      - rico:hasOrHadPart  # RiC-O_1-1.rdf:2004 - archival partitive relationship
+    related_mappings:
+      - schema:Chapter  # schemaorg.owl:924-928 - Chapter class (not property)
+    aliases:
+      - has_or_had_chapter
+      - chapters
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://example.org/book/123/chapter/1"
+        description: Reference to Chapter 1 of a book
+      - value: "https://example.org/video/456/segment/intro"
+        description: Reference to an introductory segment of a video
+    comments:
+      - |
+        **USAGE**: Use this slot to link a work (book, document, video, audio)
+        to its constituent chapters or structural divisions. Each chapter can
+        be identified by a URI or CURIE.

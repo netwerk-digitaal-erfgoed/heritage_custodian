@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: has_longitude
+# ==============================================================================
+# Specifies the east-west geographic coordinate of a point on Earth's surface.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property            | File/Line                  | Mapping | Notes                                                          |
+# |----------------|---------------------|----------------------------|---------|----------------------------------------------------------------|
+# | **Schema.org** | `schema:longitude`  | schemaorg.owl:25138-25161  | close   | "The longitude of a location." Domain: GeoCoordinates/Place.   |
+# | **WGS84**      | `wgs84:long`        | wgs84_pos.rdf:173-177      | close   | "The WGS84 longitude of a SpatialThing (decimal degrees)."     |
+# | **GeoSPARQL**  | `geo:hasGeometry`   | geo.ttl:320-343            | broad   | "A spatial representation for a given Feature." Full geometry, not single coordinate. |
+#
+# NOTE: Original file had typo "closet_mappings" — corrected to "close_mappings".
+# NOTE: Consistent with sibling has_latitude.yaml mapping approach.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_longitude
+name: has_longitude
+title: Has Longitude
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  wgs84: http://www.w3.org/2003/01/geo/wgs84_pos#
+  geo: http://www.opengis.net/ont/geosparql#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_longitude:
+    slot_uri: hc:hasLongitude
+    description: >-
+      Determines the geographic coordinate that specifies the east-west position
+      of a point on the Earth's surface, measured in degrees from the Prime
+      Meridian.
+    comments:
+      - >-
+        Format: Decimal degrees (e.g., 4.8852 for Amsterdam). Range: -180.0 to
+        +180.0. Positive values = East of Prime Meridian. Negative values = West
+        of Prime Meridian.
+      - WGS84 datum (standard GPS coordinate system).
+      - 'Example: 4.8852 (Amsterdam), -73.9857 (New York), 151.2093 (Sydney).'
+    alt_descriptions:
+      nl: >-
+        Bepaalt de geografische coördinaat die de oost-westpositie van een punt
+        op het aardoppervlak aangeeft, gemeten in graden vanaf de nulmeridiaan.
+      de: >-
+        Bestimmt die geografische Koordinate, die die Ost-West-Position eines
+        Punktes auf der Erdoberfläche angibt, gemessen in Grad vom Nullmeridian.
+      fr: >-
+        Détermine la coordonnée géographique qui spécifie la position est-ouest
+        d'un point à la surface de la Terre, mesurée en degrés depuis le
+        méridien de Greenwich.
+      ar: >-
+        يحدد الإحداثي الجغرافي الذي يعيّن الموقع شرقاً-غرباً لنقطة على سطح
+        الأرض، مقاساً بالدرجات من خط الطول الرئيسي.
+      id: >-
+        Menentukan koordinat geografis yang menunjukkan posisi timur-barat suatu
+        titik di permukaan bumi, diukur dalam derajat dari Meridian Utama.
+      zh: >-
+        确定地球表面某一点东西方向位置的地理坐标，以本初子午线为基准按度数测量。
+      es: >-
+        Determina la coordenada geográfica que especifica la posición este-oeste
+        de un punto en la superficie terrestre, medida en grados desde el
+        meridiano de Greenwich.
+    structured_aliases:
+      - literal_form: Lengtegraad
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Längengrad
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Longitude
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خط الطول
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Garis Bujur
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 经度
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Longitud
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    required: false
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - longitude
+    close_mappings:
+      - schema:longitude  # schemaorg.owl:25138-25161 - "The longitude of a location." Domain: GeoCoordinates/Place.
+      - wgs84:long  # wgs84_pos.rdf:173-177 - "The WGS84 longitude of a SpatialThing (decimal degrees)."
+    broad_mappings:
+      - geo:hasGeometry  # geo.ttl:320-343 - "A spatial representation for a given Feature." Full geometry object, not a single coordinate.

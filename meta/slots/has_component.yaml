@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: has_component
+# ==============================================================================
+# A constituent component or part of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:hasPart`     | dcterms.rdf:1347-1370      | close   | "A related resource that is included either physically or logically in the described resource" — broader (any part, not specifically a component) |
+# | **Schema.org**| `schema:hasPart`      | schemaorg.owl:20403-20420  | close   | "Indicates an item or CreativeWork that is part of this item" — CreativeWork domain, broader |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, cleaned description, added close mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_component
+name: has_component
+title: Has Component
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_component:
+    slot_uri: hc:hasComponent
+    description: >-
+      A constituent component or part of the entity.
+    alt_descriptions:
+      nl: >-
+        Een samenstellend onderdeel of deel van de entiteit.
+      de: >-
+        Ein Bestandteil oder Teil der Entität.
+      fr: >-
+        Un composant constitutif ou une partie de l'entité.
+      ar: >-
+        مكوّن أساسي أو جزء من الكيان.
+      id: >-
+        Komponen penyusun atau bagian dari entitas tersebut.
+      zh: >-
+        实体的组成部分或构件。
+      es: >-
+        Un componente constitutivo o parte de la entidad.
+    structured_aliases:
+      - literal_form: heeft component
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Komponente
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un composant
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه مكوّن
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki komponen
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有组件
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene componente
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_component
+    close_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "A related resource that is included either physically or logically in the described resource"
+      - schema:hasPart  # schemaorg.owl:20403-20420 - "Indicates an item or CreativeWork that is part of this item"
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_component for conciseness.
+    annotations:
+      custodian_types: '["*"]'

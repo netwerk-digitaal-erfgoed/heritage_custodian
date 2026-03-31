@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: documented_in
+# ==============================================================================
+# Document, publication, or file where something is recorded or evidenced.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line           | Mapping | Notes                                        |
+# |---------------|---------------------------|---------------------|---------|----------------------------------------------|
+# | **CIDOC-CRM** | `crm:P70i_is_documented_in`| CIDOC:2799-2810    | exact   | "is documented in" - domain E1_CRM_Entity.   |
+#
+# NOTE: Previous exact_mapping to schema:documentation was INCORRECT. 
+# schema:documentation (line 15438-15459) is "Further documentation describing 
+# the Web API in more detail" with domain WebAPI - too narrow for general use.
+# crm:P70i_is_documented_in is the correct semantic match.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, FIXED mapping (removed schema:documentation)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/documented_in
+name: documented_in
+title: Documented In
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  documented_in:
+    slot_uri: crm:P70i_is_documented_in
+    description: >-
+      To be recorded, described, or evidenced within a specific document, 
+      publication, file, or piece of media.
+    alt_descriptions:
+      nl: >-
+        Geregistreerd, beschreven of bewezen in een specifiek document, publicatie, 
+        bestand of mediagedeelte.
+      de: >-
+        In einem bestimmten Dokument, einer Publikation, Datei oder einem 
+        Medienträger aufgezeichnet, beschrieben oder belegt.
+      fr: >-
+        Être enregistré, décrit ou attesté dans un document, une publication, 
+        un fichier ou un support médiatique spécifique.
+      ar: >-
+        أن يتم تسجيله أو وصفه أو إثباته ضمن وثيقة أو منشور أو ملف 
+        أو قطعة وسائط محددة.
+      id: >-
+        Dicatat, dijelaskan, atau dibuktikan dalam dokumen, publikasi, file, 
+        atau media tertentu.
+      zh: >-
+        在特定文档、出版物、文件或媒体中被记录、描述或证明。
+      es: >-
+        Ser registrado, descrito o evidenciado dentro de un documento, publicación, 
+        archivo o pieza de medios específicos.
+    structured_aliases:
+      - literal_form: gedocumenteerd in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: dokumentiert in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: documenté dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موثق في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didokumentasikan dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 记录于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: documentado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    aliases:
+      - is_or_was_documented_in
+    exact_mappings:
+    comments:
+      - |
+        **USAGE**: Use to link an entity to the document(s) where it is recorded 
+        or described. The object should be a document, publication, or file reference.
+      - |
+        **MIGRATION**: Renamed 2026-02-03 from is_or_was_documented_in for conciseness.
+      - |
+        **NOTE**: Previous mapping to schema:documentation was removed as it is 
+        specific to WebAPI documentation, not general documentation.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Document/FindingAid123"
+        description: "Entity is documented in this finding aid"

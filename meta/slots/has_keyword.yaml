@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: has_keyword
+# ==============================================================================
+# Connects an entity to a descriptive term or tag for indexing and classification.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line               | Mapping | Notes                                                       |
+# |---------------|--------------------|-------------------------|---------|-------------------------------------------------------------|
+# | **Schema.org**| `schema:keywords`  | schemaorg.owl:23832-857 | exact   | "Keywords or tags used to describe some item." → slot_uri.   |
+# | **DCAT**      | `dcat:keyword`     | dcat3.ttl:1208-1231     | exact   | "A keyword or tag describing a resource." DatatypeProperty.  |
+# | **DCTerms**   | `dcterms:subject`  | dcterms.rdf:1968-1988   | close   | "A topic of the resource." Broader formal subject/topic.     |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_keyword
+name: has_keyword
+title: Has Keyword
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  ardo: https://w3id.org/ardo/2.0/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_keyword:
+    slot_uri: schema:keywords
+    range: string
+    multivalued: true
+    description: >-
+      Connects a specific document, digital asset, or entity to a descriptive term or tag used for indexing, search,
+      or classification purposes.
+    alt_descriptions:
+      nl: >-
+        Verbindt een specifiek document, digitaal object of entiteit met een beschrijvende term of tag die wordt
+        gebruikt voor indexering, zoeken of classificatie.
+      de: >-
+        Verbindet ein bestimmtes Dokument, digitales Objekt oder eine Entität mit einem beschreibenden Begriff oder
+        Schlagwort, das für Indexierung, Suche oder Klassifikation verwendet wird.
+      fr: >-
+        Relie un document, un actif numérique ou une entité spécifique à un terme descriptif ou une étiquette utilisé
+        à des fins d'indexation, de recherche ou de classification.
+      ar: >-
+        يربط مستندًا أو أصلًا رقميًا أو كيانًا محددًا بمصطلح وصفي أو وسم يُستخدم لأغراض الفهرسة أو البحث أو التصنيف.
+      id: >-
+        Menghubungkan dokumen, aset digital, atau entitas tertentu dengan istilah deskriptif atau tag yang digunakan
+        untuk pengindeksan, pencarian, atau klasifikasi.
+      zh: >-
+        将特定文档、数字资产或实体与用于索引、搜索或分类目的的描述性术语或标签相关联。
+      es: >-
+        Conecta un documento, activo digital o entidad específica con un término descriptivo o etiqueta utilizado con
+        fines de indexación, búsqueda o clasificación.
+    structured_aliases:
+      - literal_form: Trefwoord
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Schlagwort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Mot-clé
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: كلمة مفتاحية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kata Kunci
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 关键词
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Palabra Clave
+        predicate: EXACT_SYNONYM
+        in_language: es
+    exact_mappings:
+      - dcat:keyword  # dcat3.ttl:1208-1231 - "A keyword or tag describing a resource"
+    close_mappings:
+      - dcterms:subject  # dcterms.rdf:1968-1988 - "A topic of the resource"
+    related_mappings:
+      - ardo:has_keyword  # ArDO 2.0: links a thematic subcategory to a keyword (object property)
+    comments:
+      - "Used for discovery and classification."
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - keyword
+      - route_keyword

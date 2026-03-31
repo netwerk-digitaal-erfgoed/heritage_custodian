@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: embargo
+# ==============================================================================
+# The date on which an embargo or access restriction on a resource is lifted.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line              | Mapping | Notes                                                       |
+# |----------------|-----------------------|------------------------|---------|--------------------------------------------------------------|
+# | **DCTerms**    | `dcterms:available`   | dcterms.rdf:933-959    | close   | "Date resource became or will become available" — closest    |
+# |                |                       |                        |         | semantic match, but lacks inherent embargo/restriction sense.|
+# | **Schema.org** | `schema:endDate`      | schemaorg.owl:16767-16793| broad | Generic end date of any item — much broader.                 |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, added dcterms:available as close, schema:endDate as broad
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/embargo
+name: embargo
+title: Embargo
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  embargo:
+    name: embargo
+    slot_uri: hc:embargo
+    description: >-
+      The date on which a formal, often temporary, prohibition or restriction on
+      the release of information or access to content is lifted and the resource
+      becomes available.
+    alt_descriptions:
+      nl: >-
+        De datum waarop een formeel, vaak tijdelijk, verbod of beperking op de
+        vrijgave van informatie of toegang tot inhoud wordt opgeheven en de bron
+        beschikbaar wordt.
+      de: >-
+        Das Datum, an dem ein formelles, oft vorübergehendes Verbot oder eine
+        Beschränkung der Freigabe von Informationen oder des Zugangs zu Inhalten
+        aufgehoben wird und die Ressource verfügbar wird.
+      fr: >-
+        La date à laquelle une interdiction ou restriction formelle, souvent
+        temporaire, sur la diffusion d'informations ou l'accès au contenu est
+        levée et la ressource devient disponible.
+      ar: >-
+        التاريخ الذي يُرفع فيه حظر أو قيد رسمي، غالباً مؤقت، على نشر المعلومات
+        أو الوصول إلى المحتوى وتصبح فيه الموارد متاحة.
+      id: >-
+        Tanggal di mana larangan atau pembatasan resmi, yang sering kali bersifat
+        sementara, atas perilisan informasi atau akses ke konten dicabut dan sumber
+        daya menjadi tersedia.
+      zh: >-
+        正式的（通常是临时的）信息发布禁令或内容访问限制被解除、资源变得可用的日期。
+      es: >-
+        La fecha en la que se levanta una prohibición o restricción formal, a menudo
+        temporal, sobre la publicación de información o el acceso al contenido y el
+        recurso queda disponible.
+    structured_aliases:
+      - literal_form: embargo
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Embargo
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: embargo
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: حظر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: embargo
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 禁运
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: embargo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    aliases:
+      - has_or_had_embargo_end_date
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:available  # dcterms.rdf:933-959 — "Date that the resource became or will become available"
+    broad_mappings:
+      - schema:endDate  # schemaorg.owl:16767-16793 — generic end date of any item
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_embargo_end_date for conciseness (2026-02-03).
+        The range is `date` because this slot captures the specific date the embargo lifts,
+        not the embargo policy itself (see `has_embargo_reason` for the justification text).
+      - |
+        **MAPPING NOTE**: `dcterms:available` ("Date that the resource became or will become
+        available") is the closest semantic match — an embargo end date is precisely when a
+        resource becomes available. It is close rather than exact because `dcterms:available`
+        does not inherently carry the concept of a preceding restriction/embargo.

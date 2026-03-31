@@ -1,0 +1,103 @@
+id: https://nde.nl/ontology/hc/class/Assertor
+name: Assertor
+title: Assertor
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_name
+- ../slots/has_type
+- ../slots/identified_by
+default_prefix: hc
+classes:
+  Assertor:
+    class_uri: hc:Assertor
+    description: >-
+      Agent that makes assertions or claims about heritage data.
+    alt_descriptions:
+      nl: "Agent die beweringen of claims doet over erfgoedgegevens."
+      de: "Akteur, der Behauptungen oder Ansprüche über Kulturgüterdaten aufstellt."
+      fr: "Agent qui fait des assertions ou des réclamations sur les données patrimoniales."
+      es: "Agente que hace afirmaciones o reclamaciones sobre datos patrimoniales."
+      ar: "وكيل يقدم تأكيدات أو ادعاءات حول بيانات التراث."
+      id: "Agen yang membuat pernyataan atau klaim tentang data warisan."
+      zh: "对遗产数据做出断言或声明的代理。"
+    examples:
+    - value:
+        has_name: OpenCode Claude
+        has_type: SOFTWARE
+        identified_by: https://nde.nl/agent/opencode-claude
+      description: Software agent assertor
+    - value:
+        has_name: Dr. Maria Schmidt
+        has_type: HUMAN
+        identified_by: https://nde.nl/agent/maria-schmidt
+      description: Human expert assertor
+    close_mappings:
+    - schema:Person
+    - schema:Organization
+    broad_mappings:
+    - prov:Agent
+    structured_aliases:
+    - literal_form: beweringdoener
+      in_language: nl
+    - literal_form: claimsteller
+      in_language: nl
+    - literal_form: Assertor
+      in_language: de
+    - literal_form: Behauptungsteller
+      in_language: de
+    - literal_form: asserteur
+      in_language: fr
+    - literal_form: assertor
+      in_language: es
+    - literal_form: مؤكد
+      in_language: ar
+    - literal_form: pembuat klaim
+      in_language: id
+    - literal_form: 断言者
+      in_language: zh
+    keywords:
+    - assertor
+    - assertion
+    - claim
+    - attribution
+    - provenance
+    - source
+    slots:
+    - has_name
+    - has_type
+    - identified_by
+    slot_usage:
+      has_name:
+        required: true
+        examples:
+        - value: OpenCode Claude
+        - value: Dr. Maria Schmidt
+      has_type:
+        required: false
+        examples:
+        - value: SOFTWARE
+        - value: HUMAN
+        - value: AI
+      identified_by:
+        required: false
+        examples:
+        - value: https://nde.nl/agent/opencode-claude
+    annotations:
+      specificity_score: "0.45"
+      specificity_rationale: "Assertor is moderately specific for provenance attribution across heritage contexts."
+      custodian_types: "['*']"
+      assertor_types: "HUMAN, SOFTWARE, AI, ORGANIZATION"
+    comments:
+    - Similar to Asserter but with simpler structure
+    - Used for assertion attribution and provenance tracking
+    - Distinguishes human, software, and AI assertors
+    - 'Preserved from prior description: Agent that makes assertions or claims about heritage data. Used for assertion attribution, claim sources, and statement authors. Distinguishes between human experts, software systems, and AI agents that contribute assertions to heritage datasets.'
+    see_also:
+    - Asserter
+    - https://www.w3.org/TR/prov-o/#Agent

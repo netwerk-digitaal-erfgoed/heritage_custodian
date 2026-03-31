@@ -1,0 +1,151 @@
+id: https://nde.nl/ontology/hc/class/ClimateArchiveRecordSetTypes
+name: ClimateArchiveRecordSetTypes
+title: ClimateArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- ./ClimateArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  ClimateDataCollection:
+    is_a: ClimateArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation containing measured and inferred atmospheric
+      evidence arranged under a collecting-unit pattern.
+    alt_descriptions:
+      nl: Documentaire aggregatie met gemeten en afgeleide atmosferische gegevens, geordend als verzameleenheid.
+      de: Dokumentarische Aggregation mit gemessenen und abgeleiteten Atmosphaerendaten, als Sammlungseinheit organisiert.
+      fr: Agregation documentaire contenant des donnees atmospheriques mesurees et inferrees, organisee en unite de collecte.
+      es: Agregacion documental con evidencia atmosferica medida e inferida, organizada como unidad de recopilacion.
+      ar: تجميع وثائقي يضم أدلة جوية مقاسة ومستنتجة ومنظمة كوحدة تجميع.
+      id: Agregasi dokumenter berisi bukti atmosfer terukur dan tersirat yang disusun sebagai unit koleksi.
+      zh: 以采集单元方式组织的、包含实测与推断大气证据的文献聚合体。
+    structured_aliases:
+    - literal_form: klimaatgegevensverzameling
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Klima-Datensammlung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collecte de donnees climatiques
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: coleccion de datos climaticos
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مجموعة بيانات مناخية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi data iklim
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 气候数据文献集
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: Measured and inferred atmospheric evidence may be combined within a single collecting-unit pattern.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - ClimateArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ClimateDataCollection
+      has_custodian:
+        equals_string: hc:ClimateArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by ClimateArchive custodians. Inverse of rico:isOrWasHolderOf.
+    keywords:
+    - climate data
+    - atmospheric measurements
+    - environmental monitoring
+    - climate evidence
+    - data collection
+  MeteorologicalObservationSeries:
+    is_a: ClimateArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation for longitudinal weather observations organized as
+      a sequential unit.
+    alt_descriptions:
+      nl: Documentaire aggregatie voor doorlopende weerswaarnemingen, geordend als seriele eenheid.
+      de: Dokumentarische Aggregation fuer fortlaufende Wetterbeobachtungen, als serielle Einheit organisiert.
+      fr: Agregation documentaire pour des observations meteorologiques continues, organisee en unite serielle.
+      es: Agregacion documental para observaciones meteorologicas continuas, organizada como unidad secuencial.
+      ar: تجميع وثائقي لمشاهدات الطقس المتسلسلة والمنظمة كوحدة زمنية متتابعة.
+      id: Agregasi dokumenter untuk pengamatan cuaca berkelanjutan yang disusun sebagai unit serial.
+      zh: 作为序列单元组织的连续气象观测文献聚合体。
+    structured_aliases:
+    - literal_form: meteorologische observatiereeks
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: meteorologische Beobachtungsreihe
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: serie d observations meteorologiques
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: serie de observaciones meteorologicas
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة ملاحظات أرصاد جوية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: seri observasi meteorologi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 气象观测序列记录
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: Longitudinal observation continuity remains the defining sequence characteristic.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - ClimateArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:MeteorologicalObservationSeries
+      has_custodian:
+        equals_string: hc:ClimateArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by ClimateArchive custodians. Inverse of rico:isOrWasHolderOf.
+    keywords:
+    - meteorological observations
+    - weather data
+    - longitudinal monitoring
+    - climate series
+    - observation records

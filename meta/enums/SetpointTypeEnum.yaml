@@ -1,0 +1,48 @@
+id: https://nde.nl/ontology/hc/enum/SetpointTypeEnum
+name: setpoint_type_enum
+title: Setpoint Type Enumeration
+description: |
+  Types of environmental control setpoints for heritage storage conditions.
+  
+  Created per slot_fixes.yaml migration to support the Setpoint class.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  quantitykind: http://qudt.org/vocab/quantitykind/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  SetpointTypeEnum:
+    description: Types of environmental parameters that can have setpoints.
+    enum_uri: hc:SetpointType
+    permissible_values:
+      TEMPERATURE:
+        description: Temperature setpoint in degrees Celsius.
+        meaning: quantitykind:ThermodynamicTemperature
+      RELATIVE_HUMIDITY:
+        description: Relative humidity setpoint as percentage.
+        meaning: quantitykind:RelativeHumidity
+      LIGHT_LUX:
+        description: Light level setpoint in lux.
+        meaning: quantitykind:LuminousIntensity
+      UV_LEVEL:
+        description: UV light level setpoint.
+        meaning: hc:UVLevel
+      AIR_CHANGES_PER_HOUR:
+        description: Air change rate setpoint.
+        meaning: hc:AirChangesPerHour
+      PARTICULATE_COUNT:
+        description: Particulate count setpoint (air quality).
+        meaning: hc:ParticulateCount
+      OXYGEN_LEVEL:
+        description: Oxygen level setpoint (for inert atmospheres).
+        meaning: quantitykind:OxygenConcentration
+      CO2_LEVEL:
+        description: Carbon dioxide level setpoint.
+        meaning: quantitykind:CO2Concentration

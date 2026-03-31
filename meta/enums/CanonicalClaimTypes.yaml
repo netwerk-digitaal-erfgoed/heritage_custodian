@@ -1,0 +1,473 @@
+# Canonical Web Claim Types
+# ========================
+# This schema defines the standardized claim types for web-extracted heritage institution data.
+# 
+# Claims are organized into TIERS based on extraction reliability:
+# - TIER 1 (STRUCTURAL): Extracted directly from HTML structure, very high confidence
+# - TIER 2 (PATTERN): Extracted via pattern matching, high confidence
+# - TIER 3 (NLP): Extracted via NLP/LLM, moderate confidence, requires XPath verification
+#
+# Each claim type includes:
+# - description: What this claim represents
+# - tier: Reliability tier (1, 2, or 3)
+# - extraction_method: How this claim is extracted
+# - validation: How to validate the claim
+# - examples: Example values
+
+id: https://nde.nl/ontology/hc/enums/CanonicalClaimTypes
+name: CanonicalClaimTypes
+title: Canonical Web Claim Types for Heritage Institutions
+version: 1.0.0
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+
+default_prefix: hc
+
+enums:
+  # NOTE: Renamed from ClaimTypeEnum to CanonicalClaimTypeEnum
+  # to avoid naming conflict with ClaimTypeEnum in WebClaim.yaml
+  # These are semantically different:
+  # - ClaimTypeEnum (WebClaim.yaml): Practical claims for organization contact/identity extraction
+  # - CanonicalClaimTypeEnum (this file): Technical claims with tier annotations for extraction pipeline
+  CanonicalClaimTypeEnum:
+    description: |
+      Canonical claim types for web-extracted heritage institution data.
+      These types replace the 1,456+ ad-hoc types previously used.
+      
+      NOTE: This is distinct from ClaimTypeEnum in WebClaim.yaml which focuses on
+      organization contact/identity claims. This enum includes structural extraction
+      metadata with tier annotations.
+    
+    permissible_values:
+      # ========================================
+      # TIER 1: STRUCTURAL CLAIMS (from HTML structure)
+      # ========================================
+      
+      page_title:
+        description: HTML <title> element content
+        annotations:
+          tier: "1"
+          extraction_method: "docling - title label"
+          validation: "Exact match to HTML title tag"
+          confidence: "1.0"
+        comments:
+          - "Direct extraction from <title> tag"
+          - "May include site name suffix (e.g., '- Museum Name')"
+        examples:
+          - value: "Rijksmuseum - Het museum van Nederland"
+          - value: "Drents Archief - Het Geheugen van de Drentse Samenleving"
+      
+      page_count:
+        description: Number of HTML pages in website archive
+        annotations:
+          tier: "1"
+          extraction_method: "file system count of *.html files"
+          validation: "Integer count"
+          confidence: "1.0"
+        comments:
+          - "Indicates website size/complexity"
+          - "Count of unique HTML files in archive"
+      
+      image_count:
+        description: Number of images on main page
+        annotations:
+          tier: "1"
+          extraction_method: "docling - pictures count"
+          validation: "Integer count"
+          confidence: "1.0"
+        comments:
+          - "Images detected by docling on main page"
+          - "Useful for visual richness assessment"
+      
+      table_count:
+        description: Number of tables on main page
+        annotations:
+          tier: "1"
+          extraction_method: "docling - tables count"
+          validation: "Integer count"
+          confidence: "1.0"
+      
+      markdown_length:
+        description: Character count of markdown export
+        annotations:
+          tier: "1"
+          extraction_method: "docling - export_to_markdown length"
+          validation: "Integer count"
+          confidence: "1.0"
+        comments:
+          - "Indicates content richness"
+          - "Useful for filtering thin/stub pages"
+      
+      # ========================================
+      # TIER 2: PATTERN-BASED CLAIMS
+      # ========================================
+      
+      main_h1:
+        description: First/primary H1-level heading on page
+        annotations:
+          tier: "2"
+          extraction_method: "docling - first section_header"
+          validation: "Non-empty string from section_header"
+          confidence: "0.9"
+        comments:
+          - "Often contains organization name or page title"
+          - "First section_header in docling output"
+      
+      nav_items:
+        description: Detected navigation menu items
+        annotations:
+          tier: "2"
+          extraction_method: "pattern matching on section_headers"
+          validation: "JSON array of strings"
+          confidence: "0.85"
+        comments:
+          - "Items matching common nav patterns"
+          - "home, contact, about, collectie, bezoek, etc."
+      
+      has_contact_section:
+        description: Whether contact information section exists
+        annotations:
+          tier: "2"
+          extraction_method: "pattern matching for contact indicators"
+          validation: "Boolean (true/false)"
+          confidence: "0.8"
+        comments:
+          - "Detects presence of email, phone, address patterns"
+          - "Does NOT extract actual contact info (that's tier 3)"
+      
+      has_footer:
+        description: Whether detectable footer exists
+        annotations:
+          tier: "2"
+          extraction_method: "pattern matching in last elements"
+          validation: "Boolean (true/false)"
+          confidence: "0.8"
+        comments:
+          - "Looks for footer, copyright, address in last 20 elements"
+      
+      language_detected:
+        description: Detected language of main content
+        annotations:
+          tier: "2"
+          extraction_method: "langdetect or pattern matching"
+          validation: "ISO 639-1 code"
+          confidence: "0.85"
+        comments:
+          - "nl, en, de, fr, etc."
+          - "Based on content analysis"
+      
+      # ========================================
+      # TIER 3: NLP/LLM EXTRACTED CLAIMS (require XPath)
+      # ========================================
+      
+      full_name:
+        description: Official full name of organization
+        annotations:
+          tier: "3"
+          extraction_method: "NLP extraction with XPath verification"
+          validation: "XPath must point to text containing value"
+          confidence: "variable - based on xpath_match_score"
+        comments:
+          - "MUST have xpath provenance per AGENTS.md Rule 6"
+          - "Cross-validate with Wikidata, Google Maps"
+      
+      short_name:
+        description: Abbreviated or short name
+        annotations:
+          tier: "3"
+          extraction_method: "NLP extraction with XPath verification"
+          validation: "XPath must point to text containing value"
+          confidence: "variable"
+      
+      description:
+        description: Organization description or mission
+        annotations:
+          tier: "3"
+          extraction_method: "NLP extraction from meta description or about text"
+          validation: "XPath verification required"
+          confidence: "variable"
+        comments:
+          - "Often in <meta name='description'>"
+          - "Or in about/over-ons section"
+      
+      email:
+        description: Contact email address
+        annotations:
+          tier: "3"
+          extraction_method: "Pattern + XPath verification"
+          validation: "Valid email format + XPath"
+          confidence: "variable"
+        comments:
+          - "Pattern: *@*.* or mailto: links"
+          - "MUST have XPath to source"
+      
+      phone:
+        description: Contact phone number
+        annotations:
+          tier: "3"
+          extraction_method: "Pattern + XPath verification"
+          validation: "Phone pattern + XPath"
+          confidence: "variable"
+        comments:
+          - "Various formats: +31, 0xx, (0xx)"
+          - "MUST have XPath to source"
+      
+      address:
+        description: Physical address
+        annotations:
+          tier: "3"
+          extraction_method: "NLP extraction + XPath"
+          validation: "Address components + XPath"
+          confidence: "variable"
+      
+      postal_code:
+        description: Postal code component
+        annotations:
+          tier: "3"
+          extraction_method: "Pattern matching (NL: nnnn XX)"
+          validation: "Country-specific format + XPath"
+          confidence: "variable"
+      
+      city:
+        description: City name
+        annotations:
+          tier: "3"
+          extraction_method: "NLP extraction or pattern"
+          validation: "Known city name + XPath"
+          confidence: "variable"
+      
+      # ========================================
+      # SOCIAL MEDIA (TIER 2-3 depending on method)
+      # ========================================
+      
+      social_facebook:
+        description: Facebook page URL
+        annotations:
+          tier: "2"
+          extraction_method: "Link pattern matching"
+          validation: "facebook.com/* URL + NOT sharer/intent URL"
+          confidence: "0.9"
+        comments:
+          - "EXCLUDE share buttons (sharer.php, intent)"
+          - "Must be actual profile/page URL"
+      
+      social_instagram:
+        description: Instagram profile URL
+        annotations:
+          tier: "2"
+          extraction_method: "Link pattern matching"
+          validation: "instagram.com/* URL + NOT share URL"
+          confidence: "0.9"
+      
+      social_twitter:
+        description: Twitter/X profile URL
+        annotations:
+          tier: "2"
+          extraction_method: "Link pattern matching"
+          validation: "twitter.com/* or x.com/* URL + NOT intent URL"
+          confidence: "0.9"
+      
+      social_linkedin:
+        description: LinkedIn page URL
+        annotations:
+          tier: "2"
+          extraction_method: "Link pattern matching"
+          validation: "linkedin.com/* URL"
+          confidence: "0.9"
+      
+      social_youtube:
+        description: YouTube channel URL
+        annotations:
+          tier: "2"
+          extraction_method: "Link pattern matching"
+          validation: "youtube.com/* URL"
+          confidence: "0.9"
+      
+      website:
+        description: Official website URL (may differ from source)
+        annotations:
+          tier: "2"
+          extraction_method: "Direct from source or extracted link"
+          validation: "Valid URL"
+          confidence: "0.95"
+      
+      # ========================================
+      # IDENTIFIERS (TIER 2-3)
+      # ========================================
+      
+      isil_code:
+        description: ISIL identifier code
+        annotations:
+          tier: "2"
+          extraction_method: "Pattern: XX-XXXX"
+          validation: "Valid ISIL format"
+          confidence: "0.95"
+      
+      kvk_number:
+        description: Dutch Chamber of Commerce number
+        annotations:
+          tier: "2"
+          extraction_method: "Pattern: 8 digits"
+          validation: "8-digit number"
+          confidence: "0.9"
+      
+      wikidata_id:
+        description: Wikidata Q-number
+        annotations:
+          tier: "2"
+          extraction_method: "Pattern: Q followed by digits"
+          validation: "Qnnnnnn format"
+          confidence: "0.95"
+      
+      # ========================================
+      # ORGANIZATION METADATA (TIER 3)
+      # ========================================
+      
+      organization_type:
+        description: Type of organization (museum, archive, library, etc.)
+        annotations:
+          tier: "3"
+          extraction_method: "NLP classification"
+          validation: "Must match InstitutionTypeEnum"
+          confidence: "variable"
+      
+      legal_form:
+        description: Legal form (stichting, vereniging, etc.)
+        annotations:
+          tier: "3"
+          extraction_method: "Pattern or NLP"
+          validation: "Known legal form + XPath"
+          confidence: "variable"
+      
+      founding_date:
+        description: Organization founding date
+        annotations:
+          tier: "3"
+          extraction_method: "NLP extraction"
+          validation: "Valid date + XPath"
+          confidence: "variable"
+      
+      opening_hours:
+        description: Visitor opening hours
+        annotations:
+          tier: "3"
+          extraction_method: "NLP extraction"
+          validation: "Time pattern + XPath"
+          confidence: "variable"
+
+# ========================================
+# MAPPING FROM OLD TYPES TO CANONICAL TYPES
+# ========================================
+# 
+# This section documents how to migrate from the 1,456 ad-hoc types
+# to the canonical types above.
+#
+# NOTE: These mappings are DOCUMENTATION ONLY. They are not executable
+# LinkML schema elements. If you need to implement claim type normalization,
+# create a separate configuration file or Python module.
+#
+# Identity claims -> full_name or short_name:
+#   org_name: full_name
+#   custodian_name: full_name
+#   full_name: full_name
+#   organization_name: full_name
+#   museum_name: full_name
+#   operating_name: full_name
+#   legal_name: full_name
+#   brand_name: short_name
+#   short_name: short_name
+#   abbreviation: short_name
+#   
+# Description claims:
+#   description: description
+#   description_short: description
+#   mission: description
+#   slogan: description
+#   tagline: description
+#   
+# Contact claims:
+#   email: email
+#   phone: phone
+#   address: address
+#   postal_code: postal_code
+#   city: city
+#   street_address: address
+#   
+# Social media normalization:
+#   facebook: social_facebook
+#   social_facebook: social_facebook
+#   social_media_facebook: social_facebook
+#   instagram: social_instagram
+#   social_instagram: social_instagram
+#   social_media_instagram: social_instagram
+#   twitter: social_twitter
+#   social_twitter: social_twitter
+#   social_media_twitter: social_twitter
+#   linkedin: social_linkedin
+#   social_linkedin: social_linkedin
+#   social_media_linkedin: social_linkedin
+#   youtube: social_youtube
+#   social_youtube: social_youtube
+#   social_media_youtube: social_youtube
+#   
+# Website:
+#   website: website
+#   social_media_website: website
+#   source_urls: website
+#   
+# Identifiers:
+#   isil_code: isil_code
+#   kvk_number: kvk_number
+#   wikidata_id: wikidata_id
+#   rsin: kvk_number  # Related identifier
+#   
+# Organization metadata:
+#   organization_type: organization_type
+#   legal_form: legal_form
+#   founding_date: founding_date
+#   founded: founding_date
+#   founding_year: founding_date
+#   opening_hours: opening_hours
+#   
+# DROP these types (metadata, not institution claims):
+#   extraction_timestamp: DROP
+#   extraction_method: DROP
+#   confidence_score: DROP
+#   enrichment_method: DROP
+#   name_verified: DROP
+#   needs_verification: DROP
+#   verification_notes: DROP
+#   note: DROP
+#   notes: DROP
+#   claim_notes: DROP
+
+# ========================================
+# NESTED CLAIM HANDLING
+# ========================================
+#
+# Claims like branches_0_name, programs_1_description are NESTED data.
+# They should be stored in structured arrays, not flat claims.
+#
+# Pattern: {parent}_{index}_{field}
+# Example: branches_0_name -> branches[0].name
+#
+# These are migrated to structured YAML, not individual claims.
+#
+# Nested patterns (DOCUMENTATION ONLY):
+#   - pattern: "^branches_(\\d+)_(.+)$"
+#     parent: branches
+#   - pattern: "^programs_(\\d+)_(.+)$"
+#     parent: programs
+#   - pattern: "^collections_(\\d+)_(.+)$"
+#     parent: collections
+#   - pattern: "^digital_platforms_(\\d+)_(.+)$"
+#     parent: digital_platforms
+#   - pattern: "^organization_details_(.+)$"
+#     parent: organization_details
+#   - pattern: "^location_details_(.+)$"
+#     parent: location
+#   - pattern: "^contact_(.+)$"
+#     parent: contact

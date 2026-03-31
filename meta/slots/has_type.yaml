@@ -1,0 +1,173 @@
+# ==============================================================================
+# LinkML Slot Definition: has_type
+# ==============================================================================
+# Semantic category or class to which an entity belongs within a taxonomy
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                               | File/Line            | Mapping | Notes                                              |
+# |---------------|----------------------------------------|----------------------|---------|----------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P2_has_type`                      | CIDOC_CRM:1200-1214  | exact   | "Allows sub-typing through terminological hierarchy"|
+# | **DCTerms**   | `dcterms:type`                         | dcterms.rdf          | close   | "Nature or genre of the resource."                  |
+# | **Schema.org**| `schema:additionalType`                | schemaorg.owl:7190-7208| close  | "Additional type from external vocabularies."       |
+# | **RDF**       | `rdf:type`                             | RDF standard         | broad   | Fundamental RDF typing mechanism.                   |
+# | **CIDOC-CRM** | `crm:P137_exemplifies`                 | CIDOC_CRM:4129-4140  | narrow  | Entity exemplifies type (subPropertyOf P2).         |
+# | **CIDOC-CRM** | `crm:P177_assigned_property_of_type`   | CIDOC_CRM:4789-4800  | narrow  | Type of property assigned (subPropertyOf P2).       |
+# | **SKOS**      | `skos:broader`                         | skos.rdf:266-277     | related | Hierarchical concept relationship.                  |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-08 - Pass 2: capitalized aliases, removed redundant exact_mapping, cleaned prefixes
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_type
+name: has_type
+title: has type
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_type:
+    slot_uri: crm:P2_has_type
+    description: >-
+      The specific category or semantic class to which an entity belongs,
+      establishing its relationship within a broader taxonomy or hierarchy.
+    alt_descriptions:
+      nl: >-
+        De specifieke categorie of semantische klasse waartoe een entiteit
+        behoort, en daarmee de relatie binnen een bredere taxonomie of
+        hiërarchie vaststellen.
+      de: >-
+        Die spezifische Kategorie oder semantische Klasse, zu der eine Entität
+        gehört, und ihre Beziehung innerhalb einer breiteren Taxonomie oder
+        Hierarchie festlegen.
+      fr: >-
+        La catégorie spécifique ou la classe sémantique à laquelle appartient
+        une entité, établissant sa relation au sein d'une taxonomie ou
+        hiérarchie plus large.
+      ar: >-
+        الفئة المحددة أو الفئة الدلالية التي ينتمي إليها كيان ما، مع تحديد
+        علاقته ضمن تصنيف أو تسلسل هرمي أوسع.
+      id: >-
+        Kategori atau kelas semantik tertentu yang menjadi milik suatu entitas,
+        menetapkan hubungannya dalam taksonomi atau hierarki yang lebih luas.
+      zh: >-
+        实体所属的特定类别或语义类，在更广泛的分类法或层次结构中确立其关系。
+      es: >-
+        La categoría específica o clase semántica a la que pertenece una entidad,
+        estableciendo su relación dentro de una taxonomía o jerarquía más amplia.
+    structured_aliases:
+      - literal_form: Type
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Typ
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Type
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نوع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tipe
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 类型
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Tipo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - dcterms:type  # dcterms.rdf — "Nature or genre of the resource."
+      - schema:additionalType  # schemaorg.owl:7190-7208 — "Additional type from external vocabularies." subPropertyOf rdf:type.
+    broad_mappings:
+      - rdf:type  # Fundamental RDF typing mechanism.
+    narrow_mappings:
+      - crm:P137_exemplifies  # CIDOC_CRM:4129-4140 — Entity exemplifies a type (prototypical). subPropertyOf P2_has_type.
+      - crm:P177_assigned_property_of_type  # CIDOC_CRM:4789-4800 — Type of property assigned. subPropertyOf P2_has_type.
+    related_mappings:
+      - skos:broader  # skos.rdf:266-277 — Hierarchical concept relationship.
+    aliases:
+      - has_or_had_type
+      - has_or_had_appellation_type
+      - has_appellation_type
+      - is_or_was_quantity_type
+      - has_or_had_exhibition_type
+      - has_exhibition_type
+      - has_or_had_index_type
+      - has_index_type
+      - has_or_had_post_type
+      - has_post_type
+      - statement_type
+      - custodian_type
+      - description_type
+      - has_heritage_type
+      - link_type
+      - loan_type
+      - membership_type
+      - methodology_type
+      - name_type
+      - note_type
+      - object_type
+      - organization_type
+      - outdoor_site_type
+      - person_claim_type
+      - platform_type_description
+      - platform_type_id
+      - platform_type_name
+      - platform_type
+      - portal_type
+      - post_type_activity_streams_type
+      - preservation_event_type
+      - primary_audio_event_type
+      - primary_heritage_type
+      - reading_room_type
+      - record_set_type
+      - record_type
+      - region_type
+      - register_type
+      - requirement_type
+      - research_center_type
+      - scheme_type
+      - service_area_type
+      - shop_type
+      - social_media_platform_type_id
+      - source_type
+      - custodian_only
+    examples:
+      - value: "hc:CustodianType/museum"
+        description: Heritage custodian typed as a museum
+      - value: "hc:CollectionType/art-collection"
+        description: Collection typed as an art collection
+      - value: "aat:300312281"
+        description: Getty AAT term for 'archives (repositories)'
+    comments:
+      - >-
+        crm:P2_has_type allows sub-typing through E55 Type hierarchy without
+        extending the core CRM class structure. This is the recommended
+        approach for domain-specific typing in CIDOC-CRM.
+      - >-
+        Temporal semantics: "has_or_had_type" indicates types may change over
+        time (RiC-O pattern). An institution may be reclassified or may have
+        multiple types simultaneously.
+      - >-
+        Use for assigning controlled vocabulary terms (Getty AAT, LCSH, or
+        custom type hierarchies) to entities.
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.30
+      specificity_rationale: Fundamental typing property applicable to all entity types

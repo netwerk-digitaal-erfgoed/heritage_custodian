@@ -1,0 +1,112 @@
+# ==============================================================================
+# LinkML Slot Definition: received_by
+# ==============================================================================
+# Relates a message, shipment, funds, or object to the agent that accepts
+# delivery or takes possession of it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line                       | Mapping | Notes                                                        |
+# |---------------|--------------------------------|---------------------------------|---------|--------------------------------------------------------------|
+# | **RiC-O**     | `rico:hasReceiver`             | RiC-O_1-1.rdf:8911-8963        | close   | "Connects a Record Resource or Instantiation to the Agent     |
+# |               |                                |                                 |         | that receives it." Domain: RecordResource ∪ Instantiation.    |
+# |               |                                |                                 |         | Closest structural match (thing→agent). Archival context.    |
+# | **CIDOC-CRM** | `crm:P29_custody_received_by`  | CIDOC_CRM_v7.1.3.rdf:1875-1890 | close   | "Identifies E39 Actor who receives custody of E18 Physical    |
+# |               |                                |                                 |         | Thing in E10 Transfer of Custody." Domain is the transfer     |
+# |               |                                |                                 |         | event, not the thing itself — structural mismatch.           |
+# | **Schema.org** | `schema:recipient`            | schemaorg.owl:32274-32297       | close   | "The participant who is at the receiving end of the action."  |
+# |               |                                |                                 |         | Domain: various action types (SendAction, GiveAction, etc.),  |
+# |               |                                |                                 |         | not the thing received.                                       |
+# | **CIDOC-CRM** | `crm:P22_transferred_title_to` | CIDOC_CRM_v7.1.3.rdf:1681-1696 | related | "Identifies E39 Actor that acquires legal ownership via E8    |
+# |               |                                |                                 |         | Acquisition." Specifically legal ownership ≠ general receipt. |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/received_by
+name: received_by
+title: Received By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  received_by:
+    slot_uri: hc:receivedBy
+    description: >-
+      Relates a message, shipment, funds, or object to the specific individual,
+      organization, or system that accepts delivery or takes possession of it
+      from a sender.
+    alt_descriptions:
+      nl: >-
+        Relateert een bericht, zending, gelden of object aan de specifieke
+        persoon, organisatie of het systeem dat de levering accepteert of er
+        bezit van neemt van een afzender.
+      de: >-
+        Setzt eine Nachricht, Sendung, Geldmittel oder ein Objekt in Beziehung
+        zu der bestimmten Person, Organisation oder dem System, das die
+        Lieferung annimmt oder es von einem Absender in Besitz nimmt.
+      fr: >-
+        Relie un message, un envoi, des fonds ou un objet à la personne,
+        l'organisation ou le système spécifique qui accepte la livraison ou en
+        prend possession de la part d'un expéditeur.
+      ar: >-
+        يربط رسالة أو شحنة أو أموالاً أو كائنًا بالفرد أو المنظمة أو النظام
+        المحدد الذي يقبل التسليم أو يستلم الحيازة من المرسل.
+      id: >-
+        Menghubungkan pesan, pengiriman, dana, atau objek dengan individu,
+        organisasi, atau sistem tertentu yang menerima pengiriman atau mengambil
+        kepemilikan dari pengirim.
+      zh: >-
+        将消息、货物、资金或物品与接受交付或从发送方取得占有权的特定个人、组织或
+        系统关联起来。
+      es: >-
+        Relaciona un mensaje, envío, fondos u objeto con la persona,
+        organización o sistema específico que acepta la entrega o toma posesión
+        de él por parte de un remitente.
+    structured_aliases:
+      - literal_form: Ontvangen door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Empfangen von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Reçu par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستلم من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Diterima oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 接收者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Recibido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        CIDOC-CRM: P29_custody_received_by identifies the E39 Actor who
+        receives custody of an instance of E18 Physical Thing in an instance
+        of E10 Transfer of Custody.
+    range: string
+    annotations:
+      migrated_from: borrower
+      migration_date: '2026-01-17'
+      migration_rule: Rule 53/56
+      custodian_types: '["*"]'
+    close_mappings:
+      - rico:hasReceiver  # RiC-O_1-1.rdf:8911-8963 — "Connects Record Resource/Instantiation to receiving Agent"
+      - crm:P29_custody_received_by  # CIDOC_CRM_v7.1.3.rdf:1875-1890 — domain is transfer event, not thing
+      - schema:recipient  # schemaorg.owl:32274-32297 — "participant at the receiving end of the action"
+    related_mappings:
+      - crm:P22_transferred_title_to  # CIDOC_CRM_v7.1.3.rdf:1681-1696 — legal ownership transfer specifically
+    aliases:
+      - custody_received_by

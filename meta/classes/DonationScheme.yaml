@@ -1,0 +1,386 @@
+id: https://nde.nl/ontology/hc/class/DonationScheme
+name: DonationScheme
+title: DonationScheme Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  pav: http://purl.org/pav/
+  skos: http://www.w3.org/2004/02/skos/core#
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+- ../enums/DonationSchemeTypeEnum
+- ../slots/has_currency
+- ../slots/has_benefit
+- ../slots/has_note
+- ../slots/has_score
+- ../slots/tax_deductible
+- ../slots/maximum_of_maximum
+- ../slots/minimum_of_minimum
+- ../slots/observed_in
+- ../slots/offered_by
+- ../slots/has_payment_frequency
+- ../slots/regulated_by
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/temporal_extent
+default_prefix: hc
+classes:
+  DonationScheme:
+    class_uri: schema:DonateAction
+    description: >-
+      Structured representation of an institutional giving program, including
+      donation type, financial thresholds, payment frequency, donor benefits,
+      tax treatment, provider organization, and source observation.
+    alt_descriptions:
+      nl: Gestructureerd model van institutionele geefregelingen met bijdragevorm voordelen voorwaarden en toezicht.
+      de: Strukturiertes Modell institutioneller Spendenprogramme mit Beitragsform Vorteilen Bedingungen und Aufsicht.
+      fr: Modele structure de dispositifs de don institutionnels avec modalites de contribution avantages conditions et supervision.
+      es: Modelo estructurado de programas institucionales de donacion con modalidad de aporte beneficios condiciones y supervision.
+      ar: نموذج منظم لبرامج التبرع المؤسسية يتضمن شكل المساهمة والمزايا والشروط والرقابة.
+      id: Model terstruktur skema donasi institusi mencakup bentuk kontribusi manfaat syarat dan pengawasan.
+      zh: 对机构捐赠计划的结构化模型，涵盖出资方式、权益、条件与监管。
+    structured_aliases:
+    - {literal_form: donatieregeling, in_language: nl}
+    - {literal_form: Spendenprogramm, in_language: de}
+    - {literal_form: dispositif de don, in_language: fr}
+    - {literal_form: esquema de donacion, in_language: es}
+    - {literal_form: programma di donazione, in_language: it}
+    - {literal_form: برنامج تبرع, in_language: ar}
+    - {literal_form: skema donasi, in_language: id}
+    - {literal_form: 捐赠计划, in_language: zh}
+    exact_mappings:
+    - schema:DonateAction
+    close_mappings:
+    - schema:Offer
+    - org:Membership
+    - schema:MemberProgramTier
+    related_mappings:
+    - dcterms:isPartOf
+    - prov:wasDerivedFrom
+    - schema:priceSpecification
+    - schema:itemOffered
+    slots:
+    - has_benefit
+    - has_currency
+    - has_note
+    - maximum_of_maximum
+    - minimum_of_minimum
+    - observed_in
+    - offered_by
+    - has_payment_frequency
+    - has_description
+    - identified_by
+    - has_label
+    - has_type
+    - has_url
+    - tax_deductible
+    - regulated_by
+    - has_score
+    - temporal_extent
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+#         range: string # uriorcurie
+        pattern: ^https://nde\.nl/ontology/hc/donation-scheme/[a-z0-9-]+/[a-z0-9-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/donation-scheme/rijksmuseum/vrienden
+        - value: https://nde.nl/ontology/hc/donation-scheme/british-library/adopt-a-book
+        - value: https://nde.nl/ontology/hc/donation-scheme/nhm-london/patrons-silver
+      has_type:
+        required: true
+        range: DonationSchemeTypeEnum
+        description: Classification for the scheme modality, including membership, patron, adoption, legacy, direct donation, in-kind, sponsorship, and crowdfunding families.
+        examples:
+        - value: MEMBERSHIP_FRIENDS
+        - value: ADOPTION_BOOK
+        - value: PATRON_CIRCLE
+        - value: LEGACY_BEQUEST
+      has_label:
+        required: true
+#         range: string
+        examples:
+        - value: Rijksmuseum Vrienden
+        - value: Adopt a Book
+        - value: Director's Circle
+        - value: Amis du Louvre
+      has_description:
+#         range: string
+        examples:
+        - value: Become a Friend of the Rijksmuseum and enjoy unlimited free entry, exclusive member events, and a 10% discount in the museum shop.
+        - value: Your adoption supports the conservation of fragile historic books. Choose a book to adopt and receive a certificate and bookplate.
+      minimum_of_minimum:
+        range: decimal
+        examples:
+        - value: 60
+        - value: 25
+        - value: 1500
+      maximum_of_maximum:
+        range: decimal
+        examples:
+        - value: 4999
+        - value: 12000
+      has_currency:
+#         range: string
+        examples:
+        - value: EUR
+        - value: GBP
+        - value: USD
+      has_payment_frequency:
+#         range: string
+        examples:
+        - value: one-time
+        - value: monthly
+        - value: annually
+        - value: life
+      has_benefit:
+#         range: string
+        multivalued: true
+        examples:
+        - value: Free unlimited admission
+        - value: 10% discount in museum shop
+        - value: Member-only preview events
+        - value: Quarterly newsletter
+        - value: Bookplate with donor name
+      offered_by:
+        required: true
+        description: Custodian organization that publishes and administers the scheme.
+#         range: string # uriorcurie
+        examples:
+        - value: https://nde.nl/ontology/hc/custodian/nl/rijksmuseum
+        - value: https://nde.nl/ontology/hc/custodian/uk/british-library
+      has_url:
+        range: uri
+        examples:
+        - value: https://www.rijksmuseum.nl/nl/steun-het-rijksmuseum/word-vriend
+        - value: https://support.bl.uk/Page/Adopt-a-book
+      tax_deductible:
+        range: TaxDeductibility
+        inlined: true
+        examples:
+        - value:
+            jurisdiction: NL
+            deductible_percentage: 100
+        - value:
+            conditions: Membership benefits exceed donation value
+      regulated_by:
+        range: TaxScheme
+        multivalued: true
+        inlined_as_list: true
+        description: Applicable fiscal framework for deductibility or tax relief.
+        examples:
+        - value:
+            has_type: ANBI
+            has_label: ANBI
+            jurisdiction: NL
+            offer:
+            - has_percentage:
+        - value:
+            has_type: CulturalANBI
+            has_label: Cultural ANBI (125%)
+            jurisdiction: NL
+            offer:
+            - has_percentage:
+        - value:
+            has_type: GiftAid
+            has_label: Gift Aid
+            jurisdiction: UK
+            offer:
+            - has_percentage:
+        - value:
+            has_type: Section501c3
+            has_label: 501(c)(3)
+            jurisdiction: US
+            offer:
+            - has_percentage:
+        - value:
+            has_type: Gemeinnuetzigkeit
+            has_label: "Gemeinnützigkeit"
+            jurisdiction: DE
+            offer:
+            - has_percentage:
+      observed_in:
+        required: true
+        description: Source observation used to extract and verify scheme information.
+#         range: string # uriorcurie
+        examples:
+        - value: https://nde.nl/ontology/hc/observation/web/2026-01-01/rijksmuseum-support
+    comments:
+    - Each scheme links to WebObservation for full provenance chain
+    - Common domains include museum friends programs, archive adoption campaigns, and library conservation support
+    - Capture payment rhythm and thresholds as structured values, not embedded narrative
+    - Tax deductibility varies by jurisdiction - always document regulated_by_scheme
+    - Benefits should be extracted as discrete items for comparison
+    - Tiered schemes (e.g., Silver/Gold/Platinum) are separate DonationScheme instances
+    - Use payment_frequency to distinguish one-time vs recurring schemes
+    see_also:
+    - https://schema.org/DonateAction
+    - https://schema.org/MemberProgramTier
+    - https://www.w3.org/ns/org#Membership
+    - https://www.belastingdienst.nl/wps/wcm/connect/nl/aftrek-en-kortingen/content/gift-aftrekken
+    - https://www.gov.uk/donating-to-charity/gift-aid
+    examples:
+    - value:
+        scheme_id: https://nde.nl/ontology/hc/donation-scheme/rijksmuseum/vrienden
+        scheme_type: MEMBERSHIP_FRIENDS
+        scheme_name: Rijksmuseum Vrienden
+        scheme_description: Word Vriend van het Rijksmuseum en geniet van gratis toegang, exclusieve evenementen en 10% korting in de museumwinkel.
+        minimum_amount: 60
+        currency: EUR
+        payment_frequency: annually
+        has_benefit:
+        - Gratis onbeperkt toegang
+        - Exclusieve vriendenevenementen
+        - 10% korting in de museumwinkel
+        - Kwartaalnieuwsbrief
+        offered_by: https://nde.nl/ontology/hc/custodian/nl/rijksmuseum
+        scheme_url: https://www.rijksmuseum.nl/nl/steun-het-rijksmuseum/word-vriend
+        tax_deductible:
+          jurisdiction: NL
+          deductible_percentage: 100
+        regulated_by_scheme:
+        - has_type: CulturalANBI
+          has_label: Cultural ANBI (125%)
+          jurisdiction: NL
+          offer:
+          - has_percentage:
+          regulatory_body: Belastingdienst
+        observed_in: https://nde.nl/ontology/hc/observation/web/2026-01-01/rijksmuseum-support
+        has_score:
+          has_score: 0.95
+        has_note: Clear scheme page with pricing and benefits listed.
+    - value:
+        scheme_id: https://nde.nl/ontology/hc/donation-scheme/british-library/adopt-a-book
+        scheme_type: ADOPTION_BOOK
+        scheme_name: Adopt a Book
+        scheme_description: Help preserve the nation's written heritage by adopting a book. Your donation funds conservation work on fragile historic books and manuscripts in the British Library collection.
+        minimum_amount: 25
+        currency: GBP
+        payment_frequency: one-time
+        has_benefit:
+        - Certificate of adoption
+        - Bookplate with your name in the book
+        - Digital image of your adopted book
+        - Conservation report
+        offered_by: https://nde.nl/ontology/hc/custodian/uk/british-library
+        scheme_url: https://support.bl.uk/Page/Adopt-a-book
+        tax_deductible:
+          jurisdiction: UK
+          deductible_percentage: 100
+        regulated_by_scheme:
+        - has_type: GiftAid
+          has_label: Gift Aid
+          jurisdiction: UK
+          offer:
+          - has_percentage:
+          regulatory_body: HMRC
+        observed_in: https://nde.nl/ontology/hc/observation/web/2026-01-01/bl-support
+        has_score:
+          has_score: 0.98
+        has_note: Well-documented scheme with clear tiers and benefits.
+    - value:
+        scheme_id: https://nde.nl/ontology/hc/donation-scheme/nhm-london/patrons-silver
+        scheme_type: PATRON_CIRCLE
+        scheme_name: Natural History Museum Patrons - Silver
+        scheme_description: Join the Silver level of our Patrons programme and enjoy exclusive behind-the-scenes access, curator-led tours, and invitations to special events throughout the year.
+        minimum_amount: 1500
+        maximum_amount: 4999
+        currency: GBP
+        payment_frequency: annually
+        has_benefit:
+        - Behind-the-scenes tours
+        - Curator-led collection visits
+        - Patron-only evening events
+        - Recognition in annual report
+        - Two guest passes per visit
+        offered_by: https://nde.nl/ontology/hc/custodian/uk/nhm-london
+        scheme_url: https://www.nhm.ac.uk/support-us/patrons
+        tax_deductible:
+          jurisdiction: UK
+          deductible_percentage: 100
+        regulated_by_scheme:
+        - has_type: GiftAid
+          has_label: Gift Aid
+          jurisdiction: UK
+          offer:
+          - has_percentage:
+          regulatory_body: HMRC
+        observed_in: https://nde.nl/ontology/hc/observation/web/2026-01-01/nhm-patrons
+        has_score:
+          has_score: 0.92
+        has_note: Three-tier patron program. Silver is entry level.
+    - value:
+        scheme_id: https://nde.nl/ontology/hc/donation-scheme/iish/adopt-history
+        scheme_type: ADOPTION_ARCHIVE_COLLECTION
+        scheme_name: Adopt History
+        scheme_description: Adopt a historical document from the IISH collection and help preserve social history. Your adoption supports digitization and conservation of labor movement archives.
+        minimum_amount: 150
+        currency: EUR
+        payment_frequency: one-time
+        has_benefit:
+        - Adoption certificate
+        - Digital copy of document
+        - Name on website donor wall
+        - Behind-the-scenes tour invitation
+        offered_by: https://nde.nl/ontology/hc/custodian/nl/iish
+        scheme_url: https://iisg.amsterdam/en/support/adopt-history
+        tax_deductible:
+          jurisdiction: NL
+          deductible_percentage: 100
+        regulated_by_scheme:
+        - has_type: ANBI
+          has_label: ANBI
+          jurisdiction: NL
+          offer:
+          - has_percentage:
+          regulatory_body: Belastingdienst
+        observed_in: https://nde.nl/ontology/hc/observation/web/2026-01-01/iish-support
+        has_score:
+          has_score: 0.9
+        has_note: Archive document adoption with flexible donation levels.
+    - value:
+        scheme_id: https://nde.nl/ontology/hc/donation-scheme/kb-nl/legacy
+        scheme_type: LEGACY_BEQUEST
+        scheme_name: Nalatenschap aan de KB
+        scheme_description: Overweeg een nalatenschap aan de Koninklijke Bibliotheek en help de nationale bibliotheekcollectie voor toekomstige generaties te bewaren.
+        minimum_amount:
+        currency: EUR
+        payment_frequency: one-time
+        has_benefit:
+        - Persoonlijk gesprek met directie
+        - Erkenning in jaarverslag (optioneel)
+        - Nalatenschap volledig naar collectie
+        offered_by: https://nde.nl/ontology/hc/custodian/nl/kb
+        scheme_url: https://www.kb.nl/over-ons/steun-de-kb/nalatenschap
+        tax_deductible:
+          jurisdiction: NL
+          deductible_percentage: 100
+        regulated_by_scheme:
+        - has_type: ANBI
+          has_label: ANBI (erfbelasting vrijstelling)
+          has_description: ANBI status with inheritance tax exemption
+          jurisdiction: NL
+          offer:
+          - has_percentage:
+          regulatory_body: Belastingdienst
+        has_contact_point:
+        observed_in: https://nde.nl/ontology/hc/observation/web/2026-01-01/kb-support
+        has_score:
+          has_score: 0.85
+        has_note: Legacy giving page with limited detail. Estate tax benefits apply.
+    notes:
+    - |
+      Preserved from prior description (commit 554fe520):
+
+      "A donation or giving scheme offered by a heritage custodian institution.\n\n**PURPOSE**:\n\nDonationScheme provides structured representation of the various ways\nindividuals and organizations can financially support heritage institutions.\nThese range from simple one-time donations to complex membership programs,\nadoption schemes, patron circles, and legacy giving vehicles.\n\n**HERITAGE SECTOR CONTEXT**:\n\nDonation schemes are critical for heritage institution sustainability:\n\n- **Museums**: Friends schemes, patron circles, acquisition fund drives\n- **Libraries**: Adopt-a-book programs, conservation appeals\n- **Archives**: \"Adopt history\" programs, preservation sponsorships\n- **Galleries**: Artist support funds, exhibition sponsorships\n- **Historical societies**: Heritage membership, research fellowships\n- **Botanical gardens**: Plant and animal adoption programs\n\n**MULTILINGUAL TERMINOLOGY**:\n\n\"Friends\" scheme terminology varies by country:\n- Dutch:\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

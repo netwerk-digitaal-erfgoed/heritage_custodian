@@ -1,0 +1,30 @@
+id: https://nde.nl/ontology/hc/parsimony/slot/comes_to_an_end_through
+name: comes_to_an_end_through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+  owl: http://www.w3.org/2002/07/owl#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  comes_to_an_end_through:
+    slot_uri: crm:P93i_was_taken_out_of_existence_by
+    description: Relates a semantic entity to the event, activity, authority action, or process through which it comes to an end.
+    range: Activity
+    inverse: brings_to_end
+    implements:
+      - owl:ObjectProperty
+    multivalued: true
+    close_mappings:
+      - prov:wasInvalidatedBy
+    related_mappings:
+      - org:changedBy
+      - schema:dissolutionDate
+      - prov:invalidatedAtTime
+    narrow_mappings:
+      - hc:dissolved_by

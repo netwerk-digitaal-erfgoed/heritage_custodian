@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/ConfidenceMethod
+name: ConfidenceMethod
+title: Confidence Method
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_type
+classes:
+  ConfidenceMethod:
+    class_uri: hc:ConfidenceMethod
+    description: >-
+      Documented procedure or algorithm used to derive certainty estimates from
+      source evidence.
+    alt_descriptions:
+      nl: Gedocumenteerde procedure of algoritme waarmee zekerheidsinschattingen uit bronbewijs worden afgeleid.
+      de: Dokumentiertes Verfahren oder Algorithmus zur Ableitung von Sicherheitsschaetzungen aus Quellbelegen.
+      fr: Procedure ou algorithme documente utilise pour deriver des estimations de certitude a partir de preuves sources.
+      es: Procedimiento o algoritmo documentado utilizado para derivar estimaciones de certeza a partir de evidencia fuente.
+      ar: إجراء أو خوارزمية موثقة تُستخدم لاشتقاق تقديرات اليقين من الأدلة المصدرية.
+      id: Prosedur atau algoritme terdokumentasi yang digunakan untuk menurunkan estimasi kepastian dari bukti sumber.
+      zh: 用于根据来源证据推导可信度估计的已记录流程或算法。
+    structured_aliases:
+      - literal_form: zekerheidsmethode
+        in_language: nl
+      - literal_form: Sicherheitsmethode
+        in_language: de
+      - literal_form: methode d'estimation
+        in_language: fr
+      - literal_form: metodo de estimacion
+        in_language: es
+      - literal_form: طريقة التقدير
+        in_language: ar
+      - literal_form: metode estimasi
+        in_language: id
+      - literal_form: 估计方法
+        in_language: zh
+    slots:
+      - has_type
+      - has_description
+      - identified_by
+    slot_usage:
+      has_type:
+        required: true
+        examples:
+          - value: fuzzy_matching
+          - value: ml_prediction
+          - value: human_assessment
+      has_description:
+        examples:
+          - value: Weighted Jaro-Winkler similarity with threshold calibration.
+      identified_by:
+        examples:
+          - value: rapidfuzz-2.15.1
+    examples:
+      - value:
+          has_type: llm_classification
+          has_description: Ensemble prompt strategy with adjudication pass.
+          identified_by: gpt-4.1-entity-eval
+        description: Machine-assisted classification procedure
+      - value:
+          has_type: human_assessment
+          has_description: Dual-reviewer adjudication with consensus protocol.
+          identified_by: manual-qc-v2
+        description: Expert review procedure for uncertain matches
+    keywords:
+      - algorithm provenance
+      - method documentation
+      - reproducibility
+      - quality workflow
+    close_mappings:
+      - prov:Plan
+      - schema:HowTo
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Method documentation applies to all extraction and validation contexts.
+      specificity_score: "0.25"
+      specificity_rationale: Low specificity but operationally important for reproducibility.

@@ -1,0 +1,131 @@
+# ==============================================================================
+# LinkML Slot Definition: observe
+# ==============================================================================
+# Records entities or phenomena observed for monitoring or provenance purposes.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                      | File/Line                    | Mapping | Notes                                                                                    |
+# |----------------|-------------------------------|------------------------------|---------|------------------------------------------------------------------------------------------|
+# | **SOSA**       | `sosa:hasFeatureOfInterest`   | sosa.ttl:203-214             | close   | Observation→FeatureOfInterest. "The entity whose quality was observed." Same semantic     |
+# |                |                               |                              |         | intent (what was observed); differs in domain (Observation event) and range (entity ref,  |
+# |                |                               |                              |         | not string).                                                                             |
+# | **CIDOC-CRM**  | `crm:P34_concerned`           | CIDOC_CRM_v7.1.3.rdf:2014   | narrow  | E14 Condition Assessment→E18 Physical Thing. "Identifies the Physical Thing assessed      |
+# |                |                               |                              |         | during a Condition Assessment." Narrower: specific to heritage condition assessment.      |
+# | **CIDOC-CRM**  | `crm:P35_has_identified`      | CIDOC_CRM_v7.1.3.rdf:2042   | related | E14 Condition Assessment→E3 Condition State. "The Condition State observed in a           |
+# |                |                               |                              |         | Condition Assessment." Related: identifies the observation result, not the target entity. |
+#
+# CREATED: 2026-02-10
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/observe
+name: observe
+title: Observe
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  observe:
+    slot_uri: hc:observe
+    description: >-
+      Records entities, phenomena, or behaviours that were noticed, watched,
+      or measured, typically for the purpose of data gathering, status
+      monitoring, scientific study, or establishing provenance. Each value
+      identifies what was observed — the feature of interest — during an
+      observation activity. In the heritage custodian context this covers
+      condition assessments of physical objects, environmental monitoring of
+      storage or exhibition spaces, and surveillance or visitor-behaviour
+      studies.
+    alt_descriptions:
+      nl: >-
+        Registreert entiteiten, fenomenen of gedragingen die zijn waargenomen,
+        doorgaans voor het verzamelen van gegevens, monitoring, wetenschappelijk
+        onderzoek of het vaststellen van herkomst.
+      de: >-
+        Erfasst Entitäten, Phänomene oder Verhaltensweisen, die beobachtet
+        wurden, typischerweise zur Datenerhebung, Zustandsüberwachung,
+        wissenschaftlichen Untersuchung oder Provenienzfeststellung.
+      fr: >-
+        Enregistre les entités, phénomènes ou comportements observés,
+        généralement à des fins de collecte de données, de surveillance, de
+        recherche scientifique ou d'établissement de la provenance.
+      ar: >-
+        يسجل الكيانات أو الظواهر أو السلوكيات التي تمت ملاحظتها، عادةً لأغراض
+        جمع البيانات أو المراقبة أو الدراسة العلمية أو إثبات المصدر.
+      id: >-
+        Mencatat entitas, fenomena, atau perilaku yang diamati, biasanya untuk
+        pengumpulan data, pemantauan status, studi ilmiah, atau penetapan
+        provenans.
+      zh: >-
+        记录被观察到的实体、现象或行为，通常用于数据采集、状态监测、科学研究或
+        来源确定。
+      es: >-
+        Registra las entidades, fenómenos o comportamientos observados,
+        generalmente con fines de recopilación de datos, monitoreo, estudio
+        científico o establecimiento de procedencia.
+    structured_aliases:
+      - literal_form: observeren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: beobachten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: observer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملاحظة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengamati
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 观察
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: observar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - sosa:hasFeatureOfInterest  # sosa.ttl:203-214 - "The entity whose quality was observed." Observation→FeatureOfInterest. Same intent (what was observed); differs in domain (Observation event) and range (entity ref vs string).
+    narrow_mappings:
+      - crm:P34_concerned  # CIDOC_CRM_v7.1.3.rdf:2014-2027 - "Identifies the E18 Physical Thing assessed during an E14 Condition Assessment." Narrower: heritage condition assessment of physical things specifically.
+    related_mappings:
+      - crm:P35_has_identified  # CIDOC_CRM_v7.1.3.rdf:2042-2054 - "The E3 Condition State observed in an E14 Condition Assessment." Identifies the observation result (condition), not the target entity.
+    aliases:
+      - observed_entity
+      - observed_name
+      - provides_or_provided_provenance_to
+    examples:
+      - value: "Temperature in storage room B3"
+        description: >-
+          Environmental monitoring of a climate-controlled storage area in
+          a museum.
+      - value: "Surface condition of painting SK-A-4691"
+        description: >-
+          Condition assessment observation for a specific artwork in the
+          collection.
+      - value: "Visitor flow at main entrance"
+        description: >-
+          Behavioural observation for crowd management and exhibition planning.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Stores observed entities or phenomena as plain strings. For structured
+        observation records with quantified results, timestamps, and sensor
+        metadata, consider using the SOSA/SSN observation model (sosa:Observation
+        with sosa:hasFeatureOfInterest, sosa:observedProperty, sosa:hasResult).
+      - >-
+        In CIDOC-CRM, heritage-specific observation is modelled as
+        E14 Condition Assessment, where P34 concerned identifies the physical
+        thing assessed and P35 has identified records the condition state
+        observed. This slot generalises beyond condition assessment to any
+        observational activity.

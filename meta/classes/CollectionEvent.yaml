@@ -1,0 +1,76 @@
+id: https://nde.nl/ontology/hc/class/CollectionEvent
+name: CollectionEvent
+title: Collection Event Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/identified_by
+- ../slots/has_note
+- ../slots/in_place
+- ../slots/has_provenance
+- ../slots/acquired_by
+- ../slots/temporal_extent
+- ../slots/has_protocol
+- ../slots/has_habitat
+classes:
+  CollectionEvent:
+    class_uri: dwc:Event
+    description: >-
+      Acquisition occurrence documenting where, when, and by whom material was gathered or received.
+    alt_descriptions:
+      nl: Verwervingsgebeurtenis die vastlegt waar, wanneer en door wie materiaal is verzameld of ontvangen.
+      de: Erwerbsereignis, das dokumentiert, wo, wann und durch wen Material gesammelt oder erhalten wurde.
+      fr: Occurrence d'acquisition documentant où, quand et par qui des matériaux ont été collectés ou reçus.
+      es: Evento de adquisicion que documenta donde, cuando y por quien se recolecto o recibio material.
+      ar: حدث اقتناء يوثق مكان وزمان ومن قام بجمع المواد أو استلامها.
+      id: Peristiwa akuisisi yang mendokumentasikan di mana, kapan, dan oleh siapa material dikumpulkan atau diterima.
+      zh: 记录材料在何处、何时以及由谁采集或接收的获取事件。
+    broad_mappings:
+    - dwc:Event
+    close_mappings:
+    - crm:E7_Activity
+    related_mappings:
+    - prov:Activity
+    - schema:Action
+    mixins:
+    - HasProvenance
+    slots:
+    - in_place
+    - has_provenance
+    - has_note
+    - temporal_extent
+    - acquired_by
+    - identified_by
+    - has_protocol
+    - has_habitat
+    slot_usage:
+      identified_by:
+        identifier: true
+      in_place:
+        range: CustodianPlace
+        inlined: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+      has_provenance:
+        range: ProvenanceBlock
+        inlined: true
+      acquired_by:
+        range: Agent
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      "A specimen collection event capturing where, when, and by whom a specimen was collected.\n**Purpose**: Consolidates collection metadata into a structured event following Darwin Core and CIDOC-CRM event modeling patterns.\n**Darwin Core Alignment**: - `has_place` \u2192 dwc:locality (structured location) - `temporal_extent` \u2192 dwc:eventDate (collection date/period) - `acquired_by` \u2192 dwc:recordedBy (was: collector, migrated 2026-01-22) - `field_number` \u2192 dwc:fieldNumber\n**CIDOC-CRM Alignment**: - Maps to crm:E7_Activity (collection activity) - `has_place` \u2192 crm:P7_took_place_at - `temporal_extent` \u2192 crm:P4_has_time-span\n**REPLACES**: - Individual slots: collection_location, collection_date, field_number - collector \u2192 acquired_by + Agent (migrated 2026-01-22) - Consolidates into structured event with provenance\n**Example**: ```yaml CollectionEvent:\n  has_place:\n    place_name: \"Mauritius\"\n    country:\

@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: available
+# ==============================================================================
+# Whether something is available for access or use.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line              | Mapping | Notes                              |
+# |---------------|-----------------------|------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:availability` | schemaorg.owl:9289-9292| close   | Item availability status           |
+#
+# NOTE: schema:availability is an ObjectProperty expecting ItemAvailability enum values,
+# while this slot is a boolean. Hence close_mapping, not exact.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, ontology alignment verification
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/available
+name: available
+title: Available
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  available:
+    slot_uri: hc:available
+    description: >-
+      Whether the entity is accessible, obtainable, or ready for immediate
+      use or service; indicates the entity is not currently occupied or restricted.
+    alt_descriptions:
+      nl: >-
+        Of de entiteit toegankelijk, verkrijgbaar of klaar is voor onmiddellijk
+        gebruik of dienst; geeft aan dat de entiteit momenteel niet bezet of beperkt is.
+      de: >-
+        Ob die Entität zugänglich, erhältlich oder für sofortige Nutzung oder
+        Dienst bereit ist; zeigt an, dass die Entität derzeit nicht belegt oder eingeschränkt ist.
+      fr: >-
+        Si l'entité est accessible, disponible ou prête pour une utilisation ou
+        un service immédiat; indique que l'entité n'est pas actuellement occupée ou restreinte.
+      ar: >-
+        ما إذا كان الكيان قابلاً للوصول أو الحصول عليه أو جاهزًا للاستخدام أو
+        الخدمة الفورية؛ يشير إلى أن الكيان غير مشغول أو مقيد حاليًا.
+      id: >-
+        Apakah entitas dapat diakses, diperoleh, atau siap untuk penggunaan atau
+        layanan segera; menunjukkan bahwa entitas saat ini tidak ditempati atau dibatasi.
+      zh: >-
+        实体是否可访问、可获取或可立即使用或服务；表明实体目前未被占用或限制。
+      es: >-
+        Si la entidad es accesible, obtenible o está lista para uso o servicio
+        inmediato; indica que la entidad no está actualmente ocupada o restringida.
+    structured_aliases:
+      - literal_form: beschikbaar
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verfügbar
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: disponible
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متاح
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: tersedia
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 可用
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: disponible
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    close_mappings:
+      - schema:availability  # schemaorg.owl:9289 - Item availability (ObjectProperty with enum)
+    aliases:
+      - is_or_was_available
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MAPPING NOTE**: schema:availability is an ObjectProperty expecting ItemAvailability
+        enum values (InStock, OutOfStock, etc.), while this slot uses a boolean range.
+        Hence the close_mapping rather than exact_mapping.

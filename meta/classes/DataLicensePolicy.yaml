@@ -1,0 +1,74 @@
+id: https://nde.nl/ontology/hc/class/DataLicensePolicy
+name: data_license_policy
+title: Data License Policy Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  cc: http://creativecommons.org/ns#
+  odrl: http://www.w3.org/ns/odrl/2/
+  hc: https://nde.nl/ontology/hc/
+imports:
+- linkml:types
+- ../slots/has_score
+default_prefix: hc
+classes:
+  DataLicensePolicy:
+    class_uri: odrl:Policy
+    description: >-
+      Governance stance describing how an institution intends to permit reuse,
+      redistribution, and openness across its published resources.
+    alt_descriptions:
+      nl: Beleidsmatige houding die beschrijft hoe een instelling hergebruik herdistributie en openheid voor gepubliceerde bronnen wil regelen.
+      de: Governance-Position die beschreibt wie eine Institution Nachnutzung Weiterverbreitung und Offenheit ihrer veroeffentlichten Ressourcen regelt.
+      fr: Orientation de gouvernance decrivant comment une institution entend autoriser la reutilisation la redistribution et l ouverture de ses ressources publiees.
+      es: Postura de gobernanza que describe como una institucion regula reutilizacion redistribucion y apertura de sus recursos publicados.
+      ar: توجه حوكمي يوضح كيف تنظم المؤسسة إعادة الاستخدام وإعادة التوزيع والانفتاح لمواردها المنشورة.
+      id: Sikap tata kelola yang menjelaskan bagaimana institusi mengatur penggunaan ulang redistribusi dan keterbukaan sumber daya terbitannya.
+      zh: 说明机构如何在已发布资源上实行再利用、再分发与开放原则的治理立场。
+    structured_aliases:
+    - {literal_form: datalicentiebeleid, in_language: nl}
+    - {literal_form: Datenlizenzrichtlinie, in_language: de}
+    - {literal_form: politique de licence de donnees, in_language: fr}
+    - {literal_form: politica de licencia de datos, in_language: es}
+    - {literal_form: سياسة ترخيص البيانات, in_language: ar}
+    - {literal_form: kebijakan lisensi data, in_language: id}
+    - {literal_form: 数据许可政策, in_language: zh}
+    broad_mappings:
+    - odrl:Policy
+    close_mappings:
+    - dcterms:Policy
+    - schema:DigitalDocument
+    slots:
+    - has_score
+    - has_label
+    - effective_at
+    - has_description
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+
+  DataLicense:
+    class_uri: cc:License
+    description: >-
+      Legal instrument declaring explicit permissions, obligations, and reuse
+      constraints for published resources.
+    broad_mappings:
+    - cc:License
+    close_mappings:
+    - dcterms:LicenseDocument
+    - schema:CreativeWork
+    slots:
+    - has_score
+    - has_name
+
+  ServiceLicense:
+    class_uri: odrl:Agreement
+    description: >-
+      Service-level license assignment used when different endpoints or products
+      operate under different legal terms.
+    close_mappings:
+    - odrl:Agreement
+    slots:
+    - has_score

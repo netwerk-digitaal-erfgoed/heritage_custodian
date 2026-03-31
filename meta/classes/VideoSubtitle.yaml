@@ -1,0 +1,180 @@
+id: https://nde.nl/ontology/hc/class/VideoSubtitle
+name: video_subtitle_class
+title: Video Subtitle Class
+imports:
+- linkml:types
+- ../enums/SubtitleFormatEnum
+- ../enums/SubtitlePositionEnum
+- ../slots/has_alignment
+- ../slots/has_caption
+- ../slots/has_format
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_mean
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_segment
+- ../slots/has_measurement_unit
+- ../slots/has_music
+- ../slots/has_sound
+- ../slots/identify
+- ../slots/created_through
+- ../slots/has_raw_data
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  ma: http://www.w3.org/ns/ma-ont#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+classes:
+  VideoSubtitle:
+    is_a: VideoTranscript
+    class_uri: hc:VideoSubtitle
+    abstract: false
+    description: >-
+      Time-coded text track synchronized with video playback for accessibility
+      or translation purposes.
+    alt_descriptions:
+      nl: Tijdgecodeerde ondertitel- of CC-track die synchroon loopt met videoweergave.
+      de: Zeitcodierte Untertitel- oder CC-Spur die mit der Videowiedergabe synchronisiert ist.
+      fr: Piste de sous-titres ou de sous-titrage pour sourds et malentendants synchronisee avec la video.
+      es: Pista de subtitulos o CC con codigos de tiempo sincronizados con el video.
+      ar: مسار ترجمة/تعليقات مغلقة مزود بترميز زمني ومتزامن مع الفيديو.
+      id: Trek subtitle/CC berkode waktu yang tersinkron dengan pemutaran video.
+      zh: 与视频播放同步的带时间码字幕/闭字幕轨道。
+    structured_aliases:
+    - {literal_form: ondertitelbestand, in_language: nl}
+    - {literal_form: Untertitelspur, in_language: de}
+    - {literal_form: piste de sous-titres, in_language: fr}
+    - {literal_form: pista de subtitulos, in_language: es}
+    - {literal_form: مسار ترجمة, in_language: ar}
+    - {literal_form: trek subtitle, in_language: id}
+    - {literal_form: 字幕轨道, in_language: zh}
+    close_mappings:
+    - schema:caption
+    - ma:CaptioningFormat
+    related_mappings:
+    - schema:transcript
+    slots:
+    - has_format
+    - has_raw_data
+    - has_segment
+    - identified_by
+    - has_label
+    - has_caption
+    - has_sound
+    - has_music
+    - identify
+    - created_through
+    - has_alignment
+    - has_mean
+    - has_quantity
+    - has_measurement_unit
+    - has_score
+    slot_usage:
+      has_segment:
+        range: VideoTimeSegment
+        required: true
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      has_format:
+        range: SubtitleFormatEnum
+        required: true
+        examples:
+        - value: VTT
+        - value: SRT
+      has_raw_data:
+        range: string
+        required: false
+        examples:
+        - value: |
+            WEBVTT
+
+            00:00:00.000 --> 00:00:03.500
+            Welcome to the museum.
+      identified_by:
+        range: TrackIdentifier
+        required: false
+        inlined: true
+        examples:
+        - value:
+            has_code: en.3OWxR1w4QfE
+      has_caption:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+        - value: true
+      has_sound:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+        - value: true
+      has_music:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+        - value: true
+      identify:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+        - value: true
+      created_through:
+        range: uriorcurie
+        required: false
+        examples:
+        - value: https://www.youtube.com/
+      has_quantity:
+        range: integer
+        required: false
+        minimum_value: 0
+        examples:
+        - value: 120
+    comments:
+    - Time-coded caption/subtitle content
+    - Extends VideoTranscript; segments are required
+    - Supports multiple subtitle formats (e.g., VTT, SRT)
+    - Accessibility metadata can include captions and sound/music descriptions
+    see_also:
+    - https://schema.org/caption
+    - https://www.w3.org/TR/webvtt1/
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        VideoSubtitle represents a subtitle or closed-caption track synchronized
+        with video playback.
+
+        Distinctions (informal)
+
+        - Transcript: may be plain text; time codes optional.
+        - Subtitle: time-coded; typically supports translation.
+        - Closed captions (CC): time-coded; typically includes accessibility cues.
+
+        Formats
+        - SRT (.srt): simple, widely supported
+        - VTT (.vtt): web standard
+        - TTML (.ttml/.dfxp): XML-based
+
+        Segment requirement
+        - Unlike VideoTranscript, VideoSubtitle requires has_segment entries.
+
+      legacy_description: |
+        Preserved from earlier, more verbose description.
+
+        It included detailed comparisons (subtitle vs caption vs transcript),
+        format examples (SRT/VTT), heritage accessibility context, and notes
+        on YouTube subtitle track integration.

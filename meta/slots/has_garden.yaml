@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: has_garden
+# ==============================================================================
+# Whether a property, venue, or institution features an outdoor garden or
+# green space.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                  | Mapping | Notes                                            |
+# |---------------|-------------------------|----------------------------|---------|--------------------------------------------------|
+# | **Schema.org**| `schema:amenityFeature`  | schemaorg.owl:7869-7893    | broad   | "An amenity feature (e.g. a characteristic or     |
+# |               |                         |                            |         | service) of the Accommodation." Any amenity, not  |
+# |               |                         |                            |         | garden specifically.                              |
+# | **Schema.org**| `schema:containsPlace`   | schemaorg.owl:12711-12733  | related | "The basic containment relation between a place   |
+# |               |                         |                            |         | and another that it contains." Place→Place, but   |
+# |               |                         |                            |         | our slot is boolean, not a containment relation.  |
+#
+# REMOVED: schema:award (schemaorg.owl:9604-9628) was exact_mapping — "An award
+#   won by or for this item." Awards/prizes have no relation to gardens.
+#
+# No garden-specific property exists in any standard ontology.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_garden
+name: has_garden
+title: Has Garden
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_garden:
+    slot_uri: hc:hasGarden
+    description: >-
+      Indicates whether a residential property, venue, or institution features
+      an accessible outdoor cultivated area or green space.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een woonobject, locatie of instelling beschikt over een
+        toegankelijk buitengebied met beplanting of groene ruimte.
+      de: >-
+        Gibt an, ob ein Wohnobjekt, ein Veranstaltungsort oder eine Einrichtung
+        ueber einen zugaenglichen Aussenbereich mit Bepflanzung oder eine
+        Gruenflaeche verfuegt.
+      fr: >-
+        Indique si une propriete residentielle, un lieu ou une institution
+        dispose d'un espace exterieur cultive ou d'un espace vert accessible.
+      ar: >-
+        يشير إلى ما إذا كان العقار السكني أو المكان أو المؤسسة يضم منطقة
+        خارجية مزروعة أو مساحة خضراء يمكن الوصول إليها.
+      id: >-
+        Menunjukkan apakah suatu properti residensial, tempat, atau lembaga
+        memiliki area luar ruangan yang ditanami atau ruang hijau yang dapat
+        diakses.
+      zh: >-
+        表示某一住宅物业、场所或机构是否拥有一个可进入的户外种植区域或绿色
+        空间。
+      es: >-
+        Indica si una propiedad residencial, un lugar o una institucion cuenta
+        con un area exterior cultivada o un espacio verde accesible.
+    structured_aliases:
+      - literal_form: Tuin
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Garten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Jardin
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: حديقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Taman
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 花园
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Jardin
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    aliases:
+      - historic_garden_designation
+    examples:
+      - value: "true"
+        description: Historic garden designation
+    comments:
+      - >-
+        In the Dutch heritage context, this may indicate a "Historische tuin"
+        (historic garden) designation or Rijksmonument landscape status.
+      - >-
+        No garden-specific property exists in standard ontologies.
+        schema:amenityFeature is the closest broad match but covers any
+        amenity (pool, parking, etc.), not garden specifically.
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7893 - "An amenity feature (e.g. a characteristic or service) of the Accommodation."
+    related_mappings:
+      - schema:containsPlace  # schemaorg.owl:12711-12733 - "The basic containment relation between a place and another that it contains." Place→Place, but our slot is boolean.

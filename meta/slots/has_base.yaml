@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: has_base
+# ==============================================================================
+# Indicates the base or root form of a structured entity, such as the base
+# surname for sorting or the root component of an identifier.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **PNV**       | `pnv:baseSurname`     | pnv                        | close   | Base surname for sorting           |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual, cleaned description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_base
+name: has_base
+title: Has Base
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  pnv: https://w3id.org/pnv#
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_base:
+    slot_uri: hc:hasBase
+    description: >-
+      The base or root form of a structured entity, such as the base surname
+      for alphabetical sorting or the root component of an identifier.
+    alt_descriptions:
+      nl: >-
+        De basis- of wortelvorm van een gestructureerde entiteit, zoals de
+        basisachternaam voor alfabetische sortering of de wortelcomponent van
+        een identificatiecode.
+      de: >-
+        Die Basis- oder Wurzelform einer strukturierten Entität, wie der
+        Basisnachname für alphabetische Sortierung oder die Wurzelkomponente
+        einer Kennung.
+      fr: >-
+        La forme de base ou racine d'une entité structurée, comme le nom de
+        famille de base pour le tri alphabétique ou le composant racine d'un
+        identifiant.
+      ar: >-
+        الشكل الأساسي أو الجذري لكيان منظم، مثل اسم العائلة الأساسي للترتيب
+        الأبجدي أو المكون الجذري لمعرف.
+      id: >-
+        Bentuk dasar atau akar dari entitas terstruktur, seperti nama keluarga
+        dasar untuk pengurutan alfabetis atau komponen akar dari pengidentifikasi.
+      zh: >-
+        结构化实体的基本或根形式，例如用于按字母顺序排序的基本姓氏或标识符的根组件。
+      es: >-
+        La forma base o raíz de una entidad estructurada, como el apellido base
+        para la ordenación alfabética o el componente raíz de un identificador.
+    structured_aliases:
+      - literal_form: heeft basis
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Basis
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une base
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه أساس
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki basis
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有基础
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene base
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_base
+    close_mappings:
+      - pnv:baseSurname  # Base surname for sorting
+    comments:
+      - |
+        **EXAMPLE**: Dutch surname "van der Berg" - LastName.has_base → BaseName("Berg")
+        Used for alphabetical sorting under "B".
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+      specificity_rationale: Moderately specific - used primarily in name and identifier components.

@@ -1,0 +1,141 @@
+id: https://nde.nl/ontology/hc/class/AppreciationEvent
+name: appreciation_event_class
+title: Appreciation Event Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  as: https://www.w3.org/ns/activitystreams#
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_quantity
+  - ../slots/has_measurement_unit
+  - ../slots/temporal_extent
+classes:
+  AppreciationEvent:
+    class_uri: as:Like
+    description: >-
+      Structured representation of engagement metrics such as likes, favorites,
+      upvotes, reactions, or shares for digital content, replacing simple
+      integer counts with rich event data including temporal observation.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde weergave van betrokkenheidsstatistieken zoals likes,
+        favorieten, stemmen, reacties of shares voor digitale content, ter
+        vervanging van eenvoudige gehele getallen met rijke gebeurtenisgegevens
+        inclusief temporele observatie.
+      de: >-
+        Strukturierte Darstellung von Engagement-Metriken wie Likes, Favoriten,
+        Upvotes, Reaktionen oder Shares fur digitale Inhalte, die einfache
+        Ganzzahlen durch umfangreiche Ereignisdaten mit zeitlicher Beobachtung ersetzt.
+      fr: >-
+        Representation structuree des metriques d'engagement telles que les likes,
+        favoris, votes positifs, reactions ou partages pour le contenu numerique,
+        remplaçant les simples comptes entiers par des donnees d'evenement riches
+        incluant l'observation temporelle.
+      es: >-
+        Representacion estructurada de metricas de compromiso como me gusta,
+        favoritos, votos positivos, reacciones o compartidos para contenido digital,
+        reemplazando simples conteos enteros con datos de eventos ricos que incluyen
+        observacion temporal.
+      ar: >-
+        تمثيل منظم لمقاييس المشاركة مثل الإعجابات والمفضلات والأصوات الإيجابية
+        والتفاعلات أو المشاركات للمحتوى الرقمي، بدلاً من الأعداد الصحيحة البسيطة
+        ببيانات أحداث غنية تتضمن الملاحظة الزمنية.
+      id: >-
+        Representasi terstruktur dari metrik keterlibatan seperti suka, favorit,
+        voting positif, reaksi, atau berbagi untuk konten digital, menggantikan
+        jumlah bilangan bulat sederhana dengan data peristiwa yang kaya termasuk
+        observasi temporal.
+      zh: >-
+        数字内容参与度指标的结构化表示，如点赞、收藏、投票、反应或分享，
+        用包含时间观察的丰富事件数据替代简单的整数计数。
+    structured_aliases:
+    - literal_form: waarderingsgebeurtenis
+      in_language: nl
+    - literal_form: Wertschatzungsereignis
+      in_language: de
+    - literal_form: evenement d'appreciation
+      in_language: fr
+    - literal_form: evento de apreciacion
+      in_language: es
+    - literal_form: حدث التقدير
+      in_language: ar
+    - literal_form: peristiwa apresiasi
+      in_language: id
+    - literal_form: 欣赏事件
+      in_language: zh
+    close_mappings:
+    - as:Like
+    - schema:InteractionCounter
+    broad_mappings:
+    - prov:Activity
+    - skos:Concept
+    slots:
+    - has_quantity
+    - has_measurement_unit
+    - temporal_extent
+    slot_usage:
+      has_quantity:
+        range: integer
+        inlined: false
+        required: false
+        examples:
+        - value:
+            numeric_value: 42
+            has_measurement_unit:
+              unit_label: likes
+      has_measurement_unit:
+        inlined: false
+        required: false
+        examples:
+        - value:
+            unit_label: likes
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: "2025-01-14T10:00:00Z"
+    comments:
+    - Created 2026-01-22 from comment_like_count migration
+    - Models appreciation metrics as structured events
+    - Supports multiple appreciation types (likes, favorites, upvotes, reactions, shares)
+    - Includes temporal observation tracking for analytics
+    see_also:
+    - https://www.w3.org/ns/activitystreams#Like
+    - https://schema.org/InteractionCounter
+    examples:
+    - value:
+        has_quantity: 42
+        has_measurement_unit:
+          unit_label: likes
+        temporal_extent:
+          begin_of_the_begin: "2025-01-14T10:00:00Z"
+      description: YouTube-style like count with observation timestamp
+    - value:
+        has_quantity: 128
+        has_measurement_unit:
+          unit_label: upvotes
+        temporal_extent:
+          begin_of_the_begin: "2025-01-15T14:30:00Z"
+      description: Reddit-style upvote count
+    keywords:
+    - appreciation
+    - likes
+    - favorites
+    - upvotes
+    - reactions
+    - shares
+    - engagement metrics
+    - social media
+    - interaction counter
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to digital content engagement metrics
+      custodian_types: "['*']"

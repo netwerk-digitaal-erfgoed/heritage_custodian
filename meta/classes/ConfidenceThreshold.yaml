@@ -1,0 +1,63 @@
+id: https://nde.nl/ontology/hc/class/ConfidenceThreshold
+name: ConfidenceThreshold
+title: Confidence Threshold
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+classes:
+  ConfidenceThreshold:
+    class_uri: hc:ConfidenceThreshold
+    description: >-
+      Acceptance boundary defining the minimum support level required before an
+      automated action, classification, or publication step is allowed.
+    alt_descriptions:
+      nl: Acceptatiegrens die het minimale ondersteuningsniveau vastlegt voordat een geautomatiseerde stap is toegestaan.
+      de: Akzeptanzgrenze, die das minimale Unterstuetzungsniveau fuer automatisierte Aktionen oder Freigaben festlegt.
+      fr: Seuil d'acceptation definissant le niveau minimal de soutien requis avant une action automatisee.
+      es: Umbral de aceptacion que define el nivel minimo de respaldo requerido antes de una accion automatizada.
+      ar: حد قبول يحدد الحد الأدنى من مستوى الدعم المطلوب قبل السماح بإجراء آلي.
+      id: Batas penerimaan yang menentukan tingkat dukungan minimum sebelum tindakan otomatis diizinkan.
+      zh: 定义自动操作、分类或发布前所需最小支持水平的接受阈值。
+    structured_aliases:
+      - literal_form: acceptatiedrempel
+        in_language: nl
+      - literal_form: Akzeptanzschwelle
+        in_language: de
+      - literal_form: seuil d'acceptation
+        in_language: fr
+      - literal_form: umbral de aceptacion
+        in_language: es
+      - literal_form: عتبة القبول
+        in_language: ar
+      - literal_form: ambang penerimaan
+        in_language: id
+      - literal_form: 接受阈值
+        in_language: zh
+    slots:
+      - has_description
+    examples:
+      - value:
+          has_description:
+            description_text: Extract entities only when score is at least 0.85.
+        description: Minimum score gate for extraction pipeline
+      - value:
+          has_description:
+            description_text: Require score of 0.7 for candidate matches before review queue insertion.
+        description: Match-screening gate prior to manual validation
+    keywords:
+      - acceptance boundary
+      - automated gating
+      - quality control
+      - decision threshold
+    broad_mappings:
+      - schema:PropertyValue
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Thresholding applies across all processing and validation contexts.
+      specificity_score: "0.3"
+      specificity_rationale: Specialized governance artifact for automated decision gates.

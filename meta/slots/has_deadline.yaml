@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: has_deadline
+# ==============================================================================
+# The latest time or date by which a task, submission, or obligation must be
+# completed or fulfilled.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line                  | Mapping | Notes                              |
+# |---------------|--------------------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:applicationDeadline`   | schemaorg.owl:8207-8228    | close   | "The date on which the program stops collecting applications" — domain EducationalOccupationalProgram (pending.schema.org), education-specific |
+# | **Schema.org**| `schema:endDate`               | schemaorg.owl:16767-16791  | related | "The end date and time of the item" — end of duration, not deadline for completion |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, demoted schema:applicationDeadline from
+#   exact to close (education-specific domain), demoted schema:endDate from close to related
+#   (end-of-duration vs deadline-for-completion), cleaned description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_deadline
+name: has_deadline
+title: Has Deadline
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_deadline:
+    slot_uri: hc:hasDeadline
+    description: >-
+      To specify the latest time or date by which a task, submission, or obligation must be completed or fulfilled.
+    alt_descriptions:
+      nl: >-
+        De uiterste tijd of datum specificeren waarop een taak, inzending of verplichting moet zijn voltooid of vervuld.
+      de: >-
+        Den spätesten Zeitpunkt oder das späteste Datum angeben, bis zu dem eine Aufgabe, Einreichung oder Verpflichtung abgeschlossen oder erfüllt sein muss.
+      fr: >-
+        Spécifier la date ou l'heure limite à laquelle une tâche, une soumission ou une obligation doit être achevée ou remplie.
+      ar: >-
+        تحديد أحدث وقت أو تاريخ يجب فيه إكمال أو الوفاء بمهمة أو تقديم أو التزام.
+      id: >-
+        Menentukan waktu atau tanggal terakhir di mana suatu tugas, pengajuan, atau kewajiban harus diselesaikan atau dipenuhi.
+      zh: >-
+        指定任务、提交或义务必须完成或履行的最晚时间或日期。
+      es: >-
+        Especificar la fecha u hora límite en la que una tarea, entrega u obligación debe completarse o cumplirse.
+    structured_aliases:
+      - literal_form: heeft deadline
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Frist
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une date limite
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه موعد نهائي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki tenggat waktu
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有截止日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene fecha límite
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    aliases:
+      - has_or_had_application_deadline
+      - has_embargo_end_date
+    close_mappings:
+      - schema:applicationDeadline  # schemaorg.owl:8207-8228 - "The date on which the program stops collecting applications" — education-specific domain
+    related_mappings:
+      - schema:endDate  # schemaorg.owl:16767-16791 - "The end date and time of the item" — end-of-duration, not deadline
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_application_deadline for conciseness.
+    annotations:
+      custodian_types: '["*"]'

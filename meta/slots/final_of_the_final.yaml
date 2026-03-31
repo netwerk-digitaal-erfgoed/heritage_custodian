@@ -1,0 +1,121 @@
+# ==============================================================================
+# LinkML Slot Definition: final_of_the_final
+# ==============================================================================
+# Relates the concluding condition state to the entity or process it closes.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line                      | Mapping | Notes                                                      |
+# |---------------|--------------------------------|--------------------------------|---------|--------------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P44_has_condition`        | CIDOC_CRM_v7.1.3.rdf:2270-2284 | broad   | "Records an E3 Condition State for E18 Physical Thing."      |
+# |               |                                |                                |         | Any condition, not specifically the final/concluding one.    |
+# | **CIDOC-CRM** | `crm:P35_has_identified`       | CIDOC_CRM_v7.1.3.rdf:2042-2054 | related | "Identifies E3 Condition State observed in E14 Assessment."  |
+# |               |                                |                                |         | Links assessment activity to condition; different direction. |
+# | **RiC-O**     | `rico:resultsOrResultedIn`     | RiC-O_1-1.rdf:19540-19574      | related | "Connects Event to Thing that results from the Event."       |
+# |               |                                |                                |         | Final state can be seen as a result; Event→Thing direction.  |
+# | **Schema.org** | `schema:result`               | schemaorg.owl:33466-33487       | related | "The result produced in the action." Action→Thing.           |
+# |               |                                |                                |         | Final state after treatment IS a result of the action.       |
+# | **RiC-O**     | `rico:hasRecordState`          | RiC-O_1-1.rdf:8998-9036         | related | "Connects Record to RecordState." Archival-domain only.      |
+#
+# NOTE: crm:E3_Condition_State (CIDOC:258-269) is a CLASS, not a property.
+#       It was incorrectly listed as close_mapping in the original file and has been removed.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/final_of_the_final
+name: final_of_the_final
+title: Final of the Final
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  final_of_the_final:
+    slot_uri: hc:finalOfTheFinal
+    description: >-
+      Relates the ultimate, concluding state or phase to the specific process,
+      lifecycle, or entity that it brings to a complete close.
+    alt_descriptions:
+      nl: >-
+        Relateert de uiteindelijke, afsluitende toestand of fase aan het specifieke proces,
+        de levenscyclus of de entiteit die het volledig afsluit.
+      de: >-
+        Verknupft den endgültigen, abschließenden Zustand oder die Phase mit dem spezifischen Prozess,
+        Lebenszyklus oder der Entität, die dadurch vollständig abgeschlossen wird.
+      fr: >-
+        Relie l'état ou la phase ultime et conclusif au processus, cycle de vie ou entité
+        spécifique qu'il clôture complètement.
+      ar: >-
+        يربط الحالة أو المرحلة النهائية والختامية بالعملية أو دورة الحياة أو الكيان
+        المحدد الذي تُنهيه بشكل كامل.
+      id: >-
+        Menghubungkan keadaan atau fase akhir dan penutup dengan proses, siklus hidup,
+        atau entitas tertentu yang ditutupnya secara lengkap.
+      zh: >-
+        将最终的、结束性的状态或阶段与其完全关闭的特定过程、生命周期或实体联系起来。
+      es: >-
+        Relaciona el estado o fase final y concluyente con el proceso, ciclo de vida
+        o entidad específica que cierra por completo.
+    structured_aliases:
+      - literal_form: Eindtoestand
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Endzustand
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: État Final
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الحالة النهائية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Keadaan Akhir
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 最终状态
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Estado Final
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - condition_after
+      - role_end_date
+    broad_mappings:
+      - crm:P44_has_condition  # CIDOC_CRM_v7.1.3.rdf:2270-2284 - "Records an E3 Condition State for E18 Physical Thing." Any condition, not just final.
+    related_mappings:
+      - crm:P35_has_identified  # CIDOC_CRM_v7.1.3.rdf:2042-2054 - "Identifies E3 Condition State observed in E14 Condition Assessment." Assessment→condition direction.
+      - rico:resultsOrResultedIn  # RiC-O_1-1.rdf:19540-19574 - "Connects Event to Thing that results from Event." Event→Thing direction.
+      - schema:result  # schemaorg.owl:33466-33487 - "The result produced in the action." Action→Thing.
+      - rico:hasRecordState  # RiC-O_1-1.rdf:8998-9036 - "Connects Record to RecordState." Archival-domain only.
+    comments:
+      - >-
+        CIDOC-CRM pattern for capturing the final state after an event:
+        Conservation treatment -> final condition state;
+        Restoration -> final preservation state;
+        Processing -> final outcome.
+      - >-
+        Refers to the state observed at the final moment of a process,
+        analogous to CIDOC-CRM's E3 Condition State with P5 consists of.
+      - >-
+        Temporal semantics: The state AFTER something has occurred.
+        Paired with initial_of_the_initial for before/after comparisons.
+      - >-
+        Migration (2026-01-22): condition_after -> final_of_the_final + ConditionState,
+        per slot_fixes.yaml (Rule 53).
+      - >-
+        crm:E3_Condition_State (CIDOC:258-269) is a CLASS, not a property.
+        It was incorrectly listed as close_mapping and has been removed.
+    examples:
+      - value: >-
+          state_type: GoodCondition, state_description: Object stabilized after treatment
+        description: Conservation record final condition
+    annotations:
+      custodian_types: '["*"]'

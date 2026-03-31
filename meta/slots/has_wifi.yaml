@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: has_wifi
+# ==============================================================================
+# Whether a place or facility offers wireless internet (WiFi) connectivity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                                            |
+# |---------------|-----------------------|----------------------------|---------|--------------------------------------------------|
+# | **Schema.org**| `schema:amenityFeature`| schemaorg.owl:7869-7893    | broad   | "An amenity feature (e.g. a characteristic or     |
+# |               |                       |                            |         | service) of the Accommodation." Any amenity, not  |
+# |               |                       |                            |         | WiFi specifically.                                |
+# | **Schema.org**| `schema:publicAccess` | schemaorg.owl:31581-31599  | related | "A flag to signal that the Place is open to       |
+# |               |                       |                            |         | public visitors." Boolean Place attribute, but     |
+# |               |                       |                            |         | about physical public access, not WiFi.           |
+#
+# No WiFi-specific property exists in any standard ontology.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_wifi
+name: has_wifi
+title: Has WiFi
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_wifi:
+    slot_uri: hc:hasWifi
+    description: >-
+      Indicates whether a location, venue, or facility provides wireless local
+      area network (WiFi) connectivity that allows users to connect devices to
+      the internet.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een locatie, ruimte of faciliteit een draadloos lokaal
+        netwerk (WiFi) biedt waarmee gebruikers apparaten met het internet
+        kunnen verbinden.
+      de: >-
+        Gibt an, ob ein Ort, eine Einrichtung oder eine Anlage ein drahtloses
+        lokales Netzwerk (WLAN) bereitstellt, das Nutzern ermoeglicht, Geraete
+        mit dem Internet zu verbinden.
+      fr: >-
+        Indique si un lieu, un espace ou un etablissement fournit un reseau
+        local sans fil (WiFi) permettant aux utilisateurs de connecter des
+        appareils a Internet.
+      ar: >-
+        يشير إلى ما إذا كان الموقع أو المكان أو المنشأة يوفر شبكة محلية
+        لاسلكية (واي فاي) تتيح للمستخدمين توصيل أجهزتهم بالإنترنت.
+      id: >-
+        Menunjukkan apakah suatu lokasi, tempat, atau fasilitas menyediakan
+        jaringan area lokal nirkabel (WiFi) yang memungkinkan pengguna
+        menghubungkan perangkat ke internet.
+      zh: >-
+        表示某一地点、场所或设施是否提供无线局域网（WiFi）连接，使用户能够将
+        设备连接到互联网。
+      es: >-
+        Indica si un lugar, espacio o instalacion proporciona una red de area
+        local inalambrica (WiFi) que permite a los usuarios conectar
+        dispositivos a Internet.
+    structured_aliases:
+      - literal_form: WiFi
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: WLAN
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: WiFi
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: واي فاي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: WiFi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 无线网络
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: WiFi
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    examples:
+      - value: "true"
+        description: WiFi available
+    comments:
+      - >-
+        No WiFi-specific property exists in standard ontologies.
+        schema:amenityFeature is the closest broad match but covers any
+        amenity (pool, parking, etc.), not WiFi specifically.
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7893 - "An amenity feature (e.g. a characteristic or service) of the Accommodation."
+    related_mappings:
+      - schema:publicAccess  # schemaorg.owl:31581-31599 - "A flag to signal that the Place is open to public visitors." Boolean Place flag, but about physical access not WiFi.

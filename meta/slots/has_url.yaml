@@ -1,0 +1,142 @@
+# ==============================================================================
+# LinkML Slot Definition: has_url
+# ==============================================================================
+# Standardized address specifying precise location of a resource on the internet
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:url`               | schemaorg.owl:39120-39140| exact | "URL of the item." Domain: Thing.  |
+# | **FOAF**      | `foaf:page`                | foaf.ttl:467-472     | broad   | "A page or document about this thing."|
+# | **FOAF**      | `foaf:homepage`            | foaf.ttl:291-300     | narrow  | Primary website (subPropertyOf page).|
+# | **FOAF**      | `foaf:workplaceHomepage`   | foaf.ttl:622-627     | narrow  | Workplace homepage (subPropertyOf). |
+# | **FOAF**      | `foaf:schoolHomepage`      | foaf.ttl:516-521     | narrow  | School homepage (subPropertyOf).   |
+# | **DCAT**      | `dcat:landingPage`         | dcat3.ttl:1241       | related | Human-readable entry page.         |
+# | **DCAT**      | `dcat:accessURL`           | dcat3.ttl:562        | related | URL giving access to distribution. |
+#
+# CREATED: 2026-01-15
+# UPDATED: 2026-02-08 - Pass 2: capitalized aliases, removed redundant exact_mapping, removed implements
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_url
+name: has_url
+title: has URL
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcat: http://www.w3.org/ns/dcat#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_url:
+    slot_uri: schema:url
+    range: uri
+    description: >-
+      A standardized address that specifies the precise location of a resource
+      or entity on the internet.
+    alt_descriptions:
+      nl: >-
+        Een gestandaardiseerd adres dat de specifieke locatie van een bron of
+        entiteit op het internet aanduidt.
+      de: >-
+        Eine standardisierte Adresse, die den genauen Standort einer Ressource
+        oder Entität im Internet angibt.
+      fr: >-
+        Une adresse standardisée qui spécifie l'emplacement précis d'une
+        ressource ou d'une entité sur Internet.
+      ar: >-
+        عنوان موحد يحدد الموقع الدقيق لمورد أو كيان على الإنترنت.
+      id: >-
+        Alamat standar yang menentukan lokasi tepat dari sumber daya atau
+        entitas di internet.
+      zh: >-
+        指定资源或实体在互联网上精确位置的标准化地址。
+      es: >-
+        Una dirección estandarizada que especifica la ubicación precisa de un
+        recurso o entidad en Internet.
+    structured_aliases:
+      - literal_form: URL
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: URL
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: URL
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: رابط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: URL
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 网址
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: URL
+        predicate: EXACT_SYNONYM
+        in_language: es
+    required: false
+    multivalued: true
+    broad_mappings:
+      - foaf:page  # foaf.ttl:467-472 — "A page or document about this thing." Parent property of foaf:homepage.
+    narrow_mappings:
+      - foaf:homepage  # foaf.ttl:291-300 — Primary website (subPropertyOf foaf:page).
+      - foaf:workplaceHomepage  # foaf.ttl:622-627 — Workplace homepage.
+      - foaf:schoolHomepage  # foaf.ttl:516-521 — School homepage.
+    related_mappings:
+      - dcat:landingPage  # dcat3.ttl:1241 — Human-readable entry page. Specific to data catalogs.
+      - dcat:accessURL  # dcat3.ttl:562 — URL giving access to distribution. Specific to data access.
+    aliases:
+      - has_or_had_url
+      - has_or_had_articles_document_url
+      - has_articles_document_url
+      - has_or_had_inventory_url
+      - has_inventory_url
+      - has_or_had_link
+      - has_link
+      - has_or_had_navigation_link
+      - has_navigation_link
+      - connection_linkedin_url
+      - content_url
+      - institution_linkedin_url
+      - kien_url
+      - library_catalog_url
+      - link_url
+      - member_organization_url
+      - monitoring_platform_url
+      - photograph
+      - platform_url
+      - portal_url
+      - post_url
+      - profile_linkedin_url
+      - profile_url
+      - report_url
+      - repository_url
+      - scheme_url
+      - social_media_url_pattern
+      - source_url
+    comments:
+      - >-
+        Temporal semantics: URLs may be historical — websites change over time.
+        The alias 'has_or_had_url' reflects RiC-O temporal naming conventions.
+      - >-
+        Use cases: institution websites, API endpoints, vendor/supplier websites,
+        documentation links, social media profiles.
+    examples:
+      - value: https://www.rijksmuseum.nl/
+        description: Official website for Rijksmuseum
+      - value: https://api.rijksmuseum.nl/api/nl/collection
+        description: Rijksmuseum API endpoint for collection data
+      - value: https://www.nationaalarchief.nl/
+        description: Official website for Nationaal Archief
+    annotations:
+      replaces_slots: website, url, vendor_url
+      migration_date: '2026-01-15'
+      custodian_types: '["*"]'
+      specificity_score: 0.15
+      specificity_rationale: Generic URL slot applicable across all contexts.

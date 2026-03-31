@@ -1,0 +1,164 @@
+# ==============================================================================
+# LinkML Slot Definition: retrieved_from
+# ==============================================================================
+# Indicate where (endpoint, location, or address) data was obtained.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **DCAT**      | `dcat:downloadURL`         | dcat3.ttl:896-937    | close   | Direct download URL                |
+# | **DCAT**      | `dcat:accessURL`           | dcat3.ttl:562-594    | close   | Access point for distribution      |
+# | **PROV-O**    | `prov:hadPrimarySource`    | prov.ttl:661-667     | close   | Primary source of information      |
+# | **PROV-O**    | `prov:wasDerivedFrom`      | prov.ttl:1099-1104   | related | General derivation relationship    |
+# | **Dublin Core**| `dcterms:source`          | dcterms.rdf:1920-1943| related | Related resource from which derived|
+# | **DCAT**      | `dcat:accessService`       | dcat3.ttl:536-540    | related | Service providing access           |
+# | **DCAT**      | `dcat:endpointURL`         | dcat3.ttl:1008       | related | Root endpoint of data service      |
+# | **Schema.org**| `schema:downloadUrl`       | schemaorg.owl        | broad   | Direct download URL                |
+# | **PROV-O**    | `prov:wasAttributedTo`     | prov.ttl:1082-1087   | broad   | Attribution (broader than location)|
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/retrieved_from
+name: retrieved_from
+title: retrieved from
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  retrieved_from:
+    description: >-
+      To indicate where (endpoint, location, or address) data was obtained.
+    alt_descriptions:
+      nl: >-
+        Aangeven waar (eindpunt, locatie of adres) gegevens zijn verkregen.
+      de: >-
+        Angeben, wo (Endpunkt, Ort oder Adresse) Daten bezogen wurden.
+      fr: >-
+        Indiquer d'où (point d'accès, emplacement ou adresse) les données
+        ont été obtenues.
+      ar: >-
+        الإشارة إلى المكان (نقطة النهاية أو الموقع أو العنوان) الذي تم
+        الحصول على البيانات منه.
+      id: >-
+        Menunjukkan dari mana (endpoint, lokasi, atau alamat) data diperoleh.
+      zh: >-
+        指示从哪里（端点、位置或地址）获取的数据。
+      es: >-
+        Indicar de dónde (punto de acceso, ubicación o dirección) se
+        obtuvieron los datos.
+    structured_aliases:
+      - literal_form: opgehaald van
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_retrieved_from
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgerufen von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: récupéré de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم استرجاعه من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diambil dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 检索自
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: recuperado de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    # range: Endpoint
+    multivalued: true
+    inlined: false # Fixed invalid inline for primitive type
+    slot_uri: hc:retrievedFrom
+    
+    # VERIFIED MAPPINGS (2026-02-XX)
+    # Source files: data/ontology/prov.ttl, data/ontology/dcat3.ttl, 
+    #               data/ontology/dcterms.rdf, data/ontology/schemaorg.owl
+    
+    close_mappings:
+      # dcat3.ttl line 896-937: downloadURL - "URL of the downloadable file"
+      # Very close: specific URL from which distribution is directly accessible
+      - dcat:downloadURL  # from dcat3.ttl - direct download URL for distribution
+      
+      # dcat3.ttl line 562-594: accessURL - "URL of the resource that gives access"
+      # Close: access point for distribution (may not be direct download)
+      - dcat:accessURL  # from dcat3.ttl - access point for dataset distribution
+      
+      # prov.ttl line 661-667: hadPrimarySource - "original source of information"
+      # Close: emphasizes source provenance (subproperty of wasDerivedFrom)
+      - prov:hadPrimarySource  # from prov.ttl - primary source of information
+    
+    related_mappings:
+      # prov.ttl line 1099-1104: wasDerivedFrom - "entity derived from another"
+      # Related but broader: general derivation, not specifically retrieval location
+      - prov:wasDerivedFrom  # from prov.ttl - general derivation relationship
+      
+      # dcterms.rdf line 1920-1943: source - "related resource from which described is derived"
+      # Related: source relationship (may be abstract, not necessarily a URL)
+      - dcterms:source  # from dcterms.rdf - related resource from which derived
+      
+      # dcat3.ttl line 536-540: accessService - "data service giving access to distribution"
+      # Related: service-level access (not a direct URL)
+      - dcat:accessService  # from dcat3.ttl - service providing access to distribution
+      
+      # dcat3.ttl line 1008: endpointURL - "root location/endpoint of service"
+      # Related: service endpoint (API base, not specific resource URL)
+      - dcat:endpointURL  # from dcat3.ttl - root endpoint of data service
+    
+    broad_mappings:
+      # schemaorg.owl: downloadUrl - "URL to download directly"
+      # Broader context: Schema.org is less precise about data provenance
+      - schema:downloadUrl  # from schemaorg.owl - direct download URL
+      
+      # prov.ttl line 1082-1087: wasAttributedTo - "attributed to agent"
+      # Broader: about attribution to agent, not location of retrieval
+      - prov:wasAttributedTo  # from prov.ttl - attribution (broader than location)
+    
+    aliases:
+      - can_or_could_be_retrieved_from
+      - obtained_from
+      - downloaded_from
+      - fetched_from
+      - is_or_was_retrieved_from
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.4
+    examples:
+      - value: "https://data.rijksmuseum.nl/api/v1/collection"
+        description: Data retrieved from Rijksmuseum collection API
+      - value: "https://www.nationaalarchief.nl/onderzoeken/zoekhulpen/download.csv"
+        description: CSV downloaded from National Archives search helper
+    comments:
+      - |
+          MIGRATED from download_endpoint (2026-01-26).
+      - |
+          PROV-O semantics note: 'prov:hadPrimarySource' is a subproperty of 
+          'prov:wasDerivedFrom' and emphasizes the ORIGINAL source. Our 
+          'retrieved_from' focuses on the LOCATION of retrieval, which may
+          be an intermediate endpoint (e.g., aggregator API) rather than 
+          the primary source.
+      - |
+          DCAT semantics note: 'dcat:downloadURL' should be used for direct 
+          HTTP GET access; 'dcat:accessURL' is broader and may include landing 
+          pages or API endpoints requiring additional navigation.
+      - |
+          Verified predicates from:
+          - data/ontology/prov.ttl (prov:hadPrimarySource, prov:wasDerivedFrom, prov:wasAttributedTo)
+          - data/ontology/dcat3.ttl (dcat:downloadURL, dcat:accessURL, dcat:accessService, dcat:endpointURL)
+          - data/ontology/dcterms.rdf (dcterms:source)
+          - data/ontology/schemaorg.owl (schema:downloadUrl)

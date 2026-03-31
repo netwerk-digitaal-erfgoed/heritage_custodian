@@ -1,0 +1,130 @@
+# ==============================================================================
+# LinkML Slot Definition: has_stamp
+# ==============================================================================
+# Associates an object with an official mark, stamp, or ownership impression.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                   | File/Line                     | Mapping | Notes                                                                        |
+# |----------------|----------------------------|-------------------------------|---------|------------------------------------------------------------------------------|
+# | **CIDOC CRM**  | `crm:P65_shows_visual_item`| CIDOC_CRM_v7.1.3.rdf:2675-92 | close   | "Shows visual item." E24→E36. Explicitly covers "signs, marks and symbols"   |
+# |                |                            |                               |         | (e.g. Maltese Cross, copyright symbol). A stamp is a visual mark. Differs    |
+# |                |                            |                               |         | in range (E36 Visual Item vs string).                                        |
+# | **CIDOC CRM**  | `crm:P56_bears_feature`    | CIDOC_CRM_v7.1.3.rdf:2578-93 | broad   | "Bears feature." E19→E26. Any physical feature on an object. Broader:        |
+# |                |                            |                               |         | covers all features, not specifically stamps/marks.                          |
+# | **CIDOC CRM**  | `crm:P128_carries`         | CIDOC_CRM_v7.1.3.rdf:3939-52 | broad   | "Carries." E18→E90 Symbolic Object. Stamp carries symbolic content.          |
+# |                |                            |                               |         | Broader: any symbolic object, not specifically marks/stamps.                 |
+#
+# No exact external match for "has a stamp/ownership mark" as a string-valued
+# property. P65 is the closest CRM match — it explicitly covers visual marks
+# and symbols on physical objects. Retaining hc:hasStamp as slot_uri.
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_stamp
+name: has_stamp
+title: Has Stamp
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_stamp:
+    slot_uri: hc:hasStamp
+    description: >-
+      Associates a document, object, or artefact with a specific official mark,
+      impression, adhesive label, seal, or ownership stamp used for validation,
+      provenance, payment, or authentication. In the heritage context this
+      typically records collector's marks, library stamps, ownership
+      impressions, or dealer stamps found on artworks, books, prints, or
+      archival materials, which are essential evidence for provenance research.
+    alt_descriptions:
+      nl: >-
+        Associeert een document, object of artefact met een specifiek officieel
+        merk, stempel, zegel of eigendomsstempel dat wordt gebruikt voor
+        validatie, herkomst, betaling of authenticatie.
+      de: >-
+        Verknüpft ein Dokument, Objekt oder Artefakt mit einem spezifischen
+        offiziellen Zeichen, Stempel, Siegel oder Eigentumsstempel, der zur
+        Validierung, Provenienz, Bezahlung oder Authentifizierung dient.
+      fr: >-
+        Associe un document, objet ou artefact à un cachet, une marque, un
+        sceau ou un timbre de propriété spécifique utilisé pour la validation,
+        la provenance, le paiement ou l'authentification.
+      ar: >-
+        يربط وثيقة أو كائنًا أو قطعة أثرية بعلامة رسمية أو ختم أو طابع ملكية
+        محدد يُستخدم للتحقق أو إثبات المصدر أو الدفع أو المصادقة.
+      id: >-
+        Mengaitkan dokumen, objek, atau artefak dengan tanda resmi, cap, segel,
+        atau stempel kepemilikan tertentu yang digunakan untuk validasi,
+        provenans, pembayaran, atau autentikasi.
+      zh: >-
+        将文件、物品或文物与用于验证、来源证明、支付或鉴定的特定官方标记、印章、
+        封印或所有权印记关联起来。
+      es: >-
+        Asocia un documento, objeto o artefacto con una marca oficial, sello,
+        estampilla o timbre de propiedad específico utilizado para validación,
+        procedencia, pago o autenticación.
+    structured_aliases:
+      - literal_form: Stempel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Stempel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Cachet
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ختم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Stempel
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 印章
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Sello
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - crm:P65_shows_visual_item  # CIDOC_CRM_v7.1.3.rdf:2675-2692 - "Shows visual item." E24→E36. Explicitly covers "signs, marks and symbols." A stamp is a visual mark; differs in range (E36 entity vs string).
+    broad_mappings:
+      - crm:P56_bears_feature  # CIDOC_CRM_v7.1.3.rdf:2578-2593 - "Bears feature." E19→E26. Any physical feature on an object, not specifically stamps/marks.
+      - crm:P128_carries  # CIDOC_CRM_v7.1.3.rdf:3939-3952 - "Carries." E18→E90 Symbolic Object. Any symbolic content carried by a physical thing.
+    aliases:
+      - ownership_stamp
+    examples:
+      - value: "Lugt 2228"
+        description: >-
+          Frits Lugt collector's mark number, referencing the standard
+          catalogue of collector stamps and marks on prints and drawings.
+      - value: "Royal Library stamp, red ink, verso lower left"
+        description: >-
+          Description of a library ownership stamp found on a manuscript page.
+      - value: "Wax seal, coat of arms of the House of Orange-Nassau"
+        description: >-
+          Heraldic seal on a historical document in a national archive.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        In CIDOC-CRM, stamps and marks on objects are modelled as instances of
+        E36 Visual Item shown by the object (P65 shows visual item). The CRM
+        comment for P65 explicitly mentions "signs, marks and symbols" as
+        examples of visual items with no particular representational content.
+      - >-
+        For provenance research on prints and drawings, the Lugt database
+        (Fondation Custodia) provides a standard catalogue of collector stamps
+        and marks. Lugt numbers (e.g. "Lugt 2228") are the conventional way
+        to reference specific collector marks.
+      - >-
+        Common stamp types in heritage collections: collector's marks (Lugt),
+        library stamps, museum acquisition stamps, dealer stamps, customs
+        stamps, notarial seals, and wax seals.

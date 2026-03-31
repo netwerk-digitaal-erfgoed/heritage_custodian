@@ -1,0 +1,125 @@
+id: https://nde.nl/ontology/hc/class/SocialMediaPlatformType
+name: SocialMediaPlatformType
+title: Social Media Platform Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/PlatformCategoryEnum
+- ../metadata
+- ../slots/has_score
+- ../slots/has_example
+- ../slots/has_feature
+- ../slots/has_use_case
+- ../slots/categorized_as
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/identified_by
+classes:
+  SocialMediaPlatformType:
+    class_uri: skos:Concept
+    abstract: true
+    alt_descriptions:
+      nl: Abstracte basisclassificatie voor typen sociale-mediaplatformen (niet voor individuele profielen).
+      de: Abstrakte Basisklasse zur Klassifikation von Social-Media-Plattformtypen (nicht fuer einzelne Profile).
+      fr: Classe de base abstraite pour classifier les types de plateformes de medias sociaux (pas les profils).
+      es: Clase base abstracta para clasificar tipos de plataformas de redes sociales (no perfiles individuales).
+      ar: فئة أساس مجردة لتصنيف أنواع منصات التواصل الاجتماعي (وليست ملفات شخصية).
+      id: Kelas dasar abstrak untuk klasifikasi tipe platform media sosial (bukan profil individu).
+      zh: 用于分类社交媒体平台类型的抽象基类（不用于单个账号/资料）。
+    structured_aliases:
+    - {literal_form: platformtype, in_language: nl}
+    - {literal_form: Plattformtyp, in_language: de}
+    - {literal_form: type de plateforme, in_language: fr}
+    - {literal_form: tipo de plataforma, in_language: es}
+    - {literal_form: نوع المنصة, in_language: ar}
+    - {literal_form: tipe platform, in_language: id}
+    - {literal_form: 平台类型, in_language: zh}
+    description: >-
+      Classification of social media platform categories (e.g., Instagram, YouTube),
+      distinct from individual profile instances.
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - foaf:OnlineAccount
+    close_mappings:
+    - schema:WebSite
+    slots:
+    - has_example
+    - has_feature
+    - has_use_case
+    - categorized_as
+    - has_description
+    - has_label
+    - has_type
+    - has_url
+    - identified_by
+    - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      categorized_as:
+        required: false
+    comments:
+    - Abstract base class - use specific subclasses (Instagram, YouTube, etc.)
+    - Represents PLATFORM TYPES, not profile instances
+    - SocialMediaProfile.platform_type references these type classes
+    - Organized by platform function and feature set
+    - Replaces SocialMediaPlatformTypeEnum with richer class hierarchy
+    see_also:
+    - http://xmlns.com/foaf/0.1/OnlineAccount
+    - https://schema.org/ContactPoint
+    - https://www.wikidata.org/wiki/Q12538
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "Abstract base class for social media platform type classifications in the heritage domain.\n\n**DEFINITION**:\n\nSocialMediaPlatformType represents CATEGORIES of social media platforms,\nnot individual platform instances or profiles. Each subclass defines characteristics\nof a platform (features, URL patterns, heritage use cases, etc.).\n\n**CRITICAL: TYPE vs INSTANCE**\n\n| Aspect | SocialMediaPlatformType (This Class) | SocialMediaProfile (Instance) |\n|--------|-------------------------------------|------------------------------|\n| **Nature** | Platform classification | Individual profile |\n| **Examples** | Instagram, YouTube, LinkedIn | @rijksmuseum on Instagram |\n| **Properties** | URL patterns, features, API | Follower count, verified |\n| **Cardinality** | ~25 platforms | Thousands of profiles |\n\n**FOAF ALIGNMENT**:\n\nAll social media profiles are subclasses of `foaf:OnlineAccount`.\nThis class provides platform-specific categorization for:\n- Display and branding\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Type vs instance
+
+        - SocialMediaPlatformType represents platform categories (e.g., Instagram).
+        - SocialMediaProfile represents an individual account/profile (e.g., @rijksmuseum).
+
+        Why model types
+
+        - UI/branding (platform icons)
+        - URL pattern validation
+        - Feature capabilities (video, image, messaging)
+        - Discovery and grouping
+
+        High-level platform categories (illustrative)
+
+        - GENERAL_SOCIAL
+        - MICROBLOGGING
+        - IMAGE_FOCUSED
+        - VIDEO_FOCUSED
+        - PROFESSIONAL
+        - MESSAGING
+        - AUDIO
+        - PUBLISHING
+        - MEMBERSHIP
+
+        Usage
+
+        ```yaml
+        SocialMediaProfile:
+          platform_type:
+            range: SocialMediaPlatformType
+        ```

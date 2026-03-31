@@ -1,0 +1,26 @@
+id: https://nde.nl/ontology/hc/parsimony/slot/affiliated_with
+name: affiliated_with
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  owl: http://www.w3.org/2002/07/owl#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  affiliated_with:
+    slot_uri: org:memberOf
+    description: Relates a semantic entity to a network, consortium, organization, or group with which it is affiliated or of which it is a member.
+    range: CustodialEntity
+    inverse: has_affiliate
+    implements:
+      - owl:ObjectProperty
+    multivalued: true
+    close_mappings:
+      - schema:memberOf
+      - rico:isOrWasMemberOf
+    narrow_mappings:
+      - hc:member_of

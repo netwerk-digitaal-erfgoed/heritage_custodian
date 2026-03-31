@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/Category
+name: category_class
+title: Category Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/has_score
+# default_range: string
+enums:
+  CategoryTypeEnum:
+    description: Types of categories for classification.
+    permissible_values:
+      SUBJECT:
+        description: Subject or topic category (art, science, history)
+        meaning: skos:Concept
+      THEME:
+        description: Thematic category (Dutch Golden Age, WWII, Islamic art)
+      MATERIAL:
+        description: Material or medium category (paintings, manuscripts, specimens)
+      GEOGRAPHIC:
+        description: Geographic category (European, Asian, African)
+      TEMPORAL:
+        description: Temporal/period category (Medieval, Renaissance, Contemporary)
+      CREATOR:
+        description: Creator-focused category (single artist, school, movement)
+      TYPOLOGY:
+        description: Typological category (portraits, landscapes, genre scenes)
+      FORMAT:
+        description: Format category (books, photographs, digital)
+      GENRE:
+        description: Genre category (fiction, documentary, liturgical)
+classes:
+  Category:
+    class_uri: skos:Concept
+    description: >-
+      Classification term for describing the subject, scope, or focus of collections and items.
+    alt_descriptions:
+      nl: Classificatieterm voor het beschrijven van het onderwerp, de reikwijdte of de focus van collecties en items.
+      de: Klassifikationsbegriff zur Beschreibung des Themas, Umfangs oder Schwerpunkts von Sammlungen und Objekten.
+      fr: Terme de classification pour décrire le sujet, la portée ou l'accent des collections et des éléments.
+      es: Término de clasificación para describir el tema, alcance o enfoque de colecciones y elementos.
+      ar: مصطلح تصنيفي لوصف الموضوع أو النطاق أو التركيز للمجموعات والعناصر.
+      id: Istilah klasifikasi untuk mendeskripsikan subjek, cakupan, atau fokus koleksi dan item.
+      zh: 用于描述藏品和项目的主题、范围或焦点的分类术语。
+    structured_aliases:
+    - literal_form: categorie
+      in_language: nl
+    - literal_form: classificatie
+      in_language: nl
+    - literal_form: Kategorie
+      in_language: de
+    - literal_form: Klassifikation
+      in_language: de
+    - literal_form: catégorie
+      in_language: fr
+    - literal_form: classification
+      in_language: fr
+    - literal_form: categoría
+      in_language: es
+    - literal_form: clasificación
+      in_language: es
+    - literal_form: فئة
+      in_language: ar
+    - literal_form: تصنيف
+      in_language: ar
+    - literal_form: kategori
+      in_language: id
+    - literal_form: klasifikasi
+      in_language: id
+    - literal_form: 类别
+      in_language: zh
+    - literal_form: 分类
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:DefinedTerm
+    - dcterms:subject
+    keywords:
+    - category
+    - classification
+    - subject
+    - theme
+    - taxonomy
+    examples:
+    - value:
+        category_name: "Dutch Golden Age paintings"
+        category_type: THEME
+        vocabulary_source: "AAT"
+    - value:
+        category_name: "Lepidoptera"
+        category_type: SUBJECT
+        vocabulary_source: "ITIS"
+    comments:
+    - SKOS-based category model for collection classification
+    - Supports hierarchical and faceted classifications
+    slots:
+    - has_score
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Broadly useful - applies to many collection contexts
+      custodian_types: '[''*'']'

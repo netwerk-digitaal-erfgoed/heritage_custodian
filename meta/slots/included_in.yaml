@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: included_in
+# ==============================================================================
+# That an entity functions as a constituent part, member, or item contained
+# within a larger whole, collection, or structure.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                | Mapping | Notes                              |
+# |---------------|-----------------------------|--------------------------|---------|--------------------------------------|
+# | **DCTerms**   | `dcterms:isPartOf`          | dcterms.rdf:1464-1485    | close   | "A related resource in which the     |
+# |               |                             |                          |         | described resource is physically or  |
+# |               |                             |                          |         | logically included." Resource-focused|
+# |               |                             |                          |         | while this slot is entity-general.   |
+# | **RiC-O**     | `rico:isOrWasIncludedIn`    | RiC-O_1-1.rdf:13802-13845| close  | "is or was included in." Domain:     |
+# |               |                             |                          |         | Record/RecordSet. Archives-specific. |
+# | **Schema.org**| `schema:isPartOf`           | schemaorg.owl:22926-22949| close   | "Indicates an item or CreativeWork   |
+# |               |                             |                          |         | that this item is part of." Domain:  |
+# |               |                             |                          |         | CreativeWork only.                   |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/included_in
+name: included_in
+title: Included In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  included_in:
+    slot_uri: hc:includedIn
+    description: >-
+      That an entity functions as a constituent part, member, or item contained
+      within a larger whole, collection, or structure.
+    alt_descriptions:
+      nl: >-
+        Dat een entiteit functioneert als een samenstellend deel, lid of item
+        dat zich bevindt binnen een groter geheel, collectie of structuur.
+      de: >-
+        Dass eine Entität als ein Bestandteil, Mitglied oder Element
+        innerhalb eines größeren Ganzen, einer Sammlung oder Struktur
+        fungiert.
+      fr: >-
+        Qu'une entité fonctionne comme une partie constitutive, un membre ou
+        un élément contenu dans un ensemble, une collection ou une structure
+        plus vaste.
+      ar: >-
+        أن كيانًا يعمل كجزء مكوّن أو عضو أو عنصر ضمن كلٍّ أكبر أو مجموعة
+        أو بنية.
+      id: >-
+        Bahwa suatu entitas berfungsi sebagai bagian konstituen, anggota, atau
+        item yang terkandung dalam keseluruhan, koleksi, atau struktur yang
+        lebih besar.
+      zh: >-
+        实体作为构成部分、成员或项目包含在更大的整体、集合或结构中。
+      es: >-
+        Que una entidad funciona como parte constituyente, miembro o elemento
+        contenido dentro de un todo, colección o estructura más grande.
+    structured_aliases:
+      - literal_form: Opgenomen In
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Enthalten In
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Inclus Dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُدرَج في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Termasuk Dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 包含于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Incluido En
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_included_in
+    close_mappings:
+      - dcterms:isPartOf  # dcterms.rdf:1464-1485 — "A related resource in which the described resource is physically or logically included." Resource-focused while this slot is entity-general.
+      - rico:isOrWasIncludedIn  # RiC-O_1-1.rdf:13802-13845 — "is or was included in." Domain: Record/RecordSet, Range: RecordSet. Archives-specific.
+      - schema:isPartOf  # schemaorg.owl:22926-22949 — "Indicates an item or CreativeWork that this item is part of." Domain: CreativeWork only.
+    annotations:
+      custodian_types: '["*"]'

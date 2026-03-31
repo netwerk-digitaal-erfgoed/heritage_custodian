@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: has_arrangement
+# ==============================================================================
+# The organizational structure or classification schema applied to records.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property          | File/Line              | Mapping | Notes                                      |
+# |---------------|-------------------|------------------------|---------|--------------------------------------------|
+# | **RiC-O**     | `rico:structure`  | RiC-O_1-1.rdf:23181    | exact   | "Intellectual arrangement and composition" |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Updated slot_uri to RiC-O standard, added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_arrangement
+name: has_arrangement
+title: Has Arrangement
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_arrangement:
+    slot_uri: rico:structure
+    description: >-
+      The organizational structure, classification schema, or logical order used to 
+      arrange and preserve the context and relationships between records.
+    alt_descriptions:
+      nl: >-
+        De organisatorische structuur, classificatieschema of logische volgorde die wordt 
+        gebruikt om de context en relaties tussen documenten te rangschikken en te bewaren.
+      de: >-
+        Die Organisationsstruktur, das Klassifikationsschema oder die logische Ordnung, 
+        die verwendet wird, um den Kontext und die Beziehungen zwischen Akten zu ordnen 
+        und zu bewahren.
+      fr: >-
+        La structure organisationnelle, le schéma de classification ou l'ordre logique 
+        utilisé pour organiser et préserver le contexte et les relations entre les documents.
+      ar: >-
+        الهيكل التنظيمي أو نظام التصنيف أو الترتيب المنطقي المستخدم لترتيب وحفظ 
+        السياق والعلاقات بين السجلات.
+      id: >-
+        Struktur organisasi, skema klasifikasi, atau urutan logis yang digunakan untuk 
+        mengatur dan memelihara konteks dan hubungan antar catatan.
+      zh: >-
+        用于安排和保存记录之间的上下文和关系的组织结构、分类方案或逻辑顺序。
+      es: >-
+        La estructura organizativa, esquema de clasificación u orden lógico utilizado 
+        para organizar y preservar el contexto y las relaciones entre los registros.
+    structured_aliases:
+      - literal_form: ordening
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ordnung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: classement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ترتيب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: susunan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 编排
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: ordenación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_arrangement
+      - arranged_as
+    exact_mappings:
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Describes the archival arrangement principle applied to a collection 
+        or fonds, such as original order (respect des fonds), provenance-based arrangement, 
+        or subject-based classification.
+      - |
+        **RiC-O ALIGNMENT**: Maps to rico:structure which describes "the intellectual 
+        arrangement and composition of a Record Resource or the physical arrangement 
+        and composition of an Instantiation."

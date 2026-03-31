@@ -1,0 +1,82 @@
+# ==============================================================================
+# LinkML Slot Definition: published_on
+# ==============================================================================
+# Date when an entity was published.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                | Mapping | Notes                                          |
+# |---------------|---------------------------|--------------------------|---------|------------------------------------------------|
+# | **Schema.org**| `schema:datePublished`    | schemaorg.owl:14278-14300| close   | Domain: CreativeWork/Certification only.       |
+# | **DCTerms**   | `dcterms:date`            | dcterms.rdf:1122-1140     | broad   | Any date associated with a resource.           |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/published_on
+name: published_on
+title: Published On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  published_on:
+    slot_uri: hc:publishedOn
+    description: >-
+      To specify the calendar date on which a creative work, document, or software version is officially released or made public.
+    alt_descriptions:
+      nl: >-
+        Specificeert de kalenderdatum waarop een creatief werk, document of softwareversie officieel wordt vrijgegeven of openbaar gemaakt.
+      de: >-
+        Gibt das Kalenderdatum an, an dem ein kreatives Werk, Dokument oder eine Softwareversion offiziell veröffentlicht oder öffentlich gemacht wird.
+      fr: >-
+        Spécifie la date calendaire à laquelle une œuvre créative, un document ou une version logicielle est officiellement publiée ou rendue publique.
+      ar: >-
+        يحدد التاريخ التقويمي الذي يتم فيه إصدار عمل إبداعي أو مستند أو إصدار برمجي رسمياً أو جعله متاحاً للعموم.
+      id: >-
+        Menentukan tanggal kalender ketika karya kreatif, dokumen, atau versi perangkat lunak secara resmi dirilis atau dipublikasikan.
+      zh: >-
+        指定创意作品、文档或软件版本正式发布或公开的日历日期。
+      es: >-
+        Especifica la fecha calendario en la que una obra creativa, documento o versión de software se publica oficialmente o se hace pública.
+    structured_aliases:
+      - literal_form: Publicatiedatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Veröffentlichungsdatum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Date de publication
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ النشر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tanggal publikasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 出版日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fecha de publicación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    aliases:
+      - has_or_had_publication_date
+      - is_or_was_published
+      - published
+      - has_publication_date
+    close_mappings:
+      - schema:datePublished  # schemaorg.owl:14278-14300 - "Date of first publication or broadcast." Domain: CreativeWork/Certification.
+    broad_mappings:
+      - dcterms:date  # dcterms.rdf:1122-1140 - "A point or period of time associated with an event in the lifecycle of the resource."
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_publication_date for conciseness."
+    annotations:
+      custodian_types: '["*"]'

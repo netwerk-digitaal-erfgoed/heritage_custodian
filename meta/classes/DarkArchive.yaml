@@ -1,0 +1,78 @@
+id: https://nde.nl/ontology/hc/class/DarkArchive
+name: dark_archive_class
+title: Dark Archive Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  premis: http://www.loc.gov/premis/rdf/v3/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/has_objective
+- ../slots/has_access_policy
+classes:
+  DarkArchive:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: >-
+      Repository institution that preserves holdings for continuity and risk
+      mitigation while withholding routine user access.
+    alt_descriptions:
+      nl: Archiefinstelling die collecties bewaart voor continuiteit en risicobeheersing zonder reguliere gebruikersinzage.
+      de: Archivinstitution die Bestaende fuer Kontinuitaet und Risikominderung bewahrt und regulaeren Nutzerzugang aussetzt.
+      fr: Institution de conservation qui preserve les fonds pour la continuite et la mitigation des risques sans acces utilisateur courant.
+      es: Institucion de conservacion que resguarda fondos para continuidad y mitigacion de riesgos sin acceso regular de usuarios.
+      ar: مؤسسة حفظ تصون المقتنيات لاستمرارية العمل وتقليل المخاطر مع حجب الوصول الروتيني للمستخدمين.
+      id: Lembaga repositori yang melestarikan koleksi untuk kontinuitas dan mitigasi risiko tanpa akses pengguna rutin.
+      zh: 为连续性与风险缓解而保存馆藏、但不提供常规用户访问的机构。
+    structured_aliases:
+    - {literal_form: dark archive, in_language: nl}
+    - {literal_form: Dark Archive, in_language: de}
+    - {literal_form: archive noire, in_language: fr}
+    - {literal_form: archivo oscuro, in_language: es}
+    - {literal_form: أرشيف مظلم, in_language: ar}
+    - {literal_form: arsip gelap, in_language: id}
+    - {literal_form: 暗库档案机构, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    close_mappings:
+    - premis:RightsStatus
+    - wd:Q112796578
+    related_mappings:
+    - wd:Q112815447
+    - wd:Q112796779
+    keywords:
+    - restricted preservation repository
+    - continuity copy retention
+    - embargo-triggered release
+    comments:
+    - Organizational type; record-set categories are modeled separately
+    - Access may open only after a trigger event such as rights clearance or declassification
+    slots:
+    - has_type
+    - hold_record_set
+    - has_objective
+    - has_access_policy
+    - has_score
+    - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    notes:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      "Archive preserving materials for future use but with NO CURRENT ACCESS.\n\n**Wikidata**: Q112796578 (Dark Archive)\n\n**DEFINITION**:\n\nDark Archive is a preservation repository where materials are stored with \nNO ACCESS provided to users. The primary purpose is long-term preservation\nrather than current use. Access may be triggered by specific future events.\n\n**ACCESS SPECTRUM** (Light/Dim/Dark classification):\n\n| Type | Access Level | Purpose |\n|------|--------------|---------|\n| Light Archive (Q112815447) | Broadly accessible | Discovery & use |\n| Dim Archive (Q112796779) | Limited access | Selective access |\n| **Dark Archive** | No current access | Preservation only |\n\n**COMMON USE CASES**:\n\n1. **Digital Preservation**\n   - Trusted Digital Repositories (TDR)\n   - Backup/disaster recovery copies\n   - Integrity verification archives\n\n2. **Rights-Restricted Content**\n   - Orphan works awaiting rights clearance\n   - Embargoed materials\n   - Donor\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

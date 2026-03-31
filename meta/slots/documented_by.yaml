@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: documented_by
+# ==============================================================================
+# Agent, publication, or system acting as the source of documentation.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                                           |
+# |---------------|-----------------------|-------------------------|---------|-------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P70_documents`   | CIDOC:2784-2797         | close   | "Documents may describe any entity." (inverse)  |
+# | **PROV-O**    | `prov:wasAttributedTo`| prov.ttl:1082-1097      | related | General attribution to agent.                   |
+#
+# NOTE: crm:P70_documents has domain E31_Document and describes what a document 
+# documents. Our slot is about WHAT documented something (the documenting agent).
+# The inverse crm:P70i_is_documented_in is for the "documented_in" slot.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/documented_by
+name: documented_by
+title: Documented By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  documented_by:
+    slot_uri: hc:documentedBy
+    description: >-
+      To be recorded, described, or substantiated by a specific agent, publication, 
+      or system acting as the source of the information or evidence.
+    alt_descriptions:
+      nl: >-
+        Geregistreerd, beschreven of onderbouwd door een specifieke agent, publicatie 
+        of systeem dat als bron van de informatie of het bewijs fungeert.
+      de: >-
+        Aufgezeichnet, beschrieben oder belegt durch einen bestimmten Akteur, eine 
+        Publikation oder ein System, das als Quelle der Information oder des 
+        Nachweises dient.
+      fr: >-
+        Être enregistré, décrit ou étayé par un agent, une publication ou un système 
+        spécifique servant de source d'information ou de preuve.
+      ar: >-
+        أن يتم تسجيله أو وصفه أو إثباته من قبل وكيل أو منشور أو نظام 
+        محدد يعمل كمصدر للمعلومات أو الأدلة.
+      id: >-
+        Dicatat, dijelaskan, atau dibuktikan oleh agen, publikasi, atau sistem 
+        tertentu yang bertindak sebagai sumber informasi atau bukti.
+      zh: >-
+        由特定的代理人、出版物或系统记录、描述或证实，作为信息或证据的来源。
+      es: >-
+        Ser registrado, descrito o fundamentado por un agente, publicación o sistema 
+        específico que actúa como fuente de información o evidencia.
+    structured_aliases:
+      - literal_form: gedocumenteerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: dokumentiert von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: documenté par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موثق من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didokumentasikan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 记录者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: documentado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    aliases:
+      - is_or_was_documented_by
+    close_mappings:
+      - crm:P70_documents  # CIDOC:2784-2797 - "This property describes the CRM Entities documented as instances of E31 Document" (inverse direction)
+    related_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1097 - general attribution
+    comments:
+      - |
+        **USAGE**: Use to identify who or what created documentation about something.
+        The subject is the thing being documented, the object is the documenting agent.
+      - |
+        **DISTINCTION**: Use documented_in for the document itself; use documented_by 
+        for the agent who created the documentation.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Organization/NationalArchives"
+        description: "Item documented by the National Archives"

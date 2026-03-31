@@ -1,0 +1,128 @@
+# ==============================================================================
+# LinkML Slot Definition: has_light_exposure
+# ==============================================================================
+# The illumination intensity, duration, or direction an entity receives or tolerates.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                        | Mapping | Notes                                                          |
+# |---------------|-------------------------|----------------------------------|---------|----------------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P43_has_dimension` | CIDOC_CRM_v7.1.3.rdf:2242-2257  | broad   | "Records an instance of E54 Dimension of some E70 Thing." Any measurable dimension; light exposure is one specific kind. |
+# | **SSN**       | `ssn:hasProperty`       | ssn.ttl:66-71                    | broad   | "Relation between an entity and a Property of that entity." Very generic property relation. |
+#
+# NOTE: Previous related_mappings removed:
+#   - sosa:ObservableProperty (CLASS, not a property - sosa.ttl:56)
+#   - crm:E54_Dimension (CLASS, not a property - CIDOC_CRM_v7.1.3.rdf:791)
+#   - quantitykind:LuminousExposure (QUDT vocab not in local ontology files)
+#   - wd:Q194411 (Wikidata entity ID, not an RDF predicate)
+#   - schema:maxValue (value constraint meta-property, not about light exposure)
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_light_exposure
+name: has_light_exposure
+title: Has Light Exposure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  ssn: http://www.w3.org/ns/ssn/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_light_exposure:
+    slot_uri: hc:hasLightExposure
+    description: >-
+      Describes the intensity, duration, or direction of illumination that an
+      entity, location, or organism receives, requires or can stand.
+    comments:
+      - >-
+        Maximum acceptable cumulative annual light exposure in lux-hours.
+      - >-
+        ISO standard reference values: EN 16893:2018 high sensitivity <15,000
+        lux-hours/year; EN 16893:2018 medium sensitivity <150,000
+        lux-hours/year; CIE 157:2004 textiles <12,000 lux-hours/year; ASHRAE
+        guidelines <50,000 lux-hours for sensitive materials.
+      - >-
+        Light damage is cumulative (Bunsen-Roscoe reciprocity law): total
+        exposure matters, not intensity alone. Annual limits mandate rotating
+        displays for sensitive works, controlled access periods, and dark
+        storage between exhibition periods.
+      - >-
+        Example calculation: 50 lux x 8 hours/day x 250 days = 100,000
+        lux-hours/year.
+    alt_descriptions:
+      nl: >-
+        Beschrijft de intensiteit, duur of richting van de belichting die een
+        entiteit, locatie of organisme ontvangt, vereist of kan verdragen.
+      de: >-
+        Beschreibt die Intensität, Dauer oder Richtung der Beleuchtung, die
+        eine Entität, ein Standort oder ein Organismus empfängt, benötigt oder
+        verträgt.
+      fr: >-
+        Décrit l'intensité, la durée ou la direction de l'éclairage qu'une
+        entité, un lieu ou un organisme reçoit, nécessite ou peut supporter.
+      ar: >-
+        يصف شدة أو مدة أو اتجاه الإضاءة التي يتلقاها كيان أو موقع أو كائن
+        حي أو يحتاجها أو يمكنه تحملها.
+      id: >-
+        Menjelaskan intensitas, durasi, atau arah pencahayaan yang diterima,
+        dibutuhkan, atau dapat ditoleransi oleh suatu entitas, lokasi, atau
+        organisme.
+      zh: >-
+        描述实体、地点或生物体接收、需要或能够承受的照明强度、持续时间或方向。
+      es: >-
+        Describe la intensidad, duración o dirección de la iluminación que una
+        entidad, ubicación u organismo recibe, requiere o puede soportar.
+    structured_aliases:
+      - literal_form: Lichtblootstelling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Lichtexposition
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Exposition Lumineuse
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: التعرض للضوء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Paparan Cahaya
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 光照暴露
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Exposición Lumínica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    minimum_value: 0.0
+    maximum_value: 500000.0
+    see_also:
+      - https://www.nen.nl/en-16893-2018-en-274167
+      - https://cie.co.at/publications/control-damage-museum-objects-optical-radiation
+    examples:
+      - value: 12000.0
+        description: Maximum for textiles (CIE 157)
+      - value: 15000.0
+        description: Maximum for highly sensitive materials (EN 16893)
+      - value: 50000.0
+        description: General guidance for sensitive materials (ASHRAE)
+      - value: 150000.0
+        description: Maximum for moderately sensitive materials (EN 16893)
+    annotations:
+      qudt_unit: unit:LUX-HR
+      ucum_code: lx.h
+      iso_reference: EN 16893:2018, CIE 157:2004
+      preservation_parameter: 'true'
+      calculation_note: "lux-hours = illuminance (lux) x exposure time (hours)"
+      custodian_types: '["*"]'
+    aliases:
+      - max_annual_light_exposure
+      - max_light_lux
+    broad_mappings:
+      - crm:P43_has_dimension  # CIDOC_CRM_v7.1.3.rdf:2242-2257 - "Records an instance of E54 Dimension of some E70 Thing." Any measurable dimension.
+      - ssn:hasProperty  # ssn.ttl:66-71 - "Relation between an entity and a Property of that entity." Very generic.

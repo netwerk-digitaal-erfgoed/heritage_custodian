@@ -1,0 +1,229 @@
+# CallForApplicationStatusEnum
+# Lifecycle states for heritage funding calls and grant applications
+#
+# Created November 2025 to support CallForApplication class tracking:
+# - EncompassingBody (FundingOrganisation) → issues → CallForApplication
+# - Heritage custodians apply to these calls
+#
+# Example: Horizon Europe CL2 2025 heritage calls status tracking
+
+id: https://nde.nl/ontology/hc/enum/CallForApplicationStatus
+name: CallForApplicationStatusEnum
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  CallForApplicationStatusEnum:
+    description: |
+      Lifecycle status of a heritage funding call or grant application window.
+      
+      Funding calls issued by heritage funding organisations (FundingOrganisation subclass
+      of EncompassingBody) have defined lifecycles from announcement through closure.
+      
+      **Lifecycle Stages**:
+      
+      1. **ANNOUNCED** - Call publicly announced, application period not yet open
+      2. **OPEN** - Application period active, submissions accepted
+      3. **CLOSING_SOON** - Application deadline approaching (< 30 days)
+      4. **CLOSED** - Application period ended, no new submissions
+      5. **UNDER_REVIEW** - Applications being evaluated
+      6. **RESULTS_PUBLISHED** - Grant decisions announced
+      7. **CANCELLED** - Call cancelled before completion
+      8. **REOPENED** - Call reopened after previous closure
+      
+      **Example - Horizon Europe CL2 2025**:
+      ```yaml
+      CallForApplication:
+        call_title: "Cultural heritage, cultural and creative industries"
+        call_status: OPEN
+        application_deadline: "2025-09-16"
+        # Currently accepting applications
+      ```
+      
+      **Status Transitions**:
+      ```
+      ANNOUNCED → OPEN → CLOSING_SOON → CLOSED → UNDER_REVIEW → RESULTS_PUBLISHED
+                    ↓                       ↓
+                 CANCELLED               REOPENED → OPEN
+      ```
+    
+    permissible_values:
+      ANNOUNCED:
+        description: |
+          Call has been publicly announced but application period has not yet opened.
+          
+          **Characteristics**:
+          - Call documentation published
+          - Application portal not yet active
+          - Opening date defined (future)
+          - Applicants can prepare but not submit
+          
+          **Examples**:
+          - Horizon Europe 2026 work programme published, calls opening January
+          - National Lottery Heritage Fund new scheme announced for Q2
+          - Creative Europe 2025 calls announced, opening April
+        meaning: schema:EventStatusType
+        comments:
+          - "ANNOUNCED = call published, submissions not yet accepted"
+          - "Use to track upcoming funding opportunities"
+      
+      OPEN:
+        description: |
+          Application period is active and submissions are being accepted.
+          
+          **Characteristics**:
+          - Application portal active
+          - New applications accepted
+          - Deadline in the future
+          - Guidance and support available
+          
+          **Examples**:
+          - Horizon Europe CL2 heritage calls - open until Sept 2025
+          - Creative Europe Cooperation Projects - accepting proposals
+          - European Heritage Awards - nominations open
+        meaning: schema:EventStatusType
+        comments:
+          - "OPEN = primary status during application window"
+          - "Most important status for heritage custodians seeking funding"
+      
+      CLOSING_SOON:
+        description: |
+          Application deadline is approaching (typically within 30 days).
+          Used to flag urgent funding opportunities.
+          
+          **Characteristics**:
+          - Application period still active
+          - Deadline within 30 days
+          - Heightened urgency for applicants
+          - May have capacity constraints
+          
+          **Examples**:
+          - Horizon Europe call with 3 weeks remaining
+          - National Lottery Heritage Fund round closing next month
+          - Creative Europe deadline in 2 weeks
+        meaning: schema:EventStatusType
+        comments:
+          - "CLOSING_SOON = < 30 days until deadline"
+          - "Transition from OPEN based on date proximity"
+      
+      CLOSED:
+        description: |
+          Application period has ended. No new submissions accepted.
+          
+          **Characteristics**:
+          - Deadline passed
+          - No new applications accepted
+          - Submitted applications in queue for review
+          - May allow late submissions with penalty (rare)
+          
+          **Examples**:
+          - Horizon Europe 2024 calls - closed, awaiting results
+          - Previous Creative Europe rounds - archived
+          - National Lottery Heritage Fund completed rounds
+        meaning: schema:EventStatusType
+        comments:
+          - "CLOSED = deadline passed, no new submissions"
+          - "Precedes UNDER_REVIEW status"
+      
+      UNDER_REVIEW:
+        description: |
+          Applications are being evaluated. Review process underway.
+          
+          **Characteristics**:
+          - Submissions closed
+          - Expert evaluation in progress
+          - Panel discussions scheduled
+          - Applicants awaiting results
+          
+          **Examples**:
+          - Horizon Europe proposals under peer review
+          - Heritage fund applications in assessment phase
+          - Award nominations being judged
+        meaning: schema:EventStatusType
+        comments:
+          - "UNDER_REVIEW = evaluation in progress"
+          - "May take 3-6 months for major EU calls"
+      
+      RESULTS_PUBLISHED:
+        description: |
+          Grant decisions have been announced. Successful applicants notified.
+          
+          **Characteristics**:
+          - Evaluation complete
+          - Winners/grantees announced
+          - Funding agreements in preparation
+          - Unsuccessful applicants may receive feedback
+          
+          **Examples**:
+          - Horizon Europe 2024 grant agreements signed
+          - European Heritage Awards laureates announced
+          - National Lottery Heritage Fund grants awarded
+        meaning: schema:EventStatusType
+        comments:
+          - "RESULTS_PUBLISHED = call cycle complete"
+          - "Final status for successful call completion"
+      
+      CANCELLED:
+        description: |
+          Call has been cancelled. No applications will be funded.
+          
+          **Characteristics**:
+          - Call terminated before completion
+          - Submissions will not be evaluated
+          - Applicants notified of cancellation
+          - May be rescheduled to future period
+          
+          **Reasons**:
+          - Budget reallocation
+          - Policy change
+          - Insufficient applications
+          - Administrative issues
+          
+          **Examples**:
+          - Call cancelled due to programme restructuring
+          - Funding redirected to emergency response
+          - Insufficient budget allocation
+        meaning: schema:EventStatusType
+        comments:
+          - "CANCELLED = permanent termination"
+          - "Different from CLOSED (no results forthcoming)"
+      
+      REOPENED:
+        description: |
+          Call has been reopened after previous closure. Additional submissions accepted.
+          
+          **Characteristics**:
+          - Previously closed call reactivated
+          - New deadline set
+          - May have different terms
+          - Additional budget may be available
+          
+          **Reasons**:
+          - Insufficient applications received
+          - Additional funding secured
+          - Scope expanded
+          - Deadline extended
+          
+          **Examples**:
+          - Heritage call reopened due to low response
+          - Additional funding round added to programme
+          - Emergency call for specific heritage crisis
+        meaning: schema:EventStatusType
+        comments:
+          - "REOPENED = call reactivated after CLOSED"
+          - "Transitions back to OPEN status after reopening"
+    
+    comments:
+      - "CallForApplicationStatusEnum tracks funding call lifecycle from announcement through results"
+      - "CLOSING_SOON is based on temporal proximity (< 30 days to deadline)"
+      - "CANCELLED vs CLOSED: cancelled = terminated, closed = normal completion"
+      - "REOPENED denotes reactivation of previously closed call"
+      - "Maps to schema:EventStatusType for broad interoperability"

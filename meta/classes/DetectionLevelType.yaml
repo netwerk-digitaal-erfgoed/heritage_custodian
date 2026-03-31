@@ -1,0 +1,113 @@
+id: https://nde.nl/ontology/hc/class/DetectionLevelType
+name: DetectionLevelType
+title: Detection Level Type Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dqv: http://www.w3.org/ns/dqv#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  DetectionLevelType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomy node for confidence-band categories assigned to
+      automated detection results.
+    alt_descriptions:
+      nl: Abstract taxonomieknooppunt voor confidenceband-categorieen bij geautomatiseerde detectieresultaten.
+      de: Abstrakter Taxonomieknoten fuer Konfidenzband-Kategorien bei automatisierten Erkennungsergebnissen.
+      fr: Noeud taxonomique abstrait pour les categories de bandes de confiance appliquees aux resultats de detection automatisee.
+      es: Nodo taxonomico abstracto para categorias de bandas de confianza asignadas a resultados de deteccion automatizada.
+      ar: عقدة تصنيفية مجردة لفئات نطاقات الثقة المخصصة لنتائج الكشف الآلي.
+      id: Simpul taksonomi abstrak untuk kategori pita kepercayaan pada hasil deteksi otomatis.
+      zh: 用于自动检测结果置信区间类别的抽象分类节点。
+    structured_aliases:
+    - {literal_form: detectieniveautype, in_language: nl}
+    - {literal_form: Erkennungsstufentyp, in_language: de}
+    - {literal_form: type de niveau de detection, in_language: fr}
+    - {literal_form: tipo de nivel de deteccion, in_language: es}
+    - {literal_form: نوع مستوى الكشف, in_language: ar}
+    - {literal_form: tipe tingkat deteksi, in_language: id}
+    - {literal_form: 检测级别类型, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+
+    close_mappings:
+    - dqv:QualityAnnotation
+
+    slots:
+    - has_code
+    - has_label
+    - has_description
+
+    slot_usage:
+      has_code:
+        pattern: "^[A-Z_]+$"
+        examples:
+        - value: HIGH
+        - value: MEDIUM
+        - value: LOW
+      has_label:
+        examples:
+        - value: "High Confidence"
+        - value: "Medium Confidence"
+      has_description:
+        examples:
+        - value: "High confidence detections suitable for production display"
+    notes:
+    - |
+      Preserved from prior description (commit 86b9dceb):
+
+      Preserved from prior description (commit 86b9dceb):
+
+      Abstract base class for detection confidence level types.
+
+      **Type/Types Pattern (Rule 0b)**:
+      - `DetectionLevelType` (this file): Abstract base class
+      - `DetectionLevelTypes.yaml`: Concrete subclasses (HIGH, MEDIUM, LOW, etc.)
+
+      **DEFINITION**:
+
+      Detection levels categorize the confidence/quality of automated detection
+      results. Rather than raw numeric thresholds, these provide semantic
+      categories for filtering and display decisions.
+
+      **Level Hierarchy**:
+
+      | Level | Confidence Range | Use Case |
+      |-------|------------------|----------|
+      | HIGH | 0.9+ | Production, public display |
+      | MEDIUM | 0.7-0.9 | Review queue, moderate confidence |
+      | LOW | 0.5-0.7 | Research, exhaustive analysis |
+      | UNCERTAIN | < 0.5 | Flagged for manual review |
+
+      **Ontological Alignment**:
+      - **SKOS**: `skos:Concept` - controlled vocabulary term
+      - **DQV**: Related to data quality metrics
+
+      **Migrated From** (per slot_fixes.yaml):
+      - `detection_level` now uses:
+        - `filters_or_filtered` → DetectedEntity
+        - `has_type` → DetectionLevelType (this class)
+        - `include` → DetectionLevelTypes (subclasses)
+    annotations:
+      custodian_types: '["D"]'
+      custodian_types_rationale: Detection levels apply to digital platforms with automated analysis
+      specificity_score: 0.75
+      specificity_rationale: Specific to media analysis and detection contexts
+      type_types_pattern: "Base class - concrete subclasses in DetectionLevelTypes.yaml"
+    comments:
+    - "Abstract base class for detection level taxonomy"
+    - "Concrete subclasses defined in DetectionLevelTypes.yaml"
+    - "Follows Type/Types naming convention (Rule 0b)"
+    - "Migrated from detection_level slot per slot_fixes.yaml"

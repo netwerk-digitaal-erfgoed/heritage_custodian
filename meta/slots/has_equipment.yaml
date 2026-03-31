@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: has_equipment
+# ==============================================================================
+# Tools, machinery, devices, or apparatus associated with an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                 | File/Line               | Mapping | Notes                                                       |
+# |----------------|--------------------------|-------------------------|---------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:amenityFeature`  | schemaorg.owl:7869-7893 | —       | NOT used — generic amenity of Place/Accommodation; equipment |
+# |                |                          |                         |         | is a distinct tangible concept, not an amenity.              |
+#
+# No standard ontology property matches the concept of equipment in a GLAM context.
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual; no standard mapping found
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_equipment
+name: has_equipment
+title: Has Equipment
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_equipment:
+    name: has_equipment
+    slot_uri: hc:hasEquipment
+    description: >-
+      To possess or be fitted with the necessary tools, machinery, devices, or
+      apparatus required to perform specific functions, tasks, or operations.
+    alt_descriptions:
+      nl: >-
+        De benodigde gereedschappen, machines, apparaten of toestellen bezitten
+        of ermee zijn uitgerust die nodig zijn om specifieke functies, taken of
+        werkzaamheden uit te voeren.
+      de: >-
+        Die notwendigen Werkzeuge, Maschinen, Geräte oder Apparate besitzen oder
+        damit ausgestattet sein, die zur Ausführung bestimmter Funktionen, Aufgaben
+        oder Tätigkeiten erforderlich sind.
+      fr: >-
+        Posséder ou être équipé des outils, machines, dispositifs ou appareils
+        nécessaires pour effectuer des fonctions, tâches ou opérations spécifiques.
+      ar: >-
+        امتلاك أو التجهيز بالأدوات أو الآلات أو الأجهزة أو المعدات اللازمة لأداء
+        وظائف أو مهام أو عمليات محددة.
+      id: >-
+        Memiliki atau dilengkapi dengan peralatan, mesin, perangkat, atau aparatus
+        yang diperlukan untuk menjalankan fungsi, tugas, atau operasi tertentu.
+      zh: >-
+        拥有或配备执行特定功能、任务或操作所需的工具、机械、设备或器具。
+      es: >-
+        Poseer o estar equipado con las herramientas, maquinaria, dispositivos o
+        aparatos necesarios para realizar funciones, tareas u operaciones
+        específicas.
+    structured_aliases:
+      - literal_form: apparatuur
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ausrüstung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: équipement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معدات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: peralatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 设备
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: equipo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_equipment
+      - has_or_had_equipment_type
+      - has_equipment_type
+      - has_or_had_imaging_equipment
+      - has_imaging_equipment
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_equipment for conciseness (2026-02-03).
+        Also absorbed has_or_had_equipment_type and has_equipment_type as aliases.

@@ -1,0 +1,69 @@
+id: https://nde.nl/ontology/hc/class/CompanyArchiveRecordSetType
+name: CompanyArchiveRecordSetType
+title: Company Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+classes:
+  CompanyArchiveRecordSetType:
+    abstract: true
+    class_uri: rico:RecordSetType
+    description: >-
+      Abstract taxonomy node for classifying documentary aggregations preserved
+      by company-affiliated repository institutions.
+    alt_descriptions:
+      nl: Abstract taxonomieknooppunt voor classificatie van documentaire aggregaties in bedrijfsgebonden archiefinstellingen.
+      de: Abstrakter Taxonomieknoten zur Klassifikation dokumentarischer Aggregationen in unternehmensnahen Archivinstitutionen.
+      fr: Noeud taxonomique abstrait pour classer les ensembles documentaires conserves par des institutions archivistiques d entreprise.
+      es: Nodo taxonomico abstracto para clasificar agregaciones documentales preservadas por instituciones archivisticas empresariales.
+      ar: عقدة تصنيفية مجردة لتصنيف التجميعات الوثائقية التي تحفظها مؤسسات أرشيفية مرتبطة بالشركات.
+      id: Simpul taksonomi abstrak untuk mengklasifikasikan agregasi dokumenter yang dilestarikan lembaga arsip berafiliasi perusahaan.
+      zh: 用于分类企业关联档案机构所保存文献聚合体的抽象分类节点。
+    structured_aliases:
+    - {literal_form: bedrijfsarchief-recordsettype-basis, in_language: nl}
+    - {literal_form: Unternehmensarchiv-Bestandsart-Basis, in_language: de}
+    - {literal_form: base type de fonds d archives d entreprise, in_language: fr}
+    - {literal_form: base de tipo de conjunto documental empresarial, in_language: es}
+    - {literal_form: أساس نوع مجموعة سجلات أرشيف شركة, in_language: ar}
+    - {literal_form: basis jenis set catatan arsip perusahaan, in_language: id}
+    - {literal_form: 企业档案记录集基础类型, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    - rico:RecordSetType
+    keywords:
+    - record set taxonomy
+    - corporate archives
+    - business documentation
+    - documentary aggregation
+    - archival classification
+    see_also:
+    - CompanyArchives
+    - CorporateGovernanceFonds
+    - ProductDevelopmentCollection
+    - MarketingArchiveCollection
+    - PersonnelRecordsSeries
+    - CorporatePublicationsSeries
+    slots:
+    - has_type
+    - has_score
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+        - equals_string: hc:CommercialOrganizationType
+    comments:
+    - |
+      Preserved from prior description (commit 2e1e6e5f):
+
+      "Abstract base class for all company/business archive record set types.\n\n**Definition**:\nA rico:RecordSetType that classifies collections held by company archives.\nCompany archives preserve records documenting corporate governance, \nbusiness operations, product development, and corporate heritage.\n\n**Subclasses**:\n- CorporateGovernanceFonds (board, shareholders, executive records)\n- ProductDevelopmentCollection (R&D, designs, patents, technical documentation)\n- MarketingArchiveCollection (advertising, branding, campaigns, promotional materials)\n- PersonnelRecordsSeries (employment records, personnel files)\n- CorporatePublicationsSeries (annual reports, internal publications, house magazines)\n\n**RiC-O Alignment**:\nThis is an abstract type classifier. Subclasses specify both the domain \n(type of corporate records) and organizational principle (fonds, series, collection).\n\n**Dual-Class Pattern**:\nCompanyArchives (ArchiveOrganizationType) = the custodian institution.\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,111 @@
+id: https://nde.nl/ontology/hc/class/ArchivalReference
+name: ArchivalReference
+title: Archival Reference Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+classes:
+  ArchivalReference:
+    class_uri: rico:Identifier
+    description: >-
+      Unique alphanumeric code assigned to identify and locate specific
+      archival materials within a repository's organizational system,
+      such as shelf marks, signatures, or inventory numbers.
+    alt_descriptions:
+      nl: >-
+        Unieke alfanumerieke code toegekend om specifieke archiefmaterialen te
+        identificeren en te lokaliseren binnen het organisatiesysteem van een
+        bewaarplaats, zoals plaatskenmerken, handtekeningen of inventarisnummers.
+      de: >-
+        Eindeutiger alphanumerischer Code, der zugewiesen wird, um spezifische
+        Archivmaterialien im Organisationssystem eines Depots zu identifizieren
+        und zu lokalisieren, wie Signatur, Standortkennzeichen oder Inventarnummern.
+      fr: >-
+        Code alphanumerique unique attribue pour identifier et localiser des
+        materiaux d'archives specifiques dans le systeme organisationnel d'un
+        depot, tel que les cotes, signatures ou numeros d'inventaire.
+      es: >-
+        Codigo alfanumerico unico asignado para identificar y ubicar materiales
+        de archivo especificos dentro del sistema organizativo de un repositorio,
+        como signaturas, marcas de estanteria o numeros de inventario.
+      ar: >-
+        رمز أبجدي رقمي فريد يُعين لتحديد مواد أرشيفية محددة وتحديد موقعها
+        داخل النظام التنظيمي للمستودع، مثل علامات الرف أو التوقيعات
+        أو أرقام الجرد.
+      id: >-
+        Kode alfanumerik unik yang ditetapkan untuk mengidentifikasi dan
+        menemukan materi arsip tertentu dalam sistem organisasi repositori,
+        seperti tanda rak, tanda tangan, atau nomor inventaris.
+      zh: >-
+        分配用于在存储库组织系统中识别和定位特定档案材料的唯一字母数字代码，
+        如架位标记、签名或库存编号。
+    structured_aliases:
+    - literal_form: archiefreferentie
+      in_language: nl
+    - literal_form: Archivreferenz
+      in_language: de
+    - literal_form: reference d'archives
+      in_language: fr
+    - literal_form: referencia archivistica
+      in_language: es
+    - literal_form: مرجع الأرشيف
+      in_language: ar
+    - literal_form: referensi arsip
+      in_language: id
+    - literal_form: 档案参考号
+      in_language: zh
+    close_mappings:
+    - crm:E42_Identifier
+    - schema:identifier
+    broad_mappings:
+    - skos:Concept
+    - rico:Identifier
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    slot_usage:
+      identified_by:
+        required: true
+        examples:
+        - value: "NL-HaNA/2.13.123/1"
+        - value: "KA 12345"
+        - value: "Collectie XYZ, nr. 42"
+    comments:
+    - Standard archival reference codes for citation and retrieval
+    - Examples: shelf marks, signatures, inventory numbers, call numbers
+    - Essential for unique identification and physical location
+    see_also:
+    - https://www.ica.org/standards/RiC/ontology
+    examples:
+    - value:
+        identified_by: "NL-HaNA/2.13.123/1"
+        has_label: "Nationaal Archief Reference"
+        has_description: "National Archives of the Netherlands, collection 2.13.123, item 1"
+      description: Dutch national archive reference code
+    - value:
+        identified_by: "MS. Bodley 764"
+        has_label: "Bodleian Reference"
+        has_description: "Bodleian Library manuscript shelf mark"
+      description: Bodleian Library manuscript reference
+    keywords:
+    - archival reference
+    - shelf mark
+    - signature
+    - inventory number
+    - call number
+    - citation code
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to archival identification codes
+      custodian_types: "['*']"

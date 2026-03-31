@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/classes/MatchingSource
+name: MatchingSource
+title: Matching Source Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_source
+- ../slots/has_name
+- ../slots/has_note
+classes:
+  MatchingSource:
+    class_uri: prov:Entity
+    description: >-
+      Evidence-bearing source record used to support identity reconciliation and
+      name-consensus decisions.
+    alt_descriptions:
+      nl: >-
+        Bronrecord met bewijsinhoud die wordt gebruikt ter ondersteuning van
+        identiteitsafstemming en naamconsensusbeslissingen.
+      de: >-
+        Quelleneintrag mit Beleginhalt, der zur Unterstützung von
+        Identitätsabgleich und Namenskonsensentscheidungen verwendet wird.
+      fr: >-
+        Enregistrement source porteur de preuve utilisé pour étayer des
+        décisions de rapprochement d'identité et de consensus sur les noms.
+      es: >-
+        Registro de fuente con evidencia utilizado para respaldar decisiones de
+        conciliación de identidad y consenso de nombres.
+      ar: >-
+        سجل مصدر حامِل للأدلة يُستخدم لدعم قرارات مواءمة الهوية والتوافق على
+        الأسماء.
+      id: >-
+        Rekaman sumber berbasis bukti yang digunakan untuk mendukung keputusan
+        rekonsiliasi identitas dan konsensus nama.
+      zh: >-
+        用于支撑身份对齐与名称共识决策的证据型来源记录。
+    close_mappings:
+    - schema:PropertyValue
+    related_mappings:
+    - prov:PrimarySource
+    structured_aliases:
+    - literal_form: bewijsdragende bronrecord
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: belegtragender Quelleneintrag
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: enregistrement source probant
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: registro fuente con evidencia
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سجل مصدر قائم على الأدلة
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: rekaman sumber berbukti
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 证据型来源记录
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    slots:
+    - has_source
+    - has_name
+    - has_note
+    comments:
+    - Supports evidence-driven identity reconciliation across conflicting source values.
+    - Preserves rationale context used in name matching and entity resolution.
+    - 'Preserved from prior description: Source evidence record contributing to entity-matching and name consensus decisions.'
+    keywords:
+    - identity reconciliation
+    - name consensus
+    - evidence record
+    - source comparison
+    examples:
+    - value:
+        has_source: OpenCorporates
+        has_name: Rijksmuseum Foundation
+        has_note: Name variant matched with high confidence.
+      description: Evidence-bearing source record for entity-reconciliation decision.
+    annotations:
+      specificity_score: 0.4
+      specificity_rationale: Evidence-source class for reconciliation and identity-resolution workflows.
+      custodian_types: '["*"]'
+    broad_mappings:
+    - prov:Entity

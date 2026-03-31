@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/mixed-custodian-type
+name: MixedCustodianType
+title: Mixed Custodian Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  foaf: http://xmlns.com/foaf/0.1/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_constituent
+- ../slots/define
+- ../slots/has_score
+- ../slots/has_service
+- ../slots/has_type
+- ../slots/integrate
+- ../slots/serve
+- ../slots/has_portfolio
+classes:
+  MixedCustodianType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: Custodian category for institutions operating as an integrated combination of multiple heritage organization types.
+    alt_descriptions:
+      nl: Categorie voor instellingen die als een geintegreerde combinatie van meerdere erfgoedinstellingstypen opereren.
+      de: Kategorie fuer Einrichtungen die als integrierte Kombination mehrerer Heritage-Organisationstypen arbeiten.
+      fr: Categorie pour des institutions operant comme combinaison integree de plusieurs types d organismes patrimoniaux.
+      es: Categoria para instituciones que operan como combinacion integrada de varios tipos de entidades patrimoniales.
+      ar: فئة للجهات التي تعمل كمزيج متكامل من عدة أنواع من مؤسسات التراث.
+      id: Kategori kustodian untuk lembaga yang beroperasi sebagai kombinasi terintegrasi dari beberapa tipe lembaga warisan budaya.
+      zh: 适用于以综合方式同时承担多种文化遗产机构职能的保管机构类别。
+    structured_aliases:
+    - {literal_form: gemengde erfgoedinstelling, in_language: nl}
+    - {literal_form: gemischte Kulturerbeeinrichtung, in_language: de}
+    - {literal_form: institution patrimoniale mixte, in_language: fr}
+    - {literal_form: institucion patrimonial mixta, in_language: es}
+    - {literal_form: مؤسسة تراثية مختلطة, in_language: ar}
+    - {literal_form: lembaga warisan campuran, in_language: id}
+    - {literal_form: 混合型遗产机构, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E74_Group
+    - foaf:Organization
+    related_mappings:
+    - schema:Organization
+    - schema:Museum
+    - schema:Library
+    - schema:ArchiveOrganization
+    slots:
+    - has_constituent
+    - has_type
+    - has_service
+    - integrate
+    - define
+    - has_portfolio
+    - has_score
+    - serve
+    slot_usage:
+      has_constituent:
+        multivalued: true
+        required: true
+      integrate:
+        multivalued: true
+      define:
+        required: true
+      has_portfolio:
+        multivalued: true
+      has_service:
+        multivalued: true
+      serve:
+        multivalued: true
+      has_type:
+        any_of:
+        - equals_string: hc:MixedCustodianType
+    comments:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Specialized custodian type for institutions that SIMULTANEOUSLY operate as\nmultiple heritage institution types within a single organizational entity.\n\n**CRITICAL DISTINCTION - Mixed vs. Single-Type Institutions**:\n\nMixedCustodianType applies when an institution:\n- SIMULTANEOUSLY performs functions of MULTIPLE types (not just one primary type)\n- Has INTEGRATED operations across types (not separate departments)\n- Uses combined organizational identity (not separate brands/facilities)\n\n**Design Pattern - Multivalued custodian_type Field**:\n\nInstead of creating a separate MixedCustodianType class, the GLAMORCUBESFIXPHDNT\ntaxonomy uses a MULTIVALUED custodian_type field to represent mixed institutions:\n\n```yaml\n# PREFERRED APPROACH - Multivalued custodian_type\ncustodian_type:\n  - MuseumType\n  - ArchiveOrganizationType\n  - LibraryType\n\n# GHCID uses X code when multiple types:\nghcid: NL-NH-AMS-X-STADSARCHIEF  # X = multiple types\n```\n\n**When to Use Mixed\
+    annotations:
+      skos:prefLabel: Mixed Custodian
+      skos:altLabel: combined institution, multi-function heritage center
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

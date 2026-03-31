@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: commented_on
+# ==============================================================================
+# To be the subject of a remark, observation, or annotation provided by a
+# specific agent or user.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:comment`      | schemaorg.owl:12267  | exact   | Comments from users                |
+#
+# CREATED: 2026-01-20
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/commented_on
+name: commented_on
+title: Commented On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  commented_on:
+    slot_uri: schema:comment
+    description: >-
+      To be the subject of a remark, observation, or annotation provided by
+      a specific agent or user.
+    alt_descriptions:
+      nl: >-
+        Het onderwerp zijn van een opmerking, observatie of annotatie
+        verstrekt door een specifieke agent of gebruiker.
+      de: >-
+        Gegenstand einer Bemerkung, Beobachtung oder Anmerkung zu sein, die
+        von einem bestimmten Akteur oder Benutzer bereitgestellt wird.
+      fr: >-
+        Être le sujet d'une remarque, d'une observation ou d'une annotation
+        fournie par un agent ou un utilisateur spécifique.
+      ar: >-
+        أن يكون موضوع ملاحظة أو مراقبة أو تعليق توضيحي مقدم من وكيل
+        أو مستخدم محدد.
+      id: >-
+        Menjadi subjek komentar, pengamatan, atau anotasi yang diberikan
+        oleh agen atau pengguna tertentu.
+      zh: >-
+        成为特定代理人或用户提供的评论、观察或注解的主题。
+      es: >-
+        Ser el sujeto de un comentario, observación o anotación proporcionado
+        por un agente o usuario específico.
+    structured_aliases:
+      - literal_form: becommentarieerd
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: kommentiert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: commenté
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: علّق عليه
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dikomentari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被评论
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: comentado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+    aliases:
+      - has_or_had_comment
+      - is_or_was_commented_on
+    examples:
+      - value: hc:comment/video-comment-001
+        description: User comment on video
+      - value: hc:comment/review-note-002
+        description: Review annotation note
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        USAGE: Used for video comments, review comments, annotation notes,
+        and any other textual remarks associated with an entity.

@@ -1,0 +1,43 @@
+id: https://nde.nl/ontology/hc/parsimony/slot/has_spatial_scope
+name: has_spatial_scope
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  owl: http://www.w3.org/2002/07/owl#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_spatial_scope:
+    slot_uri: hc:hasSpatialScope
+    description: >-
+      Relates a semantic entity to the place context that defines its
+      geographic area, jurisdiction, territorial remit, or service coverage.
+
+      **Why this slot exists:** `has_spatial_scope` captures the place an entity
+      serves, covers, governs, or documents, while `addressed_at` and
+      `located_in` remain available for postal address and actual physical
+      location.
+    range: PlaceContext
+    inverse: is_spatial_scope_of
+    implements:
+      - owl:ObjectProperty
+    multivalued: true
+    comments:
+      - >-
+        Use this slot for the place an entity serves, covers, governs, studies,
+        or documents, not for the street address or current location where it is
+        physically found.
+      - >-
+        has_spatial_scope separates territorial remit from addressed_at and
+        located_in, which remain better fits for contact addresses and actual
+        physical placement.
+    examples:
+      - value: CustodialEntity:CityArchive has_spatial_scope PlaceContext:Amsterdam
+        description: A municipal archive serves the Amsterdam jurisdiction.
+      - value: Holding:RegionalPhotoCollection has_spatial_scope PlaceContext:Friesland
+        description: A holding covers material associated with the Friesland region.
+    narrow_mappings:
+      - hc:cover_country
+      - hc:cover_geographic_subdivision
+      - hc:cover_place

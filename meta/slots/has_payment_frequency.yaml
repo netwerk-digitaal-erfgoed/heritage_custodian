@@ -1,0 +1,126 @@
+# ==============================================================================
+# LinkML Slot Definition: has_payment_frequency
+# ==============================================================================
+# Specifies the recurring time interval at which a financial obligation is due.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property                     | File/Line                  | Mapping  | Notes                                                                                 |
+# |--------------|------------------------------|----------------------------|----------|---------------------------------------------------------------------------------------|
+# | **Schema**   | `schema:repeatFrequency`     | schemaorg.owl:33007-33025  | broad    | "Defines the frequency at which Events will occur." SubProperty of schema:frequency.  |
+# |              |                              |                            |          | Generic repeating interval, not payment-specific. Domain Schedule, range Duration/Text.|
+# | **Schema**   | `schema:loanPaymentFrequency`| schemaorg.owl:24933-24945  | narrow   | "Frequency of payments due, i.e. number of months between payments."                  |
+# |              |                              |                            |          | Specifically for loan repayment. Domain RepaymentSpecification. Pending.              |
+# | **Schema**   | `schema:billingPeriod`       | schemaorg.owl:9971-9985    | related  | "The time interval used to compute the invoice." Domain Invoice, range Duration.      |
+# | **Schema**   | `schema:billingDuration`     | schemaorg.owl:9928-9950    | related  | Contractual duration of a subscription or payment plan. Domain UnitPriceSpecification.|
+# | **DCTerms**  | `dcterms:accrualPeriodicity` | dcterms.rdf:837-858        | related  | "The frequency with which items are added to a collection." Different domain.         |
+#
+# No standard ontology defines a generic "payment frequency" property.
+# schema:repeatFrequency is the closest broad concept (any repeating schedule).
+# schema:loanPaymentFrequency is narrower (loan-specific payment frequency).
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_payment_frequency
+name: has_payment_frequency
+title: Has Payment Frequency
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_payment_frequency:
+    slot_uri: hc:hasPaymentFrequency
+    description: >-
+      Specifies the recurring time interval or schedule at which a financial
+      obligation, subscription renewal, salary disbursement, or membership fee
+      is due. Applicable to heritage institution contexts such as membership
+      dues, subscription services, donor pledge schedules, facility lease
+      payments, and grant disbursement cycles. Use standardized values for
+      queryability (e.g. "monthly", "quarterly", "annually", "bi-weekly",
+      "one-time").
+    alt_descriptions:
+      nl: >-
+        Geeft het terugkerende tijdsinterval aan waarop een financiële
+        verplichting, abonnementsverlenging, salaris of lidmaatschapsgeld
+        verschuldigd is.
+      de: >-
+        Gibt das wiederkehrende Zeitintervall an, in dem eine finanzielle
+        Verpflichtung, Abonnementverlängerung, Gehaltszahlung oder
+        Mitgliedsbeitrag fällig ist.
+      fr: >-
+        Spécifie l'intervalle de temps récurrent auquel une obligation
+        financière, un renouvellement d'abonnement, un salaire ou une
+        cotisation est dû.
+      ar: >-
+        يحدد الفاصل الزمني المتكرر الذي يستحق فيه التزام مالي أو تجديد اشتراك
+        أو راتب أو رسوم عضوية.
+      id: >-
+        Menentukan interval waktu berulang di mana kewajiban keuangan,
+        pembaruan langganan, gaji, atau biaya keanggotaan jatuh tempo.
+      zh: >-
+        指定财务义务、订阅续费、工资发放或会员费到期的重复时间间隔。
+      es: >-
+        Especifica el intervalo de tiempo recurrente en el que vence una
+        obligación financiera, renovación de suscripción, salario o cuota de
+        membresía.
+    structured_aliases:
+      - literal_form: betalingsfrequentie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zahlungshäufigkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fréquence de paiement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تكرار الدفع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: frekuensi pembayaran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 付款频率
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: frecuencia de pago
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - schema:repeatFrequency  # schemaorg.owl:33007-33025 - generic repeating schedule frequency, not payment-specific
+    narrow_mappings:
+      - schema:loanPaymentFrequency  # schemaorg.owl:24933-24945 - specifically for loan repayment frequency
+    related_mappings:
+      - schema:billingPeriod  # schemaorg.owl:9971-9985 - "The time interval used to compute the invoice." domain Invoice
+      - schema:billingDuration  # schemaorg.owl:9928-9950 - contractual duration of subscription or payment plan
+      - dcterms:accrualPeriodicity  # dcterms.rdf:837-858 - frequency of adding items to a collection, different domain
+    aliases:
+      - payment_frequency
+    examples:
+      - value: "monthly"
+        description: "Museum membership dues billed every month"
+      - value: "annually"
+        description: "Heritage foundation annual grant disbursement"
+      - value: "quarterly"
+        description: "Facility lease payment due every three months"
+      - value: "one-time"
+        description: "Single payment for a project-based conservation grant"
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Use standardized frequency values for consistent querying across
+        institutions. Recommended values include: "daily", "weekly", "bi-weekly",
+        "monthly", "bi-monthly", "quarterly", "semi-annually", "annually",
+        "one-time".
+      - >-
+        No standard ontology defines a generic payment frequency property.
+        schema:loanPaymentFrequency exists but is narrowly scoped to loan
+        repayments. schema:repeatFrequency is the closest broad concept
+        covering any repeating schedule.

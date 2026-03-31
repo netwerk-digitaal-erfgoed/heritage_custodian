@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: has_fixity
+# ==============================================================================
+# To specify the quality of being unchanged or stable, often involving a
+# mechanism (such as a checksum) to verify that a digital object's content has
+# not been altered or corrupted.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property         | File/Line            | Mapping | Notes                                                    |
+# |-------------|------------------|----------------------|---------|----------------------------------------------------------|
+# | **PREMIS**  | `premis:fixity`  | premis3.owl:372-384  | exact   | "has fixity." Domain: Bitstream/File. Range: Fixity.     |
+#
+# PREMIS Fixity class (premis3.owl:101-105): "Information used to verify whether
+# an object has been altered in an undocumented or unauthorized way."
+# This is an exact semantic match. Using premis:fixity as the slot_uri.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, verified premis:fixity as exact
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_fixity
+name: has_fixity
+title: has fixity
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  premis: http://www.loc.gov/premis/rdf/v3/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_fixity:
+    name: has_fixity
+    title: has fixity
+    description: >-
+      To specify the quality of being unchanged or stable, often involving a
+      mechanism (such as a checksum) to verify that a digital object's content
+      has not been altered or corrupted.
+    alt_descriptions:
+      nl: >-
+        De eigenschap specificeren van onveranderd of stabiel zijn, vaak met
+        een mechanisme (zoals een controlesom) om te verifiëren dat de inhoud
+        van een digitaal object niet is gewijzigd of beschadigd.
+      de: >-
+        Die Eigenschaft angeben, unverändert oder stabil zu sein, oft unter
+        Verwendung eines Mechanismus (wie einer Prüfsumme) zur Überprüfung,
+        dass der Inhalt eines digitalen Objekts nicht verändert oder
+        beschädigt wurde.
+      fr: >-
+        Spécifier la qualité d'être inchangé ou stable, impliquant souvent
+        un mécanisme (tel qu'une somme de contrôle) pour vérifier que le
+        contenu d'un objet numérique n'a pas été altéré ou corrompu.
+      ar: >-
+        تحديد خاصية كون الكائن غير متغير أو مستقر، وغالباً ما تتضمن آلية
+        (مثل المجموع الاختباري) للتحقق من أن محتوى الكائن الرقمي لم يتم
+        تعديله أو إتلافه.
+      id: >-
+        Menentukan kualitas tidak berubah atau stabil, sering kali melibatkan
+        mekanisme (seperti checksum) untuk memverifikasi bahwa konten objek
+        digital tidak telah diubah atau dirusak.
+      zh: >-
+        指定不变或稳定的质量，通常涉及一种机制（如校验和）来验证数字对象的内容未被更改或损坏。
+      es: >-
+        Especificar la cualidad de permanecer inalterado o estable, a menudo
+        involucrando un mecanismo (como una suma de verificación) para
+        verificar que el contenido de un objeto digital no ha sido alterado
+        o corrompido.
+    structured_aliases:
+      - literal_form: fixiteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Fixität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fixité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ثبات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fiksitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 固定性
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: fijeza
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: premis:fixity
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_fixity
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_fixity for conciseness (2026-02-03).
+      - |
+        **USAGE**: Use for recording digital preservation fixity information
+        such as checksums (MD5, SHA-256) that verify file integrity.

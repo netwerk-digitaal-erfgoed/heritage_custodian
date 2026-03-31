@@ -1,0 +1,41 @@
+# ==============================================================================
+# LinkML Slot Definition: paid_amount
+# ==============================================================================
+# Monetary amount paid in a payment/transfer context.
+#
+# ONTOLOGY ALIGNMENT (verified against linked.art terms):
+#
+# | Ontology       | Property         | Mapping | Notes                                                |
+# |----------------|------------------|---------|------------------------------------------------------|
+# | **Linked Art** | `la:paid_amount` | exact   | Payment -> Monetary Amount in Linked Art extensions. |
+# | **Schema.org** | `schema:price`   | close   | Price/value expression, broader commerce usage.      |
+#
+# CREATED: 2026-02-18
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/paid_amount
+name: paid_amount
+title: Paid Amount
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  la: https://linked.art/ns/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  paid_amount:
+    slot_uri: hc:paidAmount
+    description: >-
+      Specifies the amount that was paid as part of a payment or transfer.
+    range: string
+    multivalued: false
+    exact_mappings:
+      - la:paid_amount
+    close_mappings:
+      - schema:price
+    aliases:
+      - is_or_was_paid_amount
+    annotations:
+      custodian_types: '["*"]'

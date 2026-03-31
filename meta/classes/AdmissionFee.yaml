@@ -1,0 +1,141 @@
+id: https://nde.nl/ontology/hc/class/AdmissionFee
+name: AdmissionFee
+title: Admission Fee
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_price
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+classes:
+  AdmissionFee:
+    class_uri: schema:PriceSpecification
+    description: >-
+      Fee charged for admission to a heritage custodian facility or event.
+    alt_descriptions:
+      nl: "Tarief dat wordt gerekend voor toegang tot een erfgoedbeheerderfaciliteit of evenement."
+      de: "Gebühr für den Einlass zu einer Einrichtung oder Veranstaltung eines Kulturgüterverwalters."
+      fr: "Frais d'entrée pour l'accès à une installation ou un événement d'un dépositaire du patrimoine."
+      es: "Tarifa cobrada por la admisión a una instalación o evento de un custodio del patrimonio."
+      ar: "رسم يُفرض للدخول إلى منشأة أو حدث لأمين التراث."
+      id: "Biaya yang dibebankan untuk masuk ke fasilitas atau acara pengelola warisan."
+      zh: "进入遗产保管人设施或活动所收取的费用。"
+    examples:
+    - value:
+        has_label: Adult Admission
+        has_price: 20.00
+        has_type: STANDARD
+        has_description: Standard adult admission ticket
+      description: Standard adult admission fee
+    - value:
+        has_label: Student Discount
+        has_price: 10.00
+        has_type: DISCOUNTED
+        has_description: Reduced rate for students with valid ID
+      description: Student discounted admission
+    - value:
+        has_label: Free Admission
+        has_price: 0.00
+        has_type: FREE
+        has_description: No charge for admission
+      description: Free admission policy
+    close_mappings:
+    - schema:PriceSpecification
+    - schema:Offer
+    related_mappings:
+    - schema:MonetaryAmount
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: entreegeld
+      in_language: nl
+    - literal_form: toegangsprijs
+      in_language: nl
+    - literal_form: Eintrittspreis
+      in_language: de
+    - literal_form: Eintrittsgeld
+      in_language: de
+    - literal_form: prix d'entrée
+      in_language: fr
+    - literal_form: droit d'entrée
+      in_language: fr
+    - literal_form: precio de entrada
+      in_language: es
+    - literal_form: tarifa de admisión
+      in_language: es
+    - literal_form: رسوم الدخول
+      in_language: ar
+    - literal_form: سعر التذكرة
+      in_language: ar
+    - literal_form: biaya masuk
+      in_language: id
+    - literal_form: harga tiket
+      in_language: id
+    - literal_form: 入场费
+      in_language: zh
+    - literal_form: 门票价格
+      in_language: zh
+    keywords:
+    - admission fee
+    - entrance fee
+    - ticket price
+    - pricing
+    - discount
+    - free admission
+    - student rate
+    - senior rate
+    slots:
+    - has_label
+    - has_price
+    - has_description
+    - has_type
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Adult Admission
+        - value: Student Discount
+        - value: Senior Rate
+        - value: Free Admission
+      has_price:
+        range: float
+        required: true
+        examples:
+        - value: 20.00
+        - value: 10.00
+        - value: 0.00
+      has_description:
+        required: false
+        examples:
+        - value: Standard adult admission ticket
+        - value: Reduced rate for students with valid ID
+      has_type:
+        range: string
+        required: false
+        examples:
+        - value: STANDARD
+        - value: DISCOUNTED
+        - value: FREE
+        - value: MEMBER
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: "Admission fees are common for museums and some heritage sites, but not universally applicable to all custodians."
+      custodian_types: "['Museum', 'Archive', 'Library']"
+      fee_types: "STANDARD, DISCOUNTED, FREE, MEMBER, GROUP"
+    comments:
+    - Represents pricing for visitor access
+    - May include multiple fee tiers (adult, student, senior, etc.)
+    - Free admission is represented with price of 0.00
+    - Often used with AdmissionInfo for comprehensive visitor information
+    - 'Preserved from prior description: Fee charged for admission to a heritage custodian facility or event. Represents pricing information for visitor access to museums, archives, libraries, or special exhibitions. May include standard rates, discounted rates, and free admission policies.'
+    see_also:
+    - AdmissionInfo
+    - https://schema.org/PriceSpecification
+    - https://schema.org/Offer

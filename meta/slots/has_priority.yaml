@@ -1,0 +1,115 @@
+# ==============================================================================
+# LinkML Slot Definition: has_priority
+# ==============================================================================
+# Assigns the level of importance, urgency, or precedence to a task, process,
+# or entity relative to others.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                     | File/Line                   | Mapping | Notes                                                              |
+# |------------|------------------------------|-----------------------------|---------|--------------------------------------------------------------------|
+# | **Schema** | `schema:passengerPriorityStatus` | schemaorg.owl:29205-29208 | n/a     | "Priority status for boarding." Domain: FlightReservation only.    |
+# | **Schema** | `schema:position`            | schemaorg.owl:30066-30075   | n/a     | "Position in a series." Ordinal position, not importance level.    |
+#
+# No external ontology defines a general-purpose "priority" property;
+# slot_uri remains hc:hasPriority.
+#
+# CREATED: 2026-01-19
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_priority
+name: has_priority
+title: Has Priority
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_priority:
+    slot_uri: hc:hasPriority
+    description: >-
+      Assigns or indicates the level of importance, urgency, or precedence
+      given to a task, message, process, or entity relative to others. In
+      heritage custodian contexts this is used to triage conservation work
+      orders, rank digitisation backlogs, schedule exhibition installations,
+      and allocate limited preservation resources. Typical values include
+      CRITICAL, HIGH, MEDIUM, and LOW, though domain-specific schemes may
+      define additional levels.
+    alt_descriptions:
+      nl: >-
+        Wijst het niveau van belang, urgentie of voorrang toe aan een taak,
+        bericht, proces of entiteit ten opzichte van anderen.
+      de: >-
+        Weist einer Aufgabe, Nachricht, einem Prozess oder einer Entität
+        das Maß an Wichtigkeit, Dringlichkeit oder Vorrang im Vergleich
+        zu anderen zu.
+      fr: >-
+        Attribue ou indique le niveau d'importance, d'urgence ou de priorité
+        accordé à une tâche, un message, un processus ou une entité par
+        rapport aux autres.
+      ar: >-
+        يعيّن أو يشير إلى مستوى الأهمية أو الاستعجال أو الأسبقية الممنوحة
+        لمهمة أو رسالة أو عملية أو كيان بالنسبة للآخرين.
+      id: >-
+        Menetapkan atau menunjukkan tingkat kepentingan, urgensi, atau
+        prioritas yang diberikan kepada tugas, pesan, proses, atau entitas
+        dibandingkan dengan yang lain.
+      zh: >-
+        分配或指示相对于其他任务、消息、流程或实体的重要性、紧迫性或优先级别。
+      es: >-
+        Asigna o indica el nivel de importancia, urgencia o precedencia
+        otorgado a una tarea, mensaje, proceso o entidad en relación con
+        otros.
+    structured_aliases:
+      - literal_form: prioriteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Priorität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: priorité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أولوية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: prioritas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 优先级
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: prioridad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    aliases:
+      - priority
+      - processing_priority
+    examples:
+      - value: "HIGH"
+        description: >-
+          A water-damaged 16th-century manuscript is flagged as high priority
+          for immediate conservation treatment.
+      - value: "CRITICAL"
+        description: >-
+          An active mould outbreak in a storage facility triggers a critical
+          priority response for environmental remediation.
+      - value: "LOW"
+        description: >-
+          Routine re-cataloguing of a stable print collection is assigned
+          low priority relative to urgent digitisation projects.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Used for planning and resource allocation. Consuming systems may
+        define an enumeration (e.g., PriorityLevel) and narrow the range
+        via slot_usage.
+      - >-
+        No standard ontology defines a general-purpose priority property.
+        schema:passengerPriorityStatus exists but is domain-specific to
+        flight reservations.

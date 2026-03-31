@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: generate
+# ==============================================================================
+# To produce or bring into existence through a process or operation.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line          | Mapping | Notes                                      |
+# |---------------|--------------------|--------------------|---------|---------------------------------------------|
+# | **PROV-O**    | `prov:generated`   | prov.ttl:580-591   | close   | Provenance-specific: Activity→Entity chain. |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/generate
+name: generate
+title: generate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  generate:
+    name: generate
+    title: generate
+    slot_uri: hc:generate
+    description: >-
+      To produce, create, cause to arise, or bring into existence (such as data,
+      reports, energy, or code) through a specific process or operation.
+    alt_descriptions:
+      nl: >-
+        Produceren, creëren, doen ontstaan of tot stand brengen (zoals gegevens,
+        rapporten, energie of code) door middel van een specifiek proces of
+        bewerking.
+      de: >-
+        Produzieren, erzeugen, hervorbringen oder ins Dasein rufen (wie Daten,
+        Berichte, Energie oder Code) durch einen bestimmten Prozess oder Vorgang.
+      fr: >-
+        Produire, créer, faire naître ou amener à l'existence (comme des données,
+        des rapports, de l'énergie ou du code) par un processus ou une opération
+        spécifique.
+      ar: >-
+        إنتاج أو إنشاء أو التسبب في نشوء أو إيجاد (مثل البيانات أو التقارير أو
+        الطاقة أو الشفرة البرمجية) من خلال عملية أو تشغيل محدد.
+      id: >-
+        Memproduksi, menciptakan, menimbulkan, atau mewujudkan (seperti data,
+        laporan, energi, atau kode) melalui proses atau operasi tertentu.
+      zh: >-
+        通过特定的过程或操作来生产、创建、引起产生或使之存在（如数据、报告、能源或代码）。
+      es: >-
+        Producir, crear, hacer surgir o traer a la existencia (como datos,
+        informes, energía o código) mediante un proceso u operación específica.
+    structured_aliases:
+      - literal_form: genereren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erzeugen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: générer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: توليد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menghasilkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 生成
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: generar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    # range: Output
+    multivalued: true
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - prov:generated  # prov.ttl:580-591 — Activity→Entity provenance chain; this slot is broader (general production)
+    aliases:
+      - has_or_had_generation
+      - generates_or_generated
+      - has_generate
+    comments:
+      - |
+        **ONTOLOGY NOTE**: `prov:generated` (prov.ttl:580-591) is the PROV-O provenance
+        relationship linking an Activity to an Entity it produced. Domain: Activity, Range: Entity.
+        This slot is broader — it covers general production/creation, not just provenance tracking.
+        Therefore demoted from exact to close.

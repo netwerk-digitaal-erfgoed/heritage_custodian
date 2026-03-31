@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: has_value
+# ==============================================================================
+# Quantitative magnitude, worth, or content assigned to a variable or property
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **RDF**       | `rdf:value`           | RDF standard         | exact   | Idiomatic RDF property for         |
+# |               |                       |                      |         | structured values.                 |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-08 - Pass 1: added multilingual, removed redundant exact_mapping, cleaned prefixes
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_value
+name: has_value
+title: Has Value
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_value:
+    slot_uri: rdf:value
+    description: >-
+      The quantitative magnitude, worth, or specific content assigned to a
+      variable, parameter, or property.
+    alt_descriptions:
+      nl: >-
+        De kwantitatieve grootte, waarde of specifieke inhoud die aan een
+        variabele, parameter of eigenschap is toegewezen.
+      de: >-
+        Die quantitative Größe, der Wert oder der spezifische Inhalt, der
+        einer Variablen, einem Parameter oder einer Eigenschaft zugewiesen ist.
+      fr: >-
+        La grandeur quantitative, la valeur ou le contenu spécifique attribué
+        à une variable, un paramètre ou une propriété.
+      ar: >-
+        المقدار الكمي أو القيمة أو المحتوى المحدد المخصص لمتغير أو معلمة
+        أو خاصية.
+      id: >-
+        Besaran kuantitatif, nilai, atau konten spesifik yang ditetapkan untuk
+        variabel, parameter, atau properti.
+      zh: >-
+        分配给变量、参数或属性的定量大小、价值或特定内容。
+      es: >-
+        La magnitud cuantitativa, el valor o el contenido específico asignado
+        a una variable, parámetro o propiedad.
+    structured_aliases:
+      - literal_form: Waarde
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Valeur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قيمة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Nilai
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 值
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Valor
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_value
+      - has_or_had_appellation_value
+      - has__appellation_value
+      - has_or_had_verbatim_value
+      - has_verbatim_value
+      - person_claim_value
+      - rate_value
+      - requirement_value
+      - research_value
+    examples:
+      - value: "23.5"
+        description: Temperature measurement value
+      - value: "true"
+        description: Boolean flag value
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: return
+# ==============================================================================
+# Sending a purchased, borrowed, or leased item back to its origin or owner.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                          | File/Line              | Mapping  | Notes                                                      |
+# |---------------|-----------------------------------|------------------------|----------|------------------------------------------------------------|
+# | **Schema.org**| `schema:object`                   | schemaorg.owl:27871-27892| broad   | "The object upon which the action is carried out." Generic Action→Thing. |
+# | **CIDOC-CRM** | `crm:P30_transferred_custody_of`  | CIDOC:1904-1917        | related  | "Identifies the Physical Thing concerned in a Transfer of Custody." |
+# | **Schema.org**| `schema:returnMethod`             | schemaorg.owl:33580-33602| related | "The type of return method offered." About method, not item. |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/return
+name: return
+title: Return
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  return:
+    slot_uri: hc:return
+    description: >-
+      Signifies the action or process of sending a purchased, borrowed, or leased item back to its origin, seller, or owner.
+    comments:
+      - "Links a ReturnEvent to the specific Item that was returned."
+      - "May be multivalued for loan returns involving multiple objects."
+      - "Relationship to Loan: Loan.loaned_items -> Items loaned out; ReturnEvent.item_returned -> Items returned; should match loaned_items for complete returns."
+      - "Migration (2026-01-22): Part of condition_on_return -> ReturnEvent migration per slot_fixes.yaml (Rule 53)."
+    examples:
+      - value: "hc:object/mauritshuis-670"
+        description: Reference to returned painting
+    alt_descriptions:
+      nl: >-
+        Duidt de handeling of het proces aan van het terugsturen van een gekocht, geleend of gehuurd item naar de oorsprong, verkoper of eigenaar.
+      de: >-
+        Bezeichnet die Handlung oder den Vorgang der Rücksendung eines gekauften, geliehenen oder geleasten Gegenstands an seinen Ursprung, Verkäufer oder Eigentümer.
+      fr: >-
+        Signifie l'action ou le processus de renvoi d'un article acheté, emprunté ou loué à son origine, vendeur ou propriétaire.
+      ar: >-
+        يشير إلى إجراء أو عملية إعادة عنصر تم شراؤه أو استعارته أو تأجيره إلى مصدره أو بائعه أو مالكه.
+      id: >-
+        Menandakan tindakan atau proses pengiriman kembali barang yang dibeli, dipinjam, atau disewa ke asal, penjual, atau pemiliknya.
+      zh: >-
+        表示将购买、借用或租赁的物品寄回其来源、卖方或所有者的行为或过程。
+      es: >-
+        Significa la acción o proceso de devolver un artículo comprado, prestado o arrendado a su origen, vendedor o propietario.
+    structured_aliases:
+      - literal_form: Retour
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rückgabe
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Retour
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: إعادة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pengembalian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 退还
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Devolución
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined: false
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - item_returned
+    broad_mappings:
+      - schema:object  # schemaorg.owl:27871-27892 - "The object upon which the action is carried out." Generic Action→Thing.
+    related_mappings:
+      - crm:P30_transferred_custody_of  # CIDOC:1904-1917 - "Identifies the Physical Thing in a Transfer of Custody."
+      - schema:returnMethod  # schemaorg.owl:33580-33602 - "The type of return method offered." About method, not item.

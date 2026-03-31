@@ -1,0 +1,122 @@
+# ==============================================================================
+# LinkML Slot Definition: hold
+# ==============================================================================
+# That a heritage institution possesses, maintains custody of, or preserves a
+# particular item or collection as part of its inventory.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                              | File/Line               | Mapping | Notes                              |
+# |---------------|---------------------------------------|-------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:owns`                         | schemaorg.owl:28732-28760| related | "Things owned by the organization  |
+# |               |                                       |                         |         | or person." Ownership ≠ custody.   |
+# | **CIDOC-CRM** | `crm:P49i_is_former_or_current_keeper_of` | CIDOC_CRM:2410-2435| close   | Inverse: "is former or current     |
+# |               |                                       |                         |         | keeper of." Custody, not ownership.|
+# | **RiC-O**     | `rico:isOrWasHolderOf`                | RiC-O_1-1.rdf:6436-6470 | close   | "has or had holder" (inverse).     |
+# |               |                                       |                         |         | Archives holding relationship.     |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/hold
+name: hold
+title: Hold
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  la: https://linked.art/ns/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  hold:
+    slot_uri: hc:hold
+    description: >-
+      That a heritage institution possesses, maintains custody of, or preserves
+      a particular item or collection as part of its inventory.
+    alt_descriptions:
+      nl: >-
+        Dat een erfgoedinstelling een bepaald object of een bepaalde collectie
+        bezit, in bewaring heeft of bewaart als onderdeel van haar inventaris.
+      de: >-
+        Dass eine Kulturerbeeinrichtung einen bestimmten Gegenstand oder eine
+        bestimmte Sammlung besitzt, in Obhut hält oder als Teil ihres
+        Inventars bewahrt.
+      fr: >-
+        Qu'une institution patrimoniale possède, conserve sous sa garde ou
+        préserve un objet ou une collection particulière dans le cadre de
+        son inventaire.
+      ar: >-
+        أن مؤسسة تراثية تمتلك أو تحتفظ بحراسة أو تحفظ عنصرًا أو مجموعة
+        معينة كجزء من مقتنياتها.
+      id: >-
+        Bahwa sebuah lembaga warisan budaya memiliki, menjaga, atau melestarikan
+        suatu benda atau koleksi tertentu sebagai bagian dari inventarisnya.
+      zh: >-
+        遗产机构拥有、保管或保存某一特定物品或藏品作为其库存的一部分。
+      es: >-
+        Que una institución patrimonial posee, mantiene en custodia o preserva
+        un objeto o colección particular como parte de su inventario.
+    structured_aliases:
+      - literal_form: Bezit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bestand
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Détention
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: حيازة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kepemilikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 持有
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Tenencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_heritage_holding
+    comments:
+      - >-
+        Collection scope examples: corporate records (business documents, board
+        minutes, correspondence), product development (design drawings,
+        prototypes, patents, R&D notebooks), marketing materials
+        (advertisements, brochures, packaging, logos), manufacturing artifacts
+        (machinery, tools, production equipment), photographic collections
+        (corporate photography, product images, facilities), audiovisual
+        materials (commercials, promotional films, oral histories), publications
+        (annual reports, employee newsletters, trade catalogs), brand objects
+        (historic products, packaging samples, promotional items).
+      - >-
+        Heritage holdings reveal collection depth and preservation commitment.
+    examples:
+      - value: >-
+          Brewing equipment (1867-present), Advertising archive, Bottle/label
+          collections, Photography
+      - value: >-
+          Vehicle prototypes, Engineering drawings, Patent documents,
+          Manufacturing records
+      - value: >-
+          Perfume formulas (1920s-present), Bottle designs, Fashion sketches,
+          Advertising campaigns
+      - value: >-
+          Computer hardware (1960s-present), Technical manuals, Software code,
+          Oral histories
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:owns  # schemaorg.owl:28732-28760 — "Things owned by the organization or person." Ownership ≠ custody/holding.
+      - la:current_permanent_custodian_of  # Linked Art extensions: inverse of current_permanent_custodian (Actor->Physical Object)
+    close_mappings:
+      - crm:P49i_is_former_or_current_keeper_of  # CIDOC_CRM:2410-2435 — "is former or current keeper of." Custody relationship.
+      - rico:isOrWasHolderOf  # RiC-O_1-1.rdf:6436-6470 — "has or had holder" (inverse). Archives holding.

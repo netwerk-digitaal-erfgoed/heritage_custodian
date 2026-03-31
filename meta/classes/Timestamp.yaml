@@ -1,0 +1,101 @@
+id: https://nde.nl/ontology/hc/class/Timestamp
+name: timestamp_class
+title: Timestamp
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  time: http://www.w3.org/2006/time#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/comply_with
+- ../slots/has_level
+- ../slots/has_score
+- ../slots/has_timestamp
+classes:
+  Timestamp:
+    class_uri: time:Instant
+    description: >-
+      Point in time with optional precision level and calendar system metadata for partial date representation.
+    alt_descriptions:
+      nl: Tijdstip met optioneel precisieniveau en kalendersysteemmetadata voor gedeeltelijke datumweergave.
+      de: Zeitpunkt mit optionaler Genauigkeitsstufe und Kalendersystem-Metadaten für partielle Datumsdarstellung.
+      fr: Point dans le temps avec niveau de précision facultatif et métadonnées du système calendaire pour la représentation partielle des dates.
+      es: Punto en el tiempo con nivel de precisión opcional y metadatos del sistema de calendario para representación parcial de fechas.
+      ar: نقطة زمنية مع مستوى دقة اختياري وبيانات نظام التقويم للتمثيل الجزئي للتواريخ.
+      id: Titik waktu dengan tingkat presisi opsional dan metadata sistem kalender untuk representasi tanggal parsial.
+      zh: 带有可选精度级别和日历系统元数据的时间点，用于部分日期表示。
+    structured_aliases:
+    - literal_form: tijdstempel
+      in_language: nl
+    - literal_form: Zeitstempel
+      in_language: de
+    - literal_form: horodatage
+      in_language: fr
+    - literal_form: marca de tiempo
+      in_language: es
+    - literal_form: طابع زمني
+      in_language: ar
+    - literal_form: cap waktu
+      in_language: id
+    - literal_form: 时间戳
+      in_language: zh
+    close_mappings:
+    - crm:E61_Time_Primitive
+    related_mappings:
+    - xsd:dateTime
+    - schema:DateTime
+    broad_mappings:
+    - time:Instant
+    slots:
+    - has_timestamp
+    - has_level
+    - comply_with
+    - has_score
+    slot_usage:
+      has_score:
+        required: true
+        pattern: "^-?\\d{4}(-\\d{2})?(-\\d{2})?(T\\d{2}:\\d{2}(:\\d{2})?(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?)?$"
+      has_level:
+        required: false
+        examples:
+        - value: year
+        - value: day
+        - value: second
+      comply_with:
+        range: CalendarSystem
+        required: false
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+        - value:
+    comments:
+    - Provides reusable class for temporal instants with explicit precision indicators
+    - Supports EDTF-style partial dates (year-only, year-month, full date, datetime)
+    - Calendar system annotation for non-Gregorian dates
+    - Use cases include TimeSpan boundaries, validity dates, update timestamps, historical dates with varying precision
+    - Precision levels are year (1995), month (1995-06), day (1995-06-15), datetime (1995-06-15T10:30:00)
+    - Replaces valid_to_geo, valid_to, valid_from_geo, valid_from, updated_at, unesco_inscription_year per slot_fixes.yaml
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Generic timestamp class applicable to all types.
+      custodian_types_primary:
+      specificity_score: 0.15
+      specificity_rationale: Very broadly applicable generic class for temporal points.
+    examples:
+    - value: |
+        has_timestamp: "1995"
+        has_level: year
+    - value: |
+        has_timestamp: "2024-06-15"
+        has_level: day
+        comply_with:
+    - value: |
+        has_timestamp: "2024-06-15T14:30:00Z"
+        has_level: second
+        comply_with:

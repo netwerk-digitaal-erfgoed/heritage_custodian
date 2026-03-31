@@ -1,0 +1,91 @@
+# ==============================================================================
+# LinkML Slot Definition: grant
+# ==============================================================================
+# Officially give, bestow, or transfer a right, privilege, or sum of money.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                                                       |
+# |---------------|-----------------------|--------------------------|---------|-----------------------------------------------------------------------------|
+# | **Schema.org**| `schema:Grant` (CLASS)| schemaorg.owl:2369-2378  | —       | "A grant, typically financial or otherwise quantifiable, of resources."      |
+# |               |                       |                          |         | This is a CLASS, not a property. Cannot be used as slot_uri or mapping.     |
+# | **Schema.org**| `schema:funding`      | schemaorg.owl:18774-18800| related | "A Grant that directly or indirectly provide funding or sponsorship for     |
+# |               |                       |                          |         | this item." Domain: Product|CreativeWork|Event|Person|Organization. About   |
+# |               |                       |                          |         | receiving a grant (inverse), and financially specific.                      |
+#
+# NOTE: The original file had slot_uri: schema:grant, but schema:Grant is a
+# Class, not a property. Reverted to hc:grant.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/grant
+name: grant
+title: Grant
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  grant:
+    slot_uri: hc:grant
+    description: >-
+      Officially gives, bestows, or transfers a right, privilege, permission,
+      or sum of money to an individual or entity.
+    alt_descriptions:
+      nl: >-
+        Verleent, schenkt of draagt officieel een recht, voorrecht,
+        toestemming of geldbedrag over aan een individu of entiteit.
+      de: >-
+        Verleiht, gewahrt oder ubertragt offiziell ein Recht, Privileg,
+        eine Genehmigung oder einen Geldbetrag an eine Person oder Einheit.
+      fr: >-
+        Accorde, confere ou transfere officiellement un droit, un privilege,
+        une permission ou une somme d'argent a un individu ou une entite.
+      ar: >-
+        يمنح أو يخول أو ينقل رسميًا حقًا أو امتيازًا أو إذنًا أو مبلغًا
+        ماليًا إلى فرد أو كيان.
+      id: >-
+        Secara resmi memberikan, menganugerahkan, atau mentransfer hak,
+        hak istimewa, izin, atau sejumlah uang kepada individu atau
+        entitas.
+      zh: >-
+        正式授予、赐予或转让权利、特权、许可或一笔资金给个人或实体。
+      es: >-
+        Otorga, concede o transfiere oficialmente un derecho, privilegio,
+        permiso o suma de dinero a un individuo o entidad.
+    structured_aliases:
+      - literal_form: Verlening
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Gewahrung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Octroi
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منح
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pemberian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 授予
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Otorgamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - grants_or_granted
+    related_mappings:
+      - schema:funding  # schemaorg.owl:18774-18800 - "A Grant that directly or indirectly provide funding or sponsorship for this item." About receiving a grant (inverse direction), financially specific.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - "NOTE: The original file had slot_uri: schema:grant and exact_mappings: schema:grant, but schema:Grant is a Class (not a property) in Schema.org. Reverted slot_uri to hc:grant and removed incorrect exact_mapping."

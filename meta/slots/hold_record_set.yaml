@@ -1,0 +1,158 @@
+# ==============================================================================
+# LinkML Slot Definition: hold_record_set
+# ==============================================================================
+# Connects a parent entity (organization, archive, collection, fonds,
+# repository, portal, or archival unit) to a specific subset or child group
+# of records contained within it or linked to it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                     | File/Line                  | Mapping | Notes                                            |
+# |----------------|------------------------------|----------------------------|---------|--------------------------------------------------|
+# | **RiC-O**      | `rico:isOrWasHolderOf`       | RiC-O_1-1.rdf:13640-13696 | close   | "Connects an Agent to a Record Resource or        |
+# |                |                              |                            |         | Instantiation that the Agent holds or held."      |
+# |                |                              |                            |         | Domain: Agent. Range: RecordResource. Same        |
+# |                |                              |                            |         | custodial semantics, but our slot targets          |
+# |                |                              |                            |         | RecordSetType (types) not instances.              |
+# | **RiC-O**      | `rico:includesOrIncluded`    | RiC-O_1-1.rdf:9522-9580   | close   | RecordSet->Record/RecordSet; "aggregates or       |
+# |                |                              |                            |         | aggregated".                                      |
+# | **RiC-O**      | `rico:directlyIncludes`      | RiC-O_1-1.rdf:2420-2465   | narrow  | RecordSet->Record/RecordSet; direct inclusion     |
+# |                |                              |                            |         | only (not transitive).                            |
+# | **RiC-O**      | `rico:hasRecordSetType`      | RiC-O_1-1.rdf:8967-8996   | related | "Connects a Record Set to a Record Set Type that  |
+# |                |                              |                            |         | categorizes it." Domain: RecordSet->RecordSetType.|
+# |                |                              |                            |         | Same range, but our domain is Agent not RecordSet.|
+# |                |                              |                            |         | Slot is a shortcut bypassing intermediate entity. |
+# | **DCTerms**    | `dcterms:hasPart`            | dcterms.rdf:1347-1370      | broad   | "A related resource that is included either        |
+# |                |                              |                            |         | physically or logically in the described resource."|
+# |                |                              |                            |         | Very generic containment.                         |
+# | **Schema.org** | `schema:hasPart`             | schemaorg.owl:20403-20425  | broad   | CreativeWork->CreativeWork; general partitive.    |
+#
+# DEMOTED: rico:hasRecordSetType from close->related (domain mismatch:
+#   RecordSet vs Agent).
+#
+# MERGED: has_record_set slot (2026-02-11) - same semantic meaning.
+#
+# CREATED: 2026-02-09
+# UPDATED: 2026-02-11
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/hold_record_set
+name: hold_record_set
+title: Hold Record Set
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  hold_record_set:
+    slot_uri: hc:holdRecordSet
+    range: string  # uriorcurie
+    multivalued: true
+    description: >-
+      Connects a parent entity, whether an organization, an archive, or a
+      larger collection, to a specific subset or child group of records
+      contained within it.
+    alt_descriptions:
+      nl: >-
+        Verbindt een bovenliggende entiteit, of het nu een organisatie, een
+        archief of een grotere collectie is, met een specifieke deelverzameling
+        of onderliggende groep archiefstukken die erin is opgenomen.
+      de: >-
+        Verbindet eine uebergeordnete Entitaet, sei es eine Organisation, ein
+        Archiv oder eine groessere Sammlung, mit einer bestimmten Teilmenge
+        oder untergeordneten Gruppe von Unterlagen, die darin enthalten ist.
+      fr: >-
+        Relie une entite parente, qu'il s'agisse d'une organisation, d'une
+        archive ou d'une collection plus vaste, a un sous-ensemble ou un
+        groupe subordonne specifique de documents qu'elle contient.
+      ar: >-
+        يربط كيانا رئيسيا، سواء كان منظمة أو أرشيفا أو مجموعة أكبر، بمجموعة
+        فرعية محددة أو مجموعة تابعة من السجلات المتضمنة فيه.
+      id: >-
+        Menghubungkan entitas induk, baik organisasi, arsip, maupun koleksi
+        yang lebih besar, ke subset tertentu atau kelompok anak dari rekod
+        yang terkandung di dalamnya.
+      zh: >-
+        将父实体（无论是组织、档案馆还是更大的馆藏）连接到其中包含的特定记录
+        子集或子组。
+      es: >-
+        Conecta una entidad principal, ya sea una organizacion, un archivo o
+        una coleccion mas amplia, con un subconjunto especifico o grupo
+        subordinado de registros contenidos en ella.
+    structured_aliases:
+      - literal_form: Archiefbestandtype
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bestandsgruppe
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Type de fonds
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نوع المجموعة الأرشيفية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Jenis kumpulan rekod
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 档案组类型
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Tipo de agrupacion documental
+        predicate: EXACT_SYNONYM
+        in_language: es
+    aliases:
+      - hold_or_held_record_set_type
+      - has_record_set
+      - record_count
+    examples:
+      - value: "hc:UniversityAdministrativeFonds"
+        description: Academic archive holds university administrative fonds
+      - value: "hc:CivilRegistrySeries"
+        description: Municipal archive holds civil registry series
+    comments:
+      - >-
+        This slot replaces free-text "Scope" descriptions in custodian type
+        classes with structured semantic links to defined RecordSetType classes.
+      - >-
+        Dual-class pattern integration: bridges the custodian type
+        (ArchiveOrganizationType subclass) with its corresponding
+        RecordSetType subclasses, completing the dual-class pattern for
+        heritage institutions.
+      - >-
+        Ontological semantics: the custodian is the Agent
+        (rico:CorporateBody), the record set types are the RecordResource
+        classifications, and the relationship expresses custodial
+        responsibility for these record types.
+      - >-
+        rico:isOrWasHolderOf (RiC-R039) is the closest RiC-O property, but
+        links Agent to actual RecordResource instances, whereas this slot
+        links to RecordSetType categories (a shortcut that combines holding
+        and typing).
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        hold_or_held_record_set_type applies to all custodian types - used
+        for linking any heritage institution type to the record/collection
+        types it holds.
+      rico_property: rico:isOrWasHolderOf
+      rico_property_uri: https://www.ica.org/standards/RiC/ontology#isOrWasHolderOf
+      rico_inverse: rico:hasOrHadHolder
+      rico_domain: rico:Agent
+      rico_range: rico:RecordResource | rico:Instantiation
+      rico_cm_correspondence: RiC-R039 ('is or was holder of' relation)
+    close_mappings:
+      - rico:isOrWasHolderOf  # RiC-O_1-1.rdf:13640-13696 - "Connects an Agent to a Record Resource or Instantiation that the Agent holds or held." Same custodial semantics; range differs (RecordResource vs RecordSetType).
+      - rico:includesOrIncluded  # RiC-O_1-1.rdf:9522-9580 - RecordSet->Record/RecordSet; "aggregates or aggregated"
+    narrow_mappings:
+      - rico:directlyIncludes  # RiC-O_1-1.rdf:2420-2465 - RecordSet->Record/RecordSet; direct inclusion only (not transitive)
+    related_mappings:
+      - rico:hasRecordSetType  # RiC-O_1-1.rdf:8967-8996 - "Connects a Record Set to a Record Set Type that categorizes it." Same range (RecordSetType), but domain is RecordSet not Agent.
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "A related resource that is included either physically or logically in the described resource."
+      - schema:hasPart  # schemaorg.owl:20403-20425 - CreativeWork->CreativeWork; general partitive relation

@@ -1,0 +1,112 @@
+id: https://nde.nl/ontology/hc/class/ReasoningContent
+name: reasoning_content_class
+title: Reasoning Content Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+
+classes:
+  ReasoningContent:
+    class_uri: prov:Entity
+    description: >-
+      Large-language-model reasoning output preserved across conversation turns for context continuity and provenance tracking.
+    alt_descriptions:
+      nl: >-
+        Redeneringsuitvoer van grote taalmodellen bewaard over gespreksbeurten voor contextcontinuïteit en herkomsttracking.
+      de: >-
+        Large-Language-Model-Denkausgabe, die über Gesprächsrunden hinweg für Kontextkontinuität
+        und Provenienzverfolgung erhalten bleibt.
+      fr: >-
+        Sortie de raisonnement de grand modèle de langage préservée entre les tours de conversation
+        pour la continuité contextuelle et le suivi de provenance.
+      es: >-
+        Salida de razonamiento de modelo de lenguaje grande preservada a través de turnos de conversación
+        para continuidad contextual y seguimiento de procedencia.
+      ar: >-
+        مخرجات استدلال نموذج اللغة الكبير المحفوظة عبر أدوار المحادثة
+        لاستمرارية السياق وتتبع المصدر.
+      id: >-
+        Output penalaran model bahasa besar yang dipertahankan lintas giliran percakapan
+        untuk kontinuitas konteks dan pelacakan provenance.
+      zh: >-
+        在对话轮次中保留的大语言模型推理输出，用于上下文连续性和来源追踪。
+    structured_aliases:
+    - literal_form: redeneerinhoud
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Denkinhalt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: contenu de raisonnement
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: contenido de razonamiento
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: محتوى الاستدلال
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: konten penalaran
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 推理内容
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:Comment
+    - schema:Review
+    comments:
+    - "Definition: represents chain-of-thought / reasoning_content produced by an LLM and retained for multi-turn context."
+    - "Preserved Thinking reference: https://docs.z.ai/guides/capabilities/thinking-mode"
+    - "Operational semantics: when preserved thinking is enabled, reasoning content from previous turns is retained in context and must be returned exactly (unmodified) to the API."
+    - "Migration from clear_thinking boolean: clear_thinking=false -> preserves_or_preserved: ReasoningContent with is_preserved=true; clear_thinking=true -> is_preserved=false."
+    - "PROV-O alignment: ReasoningContent is a prov:Entity that can be linked from an LLM response via preserves_or_preserved for provenance across turns."
+    - "Use cases: multi-turn agent conversations, debugging/auditing, cache-hit optimization."
+    - Created from slot_fixes.yaml migration (2026-01-19)
+    - Replaces boolean clear_thinking with structured reasoning preservation
+    - Enables tracking what reasoning is preserved and why
+    - PROV-O Entity alignment for provenance tracking
+    - 'Preserved from prior description: LLM reasoning content preserved across conversation turns.'
+    slots:
+    - has_label
+    - has_description
+    - identified_by
+    slot_usage:
+      has_label:
+        examples:
+        - value: Turn 3 Reasoning
+      has_description:
+        examples:
+        - value: Chain-of-thought reasoning for heritage institution extraction
+      identified_by:
+        examples:
+        - value: reasoning-turn-3-20260119-143000
+    keywords:
+    - LLM reasoning
+    - chain-of-thought
+    - context preservation
+    - multi-turn conversation
+    examples:
+    - value:
+        has_label: Preserved Reasoning
+    - value:
+        has_label: Cleared Context
+        has_description: Fresh context for new query topic
+    annotations:
+      specificity_score: 0.8
+      specificity_rationale: Highly specific to LLM API reasoning preservation domain
+      custodian_types: '["D"]'
+      custodian_types_rationale: Applies to Digital Platform custodians using LLM APIs

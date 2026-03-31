@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/class/DispositionService
+name: DispositionService
+title: Disposition Service Class
+description: Service provided by a deposit archive for final disposition of records (e.g., destruction, transfer). MIGRATED from disposition_service string (2026-01-26).
+prefixes:
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+default_prefix: hc
+classes:
+  DispositionService:
+    class_uri: schema:Service
+    description: >-
+      Operational service executing archival appraisal outcomes such as transfer, return, or secure destruction of records.
+    alt_descriptions:
+      nl: >-
+        Operationele dienst die archiefwaarderingsresultaten uitvoert zoals overdracht, retourzending of veilige vernietiging van archiefbescheiden.
+      de: >-
+        Operativer Dienst, der Archivbewertungsergebnisse wie Transfer, Rückgabe oder sichere Vernichtung von Unterlagen ausführt.
+      fr: >-
+        Service opérationnel exécutant les résultats de l'évaluation archivistique tels que le transfert, le retour ou la destruction sécurisée des documents.
+      es: >-
+        Servicio operativo que ejecuta resultados de valoración archivística como transferencia, devolución o destrucción segura de documentos.
+      ar: >-
+        خدمة تشغيلية تنفذ نتائج التقييم الأرشيفي مثل النقل أو الإرجاع أو التدمير الآمن للسجلات.
+      id: >-
+        Layanan operasional yang menjalankan hasil penilaian arsip seperti transfer, pengembalian, atau penghancuran aman catatan.
+      zh: >-
+        执行档案鉴定结果（如移交、退还或安全销毁记录）的运营服务。
+    structured_aliases:
+    - literal_form: beschikkingsdienst
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Verfügungsdienst
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: service de disposition
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: servicio de disposición
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: خدمة التصرف
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: layanan disposisi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 处置服务
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - schema:Service
+    close_mappings:
+    - dcat:DataService
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+#         range: string # uriorcurie
+      has_label:
+    comments:
+    - Implements final disposition decisions from archival appraisal processes.
+    - Includes destruction, transfer to archives, or return to originator.
+    - 'Preserved from prior description: Operational service that executes appraisal outcomes such as transfer, return, or secure destruction.'
+    keywords:
+    - archival disposition
+    - records destruction
+    - transfer service
+    - appraisal execution
+    examples:
+    - value:
+        has_label: Secure Destruction
+        has_type: DESTRUCTION
+      description: Service for secure record destruction
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

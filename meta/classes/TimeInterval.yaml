@@ -1,0 +1,62 @@
+id: https://nde.nl/ontology/hc/classes/TimeInterval
+name: TimeInterval
+title: Time Interval
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  time: http://www.w3.org/2006/time#
+  schema: http://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+classes:
+  TimeInterval:
+    description: >-
+      Duration or period representing elapsed rather than a bounded span with fixed begin/end points.
+    alt_descriptions:
+      nl: Duur of periode die verstreken tijd vertegenwoordigt in plaats van een begrensde spanne met vaste begin- en eindpunten.
+      de: Dauer oder Zeitraum, der verstrichene Zeit darstellt, anstelle einer begrenzten Spanne mit festen Anfangs- und Endpunkten.
+      fr: Durée ou période représentant le temps écoulé plutôt qu'une étendue bornée avec des points de début et de fin fixes.
+      es: Duración o período que representa tiempo transcurrido en lugar de un intervalo delimitado con puntos de inicio y fin fijos.
+      ar: مدة أو فترة تمثل الوقت المنقضي بدلاً من نطاق محدد بنقاط بداية ونهاية ثابتة.
+      id: Durasi atau periode yang merepresentasikan waktu yang berlalu, bukan rentang terbatas dengan titik awal dan akhir tetap.
+      zh: 表示经过时间的时长或时段，而非具有固定起止点的有界区间。
+    structured_aliases:
+    - literal_form: tijdinterval
+      in_language: nl
+    - literal_form: Zeitintervall
+      in_language: de
+    - literal_form: intervalle de temps
+      in_language: fr
+    - literal_form: intervalo de tiempo
+      in_language: es
+    - literal_form: فاصل زمني
+      in_language: ar
+    - literal_form: interval waktu
+      in_language: id
+    - literal_form: 时间间隔
+      in_language: zh
+    class_uri: time:Duration
+    close_mappings:
+    - schema:Duration
+    related_mappings:
+    - time:Interval
+    - time:TemporalDuration
+    comments:
+    - 'DISTINCTION FROM TimeSpan: TimeSpan represents a bounded period with begin/end points (CIDOC-CRM E52); TimeInterval represents a duration/interval (e.g., "2 weeks", "quarterly")'
+    - 'USE CASES: Update frequency ("updated weekly"), Approval time ("typically 2-3 business days"), Reporting period ("annual revenue for fiscal year")'
+    - Supports ISO 8601 duration format (P1Y, P2M, P3D, PT4H)
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Time intervals applicable to all custodian types for various purposes.
+      custodian_types_primary: '*'
+      specificity_score: 0.25
+      specificity_rationale: Low specificity - universal temporal concept.
+    examples:
+    - value: "TimeInterval:\n  duration_value: \"P7D\"\n  duration_description: \"weekly\"\n"
+      description: A one-week interval for update frequency.
+    - value: "TimeInterval:\n  duration_value: \"P1Y\"\n  duration_description: \"annual\"\n"
+      description: A one-year interval for revenue reporting.
+    - value: "TimeInterval:\n  days: 3\n  duration_description: \"2-3 business days\"\n"
+      description: Typical approval time interval.
+    slots: []

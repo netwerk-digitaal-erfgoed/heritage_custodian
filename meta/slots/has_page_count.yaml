@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: has_page_count
+# ==============================================================================
+# Total number of pages in a document, publication, or record.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                | File/Line                 | Mapping  | Notes                                                                         |
+# |----------------|-------------------------|---------------------------|----------|-------------------------------------------------------------------------------|
+# | **Schema.org** | `schema:numberOfPages`  | schemaorg.owl:27691-27709 | slot_uri | "The number of pages in the book." Book→Integer. Exact semantic match.         |
+# | **BIBFRAME**   | `bf:extent`             | bibframe.rdf:2145-2152    | broad    | "Number and type of units and/or subunits." Broader: any unit count,           |
+# |                |                         |                           |          | not specifically pages.                                                       |
+# | **Dublin Core**| `dcterms:extent`        | dcterms.rdf:1269-1294     | broad    | "The size or duration of the resource." Broader: size, duration, or           |
+# |                |                         |                           |          | file size — not specifically page count.                                      |
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_page_count
+name: has_page_count
+title: Has Page Count
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_page_count:
+    slot_uri: schema:numberOfPages
+    description: >-
+      Total number of pages contained within a record, document, publication,
+      or file. For printed books and manuscripts this refers to the count of
+      printed or written pages. For digitised resources it may refer to the
+      number of scanned page images. For archival materials it indicates the
+      extent of a file or dossier in page units.
+    alt_descriptions:
+      nl: >-
+        Het totale aantal pagina's in een document, publicatie, dossier of
+        bestand.
+      de: >-
+        Die Gesamtzahl der Seiten in einem Dokument, einer Veröffentlichung,
+        einer Akte oder Datei.
+      fr: >-
+        Le nombre total de pages contenues dans un document, une publication,
+        un dossier ou un fichier.
+      ar: >-
+        العدد الإجمالي للصفحات الموجودة في سجل أو وثيقة أو منشور أو ملف.
+      id: >-
+        Jumlah total halaman yang terdapat dalam catatan, dokumen, publikasi,
+        atau berkas.
+      zh: >-
+        记录、文件、出版物或档案中包含的总页数。
+      es: >-
+        El número total de páginas contenidas en un registro, documento,
+        publicación o archivo.
+    structured_aliases:
+      - literal_form: Aantal pagina's
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Seitenzahl
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Nombre de pages
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عدد الصفحات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Jumlah halaman
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 页数
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Número de páginas
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: integer
+    multivalued: false
+    broad_mappings:
+      - bf:extent  # bibframe.rdf:2145-2152 - "Number and type of units and/or subunits making up a resource." General extent, not specifically pages.
+      - dcterms:extent  # dcterms.rdf:1269-1294 - "The size or duration of the resource." Size, duration, or file size — not specifically page count.
+    aliases:
+      - page_count
+      - page
+    examples:
+      - value: "324"
+        description: >-
+          A printed book with 324 pages.
+      - value: "12"
+        description: >-
+          A 12-page archival dossier.
+      - value: "1450"
+        description: >-
+          A digitised manuscript with 1450 scanned page images.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        schema:numberOfPages has domain schema:Book, but in practice is widely
+        used beyond books for any paginated resource. Our slot generalises to
+        records, archival dossiers, and digitised resources.
+      - >-
+        For bibliographic resources, BIBFRAME uses bf:extent with a structured
+        Extent class that captures both the numeric value and the unit type
+        (e.g. "324 pages", "12 volumes"). This slot simplifies to an integer
+        page count.
+      - >-
+        For archival extent beyond pages (e.g. linear metres, number of boxes),
+        use a more general extent or has_quantity slot instead.

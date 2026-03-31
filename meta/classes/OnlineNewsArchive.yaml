@@ -1,0 +1,84 @@
+id: https://w3id.org/nde/ontology/OnlineNewsArchive
+name: OnlineNewsArchive
+title: Online News Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  OnlineNewsArchive:
+    description: Archive organization that provides online access to digitized or born-digital news publications.
+    alt_descriptions:
+      nl: Archieforganisatie die online toegang biedt tot gedigitaliseerde of born-digital nieuwsuitgaven.
+      de: Archivorganisation mit Online-Zugang zu digitalisierten oder born-digitalen Nachrichtentiteln.
+      fr: Organisation d archives offrant un acces en ligne a des publications d actualite numerisees ou nativement numeriques.
+      es: Organizacion archivistica que ofrece acceso en linea a publicaciones periodisticas digitalizadas o nacidas digitales.
+      ar: منظمة أرشيفية تتيح وصولا عبر الإنترنت إلى منشورات إخبارية رقمية أو مولودة رقميا.
+      id: Organisasi arsip yang menyediakan akses daring ke publikasi berita hasil digitasi atau born-digital.
+      zh: 提供数字化或原生数字新闻出版物在线访问的档案机构类型。
+    structured_aliases:
+    - {literal_form: online nieuwsarchief, in_language: nl}
+    - {literal_form: Online-Nachrichtenarchiv, in_language: de}
+    - {literal_form: archive de presse en ligne, in_language: fr}
+    - {literal_form: archivo de noticias en linea, in_language: es}
+    - {literal_form: أرشيف أخبار إلكتروني, in_language: ar}
+    - {literal_form: arsip berita daring, in_language: id}
+    - {literal_form: 在线新闻档案馆, in_language: zh}
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q2001867
+    broad_mappings:
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    mixins:
+    - DigitalPlatformType
+    slot_usage:
+      identified_by:
+      has_type:
+        identifier: false
+        any_of:
+        - equals_string: hc:OnlineNewsArchive
+    annotations:
+      skos:prefLabel: Online News Archive
+      skos:altLabel: "Zeitungsbank, archivo de periódicos, archives de journaux, Digital Newspaper Archive, News Database"
+      platform_type: digital access
+      media_type: newspapers/periodicals
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - PressArchive
+    - NewspaperClippingsArchive
+    - DigitalArchive
+    - WebArchive
+    comments:
+    - Zeitungsbank (de)
+    - "archivo de periódicos (es)"
+    - archives de journaux (fr)
+    - Provides online access to news publications
+    - May include digitized historical and born-digital content
+    - 'Examples: Chronicling America, Delpher, Europeana Newspapers'

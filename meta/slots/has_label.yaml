@@ -1,0 +1,136 @@
+# ==============================================================================
+# LinkML Slot Definition: has_label
+# ==============================================================================
+# Human-readable label for an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property          | File/Line          | Mapping | Notes                                        |
+# |---------------|-------------------|--------------------|---------|----------------------------------------------|
+# | **SKOS**      | `skos:prefLabel`  | skos.rdf:117-134   | exact   | "The preferred lexical label for a resource." |
+# | **RDFS**      | `rdfs:label`      | (core RDF Schema)  | close   | General-purpose label, not "preferred."       |
+# | **Schema.org**| `schema:name`     | (schemaorg.owl)    | close   | Name property (broader: official name).       |
+#
+# CREATED: 2026-02-03
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_label
+name: has_label
+title: Has Label
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_label:
+    slot_uri: skos:prefLabel
+    description: >-
+      To specify a human-readable name, title, or short text string used to identify or describe an entity, typically intended for display purposes rather than unique identification.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een voor mensen leesbare naam, titel of korte tekstreeks die wordt gebruikt om een entiteit te identificeren of te beschrijven, doorgaans bedoeld voor weergavedoeleinden in plaats van unieke identificatie.
+      de: >-
+        Angabe eines menschenlesbaren Namens, Titels oder kurzen Textstrings zur Identifikation oder Beschreibung einer Entitaet, typischerweise fuer Anzeigezwecke statt zur eindeutigen Identifikation.
+      fr: >-
+        Specifier un nom, un titre ou une courte chaine de texte lisible par l'homme, utilise pour identifier ou decrire une entite, generalement destine a l'affichage plutot qu'a l'identification unique.
+      ar: >-
+        تحديد اسم أو عنوان أو سلسلة نصية قصيرة مقروءة بشرياً تُستخدم لتعريف أو وصف كيان ما، وعادةً ما تكون مخصصة لأغراض العرض بدلاً من التعريف الفريد.
+      id: >-
+        Menentukan nama, judul, atau string teks pendek yang dapat dibaca manusia yang digunakan untuk mengidentifikasi atau mendeskripsikan suatu entitas, biasanya dimaksudkan untuk tujuan tampilan daripada identifikasi unik.
+      zh: >-
+        指定用于标识或描述实体的人类可读名称、标题或短文本字符串，通常用于显示目的而非唯一标识。
+      es: >-
+        Especificar un nombre, titulo o cadena de texto corta legible por humanos, utilizada para identificar o describir una entidad, generalmente destinada a fines de visualizacion en lugar de identificacion unica.
+    structured_aliases:
+      - literal_form: label
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bezeichnung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: libelle
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تسمية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: label
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 标签
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: etiqueta
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - rdfs:label  # Core RDF Schema - general-purpose label, not constrained to "preferred."
+      - schema:name  # schemaorg.owl - "The name of the item." Both = human-readable label/name.
+    aliases:
+      - has_or_had_label
+      - is_or_was_halc_adm2_name
+      - has_administration_name
+      - has_or_had_archive_name
+      - is_or_was_protocol_name
+      - protocol_name
+      - has_or_had_custodian_name
+      - has_custodian_name
+      - has_or_had_secondary_label
+      - has_secondary_label
+      - statement_name
+      - policy_name
+      - connection_name
+      - conversion_type_label
+      - example_name
+      - has_archdiocese_name
+      - label_de
+      - label_es
+      - label_fr
+      - label_it
+      - label_nl
+      - label_de
+      - label_pt
+      - language_name
+      - legal_name
+      - linked_class_name
+      - location_name
+      - member_organization_name
+      - modern_place_name
+      - motivation_type_name
+      - multilingual_label
+      - name_authority
+      - name_local
+      - object_alternate_name
+      - object_label
+      - object_name
+      - organization_name
+      - outdoor_site_name
+      - performance_name
+      - period_name
+      - place_designation
+      - place_name
+      - platform_name
+      - portal_name
+      - portal_type_name
+      - post_type_name
+      - preferred_label
+      - register_name_local
+      - register_name
+      - role_name_local
+      - role_name
+      - scheme_name
+      - service_area_name
+      - social_media_platform_name
+      - space_name
+    annotations:
+      custodian_types: '["*"]'

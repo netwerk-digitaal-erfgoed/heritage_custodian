@@ -1,0 +1,130 @@
+id: https://nde.nl/ontology/hc/class/Annotation
+name: Annotation
+title: Annotation Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  oa: http://www.w3.org/ns/oa#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/contain
+  - ../slots/has_description
+  - ../slots/has_rationale
+  - ../slots/has_type
+  - ../slots/created_by
+classes:
+  Annotation:
+    class_uri: oa:Annotation
+    description: >-
+      Supplemental information attached to a resource, such as comments, notes,
+      tags, or highlighted segments. Part of the W3C Web Annotation Data Model
+      for interoperable annotation systems.
+    alt_descriptions:
+      nl: >-
+        Aanvullende informatie toegevoegd aan een bron, zoals opmerkingen, notities,
+        tags of gemarkeerde segmenten. Onderdeel van het W3C Web Annotation Data Model
+        voor interoperabele annotatiesystemen.
+      de: >-
+        Zusatzliche Informationen, die einer Ressource angehangt werden, wie Kommentare,
+        Notizen, Tags oder hervorgehobene Abschnitte. Teil des W3C Web Annotation Data
+        Model fur interoperable Annotationssysteme.
+      fr: >-
+        Information supplementaire jointe a une ressource, telle que des commentaires,
+        notes, balises ou segments mis en evidence. Fait partie du modele de donnees
+        W3C Web Annotation pour les systemes d'annotation interoperables.
+      es: >-
+        Informacion adicional adjunta a un recurso, como comentarios, notas, etiquetas
+        o segmentos resaltados. Parte del modelo de datos W3C Web Annotation para
+        sistemas de anotacion interoperables.
+      ar: >-
+        معلومات إضافية مرفقة بمورد، مثل التعليقات والملاحظات والعلامات أو الأجزاء
+        المميزة. جزء من نموذج بيانات شرح الويب W3C للأنظمة التفاعلية.
+      id: >-
+        Informasi tambahan yang dilampirkan ke sumber daya, seperti komentar, catatan,
+        tag, atau segmen yang disorot. Bagian dari Model Data Anotasi Web W3C untuk
+        sistem anotasi yang dapat dioperasikan.
+      zh: >-
+        附加到资源的补充信息，如评论、注释、标签或高亮片段。属于W3C Web注释数据模型，
+        用于可互操作的注释系统。
+    structured_aliases:
+    - literal_form: annotatie
+      in_language: nl
+    - literal_form: Anmerkung
+      in_language: de
+    - literal_form: annotation
+      in_language: fr
+    - literal_form: anotacion
+      in_language: es
+    - literal_form: تعليق توضيحي
+      in_language: ar
+    - literal_form: anotasi
+      in_language: id
+    - literal_form: 注释
+      in_language: zh
+    exact_mappings:
+    - oa:Annotation
+    close_mappings:
+    - schema:Comment
+    - schema:UserComments
+    related_mappings:
+    - prov:Entity
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_description
+    - created_by
+    - has_rationale
+    - contain
+    - has_type
+    slot_usage:
+      has_description:
+        required: false
+      created_by:
+        range: Agent
+      has_rationale:
+        range: Rationale
+      contain:
+        range: Segment
+      has_type:
+        range: AnnotationType
+    examples:
+    - value:
+        has_type: hc:CommentAnnotation
+        has_description: "This image depicts the Battle of Waterloo, 1815."
+        created_by: "https://example.org/users/historian123"
+      description: A scholarly comment annotation on an image
+    - value:
+        has_type: hc:TagAnnotation
+        has_description: "Waterloo; Napoleon; 19th century"
+        created_by: "https://example.org/users/cataloger"
+      description: A tagging annotation for subject classification
+    keywords:
+    - comment
+    - note
+    - tag
+    - highlight
+    - markup
+    - web annotation
+    - scholarly annotation
+    - user-generated content
+    comments:
+    - Part of W3C Web Annotation Data Model (https://www.w3.org/TR/annotation-vocab/)
+    - Enables interoperable annotation across platforms and systems
+    - Supports multiple motivation types (commenting, tagging, describing, etc.)
+    - |
+        Preserved from prior description:
+        
+        **Ontological Alignment**:
+        - `oa:Annotation`: Web Annotation Data Model.
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/
+    - AnnotationType
+    - AnnotationMotivationType
+    annotations:
+      specificity_score: "0.2"
+      specificity_rationale: Core annotation class from W3C Web Annotation standard
+      custodian_types: "['*']"

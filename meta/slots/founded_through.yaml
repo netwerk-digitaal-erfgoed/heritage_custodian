@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: founded_through
+# ==============================================================================
+# Links an organization or institution to its founding event.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                             | File/Line        | Mapping | Notes                    |
+# |----------------|--------------------------------------|------------------|---------|--------------------------|
+# | **Schema.org** | `schema:foundingDate`                | schemaorg.owl    | close   | Date-focused, not event  |
+# | **PROV-O**     | `prov:wasGeneratedBy`                | prov.ttl:1132-45 | close   | Generation by activity   |
+# | **CIDOC-CRM**  | `crm:P92i_was_brought_into_existence_by` | N/A          | close   | CRM existence event      |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (moved USAGE to comments), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/founded_through
+name: founded_through
+title: Founded Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  founded_through:
+    slot_uri: hc:foundedThrough
+    description: >-
+      To be established, instituted, or brought into existence as a result 
+      of a specific event, process, or legal act.
+    alt_descriptions:
+      nl: >-
+        Opgericht, geïnstitutionaliseerd of in het leven geroepen als 
+        resultaat van een specifiek evenement, proces of rechtshandeling.
+      de: >-
+        Als Ergebnis eines bestimmten Ereignisses, Prozesses oder 
+        Rechtsaktes gegründet, institutionalisiert oder ins Leben 
+        gerufen zu werden.
+      fr: >-
+        Être établi, institué ou créé à la suite d'un événement, d'un 
+        processus ou d'un acte juridique spécifique.
+      ar: >-
+        أن يتم تأسيسه أو إنشاؤه أو إيجاده نتيجة لحدث أو عملية أو 
+        إجراء قانوني محدد.
+      id: >-
+        Didirikan, dilembagakan, atau diwujudkan sebagai hasil dari 
+        peristiwa, proses, atau tindakan hukum tertentu.
+      zh: >-
+        作为特定事件、过程或法律行为的结果而成立、建立或创建。
+      es: >-
+        Ser establecido, instituido o creado como resultado de un evento, 
+        proceso o acto legal específico.
+    structured_aliases:
+      - literal_form: opgericht via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: gegründet durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fondé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أُسس من خلال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didirikan melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...创立
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: fundado mediante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: false
+    close_mappings:
+      - schema:foundingDate  # Date-focused, not event
+      - prov:wasGeneratedBy  # prov.ttl:1132-1145 - Generation by activity
+      - crm:P92i_was_brought_into_existence_by  # CRM existence event - both = entity→creation event
+    aliases:
+      - is_or_was_founded_through
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: https://nde.nl/event/founding/rijksmuseum-1800
+        description: Museum founding event reference
+    comments:
+      - |
+        **USAGE**: Represents the founding/establishment event for:
+        - Heritage custodians (museums, archives, libraries)
+        - Standards organizations
+        - Any organization with a founding date

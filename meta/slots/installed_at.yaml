@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: installed_at
+# ==============================================================================
+# The date when a component or application was set up and made operational.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line                 | Mapping | Notes                                                     |
+# |----------------|-----------------------|---------------------------|---------|------------------------------------------------------------|
+# | **Schema.org** | `schema:dateCreated`  | schemaorg.owl:14173-14196 | related | "Date CreativeWork was created"; creation ≠ installation.  |
+# | **DCTerms**    | `dcterms:available`   | dcterms.rdf:933-957       | related | "Date resource became available"; availability ≠ install.  |
+# | **PROV-O**     | `prov:startedAtTime`  | prov.ttl:1020-1028        | related | "Time at which an activity started"; activity start, not   |
+# |                |                       |                           |         | equipment installation specifically.                       |
+#
+# No standard ontology defines an "installation date" property. Retains hc:installedAt.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/installation_date
+name: installed_at
+title: Installed At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  installed_at:
+    slot_uri: hc:installedAt
+    description: >-
+      Records the specific date or timestamp when a software application,
+      component, or piece of equipment was successfully set up and made
+      operational.
+    alt_descriptions:
+      nl: >-
+        Registreert de specifieke datum of tijdstempel waarop een softwaretoepassing,
+        component of apparaat succesvol is geïnstalleerd en operationeel is gemaakt.
+      de: >-
+        Erfasst das spezifische Datum oder den Zeitstempel, wann eine
+        Softwareanwendung, Komponente oder ein Gerät erfolgreich eingerichtet
+        und betriebsbereit gemacht wurde.
+      fr: >-
+        Enregistre la date ou l'horodatage spécifique auquel une application
+        logicielle, un composant ou un équipement a été installé avec succès
+        et rendu opérationnel.
+      ar: >-
+        يسجل التاريخ أو الطابع الزمني المحدد الذي تم فيه إعداد تطبيق برمجي
+        أو مكون أو قطعة معدات بنجاح وجعلها جاهزة للتشغيل.
+      id: >-
+        Mencatat tanggal atau stempel waktu tertentu ketika aplikasi perangkat
+        lunak, komponen, atau peralatan berhasil dipasang dan dibuat operasional.
+      zh: >-
+        记录软件应用程序、组件或设备成功安装并投入运行的具体日期或时间戳。
+      es: >-
+        Registra la fecha o marca de tiempo específica en que una aplicación de
+        software, componente o equipo fue instalado exitosamente y puesto en
+        funcionamiento.
+    structured_aliases:
+      - literal_form: Installatiedatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Installationsdatum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Date d'Installation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ التثبيت
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tanggal Instalasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 安装日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fecha de Instalación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    related_mappings:
+      - schema:dateCreated   # schemaorg.owl:14173-14196 - "Date CreativeWork was created"; creation ≠ installation
+      - dcterms:available    # dcterms.rdf:933-957 - "Date resource became available"; availability ≠ installation
+      - prov:startedAtTime   # prov.ttl:1020-1028 - "Time at which an activity started"; activity start ≠ install
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - 'Schema.org suggests: dateCreated for installation date (approximate only).'
+    aliases:
+      - installation_date

@@ -1,0 +1,82 @@
+id: https://nde.nl/ontology/hc/class/DimArchives
+name: dim_archives_class
+title: Dim Archives Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  premis: http://www.loc.gov/premis/rdf/v3/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/grant_access_to
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_time_interval
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/has_access_policy
+classes:
+  DimArchives:
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    description: >-
+      Repository institution operating under restricted-access conditions where
+      use is permitted only for defined users, processes, or circumstances.
+    alt_descriptions:
+      nl: Archiefinstelling met beperkte toegang waarbij gebruik alleen voor bepaalde gebruikers procedures of omstandigheden is toegestaan.
+      de: Archivinstitution mit eingeschraenktem Zugang bei der Nutzung nur fuer definierte Nutzer Verfahren oder Bedingungen erlaubt ist.
+      fr: Institution archivistique a acces limite ou l usage est autorise seulement pour des usagers processus ou circonstances definis.
+      es: Institucion archivistica con acceso restringido donde el uso se permite solo para usuarios procesos o circunstancias definidos.
+      ar: مؤسسة أرشيفية بإتاحة مقيدة حيث يسمح بالاستخدام لفئات مستخدمين أو إجراءات أو ظروف محددة فقط.
+      id: Lembaga arsip dengan akses terbatas yang hanya mengizinkan pemakaian untuk pengguna proses atau keadaan tertentu.
+      zh: 仅在特定用户、流程或情形下开放使用的受限访问档案机构。
+    structured_aliases:
+    - {literal_form: dim archive, in_language: nl}
+    - {literal_form: Dim Archive, in_language: de}
+    - {literal_form: archive a acces limite, in_language: fr}
+    - {literal_form: archivo de acceso limitado, in_language: es}
+    - {literal_form: أرشيف محدود الإتاحة, in_language: ar}
+    - {literal_form: arsip akses terbatas, in_language: id}
+    - {literal_form: 限制访问档案机构, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    close_mappings:
+    - premis:RightsStatus
+    - wd:Q112796779
+    related_mappings:
+    - wd:Q112815447
+    - wd:Q112796578
+    slots:
+    - grant_access_to
+    - has_type
+    - hold_record_set
+    - has_access_policy
+    - has_score
+    - has_time_interval
+    - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+      grant_access_to:
+        range: AccessApplication
+        inlined: true
+        required: false
+      has_time_interval:
+        range: TimeInterval
+        inlined: true
+    comments:
+    - Organization type in the light-dim-dark access spectrum with controlled use
+    notes:
+    - |
+      Preserved from prior description (commit d52149a5):
+
+      "Archive with LIMITED access - between broadly accessible and fully closed.\n\n**Wikidata**: Q112796779 (Dim Archive)\n\n**DEFINITION**:\n\nDim Archive provides access to materials but with significant restrictions\nthat limit who can access, when, or under what conditions. This is the\nmiddle position in the Light/Dim/Dark access spectrum.\n\n**ACCESS SPECTRUM**:\n\n| Type | Access Level | Characteristics |\n|------|--------------|-----------------|\n| Light Archive (Q112815447) | Broadly accessible | Open to public/researchers |\n| **Dim Archive** | Limited access | Restricted by criteria |\n| Dark Archive (Q112796578) | No current access | Preservation only |\n\n**RESTRICTION TYPES** (reasons for \"dim\" access):\n\n1. **User-Based Restrictions**\n   - Researchers only (credentials required)\n   - Institutional affiliates only\n   - Nationality restrictions\n   - Security clearance required\n\n2. **Content-Based Restrictions**\n   - Privacy-sensitive materials (personal\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

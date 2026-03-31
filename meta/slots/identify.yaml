@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: identify
+# ==============================================================================
+# Establishing or recognizing what a particular entity or pattern is.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line                  | Mapping | Notes                                                    |
+# |---------------|----------------------------|----------------------------|---------|----------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P1_is_identified_by`  | CIDOC:1172-1187            | broad   | "Naming or identification by name/identifier." E1→E41 Appellation; limited to naming. |
+# | **DCTerms**   | `dcterms:identifier`       | dcterms.rdf:1395-1418      | related | "An unambiguous reference to the resource." About identifier strings (ISBN, DOI), not the act. |
+# | **BIBFRAME**  | `bf:identifiedBy`          | bibframe.rdf:1264-1272     | related | "Character string that differentiates a resource." Resource→Identifier object. |
+#
+# NOTES:
+# - `oa:identifying` (oa.ttl:292-295) is an instance of oa:Motivation (named individual), NOT a property — cannot be used as mapping.
+# - `crm:P35_has_identified` (CIDOC:2042-2054) is domain E14 Condition Assessment → E3 Condition State — about condition assessment, not general identification.
+# - `crm:P141_assigned` (CIDOC:4232-4244) is domain E13 Attribute Assignment → E1 CRM Entity — about attribution assignment results.
+# - No exact or close match — general identification (recognizing what something is) is broader than any single standard ontology property.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/identify
+name: identify
+title: Identify
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  bf: http://id.loc.gov/ontologies/bibframe/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  identify:
+    slot_uri: hc:identify
+    description: >-
+      To establish, recognize, or indicate who or what a particular entity,
+      object, or pattern is, typically by analyzing unique characteristics
+      or assigning a specific label.
+    alt_descriptions:
+      nl: >-
+        Vaststellen, herkennen of aangeven wie of wat een bepaalde entiteit,
+        object of patroon is, doorgaans door het analyseren van unieke
+        kenmerken of het toekennen van een specifiek label.
+      de: >-
+        Feststellen, erkennen oder angeben, wer oder was eine bestimmte Entität,
+        ein Objekt oder ein Muster ist, typischerweise durch Analyse einzigartiger
+        Merkmale oder Zuweisung einer spezifischen Bezeichnung.
+      fr: >-
+        Établir, reconnaître ou indiquer qui ou quoi est une entité, un objet
+        ou un motif particulier, généralement en analysant des caractéristiques
+        uniques ou en attribuant une étiquette spécifique.
+      ar: >-
+        تحديد أو التعرف على أو الإشارة إلى هوية كيان أو كائن أو نمط معين،
+        عادةً من خلال تحليل الخصائص الفريدة أو تعيين تسمية محددة.
+      id: >-
+        Menetapkan, mengenali, atau menunjukkan siapa atau apa suatu entitas,
+        objek, atau pola tertentu, biasanya dengan menganalisis karakteristik
+        unik atau menetapkan label tertentu.
+      zh: >-
+        通过分析独特特征或分配特定标签，确定、识别或指明特定实体、对象或模式的身份。
+      es: >-
+        Establecer, reconocer o indicar quién o qué es una entidad, objeto
+        o patrón particular, típicamente mediante el análisis de características
+        únicas o la asignación de una etiqueta específica.
+    structured_aliases:
+      - literal_form: Identificatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Identifikation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Identification
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تعريف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Identifikasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 识别
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Identificación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Speaker identification patterns include formats such as "(John): Hello there.",
+        "NARRATOR: Welcome to the museum.", or "[Curator] This painting dates from 1642."
+      - >-
+        Different from transcript speaker_id which is per-segment; this indicates whether
+        the text content as a whole includes speaker labels.
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - includes_speaker_identification
+    broad_mappings:
+      - crm:P1_is_identified_by  # CIDOC:1172-1187 - "Naming or identification of any real-world item by a name or identifier." E1→E41 Appellation; specific to naming.
+    related_mappings:
+      - dcterms:identifier  # dcterms.rdf:1395-1418 - "An unambiguous reference to the resource." About identifier strings, not the act of identifying.
+      - bf:identifiedBy  # bibframe.rdf:1264-1272 - "Character string that differentiates a resource." Resource→Identifier object.

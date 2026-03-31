@@ -1,0 +1,80 @@
+id: https://nde.nl/ontology/hc/class/TopicType
+name: TopicType
+title: Subject Topic Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  TopicType:
+    class_uri: skos:Concept
+    description: >-
+      Category for classifying subject domains that can be assigned to heritage resources (e.g., genealogy, migration, colonial history).
+    alt_descriptions:
+      nl: Categorie voor het classificeren van onderwerpdomeinen die aan erfgoedbronnen kunnen worden toegewezen.
+      de: Kategorie zur Klassifizierung von Fachgebietsdomänen, die Kulturerbeobjekten zugewiesen werden können.
+      fr: Catégorie pour classer les domaines de sujet pouvant être attribués aux ressources patrimoniales.
+      es: Categoría para clasificar dominios temáticos que pueden asignarse a recursos patrimoniales.
+      ar: فئة لتصنيف نطاقات الموضوع التي يمكن تعيينها للموارد التراثية.
+      id: Kategori untuk mengklasifikasikan domain subjek yang dapat ditugaskan ke sumber daya warisan.
+      zh: 用于分类可分配给遗产资源的主题领域的类别。
+    structured_aliases:
+    - literal_form: onderwerptype
+      in_language: nl
+    - literal_form: Thementyp
+      in_language: de
+    - literal_form: type de sujet
+      in_language: fr
+    - literal_form: tipo de tema
+      in_language: es
+    - literal_form: نوع الموضوع
+      in_language: ar
+    - literal_form: tipe topik
+      in_language: id
+    - literal_form: 主题类型
+      in_language: zh
+    abstract: true
+    tree_root: false
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      has_code:
+      has_label:
+        required: true
+      has_hypernym:
+        range: TopicType
+      has_hyponym:
+        range: TopicType
+        multivalued: true
+      has_score:
+    comments:
+    - TopicType represents CATEGORIES of subject topics as opposed to Topic (specific instance)
+    - Finding aids and collections are categorized by subject topics to facilitate discovery
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Subject topics are universal across all heritage custodian types.
+      custodian_types_primary: A
+      specificity_score: 0.50
+      specificity_rationale: >-
+        Moderately specific - topic classification is common but represents
+        a specialized vocabulary for heritage resource discovery.

@@ -1,0 +1,118 @@
+id: https://nde.nl/ontology/hc/class/AcademicArchiveRecordSetType
+name: AcademicArchiveRecordSetType
+title: Academic Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../classes/CollectionType
+- ../classes/WikidataAlignment
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/related_to
+classes:
+  AcademicArchiveRecordSetType:
+    description: >-
+      Category for grouping documentary materials accumulated by tertiary educational institutions during their administrative, academic, and operational activities.
+    alt_descriptions:
+      nl: >-
+        Categorie voor het groeperen van documentair materiaal dat door hogeronderwijsinstellingen is verzameld tijdens hun administratieve, academische en operationele activiteiten.
+      de: >-
+        Kategorie zur Gruppierung von Dokumentenmaterial, das von Hochschulen während ihrer administrativen, akademischen und betrieblichen Aktivitäten angesammelt wurde.
+      fr: >-
+        Catégorie de regroupement des documents accumulés par les établissements d'enseignement supérieur au cours de leurs activités administratives, académiques et opérationnelles.
+      es: >-
+        Categoría para agrupar materiales documentales acumulados por instituciones de educación superior durante sus actividades administrativas, académicas y operativas.
+      ar: >-
+        فئة لتجميع المواد الوثائقية التي جمعتها مؤسسات التعليم العالي خلال أنشطتها الإدارية والأكاديمية والتشغيلية.
+      id: >-
+        Kategori untuk mengelompokkan materi dokumenter yang dikumpulkan oleh institusi pendidikan tinggi selama aktivitas administratif, akademik, dan operasional mereka.
+      zh: >-
+        高等教育机构在行政、学术和运营活动中积累的文献材料的分类类别。
+    examples:
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: University Administrative Records
+        related_to: wd:Q27032435
+      description: Administrative fonds containing governance records, committee minutes, and policy documents
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: Student Records Series
+        related_to: wd:Q27032435
+      description: Enrollment records, academic transcripts, and graduation documentation
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: Faculty Papers Collection
+        related_to: wd:Q27032435
+      description: Research documentation, teaching materials, and correspondence
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: Campus Documentation Collection
+        related_to: wd:Q27032435
+      description: Photographs, university publications, and audiovisual materials
+    is_a: CollectionType
+    class_uri: rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - related_to
+    comments:
+    - Record set TYPE classification, not the custodian organization
+    - Part of dual-class pattern with AcademicArchive (custodian type)
+    - Use AcademicArchive for the archive organization; use this class for collection types
+    - 'Preserved from prior description: Category for grouping documentary materials accumulated by tertiary educational institutions during their administrative, academic, and operational activities. Distinguishes the classification of holdings from the repository organization responsible for their custody.'
+    structured_aliases:
+    - literal_form: academisch archiefbestand
+      in_language: nl
+    - literal_form: Hochschularchivbestand
+      in_language: de
+    - literal_form: fonds d'archives académiques
+      in_language: fr
+    - literal_form: fondo de archivo académico
+      in_language: es
+    - literal_form: مجموعة الأرشيف الأكاديمي
+      in_language: ar
+    - literal_form: koleksi arsip akademik
+      in_language: id
+    - literal_form: 学术档案集
+      in_language: zh
+    keywords:
+    - academic archives
+    - university records
+    - higher education
+    - tertiary education
+    - academic institutions
+    - educational archives
+    - research records
+    - teaching materials
+    - faculty papers
+    - student records
+    - administrative records
+    - campus documentation
+    - institutional archives
+    slot_usage:
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    close_mappings:
+    - wd:Q27032435
+    see_also:
+    - AcademicArchive
+    - rico:RecordSetType
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Specific to academic/higher education archival collections
+      custodian_types: "['AcademicArchive']"

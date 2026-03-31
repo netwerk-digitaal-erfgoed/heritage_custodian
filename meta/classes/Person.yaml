@@ -1,0 +1,176 @@
+id: https://nde.nl/ontology/hc/class/Person
+name: Person
+title: Person Hub Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  pico: https://personsincontext.org/model#
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/begin_of_the_begin
+- ../slots/has_score
+- ../slots/updated_at
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_name
+- ../slots/archive/has_or_had_participated_in_event
+classes:
+  Person:
+    class_uri: crm:E21_Person
+    alt_descriptions:
+      nl: Identiteits-hub voor een persoon om meerdere bronobservaties te koppelen.
+      de: Identitaets-Hub fuer eine Person zur Verknuepfung mehrerer quellenbasierter Beobachtungen.
+      fr: Hub d identite pour une personne reliant plusieurs observations issues de sources.
+      es: Hub de identidad para una persona que vincula multiples observaciones basadas en fuentes.
+      ar: محور هوية لشخص لربط ملاحظات متعددة قائمة على المصادر.
+      id: Hub identitas untuk seseorang yang menghubungkan banyak observasi berbasis sumber.
+      zh: 个人身份枢纽，用于连接多条基于来源的观察记录。
+    structured_aliases:
+    - {literal_form: persoons-hub, in_language: nl}
+    - {literal_form: Personen-Hub, in_language: de}
+    - {literal_form: hub de personne, in_language: fr}
+    - {literal_form: hub de persona, in_language: es}
+    - {literal_form: محور هوية شخص, in_language: ar}
+    - {literal_form: hub orang, in_language: id}
+    - {literal_form: 人员枢纽, in_language: zh}
+    description: >-
+      Identity hub for an individual human, used to link multiple source-based
+      observations without privileging one source as "correct".
+    exact_mappings:
+    - crm:E21_Person
+    close_mappings:
+    - pico:Person
+    - foaf:Person
+    - schema:Person
+    - prov:Person
+    broad_mappings:
+    - crm:E39_Actor
+    - prov:Agent
+    - foaf:Agent
+    slots:
+    - begin_of_the_begin
+    - updated_at
+    - identified_by
+    - has_name
+    - has_score
+    - has_or_had_participated_in_event
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        description: Persistent identifier for the Person hub.
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/person/[a-z0-9-]+$
+      has_name:
+#         range: string
+        description: Preferred name string for the Person hub (minimal hub data).
+        required: false
+      has_or_had_participated_in_event:
+        description: Events in which the person participated (hub-level link; see Event for participants).
+    comments:
+    - Person is the hub class for individual humans in the HC ontology
+    - PersonObservation entities attach to Person via refers_to_person
+    - Parallel architecture to Custodian hub class
+    - Enables linking same person across multiple institutions and sources
+    - Hub data is minimal; rich data lives in PersonObservation
+    - The hub persists while observations and interpretations evolve
+    - Mapping specificity: crm:E21_Person stays exact; pico:Person and foaf:Person are modeled as close to reflect profile and usage-scope differences
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/person/taco-dibbits
+        has_name: Taco Dibbits
+    - value:
+        identified_by: https://nde.nl/ontology/hc/person/jan-de-vries-1985
+        has_name: Jan de Vries
+    - value:
+        identified_by: https://nde.nl/ontology/hc/person/maria-garcia
+        has_name: Maria Garcia
+    notes:
+    - |
+      Preserved from prior description (commit 6251b84d):
+
+      "An abstract hub class that serves as the central connection point for all\ninformation about an individual person. The Person itself contains minimal\ninformation - essentially just its persistent identifier (person_id) and\npreferred name - and acts as a node to which all observations attach.\n\nThis hub pattern allows multiple observations from different sources to be\nconnected to a single logical person without asserting which observation\nis \"correct\" or \"primary\".\n\n**HUB ARCHITECTURE**:\n\n```\nPersonObservation \u2500\u2500refers_to_person\u2500\u2500> Person \u2500\u2500participated_in_events\u2500\u2500> Event\n      \u2502                                   \u2191\n      \u2502                                   \u2502\n(source: LinkedIn 2024)         (source: Annual Report 2020)\n      \u2502                                   \u2502\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Hub/observation pattern
+
+        - Person is an abstract identity node (hub). Source-specific facts live in PersonObservation.
+        - Use this pattern to connect multiple sources without asserting which is "correct".
+
+        Hub architecture (conceptual)
+
+        ```
+        PersonObservation --refers_to_person--> Person
+
+        (source: LinkedIn 2024)            (source: Annual Report 2020)
+                 |                                   |
+                 +------------ same hub -------------+
+        ```
+
+        Distinction from PersonObservation
+
+        | Aspect | Person (Hub) | PersonObservation |
+        |--------|--------------|------------------|
+        | Purpose | Abstract identity | Evidence-based data |
+        | Contains | Minimal: identifier, name | Rich: roles, affiliations, dates |
+        | Temporal | Timeless identity | Point-in-time snapshot |
+        | Source | Canonical node | From a specific source |
+        | Count | One per person | Many per person |
+
+        Typical use cases
+
+        1) Cross-custodian career tracking
+           Same person appears in multiple institutional sources; all observations attach to one hub.
+
+        2) Source reconciliation
+           Different sources give different titles/spellings; keep both as observations.
+
+        3) Event participation
+           When modeling events, link events to the Person hub (not individual observations).
+
+        External alignment
+
+        - PiCo: pico:Person (hub) vs pico:PersonObservation (evidence)
+          - PersonObservation -> Person via pico:observationOf (refers_to_person)
+          - Person -> PersonObservation via pico:hasObservation (inverse)
+
+        - CIDOC-CRM: crm:E21_Person
+          "This class comprises real persons who live or are assumed to have lived."
+
+        Relationship to Custodian
+
+        Person and Custodian are parallel hub classes, both subclasses of crm:E39_Actor.
+        A custodian can be a person (private collector), but typically:
+        - Person: individual human
+        - Custodian: organization/group/institution
+
+        Longer illustrative example (conceptual; slot names may differ by profile)
+
+        ```yaml
+        Person:
+          identified_by: "https://nde.nl/ontology/hc/person/taco-dibbits"
+          has_name: "Taco Dibbits"
+
+        # Observations from different sources:
+        PersonObservation:  # From LinkedIn
+          person_name: "Taco Dibbits"
+          role_title: "General Director"
+          refers_to_person: "https://nde.nl/ontology/hc/person/taco-dibbits"
+          observation_source: "LinkedIn profile, 2025-01-15"
+
+        PersonObservation:  # From annual report
+          person_name: "T.J.S. Dibbits"
+          role_title: "Algemeen Directeur"
+          refers_to_person: "https://nde.nl/ontology/hc/person/taco-dibbits"
+          observation_source: "Rijksmuseum Jaarverslag 2023"
+        ```

@@ -1,0 +1,169 @@
+# ==============================================================================
+# LinkML Slot Definition: emphasize
+# ==============================================================================
+# Expresses special importance or prominence given to specific attributes,
+# facts, or qualities. Used to highlight skills, proficiencies, or notable
+# characteristics.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line              | Mapping | Notes                                           |
+# |--------------|------------------------|------------------------|---------|------------------------------------------------|
+# | **SKOS**     | `skos:related`         | skos.rdf:296-310       | broad   | Associative semantic relationship               |
+# | **Schema.org**| `schema:knowsAbout`   | schemaorg.owl:23901-23904| related| Topic known about - suggests expertise          |
+# | **SKOS**     | `skos:semanticRelation`| skos.rdf:252-264       | broad   | Super-property for semantic relationships       |
+# | **SKOS**     | `skos:relatedMatch`    | skos.rdf:423-434       | narrow  | Cross-scheme associative mapping                |
+# | **Schema.org**| `schema:skills`       | schemaorg.owl:35567-35570| related| Skills needed for position/occupation          |
+#
+# NOTE: skos:related is a symmetric property for associative relationships
+# between concepts. For emphasis on skills/proficiencies, schema:knowsAbout
+# and schema:skills provide more specific semantics.
+#
+# CREATED: 2026-01-25 - Migrated from digital_indicator
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/emphasize
+name: emphasize
+title: emphasize
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+description: |
+  To give special importance or prominence to a specific attribute or fact, particularly to highlight its value or significance.
+
+imports:
+  - linkml:types
+
+slots:
+  emphasize:
+    slot_uri: skos:related
+    description: |
+      To give special importance or prominence to a specific attribute or fact, particularly to highlight its value or significance.
+    alt_descriptions:
+      nl: >-
+        Bijzondere waarde of prominentie geven aan een specifiek kenmerk of feit, met name om de waarde of betekenis ervan te benadrukken.
+      de: >-
+        Einem bestimmten Attribut oder Fakt besondere Bedeutung oder Prominenz verleihen, insbesondere um seinen Wert oder seine Bedeutung hervorzuheben.
+      fr: >-
+        Donner une importance ou une proéminence particulière à un attribut ou un fait spécifique, notamment pour souligner sa valeur ou sa signification.
+      ar: >-
+        إعطاء أهمية أو بروز خاص لسمة أو حقيقة معينة، خاصة لإبراز قيمتها أو أهميتها.
+      id: >-
+        Memberikan kepentingan atau keunggulan khusus pada atribut atau fakta tertentu, terutama untuk menyoroti nilai atau signifikansinya.
+      zh: >-
+        对特定属性或事实给予特别重视或突出，尤其是为了强调其价值或重要性。
+      es: >-
+        Dar especial importancia o prominencia a un atributo o hecho específico, particularmente para resaltar su valor o significado.
+    structured_aliases:
+      - literal_form: benadrukken
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_emphasize
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: betonen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: souligner
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يُؤكّد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menekankan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 强调
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: enfatizar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    required: false
+    multivalued: true
+    inlined: false
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.55
+      replaces_slots: digital_indicator
+      migration_date: '2026-01-25'
+    broad_mappings:
+      # SKOS semanticRelation - Super-property for all semantic relationships
+      # "Links a concept to a concept related by meaning"
+      # Lines 252-264 in skos.rdf
+      - skos:semanticRelation
+        # SKOS related - Associative semantic relationship between concepts
+      # Symmetric property: if A skos:related B, then B skos:related A
+      # Lines 296-310 in skos.rdf
+      - skos:related
+    narrow_mappings:
+      # SKOS relatedMatch - Associative mapping between concepts in different schemes
+      # subPropertyOf skos:related - more specific cross-scheme relationship
+      # Lines 423-434 in skos.rdf
+      - skos:relatedMatch
+    related_mappings:
+      # Schema.org knowsAbout - Topic that a Person/Organization knows about
+      # Suggests expertise but different axis from emphasis
+      # Lines 23901-23904 in schemaorg.owl
+      - schema:knowsAbout
+      # Schema.org skills - Skills needed for position or occupation
+      # Lines 35567-35570 in schemaorg.owl
+      - schema:skills
+    aliases:
+      - emphasizes_or_emphasized
+      - is_or_was_emphasize
+    examples:
+      - value: "hc:DigitalProficiency/python-programming"
+        description: Emphasizes Python programming proficiency
+      - value: "hc:DigitalProficiency/data-science"
+        description: Emphasizes Data Science proficiency
+      - value: "hc:Skill/collection-management"
+        description: Emphasizes collection management expertise
+    comments:
+      - Updated 2026-02-03 with verified ontology mappings and translations
+      - |
+        **PURPOSE**: Links entities to skills, qualities, or proficiencies that
+        are highlighted or given special importance. Used for documenting
+        emphasized competencies in professional contexts.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | SKOS | skos:related | 296 | exact | Associative relationship |
+        | Schema.org | schema:knowsAbout | 23901 | related | Topic expertise |
+        | SKOS | skos:semanticRelation | 252 | broad | Super-property |
+        | SKOS | skos:relatedMatch | 423 | narrow | Cross-scheme mapping |
+        | Schema.org | schema:skills | 35567 | related | Position skills |
+      - |
+        **TEMPORAL SEMANTICS** (RiC-O Pattern):
+        "emphasizesOrEmphasized" indicates the emphasis relationship may be
+        historical - emphasis may change over time (e.g., in a CV or profile).
+      - |
+        **USAGE PATTERN**:
+        Used to link professional assessments to specific proficiency indicators
+        found in source data (e.g., keywords in a LinkedIn profile that indicate
+        digital skills).
+      - |
+        **PATTERN**:
+        ```
+        DigitalProfessionalAssessment
+          └── emphasizes_or_emphasized → DigitalProficiency
+                ├── has_or_had_label: "Python"
+                └── has_or_had_type: PROGRAMMING_LANGUAGE
+        ```
+      - |
+        **MIGRATED FROM** (per slot_fixes.yaml):
+        - `digital_indicator` → emphasizes_or_emphasized + DigitalProficiency

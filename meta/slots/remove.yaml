@@ -1,0 +1,129 @@
+# ==============================================================================
+# LinkML Slot Definition: remove
+# ==============================================================================
+# Records objects removed from a collection during a deaccessioning activity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property / Class              | File/Line                    | Mapping | Notes                                                                                    |
+# |----------------|-------------------------------|------------------------------|---------|------------------------------------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P113_removed`            | CIDOC_CRM_v7.1.3.rdf:3750   | close   | E80 Part Removal→E18 Physical Thing. "Identifies the Physical Thing that is removed       |
+# |                |                               |                              |         | during a Part Removal activity." Same semantic intent (what was removed/deaccessioned);   |
+# |                |                               |                              |         | differs in domain (E80 event) and range (entity ref, not string).                        |
+# | **CIDOC-CRM**  | `crm:P24_transferred_title_of`| CIDOC_CRM_v7.1.3.rdf:1738   | related | E8 Acquisition→E18 Physical Thing. "Identifies the Physical Thing involved in an         |
+# |                |                               |                              |         | Acquisition." Related: legal transfer aspect of deaccessioning/disposal.                 |
+# | **Schema.org** | `schema:object`               | schemaorg.owl:27871-27890    | broad   | Action→Thing. "The object upon which the action is carried out." Broader: object of      |
+# |                |                               |                              |         | any action, not specifically deaccessioning.                                             |
+#
+# CRM context: E80_Part_Removal (CIDOC_CRM_v7.1.3.rdf:1037-1047) explicitly covers
+# "the deaccessioning of an object from a curated collection, an instance of E78 Curated
+# Holding." P113_removed identifies what was removed; P112_diminished identifies the
+# collection that was diminished.
+#
+# CREATED: 2026-02-10
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/remove
+name: remove
+title: Remove
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  la: https://linked.art/ns/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  remove:
+    slot_uri: hc:remove
+    description: >-
+      Records objects, items, or components removed from a collection, holding,
+      or aggregate during a deaccessioning or part-removal activity. Each value
+      identifies a physical thing, artefact, or digital asset that was taken
+      out of the custodian's holdings. In CIDOC-CRM terms this corresponds to
+      the target of a P113 removed relationship within an E80 Part Removal
+      event, which explicitly covers deaccessioning objects from an
+      E78 Curated Holding.
+    alt_descriptions:
+      nl: >-
+        Registreert objecten die uit een collectie of bestand zijn verwijderd
+        tijdens een afstotings- of ontzamelingsactiviteit.
+      de: >-
+        Erfasst Objekte, die während einer Deakzessionierung oder
+        Entfernungstätigkeit aus einer Sammlung oder einem Bestand
+        herausgenommen wurden.
+      fr: >-
+        Enregistre les objets retirés d'une collection ou d'un fonds lors
+        d'une activité de désaffectation ou de retrait.
+      ar: >-
+        يسجل الكائنات التي أُزيلت من مجموعة أو مقتنيات أثناء نشاط إلغاء
+        الاستحواذ أو الإزالة.
+      id: >-
+        Mencatat objek yang dikeluarkan dari koleksi atau kepemilikan selama
+        kegiatan deaksesi atau penghapusan.
+      zh: >-
+        记录在注销或移除活动中从收藏或馆藏中移出的对象。
+      es: >-
+        Registra los objetos eliminados de una colección o fondo durante una
+        actividad de desincorporación o retiro.
+    structured_aliases:
+      - literal_form: verwijderen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: entfernen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: retirer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: إزالة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menghapus
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 移除
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: eliminar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - crm:P113_removed  # CIDOC_CRM_v7.1.3.rdf:3750-3762 - "Identifies the E18 Physical Thing that is removed during an E80 Part Removal activity." Same semantic intent; differs in domain (E80 event) and range (entity ref vs string).
+    broad_mappings:
+      - schema:object  # schemaorg.owl:27871-27890 - "The object upon which the action is carried out." Broader: object of any action, not specifically deaccessioning.
+    related_mappings:
+      - crm:P24_transferred_title_of  # CIDOC_CRM_v7.1.3.rdf:1738-1750 - "Identifies the E18 Physical Thing involved in an E8 Acquisition." Legal transfer aspect of deaccessioning/disposal.
+      - la:removed_member  # Linked Art extensions: member removed from a Set via a Removal activity
+    aliases:
+      - objects_removed
+    examples:
+      - value: "Painting by unknown artist, inv. SK-A-1023"
+        description: >-
+          A painting deaccessioned from a museum's curated holding, identified
+          by its inventory number.
+      - value: "Duplicate manuscript, cat. MS-2019-0087"
+        description: >-
+          A duplicate manuscript removed from a library collection during
+          a deaccessioning review.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Primarily intended for deaccessioning activities where objects leave a
+        curated holding. In CIDOC-CRM this is modelled as E80 Part Removal,
+        where P113 removed identifies the object and P112 diminished identifies
+        the collection being reduced.
+      - >-
+        Stores object identifiers or descriptions as plain strings. For
+        structured references to catalogued objects, classes may override the
+        range in slot_usage to use a typed entity reference instead.
+      - >-
+        Track the reason for removal (e.g. repatriation, disposal, transfer,
+        loss) in a separate slot such as activity_description or a dedicated
+        removal_reason field, not in this slot.

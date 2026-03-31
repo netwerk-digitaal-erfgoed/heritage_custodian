@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: registered_at
+# ==============================================================================
+# Specifies the timestamp when a record is officially registered in a system.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line               | Mapping | Notes                                                        |
+# |---------------|---------------------------|-------------------------|---------|--------------------------------------------------------------|
+# | **Schema.org**| `schema:dateCreated`      | schemaorg.owl:14173-185 | close   | "Date on which CreativeWork was created." Creation ≈ reg.    |
+# | **DCTerms**   | `dcterms:created`         | dcterms.rdf:1065-1091   | close   | "Date of creation of the resource." Generic creation date.   |
+# | **PROV-O**    | `prov:generatedAtTime`    | prov.ttl:593-603        | close   | "Time at which entity was completely created." Generation.   |
+# | **DCTerms**   | `dcterms:dateSubmitted`   | dcterms.rdf:1200-1226   | related | "Date of submission of the resource." Submission ≠ reg.      |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/registered_at
+name: registered_at
+title: Registered At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  registered_at:
+    slot_uri: hc:registeredAt
+    range: date
+    description: >-
+      Specifies the particular database, system, registry, or exact timestamp where a data record, user account, or
+      transaction is officially created, stored, or logged.
+    alt_descriptions:
+      nl: >-
+        Specificeert de specifieke database, het systeem, het register of het exacte tijdstip waarop een gegevensrecord,
+        gebruikersaccount of transactie officieel is aangemaakt, opgeslagen of geregistreerd.
+      de: >-
+        Gibt die bestimmte Datenbank, das System, das Register oder den genauen Zeitstempel an, wo ein Datensatz, ein
+        Benutzerkonto oder eine Transaktion offiziell erstellt, gespeichert oder protokolliert wird.
+      fr: >-
+        Spécifie la base de données, le système, le registre ou l'horodatage exact où un enregistrement de données,
+        un compte utilisateur ou une transaction est officiellement créé, stocké ou enregistré.
+      ar: >-
+        يحدد قاعدة البيانات أو النظام أو السجل أو الطابع الزمني الدقيق الذي يتم فيه إنشاء سجل بيانات أو حساب
+        مستخدم أو معاملة رسميًا أو تخزينها أو تسجيلها.
+      id: >-
+        Menentukan basis data, sistem, registri, atau stempel waktu tepat di mana rekod data, akun pengguna, atau
+        transaksi secara resmi dibuat, disimpan, atau dicatat.
+      zh: >-
+        指定数据记录、用户帐户或交易在其中被正式创建、存储或记录的特定数据库、系统、注册表或确切时间戳。
+      es: >-
+        Especifica la base de datos, sistema, registro o marca de tiempo exacta donde un registro de datos, cuenta de
+        usuario o transacción se crea, almacena o registra oficialmente.
+    structured_aliases:
+      - literal_form: Registratiedatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Registrierungsdatum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Date d'Enregistrement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ التسجيل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tanggal Registrasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 注册日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fecha de Registro
+        predicate: EXACT_SYNONYM
+        in_language: es
+    close_mappings:
+      - schema:dateCreated  # schemaorg.owl:14173-14185 - "date on which CreativeWork was created or item added to DataFeed"
+      - dcterms:created  # dcterms.rdf:1065-1091 - "Date of creation of the resource"
+      - prov:generatedAtTime  # prov.ttl:593-603 - "time at which entity was completely created and available for use"
+    related_mappings:
+      - dcterms:dateSubmitted  # dcterms.rdf:1200-1226 - "Date of submission of the resource"
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - kien_registration_date
+      - primary_register

@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: rebuild_by
+# ==============================================================================
+# Identifies the agent responsible for reconstructing or restoring an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line           | Mapping | Notes                                             |
+# |---------------|----------------------------|---------------------|---------|----------------------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo`     | prov.ttl:1082-1096  | broad   | "Attribution is the ascribing of an entity to an    |
+# |               |                            |                     |         | agent." General attribution; broader than            |
+# |               |                            |                     |         | specifically reconstruction attribution.             |
+# | **CIDOC-CRM** | `crm:P14_carried_out_by`   | CIDOC:1489-1503     | related | "Active participation of an Actor in an Activity."   |
+# |               |                            |                     |         | Links Activity→Actor; different structure            |
+# |               |                            |                     |         | (activity-level, not entity→agent).                  |
+# | **CIDOC-CRM** | `crm:P31i_was_modified_by` | CIDOC:1944-1949     | related | "was modified by" — links Physical Thing to          |
+# |               |                            |                     |         | Modification event; adjacent to rebuilding but       |
+# |               |                            |                     |         | links to event, not directly to agent.               |
+#
+# No exact match — retains hc:rebuildBy.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/rebuild_by
+name: rebuild_by
+title: Rebuild By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  rebuild_by:
+    slot_uri: hc:rebuildBy
+    description: >-
+      Identifies the agent, organization, or software process responsible for reconstructing,
+      restoring, or recompiling a specific entity after damage, decay, or modification.
+    alt_descriptions:
+      nl: >-
+        Identificeert de actor, organisatie of het softwareproces dat verantwoordelijk is voor het
+        reconstrueren, herstellen of opnieuw compileren van een specifieke entiteit na schade,
+        verval of wijziging.
+      de: >-
+        Identifiziert den Akteur, die Organisation oder den Softwareprozess, der für die
+        Rekonstruktion, Restaurierung oder Neukompilierung einer bestimmten Entität nach
+        Beschädigung, Verfall oder Änderung verantwortlich ist.
+      fr: >-
+        Identifie l'agent, l'organisation ou le processus logiciel responsable de la reconstruction,
+        de la restauration ou de la recompilation d'une entité spécifique après dommage, dégradation
+        ou modification.
+      ar: >-
+        يحدد الفاعل أو المنظمة أو العملية البرمجية المسؤولة عن إعادة بناء أو ترميم أو إعادة
+        تجميع كيان معين بعد تلف أو تدهور أو تعديل.
+      id: >-
+        Mengidentifikasi agen, organisasi, atau proses perangkat lunak yang bertanggung jawab atas
+        rekonstruksi, pemulihan, atau kompilasi ulang entitas tertentu setelah kerusakan,
+        kemunduran, atau modifikasi.
+      zh: >-
+        标识负责在损坏、衰退或修改后重建、恢复或重新编译特定实体的代理、组织或软件进程。
+      es: >-
+        Identifica al agente, organización o proceso de software responsable de reconstruir,
+        restaurar o recompilar una entidad específica después de daño, deterioro o modificación.
+    structured_aliases:
+      - literal_form: Herbouwer
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wiederaufbau durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Reconstructeur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: إعادة البناء بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Dibangun Ulang Oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 重建者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Reconstruido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1096 — "Attribution is the ascribing of an entity to an agent." General attribution; broader than reconstruction attribution.
+    related_mappings:
+      - crm:P14_carried_out_by  # CIDOC:1489-1503 — "Active participation of an Actor in an Activity." Activity→Actor; different structure (activity-level).
+      - crm:P31i_was_modified_by  # CIDOC:1944-1949 — "was modified by" — Physical Thing→Modification event; adjacent but links to event not agent.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_rebuilding

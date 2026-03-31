@@ -1,0 +1,81 @@
+id: https://nde.nl/ontology/hc/class/Video
+name: Video
+title: Video Media Resource
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  ma: http://www.w3.org/ns/ma-ont#
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_url
+default_prefix: hc
+classes:
+  Video:
+    class_uri: schema:VideoObject
+    description: >-
+      Time-based audiovisual media resource with associated technical parameters
+      and descriptive annotations.
+    alt_descriptions:
+      nl: >-
+        Tijdgebonden audiovisuele mediabron met geassocieerde technische parameters
+        en beschrijvende annotaties.
+      de: >-
+        Zeitbasierte audiovisuelle Medienressource mit zugehörigen technischen Parametern
+        und beschreibenden Anmerkungen.
+      fr: >-
+        Ressource média audiovisuelle temporelle avec paramètres techniques associés
+        et annotations descriptives.
+      es: >-
+        Recurso multimedia audiovisual basado en el tiempo con parámetros técnicos
+        asociados y anotaciones descriptivas.
+      ar: >-
+        مورد وسائط سمعية بصرية قائم على الوقت مع معلمات تقنية مرتبطة وشروحات وصفية.
+      id: >-
+        Sumber media audiovisual berbasis waktu dengan parameter teknis terkait
+        dan anotasi deskriptif.
+      zh: >-
+        具有关联技术参数和描述性注释的基于时间的视听媒体资源。
+    slots:
+    - has_url
+    - identified_by
+    - has_label
+    slot_usage:
+      has_url:
+        required: true
+        examples:
+        - value: https://www.youtube.com/watch?v=ABC123def45
+        - value: https://vimeo.com/123456789
+      identified_by:
+        examples:
+        - value:
+      has_label:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+    broad_mappings:
+    - ma:MediaResource
+    close_mappings:
+    - dcterms:MovingImage
+    annotations:
+      specificity_score: '0.45'
+      specificity_rationale: Medium specificity - video resources are common across heritage platforms but more specialized than generic media.
+      migration_date: '2026-01-19'
+      migration_rule: Rule 53 (no bespoke slots), Rule 56 (semantic consistency)
+      custodian_types: "['*']"
+    examples:
+    - value:
+        has_url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+        identified_by:
+        has_label:
+          has_label: Rijksmuseum Virtual Tour 2024
+          language: en
+    - value:
+        has_url: https://vimeo.com/987654321
+        has_label:
+          has_label: Conservation of The Night Watch
+          language: en
+    comments:
+    - 'Preserved from prior description: Video media resource. **DEFINITION**: Represents a video file or stream that can be referenced as source material for thumbnails, clips, chapters, and annotations. This class enables structured representation of video resources with their identifiers and URLs. **HERITAGE INSTITUTION USE CASES**: | Content Type | Examples | |--------------|----------| | Virtual tours | Museum walkthrough videos | | Conservation | Restoration process documentation | | Interviews | Oral history recordings | | Lectures | Educational content, curator talks | | Exhibitions | Exhibition documentation videos | **PLATFORM SUPPORT**: | Platform | Identifier | URL Pattern | |----------|------------|-------------| | YouTube | Video ID (11 chars) | youtube.com/watch?v={id} | | Vimeo | Video ID (numeric) | vimeo.com/{id} | | Wistia | Hashed ID | wistia.com/medias/{id} | | Self-hosted | Custom | Institution-specific | **RELATIONSHIP TO Thumbnail**: Thumbnails are derived from Videos using the `derive_from` relationship, with the specific frame time captured via `has_time_interval`. **ONTOLOGY ALIGNMENT**: - **Primary**: `schema:VideoObject` (Schema.org) - **Close**: `ma:MediaResource` (W3C Media Ontology)'

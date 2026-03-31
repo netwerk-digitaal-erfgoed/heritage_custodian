@@ -1,0 +1,58 @@
+id: https://nde.nl/ontology/hc/class/ConfidenceValue
+name: ConfidenceValue
+title: Confidence Value
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_value
+classes:
+  ConfidenceValue:
+    class_uri: hc:ConfidenceValue
+    description: >-
+      Scalar estimate used to encode support strength as a single numeric datum.
+    alt_descriptions:
+      nl: Scalaire schatting die ondersteuningssterkte als enkel numeriek gegeven vastlegt.
+      de: Skalarer Schaetzwert zur Abbildung der Unterstuetzungsstaerke als einzelner numerischer Wert.
+      fr: Estimation scalaire servant a encoder la force de soutien sous forme de valeur numerique unique.
+      es: Estimacion escalar utilizada para codificar la fuerza de respaldo como un unico dato numerico.
+      ar: تقدير عددي مفرد يُستخدم لترميز قوة الدعم.
+      id: Estimasi skalar untuk menyandikan kekuatan dukungan sebagai satu data numerik.
+      zh: 以单一数值表示支持强度的标量估计。
+    structured_aliases:
+      - literal_form: zekerheidswaarde
+        in_language: nl
+      - literal_form: Sicherheitswert
+        in_language: de
+      - literal_form: valeur de certitude
+        in_language: fr
+      - literal_form: valor de certeza
+        in_language: es
+      - literal_form: قيمة اليقين
+        in_language: ar
+      - literal_form: nilai kepastian
+        in_language: id
+      - literal_form: 置信值
+        in_language: zh
+    slots:
+      - has_value
+    slot_usage:
+      has_value:
+        range: float
+        required: true
+    examples:
+      - value:
+          has_value: 0.74
+        description: Numeric support estimate for candidate alignment
+      - value:
+          has_value: 0.99
+        description: Near-certain support estimate for deterministic match
+    broad_mappings:
+      - schema:StructuredValue
+    annotations:
+      specificity_score: "0.2"
+      specificity_rationale: Basic scalar data carrier for support estimation.
+      custodian_types: "['*']"

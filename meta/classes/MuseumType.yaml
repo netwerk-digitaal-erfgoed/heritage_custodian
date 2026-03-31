@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/MuseumType
+name: MuseumType
+title: Museum Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/MuseumTypeEnum
+- ../slots/comply_with
+- ../slots/has_facility
+- ../slots/categorized_as
+- ../slots/has_hypernym
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_hyponym
+- ../slots/has_department
+classes:
+  MuseumType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: Classification concept used to type museum organizations by specialization and function.
+    alt_descriptions:
+      nl: Classificatieconcept voor typering van museumorganisaties naar specialisatie en functie.
+      de: Klassifikationskonzept zur Typisierung von Museumsorganisationen nach Spezialisierung und Funktion.
+      fr: Concept de classification pour typer les organisations museales selon specialisation et fonction.
+      es: Concepto de clasificacion para tipificar organizaciones museisticas por especializacion y funcion.
+      ar: مفهوم تصنيفي لتحديد أنواع مؤسسات المتاحف بحسب التخصص والوظيفة.
+      id: Konsep klasifikasi untuk mengetik organisasi museum berdasarkan spesialisasi dan fungsi.
+      zh: 用于按专业方向与职能对博物馆机构进行类型标注的分类概念。
+    structured_aliases:
+    - {literal_form: museumtype, in_language: nl}
+    - {literal_form: Museumstyp, in_language: de}
+    - {literal_form: type de musee, in_language: fr}
+    - {literal_form: tipo de museo, in_language: es}
+    - {literal_form: نوع متحف, in_language: ar}
+    - {literal_form: tipe museum, in_language: id}
+    - {literal_form: 博物馆类型, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:Museum
+    - crm:E55_Type
+    related_mappings:
+    - crm:E39_Actor
+    - crm:E7_Activity
+    slots:
+    - comply_with
+    - has_type
+    - has_hyponym
+    - has_hypernym
+    - has_department
+    - has_score
+    - has_facility
+    - identified_by
+    - categorized_as
+    slot_usage:
+      identified_by:
+        pattern: ^Q[0-9]+$
+        required: true
+      has_hypernym:
+        range: MuseumType
+      has_facility:
+        multivalued: true
+      comply_with:
+        multivalued: true
+      categorized_as:
+        multivalued: true
+      has_type:
+        any_of:
+        - equals_string: hc:MuseumType
+    notes:
+    - |
+      Specialized custodian type for museums - institutions that collect, preserve,
+      research, and exhibit objects of artistic, cultural, historical, or scientific
+      significance for public education and enjoyment.
+
+      **Wikidata Base Concept**: Q33506 (museum)
+
+      **Scope**:
+      Museums are distinguished by their focus on:
+      - Object-based collections (artifacts, specimens, artworks)
+      - Public exhibitions and interpretation
+      - Educational programming
+      - Conservation and research
+      - Tangible cultural/natural heritage
+
+      **Key Museum Subtypes** (187+ extracted from Wikidata):
+
+      **By Subject Matter**:
+      - Art museums (Q3196771) - Fine arts and visual arts institutions
+      - History museums (Q16735822) - Historical artifacts and narratives
+      - Science museums (Q588140) - Scientific phenomena and technology
+      - Natural history museums (Q1970365) - Biological and geological specimens
+      - Anthropology museums (Q208374) - Cultural and ethnic heritage
+      - Military museums (Q2772772) - Armed forces and warfare history
+    annotations:
+      skos:prefLabel: Museum
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

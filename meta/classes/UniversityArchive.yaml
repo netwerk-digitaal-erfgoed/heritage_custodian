@@ -1,0 +1,96 @@
+id: https://nde.nl/ontology/hc/class/UniversityArchive
+name: UniversityArchive
+title: UniversityArchive Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/founded_through
+- ../slots/related_to
+classes:
+  UniversityArchive:
+    alt_descriptions:
+      nl: Archiefdienst binnen een universiteit of hogeschool die instellingsarchieven beheert en toegankelijk maakt.
+      de: Archivinstitution innerhalb einer Hochschule/Universitaet die Universitaetsunterlagen verwahrt und zugaenglich macht.
+      fr: Service d archives au sein d une universite qui conserve et rend accessibles les archives institutionnelles.
+      es: Servicio de archivo dentro de una universidad que conserva y da acceso a archivos institucionales.
+      ar: جهة أرشيفية داخل جامعة تحفظ سجلات المؤسسة وتتيح الوصول إليها.
+      id: Unit arsip di universitas yang menyimpan dan menyediakan akses ke arsip institusi.
+      zh: 高校内部负责保管并提供访问机构档案的档案机构。
+    structured_aliases:
+    - {literal_form: universiteitsarchief, in_language: nl}
+    - {literal_form: Universitaetsarchiv, in_language: de}
+    - {literal_form: archives universitaires, in_language: fr}
+    - {literal_form: archivo universitario, in_language: es}
+    - {literal_form: أرشيف جامعي, in_language: ar}
+    - {literal_form: arsip universitas, in_language: id}
+    - {literal_form: 大学档案馆, in_language: zh}
+    description: >-
+      Institutional records service within a higher-education body that governs
+      retention, preservation, and public/research access.
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - related_to
+    - identified_by
+    - founded_through
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q2496264
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+      founded_through:
+        range: FoundingEvent
+        inlined: true
+    see_also:
+    - AcademicArchive
+    - InstitutionalArchive
+    - SchoolArchive
+    - ScientificArchive
+    annotations:
+      label_de: "Universitätsarchiv"
+      label_es: archivo universitario
+      label_fr: archives universitaires
+      record_set_type: false
+      custodian_type: true
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+      modeling_notes: |
+        Scope
+
+        University archives preserve the institutional memory of higher-education
+        institutions, including administrative records, faculty papers, student
+        records (subject to access restrictions), photographs, publications, and
+        other documentation of academic life and institutional history.
+
+        Note
+
+        This class models an archive as an organization (custodian type), not a
+        record set.

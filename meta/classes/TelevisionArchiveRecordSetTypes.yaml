@@ -1,0 +1,277 @@
+id: https://nde.nl/ontology/hc/class/TelevisionArchiveRecordSetTypes
+name: TelevisionArchiveRecordSetTypes
+title: TelevisionArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./TelevisionArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  TelevisionBroadcastFonds:
+    is_a: TelevisionArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of televised output,
+      including aired programs, transmission masters, and continuity traces.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van uitgezonden televisie-output,
+        inclusief uitgezonden programma's, zendmasters en continuiteitssporen.
+      de: >-
+        Provenienzbasierte Aggregation ausgestrahlter Fernsehinhalte,
+        einschliesslich Sendemastern und Kontinuitaetsnachweisen.
+      fr: >-
+        Agregation fondee sur la provenance des sorties televisees,
+        incluant programmes diffuses, masters de transmission et traces de continuite.
+      es: >-
+        Agregacion basada en procedencia de salidas televisivas,
+        con programas emitidos, masters de transmision y trazas de continuidad.
+      ar: >-
+        تجميع قائم على المنشأ لمخرجات البث التلفزيوني، بما يشمل البرامج
+        المذاعة ونسخ البث الرئيسية وآثار الاستمرارية.
+      id: >-
+        Agregasi berbasis asal-usul untuk keluaran siaran televisi,
+        termasuk program tayang, master transmisi, dan jejak kesinambungan.
+      zh: >-
+        基于来源原则聚合电视播出成品，包括已播节目、传输母版与连续播送痕迹。
+    structured_aliases:
+    - literal_form: fonds televisie-uitzendingen
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fonds Fernsehsendungen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds d emissions
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo de emisiones
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: فوندس بث تلفزيوني
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds siaran televisi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 电视节目全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: Broadcast provenance is retained at channel or production-origin level.
+    - 'Preserved from prior description: oriented record set type for program recordings.'
+    keywords:
+    - aired program
+    - transmission master
+    - continuity trace
+    - broadcast provenance
+    examples:
+    - value:
+        has_type: hc:TelevisionBroadcastFonds
+        has_custodian: hc:TelevisionArchive
+        has_note: Program masters, playout logs, and continuity documentation.
+      description: Televised output documentation grouped by originating broadcast body.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - TelevisionArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:TelevisionBroadcastFonds
+      has_custodian:
+        equals_string: hc:TelevisionArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by TelevisionArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+
+  ProductionRecordSeries:
+    is_a: TelevisionArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of production planning,
+      shooting coordination, post-production control, and delivery operations.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van productieplanning,
+        opnamecoordinatie, postproductiecontrole en opleveringsprocessen.
+      de: >-
+        Geordnete Dokumentationsfolge zu Produktionsplanung,
+        Drehkoordination, Postproduktionssteuerung und Auslieferungsablaeufen.
+      fr: >-
+        Sequence documentaire ordonnee de planification de production,
+        coordination de tournage, controle post-production et livraison.
+      es: >-
+        Secuencia documental ordenada de planificacion de produccion,
+        coordinacion de rodaje, control de postproduccion y entrega.
+      ar: >-
+        تسلسل وثائقي منظم لتخطيط الإنتاج وتنسيق التصوير والتحكم في ما بعد
+        الإنتاج وعمليات التسليم.
+      id: >-
+        Urutan dokumenter teratur untuk perencanaan produksi,
+        koordinasi pengambilan gambar, kontrol pascaproduksi, dan pengiriman.
+      zh: >-
+        由制作规划、拍摄协调、后期控制与交付流程构成的有序文献序列。
+    structured_aliases:
+    - literal_form: reeks productiedocumentatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Serie Produktionsunterlagen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: serie de production
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: serie de producción
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة وثائق إنتاج
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: seri dokumentasi produksi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 制作文档系列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: Sequence ordering maintains continuity across recurring production stages.
+    - 'Preserved from prior description: oriented documentation set type for television documentation.'
+    keywords:
+    - production planning
+    - shooting coordination
+    - post-production control
+    - delivery workflow
+    examples:
+    - value:
+        has_type: hc:ProductionRecordSeries
+        has_custodian: hc:TelevisionArchive
+        has_note: Call sheets, edit decisions, and delivery checklists.
+      description: Production workflow documentation arranged as a recurring sequence.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - TelevisionArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ProductionRecordSeries
+      has_custodian:
+        equals_string: hc:TelevisionArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by TelevisionArchive custodians. Inverse of rico:isOrWasHolderOf.
+
+  NewsFootageCollection:
+    is_a: TelevisionArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of news segments,
+      field footage, and editorial compilation outputs used in current-affairs coverage.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van nieuwssegmenten,
+        veldopnamen en redactionele compilaties voor actualiteitenverslaggeving.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus Nachrichtenbeitraegen,
+        Aussenaufnahmen und redaktionellen Kompilaten fuer aktuelle Berichterstattung.
+      fr: >-
+        Ensemble documentaire reuni de segments d'actualite,
+        de prises de terrain et de compilations editoriales pour les journaux televises.
+      es: >-
+        Cuerpo documental reunido de segmentos informativos,
+        imagenes de campo y compilaciones editoriales para cobertura de actualidad.
+      ar: >-
+        جسم وثائقي مُجمع من مقاطع الأخبار والمواد المصورة ميدانياً
+        ومخرجات التجميع التحريري لتغطية الشؤون الجارية.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi segmen berita,
+        rekaman lapangan, dan kompilasi editorial untuk liputan aktual.
+      zh: >-
+        汇集新闻片段、外采画面与编辑汇编成品的文献整体，用于时事报道。
+    structured_aliases:
+    - literal_form: collectie nieuwsuitzendingen
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlung Nachrichtensendungen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection de journaux télévisés
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: colección de informativos
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مجموعة أرشيف أخبار
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi arsip berita
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 新闻档案集合
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: Editorially assembled materials may combine field and studio-origin content.
+    - 'Preserved from prior description: oriented record set type for broadcast archives.'
+    keywords:
+    - news segment
+    - field footage
+    - editorial compilation
+    - current affairs
+    examples:
+    - value:
+        has_type: hc:NewsFootageCollection
+        has_custodian: hc:TelevisionArchive
+        has_note: Reporter rushes, edited packages, and bulletin cutdowns.
+      description: News documentation assembled from field and editorial production workflows.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - TelevisionArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:NewsFootageCollection
+      has_custodian:
+        equals_string: hc:TelevisionArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by TelevisionArchive custodians. Inverse of rico:isOrWasHolderOf.

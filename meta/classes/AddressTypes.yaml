@@ -1,0 +1,424 @@
+id: https://nde.nl/ontology/hc/class/AddressTypes
+name: address_types_classes
+title: Address Types Concrete Classes
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  vcard: http://www.w3.org/2006/vcard/ns#
+  gleif_base: https://www.gleif.org/ontology/Base/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- ./AddressType
+- linkml:types
+classes:
+  HeadquartersAddress:
+    is_a: AddressType
+    class_uri: hc:HeadquartersAddress
+    description: >-
+      Main organizational headquarters address where primary operations occur.
+
+      Typically where leadership and central administration are located.
+    comments:
+    - |
+      Preserved from prior description:
+
+      **Ontology Alignment**:
+      - GLEIF: `gleif_base:hasAddressHeadquarters`
+    alt_descriptions:
+      nl: "Hoofdkantooradres waar de primaire operaties plaatsvinden."
+      de: "Hauptgeschäftsadresse, an der die primären Betriebstätigkeiten stattfinden."
+      fr: "Adresse du siège social où se déroulent les opérations principales."
+      es: "Dirección de la sede central donde ocurren las operaciones principales."
+      ar: "عنوان المقر الرئيسي حيث تتم العمليات الأساسية."
+      id: "Alamat kantor pusat tempat operasi utama berlangsung."
+      zh: "主要运营发生的主要组织总部地址。"
+    close_mappings:
+    - gleif_base:hasAddressHeadquarters
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: hoofdkantooradres
+      in_language: nl
+    - literal_form: Hauptgeschäftsadresse
+      in_language: de
+    - literal_form: adresse du siège
+      in_language: fr
+    - literal_form: dirección de la sede
+      in_language: es
+    - literal_form: عنوان المقر
+      in_language: ar
+    - literal_form: alamat kantor pusat
+      in_language: id
+    - literal_form: 总部地址
+      in_language: zh
+    annotations:
+      short_code: HEADQUARTERS
+      specificity_score: "0.25"
+      custodian_types: "['*']"
+    examples:
+    - value:
+        has_code: HEADQUARTERS
+        has_label:
+        - Headquarters@en
+        - Hoofdkantoor@nl
+      description: Rijksmuseum main headquarters
+  LegalAddress:
+    is_a: AddressType
+    class_uri: hc:LegalAddress
+    description: >-
+      Registered legal address for official correspondence and legal purposes.
+    alt_descriptions:
+      nl: "Geregistreerd juridisch adres voor officiële correspondentie en juridische doeleinden."
+      de: "Eingetragene Rechtsadresse für offizielle Korrespondenz und rechtliche Zwecke."
+      fr: "Adresse légale enregistrée pour la correspondance officielle et les objectifs juridiques."
+      es: "Dirección legal registrada para correspondencia oficial y fines legales."
+      ar: "العنوان القانوني المسجل للمراسلات الرسمية والأغراض القانونية."
+      id: "Alamat legal terdaftar untuk korespondensi resmi dan tujuan hukum."
+      zh: "用于正式通信和法律目的的注册法定地址。"
+    close_mappings:
+    - gleif_base:hasAddressLegal
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: juridisch adres
+      in_language: nl
+    - literal_form: statutaire zetel
+      in_language: nl
+    - literal_form: Rechtsadresse
+      in_language: de
+    - literal_form: adresse légale
+      in_language: fr
+    - literal_form: dirección legal
+      in_language: es
+    - literal_form: عنوان قانوني
+      in_language: ar
+    - literal_form: alamat legal
+      in_language: id
+    - literal_form: 法定地址
+      in_language: zh
+    annotations:
+      short_code: LEGAL
+      specificity_score: "0.30"
+    examples:
+    - value:
+        has_code: LEGAL
+        has_label:
+        - Legal Address@en
+        - Juridisch adres@nl
+        - Statutaire zetel@nl
+      description: Registered legal address from KvK
+    comments:
+    - 'Preserved from prior description: Registered legal address for official correspondence and legal purposes. May differ from operational headquarters. For Dutch organizations, this is the address registered with the Chamber of Commerce (Kamer van Koophandel - KvK).'
+  VisitingAddress:
+    is_a: AddressType
+    class_uri: hc:VisitingAddress
+    description: >-
+      Public entrance address for visitors.
+    alt_descriptions:
+      nl: "Openbare ingang voor bezoekers."
+      de: "Öffentliche Eingangsadresse für Besucher."
+      fr: "Adresse d'entrée publique pour les visiteurs."
+      es: "Dirección de entrada pública para visitantes."
+      ar: "عنوان المدخل العام للزوار."
+      id: "Alamat masuk publik untuk pengunjung."
+      zh: "访客公共入口地址。"
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: bezoekadres
+      in_language: nl
+    - literal_form: Besucheradresse
+      in_language: de
+    - literal_form: adresse de visite
+      in_language: fr
+    - literal_form: dirección de visita
+      in_language: es
+    - literal_form: عنوان الزيارة
+      in_language: ar
+    - literal_form: alamat kunjungan
+      in_language: id
+    - literal_form: 访客地址
+      in_language: zh
+    annotations:
+      short_code: VISITING
+      specificity_score: "0.25"
+    examples:
+    - value:
+        has_code: VISITING
+        has_label:
+        - Visiting Address@en
+        - Bezoekadres@nl
+      description: Public visitor entrance
+    comments:
+    - 'Preserved from prior description: Public entrance address for visitors. For heritage custodians, this is typically where the public enters to visit exhibitions, reading rooms, or public services. May include accessible entrances for persons with disabilities.'
+  MailingAddress:
+    is_a: AddressType
+    class_uri: hc:MailingAddress
+    description: >-
+      Postal correspondence address.
+
+      Address for receiving mail and correspondence. May be a P.O. Box  or differ from physical location addresses.
+    alt_descriptions:
+      nl: "Postcorrespondentieadres."
+      de: "Postanschrift."
+      fr: "Adresse postale."
+      es: "Dirección postal."
+      ar: "عنوان المراسلات البريدية."
+      id: "Alamat korespondensi pos."
+      zh: "邮政通信地址。"
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: postadres
+      in_language: nl
+    - literal_form: correspondentieadres
+      in_language: nl
+    - literal_form: Postadresse
+      in_language: de
+    - literal_form: adresse postale
+      in_language: fr
+    - literal_form: dirección postal
+      in_language: es
+    - literal_form: عنوان بريدي
+      in_language: ar
+    - literal_form: alamat pos
+      in_language: id
+    - literal_form: 邮寄地址
+      in_language: zh
+    annotations:
+      short_code: MAILING
+      specificity_score: "0.25"
+    examples:
+    - value:
+        has_code: MAILING
+        has_label:
+        - Mailing Address@en
+        - Postadres@nl
+        - Correspondentieadres@nl
+      description: Postal correspondence address
+  StorageAddress:
+    is_a: AddressType
+    class_uri: hc:StorageAddress
+    description: >-
+      Off-site storage facility, depot, or warehouse address.
+
+      Not typically open to the public. May house collection items  not currently on display, archival materials, or preservation facilities.
+    alt_descriptions:
+      nl: "Adres van externe opslagfaciliteit, depot of magazijn."
+      de: "Adresse einer externen Lagereinrichtung, Depots oder Lagers."
+      fr: "Adresse d'une installation de stockage externe, dépôt ou entrepôt."
+      es: "Dirección de instalación de almacenamiento externo, depósito o almacén."
+      ar: "عنوان منشأة التخزين الخارجية أو المستودع أو المخزن."
+      id: "Alamat fasilitas penyimpanan luar lokasi, depot, atau gudang."
+      zh: "场外存储设施、仓库或库房地址。"
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: opslaglocatie
+      in_language: nl
+    - literal_form: depot
+      in_language: nl
+    - literal_form: Lageradresse
+      in_language: de
+    - literal_form: adresse de dépôt
+      in_language: fr
+    - literal_form: dirección de almacenamiento
+      in_language: es
+    - literal_form: عنوان التخزين
+      in_language: ar
+    - literal_form: alamat penyimpanan
+      in_language: id
+    - literal_form: 存储地址
+      in_language: zh
+    annotations:
+      short_code: STORAGE
+      specificity_score: "0.40"
+    examples:
+    - value:
+        has_code: STORAGE
+        has_label:
+        - Storage Facility@en
+        - Opslaglocatie@nl
+        - Depot@nl
+      description: Off-site collection depot
+  BranchAddress:
+    is_a: AddressType
+    class_uri: hc:BranchAddress
+    description: >-
+      Branch office or satellite location address.
+
+      For heritage custodians with multiple locations, this identifies  addresses of branch offices, satellite reading rooms, or regional service points.
+    alt_descriptions:
+      nl: "Adres van bijkantoor of satellietlocatie."
+      de: "Adresse einer Zweigstelle oder Satellitenstandort."
+      fr: "Adresse d'une succursale ou d'un site satellite."
+      es: "Dirección de oficina sucursal o ubicación satelital."
+      ar: "عنوان الفرع أو الموقع التابع."
+      id: "Alamat kantor cabang atau lokasi satelit."
+      zh: "分支机构或卫星地点地址。"
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: vestiging
+      in_language: nl
+    - literal_form: filiaal
+      in_language: nl
+    - literal_form: Zweigstellenadresse
+      in_language: de
+    - literal_form: adresse de succursale
+      in_language: fr
+    - literal_form: dirección de sucursal
+      in_language: es
+    - literal_form: عنوان الفرع
+      in_language: ar
+    - literal_form: alamat cabang
+      in_language: id
+    - literal_form: 分支地址
+      in_language: zh
+    annotations:
+      short_code: BRANCH
+      specificity_score: "0.35"
+    examples:
+    - value:
+        has_code: BRANCH
+        has_label:
+        - Branch Office@en
+        - Vestiging@nl
+        - Filiaal@nl
+      description: Branch office location
+  ReadingRoomAddress:
+    is_a: AddressType
+    class_uri: hc:ReadingRoomAddress
+    description: >-
+      Public reading room or research room entrance address.
+
+      Specific to archives and libraries, this identifies where  researchers access original materials for consultation.  May differ from the main visiting address.
+    alt_descriptions:
+      nl: "Openbare leeszaal of onderzoekskamer ingang."
+      de: "Öffentlicher Lesesaal oder Forschungsraum Eingangsadresse."
+      fr: "Adresse d'entrée de la salle de lecture ou de la salle de recherche publique."
+      es: "Dirección de entrada a sala de lectura o sala de investigación pública."
+      ar: "عنوان مدخل غرفة القراءة أو غرفة البحث العامة."
+      id: "Alamat masuk ruang baca atau ruang penelitian publik."
+      zh: "公共阅览室或研究室入口地址。"
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: studiezaal
+      in_language: nl
+    - literal_form: leeszaal
+      in_language: nl
+    - literal_form: Leseadresse
+      in_language: de
+    - literal_form: adresse de salle de lecture
+      in_language: fr
+    - literal_form: dirección de sala de lectura
+      in_language: es
+    - literal_form: عنوان غرفة القراءة
+      in_language: ar
+    - literal_form: alamat ruang baca
+      in_language: id
+    - literal_form: 阅览室地址
+      in_language: zh
+    annotations:
+      short_code: READING_ROOM
+      specificity_score: "0.50"
+    examples:
+    - value:
+        has_code: READING_ROOM
+        has_label:
+        - Reading Room@en
+        - Studiezaal@nl
+        - Leeszaal@nl
+      description: Archive/library reading room entrance
+  DeliveryAddress:
+    is_a: AddressType
+    class_uri: hc:DeliveryAddress
+    description: >-
+      Goods delivery and receiving address.
+
+      Address for receiving deliveries, including acquisitions,  loans, and supplies. May include loading dock facilities.
+    alt_descriptions:
+      nl: "Goederenlevering en ontvangstadres."
+      de: "Warenlieferungs- und Empfangsadresse."
+      fr: "Adresse de livraison et de réception de marchandises."
+      es: "Dirección de entrega y recepción de mercancías."
+      ar: "عنوان تسليم واستلام البضائع."
+      id: "Alamat pengiriman dan penerimaan barang."
+      zh: "货物交付和接收地址。"
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: afleveradres
+      in_language: nl
+    - literal_form: goederenontvangst
+      in_language: nl
+    - literal_form: Lieferadresse
+      in_language: de
+    - literal_form: adresse de livraison
+      in_language: fr
+    - literal_form: dirección de entrega
+      in_language: es
+    - literal_form: عنوان التسليم
+      in_language: ar
+    - literal_form: alamat pengiriman
+      in_language: id
+    - literal_form: 交付地址
+      in_language: zh
+    annotations:
+      short_code: DELIVERY
+      specificity_score: "0.40"
+    examples:
+    - value:
+        has_code: DELIVERY
+        has_label:
+        - Delivery Address@en
+        - Afleveradres@nl
+        - Goederenontvangst@nl
+      description: Delivery receiving dock
+  ConservationLabAddress:
+    is_a: AddressType
+    class_uri: hc:ConservationLabAddress
+    description: >-
+      Conservation laboratory or restoration facility address.
+
+      May be separate from main facilities, housing specialized  equipment for preservation and restoration work.
+    alt_descriptions:
+      nl: "Conserveringslaboratorium of restauratiefaciliteit adres."
+      de: "Adresse des Konservierungslabors oder der Restaurierungseinrichtung."
+      fr: "Adresse du laboratoire de conservation ou de l'installation de restauration."
+      es: "Dirección del laboratorio de conservación o instalación de restauración."
+      ar: "عنوان مختبر الحفظ أو منشأة الترميم."
+      id: "Alamat laboratorium konservasi atau fasilitas restorasi."
+      zh: "保护实验室或修复设施地址。"
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: restauratieatelier
+      in_language: nl
+    - literal_form: conserveringslab
+      in_language: nl
+    - literal_form: Konservierungslabor-Adresse
+      in_language: de
+    - literal_form: adresse de laboratoire de conservation
+      in_language: fr
+    - literal_form: dirección de laboratorio de conservación
+      in_language: es
+    - literal_form: عنوان مختبر الحفظ
+      in_language: ar
+    - literal_form: alamat lab konservasi
+      in_language: id
+    - literal_form: 保护实验室地址
+      in_language: zh
+    annotations:
+      short_code: CONSERVATION_LAB
+      specificity_score: "0.55"
+    examples:
+    - value:
+        has_code: CONSERVATION_LAB
+        has_label:
+        - Conservation Laboratory@en
+        - Restauratieatelier@nl
+        - Conserveringslab@nl
+      description: Restoration workshop facility

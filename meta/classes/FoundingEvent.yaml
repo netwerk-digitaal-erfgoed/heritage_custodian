@@ -1,0 +1,58 @@
+id: https://nde.nl/ontology/hc/class/FoundingEvent
+name: FoundingEvent
+title: Founding Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/temporal_extent
+classes:
+  FoundingEvent:
+    class_uri: hc:FoundingEvent
+    description: >-
+      Inception occurrence marking the formal coming-into-being of an
+      institution, organization, or named initiative.
+    alt_descriptions:
+      nl: Ontstaansgebeurtenis die de formele totstandkoming van een instelling, organisatie of initiatief markeert.
+      de: Gruendungsereignis, das das formale Entstehen einer Institution, Organisation oder Initiative markiert.
+      fr: Occurrence de fondation marquant la creation formelle d'une institution, organisation ou initiative.
+      es: Evento de fundacion que marca la creacion formal de una institucion, organizacion o iniciativa.
+      ar: حدث تأسيسي يحدد نشأة مؤسسة أو منظمة أو مبادرة بشكل رسمي.
+      id: Peristiwa pendirian yang menandai terbentuknya institusi, organisasi, atau inisiatif secara formal.
+      zh: 标示机构、组织或项目正式成立的初始事件。
+    structured_aliases:
+      - literal_form: oprichtingsgebeurtenis
+        in_language: nl
+      - literal_form: Gruendungsereignis
+        in_language: de
+      - literal_form: evenement fondateur
+        in_language: fr
+      - literal_form: evento fundacional
+        in_language: es
+      - literal_form: حدث التأسيس
+        in_language: ar
+      - literal_form: peristiwa pendirian
+        in_language: id
+      - literal_form: 创设事件
+        in_language: zh
+    slots:
+      - temporal_extent
+      - has_description
+      - identified_by
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: true
+    exact_mappings:
+      - crm:E63_Beginning_of_Existence
+    broad_mappings:
+      - schema:Event
+      - prov:Activity

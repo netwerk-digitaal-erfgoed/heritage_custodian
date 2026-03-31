@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/classes/WikidataTemporal
+name: WikidataTemporal
+title: Wikidata Temporal Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  time: http://www.w3.org/2006/time#
+imports:
+  - linkml:types
+  - ../classes/TimeSpan
+  - ../slots/temporal_extent
+classes:
+  WikidataTemporal:
+    description: >-
+      Time-bound lifecycle statements covering start, end, opening, and activity
+      intervals.
+    alt_descriptions:
+      nl: >-
+        Tijdgebonden levenscyclusuitspraken met start-, eind-, opening- en
+        activiteitsintervallen.
+      de: >-
+        Zeitgebundene Lebenszyklus-Aussagen mit Start-, End-, Eröffnungs- und
+        Aktivitätsintervallen.
+      fr: >-
+        Énoncés de cycle de vie temporels couvrant les intervalles de début, de
+        fin, d'ouverture et d'activité.
+      es: >-
+        Enunciados de ciclo de vida temporales que cubren intervalos de inicio,
+        fin, apertura y actividad.
+      ar: >-
+        عبارات دورة حياة زمنية تغطي فترات البداية والنهاية والافتتاح والنشاط.
+      id: >-
+        Pernyataan siklus hidup berbatas waktu yang mencakup interval mulai,
+        akhir, pembukaan, dan aktivitas.
+      zh: >-
+        覆盖开始、结束、开放与活动区间的时间约束生命周期陈述。
+    broad_mappings:
+      - prov:Entity
+    close_mappings:
+      - time:TemporalEntity
+    related_mappings:
+      - schema:Event
+      - prov:InstantaneousEvent
+    slots:
+      - temporal_extent
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    comments:
+      - Aggregates temporal properties defining existence and activity periods
+      - Key dates mark discrete events (founding, dissolution, opening)
+    keywords:
+      - wikidata
+      - temporal
+      - dates
+      - inception
+      - dissolution
+      - lifecycle
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class for temporal data extraction
+      custodian_types: "['*']"
+      wikidata_property_ids: '["P571","P576","P1619","P580","P582"]'
+    structured_aliases:
+      - literal_form: wikidata-temporeel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wikidata-Temporal
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: temporel Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: temporal Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: زمني ويكي بيانات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: temporal Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 维基数据时间信息
+        predicate: EXACT_SYNONYM
+        in_language: zh

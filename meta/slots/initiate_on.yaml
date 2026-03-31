@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: initiate_on
+# ==============================================================================
+# Date, time, or triggering condition when a process formally begins.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line                | Mapping | Notes                                     |
+# |---------------|--------------------|--------------------------|---------|-------------------------------------------|
+# | **Schema.org**| `schema:validFrom` | schemaorg.owl:39363-39395| close   | "The date when the item becomes valid."   |
+# |               |                    |                          |         | Validity ≠ initiation. Domain: Offer/etc. |
+# | **Schema.org**| `schema:startDate` | schemaorg.owl:36282-36310| close   | "The start date and time of the item."    |
+# |               |                    |                          |         | Domain: Event/Role/etc.                   |
+#
+# Both schema properties relate to temporal beginnings but differ in context:
+# validFrom is about validity periods; startDate is about event/item start times.
+# This slot is about formal initiation of processes/actions/sequences.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/initiate_on
+name: initiate_on
+title: Initiate On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  initiate_on:
+    description: >-
+      Designates the specific date, time, or triggering condition when a process, action, or sequence formally begins.
+    alt_descriptions:
+      nl: >-
+        Wijst de specifieke datum, tijd of triggerende voorwaarde aan waarop een proces, actie of reeks formeel begint.
+      de: >-
+        Bezeichnet das spezifische Datum, die Uhrzeit oder die auslösende Bedingung, zu der ein Prozess, eine Aktion oder eine Sequenz formell beginnt.
+      fr: >-
+        Désigne la date, l'heure ou la condition déclenchante spécifique à laquelle un processus, une action ou une séquence commence formellement.
+      ar: >-
+        يحدد التاريخ أو الوقت أو الشرط المحفز المحدد الذي تبدأ فيه عملية أو إجراء أو تسلسل رسمياً.
+      id: >-
+        Menentukan tanggal, waktu, atau kondisi pemicu spesifik ketika proses, tindakan, atau urutan secara resmi dimulai.
+      zh: >-
+        指定流程、操作或序列正式开始的具体日期、时间或触发条件。
+      es: >-
+        Designa la fecha, hora o condición desencadenante específica en la que un proceso, acción o secuencia comienza formalmente.
+    structured_aliases:
+      - literal_form: Startdatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Startdatum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Date de début
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ البدء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tanggal Mulai
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 启动日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fecha de inicio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    slot_uri: hc:initiateOn
+    aliases:
+      - has_or_had_application_opening_date
+      - is_or_was_opened_on
+      - opened_on
+    close_mappings:
+      - schema:validFrom  # schemaorg.owl:39363-39395 - validity start date
+      - schema:startDate  # schemaorg.owl:36282-36310 - item/event start date
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.5
+      specificity_rationale: >-
+        Moderately specific slot.

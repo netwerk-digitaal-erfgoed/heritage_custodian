@@ -1,0 +1,135 @@
+id: https://nde.nl/ontology/hc/class/FinancialStatement
+name: financial_statement_class
+title: FinancialStatement Class
+imports:
+- linkml:types
+- ../enums/FinancialStatementTypeEnum
+- ../slots/document
+- ../slots/has_asset
+- ../slots/has_currency
+- ../slots/has_description
+- ../slots/has_expense
+- ../slots/has_format
+- ../slots/has_label
+- ../slots/has_liability
+- ../slots/has_operational_unit
+- ../slots/has_revenue
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/identified_by
+- ../slots/refer_to
+- ../slots/specify
+- ../slots/states_or_stated
+- ../slots/temporal_extent
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/published_at
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  frbr: http://purl.org/vocab/frbr/core#
+  frapo: http://purl.org/cerif/frapo/
+classes:
+  FinancialStatement:
+    is_a: ReconstructedEntity
+    class_uri: schema:Report
+    description: >-
+      Structured report of realized financial performance for a defined period,
+      used for accountability, audit, and comparison against planned budgets.
+    alt_descriptions:
+      nl: Gestructureerd verslag van gerealiseerde financiele prestaties over een periode voor verantwoording controle en budgetvergelijking.
+      de: Strukturierter Bericht ueber realisierte Finanzleistung eines Zeitraums fuer Rechenschaft Pruefung und Budgetvergleich.
+      fr: Rapport structure de performance financiere realisee sur une periode utilise pour responsabilite audit et comparaison au budget.
+      es: Informe estructurado del rendimiento financiero realizado en un periodo usado para rendicion de cuentas auditoria y comparacion con presupuesto.
+      ar: تقرير منظم للأداء المالي المحقق خلال فترة محددة لاستخدامه في المساءلة والتدقيق والمقارنة مع الميزانية.
+      id: Laporan terstruktur kinerja keuangan terealisasi pada periode tertentu untuk akuntabilitas audit dan perbandingan dengan anggaran.
+      zh: 对特定期间已实现财务表现的结构化报告，用于问责、审计及与预算对比。
+    structured_aliases:
+    - {literal_form: financieel verslag, in_language: nl}
+    - {literal_form: Finanzbericht, in_language: de}
+    - {literal_form: etat financier, in_language: fr}
+    - {literal_form: estado financiero, in_language: es}
+    - {literal_form: بيان مالي, in_language: ar}
+    - {literal_form: laporan keuangan, in_language: id}
+    - {literal_form: 财务报表, in_language: zh}
+    exact_mappings:
+    - schema:Report
+    close_mappings:
+    - rico:RecordResource
+    - crm:E31_Document
+    - frbr:Work
+    related_mappings:
+    - prov:Entity
+    - frapo:hasFunding
+    slots:
+    - has_label
+    - has_description
+    - has_type
+    - temporal_extent
+    - has_revenue
+    - has_expense
+    - has_asset
+    - has_liability
+    - has_currency
+    - has_status
+    - states_or_stated
+    - specify
+    - document
+    - has_operational_unit
+    - refer_to
+    - has_url
+    - has_format
+    - identified_by
+    - published_at
+    - derive_from
+    - generated_by
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+      has_type:
+        range: FinancialStatementTypeEnum
+        required: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+      has_revenue:
+        range: Revenue
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      has_expense:
+        range: decimal
+      has_asset:
+        range: decimal
+      has_liability:
+        range: decimal
+      refer_to:
+        range: Custodian
+        required: true
+      published_at:
+        range: PublicationEvent
+        inlined: true
+      derive_from:
+        multivalued: true
+      generated_by:
+        range: ReconstructionActivity
+    comments:
+    - Captures realized results, unlike budget records that model planned allocation.
+    - Supports auditability and accountability reporting across custodians.
+    - Can document budget variance through links to budget records.
+    notes:
+    - |
+      Preserved from prior description (commit ee5e8e5a):
+
+      "Represents a financial report that DOCUMENTS and TESTIFIES to the financial\nperformance of a heritage custodian against a Budget.\n\n**CRITICAL DISTINCTION - STATEMENT vs. BUDGET**:\n\n| FinancialStatement | Budget |\n|-------------------|--------|\n| **ACTUALS** - what happened | **PLAN** - intended allocations |\n| Backward-looking (historical) | Forward-looking (prospective) |\n| Audited/reviewed by third party | Approved by governance |\n| Final and unalterable | May be revised during period |\n| External reporting document | Internal planning document |\n| Legal/compliance requirement | Management tool |\n\n**FINANCIAL STATEMENT TYPES**:\n\nHeritage custodians (predominantly nonprofits) produce specialized financial statements:\n\n1. **ANNUAL_REPORT**: Comprehensive year-end report combining narrative and financials\n   - Required for many nonprofits (ANBI in NL, 990 in US)\n   - Includes mission activities, impact metrics, governance\n\n2. **FORM_990** (US nonprofits):\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

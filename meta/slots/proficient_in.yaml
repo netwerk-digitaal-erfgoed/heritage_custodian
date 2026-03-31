@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: proficient_in
+# ==============================================================================
+# Skill, language, tool, or subject in which a person or agent has demonstrated
+# high competence or mastery.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                   | Mapping | Notes                                                           |
+# |---------------|-------------------------|-----------------------------|---------|-----------------------------------------------------------------|
+# | **Schema.org**| `schema:skills`         | schemaorg.owl:35567-35593   | close   | "Competency claimed by a person/org"; no proficiency qualifier. |
+# | **Schema.org**| `schema:knowsAbout`     | schemaorg.owl:23901-23925   | broad   | "Topic known about — not implying expertise."                   |
+# | **Schema.org**| `schema:knowsLanguage`  | schemaorg.owl:23926-23948   | related | Language knowledge only; no skill level distinction.            |
+#
+# REJECTED CANDIDATES:
+# - schema:competencyRequired (schemaorg.owl:12372-12398): about competencies required
+#   for credentials/learning resources, inverted direction.
+# - schema:experienceRequirements (schemaorg.owl:17789-17810): domain JobPosting/Occupation.
+# - foaf:knows (foaf.ttl:348-353): person-to-person relationship, not skill.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/proficient_in
+name: proficient_in
+title: Proficient In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  proficient_in:
+    slot_uri: hc:proficientIn
+    description: >-
+      Relates a person or agent to a specific skill, language, tool, or subject
+      matter in which they have demonstrated a high level of competence or mastery.
+    alt_descriptions:
+      nl: >-
+        Relateert een persoon of actor aan een specifieke vaardigheid, taal, hulpmiddel
+        of vakgebied waarin zij een hoog niveau van bekwaamheid of meesterschap
+        hebben aangetoond.
+      de: >-
+        Verknüpft eine Person oder einen Akteur mit einer bestimmten Fähigkeit, Sprache,
+        einem Werkzeug oder Fachgebiet, in dem sie ein hohes Maß an Kompetenz oder
+        Meisterschaft nachgewiesen haben.
+      fr: >-
+        Associe une personne ou un agent à une compétence, une langue, un outil ou un
+        domaine spécifique dans lequel ils ont démontré un haut niveau de maîtrise
+        ou d'expertise.
+      ar: >-
+        يربط شخصًا أو فاعلًا بمهارة أو لغة أو أداة أو مجال محدد أظهر فيه مستوى
+        عالٍ من الكفاءة أو الإتقان.
+      id: >-
+        Menghubungkan seseorang atau agen dengan keterampilan, bahasa, alat, atau bidang
+        tertentu yang telah mereka tunjukkan tingkat kompetensi atau penguasaan yang tinggi.
+      zh: >-
+        将个人或代理与其已展示出高水平能力或精通的特定技能、语言、工具或学科领域相关联。
+      es: >-
+        Relaciona una persona o agente con una habilidad, idioma, herramienta o materia
+        específica en la que han demostrado un alto nivel de competencia o dominio.
+    structured_aliases:
+      - literal_form: Bekwaamheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kompetenz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Maîtrise
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: إتقان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kemahiran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 精通
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Competencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:skills  # schemaorg.owl:35567-35593 — competency claimed by person/org; no proficiency qualifier
+    broad_mappings:
+      - schema:knowsAbout  # schemaorg.owl:23901-23925 — topic known about, not implying expertise
+    related_mappings:
+      - schema:knowsLanguage  # schemaorg.owl:23926-23948 — language knowledge only, no skill level
+    aliases:
+      - likely_whatsapp_proficient
+      - proficiency_level

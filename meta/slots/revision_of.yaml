@@ -1,0 +1,79 @@
+# ==============================================================================
+# LinkML Slot Definition: revision_of
+# ==============================================================================
+# Modified, updated, or edited version derived from a specific earlier
+# iteration or predecessor of the same entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property               | File/Line        | Mapping | Notes                                                   |
+# |----------|------------------------|------------------|---------|---------------------------------------------------------|
+# | PROV-O   | `prov:wasRevisionOf`   | prov.ttl:1225-1240| exact  | "A revision is a derivation that revises an entity into  |
+# |          |                        |                  |         | a revised version." Domain: Entity, Range: Entity.       |
+#
+# prov:wasRevisionOf is semantically equivalent: both express that the current
+# entity is a modified version derived from an earlier entity. Kept as exact.
+# slot_uri remains hc:revisionOf (PROV-O property is infrastructure-level).
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/revision_of
+name: revision_of
+title: revision of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  revision_of:
+    slot_uri: hc:revisionOf
+    description: >-
+      To be a modified, updated, or edited version derived from a specific earlier iteration or predecessor of the same entity.
+    alt_descriptions:
+      nl: >-
+        Een gewijzigde, bijgewerkte of bewerkte versie die is afgeleid van een specifieke eerdere iteratie of voorganger van dezelfde entiteit.
+      de: >-
+        Eine modifizierte, aktualisierte oder bearbeitete Version, die von einer bestimmten früheren Iteration oder einem Vorgänger derselben Entität abgeleitet ist.
+      fr: >-
+        Une version modifiée, mise à jour ou éditée dérivée d'une itération antérieure spécifique ou d'un prédécesseur de la même entité.
+      ar: >-
+        نسخة معدلة أو محدثة أو منقحة مشتقة من تكرار سابق محدد أو سلف لنفس الكيان.
+      id: >-
+        Versi yang dimodifikasi, diperbarui, atau diedit yang berasal dari iterasi atau pendahulu tertentu sebelumnya dari entitas yang sama.
+      zh: >-
+        从同一实体的特定早期迭代或前身衍生的修改、更新或编辑版本。
+      es: >-
+        Una versión modificada, actualizada o editada derivada de una iteración anterior específica o un predecesor de la misma entidad.
+    structured_aliases:
+      - literal_form: Herziening
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Überarbeitung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Révision
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مراجعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Revisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 修订
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Revisión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - is_or_was_revision_of
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+      - prov:wasRevisionOf  # prov.ttl:1225-1240 - "A revision is a derivation that revises an entity into a revised version."

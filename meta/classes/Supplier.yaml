@@ -1,0 +1,125 @@
+id: https://nde.nl/ontology/hc/class/Supplier
+name: supplier
+title: Supplier
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  gr: http://purl.org/goodrelations/v1#
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/temporal_extent
+classes:
+  Supplier:
+    class_uri: schema:Organization
+    alt_descriptions:
+      nl: Zakelijke leverancier van goederen of diensten aan een erfgoedinstelling.
+      de: Geschaeftlicher Lieferant von Waren oder Dienstleistungen fuer eine Kultureinrichtung.
+      fr: Entite commerciale fournissant biens ou services a une institution patrimoniale.
+      es: Entidad comercial que suministra bienes o servicios a una institucion patrimonial.
+      ar: جهة موردة تجارية تقدم سلعًا أو خدمات لمؤسسة تراثية.
+      id: Entitas bisnis pemasok barang/jasa untuk lembaga warisan budaya.
+      zh: 向文化遗产机构提供商品或服务的商业供应方。
+    structured_aliases:
+    - literal_form: leverancier
+      in_language: nl
+    - literal_form: Lieferant
+      in_language: de
+    - literal_form: fournisseur
+      in_language: fr
+    - literal_form: proveedor
+      in_language: es
+    - literal_form: مورّد
+      in_language: ar
+    - literal_form: pemasok
+      in_language: id
+    - literal_form: 供应商
+      in_language: zh
+    description: >-
+      Business entity that supplies goods or services to a heritage custodian.
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    - temporal_extent
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        examples:
+        - value: hc:supplier/king-mcgaw
+      has_label:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+        examples:
+        - value:
+            label_text: King & McGaw
+        - value:
+            label_text: Museum Reproductions Ltd
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Fine art print supplier specializing in museum reproduction prints
+      has_type:
+#         range: string # uriorcurie
+        inlined: false # Fixed invalid inline for primitive type
+        multivalued: true
+        examples:
+        - value:
+            has_label:
+              label_text: Print Supplier
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        examples:
+        - value:
+            begin_of_the_begin: '2018-01-01'
+    broad_mappings:
+    - schema:Organization
+    close_mappings:
+    - gr:BusinessEntity
+    related_mappings:
+    - org:Organization
+    examples:
+    - value:
+        identified_by: hc:supplier/king-mcgaw
+        has_label:
+          label_text: King & McGaw
+        has_type:
+        - has_label:
+            label_text: Print Supplier
+        has_description:
+          description_text: Leading supplier of fine art prints and museum reproduction services
+        temporal_extent:
+          begin_of_the_begin: '2018-01-01'
+    - value:
+        identified_by: hc:supplier/museum-reproductions-ltd
+        has_label:
+          label_text: Museum Reproductions Ltd
+        has_type:
+        - has_label:
+            label_text: Reproduction Supplier
+        has_description:
+          description_text: High-quality reproductions of museum artifacts
+        temporal_extent:
+          begin_of_the_begin: '2015-06-01'
+          end_of_the_end: '2022-12-31'
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Suppliers applicable to any custodian with commercial operations.
+      migration_source: supplier_relationship string values
+      migration_date: '2026-01-16'
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      modeling_notes: |
+        This class replaces plain string supplier references with structured
+        supplier entities including type, description, and temporal validity.

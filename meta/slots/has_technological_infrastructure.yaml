@@ -1,0 +1,148 @@
+# ==============================================================================
+# LinkML Slot Definition: has_technological_infrastructure
+# ==============================================================================
+# To possess or comprise the underlying framework of physical and digital systems,
+# including hardware, software, and networks, necessary for operation or service.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:softwareVersion`    | schemaorg.owl        | close   | Software/version info              |
+# | **DOAP**      | `doap:programming-language` | (external)           | close   | Programming language for project   |
+# | **SPDX**      | `spdx:relationshipType_dependsOn`| spdx2.owl          | related | Software Bill of Materials         |
+#
+# HIERARCHY: No rdfs:subPropertyOf declarations found for these properties
+#
+# CREATED: 2026-01-16
+# UPDATED: 2026-02-03 - Added header documentation
+# UPDATED: 2026-02-03 - Fixed corrupted description field, moved notes to comments
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_technological_infrastructure
+name: has_technological_infrastructure
+title: Has Technological Infrastructure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  doap: http://usefulinc.com/ns/doap#
+  spdx: http://spdx.org/rdf/terms#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_technological_infrastructure:
+    slot_uri: hc:hasTechnologicalInfrastructure
+    description: >-
+      To possess or comprise the underlying framework of physical and digital
+      systems, including hardware, software, and networks, necessary for
+      operation or service delivery.
+    alt_descriptions:
+      nl: >-
+        Om het onderliggende raamwerk van fysieke en digitale systemen te
+        bezitten of te omvatten, inclusief hardware, software en netwerken,
+        noodzakelijk voor werking of dienstverlening.
+      de: >-
+        Das zugrunde liegende Framework physischer und digitaler Systeme zu
+        besitzen oder zu umfassen, einschließlich Hardware, Software und
+        Netzwerke, die für den Betrieb oder die Dienstleistung erforderlich sind.
+      fr: >-
+        Posséder ou comprendre le cadre sous-jacent des systèmes physiques et
+        numériques, y compris le matériel, les logiciels et les réseaux,
+        nécessaires au fonctionnement ou à la prestation de services.
+      ar: >-
+        امتلاك أو تضمين الإطار الأساسي للأنظمة المادية والرقمية، بما في ذلك
+        الأجهزة والبرامج والشبكات، اللازمة للتشغيل أو تقديم الخدمات.
+      id: >-
+        Memiliki atau mencakup kerangka kerja mendasar dari sistem fisik dan
+        digital, termasuk perangkat keras, perangkat lunak, dan jaringan,
+        yang diperlukan untuk operasi atau penyampaian layanan.
+      zh: >-
+        拥有或包含物理和数字系统的底层框架，包括运营或服务交付所需的硬件、软件和网络。
+      es: >-
+        Poseer o comprender el marco subyacente de sistemas físicos y
+        digitales, incluyendo hardware, software y redes, necesarios para
+        la operación o prestación de servicios.
+    structured_aliases:
+      - literal_form: technologische infrastructuur
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: technologische Infrastruktur
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: infrastructure technologique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: البنية التحتية التكنولوجية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: infrastruktur teknologi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 技术基础设施
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: infraestructura tecnológica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    required: false
+    close_mappings:
+      - schema:softwareVersion
+      - doap:programming-language
+    related_mappings:
+      - spdx:relationshipType_dependsOn
+    aliases:
+      - has_or_had_technological_infrastructure
+    annotations:
+      replaces_slot: technology_stack
+      migration_date: '2026-01-16'
+      migration_rationale: >-
+        Per slot_fixes.yaml and Rule 56: Migrated from simple string list to
+        structured TechnologicalInfrastructure class for better semantic
+        modeling and extensibility.
+      custodian_types: '["D"]'
+      custodian_types_rationale: Primarily relevant for Digital platform custodians.
+      custodian_types_primary: D
+      specificity_score: 0.7
+      specificity_rationale: >-
+        Fairly specific to digital platform modeling. Less relevant for
+        physical-only heritage custodians.
+    examples:
+      - value: hc:TechnologicalInfrastructure/react-frontend
+        description: React frontend framework (CURIE reference)
+      - value: hc:TechnologicalInfrastructure/python-django-backend
+        description: Python/Django backend stack
+    comments:
+      - MIGRATED from technology_stack per slot_fixes.yaml (Rule 56, 2026-01-16).
+      - |
+        TEMPORAL SEMANTICS: This relationship may be historical - platforms
+        may have changed technology stacks over time.
+      - |
+        RANGE: uriorcurie - classes narrow to TechnologicalInfrastructure via slot_usage.
+        Multivalued because platforms typically use multiple technologies.
+      - DOAP-aligned: Description of a Project vocabulary for software.
+      - |
+        USAGE EXAMPLE:
+        ```yaml
+        auxiliary_platform:
+          has_technological_infrastructure:
+            - has_type: Framework
+              has_label: React
+              has_description: Frontend JavaScript framework
+            - has_type: BackendStack
+              has_label: Python/Django
+              has_description: Backend web framework
+            - has_type: Database
+              has_label: PostgreSQL
+              has_description: Primary relational database
+        ```

@@ -1,0 +1,150 @@
+id: https://nde.nl/ontology/hc/class/WikiDataEntry
+name: wikidata_entry_class
+title: WikiData Entry Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  wikibase: http://wikiba.se/ontology#
+  wd: http://www.wikidata.org/entity/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/in_language
+classes:
+  WikiDataEntry:
+    class_uri: wikibase:Item
+    description: >-
+      Reusable external reference carrying a Q-identifier, label, description,
+      and language tag for crosswalks.
+    alt_descriptions:
+      nl: >-
+        Herbruikbare externe verwijzing met een Q-identificator, label,
+        beschrijving en taalcode voor crosswalks.
+      de: >-
+        Wiederverwendbarer externer Verweis mit Q-Kennung, Label, Beschreibung
+        und Sprachangabe für Crosswalks.
+      fr: >-
+        Référence externe réutilisable portant un identifiant Q, un libellé, une
+        description et une langue pour les correspondances.
+      es: >-
+        Referencia externa reutilizable con identificador Q, etiqueta,
+        descripción y código de idioma para correspondencias.
+      ar: >-
+        مرجع خارجي قابل لإعادة الاستخدام يحمل مُعرّف Q وتسمية ووصفاً ووسم
+        لغة لعمليات المطابقة.
+      id: >-
+        Referensi eksternal yang dapat digunakan kembali dengan pengenal Q,
+        label, deskripsi, dan kode bahasa untuk crosswalk.
+      zh: >-
+        用于交叉对照的可复用外部引用，包含Q标识符、标签、描述与语言标记。
+    close_mappings:
+      - wikibase:Item
+    broad_mappings:
+      - schema:Thing
+    related_mappings:
+      - skos:Concept
+      - prov:Entity
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+      - in_language
+      - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        pattern: "^Q[0-9]+$"
+      has_label:
+        required: false
+      has_description:
+        required: false
+      in_language:
+        required: false
+        pattern: "^[a-z]{2}(-[A-Z]{2})?$"
+    comments:
+      - Used for ontology alignments, equivalence mappings, and classification
+      - Migrated 2026-01-16 per Rule 53 from inline wikidata slots
+    see_also:
+      - https://www.wikidata.org/
+    examples:
+      - value:
+          identified_by: "Q33506"
+          has_label: "museum"
+          has_description: "institution that holds and displays collections"
+          in_language: en
+        description: Museum concept in Wikidata
+      - value:
+          identified_by: "Q190804"
+          has_label: "Rijksmuseum"
+          has_description: "Dutch national museum in Amsterdam"
+          in_language: en
+        description: Rijksmuseum entity reference
+    keywords:
+      - wikidata
+      - entry
+      - reference
+      - q-item
+      - alignment
+    notes:
+      - |
+        Preserved from prior description (commit 2c9d3598):
+
+        Reference to a Wikidata entity (Q-item) for alignments and equivalences.
+
+        **Purpose**:
+        WikiDataEntry provides a reusable class for representing Wikidata entity
+        references with Q-number identifier, label, and description.
+        Used for ontology alignments, equivalence mappings, and classification.
+
+        **Ontological Alignment**:
+        - **Primary**: `wikibase:Item` - Wikibase item class
+        - **Close**: `schema:Thing` - general web entity
+        - **Related**: `skos:Concept` - controlled vocabulary concept
+
+        **Use Cases**:
+        - Ontology alignment: `wikidata_alignment` → relates schema class to Wikidata Q
+        - Equivalence: `wikidata_equivalent` → marks semantic equivalence
+        - Classification: `wikidata_class` → instance_of relationship
+        - General mapping: `wikidata_mapping` → related concept
+
+        **Replaces** (per slot_fixes.yaml):
+        - `wikidata_mapping` (string Q-number)
+        - `wikidata_equivalent` (string Q-number)
+        - `wikidata_class` (string Q-number)
+        - `wikidata_alignment` (string Q-number)
+        - `wikidata` (string Q-number)
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Generic Wikidata reference class applicable to all types.
+      specificity_score: 0.2
+      specificity_rationale: Broadly applicable generic class for Wikidata links.
+    structured_aliases:
+      - literal_form: wikidata-invoer
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wikidata-Eintrag
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: entrée Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: entrada Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مُدخل ويكي بيانات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: entri Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 维基数据条目
+        predicate: EXACT_SYNONYM
+        in_language: zh

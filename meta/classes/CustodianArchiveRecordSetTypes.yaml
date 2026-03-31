@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/CustodianArchiveRecordSetTypes
+name: CustodianArchiveRecordSetTypes
+title: CustodianArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./CustodianArchiveRecordSetType
+- linkml:types
+- ../slots/has_type
+- ../slots/has_score
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  CustodialRecordsFonds:
+    is_a: CustodianArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Highest-level aggregation of custody-related documentary accumulations
+      pending detailed ordering and description.
+    alt_descriptions:
+      nl: >-
+        Hoogste aggregatieniveau van bewaargerelateerde documentaire
+        accumulaties die nog op nadere ordening en beschrijving wachten.
+      de: >-
+        Höchste Aggregationsebene verwahrungsbezogener dokumentarischer
+        Akkumulationen, die auf detaillierte Ordnung und Beschreibung warten.
+      fr: >-
+        Niveau d'agrégation le plus élevé d'accumulations documentaires liées à
+        la garde, en attente d'un classement et d'une description détaillés.
+      es: >-
+        Nivel de agregación más alto de acumulaciones documentales ligadas a la
+        custodia, pendientes de ordenación y descripción detalladas.
+      ar: >-
+        أعلى مستوى تجميعي لتراكمات وثائقية مرتبطة بالحفظ بانتظار ترتيب
+        ووصف تفصيليين.
+      id: >-
+        Tingkat agregasi tertinggi untuk akumulasi dokumenter terkait kustodi
+        yang menunggu penataan dan deskripsi terperinci.
+      zh: >-
+        与保管相关、尚待细化编排与描述的文献累积体的最高聚合层级。
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: "hc:CustodialRecordsFonds"
+      has_custodian:
+        equals_string: "hc:CustodianArchive"
+    structured_aliases:
+    - literal_form: bewaargerelateerd documentair totaalbestand
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: verwahrungsbezogene Dokumentakkumulation
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: agrégat documentaire de garde
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: agregado documental de custodia
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: تجميع وثائقي مرتبط بالحفظ
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: agregasi dokumenter terkait kustodi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 保管相关文献总成
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Represents custody-oriented accumulations before fine-grained arrangement.
+    - Useful for transitional processing stages in archival control workflows.
+    - 'Preserved from prior description: Fonds-level record-set category representing accumulated custodial documentation awaiting detailed arrangement.'
+    keywords:
+    - custody documentation
+    - aggregation level
+    - arrangement backlog
+    - archival control
+    examples:
+    - value:
+        has_type: hc:CustodialRecordsFonds
+        has_custodian: hc:CustodianArchive
+        has_note: Intake accumulations awaiting detailed arrangement.
+      description: Custody-related accumulations grouped at highest level

@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/class/Version
+name: version_class
+title: Version Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  doap: http://usefulinc.com/ns/doap#
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/temporal_extent
+default_prefix: hc
+classes:
+  Version:
+    class_uri: schema:SoftwareApplication
+    description: >-
+      State snapshot identifier representing a specific revision within an ordered
+      sequence of document or software iterations.
+    alt_descriptions:
+      nl: >-
+        Statusmoment-identificator die een specifieke revisie vertegenwoordigt binnen een geordende
+        reeks document- of software-iteraties.
+      de: >-
+        Zustandsmoment-Identifikator, der eine spezifische Revision innerhalb einer geordneten
+        Folge von Dokument- oder Software-Iterationen repräsentiert.
+      fr: >-
+        Identifiant d'instantané d'état représentant une révision spécifique dans une séquence
+        ordonnée d'itérations de documents ou de logiciels.
+      es: >-
+        Identificador de instantánea de estado que representa una revisión específica dentro de una
+        secuencia ordenada de iteraciones de documentos o software.
+      ar: >-
+        معرّف لقطة الحالة الذي يمثل مراجعة محددة ضمن تسلسل مرتب
+        من تكرارات المستندات أو البرامج.
+      id: >-
+        Pengidentifikasi snapshot status yang mewakili revisi tertentu dalam urutan
+        berurutan iterasi dokumen atau perangkat lunak.
+      zh: >-
+        表示文档或软件迭代有序序列中特定修订的状态快照标识符。
+    structured_aliases:
+    - literal_form: versie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Version
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: version
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: versión
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نسخة
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: versi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 版本
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - doap:Version
+    close_mappings:
+    - schema:version
+    slots:
+    - identified_by
+    - has_label
+    - temporal_extent
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: "2023-06-15"
+            end_of_the_end:
+    comments:
+    - Tracks revision history for software releases and document versions.
+    - Used for versioning digital platform deployments and schema evolution.
+    - 'Preserved from prior description: A version identifier for software, documents, schemas, or other entities. **Purpose**: Represents a structured version record with version number, release date, and semantic versioning components. **Semantic Versioning Support**: - major_version: Breaking changes - minor_version: New features (backwards compatible) - patch_version: Bug fixes **Use Cases**: 1. **CMS Product Version**: Version of deployed CMS software 2. **API Version**: REST API version 3. **Schema Version**: Ontology/schema version 4. **Document Version**: Document revision number **Example**: ```yaml CollectionManagementSystem: cms_name: CollectiveAccess has_version: version_string: "1.8.0" major_version: 1 minor_version: 8 patch_version: 0 release_date: "2023-06-15" ``` **Migration Note**: Created 2026-01-19 per slot_fixes.yaml (Rule 53). Replaces simple string cms_product_version with structured Version class.'
+    keywords:
+    - revision identifier
+    - software version
+    - document iteration
+    - state snapshot
+    annotations:
+      custodian_types: '["D"]'
+      custodian_types_rationale: Primarily used by digital platforms (D) for software versioning
+      specificity_score: 0.55
+      specificity_rationale: Moderately specific to software/document version contexts

@@ -1,0 +1,75 @@
+id: https://nde.nl/ontology/hc/class/DigitalPresence
+name: digital_presence_class
+title: Digital Presence Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_type
+classes:
+  DigitalPresence:
+    class_uri: crm:E1_CRM_Entity
+    description: >-
+      Structured reference node linking a concrete online channel instance to
+      its presence-category classification.
+    alt_descriptions:
+      nl: Gestructureerde referentieknoop die een concreet online kanaal koppelt aan zijn aanwezigheidscategorie.
+      de: Strukturierter Referenzknoten der eine konkrete Online-Praesenzinstanz mit ihrer Klassifikation verbindet.
+      fr: Noeud de reference structure liant une instance concrete de presence numerique a sa categorie de classement.
+      es: Nodo de referencia estructurado que vincula una instancia concreta de presencia digital con su categoria de clasificacion.
+      ar: عقدة مرجعية منظمة تربط مثيلا فعليا للحضور الرقمي بفئة تصنيفه.
+      id: Simpul referensi terstruktur yang menghubungkan instans kanal daring konkret dengan kategori klasifikasinya.
+      zh: 将具体线上渠道实例与其存在类型分类相连接的结构化引用节点。
+    structured_aliases:
+    - {literal_form: digitale aanwezigheid, in_language: nl}
+    - {literal_form: digitale Praesenz, in_language: de}
+    - {literal_form: presence numerique, in_language: fr}
+    - {literal_form: presencia digital, in_language: es}
+    - {literal_form: حضور رقمي, in_language: ar}
+    - {literal_form: kehadiran digital, in_language: id}
+    - {literal_form: 数字存在项, in_language: zh}
+    broad_mappings:
+    - crm:E1_CRM_Entity
+
+    slots:
+    - identified_by
+    - has_type
+
+    slot_usage:
+      identified_by:
+        description: URI of the digital presence instance (e.g. hc:social-media/fb).
+#         range: string # uriorcurie
+        required: true
+      has_type:
+        range: DigitalPresenceType
+        description: Presence category classification (migrated from digital_presence_type).
+        required: true
+        inlined: true
+
+    notes:
+    - |
+      Preserved from prior description (commit d52149a5):
+
+      Represents a digital presence being asserted about (e.g. as primary).
+      Wrapper that links a specific presence instance (URI) to its type classification.
+
+      **MIGRATION SOURCE**: Created from digital_presence_type slot migration (Rule 53, 2026-01-25).
+
+      **Pattern**: Replaces `digital_presence_type` slot on assertion with structured object:
+      - `identified_by`: URI of the presence (SocialMediaProfile, Website, etc.)
+      - `has_type`: Classification (DigitalPresenceType)
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+      specificity_rationale: "Used for asserting properties of digital presences."
+    comments:
+    - "CREATED from digital_presence_type migration per slot_fixes.yaml (Rule 53)"
+    - "Wrapper for linking presence instance to its type"

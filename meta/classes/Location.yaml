@@ -1,0 +1,114 @@
+id: https://nde.nl/ontology/hc/class/Location
+name: Location
+title: Location Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  locn: http://www.w3.org/ns/locn#
+  wgs84: http://www.w3.org/2003/01/geo/wgs84_pos#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_label
+- ../slots/has_latitude
+- ../slots/has_longitude
+- ../slots/has_score
+classes:
+  Location:
+    class_uri: schema:Place
+    description: >-
+      Reusable geographic place designation with a verbal designation and optional
+      coordinate pair for spatial positioning.
+    alt_descriptions:
+      nl: >-
+        Herbruikbare geografische plaatsaanduiding met een verbale benaming en optioneel
+        coördinatenpaar voor ruimtelijke positionering.
+      de: >-
+        Wiederverwendbare geografische Ortsbezeichnung mit verbalischer Bezeichnung und optionalem
+        Koordinatenpaar zur räumlichen Positionierung.
+      fr: >-
+        Désignation de lieu géographique réutilisable avec une désignation verbale et paire de coordonnées
+        optionnelle pour le positionnement spatial.
+      es: >-
+        Designación de lugar geográfico reutilizable con designación verbal y par de coordenadas
+        opcional para posicionamiento espacial.
+      ar: >-
+        تسمية مكان جغرافي قابلة لإعادة الاستخدام مع تسمية لفظية وزوج إحداثيات
+        اختياري للتموضع المكاني.
+      id: >-
+        Penunjukan lokasi geografis yang dapat digunakan kembali dengan penunjukan verbal dan pasangan koordinat
+        opsional untuk pemosisian spasial.
+      zh: >-
+        具有口头指定和可选坐标对用于空间定位的可重用地理地点指定。
+    structured_aliases:
+    - literal_form: locatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Standort
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: localisation
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: ubicación
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: موقع
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: lokasi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 位置
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - schema:Place
+    close_mappings:
+    - locn:Location
+    related_mappings:
+    - wgs84:Point
+    slots:
+    - has_label
+    - has_latitude
+    - has_longitude
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+      has_latitude:
+        range: float
+      has_longitude:
+        range: float
+    comments:
+    - Generic geographic location representation for heritage entities.
+    - Used for transfer event locations, institution addresses, and storage facilities.
+    - 'Preserved from prior description: Reusable geographic location with label and optional coordinate pair.'
+    keywords:
+    - geographic place
+    - spatial location
+    - coordinate reference
+    - place designation
+    notes:
+    - |
+      Generic geographic location representation.
+
+      **Purpose**:
+      Location provides a reusable class for representing geographic
+      locations with name and optional coordinates.
+
+      **Ontological Alignment**:
+      - **Primary**: `schema:Place` - Schema.org Place
+      - **Close**: `locn:Location` - LOCN (W3C Location) location
+      - **Related**: `wgs84:Point` - WGS84 geo point (for coordinates)
+
+      **Use Cases**:
+      - Transfer event locations (origin/destination)
+      - Institution physical locations
+      - Collection storage locations
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.2
+      specificity_rationale: Generic place anchor class used across operational and descriptive contexts.

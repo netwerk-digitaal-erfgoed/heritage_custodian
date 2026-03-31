@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: in_section
+# ==============================================================================
+# The name or label of a structural section within a source document or file.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                     | File/Line                       | Mapping | Notes                                                                   |
+# |-------------|------------------------------|---------------------------------|---------|-------------------------------------------------------------------------|
+# | **Schema**  | `schema:isPartOf`            | schemaorg.owl:22926-22948       | broad   | "isPartOf" CreativeWork→CreativeWork. General part-of relationship.      |
+# | **DCTerms** | `dcterms:isPartOf`           | dcterms.rdf:1464-1487           | broad   | "Is Part Of" — physically or logically included. Non-literal intended.   |
+# | **CIDOC**   | `crm:P148i_is_component_of`  | CIDOC_CRM_v7.1.3.rdf:4411-4419 | related | "is component of" E89→E89. Structural component, object-to-object.      |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/in_section
+name: in_section
+title: In Section
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_section:
+    slot_uri: hc:inSection
+    description: >-
+      The name or label of a specific structural division, chapter, or
+      thematic segment within a larger source document or file to which
+      this item belongs. Records the section as a free-text string rather
+      than a structural link to another resource.
+    alt_descriptions:
+      nl: >-
+        De naam of het label van een specifieke structurele afdeling,
+        hoofdstuk of thematisch segment binnen een groter brondocument
+        of bestand waartoe dit item behoort.
+      de: >-
+        Der Name oder die Bezeichnung eines bestimmten strukturellen
+        Abschnitts, Kapitels oder thematischen Segments innerhalb eines
+        größeren Quelldokuments oder einer Datei, zu dem dieses Element
+        gehört.
+      fr: >-
+        Le nom ou le libellé d'une division structurelle, d'un chapitre
+        ou d'un segment thématique spécifique au sein d'un document ou
+        fichier source plus large auquel cet élément appartient.
+      ar: >-
+        اسم أو تسمية قسم هيكلي محدد أو فصل أو جزء موضوعي ضمن مستند
+        أو ملف مصدر أكبر ينتمي إليه هذا العنصر.
+      id: >-
+        Nama atau label dari suatu bagian struktural, bab, atau segmen
+        tematik tertentu dalam dokumen atau berkas sumber yang lebih besar
+        tempat item ini berada.
+      zh: >-
+        此项目所属的较大源文档或文件中特定结构划分、章节或主题段落的名称或标签。
+      es: >-
+        El nombre o etiqueta de una división estructural, capítulo o
+        segmento temático específico dentro de un documento o archivo
+        fuente más grande al que pertenece este elemento.
+    structured_aliases:
+      - literal_form: in sectie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: im Abschnitt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dans la section
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: في القسم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: di bagian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 在章节中
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: en la sección
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - schema:isPartOf  # schemaorg.owl:22926-22948 - "isPartOf" CreativeWork→CreativeWork; general part-of relationship
+      - dcterms:isPartOf  # dcterms.rdf:1464-1487 - "Is Part Of" — physically or logically included in a related resource
+    related_mappings:
+      - crm:P148i_is_component_of  # CIDOC_CRM_v7.1.3.rdf:4411-4419 - "is component of" E89→E89; structural component, object-to-object
+    aliases:
+      - source_section
+    examples:
+      - value: "Chapter 3 — Acquisition Policy"
+        description: >-
+          Indicates the item originates from the third chapter of a
+          policy document about acquisitions.
+      - value: "Bijzondere Collecties"
+        description: >-
+          Indicates the item belongs to the Special Collections section
+          of a larger institutional inventory.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Records the section name as a free-text string. For structural
+        part-of relationships linking to other resources, use a dedicated
+        relationship slot instead. Useful for provenance tracking when
+        extracting data from specific chapters, sections, or segments of
+        source documents.

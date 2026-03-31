@@ -1,0 +1,141 @@
+id: https://nde.nl/ontology/hc/class/InternetOfThings
+name: InternetOfThings
+title: Internet Of Things Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  ssn: http://www.w3.org/ns/ssn/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/instantiated_by
+- ../slots/installed_in
+- ../slots/installed_at
+- ../slots/decommissioned_at
+- ../slots/connect_through
+- ../slots/has_endpoint
+- ../slots/has_output
+- ../slots/has_frequency
+- ../slots/has_service_area
+- ../slots/has_specification
+- ../slots/has_quantity
+- ../slots/has_model
+- ../slots/has_power_source
+- ../slots/has_status
+- ../slots/has_schedule
+- ../slots/refer_to
+- ../slots/created_by
+- ../slots/temporal_extent
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/has_score
+classes:
+  InternetOfThings:
+    is_a: ReconstructedEntity
+    class_uri: sosa:Platform
+    description: >-
+      Connected physical-digital infrastructure enabling sensing, visitor interaction, or environmental
+      automation within heritage venues.
+    alt_descriptions:
+      nl: >-
+        Verbonden fysiek-digitaal infrastructuur die sensing, bezoekersinteractie of omgevingsautomatisering
+        binnen erfgoedlocaties mogelijk maakt.
+      de: >-
+        Vernetzte physisch-digitale Infrastruktur, die Sensorik, Besucherinteraktion oder Umgebungsautomatisierung
+        in Heritage-Einrichtungen ermöglicht.
+      fr: >-
+        Infrastructure physico-numérique connectée permettant la détection, l'interaction visiteur ou l'automatisation
+        environnementale dans les lieux patrimoniaux.
+      es: >-
+        Infraestructura físico-digital conectada que permite la detección, interacción con visitantes o automatización
+        ambiental en lugares patrimoniales.
+      ar: >-
+        بنية تحتية مادية رقمية متصلة تمكّن الاستشعار أو تفاعل الزوار أو الأتمتة البيئية
+        في مواقع التراث.
+      id: >-
+        Infrastruktur fisik-digital terhubung yang memungkinkan penginderaan, interaksi pengunjung, atau otomatisasi
+        lingkungan dalam lokasi warisan.
+      zh: >-
+        在遗产场所实现传感、访客交互或环境自动化的联网物理数字基础设施。
+    structured_aliases:
+    - literal_form: IoT-platform
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: IoT-Plattform
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: plateforme IoT
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: plataforma IoT
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: منصة إنترنت الأشياء
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: platform IoT
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 物联网平台
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - sosa:Platform
+    close_mappings:
+    - ssn:System
+    - crm:E22_Human-Made_Object
+    slots:
+    - identified_by
+    - has_label
+    - instantiated_by
+    - installed_in
+    - installed_at
+    - decommissioned_at
+    - connect_through
+    - has_endpoint
+    - has_output
+    - has_frequency
+    - has_service_area
+    - has_specification
+    - has_quantity
+    - has_model
+    - has_power_source
+    - has_status
+    - has_schedule
+    - refer_to
+    - created_by
+    - temporal_extent
+    - derive_from
+    - generated_by
+    - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      instantiated_by:
+        range: IoTDevice
+        required: true
+        inlined: true
+      refer_to:
+        range: Custodian
+        required: true
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      "Physical device with digital connectivity used by a heritage custodian\nto enhance visitor experience, monitor conditions, or provide services.\n\n**WHY IOT CLASS?**\n\nModern heritage institutions increasingly deploy IoT devices:\n- **Beacons**: Location-based triggers for mobile apps\n- **Kiosks**: Interactive information terminals\n- **Sensors**: Environmental monitoring (climate, light, visitor counts)\n- **Displays**: Digital signage, interactive screens\n\nThese are a form of DIGITAL PRESENCE that bridges physical and digital worlds.\n\n**RELATIONSHIP TO OTHER DIGITAL PRESENCE TYPES**:\n\n```\nDigital Presence Hierarchy:\n\nDigitalPlatform (PRIMARY - websites)\n    \u2502\n    \u2514\u2500\u2500 AuxiliaryDigitalPlatform (SECONDARY - project sites)\n\nSocialMediaProfile (THIRD-PARTY - external platforms)\n\nInternetOfThings (PHYSICAL-DIGITAL - in-venue devices) \u2190 THIS CLASS\n```\n\n**SOSA/SSN ALIGNMENT**:\n\nW3C Semantic Sensor Network (SSN) and Sensor, Observation,\
+    annotations:
+      specificity_score: 0.6
+      specificity_rationale: Infrastructure class linking IoT deployments to heritage operational contexts.
+      custodian_types: '["*"]'
+    comments:
+    - 'Preserved from prior description: Connected physical-digital platform used for sensing, interaction, or automation in heritage environments.'

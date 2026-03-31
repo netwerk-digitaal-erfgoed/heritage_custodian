@@ -1,0 +1,134 @@
+# ==============================================================================
+# LinkML Slot Definition: apply_to
+# ==============================================================================
+# Putting a principle, method, or rule into practical operation to serve
+# a specific purpose. Used for documenting standards and policies applied.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **PROV-O**   | `prov:used`            | prov.ttl:1039-1053| exact   | "Activity used Entity" - core apply.     |
+# | **CIDOC-CRM**| `crm:P33_used_specific_technique`| CIDOC_CRM| close | Activity used specific procedure.        |
+# | **RiC-O**    | `rico:isOrWasRegulatedBy`| RiC-O_1-1.rdf   | close   | Thing regulated by Rule.                 |
+# | **ODRL**     | `odrl:use`             | odrl.ttl          | close   | Generic action for using an Asset.       |
+# | **Schema.org**| `schema:legislationApplies`| schemaorg.owl | narrow  | Legislation applies another.             |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Changed slot_uri from hc:apply_to to prov:used (exact mapping)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/apply_to
+name: apply_to
+title: apply to
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  odrl: http://www.w3.org/ns/odrl/2/
+  premis: http://www.loc.gov/premis/rdf/v3/
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  apply_to:
+    description: >-
+      To put a principle, method, or rule into practical operation to serve
+      a specific purpose.
+    alt_descriptions:
+      nl: >-
+        Een principe, methode of regel in praktijk brengen om een specifiek
+        doel te dienen.
+      de: >-
+        Ein Prinzip, eine Methode oder eine Regel in die praktische Anwendung
+        bringen, um einem bestimmten Zweck zu dienen.
+      fr: >-
+        Mettre en application pratique un principe, une méthode ou une règle
+        pour servir un objectif spécifique.
+      ar: >-
+        وضع مبدأ أو طريقة أو قاعدة موضع التنفيذ العملي لخدمة غرض محدد.
+      id: >-
+        Menerapkan prinsip, metode, atau aturan ke dalam operasi praktis
+        untuk melayani tujuan tertentu.
+      zh: >-
+        将原则、方法或规则付诸实践，以服务于特定目的。
+      es: >-
+        Poner en práctica un principio, método o regla para servir
+        un propósito específico.
+    structured_aliases:
+      - literal_form: past toe op
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_apply_to
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: wendet an auf
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: applique à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يطبق على
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menerapkan pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 应用于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: aplica a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    multivalued: true
+    # The semantics align with rico:isOrWasRegulatedBy (inverse) and prov:used
+    slot_uri: prov:used
+    # Semantic mappings (SKOS predicates)
+    # From: prov.ttl, CIDOC_CRM_v7.1.3.rdf, RiC-O_1-1.rdf, odrl.ttl, dcterms.rdf
+    exact_mappings:
+    close_mappings:
+    - crm:P33_used_specific_technique  # CIDOC-CRM: Activity used specific Design/Procedure
+    - crm:P16_used_specific_object     # CIDOC-CRM: Activity used specific object essential to outcome
+    - rico:isOrWasRegulatedBy      # RiC-O: Thing is/was regulated by Rule (inverse of regulatesOrRegulated)
+    - odrl:use                     # ODRL: Most generic action for using an Asset
+    related_mappings:
+    - crm:P32_used_general_technique   # CIDOC-CRM: Activity used general technique (type-level)
+    - rico:regulatesOrRegulated    # RiC-O: Rule regulates/regulated Thing
+    - rico:isAssociatedWithRule    # RiC-O: Thing associated with Rule
+    - prov:Usage                   # prov.ttl: Class for qualified usage relationships
+    - prov:qualifiedUsage          # prov.ttl: Qualified usage relation
+    - odrl:action                  # ODRL: Action permitted/prohibited on asset
+    - premis:policy                # PREMIS: Has policy relationship
+    narrow_mappings:
+    - schema:legislationApplies    # schema.org: Legislation applies/transfers another legislation
+    - schema:usesDevice            # schema.org: Medical procedure uses device
+    - crm:P125_used_object_of_type # CIDOC-CRM: Activity used object of type (type-level)
+    broad_mappings:
+    - dcterms:relation             # dcterms.rdf: Generic resource relation
+    - rico:isRelatedTo             # RiC-O: Generic relation between Things
+    aliases:
+    - applies_or_applied_to
+      - is_or_was_apply_to
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types for various application contexts.
+      custodian_types_primary: M
+      specificity_score: 0.5
+      specificity_rationale: Generic application relationship slot usable across contexts.
+    comments:
+    - |
+      **SEMANTICS**: Uses RiC-O temporal pattern (is_or_was / has_or_had / applies_or_applied)
+      to capture application relationships that may change over time. An institution that 
+      "applied" a cataloging standard in 2010 may have adopted a different standard by 2025.
+    - |
+      **ONTOLOGY NOTES**: The original slot_uri rico:appliesOrAppliedTo does not exist in 
+      RiC-O 1.1. The closest RiC-O predicates are rico:isOrWasRegulatedBy (for rules/mandates)
+      and rico:isAssociatedWithRule. For general "apply" semantics, prov:used from PROV-O 
+      and crm:P33_used_specific_technique from CIDOC-CRM are the most appropriate mappings.
+    examples:
+    - value: "apply:\n  - \"ISAD(G)\"\n  - \"Dublin Core\"\n"
+      description: Institution applies descriptive standards to its collections

@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: has_engagement_metric
+# ==============================================================================
+# A metric tracking engagement with content or a profile.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                       | File/Line                | Mapping | Notes                                                        |
+# |----------------|--------------------------------|--------------------------|---------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:interactionStatistic`  | schemaorg.owl:22488-22510| close   | Interaction counts on CreativeWork; engagement is broader.    |
+# | **Schema.org** | `schema:userInteractionCount`  | schemaorg.owl:39231-39249| narrow  | Single integer count within InteractionCounter — narrower.    |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, demoted interactionStatistic exact→close, userInteractionCount close→narrow
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_engagement_metric
+name: has_engagement_metric
+title: Has Engagement Metric
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_engagement_metric:
+    name: has_engagement_metric
+    slot_uri: hc:hasEngagementMetric
+    description: >-
+      To possess or be associated with specific quantitative measures (such as views, clicks, likes, or shares) that indicate the level of user interaction, interest, or participation with the entity.
+    alt_descriptions:
+      nl: >-
+        Specifieke kwantitatieve maatstaven bezitten of ermee geassocieerd zijn
+        (zoals weergaven, klikken, likes of deelacties) die het niveau van
+        gebruikersinteractie, interesse of deelname aan de entiteit aangeven.
+      de: >-
+        Spezifische quantitative Kennzahlen besitzen oder damit verbunden sein
+        (wie Aufrufe, Klicks, Likes oder Shares), die das Niveau der
+        Benutzerinteraktion, des Interesses oder der Teilnahme an der Entität
+        angeben.
+      fr: >-
+        Posséder ou être associé à des mesures quantitatives spécifiques (telles que
+        les vues, les clics, les mentions « j'aime » ou les partages) qui indiquent
+        le niveau d'interaction, d'intérêt ou de participation des utilisateurs avec
+        l'entité.
+      ar: >-
+        امتلاك أو الارتباط بمقاييس كمية محددة (مثل المشاهدات والنقرات والإعجابات
+        أو المشاركات) تشير إلى مستوى تفاعل المستخدم أو اهتمامه أو مشاركته مع
+        الكيان.
+      id: >-
+        Memiliki atau dikaitkan dengan ukuran kuantitatif spesifik (seperti
+        tampilan, klik, suka, atau berbagi) yang menunjukkan tingkat interaksi,
+        minat, atau partisipasi pengguna dengan entitas tersebut.
+      zh: >-
+        拥有或关联特定的定量指标（如浏览量、点击量、点赞数或分享数），用以表明用户与该实体的
+        互动、兴趣或参与程度。
+      es: >-
+        Poseer o estar asociado con medidas cuantitativas específicas (como vistas,
+        clics, me gusta o compartidos) que indican el nivel de interacción, interés
+        o participación del usuario con la entidad.
+    structured_aliases:
+      - literal_form: betrokkenheidsmaatstaf
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Engagement-Kennzahl
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: métrique d'engagement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مقياس التفاعل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: metrik keterlibatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 互动指标
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: métrica de participación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_engagement_metric
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:interactionStatistic  # schemaorg.owl:22488-22510 — interaction counts on CreativeWork/Organization/Person
+    narrow_mappings:
+      - schema:userInteractionCount  # schemaorg.owl:39231-39249 — single integer count within InteractionCounter
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_engagement_metric for conciseness (2026-02-03).
+      - |
+        **USAGE**: Uses EngagementMetric class for structured data (value + type).
+      - |
+        **MAPPING NOTE**: `schema:interactionStatistic` demoted from exact to close because
+        "engagement metric" is broader — it can include non-interaction-based measures like
+        dwell time or scroll depth, not just interaction counts.

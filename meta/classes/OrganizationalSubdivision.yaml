@@ -1,0 +1,61 @@
+id: https://w3id.org/nde/ontology/OrganizationalSubdivision
+name: OrganizationalSubdivision
+title: Organizational Subdivision
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_level
+classes:
+  OrganizationalSubdivision:
+    description: Organizational part nested within a parent organization, such as a division, branch, or section.
+    alt_descriptions:
+      nl: Organisatorisch onderdeel binnen een moederorganisatie zoals divisie filiaal of sectie.
+      de: Organisatorischer Teil innerhalb einer uebergeordneten Organisation etwa Division Zweigstelle oder Sektion.
+      fr: Sous-ensemble organisationnel integre a une organisation parente tel qu une division une antenne ou une section.
+      es: Parte organizativa integrada en una organizacion matriz como division sucursal o seccion.
+      ar: جزء تنظيمي ضمن منظمة أم مثل شعبة أو فرع أو قسم فرعي.
+      id: Bagian organisasi yang berada dalam organisasi induk seperti divisi cabang atau seksi.
+      zh: 隶属于上级组织的组织部分，如事业部、分支或科组。
+    structured_aliases:
+    - {literal_form: organisatorische onderafdeling, in_language: nl}
+    - {literal_form: organisatorische Untergliederung, in_language: de}
+    - {literal_form: sous-division organisationnelle, in_language: fr}
+    - {literal_form: subdivision organizativa, in_language: es}
+    - {literal_form: تقسيم تنظيمي فرعي, in_language: ar}
+    - {literal_form: subdivisi organisasi, in_language: id}
+    - {literal_form: 组织细分单元, in_language: zh}
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    mixins:
+    - OrganizationalStructure
+    slots:
+    - has_score
+    - identified_by
+    slot_usage:
+      identified_by:
+      has_level:
+        equals_string: subdivision
+    annotations:
+      skos:prefLabel: Organizational Subdivision
+      skos:altLabel: "Untereinheit, subdivisión organizacional, sous-division organisationnelle, Subunit, Organizational Unit"
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - Division
+    - Department
+    - Branch
+    - ParentOrganizationUnit
+    comments:
+    - Untereinheit (de)
+    - "subdivisión organizacional (es)"
+    - sous-division organisationnelle (fr)
+    - Part of larger organization
+    - Important for understanding archival provenance
+    - Links to OrganizationalStructure for hierarchy modeling

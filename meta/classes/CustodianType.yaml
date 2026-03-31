@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/class/CustodianType
+name: CustodianType
+title: Custodian Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  wikidata: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/begin_of_the_begin
+  - ../slots/has_hypernym
+  - ../slots/has_hyponym
+  - ../slots/related_to
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/has_code
+  - ../slots/updated_at
+classes:
+  CustodianType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomy concept for categorizing institutional profiles of organizations
+      that preserve and provide access to cultural heritage resources.
+    alt_descriptions:
+      nl: >-
+        Abstract taxonomieconcept voor het categoriseren van institutionele profielen
+        van organisaties die cultureel erfgoed bewaren en toegankelijk maken.
+      de: >-
+        Abstraktes Taxonomiekonzept zur Kategorisierung institutioneller Profile von
+        Organisationen, die Kulturerbe bewahren und zugänglich machen.
+      fr: >-
+        Concept taxonomique abstrait pour catégoriser les profils institutionnels des
+        organisations qui préservent et donnent accès aux ressources patrimoniales.
+      es: >-
+        Concepto taxonómico abstracto para categorizar perfiles institucionales de
+        organizaciones que preservan y proporcionan acceso a recursos patrimoniales.
+      ar: >-
+        مفهوم تصنيفي مجرد لتصنيف الملامح المؤسسية للمنظمات التي تحافظ على التراث الثقافي وتوفر الوصول إليه.
+      id: >-
+        Konsep taksonomi abstrak untuk mengkategorikan profil institusional organisasi
+        yang melestarikan dan menyediakan akses ke sumber warisan budaya.
+      zh: >-
+        用于对保存和提供文化遗产资源访问的机构的机构档案进行分类的抽象分类法概念。
+    broad_mappings:
+      - skos:Concept
+      - crm:E55_Type
+    close_mappings:
+      - schema:DefinedTerm
+      - wikidata:Q180846
+    related_mappings:
+      - org:classification
+      - schema:additionalType
+    slots:
+      - begin_of_the_begin
+      - has_hypernym
+      - has_hyponym
+      - related_to
+      - has_code
+      - updated_at
+      - has_score
+      - has_description
+      - has_label
+      - identified_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        multivalued: true
+      has_label:
+        required: true
+        multivalued: true
+
+    notes:
+      - |
+        Preserved from prior description (commit 5e94e52b):
+
+        Preserved from prior description (commit 5e94e52b):
+
+        "Base class for heritage custodian type classifications within the \nGLAMORCUBESFIXPHDNT taxonomy (19 categories: Galleries, Libraries, Archives, \nMuseums, Official institutions, Research centers, Corporations, Unknown, \nBotanical gardens/zoos, Educational providers, Societies, Features, \nIntangible heritage groups, miXed, Personal collections, Holy sites, \nDigital platforms, NGOs, Taste/smell heritage).\n\n**Ontological Alignment**:\n- **SKOS**: skos:Concept (primary) - Supports taxonomic hierarchies\n- **W3C ORG**: org:classification - Organizational classification property\n- **CIDOC-CRM**: crm:E55_Type - Cultural heritage domain type system\n- **Schema.org**: schema:additionalType - Web discoverability\n\n**Three-Layer Type System**:\n1. **org:classification** - Links Custodian to CustodianType (W3C ORG standard)\n2. **crm:E55_Type** - Cultural heritage domain modeling (CIDOC-CRM)\n3. **schema:additionalType** - Wikidata linking + web semantics (Schema.org)\n\n**Why\

@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: has_user_category
+# ==============================================================================
+# Group, class, or type to which a user belongs based on shared characteristics
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping  | Notes                                              |
+# |---------------|-----------------------|----------------------|----------|----------------------------------------------------|
+# | **Schema.org**| `schema:audience`     | schemaorg.owl:9151-9177| related | "An intended audience, i.e. a group for whom        |
+# |               |                       |                      |          | something was created." Audience ≠ user category.   |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_user_category
+name: has_user_category
+title: has_user_category
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_user_category:
+    name: has_user_category
+    title: has_user_category
+    description: >-
+      The group, class, or type to which a user belongs based on shared
+      characteristics, privileges, or roles.
+    alt_descriptions:
+      nl: >-
+        De groep, klasse of het type waartoe een gebruiker behoort op basis
+        van gedeelde kenmerken, rechten of rollen.
+      de: >-
+        Die Gruppe, Klasse oder der Typ, zu dem ein Benutzer aufgrund
+        gemeinsamer Merkmale, Berechtigungen oder Rollen gehört.
+      fr: >-
+        Le groupe, la classe ou le type auquel un utilisateur appartient
+        en fonction de caractéristiques, privilèges ou rôles partagés.
+      ar: >-
+        المجموعة أو الفئة أو النوع الذي ينتمي إليه المستخدم بناءً على
+        خصائص أو امتيازات أو أدوار مشتركة.
+      id: >-
+        Kelompok, kelas, atau tipe yang menjadi tempat pengguna berdasarkan
+        karakteristik, hak istimewa, atau peran yang sama.
+      zh: >-
+        用户基于共同特征、权限或角色所属的群体、类别或类型。
+      es: >-
+        El grupo, clase o tipo al que pertenece un usuario en función de
+        características, privilegios o roles compartidos.
+    structured_aliases:
+      - literal_form: Gebruikerscategorie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Benutzerkategorie
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Catégorie d'utilisateur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: فئة المستخدم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kategori pengguna
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 用户类别
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Categoría de usuario
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasUserCategory
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:audience  # schemaorg.owl:9151-9177 — "An intended audience, i.e. a group for whom something was created." Audience is about intended recipients, not user classification.
+    aliases:
+      - has_or_had_user_category
+      - serves_visitors_only
+    annotations:
+      custodian_types: '["*"]'

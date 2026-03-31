@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: transferred_to
+# ==============================================================================
+# Indicates the recipient, destination, or system to which something was
+# transferred or conveyed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:TransferAction`| schemaorg.owl:5808-5812   | related | Class for transfer actions         |
+# | **ODRL**      | `odrl:transfer`       | odrl.ttl:1716-1720         | related | "Transfer ownership in perpetuity" |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/transferred_to
+name: transferred_to
+title: Transferred To
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  odrl: http://www.w3.org/ns/odrl/2/
+  la: https://linked.art/ns/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  transferred_to:
+    slot_uri: hc:transferredTo
+    description: >-
+      To be moved, conveyed, or passed into the possession, custody, or location
+      of a specific recipient, destination, or system.
+    alt_descriptions:
+      nl: >-
+        Verplaatst, overgedragen of doorgegeven worden naar het bezit, de bewaring
+        of de locatie van een specifieke ontvanger, bestemming of systeem.
+      de: >-
+        In den Besitz, die Obhut oder den Standort eines bestimmten Empfängers,
+        Ziels oder Systems überführt, übertragen oder weitergegeben zu werden.
+      fr: >-
+        Être déplacé, transmis ou transféré en la possession, la garde ou le lieu
+        d'un destinataire, d'une destination ou d'un système spécifique.
+      ar: >-
+        أن يتم نقله أو تحويله أو تمريره إلى حيازة أو وصاية أو موقع مستلم أو وجهة
+        أو نظام محدد.
+      id: >-
+        Dipindahkan, disampaikan, atau diserahkan ke dalam kepemilikan, pengawasan,
+        atau lokasi penerima, tujuan, atau sistem tertentu.
+      zh: >-
+        被移动、传送或转交到特定接收者、目的地或系统的占有、保管或位置。
+      es: >-
+        Ser movido, transmitido o transferido a la posesión, custodia o ubicación
+        de un destinatario, destino o sistema específico.
+    structured_aliases:
+      - literal_form: overgedragen aan
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: übertragen an
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: transféré à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم النقل إلى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ditransfer ke
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 转移至
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: transferido a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - is_or_was_transferred_to
+    related_mappings:
+      - schema:TransferAction  # schemaorg.owl:5808-5812 - "act of transferring animate or inanimate objects"
+      - la:transferred_to  # Linked Art extensions: transferred to (Transfer→Entity)
+    annotations:
+      custodian_types: '["*"]'

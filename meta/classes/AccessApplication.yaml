@@ -1,0 +1,95 @@
+id: https://nde.nl/ontology/hc/class/AccessApplication
+name: AccessApplication
+title: Access Application
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_label
+  - ../slots/has_url
+classes:
+  AccessApplication:
+    description: >-
+      Process or form submitted to request permission to consult restricted materials
+      or enter controlled areas within a heritage institution.
+    alt_descriptions:
+      nl: >-
+        Procedure of formulier dat wordt ingediend om toestemming te vragen voor
+        het raadplegen van beperkte materialen of het betreden van beheerde ruimtes
+        binnen een erfgoedinstelling.
+      de: >-
+        Prozess oder Formular, das eingereicht wird, um die Erlaubnis zu beantragen,
+        eingeschraenkte Materialien einzusehen oder kontrollierte Bereiche einer
+        Kulturerbeeinrichtung zu betreten.
+      fr: >-
+        Processus ou formulaire soumis pour demander l'autorisation de consulter
+        des documents restreints ou d'acceder a des zones controlees au sein d'une
+        institution patrimoniale.
+      es: >-
+        Proceso o formulario enviado para solicitar permiso para consultar materiales
+        restringidos o ingresar a areas controladas dentro de una institucion patrimonial.
+      ar: >-
+        عملية أو نموذج يقدم لطلب الإذن بالاطلاع على المواد المقيدة أو دخول المناطق
+        الخاضعة للرقابة داخل مؤسسة تراثية.
+      id: >-
+        Proses atau formulir yang diajukan untuk meminta izin mengakses materi terbatas
+        atau memasuki area terkontrol di dalam lembaga warisan.
+      zh: >-
+        提交的申请流程或表格，用于请求查阅受限资料或进入遗产机构内控制区域的许可。
+    examples:
+    - value:
+        has_label: Special Collections Reading Room Application
+        has_url: https://archive.example.org/apply/reading-room
+        has_description: Online form for researcher access to special collections
+      description: Digital application form for reading room access
+    - value:
+        has_label: Restricted Materials Request
+        has_url: https://museum.example.org/access/restricted
+        has_description: Application for access to culturally sensitive materials
+      description: Application process for restricted indigenous materials
+    class_uri: schema:Action
+    slots:
+    - has_label
+    - has_description
+    - has_url
+    structured_aliases:
+    - literal_form: toegangsaanvraag
+      in_language: nl
+    - literal_form: Zugriffsantrag
+      in_language: de
+    - literal_form: demande d'acces
+      in_language: fr
+    - literal_form: solicitud de acceso
+      in_language: es
+    - literal_form: طلب الوصول
+      in_language: ar
+    - literal_form: permohonan akses
+      in_language: id
+    - literal_form: 访问申请
+      in_language: zh
+    keywords:
+    - access request
+    - application form
+    - registration
+    - reader registration
+    - researcher access
+    - appointment request
+    slot_usage:
+      has_url:
+        range: uri
+        inlined: false
+    broad_mappings:
+    - skos:Concept
+    - schema:Action
+    comments:
+    - Migrated from has_access_application_url slot per Rule 53
+    - Used for requesting access to restricted materials or controlled areas
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Specific to access request processes
+      custodian_types: "['*']"

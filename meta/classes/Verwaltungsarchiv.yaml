@@ -1,0 +1,122 @@
+id: https://nde.nl/ontology/hc/class/Verwaltungsarchiv
+name: Verwaltungsarchiv
+title: Verwaltungsarchiv Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/has_type
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/part_of
+- ../slots/related_to
+- ../slots/has_label
+classes:
+  Verwaltungsarchiv:
+    description: >-
+      Organizational memory institution within a public authority that governs
+      long-term custody, accountability evidence, and legally mandated access to
+      documentary output from administrative functions.
+    alt_descriptions:
+      nl: >-
+        Organisatorische geheugeninstelling binnen een overheidsorgaan die
+        langdurig beheer, verantwoordingsbewijs en wettelijk verplichte toegang
+        tot documentaire output van bestuurlijke functies regelt.
+      de: >-
+        Organisatorische Gedächtnisinstitution innerhalb einer öffentlichen
+        Behörde, die langfristige Verwahrung, Nachweis der Rechenschaft und
+        gesetzlich geregelten Zugang zu Verwaltungsdokumentation steuert.
+      fr: >-
+        Institution mémorielle organisationnelle au sein d'une autorité
+        publique, chargée de la conservation à long terme, des preuves de
+        responsabilité et de l'accès légalement prescrit à la documentation
+        administrative.
+      es: >-
+        Institución de memoria organizacional dentro de una autoridad pública
+        que gestiona la custodia a largo plazo, la evidencia de rendición de
+        cuentas y el acceso legalmente exigido a la documentación administrativa.
+      ar: >-
+        مؤسسة ذاكرة تنظيمية ضمن سلطة عامة تتولى الحفظ طويل الأمد وأدلة
+        المساءلة وإتاحة الوصول الملزم قانونياً إلى المخرجات الوثائقية
+        للوظائف الإدارية.
+      id: >-
+        Lembaga memori organisasi dalam otoritas publik yang mengelola
+        kustodi jangka panjang, bukti akuntabilitas, dan akses yang diwajibkan
+        hukum terhadap keluaran dokumenter fungsi administratif.
+      zh: >-
+        公共机构内部的组织记忆机构，负责行政职能文献产出的长期保管、问责证据管理与法定访问保障。
+    is_a: CustodianType
+    class_uri: skos:Concept
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:ArchiveOrganization
+    close_mappings:
+    - wd:Q2519292
+    slots:
+    - has_score
+    - related_to
+    - identified_by
+    - part_of
+    slot_usage:
+      part_of:
+        range: GovernmentHierarchy
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+      has_label:
+        equals_string: Verwaltungsarchiv
+    see_also:
+    - GovernmentArchive
+    - PublicArchive
+    - CurrentArchive
+    - InstitutionalArchive
+    structured_aliases:
+    - literal_form: bestuurlijk geheugeninstituut
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: verwaltungsbezogene Gedächtnisinstitution
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: institution mémorielle administrative
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: institución de memoria administrativa
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مؤسسة ذاكرة إدارية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: lembaga memori administratif
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 行政记忆机构
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Models the institution as an organizational actor, not merely a body of holdings.
+    - Emphasizes governance mandates, legal accountability, and regulated access services.
+    - Preserved scope detail: commonly associated with documentation from government agencies and large organizations.
+    - 'Preserved from prior description: An administrative archive (Verwaltungsarchiv) that preserves records created in the course of administrative activities. These archives hold documentation of organizational management, bureaucratic processes, policy implementation, and administrative decision-making, typically from government agencies or large organizations.'
+    keywords:
+    - public authority
+    - accountability evidence
+    - legal access mandate
+    - organizational memory
+    examples:
+    - value:
+        has_label: Stadtverwaltung Gedächtnisstelle
+        has_type: hc:ArchiveOrganizationType
+      description: Municipal authority unit responsible for long-term documentary custody
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

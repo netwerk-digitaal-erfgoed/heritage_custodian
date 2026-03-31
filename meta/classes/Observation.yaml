@@ -1,0 +1,72 @@
+id: https://nde.nl/ontology/hc/class/Observation
+name: observation_class
+title: Observation Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  pico: https://personsincontext.org/model#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  sosa: http://www.w3.org/ns/sosa/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_score
+classes:
+  Observation:
+    class_uri: sosa:Observation
+    description: Abstract evidence unit representing an observation derived from a source.
+    alt_descriptions:
+      nl: Abstracte bewijs-eenheid die een waarneming uit een bron representeert.
+      de: Abstrakte Evidenzeinheit die eine aus einer Quelle abgeleitete Beobachtung repraesentiert.
+      fr: Unite de preuve abstraite representant une observation derivee d une source.
+      es: Unidad abstracta de evidencia que representa una observacion derivada de una fuente.
+      ar: وحدة أدلة مجردة تمثل ملاحظة مشتقة من مصدر.
+      id: Unit bukti abstrak yang merepresentasikan observasi turunan dari suatu sumber.
+      zh: 表示来源于某一来源之观察结果的抽象证据单元。
+    structured_aliases:
+    - {literal_form: observatie-eenheid, in_language: nl}
+    - {literal_form: Beobachtungseinheit, in_language: de}
+    - {literal_form: unite d observation, in_language: fr}
+    - {literal_form: unidad de observacion, in_language: es}
+    - {literal_form: وحدة ملاحظة, in_language: ar}
+    - {literal_form: unit observasi, in_language: id}
+    - {literal_form: 观察单元, in_language: zh}
+    broad_mappings:
+    - sosa:Observation
+    - prov:Entity
+    close_mappings:
+    - crm:E13_Attribute_Assignment
+    abstract: true
+    slots:
+    - has_score
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Abstract base class for observational evidence from sources.\n\n**Purpose**:\nObservation is the base class for source-based evidence about entities.\nConcrete implementations include:\n- CustodianObservation - Evidence about heritage custodians\n- PersonObservation - Evidence about people (staff, directors)\n- WebObservation - Evidence from web scraping\n\n**PiCo Model Alignment**:\nFollowing the Persons in Context (PiCo) model, observations are\ndiscrete pieces of evidence from specific sources that may be\ncombined to reconstruct formal entities.\n\n**PROV-O Semantics**:\n- `prov:Entity`: Observations are things with provenance\n- `based_on`: Links derived entities back to observations\n\n**Relationship to EntityReconstruction**:\n```\nObservation[] (source evidence)\n    \u2502\n    \u2514\u2500\u2500 based_on \u2190 EntityReconstruction\n                              (reconstructed formal entity)\n```\n"
+    annotations:
+      pattern: pico_observation
+      subclasses:
+      - CustodianObservation
+      - PersonObservation
+      - WebObservation
+      prov_semantics:
+        observation_is_a: prov:Entity
+        derived_entity_links_back_via: based_on
+      custodian_types: '["*"]'
+      custodian_types_rationale: Abstract base class for all observations.
+      custodian_types_primary:
+      specificity_score: 0.4
+      specificity_rationale: Broad base class for observational evidence.
+    comments:
+    - "MIGRATED: supports derived_from_observation → based_on (Rule 53)"
+    - Abstract base for observational evidence
+    - PiCo model Observation pattern
+    - 'Subtypes: CustodianObservation, PersonObservation, WebObservation'

@@ -1,0 +1,65 @@
+id: https://nde.nl/ontology/hc/class/Image
+name: image_class
+title: Image Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_url
+default_prefix: hc
+classes:
+  Image:
+    class_uri: schema:ImageObject
+    description: >-
+      Structured visual resource with resolvable URL and optional labeling
+      metadata for representation, preview, or documentation.
+    alt_descriptions:
+      nl: Gestructureerde visuele bron met opvraagbare URL en optionele labelmetadata voor representatie preview of documentatie.
+      de: Strukturierte visuelle Ressource mit aufloesbarer URL und optionalen Label-Metadaten fuer Darstellung Vorschau oder Dokumentation.
+      fr: Ressource visuelle structuree avec URL resolvable et metadonnees de libelle optionnelles pour representation apercu ou documentation.
+      es: Recurso visual estructurado con URL resoluble y metadatos opcionales de etiqueta para representacion vista previa o documentacion.
+      ar: مورد بصري منظم مع عنوان URL قابل للاسترجاع وبيانات وصفية اختيارية للتسمية من أجل العرض أو المعاينة أو التوثيق.
+      id: Sumber visual terstruktur dengan URL yang dapat diakses serta metadata label opsional untuk representasi pratinjau atau dokumentasi.
+      zh: 带可解析 URL 与可选标签元数据的结构化视觉资源，用于展示、预览或记录。
+    structured_aliases:
+    - {literal_form: beeldresource, in_language: nl}
+    - {literal_form: Bildressource, in_language: de}
+    - {literal_form: ressource image, in_language: fr}
+    - {literal_form: recurso de imagen, in_language: es}
+    - {literal_form: مورد صورة, in_language: ar}
+    - {literal_form: sumber gambar, in_language: id}
+    - {literal_form: 图像资源, in_language: zh}
+    broad_mappings:
+    - schema:ImageObject
+    close_mappings:
+    - foaf:Image
+    slots:
+    - has_url
+    - has_label
+    slot_usage:
+      has_url:
+        range: uri
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+      has_label:
+#         range: string
+        required: false
+        inlined: false # Fixed invalid inline for primitive type
+    examples:
+    - value:
+        has_url:
+          has_value: https://example.org/images/card_thumb.jpg
+        has_label:
+          has_text: Collection preview thumbnail
+    - value:
+        has_url:
+          has_value: https://museum.nl/logo.svg
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Images are broadly useful across heritage contexts for visual representation.
+      custodian_types: '[''*'']'

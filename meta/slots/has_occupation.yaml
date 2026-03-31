@@ -1,0 +1,137 @@
+# ==============================================================================
+# LinkML Slot Definition: has_occupation
+# ==============================================================================
+# Associates an individual with their job, profession, trade, or craft.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology        | Property                           | File/Line                     | Mapping  | Notes                                                                     |
+# |-----------------|------------------------------------|-------------------------------|----------|---------------------------------------------------------------------------|
+# | **Schema.org**  | `schema:hasOccupation`             | schemaorg.owl:20334-20355     | slot_uri | "The Person's occupation." Person→Occupation.                             |
+# | **RiC-O**       | `rico:hasOrHadOccupationOfType`    | RiC-O_1-1.rdf:7177-7212      | close    | "Person to OccupationType (profession, trade or craft)." Person→OccType.  |
+# | **Schema.org**  | `schema:jobTitle`                  | schemaorg.owl:23787-23808     | related  | "Job title of the person." Person→Text. Title string, not occupation.     |
+# | **CIDOC CRM**   | `crm:P14i_performed`              | CIDOC_CRM_v7.1.3.rdf:1504-16 | related  | "performed" E39_Actor→E7_Activity. Event-centric, not occupation class.   |
+# | **PiCo**        | `sdo:hasOccupation` (reused IRI)   | pico.ttl:548-556              | close    | "Occupation as mentioned on the Source." PersonObservation→string.         |
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_occupation
+name: has_occupation
+title: Has Occupation
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_occupation:
+    slot_uri: schema:hasOccupation
+    description: >-
+      Associates an individual with the specific job, profession, trade, or
+      craft they perform, typically for remuneration or as a primary activity.
+      The value should preserve the occupation exactly as stated in the source,
+      including historical terms, period-specific titles, and vernacular forms.
+    alt_descriptions:
+      nl: >-
+        Associeert een persoon met het specifieke beroep, ambacht of vak dat
+        zij uitoefenen, doorgaans tegen betaling of als hoofdactiviteit.
+      de: >-
+        Verknüpft eine Person mit dem spezifischen Beruf, Gewerbe oder Handwerk,
+        das sie ausübt, typischerweise gegen Vergütung oder als Haupttätigkeit.
+      fr: >-
+        Associe un individu au métier, à la profession ou à l'activité
+        artisanale spécifique qu'il exerce, généralement contre rémunération
+        ou comme activité principale.
+      ar: >-
+        يربط فردًا بالمهنة أو الحرفة أو العمل المحدد الذي يمارسه، عادةً مقابل
+        أجر أو كنشاط رئيسي.
+      id: >-
+        Mengaitkan individu dengan pekerjaan, profesi, perdagangan, atau
+        kerajinan spesifik yang mereka lakukan, biasanya untuk remunerasi atau
+        sebagai aktivitas utama.
+      zh: >-
+        将个人与其从事的特定职业、行业或手工艺关联起来，通常是有偿工作或主要活动。
+      es: >-
+        Asocia a un individuo con el trabajo, profesión, oficio o artesanía
+        específica que desempeña, típicamente por remuneración o como actividad
+        principal.
+    structured_aliases:
+      - literal_form: Beroep
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beruf
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Profession
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مهنة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pekerjaan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 职业
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Ocupación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    multivalued: true
+    close_mappings:
+      - rico:hasOrHadOccupationOfType  # RiC-O_1-1.rdf:7177-7212 - "Person to OccupationType (profession, trade or craft)"; range is rico:OccupationType
+    related_mappings:
+      - schema:jobTitle  # schemaorg.owl:23787-23808 - "Job title of the person"; title string, not occupation entity
+      - crm:P14i_performed  # CIDOC_CRM_v7.1.3.rdf:1504-1516 - "performed" E39_Actor→E7_Activity; event-centric, not occupation class
+    aliases:
+      - occupation
+    examples:
+      - value: "painter"
+        description: >-
+          Simple literal occupation term.
+      - value: "court painter to His Majesty King Willem I"
+        description: >-
+          Historical period-specific occupation title preserved from source.
+      - value: "schilder"
+        description: >-
+          Vernacular Dutch form for painter, preserved as stated in source.
+      - value: "http://www.wikidata.org/entity/Q1028181"
+        description: >-
+          Wikidata URI for painter, used when linking to occupational thesauri.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Record the occupation exactly as stated in the source, including
+        historical terms (wheelwright, cordwainer, cooper), period-specific
+        titles (Keeper of the King's Pictures), and vernacular forms (schilder).
+      - >-
+        When possible, link to occupational thesauri: Wikidata (general),
+        HISCO (Historical International Standard Classification of Occupations),
+        or AAT (Getty Art and Architecture Thesaurus) for heritage occupations.
+      - >-
+        Common heritage sector occupations: Archivist, Librarian, Curator,
+        Conservator, Museum Director, Collection Manager, Registrar,
+        Preparator, Educator, Digital Preservation Specialist.
+      - >-
+        For specific staff roles at heritage institutions, prefer the
+        staff_role slot which uses the StaffRole class hierarchy for
+        controlled vocabulary.
+      - >-
+        A person may have multiple occupations (primary, secondary,
+        historical). Use separate PersonObservations for different time periods.
+      - >-
+        PiCo (Persons in Context) ontology reuses the schema:hasOccupation IRI
+        scoped to PersonObservation, recording occupation as mentioned on the
+        source as a literal string or URI to thesaurus (pico.ttl:548-556).
+      - >-
+        Wikidata property P106 (occupation) is semantically equivalent but is
+        an identifier, not an RDF predicate.

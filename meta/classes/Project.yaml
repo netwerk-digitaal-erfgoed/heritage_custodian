@@ -1,0 +1,328 @@
+id: https://nde.nl/ontology/hc/class/Project
+name: Project
+title: Project Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+  doap: http://usefulinc.com/ns/doap#
+  prov: http://www.w3.org/ns/prov#
+  org: http://www.w3.org/ns/org#
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+  - linkml:types
+  - ../enums/ProjectStatusEnum
+  - ../slots/has_budget  # was: funding_amount
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_objective
+  - ../slots/participate_in # was: funding_call
+  - ../slots/has_score  # was: template_specificity
+  - ../slots/has_status
+  - ../slots/has_url
+  - ../slots/has_keyword
+  - ../slots/organized_by
+  - ../slots/has_participant
+  - ../slots/receive  # was: funding_source
+  - ../slots/related_to
+  - ../slots/temporal_extent
+default_prefix: hc
+classes:
+  Project:
+    class_uri: org:OrganizationalCollaboration
+    description: >-
+      Time-limited collaborative initiative with defined objectives, participants, and deliverables,
+      typically managed by an umbrella organization with heritage institution participation.
+    alt_descriptions:
+      nl: >-
+        Tijdelijk collaboratief initiatief met gedefinieerde doelstellingen, deelnemers en deliverables,
+        doorgaans beheerd door een overkoepelende organisatie met deelname van erfgoedinstellingen.
+      de: >-
+        Zeitlich begrenzte kollaborative Initiative mit definierten Zielen, Teilnehmern und Ergebnissen,
+        normalerweise verwaltet von einer Dachorganisation mit Beteiligung von Kulturerbeeinrichtungen.
+      fr: >-
+        Initiative collaborative à durée limitée avec des objectifs, des participants et des livrables définis,
+        généralement gérée par une organisation faîtière avec la participation d'institutions patrimoniales.
+      es: >-
+        Iniciativa colaborativa temporal con objetivos, participantes y entregables definidos,
+        generalmente gestionada por una organización paraguas con participación de instituciones patrimoniales.
+      ar: >-
+        مبادرة تعاونية محدودة الوقت مع أهداف ومشاركين ومخرجات محددة،
+        تُدار عادةً من قبل منظمة شاملة مع مشاركة مؤسسات التراث.
+      id: >-
+        Inisiatif kolaboratif terbatas waktu dengan tujuan, peserta, dan deliverable yang ditentukan,
+        biasanya dikelola oleh organisasi payung dengan partisipasi institusi warisan budaya.
+      zh: >-
+        具有明确目标、参与者和可交付成果的限时协作倡议，
+        通常由伞形组织管理，文化遗产机构参与。
+    structured_aliases:
+      - literal_form: project
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Projekt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: projet
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: proyecto
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - Projects bridge EncompassingBody organizations and individual Custodians.
+      - Lifecycle tracked via ProjectStatusEnum (PROPOSED through COMPLETED).
+    exact_mappings:
+      - org:OrganizationalCollaboration
+    broad_mappings:
+      - schema:Project
+      - doap:Project
+    close_mappings:
+      - prov:Activity
+      - schema:ResearchProject
+      - schema:FundingScheme
+    related_mappings:
+      - org:Organization
+      - schema:Grant
+    slots:
+    # MIGRATED 2026-01-24: deliverable → has_objective + Deliverable (Rule 53)
+    - has_objective
+    # MIGRATED 2026-01-26: start_date/end_date → temporal_extent
+    - temporal_extent
+    - has_budget  # was: funding_amount - migrated per Rule 53 (2026-01-26)
+    - participate_in  # was: funding_call - migrated per Rule 53 (2026-01-26)
+    - receive  # was: funding_source - migrated per Rule 53 (2026-01-26)
+    - has_keyword
+    - organized_by
+    - has_participant
+    - related_to
+    - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    # RiC-O style slots (migrated 2026-01-16 per Rule 53)
+    - identified_by    # was: project_id, project_identifier
+    - has_label         # was: project_name, project_short_name
+    - has_description   # was: project_description
+    - has_status        # was: project_status
+    - has_url           # was: project_url
+    slot_usage:
+      has_score:
+      # === MIGRATED SLOTS (2026-01-16 per Rule 53) ===
+      identified_by:
+        # was: project_id (primary) + project_identifier (external IDs)
+        # Migration note: Consolidated two slots into one multivalued slot.
+        # First value should be the primary project URI (was project_id).
+        # Additional values are external identifiers like Wikidata, DOI (was project_identifier).
+        identifier: true
+        required: true
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        pattern: ^https://nde\.nl/ontology/hc/project/[a-z0-9-]+/[a-z0-9-]+$|^https?://.*$
+        examples:
+        - value: https://nde.nl/ontology/hc/project/nde/versnellen-2024
+        - value: http://www.wikidata.org/entity/Q123456789
+        - value: https://doi.org/10.5281/zenodo.12345678
+      has_label:
+        # was: project_name (required, primary) + project_short_name (optional, abbreviation)
+        # Migration note: First value should be the full project name.
+        # Additional values can be short names, acronyms, or alternative titles.
+        required: true
+#         range: string
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: Versnellen 2024
+        - value: V2024
+        - value: Digital Collections Integration Project
+        - value: DCIP
+      has_description:
+        # was: project_description - migrated 2026-01-16 per Rule 53
+        required: true
+#         range: string
+        examples:
+        - value: Versnellen 2024 is NDE's annual acceleration program supporting heritage institutions in adopting digital
+            infrastructure. The program provides funding, technical support, and training to help museums, archives, and
+            libraries implement sustainable digital preservation and access solutions. Participants receive customized guidance
+            based on their digital maturity assessment.
+      has_status:
+        # was: project_status - migrated 2026-01-16 per Rule 53
+        required: true
+        range: ProjectStatusEnum
+        examples:
+        - value: IN_PROGRESS
+        - value: COMPLETED
+      has_url:
+        # was: project_url - migrated 2026-01-16 per Rule 53
+        range: uri
+        examples:
+        - value: https://netwerkdigitaalerfgoed.nl/versnellen-2024/
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        examples:
+        - value:
+            begin_of_the_begin: '2024-01-01'
+            end_of_the_end: '2024-12-31'
+        - value: Horizon Europe
+        - value: Member contributions
+      has_budget:  # was: funding_amount - migrated per Rule 53 (2026-01-26)
+        range: Budget
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_label: "Project Total Budget"
+            total_amount: 2500000.0
+            has_currency:
+              currency_code: "EUR"
+              currency_symbol: "€"
+        - value:
+            has_label: "Grant Amount"
+            total_amount: 500000.0
+            has_currency:
+              currency_code: "USD"
+              currency_symbol: "$"
+      has_objective:
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: Onboard 50 heritage institutions to NDE infrastructure
+        - value: Create standardized metadata mappings for 10M records
+        - value: Develop open source tools for digital preservation
+      organized_by:
+        required: true
+#         range: string # uriorcurie
+        examples:
+        - value: https://nde.nl/ontology/hc/encompassing-body/network/nde
+        - value: https://nde.nl/ontology/hc/encompassing-body/cooperative/oclc
+      has_participant:
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: https://nde.nl/ontology/hc/nl-nh-ams-m-am
+        - value: https://nde.nl/ontology/hc/nl-zh-haa-l-kb
+      related_to:
+#         range: string # uriorcurie
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: https://nde.nl/ontology/hc/project/nde/versnellen-2023
+        - value: https://github.com/nde-project/versnellen-2024
+      has_keyword:
+#         range: string
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: digital preservation
+        - value: metadata standardization
+        - value: linked open data
+        - value: IIIF
+        - value: sustainable infrastructure
+      # project_identifier slot_usage removed - migrated to identified_by (2026-01-16)
+      participate_in:  # was: funding_call - migrated per Rule 53 (2026-01-26)
+        range: FundingCall
+        multivalued: true  # Allow multiple calls if applicable (e.g. co-funded)
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/call/ec/horizon-cl2-2025-heritage-01
+        - value: https://nde.nl/ontology/hc/call/nlhf/medium-grants-2025
+      receive:  # was: funding_source - migrated per Rule 53 (2026-01-26)
+        range: FundingSource
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+            has_label: "Ministry of OCW (Netherlands)"
+        - value:
+            has_label: "Horizon Europe"
+        - value:
+            has_label: "Member contributions"
+    examples:
+    - value:
+        # Migrated to RiC-O slots 2026-01-16
+        identified_by:
+        - https://nde.nl/ontology/hc/project/nde/versnellen-2024  # primary project URI
+        has_label:
+        - Versnellen 2024  # full project name
+        - V2024  # short name/acronym
+        has_description: "Versnellen 2024 is NDE's annual acceleration program supporting \nheritage institutions in adopting\
+          \ sustainable digital infrastructure. \nThe program provides funding, technical expertise, and training to \nhelp\
+          \ museums, archives, and libraries implement digital preservation \nand access solutions aligned with NDE's infrastructure\
+          \ requirements.\n\nIn 2024, the program focuses on:\n- Linked Data publication and consumption\n- IIIF implementation\
+          \ for image interoperability\n- Sustainable API development\n- Metadata quality improvement\n"
+        has_status: IN_PROGRESS
+        has_url: https://netwerkdigitaalerfgoed.nl/versnellen-2024/
+        temporal_extent:
+          begin_of_the_begin: '2024-01-15'
+          end_of_the_end: '2024-12-31'
+        has_budget:  # was: funding_amount
+          has_label: "Versnellen 2024 Budget"
+          total_amount: 1200000.0
+          has_currency:
+            currency_code: EUR
+            currency_symbol: "€"
+        has_objective:
+        - Support 40 heritage institutions in digital infrastructure adoption
+        - Achieve IIIF compliance for 15 participating organizations
+        - Publish 2M heritage objects as Linked Open Data
+        - Train 200 heritage professionals in digital preservation
+        # MIGRATED 2026-01-24: deliverable → has_objective + Deliverable (Rule 53)
+        - Individual implementation roadmaps for each participant
+        - Technical documentation and best practices guide
+        - Training curriculum and workshop materials
+        - Case study reports from participating institutions
+        organized_by: https://nde.nl/ontology/hc/encompassing-body/network/nde
+        has_participant:
+        - https://nde.nl/ontology/hc/nl-nh-ams-m-am
+        - https://nde.nl/ontology/hc/nl-zh-haa-l-kb
+        - https://nde.nl/ontology/hc/nl-zh-haa-a-na
+        - https://nde.nl/ontology/hc/nl-nh-ams-m-rm
+        related_project:
+        - https://nde.nl/ontology/hc/project/nde/versnellen-2023
+        has_contact_point:
+        has_keyword:
+        - digital heritage
+        - infrastructure
+        - linked data
+        - IIIF
+        - metadata
+        - digital preservation
+    - value:
+        # Migrated to RiC-O slots 2026-01-16
+        identified_by:
+        - https://nde.nl/ontology/hc/project/europeana/common-culture-2024  # primary project URI
+        has_label:
+        - Europeana Common Culture  # full project name
+        - ECC  # short name/acronym
+        has_description: "Europeana Common Culture aggregates and standardizes heritage \nmetadata from national aggregators\
+          \ across Europe, making cultural \nheritage collections discoverable through the Europeana platform.\nThe project\
+          \ works with national aggregators to improve metadata \nquality and implement the Europeana Data Model (EDM).\n"
+        has_status: IN_PROGRESS
+        has_url: https://pro.europeana.eu/project/europeana-common-culture
+        temporal_extent:
+          begin_of_the_begin: '2023-06-01'
+          end_of_the_end: '2025-05-31'
+        has_budget:  # was: funding_amount
+          has_label: "Common Culture Budget"
+          total_amount: 4200000.0
+          has_currency:
+            currency_code: EUR
+            currency_symbol: "€"
+        participate_in:
+        - https://nde.nl/ontology/hc/call/ec/horizon-cl2-2023-heritage-01
+        has_objective:
+        - Aggregate 15M new heritage objects to Europeana
+        - Improve metadata quality scores for existing records
+        - Implement EDM 5.2.x across all contributing aggregators
+        organized_by: https://nde.nl/ontology/hc/encompassing-body/network/europeana
+        has_participant:
+        - https://nde.nl/ontology/hc/at-vienna-a-ona
+        - https://nde.nl/ontology/hc/be-brussels-l-kbr
+        has_keyword:
+        - aggregation
+        - metadata
+        - Europeana Data Model
+        - cultural heritage discovery

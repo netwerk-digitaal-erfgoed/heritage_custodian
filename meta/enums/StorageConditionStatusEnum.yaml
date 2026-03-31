@@ -1,0 +1,217 @@
+# StorageConditionStatusEnum - Status values for storage condition assessments
+# 
+# Represents the actual observed state of storage facilities,
+# which may differ from designed/policy conditions.
+# 
+# Generation date: 2025-11-29
+# 
+id: https://nde.nl/ontology/hc/enum/storage-condition-status
+name: storage_condition_status_enum
+title: Storage Condition Status Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  premis: http://www.loc.gov/premis/rdf/v3/
+
+imports:
+  - linkml:types
+
+enums:
+  StorageConditionStatusEnum:
+    description: |
+      Status values indicating the actual observed condition of storage
+      facilities. These represent REAL conditions as observed, which may
+      differ significantly from policy requirements or designed specifications.
+      
+      **CRITICAL DISTINCTION**:
+      - StorageConditionPolicy = What SHOULD be (designed conditions)
+      - StorageCondition = What IS (actual observed state)
+      
+      Observations can come from internal staff, external inspectors,
+      journalists, researchers, or any observer with access to the facility.
+      
+      Aligns with PREMIS premis:OutcomeStatus for preservation outcomes.
+    
+    permissible_values:
+      EXCELLENT:
+        title: excellent condition
+        description: |
+          Storage facility exceeds standard requirements. Climate control,
+          security, pest management, and space all optimal. No immediate
+          or foreseeable preservation concerns.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "Meets or exceeds ISO/EN standards"
+          action_required: "None - maintain current standards"
+      
+      GOOD:
+        title: good condition
+        description: |
+          Storage facility meets standard requirements. Minor issues may
+          exist but do not pose immediate risk to collections. Regular
+          monitoring continues.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "Meets ISO/EN standards with minor deviations"
+          action_required: "Routine maintenance"
+      
+      ACCEPTABLE:
+        title: acceptable condition
+        description: |
+          Storage conditions are adequate but below optimal. Some parameters
+          may be outside ideal ranges. Collections not at immediate risk
+          but improvements recommended.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "Partially meets standards"
+          action_required: "Improvement plan recommended"
+      
+      CONCERNING:
+        title: concerning condition
+        description: |
+          Storage conditions show concerning trends or issues. Temperature
+          or humidity fluctuations, pest activity detected, space constraints,
+          or equipment aging. Action needed within 6-12 months.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "Multiple deviations from standards"
+          action_required: "Urgent improvement plan required"
+      
+      POOR:
+        title: poor condition
+        description: |
+          Storage conditions inadequate for long-term preservation. Active
+          deterioration risks present. Immediate intervention needed to
+          prevent collection damage.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "Does not meet minimum standards"
+          action_required: "Immediate intervention required"
+      
+      CRITICAL:
+        title: critical condition
+        description: |
+          Storage conditions pose immediate threat to collections. Active
+          pest infestation, water damage, mold growth, structural issues,
+          or complete climate control failure. Emergency response required.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "Active damage occurring"
+          action_required: "Emergency response - evacuate if necessary"
+          examples: "White ants discovered, flooding, fire damage, mold outbreak"
+      
+      UNKNOWN:
+        title: condition unknown
+        description: |
+          Storage conditions have not been assessed or no recent data
+          available. May indicate lack of monitoring or restricted access.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "No assessment data available"
+          action_required: "Conduct condition survey"
+      
+      NOT_APPLICABLE:
+        title: not applicable
+        description: |
+          Condition assessment not applicable - facility may be under
+          construction, decommissioned, or assessment category not relevant.
+        meaning: premis:OutcomeStatus
+        annotations:
+          indicator: "Assessment not relevant"
+          action_required: "None"
+
+  StorageConditionCategoryEnum:
+    description: |
+      Categories of storage conditions that can be assessed independently.
+      Each category may have different status levels.
+      
+      Based on ISO/TR 19815:2018 environmental management framework
+      and EN 16893:2018 building specifications.
+    
+    permissible_values:
+      TEMPERATURE:
+        title: temperature control
+        description: |
+          Temperature stability and range. Based on EN 15757:2010 requirements
+          for preventing thermal damage.
+        annotations:
+          standard_reference: "EN 15757:2010"
+          typical_range: "18-22°C for general storage"
+      
+      HUMIDITY:
+        title: relative humidity
+        description: |
+          Relative humidity control and stability. Critical for paper,
+          textiles, organic materials, and metals.
+        annotations:
+          standard_reference: "EN 15757:2010"
+          typical_range: "45-55% RH for mixed collections"
+      
+      LIGHT:
+        title: light levels
+        description: |
+          Light exposure including UV levels. Important for photosensitive
+          materials, textiles, and works on paper.
+        annotations:
+          typical_range: "<50 lux for sensitive materials, UV filtered"
+      
+      AIR_QUALITY:
+        title: air quality
+        description: |
+          Air filtration, pollutant levels, and ventilation. Protects against
+          dust, pollution, and off-gassing.
+        annotations:
+          standard_reference: "ISO/TR 19815:2018"
+          requirements: "HEPA filtration, activated carbon for VOCs"
+      
+      PEST_CONTROL:
+        title: pest control
+        description: |
+          Integrated Pest Management (IPM) status. Monitoring traps,
+          quarantine procedures, treatment protocols.
+        annotations:
+          common_pests: "Silverfish, carpet beetles, moths, rodents, termites"
+          ipm_requirement: "Monitoring, exclusion, treatment"
+      
+      FIRE_SAFETY:
+        title: fire safety
+        description: |
+          Fire detection, suppression systems, and prevention measures.
+          Smoke detectors, sprinklers or gas suppression, fire-resistant
+          materials.
+        annotations:
+          standard_reference: "EN 16893:2018"
+          systems: "Detection, suppression, compartmentalization"
+      
+      FLOOD_WATER:
+        title: flood and water protection
+        description: |
+          Protection against water damage from flooding, leaks, or plumbing
+          failures. Includes drainage, leak detection, and water barriers.
+        annotations:
+          risks: "Roof leaks, pipe failures, flooding, groundwater"
+          protection: "Leak sensors, raised storage, drainage"
+      
+      SECURITY:
+        title: physical security
+        description: |
+          Access control, surveillance, alarm systems, and theft prevention.
+        annotations:
+          systems: "Access control, CCTV, intrusion detection, guards"
+      
+      STRUCTURAL:
+        title: structural condition
+        description: |
+          Building structural integrity, load-bearing capacity, and
+          physical condition of storage infrastructure.
+        annotations:
+          issues: "Cracks, subsidence, load limits, roof condition"
+      
+      SPACE_CAPACITY:
+        title: storage capacity
+        description: |
+          Available storage space relative to collection needs. Includes
+          overcrowding, expansion capacity, and space utilization.
+        annotations:
+          indicators: "% capacity, linear meters, shelf space"

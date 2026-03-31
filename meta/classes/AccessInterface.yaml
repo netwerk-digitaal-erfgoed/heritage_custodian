@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/AccessInterface
+name: AccessInterface
+title: Access Interface
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_label
+  - ../slots/has_url
+classes:
+  AccessInterface:
+    description: >-
+      Technical endpoint or portal through which digital heritage resources can
+      be retrieved or consulted, such as APIs, web portals, or database interfaces.
+    alt_descriptions:
+      nl: >-
+        Technisch eindpunt of portal waarmee digitale erfgoedbronnen kunnen worden
+        opgehaald of geraadpleegd, zoals API's, webportalen of database-interfaces.
+      de: >-
+        Technischer Endpunkt oder Portal, ueber den digitale Kulturerberessourcen
+        abgerufen oder konsultiert werden koennen, wie APIs, Webportale oder
+        Datenbankschnittstellen.
+      fr: >-
+        Point de terminaison technique ou portail permettant de recuperer ou
+        consulter des ressources patrimoniales numeriques, telles que des API,
+        portails web ou interfaces de base de donnees.
+      es: >-
+        Punto final tecnico o portal a traves del cual se pueden recuperar o
+        consultar recursos patrimoniales digitales, como API, portales web o
+        interfaces de bases de datos.
+      ar: >-
+        نقطة نهاية تقنية أو بوابة يمكن من خلالها استرجاع أو استشارة موارد
+        التراث الرقمي، مثل واجهات برمجة التطبيقات أو البوابات الإلكترونية.
+      id: >-
+        Endpoint teknis atau portal yang memungkinkan sumber daya warisan digital
+        diambil atau dikonsultasikan, seperti API, portal web, atau antarmuka basis
+        data.
+      zh: >-
+        可以检索或查阅数字遗产资源的技术端点或门户，如API、门户网站或数据库接口。
+    examples:
+    - value:
+        has_label: OAI-PMH Endpoint
+        has_url: https://archive.example.org/oai-pmh
+        has_description: OAI-PMH service for harvesting collection metadata
+      description: OAI-PMH metadata harvesting interface
+    - value:
+        has_label: IIIF Image API
+        has_url: https://museum.example.org/iiif/2/
+        has_description: IIIF Image API for high-resolution image delivery
+      description: IIIF image delivery service
+    - value:
+        has_label: SPARQL Endpoint
+        has_url: https://data.example.org/sparql
+        has_description: SPARQL query interface for linked open data
+      description: Linked data query interface
+    class_uri: dcat:DataService
+    slots:
+    - has_url
+    - has_label
+    - has_description
+    structured_aliases:
+    - literal_form: toegangsinterface
+      in_language: nl
+    - literal_form: Zugriffsschnittstelle
+      in_language: de
+    - literal_form: interface d'acces
+      in_language: fr
+    - literal_form: interfaz de acceso
+      in_language: es
+    - literal_form: واجهة الوصول
+      in_language: ar
+    - literal_form: antarmuka akses
+      in_language: id
+    - literal_form: 访问接口
+      in_language: zh
+    keywords:
+    - API
+    - portal
+    - OAI-PMH
+    - IIIF
+    - SPARQL
+    - web service
+    - database interface
+    - digital access
+    slot_usage:
+      has_url:
+        range: uri
+        inlined: false
+        required: true
+    broad_mappings:
+    - skos:Concept
+    - dcat:DataService
+    comments:
+    - Migrated from has_access_interface_url slot per Rule 53
+    - Follows DCAT DataService model for machine-accessible data services
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Specific to technical access interfaces
+      custodian_types: "['*']"

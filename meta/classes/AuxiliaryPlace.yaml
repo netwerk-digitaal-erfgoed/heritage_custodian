@@ -1,0 +1,279 @@
+id: https://nde.nl/ontology/hc/class/auxiliary-place
+name: auxiliary_place_class
+title: AuxiliaryPlace Class
+imports:
+- linkml:types
+- ../enums/AuxiliaryPlaceTypeEnum
+- ../slots/in_country
+- ../slots/has_geographic_subdivision
+- ../slots/geometric_extent
+- ../slots/identified_by
+- ../slots/has_location
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/branch_of
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/located_in
+- ../slots/location_of
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_postal_code
+- ../slots/refer_to
+- ../slots/has_locality
+- ../slots/categorized_as
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  locn: http://www.w3.org/ns/locn#
+  skos: http://www.w3.org/2004/02/skos/core#
+  vcard: http://www.w3.org/2006/vcard/ns#
+  geosparql: http://www.opengis.net/ont/geosparql#
+classes:
+  AuxiliaryPlace:
+    is_a: ReconstructedEntity
+    class_uri: org:Site
+    description: >-
+      Secondary or subordinate physical location associated with a heritage custodian, such as branch offices, storage facilities, research centers, and regional sites distinct from the main headquarters or primary place designation.
+    alt_descriptions:
+      nl: Secundaire of ondergeschikte fysieke locatie gekoppeld aan een erfgoedinstelling, zoals bijkantoren, opslagfaciliteiten, onderzoekscentra en regionale locaties, verschillend van de hoofdzetel of primaire plaatsaanduiding.
+      de: Sekundärer oder untergeordneter physischer Standort, der mit einer Heritage-Institution verbunden ist, wie Zweigstellen, Lager, Forschungszentren und regionale Standorte, die sich vom Hauptsitz unterscheiden.
+      fr: Emplacement physique secondaire ou subordonné associé à une institution patrimoniale, comme les bureaux secondaires, les installations de stockage, les centres de recherche et les sites régionaux distincts du siège principal.
+      es: Ubicación física secundaria o subordinada asociada con una institución patrimonial, como oficinas sucursales, instalaciones de almacenamiento, centros de investigación y sitios regionales distintos de la sede principal.
+      ar: موقع مادي ثانوي أو تابع مرتبط بمؤسسة تراثية، مثل الفروع ومرفقات التخزين ومراكز البحث والمواقع الإقليمية المتميزة عن المقر الرئيسي.
+      id: Lokasi fisik sekunder atau bawahan yang terkait dengan lembaga warisan, seperti kantor cabang, fasilitas penyimpanan, pusat penelitian, dan situs regional yang berbeda dari kantor pusat.
+      zh: 与遗产机构关联的次要或从属物理位置，如分馆、存储设施、研究中心和地区站点， 区别于总部或主要地点。
+    broad_mappings:
+    - org:Site
+    close_mappings:
+    - schema:Place
+    - crm:E27_Site
+    - locn:Address
+    - vcard:Location
+    related_mappings:
+    - crm:E53_Place
+    - schema:branch
+    - org:siteAddress
+    - vcard:Address
+    slots:
+    - identified_by
+    - has_type
+    - located_in
+    - in_country
+    - has_location
+    - is_location_of
+    - branch_of
+    - has_description
+    - has_label
+    - has_postal_code
+    - refer_to
+    - has_locality
+    - categorized_as
+    - has_geographic_subdivision
+    - has_score
+    - temporal_extent
+    - derive_from
+    - generated_by
+    - geometric_extent
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux-place/rijksmuseum-depot-amersfoort
+      has_label:
+        required: true
+        examples:
+        - value: Depot Amersfoort
+        - value: Rijksmuseum Schiphol
+        - value: Reading Room Annex
+      has_type:
+        required: true
+        inlined: false
+        examples:
+        - value:
+            has_label: STORAGE_FACILITY
+        - value:
+            has_label: BRANCH_OFFICE
+        - value:
+            has_label: RESEARCH_CENTER
+      categorized_as:
+        required: false
+        inlined: false
+        examples:
+        - value:
+            research_center_id: https://nde.nl/hc/research/kb-digitization
+            center_name: KB Digitization Center
+            research_center_type: DIGITIZATION_CENTER
+        - value:
+            conservation_lab_id: https://nde.nl/hc/lab/rkd-paper
+            lab_name: RKD Paper Conservation Lab
+            conservation_specialties:
+            - Works on paper
+            - Drawings
+      has_description:
+        examples:
+        - value: Off-site storage facility housing overflow collections. Staff access only.
+      has_postal_code:
+        examples:
+        - value: 3824 BK
+      located_in:
+        required: false
+        inlined: false
+        examples:
+        - value:
+            settlement_name: Amersfoort
+            country: NL
+      in_country:
+        range: Country
+        examples:
+        - value: https://nde.nl/ontology/hc/country/NL
+      has_geographic_subdivision:
+        examples:
+        - value: https://nde.nl/ontology/hc/subregion/NL-UT
+      has_locality:
+        range: Settlement
+        examples:
+        - value: https://nde.nl/ontology/hc/settlement/2759633
+        - value: https://nde.nl/ontology/hc/settlement/5206379
+        - value: https://nde.nl/ontology/hc/feature/herenhuis-mansion
+      has_location:
+        multivalued: true
+        inlined_as_list: false
+        required: false
+        examples:
+        - value:
+            has_location:
+              geospatial_id: https://nde.nl/ontology/hc/geo/depot-amersfoort-building
+              latitude: 52.1561
+              longitude: 5.3878
+              geometric_extent:
+              - has_format:
+                  has_value: POLYGON((5.385 52.154, 5.390 52.154, 5.390 52.158, 5.385 52.158, 5.385 52.154))
+                has_type:
+                  has_label: POLYGON
+              osm_id: way/234567890
+              has_accuracy_in_meters: 1.0
+              spatial_resolution: BUILDING
+        - value:
+            has_location:
+              geospatial_id: https://nde.nl/ontology/hc/geo/schiphol-branch
+              latitude: 52.3086
+              longitude: 4.7639
+              geometric_extent:
+              - has_format:
+                  has_value: POINT(4.7639 52.3086)
+                has_type:
+                  has_label: POINT
+              has_accuracy_in_meters: 50.0
+              spatial_resolution: BUILDING
+      is_location_of:
+        multivalued: true
+        inlined_as_list: false
+        examples:
+        - value:
+            has_label: Conservation Division - Amersfoort
+            branch_type: CONSERVATION_LAB
+      branch_of:
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/place/rijksmuseum-main
+      temporal_extent:
+        range: TimeSpan
+        examples:
+        - value:
+            begin_of_the_begin: '1995-06-01'
+            end_of_the_end: '2010-12-31'
+        - value:
+            begin_of_the_begin: '1970-01-01'
+            end_of_the_begin: '1979-12-31'
+      derive_from:
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+      refer_to:
+        range: Custodian
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+    structured_aliases:
+    - literal_form: hulplocatie
+      in_language: nl
+    - literal_form: Hilfsstandort
+      in_language: de
+    - literal_form: lieu auxiliaire
+      in_language: fr
+    - literal_form: lugar auxiliar
+      in_language: es
+    - literal_form: موقع مساعد
+      in_language: ar
+    - literal_form: lokasi bantu
+      in_language: id
+    - literal_form: 辅助地点
+      in_language: zh
+    comments:
+    - Models SUBORDINATE physical locations (not main headquarters)
+    - Three-tier model: CustodianPlace (main), AuxiliaryPlace (subordinate), FeaturePlace (type)
+    - W3C ORG org:Site for organizational site/premises
+    - Links to OrganizationBranch via hosts_branch (what operates at this site)
+    - Links back to CustodianPlace via is_auxiliary_of_place (main vs subordinate)
+    - Temporal validity tracks site lifecycle (opened/closed)
+    - Can have precise coordinates (latitude/longitude) unlike nominal CustodianPlace
+    - 'Preserved from prior description: Secondary or subordinate physical location associated with a heritage custodian, such as branch offices, storage facilities, research centers, and regional sites distinct from the main headquarters or primary place designation.'
+    keywords:
+    - branch office
+    - storage facility
+    - secondary location
+    - depot
+    - research center
+    - physical site
+    see_also:
+    - https://www.w3.org/TR/vocab-org/#org:Site
+    - https://www.w3.org/ns/locn
+    - http://www.cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E27
+    - https://www.w3.org/TR/vcard-rdf/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux-place/rijksmuseum-depot-amersfoort
+        has_label: Depot Amersfoort
+        has_type:
+          has_label: STORAGE_FACILITY
+        has_description: Off-site storage facility for overflow collections. Climate-controlled. Staff access only.
+        country: https://nde.nl/ontology/hc/country/NL
+        has_geographic_subdivision: https://nde.nl/ontology/hc/subregion/NL-UT
+        branch_of: https://nde.nl/ontology/hc/place/rijksmuseum-main
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+      description: Off-site storage facility
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux-place/rijksmuseum-schiphol
+        has_label: Rijksmuseum Schiphol
+        has_type:
+          has_label: BRANCH_OFFICE
+        has_description: Small exhibition space at Schiphol Airport featuring rotating highlights from the collection.
+        located_in:
+          settlement_name: Hoofddorp
+          country: NL
+        country: https://nde.nl/ontology/hc/country/NL
+        is_location_of:
+        - has_label: Schiphol Exhibition Team
+          branch_type: EXHIBITION_SPACE
+        branch_of: https://nde.nl/ontology/hc/place/rijksmuseum-main
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+      description: Airport branch exhibition space
+    notes:
+    - |
+      Preserved from prior description (commit 51480891):
+
+      "Secondary or subordinate physical location associated with a heritage custodian.\n\n**CRITICAL DISTINCTION - THREE-TIER PLACE MODEL**:\n\n1. **CustodianPlace** (preferred place reference):\n   - Main/primary place designation for the custodian\n   - Like CustodianName is the preferred emic label\n   - Examples: \"Rijksmuseum\" (main building), \"National Archives\" (headquarters)\n   \n2. **AuxiliaryPlace** (subordinate places) - THIS CLASS:\n   - Secondary locations: branch offices, storage facilities, regional sites\n   - Like CustodianAppellation is to CustodianName\n   - Examples: Depot Amersfoort (off-site storage), Regional office Noord-Holland\n   \n3. **FeaturePlace** (feature type classification):\n   - Classifies the TYPE of physical feature (museum building, warehouse, etc.)\n   - Applies to both CustodianPlace and AuxiliaryPlace\n\n**W3C ORG ALIGNMENT**:\n\n`org:Site` - \"An office or other premise at which the organization is located. \nMany organizations are\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

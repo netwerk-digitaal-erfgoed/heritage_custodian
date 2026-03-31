@@ -1,0 +1,160 @@
+id: https://nde.nl/ontology/hc/class/Collection
+name: collection_class
+title: Collection Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  bf: http://id.loc.gov/ontologies/bibframe/
+  dcterms: http://purl.org/dc/terms/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  edm: http://www.europeana.eu/schemas/edm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_provenance
+- ../slots/has_content
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_policy
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/acquired_through
+- ../slots/categorized_as
+- ../slots/instantiated_by
+- ../slots/part_of
+- ../slots/has_constituent
+- ../slots/temporal_extent
+classes:
+  Collection:
+    class_uri: rico:RecordSet
+    description: >-
+      Catalogued holding set defined by coherent provenance, arrangement logic,
+      and stewardship context within a larger institutional corpus.
+    alt_descriptions:
+      nl: Gecatalogiseerde holdingset met samenhangende herkomst, ordeningslogica en beheercontext binnen een groter institutioneel corpus.
+      de: Katalogisierter Bestandsverbund mit zusammenhaengender Provenienz, Ordnungslogik und Verwaltungskontext innerhalb eines groesseren institutionellen Korpus.
+      fr: Ensemble de fonds catalogue defini par une provenance coherente, une logique d organisation et un contexte de conservation institutionnel.
+      es: Conjunto catalogado de fondos definido por procedencia coherente, logica de organizacion y contexto de custodia dentro de un corpus institucional mayor.
+      ar: مجموعة مقتنيات مفهرسة يحددها أصل متسق ومنطق ترتيب وسياق حفظ داخل رصيد مؤسسي أوسع.
+      id: Set kepemilikan terkatalog yang ditentukan oleh provenance koheren, logika penataan, dan konteks pengelolaan dalam korpus institusi yang lebih besar.
+      zh: 在更大机构语境中，按一致来源、编排逻辑与保管背景定义的已编目藏品集合。
+    structured_aliases:
+    - {literal_form: collectie-eenheid, in_language: nl}
+    - {literal_form: Bestandseinheit, in_language: de}
+    - {literal_form: unite de fonds, in_language: fr}
+    - {literal_form: unidad de fondo, in_language: es}
+    - {literal_form: وحدة مقتنيات, in_language: ar}
+    - {literal_form: unit himpunan arsip, in_language: id}
+    - {literal_form: 馆藏单元, in_language: zh}
+    broad_mappings:
+    - rico:RecordSet
+    close_mappings:
+    - wd:Q2668072
+    - crm:E78_Curated_Holding
+    - bf:Collection
+    - edm:ProvidedCHO
+    keywords:
+    - archival arrangement
+    - provenance-based grouping
+    - catalogued holdings
+    - custodial context
+    comments:
+    - Represents specific inventoried holdings rather than broad nominal corpus references
+    - Supports nested structures such as fonds, series, and sub-series
+    - Links to access and provenance data for governance and reuse decisions
+    - Mapping specificity: rico:RecordSet is broader than this class, so it uses broad_mappings (not narrow_mappings)
+    examples:
+    - value:
+        identified_by:
+          identifier_value: https://nde.nl/ontology/hc/collection/nationaal-archief-voc-fonds
+        has_label:
+          has_label: Records of the Dutch East India Company (VOC)
+        has_type:
+        - https://nde.nl/ontology/hc/collection-type/fonds
+        temporal_extent:
+          begin_of_the_begin: '1602-01-01'
+          end_of_the_end: '1799-12-31'
+    slots:
+    - acquired_through
+    - has_description
+    - identified_by
+    - has_label
+    - has_type
+    - has_provenance
+    - instantiated_by
+    - has_quantity
+    - has_constituent
+    - part_of
+    - has_score
+    - has_content
+    - temporal_extent
+    - has_policy
+    slot_usage:
+      identified_by:
+        inlined: false
+        required: true
+        identifier: true
+      instantiated_by:
+        range: DigitalInstantiation
+        multivalued: true
+        inlined: true
+      has_label:
+        range: Label
+        inlined: true
+        required: true
+      has_description:
+        inlined: false
+        required: false
+        multivalued: true
+        inlined_as_list: false
+      has_type:
+        multivalued: true
+        required: true
+        range: RecordSetType
+        description: Classification of this record set (e.g., fonds, series, file) per RiC-O RecordSetType.
+      has_quantity:
+        range: integer
+      has_content:
+        multivalued: true
+        inlined_as_list: false
+      has_provenance:
+        required: false
+        range: Provenance
+        inlined: true
+      acquired_through:
+        range: AcquisitionEvent
+        multivalued: true
+        inlined: true
+      has_policy:
+        required: false
+      part_of:
+        required: true
+        description: Parent container for this record set (e.g., a higher-level series/fonds or nominal custodian corpus context).
+      has_constituent:
+        range: ExhibitedObject
+        multivalued: true
+        inlined: false
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+    see_also:
+    - https://www.ica.org/standards/RiC/ontology#RecordSet
+    - http://www.cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E78
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      "Specific, inventoried heritage holdings with fine-grained cataloguing detail.\n\n**CRITICAL DISTINCTION**:\n\n| CustodianCollection | Collection (THIS CLASS) |\n|---------------------|------------------------|\n| Abstract/nominal reference | Specific, catalogued holdings |\n| Entire collection of a Custodian | Individual fonds, series, or named collections |\n| Vague (\"the museum's collection\") | Precise (\"the Van Gogh correspondence collection\") |\n| Top-level container | Nested within CustodianCollection |\n| crm:E78_Curated_Holding | rico:RecordSet |\n\n1. **RiC-O (Records in Contexts)**:\n   - `rico:RecordSet` - \"A record set is a group of record(s), made and/or assembled\n     by one or more agent(s), characterized by a common provenance and/or by being\n     received/maintained by the same custodian.\"\n   - Enables: series, fonds, sub-fonds, sub-series hierarchies\n   - Properties: rico:hasRecordSetType, rico:hasExtent, rico:hasTemporalCoverage\n\n2. **CIDOC-CRM**:\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

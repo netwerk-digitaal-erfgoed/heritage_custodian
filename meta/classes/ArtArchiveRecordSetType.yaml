@@ -1,0 +1,98 @@
+id: https://nde.nl/ontology/hc/class/ArtArchiveRecordSetType
+name: ArtArchiveRecordSetType
+title: Art Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+classes:
+  ArtArchiveRecordSetType:
+    class_uri: hc:ArtArchiveRecordSetType
+    description: >-
+      Classification category for record sets containing art-related
+      documentation, including artist papers, gallery records, and exhibition
+      archives within art archives.
+    alt_descriptions:
+      nl: >-
+        Classificatiecategorie voor recordsets met kunstgerelateerde
+        documentatie, waaronder kunstenaarsarchieven, galerijrecords en
+        tentoonstellingsarchieven binnen kunstarchieven.
+      de: >-
+        Klassifizierungskategorie fuer Datensatzgruppen mit kunstbezogener
+        Dokumentation, einschliesslich Kuenstlernachlaessen, Galeriedokumenten
+        und Ausstellungsarchiven in Kunstarchiven.
+      fr: >-
+        Categorie de classification pour les ensembles d'enregistrements
+        contenant de la documentation artistique, y compris les papiers
+        d'artistes, les documents de galerie et les archives d'exposition.
+      es: >-
+        Categoria de clasificacion para conjuntos de registros que contienen
+        documentacion relacionada con el arte, incluidos papeles de artistas,
+        registros de galerias y archivos de exposiciones.
+      ar: >-
+        فئة تصنيف لمجموعات السجلات التي تحتوي على وثائق متعلقة بالفن، بما
+        في ذلك أوراق الفنانين وسجلات المعارض وأرشيفات المعارض.
+      id: >-
+        Kategori klasifikasi untuk kumpulan rekaman yang berisi dokumentasi
+        terkait seni, termasuk kertas seniman, catatan galeri, dan arsip
+        pameran dalam arsip seni.
+      zh: >-
+        艺术档案中包含艺术相关文件的记录集分类类别，包括艺术家文件、画廊记录
+        和展览档案。
+    is_a: CollectionType
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    structured_aliases:
+      - literal_form: kunstarchief-recordsettype
+        in_language: nl
+      - literal_form: Kunstarchiv-Bestandsart
+        in_language: de
+      - literal_form: type de fonds d'archives d'art
+        in_language: fr
+      - literal_form: tipo de fondo de archivo de arte
+        in_language: es
+      - literal_form: نوع مجموعة سجلات أرشيف الفن
+        in_language: ar
+      - literal_form: tipe kumpulan rekaman arsip seni
+        in_language: id
+      - literal_form: 艺术档案记录集类型
+        in_language: zh
+    examples:
+      - value:
+          has_type: ArchiveOrganizationType
+          has_score: 1.0
+        description: Art archive collection type
+    keywords:
+      - art documentation
+      - record set type
+      - artist papers
+      - gallery records
+      - classification
+    slots:
+      - has_type
+      - has_score
+      - has_scope
+    slot_usage:
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+    comments:
+      - Abstract classification for art archive collections
+      - See ArtArchiveRecordSetTypes.yaml for concrete subclasses
+    see_also:
+      - ArtArchive
+      - rico:RecordSetType
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Specific record set type for art documentation
+      custodian_types: "['ArtArchive']"

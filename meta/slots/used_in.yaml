@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: used_in
+# ==============================================================================
+# Indicates the context, event, project, or larger entity within which something
+# is employed or applied.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:used`           | prov.ttl:1039-1053         | related | Entity used by Activity            |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/used_in
+name: used_in
+title: Used In
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  used_in:
+    slot_uri: hc:usedIn
+    description: >-
+      To be employed, utilized, or applied as a component, tool, or resource
+      within a specific context, event, project, or larger entity.
+    alt_descriptions:
+      nl: >-
+        Gebruikt, toegepast of ingezet als component, hulpmiddel of bron binnen
+        een specifieke context, gebeurtenis, project of grotere entiteit.
+      de: >-
+        Als Komponente, Werkzeug oder Ressource innerhalb eines bestimmten
+        Kontexts, Ereignisses, Projekts oder einer größeren Entität eingesetzt,
+        verwendet oder angewendet zu werden.
+      fr: >-
+        Être employé, utilisé ou appliqué en tant que composant, outil ou
+        ressource dans un contexte, un événement, un projet ou une entité
+        plus large spécifique.
+      ar: >-
+        أن يتم توظيفه أو استخدامه أو تطبيقه كمكون أو أداة أو مورد ضمن سياق أو
+        حدث أو مشروع أو كيان أكبر محدد.
+      id: >-
+        Digunakan, dimanfaatkan, atau diterapkan sebagai komponen, alat, atau
+        sumber daya dalam konteks, peristiwa, proyek, atau entitas yang lebih
+        besar tertentu.
+      zh: >-
+        在特定上下文、事件、项目或更大实体中被用作组件、工具或资源。
+      es: >-
+        Ser empleado, utilizado o aplicado como componente, herramienta o
+        recurso dentro de un contexto, evento, proyecto o entidad mayor específico.
+    structured_aliases:
+      - literal_form: gebruikt in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verwendet in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: utilisé dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستخدم في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: digunakan dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 用于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: usado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_used_in
+    related_mappings:
+      - prov:used  # prov.ttl:1039-1053 - "Entity used by Activity"
+    annotations:
+      custodian_types: '["*"]'

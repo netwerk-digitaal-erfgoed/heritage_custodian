@@ -1,0 +1,112 @@
+id: https://nde.nl/ontology/hc/class/Asset
+name: Asset
+title: Asset
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_currency
+- ../slots/has_value
+- ../slots/has_label
+default_prefix: hc
+classes:
+  Asset:
+    class_uri: hc:Asset
+    description: >-
+      Financial asset with monetary value.
+
+      Represents a financial holding or monetary resource belonging to  a heritage custodian, including endowments, investments, and  other financial instruments.
+    alt_descriptions:
+      nl: "Financieel activum met monetaire waarde.\nVertegenwoordigt een financiële positie of monetaire middel dat toebehoort  aan een erfgoedbeheerder, inclusief schenkingen, investeringen en  andere financiële instrumenten."
+      de: "Finanzvermögen mit Geldwert.\nRepräsentiert eine finanzielle Position oder monetäre Ressource im Besitz  eines Kulturgüterverwalters, einschließlich Stiftungen, Investitionen und  anderer Finanzinstrumente."
+      fr: "Actif financier avec une valeur monétaire.\nReprésente une position financière ou une ressource monétaire appartenant  à un dépositaire du patrimoine, y compris les dotations, les investissements  et autres instruments financiers."
+      es: "Activo financiero con valor monetario.\nRepresenta una posición financiera o recurso monetario perteneciente a  un custodio del patrimonio, incluyendo dotaciones, inversiones y  otros instrumentos financieros."
+      ar: "أصل مالي بقيمة نقدية.\nيمثل مركزًا ماليًا أو موردًا نقديًا يملكه أمين التراث،  بما في ذلك الوقفات والاستثمارات وغيرها من الأدوات المالية."
+      id: "Aset keuangan dengan nilai moneter.\nMewakili posisi keuangan atau sumber daya moneter yang dimiliki pengelola  warisan, termasuk dana abadi, investasi, dan instrumen keuangan lainnya."
+      zh: "具有货币价值的金融资产。\n代表遗产保管人拥有的金融头寸或货币资源，包括捐赠基金、投资和其他金融工具。"
+    examples:
+    - value:
+        has_label: Endowment Fund
+        has_value: 5000000
+        has_currency: EUR
+      description: Institutional endowment
+    - value:
+        has_label: Investment Portfolio
+        has_value: 2500000
+        has_currency: EUR
+      description: Investment holdings
+    close_mappings:
+    - schema:MonetaryAmount
+    - schema:PriceSpecification
+    structured_aliases:
+    - literal_form: activum
+      in_language: nl
+    - literal_form: vermogen
+      in_language: nl
+    - literal_form: Vermögenswert
+      in_language: de
+    - literal_form: Asset
+      in_language: de
+    - literal_form: actif
+      in_language: fr
+    - literal_form: actif financier
+      in_language: fr
+    - literal_form: activo
+      in_language: es
+    - literal_form: activo financiero
+      in_language: es
+    - literal_form: أصل
+      in_language: ar
+    - literal_form: أصل مالي
+      in_language: ar
+    - literal_form: aset
+      in_language: id
+    - literal_form: aset keuangan
+      in_language: id
+    - literal_form: 资产
+      in_language: zh
+    - literal_form: 金融资产
+      in_language: zh
+    keywords:
+    - asset
+    - financial asset
+    - monetary value
+    - endowment
+    - investment
+    - holdings
+    slots:
+    - has_value
+    - has_currency
+    - has_label
+    slot_usage:
+      has_value:
+        range: float
+        required: true
+        examples:
+        - value: 5000000
+        - value: 2500000
+      has_currency:
+        required: true
+        examples:
+        - value: EUR
+        - value: USD
+        - value: GBP
+      has_label:
+        required: false
+        examples:
+        - value: Endowment Fund
+        - value: Investment Portfolio
+    annotations:
+      specificity_score: "0.20"
+      specificity_rationale: "Asset is a financial concept broadly applicable across heritage custodians."
+      custodian_types: "['*']"
+      asset_types: "Endowment, Investment, Cash, Property"
+    comments:
+    - Represents financial holdings of heritage custodians
+    - Used for endowments, investments, and other monetary assets
+    - Value expressed with currency
+    see_also:
+    - https://schema.org/MonetaryAmount

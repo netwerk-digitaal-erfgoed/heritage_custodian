@@ -1,0 +1,153 @@
+id: https://nde.nl/ontology/hc/class/TextType
+name: TextType
+title: On-Screen Text Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  TextType:
+    class_uri: skos:Concept
+    alt_descriptions:
+      nl: Abstracte basisclassificatie voor typen zichtbare tekst in video (OCR-context).
+      de: Abstrakte Basisklassifikation fuer Typen sichtbaren Textes in Video (OCR-Kontext).
+      fr: Classification de base abstraite pour les types de texte visible dans la video (contexte OCR).
+      es: Clasificacion base abstracta para tipos de texto visible en video (contexto OCR).
+      ar: تصنيف أساسي مجرد لأنواع النص المرئي في الفيديو (سياق OCR).
+      id: Klasifikasi dasar abstrak untuk tipe teks yang terlihat pada video (konteks OCR).
+      zh: 用于视频可见文字类型（OCR 语境）的抽象基础分类。
+    structured_aliases:
+    - literal_form: teksttype
+      in_language: nl
+    - literal_form: Texttyp
+      in_language: de
+    - literal_form: type de texte
+      in_language: fr
+    - literal_form: tipo de texto
+      in_language: es
+    - literal_form: نوع النص
+      in_language: ar
+    - literal_form: tipe teks
+      in_language: id
+    - literal_form: 文本类型
+      in_language: zh
+    description: >-
+      Category for classifying on-screen written or printed content detected in video frames during OCR processing (e.g., title cards, lower thirds, subtitles, signs, labels, documents).
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E55_Type
+    - schema:DefinedTerm
+    related_mappings:
+    - schema:TextDigitalDocument
+    - schema:VideoObject
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/text-type/[a-z-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/text-type/title-card
+        - value: https://nde.nl/ontology/hc/text-type/lower-third
+      has_code:
+#         range: string
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+        examples:
+        - value: TITLE_CARD
+        - value: LOWER_THIRD
+        - value: SUBTITLE
+        - value: DOCUMENT
+        - value: HANDWRITTEN
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Title Card@en
+          - Titelkaart@nl
+        - value:
+          - Lower Third@en
+          - Ondertitel@nl
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: Opening or closing title text displayed as a full-screen card
+      has_hypernym:
+        range: TextType
+        required: false
+      has_hyponym:
+        range: TextType
+        multivalued: true
+        required: false
+    annotations:
+      specificity_score: '0.80'
+      specificity_rationale: Highly specific - video OCR annotation domain only.
+      has_score:
+      replaces_enum: TextTypeEnum
+      migration_date: '2026-01-13'
+      custodian_types: "['*']"
+      modeling_notes: |
+        Type vs instance
+
+        - TextType models categories (e.g., TITLE_CARD, LOWER_THIRD).
+        - OCR detections are instances with concrete text, geometry, and confidence.
+
+        Typical categories
+
+        - title cards and lower thirds
+        - signs and labels
+        - document and handwritten text
+        - graphic and overlay text
+
+        Relationship to subtitles
+
+        - OCR text is image-to-text from visible frames.
+        - Subtitle text is audio-derived speech-to-text.
+    comments:
+    - Abstract base class - use specific subclasses (TitleCardText, etc.)
+    - Represents TEXT TYPES, not text instances
+    - VideoOCRAnnotation.text_types_detected references these types
+    - TextRegion.region_type references these types
+    - Follows Type/Types naming convention (Rule 0b)
+    - Uses shared slots per Rule 38 (slot centralization)
+    see_also:
+    - https://en.wikipedia.org/wiki/Optical_character_recognition
+    - https://www.w3.org/2004/02/skos/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/text-type/lower-third
+        has_code: LOWER_THIRD
+        has_label:
+        - Lower Third@en
+        - Naam-balk@nl
+        has_description: Name or title overlay displayed in lower third of frame

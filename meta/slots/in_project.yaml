@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: in_project
+# ==============================================================================
+# Associates an entity with the project or initiative it belongs to.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                | File/Line          | Mapping | Notes                                                         |
+# |------------|-------------------------|--------------------|---------|---------------------------------------------------------------|
+# | **FOAF**   | `foaf:currentProject`   | foaf.ttl:181-188   | related | Person→Thing; only for current projects of a person.          |
+# | **DOAP**   | `doap:Project` (class)  | doap.rdf:57-72     | related | Class, not property; describes a project entity.              |
+#
+# No external ontology defines a general "in project" property linking an
+# arbitrary entity to a project. foaf:currentProject is person-centric and
+# only for current projects. schema:Project is a class (subclass of
+# Organization), not a property. The slot captures a general association
+# between any entity and its containing project.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/in_project
+name: in_project
+title: In Project
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_project:
+    slot_uri: hc:inProject
+    description: >-
+      Associates a task, issue, resource, entity, or milestone with the specific
+      project, campaign, or initiative to which it belongs or contributes.
+      Records the project context for heritage activities such as digitization
+      campaigns, research programs, or conservation projects.
+    alt_descriptions:
+      nl: >-
+        Associeert een taak, kwestie, bron, entiteit of mijlpaal met het
+        specifieke project, campagne of initiatief waartoe het behoort of
+        waaraan het bijdraagt.
+      de: >-
+        Verknüpft eine Aufgabe, ein Problem, eine Ressource, Entität oder
+        einen Meilenstein mit dem spezifischen Projekt, der Kampagne oder
+        Initiative, zu dem es gehört oder beiträgt.
+      fr: >-
+        Associe une tâche, un problème, une ressource, une entité ou un jalon
+        au projet, à la campagne ou à l'initiative spécifique auquel il
+        appartient ou contribue.
+      ar: >-
+        يربط مهمة أو مسألة أو موردًا أو كيانًا أو معلمًا بالمشروع أو الحملة
+        أو المبادرة المحددة التي ينتمي إليها أو يساهم فيها.
+      id: >-
+        Mengasosiasikan tugas, masalah, sumber daya, entitas, atau tonggak
+        pencapaian dengan proyek, kampanye, atau inisiatif tertentu yang
+        menjadi bagiannya atau berkontribusi padanya.
+      zh: >-
+        将任务、问题、资源、实体或里程碑与其所属或贡献的特定项目、活动或倡议关联起来。
+      es: >-
+        Asocia una tarea, problema, recurso, entidad o hito con el proyecto,
+        campaña o iniciativa específica a la que pertenece o contribuye.
+    structured_aliases:
+      - literal_form: in project
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: im Projekt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dans le projet
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: في المشروع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dalam proyek
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 在项目中
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: en proyecto
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - foaf:currentProject  # foaf.ttl:181-188 - Person→Thing; only current projects of a person
+    aliases:
+      - major_research_project
+      - research_project
+    examples:
+      - value: "Metamorfoze"
+        description: >-
+          A digitization task is part of the Metamorfoze national
+          preservation program in the Netherlands.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        foaf:currentProject and foaf:pastProject are person-centric.
+        schema:Project and doap:Project are classes, not properties.
+        This slot provides a general-purpose project association.

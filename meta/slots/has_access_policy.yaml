@@ -1,0 +1,148 @@
+# ==============================================================================
+# LinkML Slot Definition: has_access_policy
+# ==============================================================================
+# Rules, guidelines, or protocols governing authorization and restrictions for
+# accessing resources or data.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                    | File/Line         | Mapping  | Notes                                    |
+# |----------------|-----------------------------|-------------------|----------|------------------------------------------|
+# | **DC Terms**   | `dcterms:accessRights`      | dcterms.rdf:786   | slot_uri | Access rights info for resource.         |
+# |                |                             |                   | exact    |                                          |
+# | **DC Terms**   | `dcterms:rights`            | dcterms.rdf       | broad    | Parent (accessRights subPropertyOf).     |
+# | **Schema.org** | `schema:conditionsOfAccess` | schemaorg.owl     | close    | Conditions for accessing content.        |
+# | **PREMIS**     | `premis:rightsStatus`       | premis            | related  | Rights status of object.                 |
+#
+# CREATED: 2026-01-15
+# UPDATED: 2026-02-03 - Added header, broad: dcterms:rights (parent of accessRights)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_access_policy
+name: has_access_policy
+title: Has Access Policy
+prefixes:
+  dcterms: http://purl.org/dc/terms/
+  hc: https://nde.nl/ontology/hc/
+  linkml: https://w3id.org/linkml/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  has_access_policy:
+    description: >-
+      To possess a defined set of rules, guidelines, or protocols that govern
+      the authorization and restrictions for accessing resources or data.
+    alt_descriptions:
+      nl: >-
+        Om een gedefinieerde set regels, richtlijnen of protocollen te
+        bezitten die de autorisatie en beperkingen voor toegang tot bronnen
+        of gegevens regelen.
+      de: >-
+        Ein definiertes Regelwerk, Richtlinien oder Protokolle zu besitzen,
+        die die Autorisierung und Einschränkungen für den Zugang zu
+        Ressourcen oder Daten regeln.
+      fr: >-
+        Posséder un ensemble défini de règles, directives ou protocoles qui
+        régissent l'autorisation et les restrictions d'accès aux ressources
+        ou aux données.
+      ar: >-
+        امتلاك مجموعة محددة من القواعد أو الإرشادات أو البروتوكولات التي
+        تحكم التفويض والقيود للوصول إلى الموارد أو البيانات.
+      id: >-
+        Memiliki seperangkat aturan, pedoman, atau protokol yang ditetapkan
+        yang mengatur otorisasi dan pembatasan untuk mengakses sumber daya
+        atau data.
+      zh: >-
+        拥有一套明确的规则、准则或协议，用于管理访问资源或数据的授权和限制。
+      es: >-
+        Poseer un conjunto definido de reglas, directrices o protocolos que
+        rigen la autorización y restricciones para acceder a recursos o datos.
+    structured_aliases:
+      - literal_form: toegangsbeleid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zugangsrichtlinie
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: politique d'accès
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: سياسة الوصول
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: kebijakan akses
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 访问策略
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: política de acceso
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    slot_uri: dcterms:accessRights
+    exact_mappings:
+    broad_mappings:
+    - dcterms:rights              # DC Terms: Parent property (accessRights rdfs:subPropertyOf rights, line 805)
+    close_mappings:
+    - schema:conditionsOfAccess
+    related_mappings:
+    - premis:rightsStatus
+    - schema:publishingPrinciples
+    aliases:
+      - has_or_had_access_policy
+      - has_or_had_access_restriction
+      - has_or_had_access_trigger_event
+      - is_or_was_public_access
+      - public_access
+      - has_supervised_handling
+      - is_open_to_public
+      - restriction_reason
+      - restriction_category
+      - restriction_description
+      - restriction_type
+      - refers_to_access_policys
+    comments:
+      - schema:conditionsOfAccess is semantically closer (conditions for access) than schema:publishingPrinciples (editorial principles).
+      - |
+        **ACCESS CATEGORIES**:
+        - Public access: Open hours, visitor programs, guided tours
+        - Research access: By appointment, credentials required, application process
+        - Restrictions: Sacred objects (no access), privacy concerns (closed records)
+        - Photography: Prohibited, allowed with permission, flash restrictions
+        - Reproduction: Copyright, religious authority approval
+        - Digital access: Online catalogs, digitized manuscripts, virtual tours
+        - Interfaith sensitivity: Non-members welcome, religious requirements (modest dress)
+      - Balances heritage accessibility with religious sacredness.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **DC Terms** | `dcterms:accessRights` | 786-811 | slot_uri, exact | Access rights info |
+        | **DC Terms** | `dcterms:rights` | - | broad | Parent (accessRights subPropertyOf rights) |
+        | **Schema.org** | `schema:conditionsOfAccess` | - | close | Conditions for access |
+        | **PREMIS** | `premis:rightsStatus` | - | related | Rights status of object |
+    examples:
+      - value: "Restricted access by appointment, Scholars only"
+        description: Research archive with restricted access
+      - value: "Public viewing during open hours, Photography prohibited"
+        description: Museum with photography restrictions
+      - value: "Digitized manuscripts online, Physical access by special permission"
+        description: Mixed digital/physical access policy
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.5
+      specificity_rationale: Moderately specific slot.

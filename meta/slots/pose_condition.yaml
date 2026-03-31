@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: pose_condition
+# ==============================================================================
+# Present or set forth a condition, requirement, or state of affairs to be met
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                     | File/Line                   | Mapping | Notes                                                      |
+# |----------------|------------------------------|-----------------------------|---------|-------------------------------------------------------------|
+# | **Schema.org** | `schema:conditionsOfAccess`  | schemaorg.owl:12465-12487   | narrow  | Access availability conditions; Domain: CreativeWork.       |
+# | **RiC-O**      | `rico:conditionsOfAccess`    | RiC-O_1-1.rdf:21023-21081  | narrow  | DatatypeProperty; access terms for Record Resources.        |
+# | **RiC-O**      | `rico:conditionsOfUse`       | RiC-O_1-1.rdf:21083-21136  | narrow  | DatatypeProperty; use terms after access is provided.       |
+#
+# rico:posesOrPosedCondition does NOT exist in RiC-O (verified).
+# No standard exact match for the general concept of posing/setting forth any condition.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/pose_condition
+name: pose_condition
+title: Pose Condition
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  pose_condition:
+    slot_uri: hc:poseCondition
+    description: >-
+      To present, constitute, or set forth a specific situation, problem, requirement,
+      or state of affairs that must be addressed or met.
+    alt_descriptions:
+      nl: >-
+        Het presenteren, vormen of uiteenzetten van een specifieke situatie, probleem,
+        vereiste of stand van zaken waaraan moet worden voldaan of die moet worden aangepakt.
+      de: >-
+        Das Darstellen, Bilden oder Darlegen einer bestimmten Situation, eines Problems,
+        einer Anforderung oder eines Sachverhalts, der angegangen oder erfuellt werden muss.
+      fr: >-
+        Presenter, constituer ou exposer une situation specifique, un probleme, une exigence
+        ou un etat de fait qui doit etre traite ou satisfait.
+      ar: >-
+        تقديم أو تشكيل أو عرض موقف أو مشكلة أو متطلب أو حالة محددة يجب معالجتها أو
+        استيفاؤها.
+      id: >-
+        Menyajikan, membentuk, atau mengajukan situasi, masalah, persyaratan, atau keadaan
+        tertentu yang harus ditangani atau dipenuhi.
+      zh: >-
+        提出、构成或阐明必须处理或满足的特定情况、问题、要求或事态。
+      es: >-
+        Presentar, constituir o exponer una situacion especifica, un problema, un requisito
+        o un estado de cosas que debe abordarse o cumplirse.
+    structured_aliases:
+      - literal_form: Voorwaarde
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bedingung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Condition
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: Shart
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Syarat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: Tiaojian
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Condicion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    comments:
+      - "rico:posesOrPosedCondition does not exist in RiC-O - use hc namespace."
+      - >-
+        SEMANTIC DISTINCTION: pose_condition captures access conditions, use restrictions,
+        or other requirements that must be met. Compare with has_or_had_condition which
+        captures the physical/preservation state of an object.
+      - >-
+        Migration (2026-01-22): condition was split into poses_or_posed_condition + Condition class.
+        Per slot_fixes.yaml (Rule 53).
+      - "Original range was considered as Condition class or uriorcurie; currently set to string."
+    annotations:
+      custodian_types: '["*"]'
+    narrow_mappings:
+      - schema:conditionsOfAccess  # schemaorg.owl:12465-12487 - "Conditions that affect the availability of, or method(s) of access to, an item." Domain: CreativeWork; access-specific subset
+      - rico:conditionsOfAccess  # RiC-O_1-1.rdf:21023-21081 - DatatypeProperty; "Terms and circumstances affecting the availability of a Record Resource or an Instantiation for consultation." Domain: Instantiation|RecordResource
+      - rico:conditionsOfUse  # RiC-O_1-1.rdf:21083-21136 - DatatypeProperty; "Terms and circumstances affecting the use of a Record Resource or an Instantiation after access has been provided." Domain: Instantiation|RecordResource
+    examples:
+      - value:
+          has_or_had_type: AccessCondition
+          has_or_had_description:
+            description_text: Appointment required for viewing
+        description: Access condition requiring appointment
+      - value:
+          has_or_had_type: UseCondition
+          has_or_had_description:
+            description_text: No flash photography permitted
+        description: Use condition restricting photography
+    aliases:
+      - poses_or_posed_condition

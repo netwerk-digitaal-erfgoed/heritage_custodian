@@ -1,0 +1,161 @@
+id: https://nde.nl/ontology/hc/class/PersonConnection
+name: person_connection_class
+title: Person Connection Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dct: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../enums/HeritageTypeEnum
+- ../enums/NameTypeEnum
+- ../metadata
+- ../slots/related_to
+- ../slots/has_type
+- ../slots/identified_by
+- ../slots/has_url
+- ../slots/located_at
+- ../slots/has_label
+- ../slots/associated_with
+- ../slots/has_degree
+- ../slots/has_description
+- ../slots/has_score
+- ../slots/in_social_network
+# default_range: string
+classes:
+  PersonConnection:
+    is_a: SocialNetworkMember
+    class_uri: schema:Person
+    description: Social-network connection entry describing a person linked from another profile.
+    alt_descriptions:
+      nl: Connectie-item uit een sociaal netwerk dat een persoon beschrijft die aan een ander profiel is gekoppeld.
+      de: Verbindungseintrag aus einem sozialen Netzwerk der eine mit einem anderen Profil verknuepfte Person beschreibt.
+      fr: Entree de connexion de reseau social decrivant une personne reliee depuis un autre profil.
+      es: Entrada de conexion de red social que describe a una persona vinculada desde otro perfil.
+      ar: بند اتصال في شبكة اجتماعية يصف شخصا مرتبطا من ملف آخر.
+      id: Entri koneksi jejaring sosial yang menggambarkan orang yang ditautkan dari profil lain.
+      zh: 社交网络连接条目，描述从另一个资料页链接到的人员。
+    structured_aliases:
+    - {literal_form: netwerkconnectie, in_language: nl}
+    - {literal_form: Netzwerkverbindung, in_language: de}
+    - {literal_form: connexion de reseau, in_language: fr}
+    - {literal_form: conexion de red, in_language: es}
+    - {literal_form: اتصال شبكة, in_language: ar}
+    - {literal_form: koneksi jaringan, in_language: id}
+    - {literal_form: 网络连接条目, in_language: zh}
+    broad_mappings:
+    - schema:Person
+    close_mappings:
+    - foaf:Person
+    related_mappings:
+    - schema:knows
+    slots:
+    - has_degree
+    - has_description
+    - related_to
+    - connection_heritage_type
+    - identified_by
+    - has_url
+    - located_at
+    - has_label
+    - associated_with
+    - in_social_network
+    - has_type
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string
+        required: true
+        pattern: ^[a-z0-9-]+_conn_[0-9]{4}_[a-z0-9_]+$
+        examples:
+        - value: giovannafossati_conn_0042_amy_b
+        - value: rijksmuseum_staff_0001_jan_van_berg
+      has_label:
+#         range: string
+        required: true
+        examples:
+        - value: Maddalena Ghiotto
+        - value: Amy B.
+        - value: LinkedIn Member
+      has_type:
+        range: NameTypeEnum
+        required: true
+        examples:
+        - value: full
+        - value: abbreviated
+      has_degree:
+        range: ConnectionDegree
+        required: true
+        inlined: true
+        examples:
+        - value:
+            has_type: SecondDegreeConnection
+        - value:
+            has_type: FirstDegreeConnection
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Archiving nerd in the digital era.
+        - value:
+            description_text: Senior Curator at Rijksmuseum
+        - value:
+            description_text: PhD candidate Critical audiovisual heritage
+      located_at:
+#         range: string
+        examples:
+        - value: Utrecht, Utrecht, Netherlands
+        - value: Netherlands
+        - value: Amsterdam, North Holland, Netherlands
+      associated_with:
+#         range: string
+        examples:
+        - value: Vrije Universiteit Amsterdam
+        - value: Digital Infrastructure department of the KNAW Humanities Cluster
+      related_to:
+        range: boolean
+        required: true
+        examples:
+        - value: true
+        - value: false
+      connection_heritage_type:
+        range: HeritageTypeEnum
+        examples:
+        - value: A
+        - value: M
+        - value: D
+      has_url:
+        range: uri
+        pattern: ^https://www\.linkedin\.com/in/[a-z0-9-]+/?$
+        examples:
+        - value: https://www.linkedin.com/in/maddalena-ghiotto-12345
+      in_social_network:
+#         range: string
+        examples:
+        - value: Thomas van Maaren, Bob Coret, and 4 other mutual connections
+        - value: 12 mutual connections
+    comments:
+    - Inlined in ConnectionNetwork.connections[] as multivalued list
+    - connection_id enables deduplication across multiple connection lists
+    - name_type classification per AGENTS.md Rule 17
+    - has_degree (was connection_degree) is relative to VIEWER, not target profile
+    see_also:
+    - https://schema.org/Person
+    - https://schema.org/knows
+    annotations:
+      source_network: LinkedIn
+      degree_semantics:
+        first: Direct connection (mutual connection)
+        second: Connected through one mutual connection
+        third_plus: Connected through two or more people
+      name_type_semantics:
+        full: Complete first and last name visible
+        abbreviated: Contains single initial (e.g., Amy B.)
+        anonymous: Privacy-hidden profile (LinkedIn Member)
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

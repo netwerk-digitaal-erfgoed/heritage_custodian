@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: originate_from
+# ==============================================================================
+# Source, location, ancestor, or starting point from which an entity, idea,
+# or object is derived or comes into existence.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property               | File/Line      | Mapping | Notes                                                   |
+# |----------|------------------------|----------------|---------|---------------------------------------------------------|
+# | PROV-O   | `prov:hadPrimarySource` | prov.ttl:661-674 | close   | "Aims to give credit to the source that originated some |
+# |          |                        |                  |         | information." Derivation-specific, Entity→Entity.       |
+#
+# prov:hadPrimarySource is specifically about information provenance and derivation.
+# This slot is broader: origin of any entity, not just information derivation chains.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/originate_from
+name: originate_from
+title: originate_from
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  originate_from:
+    name: originate_from
+    title: originate_from
+    slot_uri: hc:originateFrom
+    description: >-
+      Identifies the source, location, ancestor, or starting point from which an entity, idea, or object is derived or comes into existence.
+    alt_descriptions:
+      nl: >-
+        Identificeert de bron, locatie, voorouder of het uitgangspunt waarvan een entiteit, idee of object is afgeleid of tot bestaan komt.
+      de: >-
+        Identifiziert die Quelle, den Ort, den Vorfahren oder den Ausgangspunkt, von dem eine Entität, Idee oder ein Objekt abgeleitet wird oder entsteht.
+      fr: >-
+        Identifie la source, le lieu, l'ancêtre ou le point de départ à partir duquel une entité, une idée ou un objet est dérivé ou vient à l'existence.
+      ar: >-
+        يحدد المصدر أو الموقع أو السلف أو نقطة البداية التي يُشتق منها كيان أو فكرة أو شيء أو يأتي إلى الوجود.
+      id: >-
+        Mengidentifikasi sumber, lokasi, leluhur, atau titik awal dari mana suatu entitas, ide, atau objek berasal atau muncul ke dalam keberadaan.
+      zh: >-
+        标识实体、思想或对象从中衍生或产生的来源、位置、祖先或起点。
+      es: >-
+        Identifica la fuente, ubicación, ancestro o punto de partida del cual una entidad, idea u objeto se deriva o llega a existir.
+    structured_aliases:
+      - literal_form: Oorsprong
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ursprung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Origine
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أصل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Asal
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 来源
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Origen
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - has_or_had_origin
+      - is_or_was_originate
+      - originate
+      - inbound_from
+      - lender
+      - origin_location
+      - originates_or_originated_from
+      - starts_or_started_at_location
+      - has_origin
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - prov:hadPrimarySource  # prov.ttl:661-674 - information provenance derivation chain

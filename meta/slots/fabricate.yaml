@@ -1,0 +1,120 @@
+# ==============================================================================
+# LinkML Slot Definition: fabricate
+# ==============================================================================
+# Boolean indicator of whether data, results, or records were invented,
+# synthetically generated, or constructed rather than derived from actual
+# observations or authentic sources.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property                | File/Line                    | Mapping         | Notes                                                                          |
+# |-----------|-------------------------|------------------------------|-----------------|--------------------------------------------------------------------------------|
+# | **RiC-O** | `rico:authenticityNote` | RiC-O_1-1.rdf:20771-20835   | related_mapping | "Evidence that a Record Resource is what it purports to be ... not forged."     |
+#
+# No standard ontology defines a boolean property for data fabrication.
+# rico:authenticityNote is the closest conceptual match from archival science
+# (about authenticity evidence of records) but is a Literal-valued note, not
+# a boolean indicator. Keeping hc: namespace.
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/fabricate
+name: fabricate
+title: Fabricate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  fabricate:
+    slot_uri: hc:fabricate
+    description: >-
+      Boolean indicator of whether data, results, or records were invented,
+      synthetically generated, or constructed rather than derived from actual
+      observations or authentic information. Covers intentional fabrication
+      (fraud, forgery), unintentional fabrication (AI hallucination, data
+      processing errors), and deliberate synthetic generation (test data,
+      simulation outputs).
+    alt_descriptions:
+      nl: >-
+        Booleaanse indicator die aangeeft of gegevens, resultaten of records
+        verzonnen, synthetisch gegenereerd of geconstrueerd zijn in plaats van
+        afgeleid uit werkelijke waarnemingen of authentieke bronnen.
+      de: >-
+        Boolescher Indikator, ob Daten, Ergebnisse oder Aufzeichnungen erfunden,
+        synthetisch erzeugt oder konstruiert wurden, anstatt aus tatsächlichen
+        Beobachtungen oder authentischen Quellen abgeleitet zu sein.
+      fr: >-
+        Indicateur booléen indiquant si des données, résultats ou documents ont
+        été inventés, générés synthétiquement ou construits plutôt que dérivés
+        d'observations réelles ou de sources authentiques.
+      ar: >-
+        مؤشر منطقي يحدد ما إذا كانت البيانات أو النتائج أو السجلات مختلقة أو
+        مولدة صناعياً أو مبنية بدلاً من استخلاصها من ملاحظات فعلية أو مصادر
+        موثوقة.
+      id: >-
+        Indikator boolean yang menunjukkan apakah data, hasil, atau rekaman
+        diciptakan, dihasilkan secara sintetis, atau dibangun, bukan berasal
+        dari pengamatan aktual atau sumber autentik.
+      zh: >-
+        布尔指示器，表示数据、结果或记录是否为捏造、合成生成或构建的，
+        而非源自实际观察或真实来源。
+      es: >-
+        Indicador booleano que señala si los datos, resultados o registros fueron
+        inventados, generados sintéticamente o construidos en lugar de derivarse
+        de observaciones reales o fuentes auténticas.
+    structured_aliases:
+      - literal_form: fabriceren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: fabrizieren
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fabriquer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: اختلاق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memfabrikasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 捏造
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: fabricar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    related_mappings:
+      - rico:authenticityNote  # RiC-O_1-1.rdf:20771-20835 - "Evidence that a Record Resource is what it purports to be, was not tampered with, corrupted, or forged."
+    aliases:
+      - no_fabrication
+    examples:
+      - value: "true"
+        description: >-
+          A synthetic dataset generated for testing purposes, or a record
+          identified as containing fabricated or hallucinated content.
+      - value: "false"
+        description: >-
+          Authentic data derived from actual observations, measurements,
+          or verified primary sources.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Fabrication may be intentional (fraud, forgery), unintentional
+        (AI hallucination, data processing artifacts), or purposeful
+        (synthetic test data, simulation outputs). The boolean value alone
+        does not distinguish between these categories; use additional metadata
+        to classify the type of fabrication.
+      - >-
+        The alias no_fabrication uses inverse semantics (true = no fabrication
+        detected). When mapping from sources that use this convention, invert
+        the boolean value accordingly.

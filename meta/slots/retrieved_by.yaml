@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: retrieved_by
+# ==============================================================================
+# To denote the specific agent, user, or system responsible for the action of
+# accessing, fetching, or collecting a resource or data.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                    | File/Line          | Mapping | Notes                                    |
+# |------------|-----------------------------|--------------------|---------|------------------------------------------|
+# | **PROV-O** | `prov:wasAssociatedWith`    | prov.ttl:1069-1077 | exact   | "Activity associated with Agent."        |
+# | **PROV-O** | `prov:wasInfluencedBy`      | prov.ttl:1099-1121 | broad   | Parent property of wasAssociatedWith.    |
+# | **PROV-O** | `prov:qualifiedAssociation` | prov.ttl:775-785   | narrow  | Qualified association with details.      |
+#
+# HIERARCHY: prov:wasAssociatedWith rdfs:subPropertyOf prov:wasInfluencedBy (line 1073)
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added ontology alignment header, moved migration note to comments
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/retrieved_by
+name: retrieved_by
+title: Retrieved By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  retrieved_by:
+    slot_uri: prov:wasAssociatedWith
+    description: >-
+      To denote the specific agent, user, or system responsible for the action
+      of accessing, fetching, or collecting a resource or data.
+    alt_descriptions:
+      nl: >-
+        Om de specifieke agent, gebruiker of systeem aan te duiden die
+        verantwoordelijk is voor de actie van het openen, ophalen of
+        verzamelen van een bron of gegevens.
+      de: >-
+        Zur Bezeichnung des spezifischen Akteurs, Benutzers oder Systems, das
+        für die Aktion des Zugriffs, Abrufs oder Sammelns einer Ressource
+        oder von Daten verantwortlich ist.
+      fr: >-
+        Pour désigner l'agent, l'utilisateur ou le système spécifique
+        responsable de l'action d'accès, de récupération ou de collecte
+        d'une ressource ou de données.
+      ar: >-
+        للإشارة إلى الوكيل أو المستخدم أو النظام المحدد المسؤول عن إجراء
+        الوصول إلى مورد أو بيانات أو جلبها أو جمعها.
+      id: >-
+        Untuk menunjukkan agen, pengguna, atau sistem tertentu yang
+        bertanggung jawab atas tindakan mengakses, mengambil, atau
+        mengumpulkan sumber daya atau data.
+      zh: >-
+        表示负责访问、获取或收集资源或数据操作的特定代理人、用户或系统。
+      es: >-
+        Para denotar el agente, usuario o sistema específico responsable de
+        la acción de acceder, obtener o recopilar un recurso o datos.
+    structured_aliases:
+      - literal_form: opgehaald door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgerufen von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: récupéré par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استُرجع بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diambil oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 检索者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: recuperado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    # range: RetrievalAgent
+    multivalued: false
+    inlined: false
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+    broad_mappings:
+    - prov:wasInfluencedBy  # prov.ttl:1099-1121 - parent property (wasAssociatedWith subPropertyOf)
+    narrow_mappings:
+    - prov:qualifiedAssociation  # prov.ttl:775-785 - qualified association with details
+    aliases:
+    - is_or_was_retrieved_by
+    - retrieval_agent
+    - retrieved_by
+    comments:
+    - MIGRATED from extraction_agent per slot_fixes.yaml (Rule 53).
+    - |
+      **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+      | Ontology | Property | Line | Mapping | Notes |
+      |----------|----------|------|---------|-------|
+      | PROV-O | prov:wasAssociatedWith | 1069-1077 | exact | Activity associated with Agent |
+      | PROV-O | prov:wasInfluencedBy | 1099-1121 | broad | Parent property |
+      | PROV-O | prov:qualifiedAssociation | 775-785 | narrow | Qualified association |

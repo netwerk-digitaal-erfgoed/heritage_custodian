@@ -1,0 +1,999 @@
+id: https://nde.nl/ontology/hc/class/WebPortalTypes
+name: web_portal_types
+title: Web Portal Types Collection
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  edm: http://www.europeana.eu/schemas/edm/
+  dcmitype: http://purl.org/dc/dcmitype/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcat: http://www.w3.org/ns/dcat#
+  void: http://rdfs.org/ns/void#
+imports:
+- ./WebPortalType
+- linkml:types
+- ../metadata
+- ../slots/retrieved_from
+- ../slots/ceased_through
+- ../slots/has_description
+- ../slots/has_endpoint
+- ../slots/has_feature
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_standard
+- ../slots/has_title
+- ../slots/published_by
+- ../slots/superseded_by
+- ../slots/queryable
+- ../slots/categorized_as
+- ../slots/has_domain
+- ../slots/register
+classes:
+  NationalAggregator:
+    is_a: WebPortalType
+    class_uri: edm:DataProvider
+    description: >-
+      Nationwide discovery service that aggregates metadata from heritage
+      institutions across one country.
+    alt_descriptions:
+      nl: Nationaal portaal dat metadata van erfgoedinstellingen aggregeert.
+      de: Nationales Portal, das Metadaten von Kulturerbeeinrichtungen aggregiert.
+      fr: Portail national agrégeant les métadonnées d'institutions patrimoniales.
+      es: Portal nacional que agrega metadatos de instituciones patrimoniales.
+      ar: بوابة وطنية تجمع البيانات الوصفية من مؤسسات التراث.
+      id: Portal nasional yang mengagregasi metadata dari lembaga warisan budaya.
+      zh: 聚合全国遗产机构元数据的国家级平台。
+    structured_aliases:
+    - literal_form: nationale aggregator
+      in_language: nl
+    - literal_form: nationaler Aggregator
+      in_language: de
+    - literal_form: agrégateur national
+      in_language: fr
+    - literal_form: agregador nacional
+      in_language: es
+    - literal_form: مجمع وطني
+      in_language: ar
+    - literal_form: agregator nasional
+      in_language: id
+    - literal_form: 国家聚合器
+      in_language: zh
+    comments:
+    - Country-wide scope with cross-domain integration.
+    - Often operated by national cultural heritage agencies.
+    - 'Preserved from prior description: National-level discovery platform aggregating metadata from heritage institutions across an entire country.'
+    broad_mappings:
+    - edm:DataProvider
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: GEOGRAPHIC_SCOPE
+      has_scope:
+#         range: string
+      has_domain:
+        equals_string_in:
+        - archives
+        - libraries
+        - museums
+        - cross-domain
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - has_score
+  RegionalAggregator:
+    is_a: WebPortalType
+    class_uri: edm:DataProvider
+    description: >-
+      Subnational discovery service that aggregates heritage metadata within a
+      province or comparable geographic area.
+    alt_descriptions:
+      nl: Regionaal of provinciaal portaal dat erfgoedmetadata aggregeert.
+      de: Regionales Portal, das Kulturerbemetadaten aggregiert.
+      fr: Portail régional ou provincial agrégeant les métadonnées patrimoniales.
+      es: Portal regional o provincial que agrega metadatos patrimoniales.
+      ar: بوابة إقليمية أو محلية تجمع بيانات التراث.
+      id: Portal regional atau provinsi yang mengagregasi metadata warisan.
+      zh: 在次国家地理区域内聚合遗产元数据的区域或省级平台。
+    structured_aliases:
+    - literal_form: regionale aggregator
+      in_language: nl
+    - literal_form: regionaler Aggregator
+      in_language: de
+    - literal_form: agrégateur régional
+      in_language: fr
+    - literal_form: agregador regional
+      in_language: es
+    - literal_form: مجمع إقليمي
+      in_language: ar
+    - literal_form: agregator regional
+      in_language: id
+    - literal_form: 区域聚合器
+      in_language: zh
+    comments:
+    - Subnational scope with strong local context.
+    - Often operated by provincial/state heritage agencies.
+    - 'Preserved from prior description: Regional or provincial discovery platform aggregating heritage metadata within a subnational geographic area.'
+    broad_mappings:
+    - edm:DataProvider
+    - skos:Concept
+  ArchivalPortal:
+    is_a: WebPortalType
+    class_uri: schema:ArchiveOrganization
+    description: >-
+      Discovery service specializing in finding aids and repository descriptions
+      from multiple records-management holdings.
+    alt_descriptions:
+      nl: Portaal gespecialiseerd in archieffindings en beschrijvingen.
+      de: Portal für archivarische Findmittel und Beschreibungen.
+      fr: Portail spécialisé dans les instruments de recherche et descriptions d'archives.
+      es: Portal especializado en guías de archivos y descripciones.
+      ar: بوابة متخصصة في أدوات البحث الأرشيفية والوصف.
+      id: Portal yang berspesialisasi dalam temuan arsip dan deskripsi.
+      zh: 专门提供多个存储库的档案查找工具和描述的平台。
+    structured_aliases:
+    - literal_form: archiefportaal
+      in_language: nl
+    - literal_form: Archivportal
+      in_language: de
+    - literal_form: portail d'archives
+      in_language: fr
+    - literal_form: portal de archivos
+      in_language: es
+    - literal_form: بوابة أرشيف
+      in_language: ar
+    - literal_form: portal arsip
+      in_language: id
+    - literal_form: 档案门户
+      in_language: zh
+    comments:
+    - Aggregates EAD/EAC-CPF metadata from archives.
+    - Typical standards: EAD, EAC-CPF, RiC-O, ISAD(G).
+    - 'Preserved from prior description: Discovery platform specializing in archival finding aids and descriptions from multiple repositories.'
+    broad_mappings:
+    - schema:ArchiveOrganization
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: DOMAIN_SPECIFIC
+      has_domain:
+        equals_string_in:
+        - archives
+      has_standard:
+        range: MetadataStandard
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  LibraryUnionCatalog:
+    is_a: WebPortalType
+    class_uri: schema:Library
+    description: >-
+      Shared cross-repository index service aggregating bibliographic records
+      from multiple libraries with common authority control.
+    alt_descriptions:
+      nl: Catalogus die bibliografische records van meerdere bibliotheken aggregeert.
+      de: Verbundkatalog, der bibliografische Datensätze aus mehreren Bibliotheken aggregiert.
+      fr: Catalogue collectif agrégeant les notices bibliographiques de plusieurs bibliothèques.
+      es: Catálogo colectivo que agrega registros bibliográficos de múltiples bibliotecas.
+      ar: كتالوج اتحادي يجمع السجلات الببليوغرافية من مكتبات متعددة.
+      id: Katalog gabungan yang mengagregasi catatan bibliografi dari beberapa perpustakaan.
+      zh: 聚合多个图书馆书目记录的联合目录。
+    structured_aliases:
+    - literal_form: bibliotheekcatalogus
+      in_language: nl
+    - literal_form: Verbundkatalog
+      in_language: de
+    - literal_form: catalogue collectif
+      in_language: fr
+    - literal_form: catálogo colectivo
+      in_language: es
+    - literal_form: كتالوج اتحادي
+      in_language: ar
+    - literal_form: katalog union
+      in_language: id
+    - literal_form: 联合目录
+      in_language: zh
+    comments:
+    - Aggregates bibliographic records with authority control.
+    - Typical standards: MARC21, Dublin Core, BIBFRAME, RDA.
+    - 'Preserved from prior description: Union catalog aggregating bibliographic records from multiple libraries with shared authority control.'
+    broad_mappings:
+    - schema:Library
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: DOMAIN_SPECIFIC
+      has_domain:
+        equals_string_in:
+        - libraries
+      has_standard:
+        range: MetadataStandard
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  MuseumCollectionPortal:
+    is_a: WebPortalType
+    class_uri: schema:Museum
+    description: >-
+      Discovery service aggregating object-level metadata from multiple museums
+      with rich visual content.
+    alt_descriptions:
+      nl: Portaal dat museumobjectmetadata van meerdere instellingen aggregeert.
+      de: Portal, das Museumsobjektmetadaten von mehreren Einrichtungen aggregiert.
+      fr: Portail agrégeant les métadonnées d'objets de musée de plusieurs institutions.
+      es: Portal que agrega metadatos de objetos de museo de múltiples instituciones.
+      ar: بوابة تجمع بيانات كائنات المتحف من عدة مؤسسات.
+      id: Portal yang mengagregasi metadata objek museum dari beberapa lembaga.
+      zh: 聚合多个博物馆物品元数据的发现平台。
+    structured_aliases:
+    - literal_form: museumcollectieportaal
+      in_language: nl
+    - literal_form: Museumssammlungsportal
+      in_language: de
+    - literal_form: portail de collections muséales
+      in_language: fr
+    - literal_form: portal de colecciones museísticas
+      in_language: es
+    - literal_form: بوابة مجموعات متحفية
+      in_language: ar
+    - literal_form: portal koleksi museum
+      in_language: id
+    - literal_form: 博物馆藏品门户
+      in_language: zh
+    comments:
+    - Aggregates object-level metadata with rich visual content.
+    - Typical standards: LIDO, CIDOC-CRM, Schema.org, Spectrum.
+    - 'Preserved from prior description: Discovery platform aggregating object-level metadata from multiple museums with rich visual content.'
+    broad_mappings:
+    - schema:Museum
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: DOMAIN_SPECIFIC
+      has_domain:
+        equals_string_in:
+        - museums
+      has_standard:
+        range: MetadataStandard
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  GenealogicalPortal:
+    is_a: WebPortalType
+    description: >-
+      Discovery service aggregating civil registration, parish records, and
+      genealogy sources from multiple archives.
+    alt_descriptions:
+      nl: Portaal dat burgerlijke stand, parochieregisters en genealogische bronnen aggregeert.
+      de: Portal für genealogische Quellen aus mehreren Archiven.
+      fr: Portail agrégeant l'état civil, les registres paroissiaux et les sources généalogiques.
+      es: Portal que agrega registros civiles, parroquiales y fuentes genealógicas.
+      ar: بوابة تجمع السجلات المدنية والأبرشية والمصادر الأنسابية.
+      id: Portal yang mengagregasi catatan sipil, paroki, dan sumber genealogi.
+      zh: 聚合民事登记、教区记录和家谱资源的发现平台。
+    structured_aliases:
+    - literal_form: genealogisch portaal
+      in_language: nl
+    - literal_form: Genealogieportal
+      in_language: de
+    - literal_form: portail généalogique
+      in_language: fr
+    - literal_form: portal genealógico
+      in_language: es
+    - literal_form: بوابة الأنساب
+      in_language: ar
+    - literal_form: portal genealogi
+      in_language: id
+    - literal_form: 家谱门户
+      in_language: zh
+    comments:
+    - Enables family history research with vital records.
+    - Aggregates civil registration and parish records.
+    - 'Preserved from prior description: Discovery platform aggregating civil registration, parish records, and genealogical sources from multiple archives.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: DOMAIN_SPECIFIC
+      has_domain:
+        equals_string_in:
+        - genealogy
+        - archives
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  ArchaeologicalPortal:
+    is_a: WebPortalType
+    class_uri: schema:Dataset
+    description: >-
+      Discovery service aggregating fieldwork documentation, site records, and
+      excavation reports for material-culture scholarship.
+    alt_descriptions:
+      nl: Portaal dat archeologische data, documentatie en opgravingen aggregeert.
+      de: Portal für archäologische Daten und Ausgrabungsberichte.
+      fr: Portail agrégeant les données archéologiques et rapports de fouilles.
+      es: Portal que agrega datos arqueológicos e informes de excavaciones.
+      ar: بوابة تجمع البيانات الأثرية وتقارير الحفريات.
+      id: Portal yang mengagregasi data arkeologi dan laporan penggalian.
+      zh: 聚合考古数据、田野工作文档、遗址记录和发掘报告的平台。
+    structured_aliases:
+    - literal_form: archeologieportaal
+      in_language: nl
+    - literal_form: Archäologieportal
+      in_language: de
+    - literal_form: portail archéologique
+      in_language: fr
+    - literal_form: portal arqueológico
+      in_language: es
+    - literal_form: بوابة أثرية
+      in_language: ar
+    - literal_form: portal arkeologi
+      in_language: id
+    - literal_form: 考古门户
+      in_language: zh
+    comments:
+    - Aggregates excavation data, site records, and artifact catalogs.
+    - Typical standards: CIDOC-CRM, Dublin Core, AO-CAT, CARARE.
+    - 'Preserved from prior description: Discovery platform aggregating archaeological data, fieldwork documentation, site records, and excavation reports.'
+    broad_mappings:
+    - schema:Dataset
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: DOMAIN_SPECIFIC
+      has_domain:
+        equals_string_in:
+        - archaeology
+      has_standard:
+        range: MetadataStandard
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  CrossDomainAggregator:
+    is_a: WebPortalType
+    class_uri: edm:Aggregation
+    description: >-
+      Discovery service aggregating heritage metadata across archives,
+      libraries, and museums (LAM integration).
+    alt_descriptions:
+      nl: Portaal dat erfgoedmetadata over archieven, bibliotheken en musea aggregeert.
+      de: Portal für Heritage-Metadaten über Archive, Bibliotheken und Museen.
+      fr: Portail agrégeant les métadonnées patrimoniales archives, bibliothèques et musées.
+      es: Portal que agrega metadatos patrimoniales de archivos, bibliotecas y museos.
+      ar: بوابة تجمع بيانات التراث عبر الأرشيفات والمكتبات والمتاحف.
+      id: Portal yang mengagregasi metadata warisan lintas arsip, perpustakaan, dan museum.
+      zh: 跨档案、图书馆和博物馆聚合遗产元数据的发现平台。
+    structured_aliases:
+    - literal_form: cross-domain aggregator
+      in_language: nl
+    - literal_form: Cross-Domain-Aggregator
+      in_language: de
+    - literal_form: agrégateur multi-domaines
+      in_language: fr
+    - literal_form: agregador multidominio
+      in_language: es
+    - literal_form: مجمع متعدد المجالات
+      in_language: ar
+    - literal_form: agregator lintas-domain
+      in_language: id
+    - literal_form: 跨领域聚合器
+      in_language: zh
+    comments:
+    - Cross-domain heritage aggregation (LAM integration).
+    - Typical standards: EDM, Dublin Core, Schema.org.
+    - 'Preserved from prior description: Discovery platform aggregating heritage metadata across archives, libraries, and museums (LAM integration).'
+    broad_mappings:
+    - edm:Aggregation
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: CROSS_DOMAIN
+      has_domain:
+        equals_string_in:
+        - archives
+        - libraries
+        - museums
+        - cross-domain
+      has_standard:
+        range: MetadataStandard
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  ColonialHeritagePortal:
+    is_a: WebPortalType
+    description: >-
+      Discovery service focused on empire-era history collections and provenance
+      investigation resources.
+    alt_descriptions:
+      nl: Portaal gericht op koloniale geschiedenis en herkomstonderzoek.
+      de: Portal für Kolonialgeschichte und Provenienzforschung.
+      fr: Portail axé sur l'histoire coloniale et la recherche de provenance.
+      es: Portal centrado en historia colonial e investigación de procedencia.
+      ar: بوابة مركزة على تاريخ الاستعمار وأبحاث المنشأ.
+      id: Portal yang berfokus pada sejarah kolonial dan penelitian provenans.
+      zh: 专注于殖民历史收藏和溯源研究的发现平台。
+    structured_aliases:
+    - literal_form: koloniaal erfgoedportaal
+      in_language: nl
+    - literal_form: Kolonialerbe-Portal
+      in_language: de
+    - literal_form: portail du patrimoine colonial
+      in_language: fr
+    - literal_form: portal de patrimonio colonial
+      in_language: es
+    - literal_form: بوابة التراث الاستعماري
+      in_language: ar
+    - literal_form: portal warisan kolonial
+      in_language: id
+    - literal_form: 殖民遗产门户
+      in_language: zh
+    comments:
+    - Supports colonial provenance research and restitution.
+    - 'Preserved from prior description: Discovery platform focused on colonial history collections and provenance research resources.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: THEMATIC
+      has_domain:
+        equals_string_in:
+        - colonial_heritage
+        - provenance_research
+        - museums
+        - archives
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  MonasticHeritagePortal:
+    is_a: WebPortalType
+    description: >-
+      Discovery service aggregating medieval religious-order documents,
+      charters, and diplomatic sources.
+    alt_descriptions:
+      nl: Portaal voor middeleeuwse kloosterdocumenten en oorkonden.
+      de: Portal für mittelalterliche Klosterdokumente und Urkunden.
+      fr: Portail pour les documents monastiques médiévaux et chartes.
+      es: Portal para documentos monásticos medievales y cartas.
+      ar: بوابة للوثائق الرهبانية في العصور الوسطى والمواثيق.
+      id: Portal untuk dokumen biara abad pertengahan dan piagam.
+      zh: 聚合中世纪修道院文档、特许状和外交文献的发现平台。
+    structured_aliases:
+    - literal_form: kloostererfgoedportaal
+      in_language: nl
+    - literal_form: Klosterebe-Portal
+      in_language: de
+    - literal_form: portail du patrimoine monastique
+      in_language: fr
+    - literal_form: portal de patrimonio monástico
+      in_language: es
+    - literal_form: بوابة التراث الرهباني
+      in_language: ar
+    - literal_form: portal warisan biara
+      in_language: id
+    - literal_form: 修道院遗产门户
+      in_language: zh
+    comments:
+    - Specializes in diplomatic sources and religious heritage.
+    - 'Preserved from prior description: Discovery platform aggregating medieval monastic documents, charters, and diplomatic sources.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: THEMATIC
+      has_domain:
+        equals_string_in:
+        - monastic_heritage
+        - medieval_studies
+        - diplomatics
+        - archives
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  NewspaperDigitizationPortal:
+    is_a: WebPortalType
+    description: >-
+      Discovery service aggregating digitized historical newspapers from
+      multiple institutions with full-text search.
+    alt_descriptions:
+      nl: Portaal voor gedigitaliseerde historische kranten.
+      de: Portal für digitalisierte historische Zeitungen.
+      fr: Portail pour les journaux historiques numérisés.
+      es: Portal para periódicos históricos digitalizados.
+      ar: بوابة للصحف التاريخية الرقمية.
+      id: Portal untuk koran bersejarah yang didigitalkan.
+      zh: 聚合多个机构数字化历史报纸并提供全文检索的发现平台。
+    structured_aliases:
+    - literal_form: krantenportaal
+      in_language: nl
+    - literal_form: Zeitungsportal
+      in_language: de
+    - literal_form: portail de journaux
+      in_language: fr
+    - literal_form: portal de periódicos
+      in_language: es
+    - literal_form: بوابة الصحف
+      in_language: ar
+    - literal_form: portal koran
+      in_language: id
+    - literal_form: 报纸门户
+      in_language: zh
+    comments:
+    - Provides full-text search across digitized historical newspapers.
+    - 'Preserved from prior description: Discovery platform aggregating digitized historical newspapers from multiple institutions with full-text search.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: THEMATIC
+      has_domain:
+        equals_string_in:
+        - periodicals
+        - libraries
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  LinkedDataHub:
+    is_a: WebPortalType
+    description: >-
+      Technical discovery service providing SPARQL endpoint and semantic-graph
+      access to heritage knowledge models.
+    alt_descriptions:
+      nl: Portaal met SPARQL-endpoint en linked data toegang.
+      de: Portal mit SPARQL-Endpoint und Linked-Data-Zugang.
+      fr: Portail avec point d'accès SPARQL et accès linked data.
+      es: Portal con endpoint SPARQL y acceso a datos enlazados.
+      ar: بوابة مع نقطة نهاية SPARQL ووصول البيانات المرتبطة.
+      id: Portal dengan endpoint SPARQL dan akses data tertaut.
+      zh: 提供SPARQL端点和链接数据访问的技术发现平台。
+    structured_aliases:
+    - literal_form: linked data hub
+      in_language: nl
+    - literal_form: Linked-Data-Hub
+      in_language: de
+    - literal_form: hub de données liées
+      in_language: fr
+    - literal_form: centro de datos enlazados
+      in_language: es
+    - literal_form: مركز البيانات المرتبطة
+      in_language: ar
+    - literal_form: hub data tertaut
+      in_language: id
+    - literal_form: 链接数据中心
+      in_language: zh
+    comments:
+    - Provides semantic web access via SPARQL endpoints.
+    - 'Preserved from prior description: Technical discovery platform providing SPARQL endpoint and linked data access to heritage knowledge graphs.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: TECHNICAL_INFRASTRUCTURE
+      has_domain:
+        equals_string_in:
+        - linked_data
+        - vocabularies
+        - knowledge_graphs
+      has_feature:
+        range: TechnicalFeature
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  IIIFAggregator:
+    is_a: WebPortalType
+    description: >-
+      Technical discovery service aggregating IIIF manifests from multiple
+      institutions for unified image viewing and annotation.
+    alt_descriptions:
+      nl: Portaal dat IIIF-manifesten aggregeert voor beeldweergave.
+      de: Portal für IIIF-Manifeste zur Bildbetrachtung.
+      fr: Portail agrégeant les manifestes IIIF pour la visualisation d'images.
+      es: Portal que agrega manifiestos IIIF para visualización de imágenes.
+      ar: بوابة تجمع بيانات IIIF لعرض الصور الموحد.
+      id: Portal yang mengagregasi manifest IIIF untuk tampilan gambar terpadu.
+      zh: 聚合多个机构IIIF清单以实现统一图像查看和注释的技术平台。
+    structured_aliases:
+    - literal_form: IIIF-aggregator
+      in_language: nl
+    - literal_form: IIIF-Aggregator
+      in_language: de
+    - literal_form: agrégateur IIIF
+      in_language: fr
+    - literal_form: agregador IIIF
+      in_language: es
+    - literal_form: مجمع IIIF
+      in_language: ar
+    - literal_form: agregator IIIF
+      in_language: id
+    - literal_form: IIIF聚合器
+      in_language: zh
+    comments:
+    - Provides unified viewing of IIIF manifests across institutions.
+    - 'Preserved from prior description: Technical discovery platform aggregating IIIF manifests from multiple institutions for unified image viewing and annotation.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: TECHNICAL_INFRASTRUCTURE
+      has_domain:
+        equals_string_in:
+        - images
+        - visual_heritage
+      has_feature:
+        range: TechnicalFeature
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  OAIPMHHarvester:
+    is_a: WebPortalType
+    description: >-
+      Technical ingestion service harvesting metadata via OAI-PMH protocol
+      from institutional repositories.
+    alt_descriptions:
+      nl: Technisch portaal dat metadata ophaalt via OAI-PMH.
+      de: Technisches Portal für OAI-PMH-Metadaten-Harvesting.
+      fr: Portail technique moissonnant les métadonnées via OAI-PMH.
+      es: Portal técnico que cosecha metadatos mediante OAI-PMH.
+      ar: بوابة تقنية تجمع البيانات الوصفية عبر بروتوكول OAI-PMH.
+      id: Portal teknis yang memanen metadata melalui protokol OAI-PMH.
+      zh: 通过OAI-PMH协议从机构存储库收集元数据的技术平台。
+    structured_aliases:
+    - literal_form: OAI-PMH-harvester
+      in_language: nl
+    - literal_form: OAI-PMH-Harvester
+      in_language: de
+    - literal_form: moissonneur OAI-PMH
+      in_language: fr
+    - literal_form: cosechador OAI-PMH
+      in_language: es
+    - literal_form: حاصد OAI-PMH
+      in_language: ar
+    - literal_form: pemanen OAI-PMH
+      in_language: id
+    - literal_form: OAI-PMH收割器
+      in_language: zh
+    comments:
+    - Aggregates from OAI-PMH compliant repositories.
+    - 'Preserved from prior description: Technical platform harvesting metadata via OAI-PMH protocol from institutional repositories.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: TECHNICAL_INFRASTRUCTURE
+      has_domain:
+        equals_string_in:
+        - repositories
+        - open_access
+        - scholarly_communication
+      has_feature:
+        range: TechnicalFeature
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  OpenAccessPortal:
+    is_a: WebPortalType
+    description: >-
+      Discovery service providing unrestricted availability of digital objects
+      and metadata, emphasizing public reuse.
+    alt_descriptions:
+      nl: Portaal met open toegang tot digitale objecten en metadata.
+      de: Portal mit offenem Zugang zu digitalen Objekten.
+      fr: Portail offrant un accès ouvert aux objets numériques et métadonnées.
+      es: Portal con acceso abierto a objetos digitales y metadatos.
+      ar: بوابة توفر وصولاً مفتوحاً إلى الكائنات الرقمية والبيانات الوصفية.
+      id: Portal dengan akses terbuka ke objek digital dan metadata.
+      zh: 提供数字对象和元数据开放获取的发现平台，强调公共可用性和重用。
+    structured_aliases:
+    - literal_form: open access portaal
+      in_language: nl
+    - literal_form: Open-Access-Portal
+      in_language: de
+    - literal_form: portail en accès ouvert
+      in_language: fr
+    - literal_form: portal de acceso abierto
+      in_language: es
+    - literal_form: بوابة الوصول المفتوح
+      in_language: ar
+    - literal_form: portal akses terbuka
+      in_language: id
+    - literal_form: 开放获取门户
+      in_language: zh
+    comments:
+    - Emphasizes public availability, open licenses, and reuse.
+    - 'Preserved from prior description: Discovery platform providing open access to digital objects and metadata, emphasizing public availability and reuse.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: ACCESS_MODEL
+      has_domain:
+        equals_string_in:
+        - open_access
+        - public_domain
+        - commons
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  ResearchDataPortal:
+    is_a: WebPortalType
+    description: >-
+      Discovery service aggregating scholarly datasets related to cultural
+      heritage, including archaeology, conservation studies, and heritage
+      science.
+    alt_descriptions:
+      nl: Portaal voor onderzoeksdatasets met betrekking tot cultureel erfgoed.
+      de: Portal für Forschungsdaten im Bereich Kulturerbe.
+      fr: Portail pour les jeux de données de recherche liés au patrimoine culturel.
+      es: Portal para conjuntos de datos de investigación relacionados con el patrimonio cultural.
+      ar: بوابة لمجموعات بيانات البحث المتعلقة بالتراث الثقافي.
+      id: Portal untuk dataset penelitian terkait warisan budaya.
+      zh: 聚合文化遗产相关研究数据集的发现平台。
+    structured_aliases:
+    - literal_form: onderzoeksdataportaal
+      in_language: nl
+    - literal_form: Forschungsdatenportal
+      in_language: de
+    - literal_form: portail de données de recherche
+      in_language: fr
+    - literal_form: portal de datos de investigación
+      in_language: es
+    - literal_form: بوابة بيانات البحث
+      in_language: ar
+    - literal_form: portal data penelitian
+      in_language: id
+    - literal_form: 研究数据门户
+      in_language: zh
+    comments:
+    - Emphasizes FAIR data, DOIs, and reproducibility.
+    - 'Preserved from prior description: Discovery platform aggregating research datasets related to cultural heritage, including archaeological data, conservation studies, and heritage science.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: ACCESS_MODEL
+      has_domain:
+        equals_string_in:
+        - research_data
+        - heritage_science
+        - archaeology
+        - conservation
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  DigitalLibraryPortal:
+    is_a: WebPortalType
+    class_uri: schema:DigitalDocument
+    description: >-
+      Discovery service providing direct access to digitized content from a
+      national bibliographic institution or major reading-network.
+    alt_descriptions:
+      nl: Portaal met directe toegang tot gedigitaliseerde content.
+      de: Portal mit direktem Zugang zu digitalisierten Inhalten.
+      fr: Portail offrant un accès direct aux contenus numérisés.
+      es: Portal con acceso directo a contenido digitalizado.
+      ar: بوابة توفر وصولاً مباشراً إلى المحتوى الرقمي.
+      id: Portal dengan akses langsung ke konten yang didigitalkan.
+      zh: 直接访问国家图书馆或大型图书馆网络数字化内容的发现平台。
+    structured_aliases:
+    - literal_form: digitale bibliotheek
+      in_language: nl
+    - literal_form: Digitale Bibliothek
+      in_language: de
+    - literal_form: bibliothèque numérique
+      in_language: fr
+    - literal_form: biblioteca digital
+      in_language: es
+    - literal_form: مكتبة رقمية
+      in_language: ar
+    - literal_form: perpustakaan digital
+      in_language: id
+    - literal_form: 数字图书馆门户
+      in_language: zh
+    comments:
+    - Provides full-text search and image viewing of digitized materials.
+    - Typical standards: Dublin Core, MARC21, IIIF, METS.
+    - 'Preserved from prior description: Discovery platform providing direct access to digitized content from a national library or major library network.'
+    broad_mappings:
+    - schema:DigitalDocument
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: ACCESS_MODEL
+      has_domain:
+        equals_string_in:
+        - digital_libraries
+        - libraries
+      has_standard:
+        range: MetadataStandard
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  ResearchInfrastructurePortal:
+    is_a: WebPortalType
+    description: >-
+      Pan-European or international scholarly service backbone providing tools,
+      services, and dataset access for digital humanities and heritage inquiry.
+    alt_descriptions:
+      nl: Pan-Europese onderzoeksinfrastructuur voor digitale geesteswetenschappen.
+      de: Paneuropäische Forschungsinfrastruktur für digitale Geisteswissenschaften.
+      fr: Infrastructure de recherche paneuropéenne pour les sciences humaines numériques.
+      es: Infraestructura de investigación paneuropea para humanidades digitales.
+      ar: بنية تحتية للبحث الأوروبية للأدبيات الرقمية.
+      id: Infrastruktur penelitian pan-Eropa untuk humaniora digital.
+      zh: 为数字人文和遗产研究提供工具、服务和数据访问的泛欧或国际研究基础设施。
+    structured_aliases:
+    - literal_form: onderzoeksinfrastructuurportaal
+      in_language: nl
+    - literal_form: Forschungsinfrastruktur-Portal
+      in_language: de
+    - literal_form: portail d'infrastructure de recherche
+      in_language: fr
+    - literal_form: portal de infraestructura de investigación
+      in_language: es
+    - literal_form: بوابة البنية التحتية البحثية
+      in_language: ar
+    - literal_form: portal infrastruktur penelitian
+      in_language: id
+    - literal_form: 研究基础设施门户
+      in_language: zh
+    comments:
+    - Supports large-scale collaborative research across national boundaries.
+    - 'Preserved from prior description: Pan-European or international research infrastructure providing tools, services, and data access for digital humanities and heritage research.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: RESEARCH_INFRASTRUCTURE
+      has_scope:
+#         range: string
+      has_domain:
+        equals_string_in:
+        - research_infrastructure
+        - digital_humanities
+        - heritage_science
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - has_score
+  DatasetRegister:
+    is_a: WebPortalType
+    class_uri: dcat:Catalog
+    description: >-
+      National or regional registry of heritage datasets published by custodian
+      institutions, providing discovery and access to structured metadata.
+    alt_descriptions:
+      nl: Nationaal of regionaal register van erfgoeddatasets.
+      de: Nationales oder regionales Register für Kulturerbedatensätze.
+      fr: Registre national ou régional de jeux de données patrimoniaux.
+      es: Registro nacional o regional de conjuntos de datos patrimoniales.
+      ar: سجل وطني أو إقليمي لمجموعات بيانات التراث.
+      id: Registri nasional atau regional untuk dataset warisan budaya.
+      zh: 保管机构发布的遗产数据集的国家或区域注册表。
+    structured_aliases:
+    - literal_form: datasetregister
+      in_language: nl
+    - literal_form: Datensatzregister
+      in_language: de
+    - literal_form: registre de jeux de données
+      in_language: fr
+    - literal_form: registro de conjuntos de datos
+      in_language: es
+    - literal_form: سجل مجموعة البيانات
+      in_language: ar
+    - literal_form: registri dataset
+      in_language: id
+    - literal_form: 数据集注册表
+      in_language: zh
+    comments:
+    - Dataset-level metadata (not item-level aggregator).
+    - Typical standards: DCAT, Schema.org, Dublin Core.
+    broad_mappings:
+    - dcat:Catalog
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: REGISTRY
+      has_domain:
+        equals_string_in:
+        - dataset_registry
+        - open_data
+        - heritage_data
+      has_standard:
+        range: MetadataStandard
+    slots:
+    - register
+    - has_score
+  LegacyPortal:
+    is_a: WebPortalType
+    description: >-
+      Historical discovery service no longer actively maintained but that may
+      still contain unique data or redirect to successor services.
+    alt_descriptions:
+      nl: Historisch portaal dat niet meer actief wordt onderhouden.
+      de: Historisches Portal, das nicht mehr aktiv gepflegt wird.
+      fr: Portail historique qui n'est plus activement maintenu.
+      es: Portal histórico que ya no se mantiene activamente.
+      ar: بوابة تاريخية لم تعد تُصان بشكل نشط.
+      id: Portal bersejarah yang tidak lagi dipelihara secara aktif.
+      zh: 不再积极维护但仍可能包含独特数据或作为后继平台重定向的历史发现平台。
+    structured_aliases:
+    - literal_form: verouderd portaal
+      in_language: nl
+    - literal_form: Legacy-Portal
+      in_language: de
+    - literal_form: portail hérité
+      in_language: fr
+    - literal_form: portal heredado
+      in_language: es
+    - literal_form: بوابة قديمة
+      in_language: ar
+    - literal_form: portal warisan
+      in_language: id
+    - literal_form: 遗留门户
+      in_language: zh
+    comments:
+    - Legacy status is observation-relative, not user-relative.
+    - Use superseded_by slot to link to successor portal(s).
+    - 'Preserved from prior description: Historical discovery platform no longer actively maintained but may still contain unique data or serve as redirect to successor platforms.'
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      categorized_as:
+        equals_string: LIFECYCLE
+    slots:
+    - ceased_through
+    - superseded_by
+    - has_score
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

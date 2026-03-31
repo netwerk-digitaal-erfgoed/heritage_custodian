@@ -1,0 +1,65 @@
+id: https://nde.nl/ontology/hc/classes/XPath
+name: XPath
+title: XPath
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+classes:
+  XPath:
+    description: >-
+      Selector expression locating source nodes in HTML or XML for verifiable
+      extraction provenance.
+    alt_descriptions:
+      nl: XPath-expressie gebruikt om specifieke elementen in HTML- of XML-documenten te lokaliseren, die de essentiële herkomstlink biedt tussen geëxtraheerde gegevenswaarden en hun oorspronkelijke bronlocatie in gearchiveerde documenten.
+      de: XPath-Ausdruck zur Lokalisierung bestimmter Elemente in HTML- oder XML-Dokumenten, der die wesentliche Herkunftsverbindung zwischen extrahierten Datenwerten und ihrer ursprünglichen Quellposition in archivierten Dokumenten bereitstellt.
+      fr: Expression XPath utilisée pour localiser des éléments spécifiques dans les documents HTML ou XML, fournissant le lien de provenance essentiel entre les valeurs de données extraites et leur emplacement source d'origine dans les documents archivés.
+      es: Expresión XPath utilizada para localizar elementos específicos dentro de documentos HTML o XML, proporcionando el enlace de procedencia esencial entre los valores de datos extraídos y su ubicación original en documentos archivados.
+      ar: تعبير XPath يُستخدم لتحديد موقع عناصر محددة داخل مستندات HTML أو XML، يوفر رابط المصدر الأساسي بين قيم البيانات المستخرجة وموقعها الأصلي في المستندات المؤرشفة.
+      id: Ekspresi XPath yang digunakan untuk menemukan elemen tertentu dalam dokumen HTML atau XML, menyediakan tautan asal-usul penting antara nilai data yang diekstraksi dan lokasi sumber aslinya dalam dokumen yang diarsipkan.
+      zh: XPath表达式，用于定位HTML或XML文档中的特定元素，提供提取的数据值 与其存档文档中原始源位置之间的重要来源链接。
+    class_uri: prov:Location
+    broad_mappings:
+    - prov:Entity
+    structured_aliases:
+    - literal_form: XPath
+      in_language: nl
+    - literal_form: XPath
+      in_language: de
+    - literal_form: XPath
+      in_language: fr
+    - literal_form: XPath
+      in_language: es
+    - literal_form: مسار XPath
+      in_language: ar
+    - literal_form: XPath
+      in_language: id
+    - literal_form: XPath路径
+      in_language: zh
+    comments:
+    - CRITICAL PROVENANCE FIELD for verifiable data extraction
+    - Standard XPath 1.0 expressions
+    - Used with has_provenance_path slot
+    keywords:
+    - XPath
+    - provenance
+    - HTML extraction
+    - XML parsing
+    - data location
+    examples:
+    - value: "XPath:\n  expression: \"/html[1]/body[1]/div[6]/div[1]/table[3]/tbody[1]/tr[1]/td[1]/p[6]\"\n  matched_text: \"Historische Vereniging Nijeveen\"\n  match_score: 1.0\n  source_document: \"web/0021/historischeverenigingnijeveen.nl/rendered.html\"\n"
+      description: XPath extraction pointing to an institution name in archived HTML.
+    - value: "XPath:\n  expression: \"//meta[@property='og:title']/@content\"\n  matched_text: \"Amsterdam Museum - Official Website\"\n  match_score: 0.95\n"
+      description: XPath to OpenGraph metadata in a webpage header.
+    annotations:
+      custodian_types: "['*']"
+      custodian_types_rationale: XPath provenance is relevant for any custodian type where web content is extracted and archived.
+      custodian_types_primary: '*'
+      specificity_score: 0.7
+      specificity_rationale: High specificity - only relevant for web-extracted data with HTML archival.
+      mapping_predicate: schema:xpath,prov:atLocation
+    slots: []

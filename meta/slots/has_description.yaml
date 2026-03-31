@@ -1,0 +1,113 @@
+# ==============================================================================
+# LinkML Slot Definition: has_description
+# ==============================================================================
+# A textual account that depicts the characteristics, nature, or content of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line               | Mapping  | Notes                                         |
+# |----------------|-----------------------|-------------------------|----------|-----------------------------------------------|
+# | **DCTerms**    | `dcterms:description` | dcterms.rdf:1227-1246   | slot_uri | "An account of the resource."                 |
+# | **Schema.org** | `schema:description`  | schemaorg.owl:14844-14863 | exact  | "A description of the item." Thing→Text.      |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_description
+name: has_description
+title: Has Description
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_description:
+    slot_uri: dcterms:description
+    description: >-
+      A textual account, explanation, or summary that depicts the characteristics,
+      nature, or content of an entity.
+    alt_descriptions:
+      nl: >-
+        Een tekstuele beschrijving, toelichting of samenvatting die de kenmerken,
+        aard of inhoud van een entiteit weergeeft.
+      de: >-
+        Eine textuelle Darstellung, Erklärung oder Zusammenfassung, die die Merkmale,
+        Art oder den Inhalt einer Entität beschreibt.
+      fr: >-
+        Un compte rendu textuel, une explication ou un résumé décrivant les caractéristiques,
+        la nature ou le contenu d'une entité.
+      ar: >-
+        وصف نصي أو شرح أو ملخص يصور خصائص الكيان أو طبيعته أو محتواه.
+      id: >-
+        Deskripsi tekstual, penjelasan, atau ringkasan yang menggambarkan karakteristik,
+        sifat, atau konten suatu entitas.
+      zh: >-
+        描述实体的特征、性质或内容的文本说明、解释或摘要。
+      es: >-
+        Una descripción textual, explicación o resumen que representa las características,
+        naturaleza o contenido de una entidad.
+    structured_aliases:
+      - literal_form: Beschrijving
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beschreibung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Description
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: وصف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Deskripsi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 描述
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Descripción
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+      - schema:description  # schemaorg.owl:14844-14863 - "A description of the item." Thing→Text/TextObject.
+    aliases:
+      - has_or_had_description
+      - is_or_was_description
+      - has_or_had_administration_description
+      - has_or_had_annex_description
+      - has_or_had_archive_description
+      - is_or_was_historic_building_description
+      - historic_building_description
+      - statement_description
+      - motivation_type_description
+      - object_description
+      - outdoor_site_description
+      - performance_description
+      - period_description
+      - place_description
+      - platform_description
+      - policy_description
+      - portal_description
+      - portal_type_description
+      - post_type_description
+      - profile_description
+      - resource_description
+      - route_description
+      - scheme_description
+      - scope_description
+      - service_area_description
+      - social_media_platform_description
+      - space_description
+    comments:
+      - >-
+        The slot_uri uses dcterms:description directly since the semantics are equivalent.
+        The redundant exact_mapping to dcterms:description has been removed.
+    annotations:
+      custodian_types: '["*"]'

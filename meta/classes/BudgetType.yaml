@@ -1,0 +1,125 @@
+id: https://nde.nl/ontology/hc/class/BudgetType
+name: budget_type_class
+title: Budget Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_hypernym
+  - ../slots/has_hyponym
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/equivalent_to
+  - ../slots/related_to
+classes:
+  BudgetType:
+    class_uri: skos:Concept
+    description: >-
+      Category for classifying organizational budgets based on purpose,
+      scope, and time horizon, such as operating, capital, or project budgets.
+    alt_descriptions:
+      nl: >-
+        Categorie voor het classificeren van organisatorische begrotingen op
+        basis van doel, reikwijdte en tijdshorizon, zoals exploitatie-,
+        investerings- of projectbegrotingen.
+      de: >-
+        Kategorie zur Klassifizierung organisatorischer Budgets nach Zweck,
+        Umfang und Zeithorizont, wie Betriebs-, Investitions- oder Projektbudgets.
+      fr: >-
+        Catégorie pour classer les budgets organisationnels en fonction de
+        l'objectif, de la portée et de l'horizon temporel, tels que les
+        budgets de fonctionnement, d'investissement ou de projet.
+      es: >-
+        Categoría para clasificar los presupuestos organizativos según el
+        propósito, el alcance y el horizonte temporal, como presupuestos
+        operativos, de capital o de proyectos.
+      ar: >-
+        فئة لتصنيف الميزانيات التنظيمية بناءً على الغرض والنطاق والأفق
+        الزمني، مثل الميزانيات التشغيلية أو رأس المال أو المشروع.
+      id: >-
+        Kategori untuk mengklasifikasikan anggaran organisasi berdasarkan
+        tujuan, cakupan, dan jangka waktu, seperti anggaran operasional,
+        modal, atau proyek.
+      zh: >-
+        根据目的、范围和时间范围对组织预算进行分类的类别，如运营、资本或项目预算。
+    structured_aliases:
+    - literal_form: begrotingstype
+      in_language: nl
+    - literal_form: Budgettyp
+      in_language: de
+    - literal_form: type de budget
+      in_language: fr
+    - literal_form: tipo de presupuesto
+      in_language: es
+    - literal_form: نوع الميزانية
+      in_language: ar
+    - literal_form: tipe anggaran
+      in_language: id
+    - literal_form: 预算类型
+      in_language: zh
+    broad_mappings:
+    - crm:E55_Type
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_code
+    - has_label
+    - has_description
+    - has_hypernym
+    - has_hyponym
+    - related_to
+    - equivalent_to
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        pattern: "^https://nde\\.nl/ontology/hc/budget-type/[a-z0-9-]+$"
+      has_code:
+        required: true
+        pattern: "^[A-Z][A-Z0-9_]*$"
+      has_label:
+        required: true
+        multivalued: true
+      has_hypernym:
+        range: BudgetType
+      has_hyponym:
+        range: BudgetType
+        multivalued: true
+        inlined_as_list: true
+    comments:
+    - BudgetType provides classification for organizational budgets
+    - Relevant for heritage custodian financial planning
+    - Supports hierarchical type relationships
+    see_also:
+    - BudgetTypes
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/budget-type/operating
+        has_code: OPERATING
+        has_label:
+        - Operating Budget@en
+        - Exploitatiebegroting@nl
+      description: Operating budget type
+    keywords:
+    - budget type
+    - operating budget
+    - capital budget
+    - project budget
+    - financial planning
+    notes:
+      - |
+        Preserved from prior description (commit 51480891):
+
+        "Classification type for budgets in heritage custodian contexts.\n\n**DEFINITION**:\n\nBudgetType provides a SKOS-based classification hierarchy for categorizing\ndifferent types of organizational budgets based on purpose, scope, and\ntime horizon.\n\n**ONTOLOGY ALIGNMENT**:\n\n| Ontology | Class/Property | Notes |\n|----------|----------------|-------|\n| **SKOS** | `skos:Concept` | Primary - controlled vocabulary concept |\n| **CIDOC-CRM** | `crm:E55_Type` | General type classification |\n\n**BUDGET TYPES** (from slot definition):\n\n| Type | Description |\n|------|-------------|\n| `OPERATING` | Day-to-day operations budget |\n| `CAPITAL` | Major investments and infrastructure |\n| `PROJECT` | Time-limited initiative funding |\n| `MULTI_YEAR` | Spanning multiple fiscal years |\n| `CONSOLIDATED` | Institution-wide (all departments) |\n| `DEPARTMENTAL` | Single department/unit budget |\n| `ACQUISITION` | Collection acquisition funding |\n| `CONSERVATION` | Preservation\
+    annotations:
+      specificity_score: "0.45"
+      specificity_rationale: Classification for organizational budget types
+      custodian_types: "['*']"

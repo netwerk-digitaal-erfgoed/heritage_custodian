@@ -1,0 +1,193 @@
+id: https://nde.nl/ontology/hc/class/Photography
+name: photography_class
+title: Photography Class
+description: >-
+  Represents photography permission in a heritage custodian facility.
+  Models whether researchers may photograph materials (usually with personal cameras)
+  and under what conditions.
+  **MIGRATION NOTE** (2026-01-14):
+  Created as part of slot migration from `allows_photography` and  `allows_or_allowed_photography` to generic `allow` slot
+  with typed class. See slot_fixes.yaml for migration specification.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/exclude
+- ../slots/has_description
+- ../slots/has_score    # was: template_specificity
+- ../slots/allowed_by
+- ../slots/pose_condition
+- ../slots/require
+- ../slots/temporal_extent    # was: valid_from + valid_to
+default_prefix: hc
+# default_range: string
+classes:
+  Photography:
+    class_uri: schema:LocationFeatureSpecification
+    description: >-
+      Permission specification for photography in reading rooms or collection areas,
+      indicating whether researchers may photograph materials for personal research.
+    alt_descriptions:
+      nl: Toestemmingspecificatie voor fotografie in studiezalen of collectieruimtes.
+      de: Genehmigungsspezifikation für Fotografie in Lesesälen oder Sammlungsbereichen.
+      fr: Spécification d'autorisation pour la photographie dans les salles de lecture.
+    structured_aliases:
+    - literal_form: fotografietoestemming
+      in_language: nl
+    - literal_form: Fotografieerlaubnis
+      in_language: de
+    comments:
+    - Personal research use typically allowed with conditions (no flash, etc.).
+    - Some materials excluded (fragile, copyright).
+    exact_mappings:
+    - schema:LocationFeatureSpecification
+    close_mappings:
+    - schema:amenityFeature
+    - dcterms:accessRights
+    slots:
+    - allowed_by
+    - has_description
+      # MIGRATED 2026-01-22: condition → poses_or_posed_condition + Condition (Rule 53)
+    - pose_condition
+    - require
+    - exclude
+    - temporal_extent    # was: valid_from + valid_to
+    - has_score    # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    slot_usage:
+      allowed_by:
+        range: boolean
+        required: true
+      # MIGRATED 2026-01-22: condition → poses_or_posed_condition + Condition (Rule 53)
+      pose_condition:
+        range: Condition
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - has_type: UseCondition
+            has_description:
+              description_text: "No flash photography"
+          - has_type: UseCondition
+            has_description:
+              description_text: "Personal research use only"
+      require:
+        range: boolean
+      exclude:
+        range: Material
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            identified_by: "https://nde.nl/ontology/hc/material/fragile-manuscripts"
+            has_label: "Fragile manuscripts"
+        - value:
+            identified_by: "https://nde.nl/ontology/hc/material/copyrighted-materials"
+            has_label: "Materials under copyright"
+      temporal_extent:
+        description: 'Validity period for this permission (legacy: valid_from/valid_to).'
+      has_score:
+    notes:
+    - |
+      Preserved from prior description (commit c2cdbed6):
+
+      Preserved from prior description (commit c2cdbed6):
+
+      Permission specification for photography in reading rooms or collection areas.
+      **DEFINITION**:
+      A policy specification indicating whether researchers may photograph
+      materials for personal research use when consulting collections.
+      **SCHEMA.ORG ALIGNMENT**:
+      Maps to `schema:LocationFeatureSpecification` as it describes a feature
+      or amenity availability at a location.
+      **TYPICAL CONDITIONS**:
+      - Personal research use only
+      - No flash photography
+      - No tripods
+      - Some materials excluded (fragile, copyright)
+      - Declaration/waiver may be required
+      **COPYRIGHT CONSIDERATIONS**:
+      Photography permissions typically apply to:
+      - Public domain materials
+      - Materials where institution holds rights
+      - Personal research use (fair use/dealing)
+      Materials still under third-party copyright may have different rules.
+      **TEMPORAL SEMANTICS**:
+      Photography policies have evolved significantly:
+      - Pre-2000s: Generally prohibited, had to order copies
+      - 2000s-2010s: Gradual liberalization
+      - 2010s onwards: Many institutions allow free photography
+      **EXAMPLE**:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        Applicable to all heritage custodian types with physical collections.
+      custodian_types_primary: M
+      specificity_score: 0.5
+      specificity_rationale: >-
+        Moderately specific - broadly applicable to institutions with collections.
+    examples:
+      # MIGRATED 2026-01-22: condition → poses_or_posed_condition + Condition (Rule 53)
+    - value:
+        id: hc:photography-policy/nationaal-archief
+        is_permitted: true
+        pose_condition:
+        - has_type: UseCondition
+          has_description:
+            description_text: "No flash"
+        - has_type: UseCondition
+          has_description:
+            description_text: "Personal research use only"
+        - has_type: ReproductionCondition
+          has_description:
+            description_text: "No commercial use without permission"
+        requires_declaration: true
+        temporal_extent:
+          begin_of_the_begin: "2015-01-01"
+    - value:
+        id: hc:photography-policy/special-collections-restricted
+        is_permitted: false
+        pose_condition:
+        - has_type: UseCondition
+          has_description:
+            description_text: "Reproduction service available"
+        - has_type: UseCondition
+          has_description:
+            description_text: "Digital scans may be ordered"
+        exclude:
+        - has_label: "All materials in this reading room"
+        temporal_extent:
+          begin_of_the_begin: "2020-01-01"
+    - value:
+        id: hc:photography-policy/museum-gallery
+        is_permitted: true
+        pose_condition:
+        - has_type: UseCondition
+          has_description:
+            description_text: "No flash"
+        - has_type: UseCondition
+          has_description:
+            description_text: "No tripods or selfie sticks"
+        - has_type: UseCondition
+          has_description:
+            description_text: "Temporary exhibitions may have different rules"
+        exclude:
+        - has_label: "Loan items marked with no-photography symbol"
+        - has_label: "Temporary exhibitions unless noted"
+        temporal_extent:
+          begin_of_the_begin: "2018-06-01"
+    - value: |-
+        allow:
+        - permitted_item: Photography
+          is_permitted: true
+          conditions:
+            - "Personal research use only"
+            - "No flash"
+            - "Fragile materials excluded"
+          valid_from: "2018-01-01"
+        # REMOVED inline slots 2026-01-16 - Rule 48 violation
+        # Slots are imported from ../slots/ - do not define inline

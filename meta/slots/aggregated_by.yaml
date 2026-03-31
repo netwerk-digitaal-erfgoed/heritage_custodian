@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: aggregated_by
+# ==============================================================================
+# Entity that aggregated something into a composite whole or dataset.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **ORE**       | `ore:isAggregatedBy`  | ore.rdf:67           | close   | Inverse of ore:aggregates, part of aggregation model     |
+# | **PROV-O**    | `prov:wasAttributedTo`| prov.ttl:428-437     | related | Attribution to responsible agent                         |
+#
+# SEMANTIC NOTES:
+# - ORE (Object Reuse and Exchange) defines aggregation for digital objects
+# - Our slot is broader: applies to data, collections, and organizations
+# - No exact standard property exists for this general concept
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, close_mappings, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/aggregated_by
+name: aggregated_by
+title: Aggregated By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  ore: http://www.openarchives.org/ore/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  aggregated_by:
+    slot_uri: hc:aggregatedBy
+    description: >-
+      To be gathered, collected, or grouped together into a composite whole or dataset 
+      by a specific system, organization, or process.
+    alt_descriptions:
+      nl: >-
+        Verzameld, bijeengebracht of gegroepeerd in een samengesteld geheel of dataset 
+        door een specifiek systeem, organisatie of proces.
+      de: >-
+        Gesammelt, zusammengetragen oder in einem zusammengesetzten Ganzen oder Datensatz 
+        durch ein bestimmtes System, eine Organisation oder einen Prozess gruppiert.
+      fr: >-
+        Rassemblé, collecté ou regroupé dans un ensemble composite ou un jeu de données 
+        par un système, une organisation ou un processus spécifique.
+      ar: >-
+        أن يتم جمعه أو تجميعه أو تصنيفه في كل مركب أو مجموعة بيانات 
+        بواسطة نظام أو منظمة أو عملية معينة.
+      id: >-
+        Dikumpulkan, dihimpun, atau dikelompokkan menjadi satu kesatuan komposit atau 
+        dataset oleh sistem, organisasi, atau proses tertentu.
+      zh: >-
+        由特定系统、组织或流程收集、汇集或分组为一个复合整体或数据集。
+      es: >-
+        Reunido, recopilado o agrupado en un conjunto compuesto o conjunto de datos 
+        por un sistema, organización o proceso específico.
+    structured_aliases:
+      - literal_form: geaggregeerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aggregiert von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: agrégé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مجمَّع بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diagregasi oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...聚合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: agregado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - ore:isAggregatedBy  # ore.rdf:67 - inverse of ore:aggregates
+    related_mappings:
+      - prov:wasAttributedTo  # prov.ttl:428 - attribution to agent
+    aliases:
+      - is_or_was_aggregated_by
+    annotations:
+      custodian_types: '["*"]'

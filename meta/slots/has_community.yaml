@@ -1,0 +1,122 @@
+# ==============================================================================
+# LinkML Slot Definition: has_community
+# ==============================================================================
+# Associates an entity with a social group or network of individuals who share
+# common interests, practices, or traditions related to it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property / Class                    | File/Line                          | Mapping  | Notes                                                        |
+# |----------------|-------------------------------------|------------------------------------|----------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:audience`                   | schemaorg.owl:9151-9154            | related  | "An intended audience, i.e. a group for whom something was   |
+# |                |                                     |                                    |          | created." ObjectProperty. Audience ≠ community.              |
+# | **CIDOC-CRM**  | `crm:P107_has_current_or_former_member` | CIDOC_CRM_v7.1.3.rdf:3583-3596 | related  | "Associates E74 Group with E39 Actor that is or has been a   |
+# |                |                                     |                                    |          | member thereof." Membership ≠ community composition.         |
+# | **RiC-O**      | `rico:hasOrHadDemographicGroup`     | RiC-O_1-1.rdf:6251-6299           | related  | "Connects a Person or Group to a DemographicGroup."          |
+# |                |                                     |                                    |          | Demographic classification ≠ community as a whole.           |
+# | **FOAF**       | `foaf:Group` (Class)                | foaf.ttl:38-43                     | —        | Class for groups of agents; not a property.                  |
+# | **CIDOC-CRM**  | `E74_Group` (Class)                 | CIDOC_CRM_v7.1.3.rdf:989-1000     | —        | Class for gatherings/organizations of individuals.           |
+#
+# No external ontology property directly models "has community" as a relationship
+# linking an entity to its practitioner or stakeholder community. Using hc: namespace.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_community
+name: has_community
+title: Has Community
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_community:
+    slot_uri: hc:hasCommunity
+    description: >-
+      Associates an entity, project, brand, or location with a specific social group, user
+      base, or network of individuals who share common interests, interactions, or residence
+      related to it. In the context of intangible cultural heritage, describes the community
+      that carries a living tradition, including active practitioners, their demographics,
+      skill levels, geographic distribution, and degree of professionalization. Helps assess
+      tradition vitality and sustainability.
+    alt_descriptions:
+      nl: >-
+        Koppelt een entiteit aan een gemeenschap of netwerk van individuen die gemeenschappelijke
+        belangen, praktijken of tradities delen die ermee verband houden.
+      de: >-
+        Verknüpft eine Entität mit einer Gemeinschaft oder einem Netzwerk von Personen, die
+        gemeinsame Interessen, Praktiken oder Traditionen teilen.
+      fr: >-
+        Associe une entité à une communauté ou un réseau d'individus partageant des intérêts,
+        des pratiques ou des traditions communs.
+      ar: >-
+        يربط كيانًا بمجتمع أو شبكة من الأفراد الذين يتشاركون اهتمامات أو ممارسات أو تقاليد
+        مشتركة تتعلق به.
+      id: >-
+        Mengaitkan entitas dengan komunitas atau jaringan individu yang berbagi kepentingan,
+        praktik, atau tradisi bersama yang terkait dengannya.
+      zh: >-
+        将实体与共享共同兴趣、实践或传统的社会群体或个人网络相关联。
+      es: >-
+        Asocia una entidad con una comunidad o red de individuos que comparten intereses,
+        prácticas o tradiciones comunes relacionadas con ella.
+    structured_aliases:
+      - literal_form: gemeenschap
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Gemeinschaft
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: communauté
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مجتمع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: komunitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 社区
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: comunidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    related_mappings:
+      - schema:audience  # schemaorg.owl:9151-9154 - "An intended audience, i.e. a group for whom something was created."
+      - crm:P107_has_current_or_former_member  # CIDOC_CRM_v7.1.3.rdf:3583-3596 - "Associates E74 Group with E39 Actor member."
+      - rico:hasOrHadDemographicGroup  # RiC-O_1-1.rdf:6251-6299 - "Connects Person or Group to a DemographicGroup."
+    aliases:
+      - practitioner_community
+    examples:
+      - value: "30 active musicians, 15 apprentices, 3 master teachers"
+        description: >-
+          Intangible heritage practitioner community with counts by skill level.
+      - value: "8 elder weavers (ages 60-85), 12 mid-career (ages 35-55), 20 learners"
+        description: >-
+          Community demographics showing generational distribution for succession planning.
+      - value: "25 dancers, predominantly female, ages 15-40, full-time professional"
+        description: >-
+          Performing arts community with gender, age, and professionalization details.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Community descriptions for intangible heritage may include: number of active
+        practitioners (core bearers of knowledge), age demographics (generational
+        distribution, succession planning), skill levels (masters, journeymen, apprentices,
+        novices), geographic distribution (local, regional, diaspora), gender participation,
+        ethnic or linguistic affiliation, and professionalization (full-time, part-time,
+        volunteer, amateur).
+      - >-
+        Original file contained a misspelled 'aliances' key with value
+        'practitioner_community'. This was not a valid aliases field and has been cleared
+        pending user assignment.

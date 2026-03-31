@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: has_treatment
+# ==============================================================================
+# Medical care, intervention, or processing method applied to an entity
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line            | Mapping  | Notes                                             |
+# |---------------|--------------------------------|----------------------|----------|---------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P33_used_specific_technique`| CIDOC_CRM:1985-2000 | related  | "Identifies a specific instance of E29 Design or  |
+# |               |                                |                      |          | Procedure." Domain: E7_Activity. Conservation      |
+# |               |                                |                      |          | intervention plans as typical example. Related but |
+# |               |                                |                      |          | technique ≠ treatment.                             |
+#
+# REMOVED MAPPINGS:
+# - schema:description (schemaorg.owl:14844-14862): "A description of the item."
+#   Generic description property — semantically unrelated to treatment/intervention.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_treatment
+name: has_treatment
+title: has_treatment
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_treatment:
+    name: has_treatment
+    slot_uri: hc:hasTreatment
+    description: >-
+      The medical care, intervention, or processing method applied to an entity
+      to address a condition or alter properties.
+    alt_descriptions:
+      nl: >-
+        De medische zorg, interventie of verwerkingsmethode die op een entiteit
+        wordt toegepast om een aandoening te behandelen of eigenschappen te
+        wijzigen.
+      de: >-
+        Die medizinische Versorgung, Intervention oder Verarbeitungsmethode,
+        die auf eine Entität angewandt wird, um einen Zustand zu behandeln
+        oder Eigenschaften zu verändern.
+      fr: >-
+        Le soin médical, l'intervention ou la méthode de traitement appliqué
+        à une entité pour traiter une condition ou modifier des propriétés.
+      ar: >-
+        الرعاية الطبية أو التدخل أو طريقة المعالجة المطبقة على كيان لمعالجة
+        حالة أو تغيير خصائص.
+      id: >-
+        Perawatan medis, intervensi, atau metode pemrosesan yang diterapkan
+        pada suatu entitas untuk menangani kondisi atau mengubah properti.
+      zh: >-
+        应用于实体以处理某种状况或改变属性的医疗护理、干预或处理方法。
+      es: >-
+        La atención médica, intervención o método de procesamiento aplicado
+        a una entidad para tratar una condición o alterar propiedades.
+    structured_aliases:
+      - literal_form: Behandeling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Behandlung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Traitement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: علاج
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Perawatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 治疗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Tratamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_treatment
+    comments:
+      - "MIGRATED 2026-02-03: Renamed from has_or_had_treatment for conciseness."
+      - >-
+        Used for conservation treatments, processing descriptions,
+        and handling instructions.
+    examples:
+      - value:
+          treatment_type: CONSERVATION
+          treatment_description: Surface cleaning and stabilization
+        description: Conservation treatment record
+    related_mappings:
+      - crm:P33_used_specific_technique  # CIDOC_CRM:1985-2000 — "Identifies a specific instance of E29 Design or Procedure." Domain: E7_Activity — technique ≠ treatment, but conservation context overlaps.
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,108 @@
+id: https://nde.nl/ontology/hc/class/WebPortalType
+name: web_portal_type_class
+title: Web Portal Type Base Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  edm: http://www.europeana.eu/schemas/edm/
+  dcmitype: http://purl.org/dc/dcmitype/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../enums/PortalCategoryEnum
+- ../metadata
+- ../slots/has_example
+- ../slots/has_feature
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_standard
+- ../slots/categorized_as
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_domain
+classes:
+  WebPortalType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract category for heritage aggregation and discovery services,
+      differentiated by scope, domain, and technical profile.
+    alt_descriptions:
+      nl: Abstracte categorie voor erfgoedaggregatie- en ontdekkingsdiensten naar reikwijdte, domein en technisch profiel.
+      de: Abstrakte Kategorie fuer Aggregations- und Entdeckungsdienste im Kulturerbe nach Umfang, Domaene und technischem Profil.
+      fr: Categorie abstraite pour les services d aggregation et de decouverte patrimoniale selon la portee, le domaine et le profil technique.
+      es: Categoria abstracta para servicios de agregacion y descubrimiento patrimonial segun alcance, dominio y perfil tecnico.
+      ar: فئة مجردة لخدمات تجميع واكتشاف التراث حسب النطاق والمجال والملف التقني.
+      id: Kategori abstrak untuk layanan agregasi dan penemuan warisan menurut cakupan, domain, dan profil teknis.
+      zh: 按范围、领域和技术特征区分的遗产聚合与发现服务抽象类别。
+    structured_aliases:
+    - literal_form: webportaaltype
+      in_language: nl
+    - literal_form: Webportal-Typ
+      in_language: de
+    - literal_form: type de portail web
+      in_language: fr
+    - literal_form: tipo de portal web
+      in_language: es
+    - literal_form: نوع بوابة الويب
+      in_language: ar
+    - literal_form: tipe portal web
+      in_language: id
+    - literal_form: 网络门户类型
+      in_language: zh
+    comments:
+    - Abstract base class - use specific subclasses.
+    - Represents PORTAL TYPES, not portal instances.
+    - 'Preserved from prior description: Abstract base class for categorizing heritage aggregation and discovery platforms by their scope, domain, or technical characteristics.'
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - edm:Aggregation
+    - schema:WebSite
+    slots:
+    - has_example
+    - categorized_as
+    - has_description
+    - identified_by
+    - has_label
+    - has_domain
+    - has_score
+    - has_standard
+    - has_scope
+    - has_feature
+    slot_usage:
+      has_example:
+        range: Example
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_label: Europeana
+        - value:
+            has_label: Archieven.nl
+      has_scope:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+      identified_by:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      categorized_as:
+        required: false
+    see_also:
+    - https://pro.europeana.eu/page/edm-documentation
+    - https://www.w3.org/2004/02/skos/
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      "Abstract base class for web portal type classifications in the heritage domain.\n\n**DEFINITION**:\n\nWebPortalType represents CATEGORIES of heritage aggregation/discovery portals,\nnot individual portal instances. Each subclass defines characteristics of a\nportal category (scope, domain, metadata standards, etc.).\n\n**CRITICAL: TYPE vs INSTANCE**\n\n| Aspect | WebPortalType (This Class) | WebPortal (Instance Class) |\n|--------|---------------------------|---------------------------|\n| **Nature** | Classification/category | Individual portal |\n| **Examples** | ARCHIVAL_PORTAL, CROSS_DOMAIN_AGGREGATOR | Archieven.nl, Europeana |\n| **Properties** | Category metadata, typical standards | URL, record count, operator |\n| **Cardinality** | ~20 types | Hundreds of instances |\n\n**CATEGORY STRUCTURE**:\n\nPortal types are organized into high-level categories:\n\n1. **GEOGRAPHIC_SCOPE**: Portals defined by territorial coverage\n   - National Aggregator: Country-wide scope\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

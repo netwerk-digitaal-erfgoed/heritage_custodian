@@ -1,0 +1,372 @@
+id: https://nde.nl/ontology/hc/class/LinkedInProfile
+name: linkedin_profile_class
+title: LinkedIn Profile Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+  dct: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_text
+- ../slots/emphasize
+- ../slots/estimate
+- ../slots/assessed_as
+- ../slots/has_contact_details
+- ../slots/has_description
+- ../slots/has_language
+- ../slots/has_metadata
+- ../slots/has_method
+- ../slots/has_provenance
+- ../slots/has_score
+- ../slots/has_source
+- ../slots/has_title
+- ../slots/indicate
+- ../slots/assessed_on
+- ../slots/has_raw_data
+- ../slots/has_confidence_measure
+- ../slots/proficient_in
+- ../slots/maximum_of_maximum
+- ../slots/fabricate
+- ../slots/has_content
+- ../slots/has_image
+- ../slots/has_url
+- ../slots/refer_to
+- ../slots/has_name
+- ../slots/has_skill
+- ../slots/employed_by
+- ../slots/temporal_extent
+# default_range: string
+classes:
+  LinkedInProfile:
+    class_uri: schema:ProfilePage
+    description: >-
+      Structured professional-network page capture containing extracted
+      biographical signals, employment references, and enrichment provenance.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde vastlegging van een professioneel-netwerkprofiel met
+        geëxtraheerde biografische signalen, werkverbanden en
+        verrijkingsprovenance.
+      de: >-
+        Strukturierte Erfassung einer Berufsnetzwerkseite mit extrahierten
+        biografischen Signalen, Beschäftigungsbezügen und
+        Anreicherungsprovenienz.
+      fr: >-
+        Capture structurée d'une page de réseau professionnel contenant des
+        signaux biographiques extraits, des références d'emploi et la provenance
+        de l'enrichissement.
+      es: >-
+        Captura estructurada de una página de red profesional con señales
+        biográficas extraídas, referencias laborales y procedencia del
+        enriquecimiento.
+      ar: >-
+        التقاط منظم لصفحة شبكة مهنية يحتوي على مؤشرات سيرة ذاتية مستخرجة
+        وإشارات توظيف وبيانات منشأ الإثراء.
+      id: >-
+        Tangkapan terstruktur halaman jejaring profesional yang berisi sinyal
+        biografis terekstrak, rujukan pekerjaan, dan provenance pengayaan.
+      zh: >-
+        对职业社交页面的结构化采集，包含提取的履历信号、任职线索与丰富化来源信息。
+    broad_mappings:
+    - schema:ProfilePage
+    close_mappings:
+    - foaf:PersonalProfileDocument
+    - schema:Person
+    slots:
+    - has_provenance
+    - assessed_as
+    - has_content
+    - employed_by
+    - has_score
+    - has_contact_details
+    slot_usage:
+      has_provenance:
+#         range: string
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+      has_content:
+        range: LinkedInProfileData
+        required: true
+        inlined: true
+      assessed_as:
+        range: HeritageRelevanceAssessment
+        inlined: true
+      employed_by:
+#         range: string
+        pattern: ^[a-z0-9-]+$
+        examples:
+        - value: the-dutch-inspectorate-of-education
+        - value: rijksmuseum
+      has_contact_details:
+        range: WhatsAppProfile
+        inlined: true
+    comments:
+    - This is the root class for person entity JSON files
+    - PersonObservation.linkedin_profile_path references files containing this data
+    - See AGENTS.md Rule 20 for person entity file requirements
+    - See AGENTS.md Rule 27 for person-custodian data architecture
+    - 'Preserved from prior description: Structured LinkedIn profile record for a person, including extracted profile content and enrichment metadata.'
+    structured_aliases:
+    - literal_form: professioneel netwerkprofielrecord
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Berufsnetzwerk-Profilaufzeichnung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: enregistrement de profil de réseau professionnel
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: registro de perfil de red profesional
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سجل صفحة شبكة مهنية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: rekaman profil jejaring profesional
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 职业社交页面记录
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - professional network page
+    - employment signal extraction
+    - biographical metadata
+    - enrichment provenance
+    examples:
+    - value:
+        employed_by: rijksmuseum
+      description: Structured capture linked to a heritage employer handle
+    see_also:
+    - https://schema.org/ProfilePage
+    - https://nde.nl/ontology/hc/class/PersonObservation
+    - https://nde.nl/ontology/hc/class/SocialMediaProfile
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Models the extracted profile content referenced by
+        PersonObservation LinkedIn path/URL fields.
+
+        Distinct from SocialMediaProfile, which models institutional
+        social media accounts rather than individual staff profiles.
+  LinkedInProfileData:
+    class_uri: schema:Person
+    description: >-
+      Core biographical and career-content payload parsed from a public
+      professional-network person page.
+    alt_descriptions:
+      nl: >-
+        Kernpayload met biografische en loopbaaninhoud, geparseerd uit een
+        publieke pagina van een professioneel netwerk.
+      de: >-
+        Kernnutzlast mit biografischen und berufsbezogenen Inhalten, geparst
+        aus einer öffentlichen Personenseite eines Berufsnetzwerks.
+      fr: >-
+        Charge principale de contenu biographique et de carrière analysée à
+        partir d'une page publique de personne sur un réseau professionnel.
+      es: >-
+        Carga principal de contenido biográfico y de trayectoria profesional
+        analizada desde una página pública de persona en una red profesional.
+      ar: >-
+        حمولة أساسية لمحتوى السيرة والمسار المهني مُحللة من صفحة شخصية عامة
+        في شبكة مهنية.
+      id: >-
+        Muatan inti berisi konten biografis dan karier yang diparsing dari
+        halaman publik individu pada jejaring profesional.
+      zh: >-
+        从公开职业社交个人页面解析得到的核心履历与职业经历内容载荷。
+    close_mappings:
+    - schema:Person
+    - foaf:Person
+    slots:
+    - has_text
+    - indicate
+    - has_title
+    - has_language
+    - has_raw_data
+    - has_image
+    - has_url
+    - refer_to
+    - has_name
+    - has_skill
+    - has_score
+    slot_usage:
+      has_name:
+#         range: string
+        required: true
+        examples:
+        - value: Sander Hulleman
+        - value: Jan van der Berg
+      has_url:
+        range: uri
+        pattern: ^https://www\.linkedin\.com/in/[a-z0-9-]+/?$
+        examples:
+        - value: https://www.linkedin.com/in/sander-hulleman-5017b9105
+      has_title:
+#         range: string
+        examples:
+        - value: Stafadviseur PO
+        - value: Senior Curator | Rijksmuseum
+        - value: Digital Archivist | Heritage Data Specialist
+      refer_to:
+#         range: string
+        examples:
+        - value: Arnhem, Gelderland, Netherlands
+        - value: Amsterdam, Netherlands
+      has_text:
+#         range: string
+        examples:
+        - value: "246 connections • 248 followers"
+        - value: 500+ connections
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Experienced curator with a focus on...
+      has_raw_data:
+#         range: string
+        multivalued: true
+        examples:
+        - value:
+          - English - Native or bilingual
+          - Dutch - Native or bilingual
+      has_language:
+#         range: string
+        multivalued: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+      has_image:
+        range: uri
+        pattern: ^https://media\.licdn\.com/.*$
+        examples:
+        - value: https://media.licdn.com/dms/image/v2/C4E03AQHoGyR6G0kphA/profile-displayphoto-shrink_200_200/...
+    comments:
+    - Inlined within LinkedInProfile as profile_data
+    - experience and education use inlined_as_list for JSON array representation
+    - languages_raw preserves original strings; languages has parsed objects
+    - profile_image_url must be CDN URL per AGENTS.md Rule 16
+    - 'Preserved from prior description: Core professional profile content extracted from a LinkedIn person page.'
+    structured_aliases:
+    - literal_form: geparste profielinhoud
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: geparster Profilinhalt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: contenu de profil analysé
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: contenido de perfil analizado
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: محتوى صفحة شخصية محلل
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: konten profil terurai
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 解析后的个人页面内容
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - parsed biography
+    - employment headline
+    - skill signal
+    - public profile extraction
+    examples:
+    - value:
+        has_name: Jan van der Berg
+        has_title: Digital Archivist | Heritage Data Specialist
+      description: Parsed person-page fields for biographical enrichment
+  WhatsAppEnrichment:
+    class_uri: hc:WhatsAppEnrichment
+    description: Enrichment assessment estimating likelihood of WhatsApp business usage.
+    slots:
+    - indicate
+    - has_score
+    slot_usage:
+      indicate:
+        range: DigitalProfessionalAssessment
+        inlined: true
+  DigitalProfessionalAssessment:
+    class_uri: hc:DigitalProfessionalAssessment
+    description: 'Assessment of a person''s digital/technology proficiency. '
+    slots:
+    - estimate
+    - emphasize
+    - proficient_in
+    - has_score
+    slot_usage:
+      proficient_in:
+        range: boolean
+      emphasize:
+        range: DigitalProficiency
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_label: Python
+            has_type: PROGRAMMING_LANGUAGE
+      estimate:
+        range: DigitalConfidence
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_score: 0.85
+            has_type: PROFICIENCY_INFERENCE
+            has_description: High confidence inferred from technical skills
+  WhatsAppLikelihood:
+    class_uri: hc:WhatsAppLikelihood
+    description: 'Likelihood score for WhatsApp business usage. '
+    slots:
+    - assessed_on
+    - has_confidence_measure
+    - maximum_of_maximum
+    - has_score
+    slot_usage:
+      has_confidence_measure:
+        range: float
+        minimum_value: 0.0
+        maximum_value: 1.0
+      maximum_of_maximum:
+        range: integer
+      assessed_on:
+        range: TimeSpan
+        inlined: true
+        examples:
+        - value:
+            start_of_the_start: '2024-01-01T12:00:00Z'
+  WhatsAppEnrichmentMetadata:
+    class_uri: hc:WhatsAppEnrichmentMetadata
+    description: 'Metadata about the WhatsApp enrichment process. '
+    slots:
+    - has_provenance
+    - has_source
+    - fabricate
+    - has_score
+    slot_usage:
+      has_source:
+        range: DataSource
+        inlined: true
+        examples:
+        - value:
+            has_label: LinkedIn Profile
+            has_code: LINKEDIN
+            has_description: Public LinkedIn profile data
+      fabricate:
+        range: boolean
+      has_provenance:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            extraction_date: '2025-01-14T12:00:00Z'
+            note: Verified production data from LinkedIn profile

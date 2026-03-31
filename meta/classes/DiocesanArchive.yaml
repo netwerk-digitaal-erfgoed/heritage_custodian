@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/DiocesanArchive
+name: diocesan_archive_class
+title: Diocesan Archive Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/part_of
+- ../slots/originate_from
+- ../slots/require
+classes:
+  DiocesanArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    description: >-
+      Ecclesiastical repository institution of a diocese responsible for
+      preserving administrative, pastoral, and sacramental documentary records.
+    alt_descriptions:
+      nl: Kerkelijke archiefinstelling van een bisdom die bestuurlijke pastorale en sacramentele documentatie bewaart.
+      de: Kirchliche Archivinstitution einer Dioezese zur Bewahrung administrativer pastoraler und sakramentaler Unterlagen.
+      fr: Institution archivistique ecclesiastique d un diocese chargee de conserver les documents administratifs pastoraux et sacramentels.
+      es: Institucion archivistica eclesiastica de una diocesis responsable de conservar registros administrativos pastorales y sacramentales.
+      ar: مؤسسة أرشيف كنسية تابعة لأبرشية تتولى حفظ السجلات الإدارية والرعوية والسَّرّية.
+      id: Lembaga arsip gerejawi tingkat keuskupan yang bertanggung jawab atas pelestarian catatan administratif pastoral dan sakramental.
+      zh: 隶属教区、负责保存行政、牧灵与圣事文献记录的教会档案机构。
+    structured_aliases:
+    - {literal_form: bisdomarchief, in_language: nl}
+    - {literal_form: Dioezesanarchiv, in_language: de}
+    - {literal_form: archive diocesaine, in_language: fr}
+    - {literal_form: archivo diocesano, in_language: es}
+    - {literal_form: أرشيف الأبرشية, in_language: ar}
+    - {literal_form: arsip keuskupan, in_language: id}
+    - {literal_form: 教区档案机构, in_language: zh}
+    close_mappings:
+    - wd:Q11906839
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    related_mappings:
+    - wd:Q2877653
+    - wd:Q34544468
+    - wd:Q132201761
+    - wd:Q27030561
+    slots:
+    - require
+    - has_type
+    - originate_from
+    - part_of
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      originate_from:
+        range: Diocese
+      part_of:
+        range: Organization
+        any_of:
+        - range: Diocese
+        - range: Archdiocese
+        inlined: true
+      require:
+        range: Permission
+        inlined: true
+        multivalued: true
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+        - equals_string: hc:HolySacredSiteType
+    comments:
+    - Archive-as-organization type; not a record-set classifier
+    - Access may include canonical or diocesan authorization constraints
+    notes:
+    - |
+      Preserved from prior description (commit d52149a5):
+
+      "Archive of a bishopric (diocese) - ecclesiastical administrative unit.\n\n**Wikidata**: Q11906839 (diocesan archive / Bisch\xF6fliches Archiv)\n\n**DEFINITION**:\n\nDiocesan Archive preserves records created by or relating to a Catholic\nor Anglican diocese (bishopric). Holdings typically include:\n\n- Episcopal correspondence and decrees\n- Diocesan administrative records\n- Personnel files (clergy appointments, ordinations)\n- Parish records (copies or originals)\n- Matrimonial dispensation records\n- Visitation records\n- Financial/property records of the diocese\n\n**ECCLESIASTICAL HIERARCHY**:\n\n```\nVatican Archives (central)\n  \u251C\u2500\u2500 Archdioceses \u2192 Archdiocesan Archives\n  \u2502     \u2514\u2500\u2500 Dioceses \u2192 DIOCESAN ARCHIVE (THIS TYPE)\n  \u2502           \u2514\u2500\u2500 Parishes \u2192 Parish Archives\n  \u2514\u2500\u2500 Religious Orders \u2192 Order Archives\n```\n\n**HISTORICAL SIGNIFICANCE**:\n\nDiocesan archives are critical\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

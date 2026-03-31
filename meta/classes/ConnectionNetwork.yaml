@@ -1,0 +1,53 @@
+id: https://nde.nl/ontology/hc/class/ConnectionNetwork
+name: connection_network_class
+title: Connection Network Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_member
+- ../slots/has_score
+- ../slots/based_on
+- ../slots/has_provenance
+classes:
+  ConnectionNetwork:
+    class_uri: schema:ItemList
+    description: >-
+      Aggregated network snapshot containing extracted profile links, source provenance, and optional analysis metrics.
+    alt_descriptions:
+      nl: Geaggregeerde netwerksnapshot met geextraheerde profielkoppelingen, bronherkomst en optionele analysematen.
+      de: Aggregierter Netzwerkschnappschuss mit extrahierten Profilbeziehungen, Quellenprovenienz und optionalen Analysemetriken.
+      fr: Instantane reseau agregée contenant des liens de profils extraits, la provenance de source et des metriques d'analyse optionnelles.
+      es: Instantanea de red agregada con vinculos de perfiles extraidos, procedencia de fuente y metricas opcionales de analisis.
+      ar: لقطة شبكة مجمعة تتضمن روابط ملفات مستخرجة وبيانات مصدر وت metrics تحليلية اختيارية.
+      id: Cuplikan jejaring teragregasi berisi tautan profil hasil ekstraksi, provenans sumber, dan metrik analisis opsional.
+      zh: 包含抽取关系、来源溯源与可选分析指标的聚合网络快照。
+    close_mappings:
+    - prov:Collection
+    broad_mappings:
+    - schema:ItemList
+    slots:
+    - has_member
+    - based_on
+    - has_provenance
+    - has_score
+    slot_usage:
+      has_provenance:
+        range: ConnectionSourceMetadata
+        required: true
+        inlined: true
+      has_member:
+        range: PersonConnection
+        required: true
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      based_on:
+        range: NetworkAnalysis
+        inlined: true

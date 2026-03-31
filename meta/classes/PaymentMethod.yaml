@@ -1,0 +1,46 @@
+id: https://nde.nl/ontology/hc/classes/PaymentMethod
+name: PaymentMethod
+title: PaymentMethod
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/provided_by
+- ../slots/has_note
+# default_range: string
+classes:
+  PaymentMethod:
+    description: Payment method accepted for tickets, services, or retail purchases.
+    alt_descriptions:
+      nl: Betaalmethode die wordt geaccepteerd voor tickets diensten of aankopen.
+      de: Zahlungsmethode die fuer Tickets Dienstleistungen oder Einkaeufe akzeptiert wird.
+      fr: Moyen de paiement accepte pour des billets des services ou des achats.
+      es: Metodo de pago aceptado para entradas servicios o compras.
+      ar: طريقة دفع مقبولة للتذاكر أو الخدمات أو المشتريات.
+      id: Metode pembayaran yang diterima untuk tiket layanan atau pembelian.
+      zh: 用于购票、服务或零售购买的可接受支付方式。
+    structured_aliases:
+    - {literal_form: betaalmethode, in_language: nl}
+    - {literal_form: Zahlungsmethode, in_language: de}
+    - {literal_form: moyen de paiement, in_language: fr}
+    - {literal_form: metodo de pago, in_language: es}
+    - {literal_form: طريقة دفع, in_language: ar}
+    - {literal_form: metode pembayaran, in_language: id}
+    - {literal_form: 支付方式, in_language: zh}
+    class_uri: schema:PaymentMethod
+    annotations:
+      custodian_types: '["M", "G", "B", "H"]'
+      custodian_types_rationale: Payment methods primarily relevant for visitor-facing institutions.
+      custodian_types_primary: M
+      specificity_score: 0.6
+      specificity_rationale: Moderate-high specificity - specific to ticketing/commerce.
+    examples:
+    - value: "PaymentMethod:\n  method_type: \"credit_card\"\n  provider: \"Visa\"\n"
+      description: Visa credit card payment.
+    - value: "PaymentMethod:\n  method_type: \"digital\"\n  provider: \"iDEAL\"\n  note: \"Dutch bank transfer system\"\n"
+      description: iDEAL digital payment method.
+    slots:
+    - provided_by
+    - has_note

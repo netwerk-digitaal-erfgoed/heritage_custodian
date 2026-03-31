@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: geographic_extent
+# ==============================================================================
+# To specify the physical area or region covered by an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line              | Mapping | Notes                                           |
+# |----------------|-----------------------|------------------------|---------|-------------------------------------------------|
+# | **Schema.org** | `schema:areaServed`   | schemaorg.owl:8403-8432| close   | Service-oriented geographic area.               |
+# | **DCTerms**    | `dcterms:spatial`     | dcterms.rdf:1944-1967  | close   | Spatial characteristics of a resource.          |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/geographic_extent
+name: geographic_extent
+title: geographic extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  geographic_extent:
+    name: geographic_extent
+    title: geographic extent
+    slot_uri: hc:geographicExtent
+    description: >-
+      To specify the physical area or region covered or represented by an entity
+      (such as a jurisdiction, administrative unit, dataset, or collection),
+      typically defined by a bounding box, coordinates, or place names.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van het fysieke gebied of de regio dat wordt bestreken
+        of vertegenwoordigd door een entiteit (zoals een jurisdictie,
+        bestuurlijke eenheid, dataset of collectie), doorgaans gedefinieerd
+        door een begrenzing, coördinaten of plaatsnamen.
+      de: >-
+        Angabe des physischen Gebiets oder der Region, die von einer Entität
+        abgedeckt oder dargestellt wird (wie eine Gerichtsbarkeit,
+        Verwaltungseinheit, ein Datensatz oder eine Sammlung), üblicherweise
+        definiert durch ein Begrenzungsrechteck, Koordinaten oder Ortsnamen.
+      fr: >-
+        Spécifier la zone physique ou la région couverte ou représentée par une
+        entité (telle qu'une juridiction, une unité administrative, un jeu de
+        données ou une collection), généralement définie par une boîte
+        englobante, des coordonnées ou des noms de lieux.
+      ar: >-
+        تحديد المنطقة الجغرافية أو الإقليم الذي تغطيه أو تمثله كيان ما (مثل
+        ولاية قضائية أو وحدة إدارية أو مجموعة بيانات أو مجموعة)، ويُحدد عادةً
+        بمربع إحاطة أو إحداثيات أو أسماء أماكن.
+      id: >-
+        Menentukan area fisik atau wilayah yang dicakup atau diwakili oleh suatu
+        entitas (seperti yurisdiksi, unit administratif, kumpulan data, atau
+        koleksi), biasanya didefinisikan oleh kotak pembatas, koordinat, atau
+        nama tempat.
+      zh: >-
+        指定由实体（如管辖区、行政单位、数据集或馆藏）所覆盖或代表的物理区域或地区，通常通过边界框、坐标或地名来定义。
+      es: >-
+        Especificar el área física o la región cubierta o representada por una
+        entidad (como una jurisdicción, unidad administrativa, conjunto de datos
+        o colección), típicamente definida por un cuadro delimitador,
+        coordenadas o nombres de lugares.
+    structured_aliases:
+      - literal_form: geografische omvang
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geografische Ausdehnung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: étendue géographique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: النطاق الجغرافي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: cakupan geografis
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 地理范围
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: extensión geográfica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    aliases:
+      - has_or_had_geographic_extent
+      - has_geographic_extent
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:areaServed  # schemaorg.owl:8403-8432 — "The geographic area where a service or offered item is provided." Service-oriented, not general geographic extent.
+      - dcterms:spatial  # dcterms.rdf:1944-1967 — "Spatial characteristics of the resource." Range: Location. Broader scope (any spatial characteristic).
+    comments:
+      - |
+        **ONTOLOGY NOTE**: `schema:areaServed` (schemaorg.owl:8403-8432) is specifically about
+        service delivery areas (Domain: Service/Organization/Offer). This slot is about general
+        geographic coverage of any entity. `dcterms:spatial` (dcterms.rdf:1944-1967) covers
+        spatial characteristics of a resource — close but more general than "extent."
+      - |
+        **SLOT_URI FIX**: Changed from `hc:GeographicExtent` (class-style casing) to
+        `hc:geographicExtent` (property-style casing) per LinkML conventions.

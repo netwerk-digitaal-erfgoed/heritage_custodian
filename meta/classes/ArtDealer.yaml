@@ -1,0 +1,129 @@
+id: https://nde.nl/ontology/hc/class/ArtDealer
+name: art_dealer_class
+title: Art Dealer
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_name
+classes:
+  ArtDealer:
+    class_uri: hc:ArtDealer
+    description: >-
+      Commercial entity or individual involved in the sale, purchase, or
+      brokerage of artworks, documented for provenance research and
+      collection history tracking.
+    alt_descriptions:
+      nl: >-
+        Commerciele entiteit of individu betrokken bij de verkoop, aankoop of
+        bemiddeling van kunstwerken, gedocumenteerd voor herkomstonderzoek en
+        traceren van collectiegeschiedenis.
+      de: >-
+        Kommerzielle Einheit oder Person, die am Verkauf, Kauf oder der
+        Vermittlung von Kunstwerken beteiligt ist, dokumentiert fuer
+        Provenienzforschung und Sammlungsgeschichte.
+      fr: >-
+        Entite commerciale ou personne impliquee dans la vente, l'achat ou le
+        courtage d'oeuvres d'art, documentee pour la recherche de provenance
+        et le suivi de l'historique des collections.
+      es: >-
+        Entidad comercial o individuo involucrado en la venta, compra o
+        corretaje de obras de arte, documentado para investigacion de
+        procedencia y seguimiento del historial de coleccion.
+      ar: >-
+        كيان تجاري أو فرد مشارك في بيع أو شراء أو وساطة الأعمال الفنية،
+        موثق لبحث المنشأ وتتبع تاريخ المجموعة.
+      id: >-
+        Entitas komersial atau individu yang terlibat dalam penjualan,
+        pembelian, atau pialangan karya seni, didokumentasikan untuk penelitian
+        provenans dan pelacakan riwayat koleksi.
+      zh: >-
+        参与艺术品销售、购买或经纪的商业实体或个人，为来源研究和收藏历史跟踪
+        而记录。
+    broad_mappings:
+      - crm:E39_Actor
+      - schema:Organization
+    close_mappings:
+      - foaf:Agent
+    structured_aliases:
+      - literal_form: kunsthandelaar
+        in_language: nl
+      - literal_form: Kunsthändler
+        in_language: de
+      - literal_form: marchand d'art
+        in_language: fr
+      - literal_form: comerciante de arte
+        in_language: es
+      - literal_form: تاجر أعمال فنية
+        in_language: ar
+      - literal_form: pedagang seni
+        in_language: id
+      - literal_form: 艺术品经销商
+        in_language: zh
+    examples:
+      - value:
+          has_name:
+            has_label: "Duveen Brothers"
+        description: Notable art dealer firm
+      - value:
+          has_name:
+            has_label: "Paul Cassirer"
+        description: German art dealer
+      - value:
+          has_name:
+            has_label: "Jacques Goudstikker"
+        description: Dutch art dealer
+      - value: |
+          associated_with:
+            - has_name:
+                has_label: "Duveen Brothers"
+    keywords:
+      - dealer
+      - gallery
+      - art market
+      - provenance
+      - sales
+    slots:
+      - has_name
+    slot_usage:
+      has_name:
+        inlined: false
+        required: false
+    comments:
+      - Created per Rule 53 migration from dealer_name string slot
+      - Used for provenance events involving art sales
+      - Extensible for dealer location, active dates, gallery affiliation
+    notes:
+      - |
+        Preserved from prior description (commit 1fe1d1ad):
+
+        An art dealer or gallery involved in the sale or transfer of art objects.
+
+        **MIGRATION NOTE** (2026-01-24):
+        Created per slot_fixes.yaml migration from `dealer_name` string
+        to structured ArtDealer class per Rule 53.
+
+        **Purpose**:
+        Provides structured representation for art dealers including:
+        - The dealer's name (via has_name)
+        - Future extensibility for dealer location, active dates, etc.
+
+        **Ontological Alignment**:
+        - **Primary** (`class_uri`): `crm:E39_Actor` - CIDOC-CRM Actor class
+        - **Close**: `foaf:Agent`, `schema:Organization` - Agent/organization classes
+
+        **Use Cases**:
+        - Provenance events involving art sales (DEALER_SALE type)
+        - Tracking art market participants in heritage provenance research
+        - Linking objects to dealers who handled them
+
+        **Pattern**:
+    annotations:
+      specificity_score: "0.75"
+      specificity_rationale: Highly specific to art market provenance research
+      custodian_types: "['Museum', 'Gallery']"

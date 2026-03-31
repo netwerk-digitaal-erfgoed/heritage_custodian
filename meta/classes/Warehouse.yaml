@@ -1,0 +1,146 @@
+id: https://nde.nl/ontology/hc/class/Warehouse
+name: warehouse_class
+title: Warehouse
+imports:
+- linkml:types
+- ./ClimateControlPolicy
+- ../enums/WarehouseTypeEnum
+- ../slots/store
+- ../slots/in_area
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_policy
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/managed_by
+- ../slots/regulate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  aat: http://vocab.getty.edu/aat/
+classes:
+  Warehouse:
+    is_a: ReconstructedEntity
+    class_uri: aat:300007775
+    description: >-
+      Logistics facility for non-collection operational materials such as equipment,
+      supplies, and furniture, distinct from collection-focused storage.
+    alt_descriptions:
+      nl: Logistieke faciliteit voor niet-collectie operationele materialen zoals apparatuur en meubels.
+      de: Logistikeinrichtung für nicht-sammlungsbezogene Betriebsmaterialien.
+      fr: Installation logistique pour les matériaux opérationnels hors collection.
+      es: Instalación logística para materiales operativos no relacionados con la colección.
+      ar: منشأة لوجستية للمواد التشغيلية غير المتعلقة بالمجموعات.
+      id: Fasilitas logistik untuk materi operasional non-koleksi.
+      zh: 用于非馆藏运营物资的物流设施。
+    structured_aliases:
+    - literal_form: magazijn
+      in_language: nl
+    - literal_form: Lager
+      in_language: de
+    - literal_form: entrepôt
+      in_language: fr
+    - literal_form: almacén
+      in_language: es
+    - literal_form: مستودع
+      in_language: ar
+    - literal_form: gudang
+      in_language: id
+    - literal_form: 仓库
+      in_language: zh
+    comments:
+    - Facility for non-collection operational materials (equipment, supplies, furniture)
+    - Distinguished from Storage class (collection-focused preservation storage)
+    broad_mappings:
+    - aat:300007775
+    close_mappings:
+    - org:Site
+    - schema:Place
+    related_mappings:
+    - hc:Storage
+    slots:
+    - has_policy
+    - store
+    - has_score
+    - has_description
+    - in_area
+    - identified_by
+    - managed_by
+    - has_label
+    - has_type
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/rm-logistics-warehouse
+      has_label:
+        required: true
+        multivalued: false
+        examples:
+        - value: Rijksmuseum Logistics Warehouse
+        - value: KB Operations Warehouse Leiden
+      has_description:
+        examples:
+        - value:
+            description_text: Logistics warehouse for exhibition equipment, packing materials, and furniture. Facilities team access only.
+            description_type: warehouse
+      has_type:
+        required: true
+        examples:
+        - value: EXHIBITION_EQUIPMENT
+        - value: GENERAL_SUPPLIES
+      store:
+        examples:
+        - value: Exhibition cases, lighting rigs, pedestals, crates, packing foam
+      in_area:
+        range: Area
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+            area_value: 500.0
+            has_measurement_unit:
+              has_type: SQUARE_METER
+              has_symbol: "m²"
+            has_label: Warehouse floor area
+        - value: false
+      has_policy:
+        range: ClimateControlPolicy
+        description: Climate control policy governing this warehouse.
+        examples:
+        - value:
+            has_label: Warehouse Basic Climate Requirements
+            regulate:
+            - has_label: Warehouse Heating
+              has_type: HEATED
+      managed_by:
+        range: Group
+        inlined: true
+        examples:
+        - value:
+            has_label: Rijksmuseum Facilities Team
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    see_also:
+    - http://vocab.getty.edu/aat/300007775
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

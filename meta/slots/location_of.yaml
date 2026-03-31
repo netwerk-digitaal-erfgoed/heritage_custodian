@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: is_location_of
+# ==============================================================================
+# To serve as the specific geographic position or spatial setting where an
+# entity is situated or an event takes place. Inverse of is_location_at.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line         | Mapping  | Notes                                    |
+# |----------------|-----------------------|-------------------|----------|------------------------------------------|
+# | **W3C Org**    | `org:siteOf`          | org.rdf:682-697   | slot_uri | Site indicates Organization has presence.|
+# |                |                       |                   | exact    | Inverse of org:hasSite.                  |
+# | **Schema.org** | `schema:location`     | schemaorg.owl     | close    | Location of event/org (broader meaning). |
+#
+# HIERARCHY NOTE:
+# org:siteOf has no direct rdfs:subPropertyOf relationships in W3C Org ontology.
+# org:hasPrimarySite and org:hasRegisteredSite are subPropertyOf org:hasSite,
+# but their inverses are not explicitly defined.
+#
+# CREATED: 2026-01-15
+# UPDATED: 2026-02-03 - Added header documentation, moved migration note to comments
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/is_location_of
+name: is_location_of
+title: Is Location Of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  is_location_of:
+    description: >-
+      To serve as the specific geographic position or spatial setting where
+      an entity is situated or an event takes place.
+    alt_descriptions:
+      nl: >-
+        Om te dienen als de specifieke geografische positie of ruimtelijke
+        omgeving waar een entiteit zich bevindt of een gebeurtenis plaatsvindt.
+      de: >-
+        Als spezifische geografische Position oder räumliche Umgebung zu
+        dienen, an der sich eine Entität befindet oder ein Ereignis stattfindet.
+      fr: >-
+        Servir de position géographique spécifique ou de cadre spatial où une
+        entité est située ou un événement a lieu.
+      ar: >-
+        أن يكون الموقع الجغرافي المحدد أو الإعداد المكاني حيث يقع كيان ما
+        أو يحدث حدث ما.
+      id: >-
+        Berfungsi sebagai posisi geografis tertentu atau pengaturan spasial
+        di mana entitas berada atau peristiwa berlangsung.
+      zh: >-
+        作为实体所在或事件发生的特定地理位置或空间环境。
+      es: >-
+        Servir como la posición geográfica específica o el entorno espacial
+        donde se encuentra una entidad o tiene lugar un evento.
+    structured_aliases:
+      - literal_form: locatie van
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_is_location_of
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Standort von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: emplacement de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موقع من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: lokasi dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 位置所属
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: ubicación de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    slot_uri: org:siteOf
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+    close_mappings:
+    - schema:location
+    aliases:
+      - is_or_was_location_of
+      - is_or_was_is_location_of
+    comments:
+      - MIGRATED from hosts_branch per slot_fixes.yaml (Rule 53).
+      - Inverse of is_location_at.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **W3C Org** | `org:siteOf` | 682-697 | slot_uri, exact | Site indicates Organization presence |
+        | **Schema.org** | `schema:location` | - | close | Location of event/org (broader) |
+
+        Note: org:siteOf has no rdfs:subPropertyOf relationships in W3C Org ontology.
+        org:hasPrimarySite and org:hasRegisteredSite are narrower than org:hasSite,
+        but their inverse properties are not explicitly defined in the ontology.

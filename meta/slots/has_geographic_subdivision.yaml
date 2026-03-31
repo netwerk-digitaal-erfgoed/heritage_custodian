@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: has_geographic_subdivision
+# ==============================================================================
+# To specify a smaller administrative region contained within a larger entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line                | Mapping | Notes                                         |
+# |----------------|---------------------------|--------------------------|---------|-----------------------------------------------|
+# | **Schema.org** | `schema:containsPlace`    | schemaorg.owl:12711-12715| close   | General place containment (not admin-specific).|
+#
+# CREATED: 2026-02-07
+# NOTE: Replaced wrong `schema:containedInPlace` (inverse direction) with
+#       `schema:containsPlace` (correct direction: parent contains subdivision).
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_geographic_subdivision
+name: has_geographic_subdivision
+title: has_geographic_subdivision
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_geographic_subdivision:
+    name: has_geographic_subdivision
+    title: has_geographic_subdivision
+    slot_uri: hc:hasGeographicSubdivision
+    description: >-
+      To specify a smaller administrative or physical region (such as a
+      province, state, or municipality) contained within a larger geographic
+      entity.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een kleinere bestuurlijke of fysieke regio (zoals
+        een provincie, staat of gemeente) die zich binnen een grotere
+        geografische entiteit bevindt.
+      de: >-
+        Angabe einer kleineren administrativen oder physischen Region (wie eine
+        Provinz, ein Bundesstaat oder eine Gemeinde), die in einer größeren
+        geografischen Entität enthalten ist.
+      fr: >-
+        Spécifier une région administrative ou physique plus petite (telle
+        qu'une province, un État ou une municipalité) contenue dans une entité
+        géographique plus grande.
+      ar: >-
+        تحديد منطقة إدارية أو جغرافية أصغر (مثل محافظة أو ولاية أو بلدية)
+        تقع ضمن كيان جغرافي أكبر.
+      id: >-
+        Menentukan wilayah administratif atau fisik yang lebih kecil (seperti
+        provinsi, negara bagian, atau kotamadya) yang terdapat dalam entitas
+        geografis yang lebih besar.
+      zh: >-
+        指定包含在更大地理实体中的较小行政或物理区域（如省、州或自治市）。
+      es: >-
+        Especificar una región administrativa o física más pequeña (como una
+        provincia, estado o municipio) contenida dentro de una entidad
+        geográfica más grande.
+    structured_aliases:
+      - literal_form: heeft geografische onderverdeling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat geografische Unterteilung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une subdivision géographique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له تقسيم جغرافي فرعي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki subdivisi geografis
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有地理分区
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene subdivisión geográfica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    # range: Place
+    multivalued: true
+    aliases:
+      - has_or_had_geographic_subdivision
+      - region
+      - secondary
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:containsPlace  # schemaorg.owl:12711-12715 — "The basic containment relation between a place and another that it contains." General place containment; this slot specifically implies administrative/political hierarchy.
+    comments:
+      - |
+        **MAPPING FIX**: The original file had `schema:containedInPlace` as exact_mapping.
+        This was WRONG DIRECTION: `containedInPlace` means "X is contained in Y" (child→parent),
+        but `has_geographic_subdivision` means "X has subdivision Y" (parent→child).
+        Replaced with `schema:containsPlace` (schemaorg.owl:12711-12715) as close (general
+        containment, not specifically administrative hierarchy). Demoted from exact to close.

@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: classified_as
+# ==============================================================================
+# Classification or type assigned to an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property          | File/Line                | Mapping | Notes                              |
+# |---------------|-------------------|--------------------------|---------|-----------------------------------|
+# | **SKOS**      | `skos:inScheme`   | skos.rdf:75-86           | close   | "Member of concept scheme"         |
+# | **CIDOC-CRM** | `crm:P2_has_type` | CIDOC_CRM_v7.1.3.rdf:1200-1214| close | "Sub-typing through thesaurus"   |
+#
+# NOTE: skos:inScheme relates concepts to schemes; crm:P2_has_type assigns
+# types from E55_Type. This slot is more general, hence close mappings.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/classified_as
+name: classified_as
+title: Classified As
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  classified_as:
+    slot_uri: hc:classifiedAs
+    description: >-
+      The class, category, type, or group to which the entity is assigned
+      based on shared characteristics, properties, or criteria.
+    alt_descriptions:
+      nl: >-
+        De klasse, categorie, type of groep waaraan de entiteit is toegewezen
+        op basis van gedeelde kenmerken, eigenschappen of criteria.
+      de: >-
+        Die Klasse, Kategorie, der Typ oder die Gruppe, der/die der Entität
+        basierend auf gemeinsamen Merkmalen, Eigenschaften oder Kriterien
+        zugeordnet ist.
+      fr: >-
+        La classe, la catégorie, le type ou le groupe auquel l'entité est
+        assignée en fonction de caractéristiques, propriétés ou critères partagés.
+      ar: >-
+        الفئة أو الصنف أو النوع أو المجموعة التي تم تعيين الكيان إليها بناءً
+        على خصائص أو سمات أو معايير مشتركة.
+      id: >-
+        Kelas, kategori, tipe, atau kelompok yang ditetapkan untuk entitas
+        berdasarkan karakteristik, properti, atau kriteria bersama.
+      zh: >-
+        根据共同特征、属性或标准将实体分配到的类别、类型或组。
+      es: >-
+        La clase, categoría, tipo o grupo al que la entidad está asignada
+        basándose en características, propiedades o criterios compartidos.
+    structured_aliases:
+      - literal_form: geclassificeerd als
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: klassifiziert als
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: classifié comme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مصنف كـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diklasifikasikan sebagai
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分类为
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: clasificado como
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - skos:inScheme  # skos.rdf:75-86 - Relates concept to concept scheme
+      - crm:P2_has_type  # CIDOC_CRM:1200-1214 - Sub-typing through thesaurus
+    aliases:
+      - is_or_was_classified_as
+      - museum_type_classification
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MAPPING NOTE**: skos:inScheme relates concepts to concept schemes;
+        crm:P2_has_type assigns types from E55_Type hierarchy. This slot is
+        more general for classification purposes, hence close mappings.

@@ -1,0 +1,112 @@
+# ==============================================================================
+# LinkML Slot Definition: active_since
+# ==============================================================================
+# Date when something became active or operational.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                    | Mapping | Notes                                                    |
+# |---------------|-------------------------|------------------------------|---------|----------------------------------------------------------|
+# | **PROV-O**    | `prov:startedAtTime`    | prov.ttl:1018-1028           | close   | "time at which an activity started" - domain is Activity |
+# | **Schema.org**| `schema:foundingDate`   | schemaorg.owl:18435-18450    | close   | "date that this organization was founded" - Organizations only |
+# | **CIDOC-CRM** | `crm:P82a_begin_of_the_begin`| CIDOC_CRM_v7.1.3.rdf      | related | Time-span beginning - more precise temporal modeling     |
+#
+# SEMANTIC NOTES:
+# - Our slot is general: applies to institutions, activities, services, etc.
+# - prov:startedAtTime requires domain to be prov:Activity
+# - schema:foundingDate requires domain to be schema:Organization
+# - No exact match exists for this general "active since" concept
+# - Custom hc: URI is appropriate for the broader semantic
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, close_mappings, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/active_since
+name: active_since
+title: Active Since
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  active_since:
+    slot_uri: hc:activeSince
+    description: >-
+      To be operational, functioning, or in existence continuously from a specific 
+      date or point in time onwards.
+    alt_descriptions:
+      nl: >-
+        Operationeel, functionerend of bestaand continu vanaf een specifieke datum 
+        of tijdstip en daarna.
+      de: >-
+        Seit einem bestimmten Datum oder Zeitpunkt kontinuierlich in Betrieb, 
+        funktionierend oder existent.
+      fr: >-
+        Être opérationnel, fonctionnel ou en existence de manière continue depuis 
+        une date ou un moment spécifique.
+      ar: >-
+        أن يكون قيد التشغيل أو العمل أو الوجود بشكل مستمر منذ تاريخ أو نقطة زمنية محددة فصاعداً.
+      id: >-
+        Beroperasi, berfungsi, atau ada secara terus-menerus sejak tanggal atau 
+        titik waktu tertentu dan seterusnya.
+      zh: >-
+        从特定日期或时间点开始持续运营、运作或存在。
+      es: >-
+        Estar operativo, funcionando o en existencia de forma continua desde una 
+        fecha o momento específico en adelante.
+    structured_aliases:
+      - literal_form: actief sinds
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aktiv seit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: actif depuis
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نشط منذ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: aktif sejak
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 活跃自
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: activo desde
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    multivalued: false
+    close_mappings:
+      - prov:startedAtTime  # prov.ttl:1018-1028 - "time at which an activity started" (domain: Activity)
+      - schema:foundingDate  # schemaorg.owl:18435-18450 - "date that this organization was founded" (domain: Organization)
+    related_mappings:
+      - dcterms:created  # creation date - similar but not specifically about operational start
+    aliases:
+      - is_or_was_active_since
+    comments:
+      - |
+        **USAGE**: Use this slot to record when an institution, service, department, 
+        or activity became operational. This captures the start of continuous activity, 
+        not just the founding or creation date.
+      - |
+        **SEMANTIC NOTE**: This is more general than schema:foundingDate (organizations only) 
+        or prov:startedAtTime (activities only). It can apply to institutions, services, 
+        programs, or any entity with an operational lifecycle.
+    annotations:
+      custodian_types: '["*"]'

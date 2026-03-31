@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: in_background
+# ==============================================================================
+# Specifies that an element is situated in the background of a scene or image.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                  | Mapping | Notes                                                  |
+# |---------------|---------------------------|----------------------------|---------|--------------------------------------------------------|
+# | **Schema**    | `schema:contentLocation`  | schemaorg.owl:12759-12781  | related | "Location depicted in the content." Not spatial layer. |
+# | **CIDOC-CRM** | `crm:P62_depicts`         | CIDOC:2649-2661            | related | What is depicted, not where within depiction.          |
+#
+# No standard ontology defines an exact "in background" spatial layering property.
+# Retains hc:inBackground.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_background
+name: in_background
+title: In Background
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_background:
+    slot_uri: hc:inBackground
+    description: >-
+      Specifies that an object, feature, or setting is located in the part of a scene
+      or image that is furthest from the viewer, situated behind the main subject or
+      foreground elements.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een object, kenmerk of omgeving zich bevindt in het deel van een
+        scène of afbeelding dat het verst van de kijker verwijderd is, achter het
+        hoofdonderwerp of voorgrond-elementen.
+      de: >-
+        Gibt an, dass ein Objekt, Merkmal oder eine Umgebung sich im Teil einer Szene
+        oder eines Bildes befindet, der am weitesten vom Betrachter entfernt ist, hinter
+        dem Hauptmotiv oder den Vordergrundelementen.
+      fr: >-
+        Indique qu'un objet, une caractéristique ou un cadre est situé dans la partie
+        d'une scène ou d'une image la plus éloignée du spectateur, derrière le sujet
+        principal ou les éléments de premier plan.
+      ar: >-
+        يحدد أن عنصراً أو ميزة أو إطاراً يقع في الجزء من المشهد أو الصورة الأبعد
+        عن المشاهد، خلف الموضوع الرئيسي أو عناصر المقدمة.
+      id: >-
+        Menentukan bahwa objek, fitur, atau latar terletak di bagian pemandangan atau
+        gambar yang paling jauh dari pengamat, di belakang subjek utama atau elemen
+        latar depan.
+      zh: >-
+        指定对象、特征或场景位于场景或图像中距观看者最远的部分，位于主要主题或前景元素之后。
+      es: >-
+        Especifica que un objeto, característica o escenario se encuentra en la parte
+        de una escena o imagen más alejada del espectador, situado detrás del sujeto
+        principal o los elementos del primer plano.
+    structured_aliases:
+      - literal_form: Achtergrond
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Hintergrund
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Arrière-plan
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خلفية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Latar Belakang
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 背景
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fondo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        For audio: true indicates music is background/ambient; false indicates
+        music is primary audio.
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_background
+    related_mappings:
+      - schema:contentLocation  # schemaorg.owl:12759-12781 - "location depicted or described in content"
+      - crm:P62_depicts  # CIDOC:2649-2661 - "identifies something depicted by Physical Human-Made Thing"

@@ -1,0 +1,124 @@
+id: https://nde.nl/ontology/hc/class/cms_type
+name: cms_type_class
+title: CMS Type Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/include
+classes:
+  CMSType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract taxonomy node for software-category assignment in digital
+      stewardship and collection-information workflows.
+    alt_descriptions:
+      nl: Abstract taxonomieknooppunt voor softwarecategorietoewijzing in digitale beheer- en collectie-informatieworkflows.
+      de: Abstrakter Taxonomieknoten zur Softwarekategorisierung in digitalen Verwaltungs- und Sammlungsinformationsablaeufen.
+      fr: Noeud taxonomique abstrait pour l attribution de categories logicielles dans les flux de gestion numerique et d information sur les fonds.
+      es: Nodo taxonomico abstracto para asignar categorias de software en flujos de gestion digital e informacion de fondos.
+      ar: عقدة تصنيفية مجردة لتحديد فئات البرمجيات ضمن تدفقات الإدارة الرقمية ومعلومات المقتنيات.
+      id: Simpul taksonomi abstrak untuk penetapan kategori perangkat lunak dalam alur pengelolaan digital dan informasi koleksi.
+      zh: 用于数字管理与馆藏信息工作流中软件类别标注的抽象分类节点。
+    structured_aliases:
+    - {literal_form: cms-type, in_language: nl}
+    - {literal_form: CMS-Typ, in_language: de}
+    - {literal_form: type de systeme de gestion, in_language: fr}
+    - {literal_form: tipo de sistema de gestion, in_language: es}
+    - {literal_form: نوع نظام إدارة المحتوى, in_language: ar}
+    - {literal_form: tipe CMS, in_language: id}
+    - {literal_form: 内容管理系统类别, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - schema:applicationCategory
+
+    slots:
+    - has_label
+    - has_description
+    - include
+
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: "MUSEUM_CMS"
+      has_description:
+        examples:
+        - value:
+            description_text: "Collection management systems designed for museum collections, including object cataloging, provenance tracking, and exhibition management."
+            description_type: definition
+      include:
+        range: CMSType
+        multivalued: true
+
+    see_also:
+    - https://nde.nl/ontology/hc/cms/rijksmuseum-adlib
+    examples:
+    - value: |
+        CMSType (abstract base)
+          │
+          ├── MUSEUM_CMS - Museum collection management (MuseumPlus, TMS, CollectiveAccess)
+          ├── ARCHIVE_CMS - Archival description (ArchivesSpace, MAIS, Calm)
+          ├── LIBRARY_CMS - Library management (Koha, Alma, WorldShare)
+          ├── DAM - Digital asset management (ResourceSpace, DAMsimple)
+          ├── REPOSITORY - Digital repository (DSpace, Fedora, EPrints)
+          ├── MIXED - Multi-domain (Omeka S, CollectiveAccess)
+          └── CUSTOM - Institution-specific/custom-built
+    - value: |
+        CollectionManagementSystem:
+        identified_by:
+          identifier_scheme: CMS_URI
+          identifier_value: "https://nde.nl/ontology/hc/cms/rijksmuseum-adlib"
+        has_type: MUSEUM_CMS  # ← CMSType
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      Preserved from prior description (commit 2c9d3598):
+
+      Abstract base class for Collection Management System type taxonomy.
+
+      **DESIGN PATTERN** (Rule 0b - Type/Types Naming):
+
+      This file (`CMSType.yaml`) defines the **singular abstract base class**.
+      Concrete subclasses are defined in `CMSTypes.yaml` (plural).
+
+      **TYPE HIERARCHY**:
+
+
+
+      **ONTOLOGICAL ALIGNMENT**:
+
+      - **Primary** (`class_uri`): `skos:Concept` - SKOS concept scheme
+      - **Related**: `schema:applicationCategory` - Schema.org software categorization
+
+      **USE CASES**:
+
+      The CMSType is used as the range for the `has_type`
+      slot in the CollectionManagementSystem class:
+    annotations:
+      type_types_pattern: |
+        This is the SINGULAR "Type" class per Rule 0b.
+        Concrete subclasses in CMSTypes.yaml (plural).
+      custodian_types: '["*"]'
+      custodian_types_rationale: CMS types apply to all heritage custodian contexts.
+      specificity_score: 0.55
+      specificity_rationale: Type taxonomy - moderately specific to software categorization.
+      replaces_slots: "cms_category (the old string-valued slot)"
+      migration_date: "2026-01-19"
+    comments:
+    - "Abstract base class for CMS type hierarchy"
+    - "Follows Rule 0b Type/Types naming pattern"
+    - "Concrete types: MUSEUM_CMS, ARCHIVE_CMS, LIBRARY_CMS, DAM, REPOSITORY, MIXED, CUSTOM"
+    - "See CMSTypes.yaml for subclass definitions"

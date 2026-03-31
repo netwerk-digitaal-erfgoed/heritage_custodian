@@ -1,0 +1,163 @@
+id: https://nde.nl/ontology/hc/class/PartyArchiveRecordSetTypes
+name: PartyArchiveRecordSetTypes
+title: PartyArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./PartyArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  PartyAdministrationFonds:
+    is_a: PartyArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of organizational governance, membership
+      administration, finance, and campaign-management documentation.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie over bestuur,
+        ledenadministratie, financien en campagnemanagement van partijen.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen zu Leitung,
+        Mitgliederverwaltung, Finanzen und Kampagnensteuerung politischer Parteien.
+      fr: >-
+        Agregation fondee sur la provenance de documentation de gouvernance,
+        d'administration des adherents, de finances et de campagne politique.
+      es: >-
+        Agregacion basada en procedencia de documentacion de gobierno,
+        afiliacion, finanzas y gestion de campanas de partidos politicos.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق الحوكمة وإدارة العضوية
+        والشؤون المالية وإدارة الحملات الحزبية.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi tata kelola,
+        administrasi anggota, keuangan, dan pengelolaan kampanye partai.
+      zh: >-
+        基于来源原则聚合政党组织治理、会员管理、财务与竞选管理文献。
+    structured_aliases:
+    - {literal_form: fonds partijorganisatie, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Parteiorganisationsfonds, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: fonds d'organisation partisane, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: fondo de organizacion partidaria, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: صندوق تنظيم حزبي, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: fonds organisasi partai, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 政党组织文献全宗, predicate: EXACT_SYNONYM, in_language: zh}
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - PartyArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:PartyAdministrationFonds
+      has_custodian:
+        equals_string: hc:PartyArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by PartyArchive custodians. Inverse of rico:isOrWasHolderOf.
+    comments:
+    - Note preserved: Organizational provenance remains primary even when governance and campaign materials overlap.
+    - 'Preserved from prior description: Fonds-oriented record set type for political party administration records.'
+    keywords:
+    - party governance
+    - membership administration
+    - campaign management
+    - organizational finance
+    examples:
+    - value:
+        has_type: hc:PartyAdministrationFonds
+        has_custodian: hc:PartyArchive
+        has_note: Executive minutes, member rolls, and campaign budget dossiers.
+      description: Party-organization documentation grouped by institutional provenance.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+  MembershipRecordSeries:
+    is_a: PartyArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of enrollment, status change,
+      and participation-tracking materials for party affiliation workflows.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van inschrijving,
+        statuswijzigingen en participatieregistratie in partijlidmaatschappen.
+      de: >-
+        Geordnete Dokumentationsfolge zu Einschreibung,
+        Statusaenderungen und Beteiligungsnachweisen in Parteimitgliedschaften.
+      fr: >-
+        Sequence documentaire ordonnee des inscriptions,
+        changements de statut et traces de participation aux parcours d'adhesion.
+      es: >-
+        Secuencia documental ordenada de inscripcion,
+        cambios de estado y seguimiento de participacion en afiliaciones partidarias.
+      ar: >-
+        تسلسل وثائقي منظم للتسجيل وتغييرات الحالة
+        وتتبع المشاركة ضمن مسارات العضوية الحزبية.
+      id: >-
+        Urutan dokumenter teratur untuk pendaftaran,
+        perubahan status, dan pelacakan partisipasi dalam keanggotaan partai.
+      zh: >-
+        由入会登记、状态变更与参与追踪材料构成的政党成员管理文献序列。
+    structured_aliases:
+    - {literal_form: reeks lidmaatschapstrajecten, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Folge von Mitgliedschaftsablaeufen, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: sequence des parcours d'adhesion, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: secuencia de trayectorias de afiliacion, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: سلسلة مسارات العضوية الحزبية, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: urutan alur keanggotaan partai, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 党籍流程文献序列, predicate: EXACT_SYNONYM, in_language: zh}
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - PartyArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:MembershipRecordSeries
+      has_custodian:
+        equals_string: hc:PartyArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by PartyArchive custodians. Inverse of rico:isOrWasHolderOf.
+    comments:
+    - Note preserved: Sequence ordering supports auditing of status transitions and participation history.
+    - 'Preserved from prior description: Series-oriented record set type for party membership records.'
+    keywords:
+    - enrollment workflow
+    - status transition
+    - participation tracking
+    - affiliation record
+    examples:
+    - value:
+        has_type: hc:MembershipRecordSeries
+        has_custodian: hc:PartyArchive
+        has_note: Enrollment forms, renewal logs, and disciplinary status updates.
+      description: Membership-process documentation arranged as a recurring sequence.

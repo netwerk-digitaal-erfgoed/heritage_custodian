@@ -1,0 +1,121 @@
+# ==============================================================================
+# LinkML Slot Definition: has_particulate
+# ==============================================================================
+# Measured concentration of particulate matter (e.g. PM2.5, PM10) in a heritage
+# storage or exhibition environment, recorded as a float value.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                    | File/Line                              | Mapping  | Notes                                                                  |
+# |----------------|-----------------------------|----------------------------------------|----------|------------------------------------------------------------------------|
+# | **SOSA**       | `sosa:hasSimpleResult`      | sosa.ttl:375-384                       | broad    | "Simple value of an Observation." Generic observation result.          |
+# | **CIDOC-CRM**  | `crm:P40_observed_dimension`| CIDOC_CRM_v7.1.3.rdf:2154-2168        | related  | "Dimension observed in E16 Measurement." E16→E54 Dimension, not float.|
+# | **CIDOC-CRM**  | `crm:P44_has_condition`     | CIDOC_CRM_v7.1.3.rdf:2270-2285        | related  | "Records E3 Condition State for E18 Physical Thing." Condition state.  |
+# | **DQV**        | `dqv:value`                 | dqv.ttl:128-132                        | related  | "Values computed by metric." Generic quality measurement value.        |
+#
+# No standard ontology defines a property specifically for particulate matter
+# concentration. The slot_uri remains hc:hasParticulate.
+#
+# CREATED: 2026-02-01
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_particulate
+name: has_particulate
+title: Has Particulate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dqv: http://www.w3.org/ns/dqv#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_particulate:
+    slot_uri: hc:hasParticulate
+    description: >-
+      Measured concentration of particulate matter suspended in the air within
+      a heritage storage, exhibition, or conservation environment. Typically
+      expressed as micrograms per cubic metre (µg/m³) for particle sizes such
+      as PM2.5 or PM10. Elevated particulate levels can cause surface soiling,
+      chemical degradation, and physical damage to heritage objects, making
+      this a critical environmental monitoring parameter. HEPA filtration is
+      typically required for heritage storage environments to maintain safe
+      particulate levels.
+    alt_descriptions:
+      nl: >-
+        Gemeten concentratie van fijnstof in de lucht binnen een erfgoed-opslag-,
+        tentoonstellings- of conserveringsomgeving, doorgaans uitgedrukt in
+        microgram per kubieke meter.
+      de: >-
+        Gemessene Feinstaubkonzentration in der Luft einer Kulturerbe-Lager-,
+        Ausstellungs- oder Konservierungsumgebung, typischerweise in Mikrogramm
+        pro Kubikmeter angegeben.
+      fr: >-
+        Concentration mesurée de matières particulaires en suspension dans l'air
+        d'un environnement de stockage, d'exposition ou de conservation du
+        patrimoine, généralement exprimée en microgrammes par mètre cube.
+      ar: >-
+        التركيز المُقاس للجسيمات العالقة في الهواء داخل بيئة تخزين أو عرض أو
+        حفظ التراث، ويُعبَّر عنه عادةً بالميكروغرام لكل متر مكعب.
+      id: >-
+        Konsentrasi terukur partikulat yang tersuspensi di udara dalam lingkungan
+        penyimpanan, pameran, atau konservasi warisan budaya, biasanya dinyatakan
+        dalam mikrogram per meter kubik.
+      zh: >-
+        遗产存储、展览或保护环境中空气悬浮颗粒物的测量浓度，通常以微克每立方米表示。
+      es: >-
+        Concentración medida de material particulado en suspensión en el aire
+        de un entorno de almacenamiento, exposición o conservación del patrimonio,
+        generalmente expresada en microgramos por metro cúbico.
+    structured_aliases:
+      - literal_form: fijnstof
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Feinstaub
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: particules en suspension
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: جسيمات عالقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: partikulat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 颗粒物
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: material particulado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    multivalued: false
+    broad_mappings:
+      - sosa:hasSimpleResult  # sosa.ttl:375-384 - "Simple value of an Observation." Generic observation result value.
+    related_mappings:
+      - crm:P40_observed_dimension  # CIDOC_CRM_v7.1.3.rdf:2154-2168 - "Dimension observed in E16 Measurement." E16→E54 Dimension.
+      - crm:P44_has_condition  # CIDOC_CRM_v7.1.3.rdf:2270-2285 - "Records E3 Condition State for E18 Physical Thing."
+      - dqv:value  # dqv.ttl:128-132 - "Values computed by metric." Generic quality measurement value.
+    aliases:
+      - particulate_max
+    examples:
+      - value: "12.5"
+        description: PM2.5 concentration of 12.5 µg/m³ in a museum storage room.
+      - value: "35.0"
+        description: PM10 reading of 35.0 µg/m³ in an exhibition gallery.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Particulate matter measurement is a domain-specific environmental
+        monitoring concept with no direct equivalent in standard ontologies.
+        SOSA provides the general observation/result framework under which
+        such measurements would be modelled, but does not define
+        substance-specific properties.
+      - >-
+        Common particle size classifications include PM2.5 (fine particles
+        ≤2.5 µm) and PM10 (coarse particles ≤10 µm). Heritage institutions
+        typically target PM2.5 levels below 10 µg/m³ for sensitive collections.

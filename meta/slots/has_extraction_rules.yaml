@@ -1,0 +1,31 @@
+id: https://nde.nl/ontology/hc/slot/has_extraction_rules
+name: has_extraction_rules
+title: has_extraction_rules
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rml: http://semweb.mmlab.be/ns/rml#
+  oa: http://www.w3.org/ns/oa#
+imports:
+- linkml:types
+slots:
+  has_extraction_rules:
+    slot_uri: hc:hasExtractionRules
+    description: >-
+      Ordered list of field extraction rules. Each rule specifies a source
+      path (XPath, JSONPath, or CSS selector), a target field name, and an
+      optional transform (trim, extract text, regex, parse date). Rules are
+      applied in order to each record found by the primary has_selector.
+      Aligns with RML (rml:reference + rml:referenceFormulation) for
+      interoperability with RMLMapper/RMLStreamer.
+    range: string
+    multivalued: true
+    inlined_as_list: true
+    exact_mappings:
+      - rml:referenceFormulation
+    close_mappings:
+      - oa:hasSelector
+    comments:
+      - "Each entry is a YAML/JSON object with source_path, target_field, transform"
+      - "source_path aligns with rml:reference (XPath/JSONPath/CSS)"
+      - "See docs/plan/fetch_kos_regs/digital-resource-profiles.md"

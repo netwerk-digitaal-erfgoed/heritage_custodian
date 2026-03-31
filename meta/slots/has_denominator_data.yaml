@@ -1,0 +1,112 @@
+# ==============================================================================
+# LinkML Slot Definition: has_denominator_data
+# ==============================================================================
+# Reference population or total (denominator) for calculating a normalized rate,
+# ratio, or percentage from a numerator measurement.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                          | File/Line                | Mapping | Notes                                                                               |
+# |---------------|-----------------------------------|--------------------------|---------|-------------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:measurementDenominator`   | schemaorg.owl:25769-25791| close   | "Identifies the denominator variable when an observation represents a ratio or       |
+# |               |                                   |                          |         |  percentage." Domain: StatisticalVariable|Observation. Pending status. Same concept   |
+# |               |                                   |                          |         |  but formal statistical domain vs. heritage institution metrics.                     |
+# | **DQV**       | `dqv:computedOn`                  | dqv.ttl:120-126          | related | "Refers to the resource on which the quality measurement is performed." Links        |
+# |               |                                   |                          |         |  measurement to dataset — tangentially related but fundamentally different semantics. |
+# | **PROV-O**    | `prov:wasDerivedFrom`             | prov.ttl:1099-1114       | broad   | "A derivation is a transformation of an entity into another." Very generic; a        |
+# |               |                                   |                          |         |  denominator relationship is loosely a kind of derivation source, but far too broad.  |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_denominator_data
+name: has_denominator_data
+title: has Denominator Data
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dqv: http://www.w3.org/ns/dqv#
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  has_denominator_data:
+    slot_uri: hc:hasDenominatorData
+    description: >-
+      Relates a specific count, measurement, or dataset (the numerator) to the corresponding
+      reference population or total (the denominator) required to calculate a normalized rate,
+      ratio, or percentage.
+    comments:
+      - >-
+        This identifies the total population from which conversions are measured.
+    alt_descriptions:
+      nl: >-
+        Relateert een specifieke telling, meting of dataset (de teller) aan de bijbehorende
+        referentiepopulatie of het totaal (de noemer) dat nodig is om een genormaliseerd
+        percentage, verhouding of tarief te berekenen.
+      de: >-
+        Verknüpft eine bestimmte Zählung, Messung oder einen Datensatz (den Zähler) mit der
+        entsprechenden Referenzpopulation oder Gesamtzahl (dem Nenner), die zur Berechnung
+        einer normalisierten Rate, eines Verhältnisses oder Prozentsatzes erforderlich ist.
+      fr: >-
+        Relie un décompte, une mesure ou un jeu de données spécifique (le numérateur) à la
+        population de référence ou au total correspondant (le dénominateur) nécessaire pour
+        calculer un taux, un ratio ou un pourcentage normalisé.
+      ar: >-
+        يربط عدًّا أو قياسًا أو مجموعة بيانات محددة (البسط) بالمجتمع المرجعي أو الإجمالي
+        المقابل (المقام) اللازم لحساب معدل أو نسبة أو نسبة مئوية موحَّدة.
+      id: >-
+        Menghubungkan jumlah, pengukuran, atau kumpulan data tertentu (pembilang) dengan
+        populasi referensi atau total yang sesuai (penyebut) yang diperlukan untuk menghitung
+        tingkat, rasio, atau persentase yang dinormalisasi.
+      zh: >-
+        将特定计数、测量值或数据集（分子）与计算归一化比率、比例或百分比所需的相应参考总体或
+        总数（分母）相关联。
+      es: >-
+        Relaciona un conteo, medición o conjunto de datos específico (el numerador) con la
+        población de referencia o el total correspondiente (el denominador) necesario para
+        calcular una tasa, proporción o porcentaje normalizado.
+    structured_aliases:
+      - literal_form: Noemergegevens
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Nennerdaten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Données du dénominateur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بيانات المقام
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Data Penyebut
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分母数据
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Datos del denominador
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    examples:
+    - value: museum/venue visitors
+      description: Total visitors to the physical venue
+    - value: website visitors
+      description: Total unique website visitors
+    - value: email recipients
+      description: Total number of emails delivered
+    - value: social media content viewers
+      description: Total views on social media content
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:measurementDenominator  # schemaorg.owl:25769-25791 — "Identifies the denominator variable when an observation represents a ratio or percentage." Domain: StatisticalVariable|Observation. Same concept but formal statistical domain vs. heritage metrics. Pending status.
+    related_mappings:
+      - dqv:computedOn  # dqv.ttl:120-126 — "Refers to the resource on which the quality measurement is performed." Links measurement to dataset, tangentially related but different semantics.
+    broad_mappings:
+      - prov:wasDerivedFrom  # prov.ttl:1099-1114 — "A derivation is a transformation of an entity into another." Very generic derivation; far too broad for denominator-specific relationship.
+    aliases:
+      - conversion_source_population

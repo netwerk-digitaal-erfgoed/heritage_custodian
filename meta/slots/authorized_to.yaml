@@ -1,0 +1,150 @@
+# ==============================================================================
+# LinkML Slot Definition: authorized_to
+# ==============================================================================
+# The type of policy authority or mandate an entity holds within a governance
+# framework, such as primary policy-maker, advisory body, or standards setter.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property/Class               | File/Line                          | Mapping | Notes                                                             |
+# |-----------|------------------------------|------------------------------------|---------|-------------------------------------------------------------------|
+# | **CRM**   | `crm:P75_possesses`          | CIDOC_CRM_v7.1.3.rdf:2920-2932    | related | "possesses" E39_Actor→E30_Right. Actor holds legal claim on Right.|
+# | **CRM**   | `crm:P105_right_held_by`     | CIDOC_CRM_v7.1.3.rdf:3528-3541    | related | "right held by" E72_Legal_Object→E39_Actor. Rights on objects.    |
+# | **RiC-O** | `rico:isOrWasRegulatedBy`    | RiC-O_1-1.rdf:15053-15088         | related | "is or was regulated by" Thing→Rule. Inverse direction.           |
+# | **PROV**  | `prov:actedOnBehalfOf`       | prov.ttl:426-440                   | related | "actedOnBehalfOf" Agent→Agent. Delegation of authority.           |
+# | **ODRL**  | `odrl:permission`            | odrl.ttl:547-553                   | related | "Has Permission" Policy→Permission. Digital rights context.       |
+#
+# No exact match found. The concept of organizational policy authority type
+# (primary policy-maker, advisory body, standards setter, implementing agency)
+# is heritage-governance-specific. External ontologies model rights possession
+# (CRM), delegation (PROV), regulation (RiC-O), or digital permissions (ODRL),
+# but none capture the categorical classification of an organization's policy
+# role within a cultural heritage governance hierarchy.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/authorized_to
+name: authorized_to
+title: Authorized To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  odrl: http://www.w3.org/ns/odrl/2/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  authorized_to:
+    slot_uri: hc:authorizedTo
+    description: >-
+      The type of policy authority or mandate an entity holds within a
+      governance framework. Captures the categorical role an organization
+      plays in heritage policy creation, advice, standard-setting, or
+      implementation. Values typically include primary policy-maker,
+      advisory body, standards setter, implementing agency, or none
+      (operational only).
+    alt_descriptions:
+      nl: >-
+        Het type beleidsautoriteit of mandaat dat een entiteit heeft
+        binnen een bestuursstructuur, zoals primaire beleidsmaker,
+        adviesorgaan, normsteller of uitvoeringsinstantie.
+      de: >-
+        Die Art der politischen Autorität oder des Mandats, das eine
+        Einrichtung innerhalb eines Governance-Rahmens innehat, wie
+        primärer Politikgestalter, Beratungsgremium, Normsetzer oder
+        Durchführungsstelle.
+      fr: >-
+        Le type d'autorité politique ou de mandat qu'une entité détient
+        dans un cadre de gouvernance, tel que décideur politique
+        principal, organe consultatif, normalisateur ou organisme
+        d'exécution.
+      ar: >-
+        نوع السلطة السياسية أو التفويض الذي يمتلكه كيان ما ضمن
+        إطار حوكمي، مثل صانع السياسات الرئيسي أو الهيئة
+        الاستشارية أو واضع المعايير أو الجهة المنفذة.
+      id: >-
+        Jenis otoritas kebijakan atau mandat yang dimiliki suatu entitas
+        dalam kerangka tata kelola, seperti pembuat kebijakan utama,
+        badan penasihat, penetap standar, atau lembaga pelaksana.
+      zh: >-
+        实体在治理框架中所持有的政策权限或授权类型，例如主要政策制定者、
+        咨询机构、标准制定者或执行机构。
+      es: >-
+        El tipo de autoridad política o mandato que una entidad posee
+        dentro de un marco de gobernanza, como formulador principal de
+        políticas, órgano consultivo, organismo normalizador o agencia
+        ejecutora.
+    structured_aliases:
+      - literal_form: beleidsautoriteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Politische Autorität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: autorité politique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: سلطة السياسة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: otoritas kebijakan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 政策权限
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: autoridad política
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    related_mappings:
+      - crm:P75_possesses  # CIDOC_CRM_v7.1.3.rdf:2920-2932 - "possesses" E39_Actor→E30_Right
+      - crm:P105_right_held_by  # CIDOC_CRM_v7.1.3.rdf:3528-3541 - "right held by" E72_Legal_Object→E39_Actor
+      - rico:isOrWasRegulatedBy  # RiC-O_1-1.rdf:15053-15088 - "is or was regulated by" Thing→Rule
+      - prov:actedOnBehalfOf  # prov.ttl:426-440 - "actedOnBehalfOf" Agent→Agent delegation
+      - odrl:permission  # odrl.ttl:547-553 - "Has Permission" Policy→Permission
+    aliases:
+      - policy_authority
+    examples:
+      - value: "Primary policy-maker"
+        description: >-
+          Ministry of Culture creating national cultural policy
+          (e.g. Ministerie van OCW, Netherlands).
+      - value: "Advisory body"
+        description: >-
+          Expert body providing policy advice to government
+          (e.g. Council for Culture, Netherlands).
+      - value: "Standards setter"
+        description: >-
+          Organization establishing professional or technical standards
+          (e.g. RCE for heritage conservation methods).
+      - value: "Implementing agency"
+        description: >-
+          Organization executing policies created by others at a
+          local or operational level (e.g. municipal archives).
+      - value: "None"
+        description: >-
+          Organization with no policy-making role; operational only.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Policy authority types: "Primary policy-maker" (creates national/regional
+        heritage policy), "Advisory body" (provides expert advice to policy-makers),
+        "Standards setter" (establishes professional/technical standards),
+        "Implementing agency" (executes policies created by others),
+        "None" (no policy-making role, operational only).
+      - >-
+        Real-world examples: Ministry of Culture (NL) as primary policy-maker for
+        national cultural policy; RCE (NL) as standards setter for heritage
+        conservation methods and advisory to the Ministry; Arts Council England
+        developing funding policy and advising DCMS on arts strategy; municipal
+        archives implementing national archival standards at local level.
+      - >-
+        This slot captures the governance role classification, not the specific
+        policies themselves. For the actual policies or regulations applicable
+        to an entity, see conform_to (dcterms:conformsTo).

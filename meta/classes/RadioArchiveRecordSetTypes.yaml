@@ -1,0 +1,278 @@
+id: https://nde.nl/ontology/hc/class/RadioArchiveRecordSetTypes
+name: RadioArchiveRecordSetTypes
+title: RadioArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./RadioArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  BroadcastRecordingFonds:
+    is_a: RadioArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of transmitted audio outputs,
+      master recordings, and continuity-related transmission traces.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van uitgezonden audio,
+        masteropnamen en continuiteitssporen van transmissie.
+      de: >-
+        Provenienzbasierte Aggregation ausgestrahlter Audioinhalte,
+        Masteraufnahmen und sendebezogener Kontinuitaetsnachweise.
+      fr: >-
+        Agregation fondee sur la provenance des sorties audio diffusees,
+        des enregistrements maitres et des traces de continuite de diffusion.
+      es: >-
+        Agregacion basada en procedencia de salidas de audio emitidas,
+        grabaciones maestras y trazas de continuidad de transmision.
+      ar: >-
+        تجميع قائم على المنشأ لمخرجات الصوت المذاعة والتسجيلات الأصلية
+        وآثار استمرارية البث.
+      id: >-
+        Agregasi berbasis asal-usul untuk keluaran audio siaran,
+        rekaman master, dan jejak kesinambungan transmisi.
+      zh: >-
+        基于来源原则聚合播出音频成品、母带录音与播送连续性痕迹。
+    structured_aliases:
+    - literal_form: fonds radiouitzendingen
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fonds von Rundfunksendungen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds d'enregistrements radiophoniques
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo de emisiones radiofonicas
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رصيد تسجيلات بث إذاعي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds rekaman siaran radio
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 广播录音文献全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Fonds organization principle."
+    - Note preserved: Broadcast provenance is maintained at the originating station or production unit level.
+    - 'Preserved from prior description: Fonds containing radio broadcast recordings.'
+    keywords:
+    - transmitted audio
+    - master recording
+    - continuity log
+    - broadcast provenance
+    examples:
+    - value:
+        has_type: hc:BroadcastRecordingFonds
+        has_custodian: hc:RadioArchive
+        has_note: Master tapes, air-check recordings, and continuity notes.
+      description: Broadcast output documentation grouped by originating radio organization.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - RadioArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:BroadcastRecordingFonds
+      has_custodian:
+        equals_string: hc:RadioArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by RadioArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+  RadioScriptCollection:
+    is_a: RadioArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of scripts, rundown plans,
+      and scheduling materials used in audio program preparation.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van scripts, draaiboeken
+        en planningsmateriaal voor voorbereiding van audioprogramma's.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus Skripten, Ablaufplaenen
+        und Dispositionsunterlagen fuer die Vorbereitung von Audioprogrammen.
+      fr: >-
+        Ensemble documentaire reuni de scripts, conducteur d'emission
+        et materiaux de planification pour la preparation des programmes audio.
+      es: >-
+        Cuerpo documental reunido de guiones, escaletas
+        y materiales de programacion para preparar contenidos de audio.
+      ar: >-
+        جسم وثائقي مُجمع يضم النصوص وخطط البث والمواد الجدولية
+        المستخدمة في إعداد البرامج الصوتية.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi naskah, rencana rundown,
+        dan materi penjadwalan untuk persiapan program audio.
+      zh: >-
+        汇集用于音频节目筹备的脚本、流程单与排期材料的文献整体。
+    structured_aliases:
+    - literal_form: verzameling radioscripts en schema's
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlung von Rundfunkskripten und Ablaufplaenen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection de scripts radiophoniques
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: coleccion de guiones de radio
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: تجميعة نصوص وبرامج إذاعية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi naskah dan jadwal radio
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 广播脚本与排期文献汇编
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Collection organization principle."
+    - Note preserved: Materials can be assembled across editorial, technical, and scheduling teams.
+    - 'Preserved from prior description: Collection of radio scripts, schedules, and programming documentation.'
+    keywords:
+    - script preparation
+    - rundown plan
+    - schedule material
+    - program design
+    examples:
+    - value:
+        has_type: hc:RadioScriptCollection
+        has_custodian: hc:RadioArchive
+        has_note: Program scripts, scheduling boards, and cue sheets.
+      description: Program-preparation documentation assembled from multi-role workflows.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - RadioArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:RadioScriptCollection
+      has_custodian:
+        equals_string: hc:RadioArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by RadioArchive custodians. Inverse of rico:isOrWasHolderOf.
+  StationAdministrationSeries:
+    is_a: RadioArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of station governance,
+      operational control, and recurring service administration activities.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van zenderbestuur,
+        operationele sturing en terugkerende dienstadministratie.
+      de: >-
+        Geordnete Dokumentationsfolge zu Senderleitung,
+        Betriebssteuerung und wiederkehrender Serviceverwaltung.
+      fr: >-
+        Sequence documentaire ordonnee de gouvernance de station,
+        de pilotage operationnel et d'administration de service recurrente.
+      es: >-
+        Secuencia documental ordenada sobre gobernanza de emisora,
+        control operativo y actividades administrativas recurrentes.
+      ar: >-
+        تسلسل وثائقي منظم لإدارة المحطة والتحكم التشغيلي
+        وأنشطة الإدارة الخدمية المتكررة.
+      id: >-
+        Urutan dokumenter teratur mengenai tata kelola stasiun,
+        kendali operasional, dan administrasi layanan berulang.
+      zh: >-
+        由台站治理、运营控制与周期性服务管理活动形成的有序文献序列。
+    structured_aliases:
+    - literal_form: reeks zenderadministratie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Folge von Senderverwaltungsunterlagen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: sequence d'administration de station
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: secuencia de administracion de emisora
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة إدارة محطة إذاعية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: urutan administrasi stasiun radio
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 电台运营管理文献序列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Series organization principle."
+    - Note preserved: Sequence ordering supports continuity across recurring station operations.
+    - 'Preserved from prior description: Series of radio station administrative and operational records.'
+    keywords:
+    - station governance
+    - operational control
+    - service administration
+    - recurring workflow
+    examples:
+    - value:
+        has_type: hc:StationAdministrationSeries
+        has_custodian: hc:RadioArchive
+        has_note: Operations logs, technical shift records, and service memos.
+      description: Station operation documentation arranged as a recurring sequence.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - RadioArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:StationAdministrationSeries
+      has_custodian:
+        equals_string: hc:RadioArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by RadioArchive custodians. Inverse of rico:isOrWasHolderOf.

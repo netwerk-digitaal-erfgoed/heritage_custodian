@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: offer
+# ==============================================================================
+# Makes available items, services, or terms for another party to accept.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line                 | Mapping  | Notes                                                                          |
+# |----------------|---------------------------|---------------------------|----------|--------------------------------------------------------------------------------|
+# | **Schema.org** | `schema:offers`           | schemaorg.owl:28100-28130 | slot_uri | "An offer to provide this item." Product|Service|Event→Offer|Demand.           |
+# | **Schema.org** | `schema:hasOfferCatalog`  | schemaorg.owl:20356-20379 | close    | "OfferCatalog listing for this Organization, Person, or Service."              |
+# | **Schema.org** | `schema:makesOffer`       | schemaorg.owl:25353-25376 | related  | "Products or services offered by the org/person." Org|Person→Offer.            |
+# | **Schema.org** | `schema:itemOffered`      | schemaorg.owl:23562-23591 | related  | Inverse of offers: "An item being offered." Offer|Demand→Product|Service|etc.  |
+#
+# CREATED: 2026-01-23
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/offer
+name: offer
+title: Offer
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  offer:
+    slot_uri: schema:offers
+    description: >-
+      Presents, proposes, or makes available items, services, programs, or
+      terms for another party to accept or reject. Generic slot for
+      representing what an entity provides or makes accessible, such as a
+      TaxScheme offering TaxDeductibility, a Service offering a Benefit, or
+      an Institution offering a Program.
+    alt_descriptions:
+      nl: >-
+        Presenteert, biedt aan of stelt items, diensten, programma's of
+        voorwaarden beschikbaar voor een andere partij om te accepteren of
+        af te wijzen.
+      de: >-
+        Präsentiert, bietet an oder stellt Artikel, Dienstleistungen, Programme
+        oder Bedingungen zur Annahme oder Ablehnung durch eine andere Partei
+        bereit.
+      fr: >-
+        Présente, propose ou met à disposition des articles, services,
+        programmes ou conditions pour qu'une autre partie les accepte ou les
+        refuse.
+      ar: >-
+        يقدم أو يعرض أو يتيح عناصر أو خدمات أو برامج أو شروطًا لطرف آخر
+        لقبولها أو رفضها.
+      id: >-
+        Menyajikan, menawarkan, atau menyediakan item, layanan, program, atau
+        ketentuan bagi pihak lain untuk diterima atau ditolak.
+      zh: >-
+        呈现、提议或提供物品、服务、项目或条款供另一方接受或拒绝。
+      es: >-
+        Presenta, propone o pone a disposición artículos, servicios, programas
+        o condiciones para que otra parte los acepte o rechace.
+    structured_aliases:
+      - literal_form: Aanbod
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Angebot
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Offre
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عرض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penawaran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 报价
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Oferta
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:hasOfferCatalog  # schemaorg.owl:20356-20379 - "OfferCatalog listing for this Organization, Person, or Service"
+    related_mappings:
+      - schema:makesOffer  # schemaorg.owl:25353-25376 - "Products or services offered by the org/person"; agent-centric direction
+      - schema:itemOffered  # schemaorg.owl:23562-23591 - Inverse of offers: "An item being offered (or demanded)"
+    aliases:
+      - offers_donation_scheme
+      - offers_or_offered_access
+      - offers_or_offered
+    examples:
+      - value: >-
+          has_or_had_type:
+            has_or_had_label: Fully Deductible
+          has_or_had_percentage:
+            percentage_value: 100
+        description: >-
+          Tax scheme offering full deductibility.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Created 2026-01-23 from deduction_percentage migration (Rule 53).
+        Provides structured link to TaxDeductibility class.
+      - >-
+        Uses RiC-O temporal naming convention (Rule 39) for aliases:
+        offers_or_offered indicates temporal relationship — what is offered
+        may change over time.
+      - >-
+        Generic offering relationship slot covering use cases such as:
+        TaxScheme offers TaxDeductibility, Service offers Benefit,
+        Institution offers Program.

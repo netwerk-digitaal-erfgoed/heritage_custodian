@@ -1,0 +1,131 @@
+# ==============================================================================
+# LinkML Slot Definition: posted_by
+# ==============================================================================
+# Identifies the user, account, or profile that published content to a
+# platform such as a social media network, forum, or website.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                  | File/Line                | Mapping | Notes                                                               |
+# |-------------|---------------------------|--------------------------|---------|---------------------------------------------------------------------|
+# | **PROV**    | `prov:wasAttributedTo`    | prov.ttl:1082-1096       | close   | "wasAttributedTo" Entity→Agent. Attribution of entity to agent.     |
+# | **Schema**  | `schema:author`           | schemaorg.owl:9265-9286  | related | "author" CreativeWork∪Rating→Organization∪Person. Content authoring.|
+# | **DCTerms** | `dcterms:creator`         | dcterms.rdf:1092-1121    | related | "Creator" →Agent. Entity responsible for making a resource.         |
+# | **FOAF**    | `foaf:maker`              | foaf.ttl:382-391         | related | "maker" Thing→Agent. Equivalent to dcterms:creator.                 |
+# | **Schema**  | `schema:publisher`        | schemaorg.owl:31710-31729| related | "publisher" CreativeWork→Organization∪Person. Publishing entity.    |
+#
+# No exact match found. The concept of identifying specifically who posted
+# content to a social media platform is narrower than general authorship
+# (schema:author) or resource creation (dcterms:creator). prov:wasAttributedTo
+# is the closest conceptual match (ascribing an entity to an agent), but its
+# scope is broader (any entity-to-agent attribution, not specifically posting).
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/posted_by
+name: posted_by
+title: Posted By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  posted_by:
+    slot_uri: hc:postedBy
+    description: >-
+      Identifies the specific user, account, or profile that published a
+      piece of content, message, or update to a platform, forum, or
+      public space. Typically references a social media profile or
+      account identifier that links back to the custodian organization
+      responsible for the post.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke gebruiker, account of profiel dat
+        content, een bericht of update heeft gepubliceerd op een
+        platform, forum of openbare ruimte.
+      de: >-
+        Identifiziert den spezifischen Benutzer, das Konto oder Profil,
+        das einen Inhalt, eine Nachricht oder ein Update auf einer
+        Plattform, einem Forum oder einem öffentlichen Raum
+        veröffentlicht hat.
+      fr: >-
+        Identifie l'utilisateur, le compte ou le profil spécifique qui
+        a publié un contenu, un message ou une mise à jour sur une
+        plateforme, un forum ou un espace public.
+      ar: >-
+        يحدد المستخدم أو الحساب أو الملف الشخصي المحدد الذي نشر
+        محتوى أو رسالة أو تحديثاً على منصة أو منتدى أو مساحة عامة.
+      id: >-
+        Mengidentifikasi pengguna, akun, atau profil tertentu yang
+        memublikasikan konten, pesan, atau pembaruan ke platform,
+        forum, atau ruang publik.
+      zh: >-
+        标识在平台、论坛或公共空间上发布内容、消息或更新的特定用户、
+        账户或个人资料。
+      es: >-
+        Identifica el usuario, cuenta o perfil específico que publicó
+        un contenido, mensaje o actualización en una plataforma, foro
+        o espacio público.
+    structured_aliases:
+      - literal_form: geplaatst door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: veröffentlicht von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: publié par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نشر بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diposting oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 发布者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: publicado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1096 - "wasAttributedTo" Entity→Agent attribution
+    related_mappings:
+      - schema:author  # schemaorg.owl:9265-9286 - "author" CreativeWork∪Rating→Organization∪Person
+      - dcterms:creator  # dcterms.rdf:1092-1121 - "Creator" entity responsible for making resource
+      - foaf:maker  # foaf.ttl:382-391 - "maker" Thing→Agent
+      - schema:publisher  # schemaorg.owl:31710-31729 - "publisher" CreativeWork→Organization∪Person
+    aliases:
+      - posted_by_profile
+    examples:
+      - value: "@rijksmuseum"
+        description: >-
+          The Rijksmuseum's official Instagram account posting a
+          collection highlight.
+      - value: "britishmuseum"
+        description: >-
+          The British Museum's Twitter/X handle posting an event
+          announcement.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This slot identifies who posted content, not the content itself. The
+        value typically references a social media profile or username. In the
+        data model, this may link to a SocialMediaProfile entity which in turn
+        connects to the parent Custodian organization.
+      - >-
+        Conceptually similar to Activity Streams 2.0 attributedTo, which
+        identifies the actor responsible for content. The Activity Streams
+        vocabulary is not in data/ontology/ and therefore not cited in mappings.
+      - >-
+        The alias posted_by_profile emphasizes that the poster is identified
+        by their profile rather than a personal name.

@@ -1,0 +1,49 @@
+# WikidataMappingTypeEnum
+# Extracted from class_metadata_slots.yaml for Rule 38 compliance
+#
+# Type of mapping relationship to Wikidata entity.
+# Indicates semantic relationship between this class and the Wikidata concept.
+#
+# Generation date: 2026-01-07
+
+id: https://nde.nl/ontology/hc/enum/WikidataMappingTypeEnum
+name: WikidataMappingTypeEnum
+title: Wikidata Mapping Type Enum
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  WikidataMappingTypeEnum:
+    description: |
+      Type of mapping relationship to Wikidata entity.
+      Indicates semantic relationship between this class and the Wikidata concept.
+    permissible_values:
+      exact:
+        description: Exact semantic match - concepts are interchangeable
+        meaning: skos:exactMatch
+      close:
+        description: Close semantic match - concepts are similar but not identical
+        meaning: skos:closeMatch
+      broad:
+        description: Wikidata entity is broader/more general
+        meaning: skos:broadMatch
+      narrow:
+        description: Wikidata entity is narrower/more specific
+        meaning: skos:narrowMatch
+      related:
+        description: Associative relationship, not hierarchical
+        meaning: skos:relatedMatch
+      ontonym:
+        description: |
+          The Wikidata entity describes a broader concept (the organization type)
+          rather than the specific record set type being defined. Common in 
+          dual-class patterns where Wikidata lacks separate entities for 
+          collection types vs custodian types.

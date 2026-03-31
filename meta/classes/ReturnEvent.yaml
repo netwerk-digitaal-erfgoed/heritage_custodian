@@ -1,0 +1,88 @@
+id: https://nde.nl/ontology/hc/class/ReturnEvent
+name: ReturnEvent
+title: Return Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- ./Condition
+- ./Item
+- linkml:types
+- ../slots/has_condition
+- ../slots/has_description
+- ../slots/return
+default_prefix: hc
+classes:
+  ReturnEvent:
+    class_uri: crm:E10_Transfer_of_Custody
+    description: >-
+      An event documenting the return of loaned item(s) to the lending institution.
+    alt_descriptions:
+      nl: Een gebeurtenis die de retournering van geleende objecten naar de uitlenende instelling documenteert.
+      de: Ein Ereignis, das die Rückgabe von geliehenen Objekten an die verleihende Institution dokumentiert.
+      fr: Un événement documentant le retour d'objets prêtés à l'institution prêteuse.
+    structured_aliases:
+    - literal_form: retourneergebeurtenis
+      in_language: nl
+    - literal_form: Rückgabeereignis
+      in_language: de
+    - literal_form: événement de retour
+      in_language: fr
+    comments:
+    - Maps to CIDOC-CRM E10 Transfer of Custody, specifically the return leg of a loan transaction.
+    - Captures return date, condition assessment on return, damage or issues discovered.
+    - Linked to Loan via returned slot.
+    broad_mappings:
+    - crm:E10_Transfer_of_Custody
+    close_mappings:
+    - rico:Event
+    - schema:Action
+    slots:
+    - return
+    - has_condition
+    - has_description
+    slot_usage:
+      return:
+        range: Item
+        multivalued: true
+        inlined: false
+        examples:
+        - value: hc:object/mauritshuis-670
+      has_condition:
+        range: Condition
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+            has_type: GoodCondition
+            has_description:
+              description_text: Returned in same condition as loaned (UNCHANGED)
+        - value:
+            has_type: FairCondition
+            has_description:
+              description_text: Minor surface scratches noted (MINOR_DAMAGE)
+    annotations:
+      custodian_types: '["M", "A", "L", "G", "R"]'
+      custodian_types_rationale: Used by institutions that participate in loan programs.
+      specificity_score: 0.65
+      specificity_rationale: Fairly specific - applies to loan management contexts.
+    examples:
+    - value:
+        return:
+        - hc:object/mauritshuis-670
+        has_condition:
+        - has_type: GoodCondition
+          has_description:
+            description_text: Returned in excellent condition, no changes from pre-loan assessment
+    - value:
+        return:
+        - hc:object/rijksmuseum-sk-c-5
+        has_condition:
+        - has_type: FairCondition
+          has_description:
+            description_text: Minor scratches on frame corner, likely from handling
+        return_report_url: https://example.org/returns/2024-03-20-report.pdf

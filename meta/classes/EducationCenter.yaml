@@ -1,0 +1,257 @@
+id: https://nde.nl/ontology/hc/class/education-center
+name: education_center_class
+title: EducationCenter Class
+imports:
+- linkml:types
+- ../enums/EducationProviderTypeEnum
+- ../enums/RoomUnitTypeEnum
+- ../slots/has_accessibility_feature
+- ../slots/has_contact_details
+- ../slots/has_description
+- ../slots/has_equipment
+- ../slots/has_facility
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_time_interval
+- ../slots/has_type
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/required
+- ../slots/maximum_of_maximum
+- ../slots/provide
+- ../slots/serve
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+classes:
+  EducationCenter:
+    is_a: ReconstructedEntity
+    class_uri: schema:EducationalOrganization
+    description: >-
+      Dedicated educational facility or program space operated by a heritage
+      custodian for school visits, workshops, and lifelong learning activities.
+    alt_descriptions:
+      nl: Toegewijde educatieve voorziening of programmaruimte van een erfgoedinstelling voor schoolbezoeken workshops en leven lang leren.
+      de: Spezifische Bildungsstaette oder Programmflaeche einer Kultureinrichtung fuer Schulbesuche Workshops und lebenslanges Lernen.
+      fr: Espace educatif dedie exploite par un detenteur de patrimoine pour visites scolaires ateliers et apprentissage tout au long de la vie.
+      es: Instalacion educativa o espacio de programas gestionado por una institucion patrimonial para visitas escolares talleres y aprendizaje permanente.
+      ar: مرفق تعليمي أو مساحة برامج مخصصة تديرها جهة تراثية للزيارات المدرسية وورش العمل والتعلم مدى الحياة.
+      id: Fasilitas pendidikan atau ruang program khusus yang dikelola lembaga warisan untuk kunjungan sekolah lokakarya dan pembelajaran sepanjang hayat.
+      zh: 由遗产机构运营的专用教育设施或活动空间，用于学校参访、工作坊与终身学习活动。
+    structured_aliases:
+    - {literal_form: educatief centrum, in_language: nl}
+    - {literal_form: Bildungszentrum, in_language: de}
+    - {literal_form: centre educatif, in_language: fr}
+    - {literal_form: centro educativo, in_language: es}
+    - {literal_form: مركز تعليمي, in_language: ar}
+    - {literal_form: pusat pendidikan, in_language: id}
+    - {literal_form: 教育中心, in_language: zh}
+    broad_mappings:
+    - schema:EducationalOrganization
+    close_mappings:
+    - org:Site
+    - wd:Q1376987
+    - schema:LearningResource
+    related_mappings:
+    - hc:ResearchCenter
+    - schema:School
+    - schema:Course
+    slots:
+    - has_accessibility_feature
+    - required
+    - has_facility
+    - identified_by
+    - has_label
+    - has_description
+    - has_contact_details
+    - has_type
+    - has_equipment
+    - provide
+    - maximum_of_maximum
+    - serve
+    - has_score
+    - derive_from
+    - generated_by
+    - has_quantity
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/rijksmuseum-education
+      has_label:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+        examples:
+        - value: 'label_text: Rijksmuseum Educatie Centrum '
+        - value: 'label_text: Nationaal Archief Leercentrum '
+        - value: 'label_text: KB Workshops & Trainingen '
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value: 'description_text: Dedicated education facility offering school programs, family workshops, and teacher training. Features 4 classroom spaces and hands-on workshop areas. '
+      has_type:
+        range: EducationFacilityType
+        inlined: true
+        examples:
+        - value:
+            has_label: EDUCATION_CENTER
+      has_equipment:
+        range: AVEquipment
+        required: false
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_name: 4K Projector
+            has_type: Projector
+      provide:
+#         range: string
+        examples:
+        - value:
+            has_description: Hands-on learning lab
+      serve:
+        range: UserCommunity
+        inlined: true
+        multivalued: true
+        examples:
+        - value: 'community_name: "Primary schools" '
+        - value: 'community_name: "Families" '
+        - value: 'community_name: "Adult learners" '
+      has_facility:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        multivalued: true
+        examples:
+        - value: "facility_name: \"Main Classroom Wing\"\nhas_quantity:\n  numeric_value: 4\nhas_unit:\n  unit_type: CLASSROOM\nseating_capacity: 120\nav_equipped: true\n"
+      has_quantity:
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            numeric_value: 2
+            has_measurement_unit:
+              unit_text: workshop_spaces
+        - value:
+            numeric_value: 8
+            has_measurement_unit:
+              unit_text: staff_members
+      maximum_of_maximum:
+        range: integer
+        examples:
+        - value: 30
+      required:
+        range: boolean
+        examples:
+        - value: true
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    comments:
+    - EducationCenter models educational facilities of heritage custodians
+    - Schema.org EducationalOrganization for education facilities
+    - Links to EducationProviderTypeEnum for Wikidata-sourced classification
+    - Distinguished from ResearchCenter by public education focus
+    - Serves schools, families, adults, and professional development
+    see_also:
+    - https://schema.org/EducationalOrganization
+    - https://www.wikidata.org/wiki/Q1376987
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/rijksmuseum-education
+        has_label:
+          label_text: Rijksmuseum Educatie Centrum
+        has_description:
+          description_text: Dedicated education facility offering school programs, family workshops, and teacher training.
+        has_type:
+          has_label: EDUCATION_CENTER
+        has_contact_details:
+          include:
+            has_label: educatie@rijksmuseum.nl
+        serves_or_served:
+        - community_name: Primary schools
+        - community_name: Secondary schools
+        - community_name: Families
+        - community_name: Teachers
+        - program_name: School guided tours
+        - program_name: Interactive workshops
+        - program_name: Family treasure hunts
+        - program_name: Teacher training days
+        has_facility:
+        - facility_name: Education Wing Classrooms
+          has_quantity:
+            numeric_value: 4
+          has_unit:
+          seating_capacity: 120
+        has_quantity:
+        - numeric_value: 2
+          has_unit:
+            unit_text: workshop_spaces
+        - numeric_value: 12
+          has_unit:
+            unit_text: staff_members
+        max_group_size: 30
+        has_equipment:
+        - has_name: 4K Projector
+          has_type: Projector
+        provide:
+          has_description: Hands-on learning lab
+        has_accessibility_feature:
+        - Wheelchair accessible
+        - Hearing loop
+        - has_quantity: 75000
+          has_time_interval:
+            has_label: Annual
+        required: true
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/na-leercentrum
+        has_label:
+          label_text: Nationaal Archief Leercentrum
+        has_description:
+          description_text: Learning center focused on historical research skills and genealogy.
+        has_type:
+          has_label: RESOURCE_CENTER
+        serves_or_served:
+        - community_name: Adult learners
+        - community_name: Genealogists
+        - community_name: History teachers
+        - program_name: Introduction to archival research
+        - program_name: Genealogy workshops
+        - program_name: Paleography basics
+        - program_name: Teacher curriculum support
+        has_facility:
+        - facility_name: Learning Rooms
+          has_quantity:
+            numeric_value: 2
+          has_unit:
+          seating_capacity: 40
+        max_group_size: 20
+        has_equipment:
+        - has_name: Projector
+          has_type: Projector
+        required: true
+    notes:
+    - |
+      Preserved from prior description (commit ee5e8e5a):
+
+      "Education center, learning facility, or educational programming space\noperated by a heritage custodian.\n\n**DEFINITION**:\n\nAn EducationCenter is a dedicated space for educational activities,\nworkshops, school programs, and public learning initiatives operated\nby a heritage custodian. Distinguished from ResearchCenter (academic\nresearch) by focus on public education and lifelong learning.\n\n**SCHEMA.ORG ALIGNMENT**:\n\n`schema:EducationalOrganization` - \"An educational organization.\"\n\n**WIKIDATA TYPE LINKAGE (EducationProviderTypeEnum Subset)**:\n\nEducation centers can be classified using relevant types from \nEducationProviderTypeEnum (208 types). Relevant education facility types:\n\n- Q3914 (school) - General educational facility\n- Q1376987 (education center)\n- Q9842 (primary school) - For youth programs\n- Q159334 (adult education) - For adult learning\n- Q578023 (resource center) - Learning resource facility\n- Q7315155 (research department) - If combined\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

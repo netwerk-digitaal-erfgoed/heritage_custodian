@@ -1,0 +1,74 @@
+id: https://w3id.org/nde/ontology/LiteraryArchive
+name: LiteraryArchive
+title: Literary Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  LiteraryArchive:
+    description: >-
+      Archive organization focused on preserving literary production records,
+      author papers, manuscripts, and publishing-context documentation.
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    alt_descriptions:
+      nl: Archieforganisatie gericht op bewaring van literaire productierecords auteursarchieven manuscripten en publicatiecontext.
+      de: Archivorganisation mit Fokus auf Erhalt literarischer Produktionsunterlagen Autorennachlaesse Manuskripte und Publikationskontexte.
+      fr: Organisation archivistique consacree a la preservation des documents de production litteraire papiers d auteurs et manuscrits.
+      es: Organizacion archivistica centrada en preservar registros de produccion literaria papeles de autores y manuscritos.
+      ar: منظمة أرشيفية تركز على حفظ سجلات الإنتاج الأدبي وأوراق الكُتّاب والمخطوطات ووثائق سياق النشر.
+      id: Organisasi arsip yang berfokus melestarikan rekaman produksi sastra arsip penulis manuskrip dan dokumentasi konteks penerbitan.
+      zh: 专注保存文学创作记录、作家文献、手稿及出版背景文档的档案机构。
+    structured_aliases:
+    - {literal_form: literair archief, in_language: nl}
+    - {literal_form: Literaturarchiv, in_language: de}
+    - {literal_form: archives litteraires, in_language: fr}
+    - {literal_form: archivo literario, in_language: es}
+    - {literal_form: أرشيف أدبي, in_language: ar}
+    - {literal_form: arsip sastra, in_language: id}
+    - {literal_form: 文学档案馆, in_language: zh}
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q28607652
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Literary Archive
+      skos:altLabel: "Literaturarchiv, archivo literario, archives littéraires, Author Archive"
+      subject_domain: literature
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - Nachlass
+    - PersonalLibrary
+    - SpecializedArchive
+    - WritersArchive
+    comments:
+    - Literaturarchiv (de)
+    - archivo literario (es)
+    - "archives littéraires (fr)"
+    - May include author papers, manuscripts, correspondence
+    - Often associated with national literature collections
+    - 'Examples: Deutsches Literaturarchiv Marbach, Harry Ransom Center'

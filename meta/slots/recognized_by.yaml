@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: recognized_by
+# ==============================================================================
+# Links a detected object or pattern in digital media to the algorithm or
+# model that identified it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line                | Mapping | Notes                                              |
+# |---------------|------------------------|--------------------------|---------|----------------------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo` | prov.ttl:1082-1096       | broad   | "Attribution is the ascribing of an entity to an    |
+# |               |                        |                          |         | agent." General entity→agent attribution; broader    |
+# |               |                        |                          |         | than specifically algorithmic recognition.           |
+# | **Schema.org**| `schema:recognizedBy`  | schemaorg.owl:32308-32329| related | "An organization that acknowledges the validity of   |
+# |               |                        |                          |         | a credential." Credential accreditation domain —     |
+# |               |                        |                          |         | different from computational pattern recognition.    |
+#
+# No exact match — retains hc:recognizedBy.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/recognized_by
+name: recognized_by
+title: Recognized By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  recognized_by:
+    slot_uri: hc:recognizedBy
+    description: >-
+      Links a specific object, feature, face, or pattern detected within digital or digitized
+      media to the specific algorithm, model, or neural network that successfully identified
+      or classified it.
+    alt_descriptions:
+      nl: >-
+        Koppelt een specifiek object, kenmerk, gezicht of patroon gedetecteerd in digitale of
+        gedigitaliseerde media aan het specifieke algoritme, model of neurale netwerk dat het
+        succesvol heeft geïdentificeerd of geclassificeerd.
+      de: >-
+        Verknüpft ein bestimmtes Objekt, Merkmal, Gesicht oder Muster, das in digitalen oder
+        digitalisierten Medien erkannt wurde, mit dem spezifischen Algorithmus, Modell oder
+        neuronalen Netzwerk, das es erfolgreich identifiziert oder klassifiziert hat.
+      fr: >-
+        Relie un objet, une caractéristique, un visage ou un motif spécifique détecté dans des
+        médias numériques ou numérisés à l'algorithme, au modèle ou au réseau neuronal spécifique
+        qui l'a identifié ou classifié avec succès.
+      ar: >-
+        يربط كائنًا أو ميزة أو وجهًا أو نمطًا محددًا تم اكتشافه في وسائط رقمية أو رقمنة
+        بالخوارزمية أو النموذج أو الشبكة العصبية المحددة التي نجحت في تحديده أو تصنيفه.
+      id: >-
+        Menghubungkan objek, fitur, wajah, atau pola tertentu yang terdeteksi dalam media digital
+        atau yang didigitalkan dengan algoritma, model, atau jaringan saraf tertentu yang berhasil
+        mengidentifikasi atau mengklasifikasikannya.
+      zh: >-
+        将在数字或数字化媒体中检测到的特定对象、特征、面部或模式与成功识别或分类它的特定算法、模型或神经网络关联起来。
+      es: >-
+        Vincula un objeto, característica, rostro o patrón específico detectado en medios digitales
+        o digitalizados con el algoritmo, modelo o red neuronal específica que lo identificó o
+        clasificó exitosamente.
+    structured_aliases:
+      - literal_form: Herkend door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Erkannt durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Reconnu par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معترف به بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Dikenali Oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 识别者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Reconocido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1096 — "Attribution is the ascribing of an entity to an agent." General entity→agent attribution; broader than algorithmic recognition.
+    related_mappings:
+      - schema:recognizedBy  # schemaorg.owl:32308-32329 — "An organization that acknowledges the validity of a credential." Credential accreditation — different domain from computational pattern recognition.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_recognized

@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: conform_to
+# ==============================================================================
+# An established standard to which the described resource conforms.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line              | Mapping  | Notes                                                       |
+# |---------------|-----------------------|------------------------|----------|-------------------------------------------------------------|
+# | **DCTerms**   | `dcterms:conformsTo`  | dcterms.rdf:987-1010   | slot_uri | "An established standard to which the resource conforms."   |
+# | **DCAT**      | `dcterms:conformsTo`  | dcat3.ttl (reuses)     | —        | DCAT reuses dcterms:conformsTo for dataset profiles.        |
+#
+# HIERARCHY:
+# - dcterms:conformsTo rdfs:subPropertyOf dcterms:relation
+# - dcterms:conformsTo rdfs:subPropertyOf dc:relation
+# - rangeIncludes dcterms:Standard
+#
+# CREATED: 2026-02-10
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/conform_to
+name: conform_to
+title: Conforms To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  conform_to:
+    slot_uri: dcterms:conformsTo
+    description: >-
+      An established standard to which the described resource conforms. In the
+      heritage-custodian context, this captures the metadata standards,
+      interchange formats, or data models that a platform or dataset implements
+      (e.g., Dublin Core, MARC21, EAD, LIDO, MODS, EDM, Schema.org, CIDOC-CRM).
+    alt_descriptions:
+      nl: >-
+        Een vastgestelde standaard waaraan de beschreven bron voldoet. Legt vast
+        welke metadatastandaarden of gegevensmodellen een platform of dataset
+        implementeert.
+      de: >-
+        Ein etablierter Standard, dem die beschriebene Ressource entspricht.
+        Erfasst die Metadatenstandards oder Datenmodelle, die eine Plattform
+        oder ein Datensatz implementiert.
+      fr: >-
+        Un standard établi auquel la ressource décrite est conforme. Capture les
+        standards de métadonnées ou modèles de données qu'une plateforme ou un
+        jeu de données implémente.
+      ar: >-
+        معيار راسخ تتوافق معه المورد الموصوف. يسجل معايير البيانات الوصفية
+        أو نماذج البيانات التي تنفذها منصة أو مجموعة بيانات.
+      id: >-
+        Standar yang ditetapkan yang dipatuhi oleh sumber daya yang
+        dideskripsikan. Mencatat standar metadata atau model data yang
+        diimplementasikan oleh platform atau dataset.
+      zh: >-
+        所描述资源所遵循的既定标准。记录平台或数据集所实施的元数据标准或数据模型。
+      es: >-
+        Un estándar establecido al que se conforma el recurso descrito. Captura
+        los estándares de metadatos o modelos de datos que implementa una
+        plataforma o conjunto de datos.
+    structured_aliases:
+      - literal_form: voldoet aan
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: entspricht
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: conforme à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يتوافق مع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: sesuai dengan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 符合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: conforme a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases: []
+    examples:
+      - value: "Dublin Core"
+        description: Platform implements Dublin Core metadata standard
+      - value: "LIDO"
+        description: Museum dataset conforms to LIDO interchange format
+      - value: "EDM (Europeana Data Model)"
+        description: Dataset conforms to Europeana Data Model
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Common heritage metadata standards include Dublin Core, MARC21,
+        EAD (Encoded Archival Description), LIDO, MODS, EDM (Europeana
+        Data Model), Schema.org, and CIDOC-CRM.
+      - >-
+        The range is string for now but could be narrowed to a controlled
+        vocabulary of standard identifiers in a profile.

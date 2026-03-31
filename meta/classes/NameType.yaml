@@ -1,0 +1,234 @@
+id: https://nde.nl/ontology/hc/class/NameType
+name: name_type_class
+title: Name Type Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dwc: http://rs.tdwg.org/dwc/terms/
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+
+classes:
+  NameType:
+    class_uri: crm:E55_Type
+    abstract: true
+    description: >-
+      Abstract categorization scheme for classifying designations and labels assigned to entities.
+    alt_descriptions:
+      nl: >-
+        Abstracte categorisering voor het classificeren van aanduidingen en labels toegekend aan entiteiten.
+      de: >-
+        Abstraktes Klassifizierungsschema für die Einstufung von Bezeichnungen und Labels, die Entitäten zugewiesen werden.
+      fr: >-
+        Schéma de catégorisation abstrait pour classifier les désignations et étiquettes attribuées aux entités.
+      es: >-
+        Esquema de categorización abstracto para clasificar designaciones y etiquetas asignadas a entidades.
+      ar: >-
+        مخطط تصنيف تجريدي لتصنيف التسميات والعلامات المخصصة للكيانات.
+      id: >-
+        Skema kategorisasi abstrak untuk mengklasifikasikan penunjukan dan label yang diberikan kepada entitas.
+      zh: >-
+        用于分类分配给实体的名称和标签的抽象分类方案。
+    structured_aliases:
+
+      - literal_form: naamtype
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: aanduidingscategorie
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: Namenstyp
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: Bezeichnungskategorie
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: type de nom
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: catégorie de désignation
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: tipo de nombre
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: categoría de designación
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: نوع الاسم
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: فئة التسمية
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: jenis nama
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: kategori penunjukan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: 名称类型
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: 命名类别
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: name type
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: designation
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: label classification
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: nomenclature
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_label
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_description
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+    keywords:
+    - name classification
+    - designation type
+    - nomenclature
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: "Common Name"
+        - value: "Scientific Name"
+      has_description:
+        required: false
+
+    close_mappings:
+    - skos:Concept
+
+    examples:
+    - value: |
+        has_name:
+          - has_label: "Dodo"
+            has_type: CommonName  # ← NameType subclass
+            has_language: "en"
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Abstract base class for name type classifications.
+
+      **DESIGN PATTERN** (Rule 0b - Type/Types Convention):
+
+      | File | Purpose |
+      |------|---------|
+      | `NameType.yaml` (this file) | Abstract base class |
+      | `NameTypes.yaml` | Concrete subclasses (CommonName, ScientificName, etc.) |
+
+      **Purpose**:
+      Provides type taxonomy for categorizing different kinds of names:
+      - Common/vernacular names (species, products)
+      - Scientific names (binomial nomenclature)
+      - Official names (organizations, places)
+      - Trade/brand names
+      - Historical/former names
+
+      **Ontological Alignment**:
+      - **Primary** (`class_uri`): `crm:E55_Type` - CIDOC-CRM type
+      - **Close**: `skos:Concept` - SKOS concept vocabulary
+
+      **Usage**:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Name types applicable across all heritage domains.
+      custodian_types_primary: M
+      specificity_score: 0.30
+      specificity_rationale: >-
+        Moderately specific - name type vocabularies are fundamental but have
+        domain-specific variations (biology vs. organizational naming).
+      design_pattern: "Type/Types (Rule 0b)"
+      # migration_info: (Flattened)
+      migration_source_slot: common_name
+      migration_date: "2026-01-22"
+      migration_rule: "Rule 53"
+
+    comments:
+    - "Abstract base class - see NameTypes.yaml for concrete subclasses"
+    - "Follows Rule 0b Type/Types naming pattern"
+    - "Used with Name class to classify name types"
+    - "Created 2026-01-22 from common_name migration (Rule 53)"
+    - 'Preserved from prior description: Abstract base class for controlled categories used to type names.'
+    broad_mappings:
+    - crm:E55_Type

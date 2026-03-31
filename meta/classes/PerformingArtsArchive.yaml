@@ -1,0 +1,73 @@
+id: https://w3id.org/nde/ontology/PerformingArtsArchive
+name: PerformingArtsArchive
+title: Performing Arts Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  PerformingArtsArchive:
+    description: Archive organization focused on records and documentation of live performance and performing arts.
+    alt_descriptions:
+      nl: Archieforganisatie gericht op archieven en documentatie van podiumkunsten en live uitvoeringen.
+      de: Archivorganisation mit Schwerpunkt auf Unterlagen und Dokumentation der darstellenden Kuenste.
+      fr: Organisation d archives consacree aux documents et a la documentation des arts du spectacle.
+      es: Organizacion archivistica centrada en registros y documentacion de las artes escenicas.
+      ar: مؤسسة أرشيفية متخصصة في سجلات ووثائق فنون الأداء والعروض الحية.
+      id: Organisasi arsip yang berfokus pada arsip dan dokumentasi seni pertunjukan dan performa langsung.
+      zh: 以现场表演与表演艺术记录/文献为重点的档案机构类型。
+    structured_aliases:
+    - {literal_form: podiumkunstenarchief, in_language: nl}
+    - {literal_form: Archiv fuer darstellende Kunst, in_language: de}
+    - {literal_form: archives des arts de la scene, in_language: fr}
+    - {literal_form: archivo de artes escenicas, in_language: es}
+    - {literal_form: أرشيف فنون الأداء, in_language: ar}
+    - {literal_form: arsip seni pertunjukan, in_language: id}
+    - {literal_form: 表演艺术档案馆, in_language: zh}
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q27030945
+    broad_mappings:
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: hc:PerformingArtsArchive
+    annotations:
+      skos:prefLabel: Performing Arts Archive
+      skos:altLabel: "Archiv für darstellende Kunst, archives des arts de la scène, Theater Archive, Dance Archive"
+      subject_domain: performing arts
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - MusicArchive
+    - FilmArchive
+    - SpecializedArchive
+    comments:
+    - "Archiv für darstellende Kunst (de)"
+    - "archives des arts de la scène (fr)"
+    - Covers theater, dance, opera, music performance
+    - Preserves ephemeral performance documentation
+    - May include costumes, set designs, recordings

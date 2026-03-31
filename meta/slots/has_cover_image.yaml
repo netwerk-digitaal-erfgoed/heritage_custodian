@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: has_cover_image
+# ==============================================================================
+# Primary visual representation image for a creative work or entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                     | File/Line                  | Mapping | Notes                                                              |
+# |-------------|------------------------------|----------------------------|---------|--------------------------------------------------------------------|
+# | **Schema**  | `schema:image`               | schemaorg.owl:21413-21434  | close   | "An image of the item." Domain: Thing. Any image, not specifically a primary/cover image. |
+# | **Schema**  | `schema:thumbnailUrl`        | schemaorg.owl:37782-37801  | narrow  | "A thumbnail image relevant to the Thing." Domain: CreativeWork. Thumbnail is a specific subtype of representative image. |
+# | **Schema**  | `schema:primaryImageOfPage`  | schemaorg.owl:30800-30821  | related | "The main image on the page." Domain restricted to WebPage.        |
+# | **FOAF**    | `foaf:depiction`             | foaf.ttl:189-197           | broad   | "A depiction of some thing." Any depiction, not specifically cover/primary. |
+# | **Schema**  | `schema:logo`                | schemaorg.owl:25110-25135  | related | "An associated logo." Brand identifier, not a cover image.         |
+#
+# NOTE: No standard ontology has an exact match for "cover image" as a property
+# denoting the primary visual representation. schema:image is closest but does
+# not convey the "primary/cover" qualifier.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_cover_image
+name: has_cover_image
+title: Has Cover Image
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_cover_image:
+    slot_uri: hc:hasCoverImage
+    description: >-
+      Associates a creative work, publication, or product with the specific
+      image serving as its primary visual representation, intended to identify
+      or promote the content.
+    alt_descriptions:
+      nl: >-
+        Associeert een creatief werk, publicatie of product met de specifieke
+        afbeelding die dient als primaire visuele representatie, bedoeld om de
+        inhoud te identificeren of te promoten.
+      de: >-
+        Verknüpft ein kreatives Werk, eine Veröffentlichung oder ein Produkt
+        mit dem spezifischen Bild, das als primäre visuelle Darstellung dient
+        und zur Identifizierung oder Bewerbung des Inhalts bestimmt ist.
+      fr: >-
+        Associe une œuvre créative, une publication ou un produit à l'image
+        spécifique servant de représentation visuelle principale, destinée à
+        identifier ou promouvoir le contenu.
+      ar: >-
+        يربط عملًا إبداعيًا أو منشورًا أو منتجًا بالصورة المحددة التي تعمل
+        كتمثيل بصري رئيسي، بهدف تعريف المحتوى أو الترويج له.
+      id: >-
+        Mengasosiasikan karya kreatif, publikasi, atau produk dengan gambar
+        tertentu yang berfungsi sebagai representasi visual utama, dimaksudkan
+        untuk mengidentifikasi atau mempromosikan konten.
+      zh: >-
+        将创意作品、出版物或产品与作为其主要视觉表示的特定图像相关联，旨在识别或推广内容。
+      es: >-
+        Asocia una obra creativa, publicación o producto con la imagen
+        específica que sirve como representación visual principal, destinada a
+        identificar o promocionar el contenido.
+    structured_aliases:
+      - literal_form: Omslagafbeelding
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Titelbild
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Image de couverture
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: صورة الغلاف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Gambar sampul
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 封面图片
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Imagen de portada
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uri
+    close_mappings:
+      - schema:image  # schemaorg.owl:21413-21434 - "An image of the item." Domain: Thing. Any image, not specifically cover/primary.
+    narrow_mappings:
+      - schema:thumbnailUrl  # schemaorg.owl:37782-37801 - "A thumbnail image relevant to the Thing." Thumbnail is a narrower subtype.
+    related_mappings:
+      - schema:primaryImageOfPage  # schemaorg.owl:30800-30821 - "Main image on the page." Domain restricted to WebPage.
+      - schema:logo  # schemaorg.owl:25110-25135 - "An associated logo." Brand identifier, not cover image.
+    broad_mappings:
+      - foaf:depiction  # foaf.ttl:189-197 - "A depiction of some thing." Any depiction, not specifically cover/primary.
+    aliases:
+      - cover_image_url
+    comments:
+      - >-
+        Not all platforms have cover images. This property is used in contexts
+        such as banner images, hero images, or publication covers.
+    annotations:
+      custodian_types: '["*"]'

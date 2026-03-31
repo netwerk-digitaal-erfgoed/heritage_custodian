@@ -1,0 +1,82 @@
+id: https://nde.nl/ontology/hc/class/ComarcalArchiveRecordSetTypes
+name: ComarcalArchiveRecordSetTypes
+title: ComarcalArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./ComarcalArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  ComarcalAdministrationFonds:
+    is_a: ComarcalArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Fonds-level aggregation of Catalan comarca council administrative records
+      and governance documentation.
+    alt_descriptions:
+      nl: >-
+        Aggregatie op fondsniveau van Catalaanse comarca-raad administratieve verslagen
+        en bestuursdocumentatie.
+      de: >-
+        Bestandslevel-Aggregation katalanischer Comarca-Rats-Verwaltungsunterlagen und
+        Regierungsdokumentation.
+      fr: >-
+        Agrégation au niveau du fonds des dossiers administratifs du conseil comarcal
+        catalan et de la documentation de gouvernance.
+      es: >-
+        Agregación a nivel de fondo de registros administrativos del consejo comarcal
+        catalán y documentación de gobernanza.
+      ar: >-
+        تجميع على مستوى المجموعة للسجلات الإدارية لمجلس كوماركا الكتالوني ووثائق الحوكمة.
+      id: >-
+        Agregasi tingkat dana catatan administratif dewan comarca Catalan dan dokumentasi tata kelola.
+      zh: >-
+        加泰罗尼亚县议会行政记录和治理文件的全宗级聚合。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: "hc:ComarcalAdministrationFonds"
+      has_custodian:
+        equals_string: "hc:ComarcalArchive"
+
+  ComarcalHistoryCollection:
+    is_a: ComarcalArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Collection-oriented aggregation of regional memory materials assembled for local historical reference.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: "hc:ComarcalHistoryCollection"
+      has_custodian:
+        equals_string: "hc:ComarcalArchive"

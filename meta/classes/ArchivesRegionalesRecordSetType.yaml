@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/ArchivesRegionalesRecordSetType
+name: ArchivesRegionalesRecordSetType
+title: Archives Régionales Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_type
+classes:
+  ArchivesRegionalesRecordSetType:
+    class_uri: hc:ArchivesRegionalesRecordSetType
+    description: >-
+      Classification category for record sets within French regional archives,
+      containing administrative records from regional governmental bodies.
+    alt_descriptions:
+      nl: >-
+        Classificatiecategorie voor recordsets binnen Franse regionale archieven,
+        met administratieve archieven van regionale overheidsinstanties.
+      de: >-
+        Klassifizierungskategorie fuer Datensatzgruppen in franzoesischen
+        Regionalarchiven mit Verwaltungsunterlagen regionaler Regierungsstellen.
+      fr: >-
+        Categorie de classification pour les ensembles d'enregistrements dans
+        les archives regionales francaises, contenant des documents administratifs
+        des organes gouvernementaux regionaux.
+      es: >-
+        Categoria de clasificacion para conjuntos de registros en archivos
+        regionales franceses, que contienen registros administrativos de los
+        organos gubernamentales regionales.
+      ar: >-
+        فئة تصنيف لمجموعات السجلات في الأرشيفات الإقليمية الفرنسية، التي تحتوي
+        على سجلات إدارية من الهيئات الحكومية الإقليمية.
+      id: >-
+        Kategori klasifikasi untuk kumpulan rekaman dalam arsip regional Prancis,
+        berisi catatan administratif dari badan pemerintah regional.
+      zh: >-
+        法国地区档案中记录集的分类类别，包含地区政府机构的行政记录。
+    is_a: CollectionType
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+    structured_aliases:
+      - literal_form: regionaal-archief-recordsettype
+        in_language: nl
+      - literal_form: Regionalarchiv-Bestandsart
+        in_language: de
+      - literal_form: type de fonds d'archives regionales
+        in_language: fr
+      - literal_form: tipo de fondo de archivos regionales
+        in_language: es
+      - literal_form: نوع مجموعة سجلات الأرشيف الإقليمي
+        in_language: ar
+      - literal_form: tipe kumpulan rekaman arsip regional
+        in_language: id
+      - literal_form: 地区档案记录集类型
+        in_language: zh
+    examples:
+      - value:
+          has_type: ArchiveOrganizationType
+          has_score: 1.0
+        description: Regional administration fonds type
+    keywords:
+      - regional records
+      - french archives
+      - record set type
+      - classification
+    slots:
+      - has_type
+      - has_score
+      - has_scope
+    slot_usage:
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+    comments:
+      - Abstract classification for French regional archive collections
+      - See ArchivesRegionalesRecordSetTypes.yaml for concrete subclasses
+    see_also:
+      - ArchivesRegionales
+      - rico:RecordSetType
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Specific record set type for French regional archives
+      custodian_types: "['ArchivesRegionales']"

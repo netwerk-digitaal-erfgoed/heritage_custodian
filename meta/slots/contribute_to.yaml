@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: contribute_to
+# ==============================================================================
+# Giving or supplying resources to help achieve a result alongside others.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                      | Mapping | Notes                                                      |
+# |---------------|-----------------------------|--------------------------------|---------|------------------------------------------------------------|
+# | **CRM**       | `crm:P11i_participated_in`  | CIDOC_CRM_v7.1.3.rdf:1422-1433| broad   | "participated in." Actor→Event. Participation is broader.  |
+# | **Schema.org**| `schema:contributor`        | schemaorg.owl:12908-12920      | related | "Secondary contributor to CreativeWork/Event." Inverse dir. |
+# | **DCTerms**   | `dcterms:contributor`       | dcterms.rdf:1011-1032          | related | "Entity responsible for contributions." Inverse direction.  |
+# | **CRM**       | `crm:P14i_performed`        | CIDOC_CRM_v7.1.3.rdf:1504-1515| related | "performed." Actor→Activity. Implies causal responsibility. |
+#
+# REMOVED MAPPINGS:
+#   - prov:hadMember (was related) — Collection membership (prov.ttl:637-648),
+#     semantically unrelated to contribution.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/contribute_to
+name: contribute_to
+title: contribute_to
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  contribute_to:
+    name: contribute_to
+    title: contribute_to
+    description: >-
+      To give or supply something (such as money, time, knowledge, or assistance)
+      in order to help achieve a result or provide a resource alongside others.
+    alt_descriptions:
+      nl: >-
+        Iets geven of leveren (zoals geld, tijd, kennis of hulp) om bij te dragen
+        aan het bereiken van een resultaat of het leveren van een middel samen met
+        anderen.
+      de: >-
+        Etwas geben oder bereitstellen (wie Geld, Zeit, Wissen oder Unterstützung),
+        um dazu beizutragen, ein Ergebnis zu erzielen oder eine Ressource gemeinsam
+        mit anderen bereitzustellen.
+      fr: >-
+        Donner ou fournir quelque chose (comme de l'argent, du temps, des
+        connaissances ou de l'assistance) afin d'aider à atteindre un résultat ou
+        à fournir une ressource conjointement avec d'autres.
+      ar: >-
+        تقديم أو توفير شيء ما (مثل المال أو الوقت أو المعرفة أو المساعدة) من أجل
+        المساعدة في تحقيق نتيجة أو توفير مورد بالتعاون مع آخرين.
+      id: >-
+        Memberikan atau menyediakan sesuatu (seperti uang, waktu, pengetahuan, atau
+        bantuan) untuk membantu mencapai suatu hasil atau menyediakan sumber daya
+        bersama pihak lain.
+      zh: >-
+        给予或提供某些事物（如资金、时间、知识或协助），以帮助实现某一成果或与他人共同提供资源。
+      es: >-
+        Dar o suministrar algo (como dinero, tiempo, conocimiento o asistencia) con
+        el fin de ayudar a lograr un resultado o proporcionar un recurso junto con
+        otros.
+    structured_aliases:
+      - literal_form: Bijdrage
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beitrag
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Contribution
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مساهمة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kontribusi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 贡献
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Contribución
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:contributeTo
+    range: string # uriorcurie
+    # range: AuthorityData
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - crm:P11i_participated_in  # CIDOC_CRM_v7.1.3.rdf:1422-1433 — "participated in." Actor→Event. Participation is broader than contribution.
+    related_mappings:
+      - schema:contributor  # schemaorg.owl:12908-12920 — "A secondary contributor to the CreativeWork or Event." Inverse direction (Resource→Agent).
+      - dcterms:contributor  # dcterms.rdf:1011-1032 — "An entity responsible for making contributions to the resource." Inverse direction (Resource→Agent).
+      - crm:P14i_performed  # CIDOC_CRM_v7.1.3.rdf:1504-1515 — "performed." Actor→Activity. Implies causal/legal responsibility, different modality.
+    aliases:
+      - contributes_or_contributed
+      - contributes_to

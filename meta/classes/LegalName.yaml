@@ -1,0 +1,80 @@
+id: https://nde.nl/ontology/hc/class/LegalName
+name: LegalName
+title: Legal Name
+description: Official registered name representation for legal identity contexts.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rov: http://www.w3.org/ns/regorg#
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_score
+- ../slots/in_language
+- ../slots/official_name_including_type
+- ../slots/official_name_excluding_type
+- ../slots/official_name_sort
+classes:
+  LegalName:
+    class_uri: hc:LegalName
+    description: >-
+      Official registered denomination of an entity, used for legal identity,
+      compliance, and authoritative referencing.
+    alt_descriptions:
+      nl: Officieel geregistreerde benaming van een entiteit voor juridische identiteit compliance en gezaghebbende verwijzing.
+      de: Amtlich eingetragene Bezeichnung einer Entitaet fuer rechtliche Identitaet Compliance und verbindliche Referenzierung.
+      fr: Denomination officielle enregistree d une entite utilisee pour identite juridique conformite et reference autoritative.
+      es: Denominacion oficial registrada de una entidad usada para identidad legal cumplimiento y referencia autorizada.
+      ar: التسمية الرسمية المسجلة للكيان وتستخدم للهوية القانونية والامتثال والمرجعية المعتمدة.
+      id: Nama resmi terdaftar suatu entitas untuk identitas hukum kepatuhan dan rujukan otoritatif.
+      zh: 实体的官方注册名称，用于法律身份、合规与权威引用。
+    structured_aliases:
+    - {literal_form: wettelijke naam, in_language: nl}
+    - {literal_form: gesetzlicher Name, in_language: de}
+    - {literal_form: nom legal, in_language: fr}
+    - {literal_form: nombre legal, in_language: es}
+    - {literal_form: الاسم القانوني, in_language: ar}
+    - {literal_form: nama legal, in_language: id}
+    - {literal_form: 法定名称, in_language: zh}
+    related_mappings:
+    - rov:legalName
+    - tooi:officieleNaamInclSoort
+    - tooi:officieleNaamExclSoort
+    - tooi:officieleNaamSorteer
+    comments:
+    - Legal names must match official registration exactly for legal validity.
+    - Organizations may have different legal names in different jurisdictions.
+    - Preserve historical legal names with temporal validity periods in the surrounding legal-status model.
+    - TOOI pattern: provide variants with and without organizational type, plus a sorting-oriented name.
+    slots:
+    - official_name_including_type
+    - official_name_excluding_type
+    - official_name_sort
+    - in_language
+    - has_score
+    slot_usage:
+      official_name_including_type:
+        required: true
+      official_name_excluding_type:
+        required: false
+      official_name_sort:
+        required: false
+    examples:
+    - value:
+        official_name_including_type: "Gemeente 's-Gravenhage"
+        official_name_excluding_type: "'s-Gravenhage"
+        official_name_sort: Gravenhage
+        in_language: nl
+      description: TOOI-style legal name variants
+    - value:
+        official_name_including_type: "Stichting Rijksmuseum"
+        official_name_excluding_type: Rijksmuseum
+        in_language: nl
+      description: Legal name with type-excluding display variant
+    annotations:
+      specificity_score: 0.5
+      specificity_rationale: Structured legal-name object supporting TOOI-style name variants.
+      custodian_types: "['*']"

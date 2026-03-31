@@ -1,0 +1,125 @@
+id: https://nde.nl/ontology/hc/class/AuditStatusTypes
+name: AuditStatusTypes
+title: Audit Status Types
+description: Concrete audit status types.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./AuditStatusType
+- linkml:types
+classes:
+  AuditedStatus:
+    is_a: AuditStatusType
+    class_uri: hc:AuditedStatus
+    description: Financial statement has been audited.
+    alt_descriptions:
+      nl: Jaarrekening is gecontroleerd.
+      de: Jahresabschluss wurde geprüft.
+      fr: Les états financiers ont été audités.
+      es: Los estados financieros han sido auditados.
+      ar: تم تدقيق البيانات المالية.
+      id: Laporan keuangan telah diaudit.
+      zh: 财务报表已经审计。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: gecontroleerd
+      in_language: nl
+    - literal_form: geprüft
+      in_language: de
+    - literal_form: audité
+      in_language: fr
+    - literal_form: auditado
+      in_language: es
+    - literal_form: تم التدقيق
+      in_language: ar
+    - literal_form: diaudit
+      in_language: id
+    - literal_form: 已审计
+      in_language: zh
+    examples:
+    - value:
+        has_label: Audited
+        has_description: Financial statements have been examined by independent auditor
+      description: Audited status
+    annotations:
+      custodian_types: "['*']"
+      specificity_score: "0.40"
+  UnauditedStatus:
+    is_a: AuditStatusType
+    class_uri: hc:UnauditedStatus
+    description: Financial statement has not been audited.
+    alt_descriptions:
+      nl: Jaarrekening is niet gecontroleerd.
+      de: Jahresabschluss wurde nicht geprüft.
+      fr: Les états financiers n'ont pas été audités.
+      es: Los estados financieros no han sido auditados.
+      ar: لم يتم تدقيق البيانات المالية.
+      id: Laporan keuangan belum diaudit.
+      zh: 财务报表未经审计。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: ongecontroleerd
+      in_language: nl
+    - literal_form: ungeprüft
+      in_language: de
+    - literal_form: non audité
+      in_language: fr
+    - literal_form: no auditado
+      in_language: es
+    - literal_form: غير مدقق
+      in_language: ar
+    - literal_form: belum diaudit
+      in_language: id
+    - literal_form: 未审计
+      in_language: zh
+    examples:
+    - value:
+        has_label: Not Audited
+        has_description: Financial statements have not undergone formal audit
+      description: Unaudited status
+    annotations:
+      custodian_types: "['*']"
+      specificity_score: "0.40"
+  ReviewStatus:
+    is_a: AuditStatusType
+    class_uri: hc:ReviewStatus
+    description: Financial statement has been reviewed but not fully audited.
+    alt_descriptions:
+      nl: Jaarrekening is beoordeeld maar niet volledig gecontroleerd.
+      de: Jahresabschluss wurde überprüft, aber nicht vollständig geprüft.
+      fr: Les états financiers ont été examinés mais pas entièrement audités.
+      es: Los estados financieros han sido revisados pero no auditados completamente.
+      ar: تم مراجعة البيانات المالية ولكن لم يتم تدقيقها بالكامل.
+      id: Laporan keuangan telah ditinjau tetapi belum diaudit sepenuhnya.
+      zh: 财务报表已经审查但未完全审计。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: in behandeling
+      in_language: nl
+    - literal_form: in Überprüfung
+      in_language: de
+    - literal_form: en cours de révision
+      in_language: fr
+    - literal_form: en revisión
+      in_language: es
+    - literal_form: قيد المراجعة
+      in_language: ar
+    - literal_form: sedang ditinjau
+      in_language: id
+    - literal_form: 审查中
+      in_language: zh
+    examples:
+    - value:
+        has_label: Under Review
+        has_description: Financial statements are being reviewed but not formally audited
+      description: Review status
+    annotations:
+      custodian_types: "['*']"
+      specificity_score: "0.40"

@@ -1,0 +1,64 @@
+id: https://nde.nl/ontology/hc/class/XPathScore
+name: XPathScore
+title: XPath Match Score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_score
+classes:
+  XPathScore:
+    class_uri: schema:Rating
+    description: >-
+      Confidence value from 0.0 to 1.0 indicating selector match reliability
+      during HTML/XML extraction.
+    alt_descriptions:
+      nl: Betrouwbaarheidsscore voor een XPath-matchresultaat, variërend van 0,0 tot 1,0, die de betrouwbaarheid van elementextractie uit HTML/XML-documenten aangeeft.
+      de: Konfidenzwert für ein XPath-Übereinstimmungsergebnis, der von 0,0 bis 1,0 reicht und die Zuverlässigkeit der Elementextraktion aus HTML/XML-Dokumenten angibt.
+      fr: Score de confiance pour un résultat de correspondance XPath, allant de 0,0 à 1,0, indiquant la fiabilité de l'extraction d'éléments des documents HTML/XML.
+      es: Puntuación de confianza para un resultado de coincidencia XPath, que va de 0,0 a 1,0, indicando la confiabilidad de la extracción de elementos de documentos HTML/XML.
+      ar: درجة الثقة لنتيجة مطابقة XPath، تتراوح من 0.0 إلى 1.0، تشير إلى موثوقية استخراج العناصر من مستندات HTML/XML.
+      id: Skor kepercayaan untuk hasil kecocokan XPath, berkisar dari 0,0 hingga 1,0, menunjukkan keandalan ekstraksi elemen dari dokumen HTML/XML.
+      zh: XPath匹配结果的置信度分数，范围从0.0到1.0，表示从HTML/XML文档 中提取元素的可靠性。
+    slots:
+    - has_score
+    slot_usage:
+      has_score:
+        minimum_value: 0.0
+        maximum_value: 1.0
+    broad_mappings:
+    - schema:Rating
+    structured_aliases:
+    - literal_form: XPath-score
+      in_language: nl
+    - literal_form: XPath-Bewertung
+      in_language: de
+    - literal_form: score XPath
+      in_language: fr
+    - literal_form: puntuación XPath
+      in_language: es
+    - literal_form: درجة XPath
+      in_language: ar
+    - literal_form: skor XPath
+      in_language: id
+    - literal_form: XPath评分
+      in_language: zh
+    comments:
+    - Used for XPath match confidence, fuzzy matching scores, and extraction confidence
+    - Range: 0.0 (no match) to 1.0 (perfect match)
+    keywords:
+    - XPath score
+    - confidence
+    - match quality
+    - extraction reliability
+    examples:
+    - value:
+        has_score: 0.95
+      description: High confidence XPath match
+    annotations:
+      specificity_score: '0.60'
+      specificity_rationale: More specific - XPath scoring is technical/heritage-domain.
+      custodian_types: "['*']"

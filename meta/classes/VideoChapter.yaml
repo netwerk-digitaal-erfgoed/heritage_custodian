@@ -1,0 +1,128 @@
+id: https://nde.nl/ontology/hc/class/VideoChapter
+name: video_chapter_class
+title: Video Chapter Class
+imports:
+- linkml:types
+- ../enums/ChapterSourceEnum
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_hypernym
+- ../slots/has_score
+- ../slots/indexed_as
+- ../slots/has_source
+- ../slots/has_thumbnail
+- ../slots/created_through
+- ../slots/nested_in
+- ../slots/begin_of_the_begin
+- ../slots/end_of_the_end
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+  ma: http://www.w3.org/ns/ma-ont#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+classes:
+  VideoChapter:
+    class_uri: schema:Clip
+    abstract: false
+    alt_descriptions:
+      nl: Genoemd hoofdstuk/segment binnen een video met begin- en eindtijd.
+      de: Benanntes Kapitel/Segment in einem Video mit Start- und Endzeit.
+      fr: Chapitre/segment nomme dans une video
+      es: Capitulo/segmento nombrado dentro de un video
+      ar: فصل/مقطع مسمى داخل فيديو محدد بحدود زمنية.
+      id: Bab/segmen bernama dalam video dengan batas waktu awal-akhir.
+      zh: 视频中具有时间边界的命名章节/片段。
+    structured_aliases:
+    - literal_form: videohoofdstuk
+      in_language: nl
+    - literal_form: Videokapitel
+      in_language: de
+    - literal_form: chapitre video
+      in_language: fr
+    - literal_form: capitulo de video
+      in_language: es
+    - literal_form: فصل فيديو
+      in_language: ar
+    - literal_form: bab video
+      in_language: id
+    - literal_form: 视频章节
+      in_language: zh
+    description: >-
+      Named chapter or section within a video, defined by temporal boundaries
+      for navigation and structural organization.
+    exact_mappings:
+    - schema:Clip
+    close_mappings:
+    - ma:MediaFragment
+    - crm:E52_Time-Span
+    related_mappings:
+    - wd:Q1454986
+    slots:
+    - created_through
+    - has_description
+    - identified_by
+    - indexed_as
+    - has_source
+    - has_thumbnail
+    - has_label
+    - nested_in
+    - has_hypernym
+    - has_score
+    - begin_of_the_begin
+    - end_of_the_end
+    slot_usage:
+      identified_by:
+        required: true
+        examples:
+        - value: ABC123_chapter_0
+        - value: 550e8400-e29b-41d4-a716-446655440000
+      has_label:
+        range: Label
+        inlined: true
+        required: true
+      indexed_as:
+        range: integer
+        required: true
+        minimum_value: 0
+      has_description:
+        required: false
+      created_through:
+        range: boolean
+        required: false
+      has_source:
+        range: ChapterSourceEnum
+        required: false
+      has_thumbnail:
+        range: Thumbnail
+        inlined: true
+        required: false
+      has_hypernym:
+        required: false
+      nested_in:
+        range: integer
+        required: false
+        minimum_value: 0
+    comments:
+    - Models video chapters for navigation
+    - Supports manual and auto-generated chapter sources
+    - Supports hierarchical chapter structure via nested_in
+    see_also:
+    - https://support.google.com/youtube/answer/9884579
+    - https://schema.org/Clip
+    - https://www.w3.org/TR/media-frags/
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+      modeling_notes: |
+        Chapters are navigable segments of a larger video resource.
+
+        Use has_thumbnail for chapter preview images and begin/end bounds for
+        time-based navigation.

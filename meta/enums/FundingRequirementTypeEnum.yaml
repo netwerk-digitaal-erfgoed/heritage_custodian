@@ -1,0 +1,396 @@
+# FundingRequirementTypeEnum
+# Categorizes funding call requirements for structured extraction and filtering
+#
+# Created November 2025 to support:
+# - Structured representation of CallForApplication eligibility criteria
+# - Provenance tracking via FundingRequirement → WebObservation chain
+# - Machine-readable requirement categorization for heritage funding discovery
+#
+# Categories align with common EU/national funding call structures:
+#   - Eligibility requirements (who can apply)
+#   - Financial requirements (co-funding, budgets)
+#   - Partnership requirements (consortium, minimum partners)
+#   - Thematic requirements (focus areas, heritage types)
+#   - Technical requirements (outputs, deliverables)
+#   - Administrative requirements (registration, documentation)
+
+id: https://nde.nl/ontology/hc/enum/FundingRequirementTypeEnum
+name: FundingRequirementTypeEnum
+title: Funding Requirement Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  FundingRequirementTypeEnum:
+    description: |
+      Categories of requirements/criteria for funding calls.
+      
+      Used by FundingRequirement.requirement_type to classify eligibility
+      criteria, financial conditions, partnership requirements, and other
+      constraints that applicants must meet.
+      
+      **STRUCTURE**:
+      
+      Requirements are organized into six main categories:
+      
+      1. **ELIGIBILITY_*** - Who can apply (legal status, geography, type)
+      2. **FINANCIAL_*** - Money matters (co-funding, budgets, rates)
+      3. **PARTNERSHIP_*** - Consortium requirements
+      4. **THEMATIC_*** - Topic and heritage type focus
+      5. **TECHNICAL_*** - Deliverables and outputs
+      6. **ADMINISTRATIVE_*** - Registration and documentation
+      
+      **PROVENANCE**:
+      
+      Each requirement should link to a WebObservation documenting
+      where the requirement was found (call page, guidelines PDF, FAQ).
+    
+    permissible_values:
+      # ========================================
+      # ELIGIBILITY REQUIREMENTS - Who can apply
+      # ========================================
+      
+      ELIGIBILITY_GEOGRAPHIC:
+        description: |
+          Geographic eligibility constraint on applicant location.
+          Examples: "EU Member States only", "Horizon Europe Associated Countries",
+          "UK-based organisations", "Global South priority"
+        meaning: schema:eligibleRegion
+        annotations:
+          category: eligibility
+          examples: |
+            - "Applicants must be legal entities established in EU Member States"
+            - "Open to organisations in Horizon Europe Associated Countries"
+            - "UK organisations only (England, Scotland, Wales, NI)"
+      
+      ELIGIBILITY_ORGANIZATIONAL:
+        description: |
+          Eligibility based on organisation type or legal status.
+          Examples: "Non-profit only", "Public bodies", "SMEs", "Research institutions"
+        meaning: org:Organization
+        annotations:
+          category: eligibility
+          examples: |
+            - "Open to non-profit organisations only"
+            - "Universities and research institutions eligible"
+            - "SMEs may apply as consortium members"
+            - "Local authorities and public bodies"
+      
+      ELIGIBILITY_HERITAGE_TYPE:
+        description: |
+          Eligibility based on type of heritage the applicant manages.
+          Examples: "Museums only", "Archives eligible", "Intangible heritage focus"
+        annotations:
+          category: eligibility
+          examples: |
+            - "Open to accredited museums"
+            - "Archives and special collections libraries"
+            - "Cultural heritage institutions with public access"
+      
+      ELIGIBILITY_EXPERIENCE:
+        description: |
+          Experience or track record requirements.
+          Examples: "Minimum 3 years operating", "Prior EU project experience preferred"
+        annotations:
+          category: eligibility
+          examples: |
+            - "Organisations must have been operational for at least 3 years"
+            - "Demonstrated experience in cultural heritage projects"
+            - "Previous EU-funded project experience required"
+      
+      ELIGIBILITY_REGISTRATION:
+        description: |
+          Required registrations or certifications.
+          Examples: "PIC registration required", "Must be registered charity"
+        annotations:
+          category: eligibility
+          examples: |
+            - "Valid PIC (Participant Identification Code) required"
+            - "Registered as charity in country of establishment"
+            - "VAT registration required"
+      
+      # ========================================
+      # FINANCIAL REQUIREMENTS - Money matters
+      # ========================================
+      
+      FINANCIAL_COFUNDING:
+        description: |
+          Co-funding or match funding requirements.
+          Examples: "25% match required", "Co-funding from national sources"
+        meaning: schema:price
+        annotations:
+          category: financial
+          examples: |
+            - "Minimum 25% co-funding required from non-EU sources"
+            - "Match funding of 10% in cash or in-kind"
+            - "Public bodies: 100% funding; Private: 70% + 30% co-funding"
+      
+      FINANCIAL_BUDGET_MINIMUM:
+        description: |
+          Minimum budget/grant size constraint.
+          Examples: "Projects must request at least €500K"
+        annotations:
+          category: financial
+          examples: |
+            - "Minimum grant request: €500,000"
+            - "Projects under £100K should apply to small grants scheme"
+      
+      FINANCIAL_BUDGET_MAXIMUM:
+        description: |
+          Maximum budget/grant size constraint.
+          Examples: "Maximum €2M per project"
+        annotations:
+          category: financial
+          examples: |
+            - "Maximum EU contribution: €2,000,000 per project"
+            - "Grant requests capped at £5 million"
+      
+      FINANCIAL_RATE:
+        description: |
+          Funding rate or reimbursement percentage.
+          Examples: "80% of eligible costs", "100% for non-profits"
+        annotations:
+          category: financial
+          examples: |
+            - "100% funding rate for non-profit organisations"
+            - "70% for for-profit entities"
+            - "Lump sum funding model applies"
+      
+      FINANCIAL_ELIGIBLE_COSTS:
+        description: |
+          Types of costs that are eligible for funding.
+          Examples: "Personnel, travel, equipment", "No infrastructure costs"
+        annotations:
+          category: financial
+          examples: |
+            - "Eligible: personnel, travel, equipment, subcontracting"
+            - "Infrastructure costs not eligible"
+            - "Indirect costs: 25% flat rate"
+      
+      # ========================================
+      # PARTNERSHIP REQUIREMENTS - Consortium
+      # ========================================
+      
+      PARTNERSHIP_MINIMUM_PARTNERS:
+        description: |
+          Minimum number of partners required in consortium.
+          Examples: "At least 3 partners from 3 countries"
+        annotations:
+          category: partnership
+          examples: |
+            - "Minimum 3 independent legal entities from 3 different Member States"
+            - "At least 5 partners including 2 SMEs"
+            - "Consortium of minimum 4 organisations"
+      
+      PARTNERSHIP_COUNTRY_DIVERSITY:
+        description: |
+          Geographic diversity requirement for consortium.
+          Examples: "Partners from at least 3 EU countries"
+        annotations:
+          category: partnership
+          examples: |
+            - "Partners must be from at least 3 different EU Member States"
+            - "Includes at least one partner from Associated Country"
+            - "Cross-border partnership mandatory"
+      
+      PARTNERSHIP_SECTOR_MIX:
+        description: |
+          Required mix of organisation types in consortium.
+          Examples: "Must include academic and non-academic partners"
+        annotations:
+          category: partnership
+          examples: |
+            - "Consortium must include at least one research organisation"
+            - "Required: heritage institution + technology partner"
+            - "Must include civil society organisation"
+      
+      PARTNERSHIP_COORDINATOR:
+        description: |
+          Requirements for consortium coordinator/lead partner.
+          Examples: "Lead must be non-profit", "Coordinator from EU Member State"
+        annotations:
+          category: partnership
+          examples: |
+            - "Coordinator must be established in EU Member State"
+            - "Lead partner must be non-profit heritage institution"
+            - "SME cannot be sole coordinator"
+      
+      # ========================================
+      # THEMATIC REQUIREMENTS - Topic focus
+      # ========================================
+      
+      THEMATIC_FOCUS_AREA:
+        description: |
+          Required thematic or topic focus.
+          Examples: "Climate change impact on heritage", "Digital preservation"
+        meaning: skos:Concept
+        annotations:
+          category: thematic
+          examples: |
+            - "Projects must address climate change impact on cultural heritage"
+            - "Focus on digital preservation and access"
+            - "Innovation in heritage education required"
+      
+      THEMATIC_HERITAGE_SCOPE:
+        description: |
+          Types of heritage to be addressed.
+          Examples: "Tangible and intangible heritage", "Built heritage only"
+        annotations:
+          category: thematic
+          examples: |
+            - "Must address both tangible and intangible heritage"
+            - "Focus on documentary heritage (archives, libraries)"
+            - "Industrial heritage projects eligible"
+      
+      THEMATIC_GEOGRAPHIC_SCOPE:
+        description: |
+          Geographic scope of project activities.
+          Examples: "European focus required", "Cross-border regions"
+        annotations:
+          category: thematic
+          examples: |
+            - "Project activities must have European dimension"
+            - "Focus on cross-border heritage sites"
+            - "Global South partnership encouraged"
+      
+      THEMATIC_TIMELINE:
+        description: |
+          Required time period or era focus.
+          Examples: "20th century heritage", "Medieval to Renaissance"
+        annotations:
+          category: thematic
+          examples: |
+            - "Focus on 20th century industrial heritage"
+            - "Projects addressing endangered heritage sites"
+      
+      # ========================================
+      # TECHNICAL REQUIREMENTS - Outputs
+      # ========================================
+      
+      TECHNICAL_DELIVERABLES:
+        description: |
+          Required project outputs or deliverables.
+          Examples: "Open access publications", "Reusable digital tools"
+        annotations:
+          category: technical
+          examples: |
+            - "Open access publication of all research outputs"
+            - "Development of reusable digital tools"
+            - "Physical conservation deliverables required"
+      
+      TECHNICAL_OPEN_ACCESS:
+        description: |
+          Open access or open data requirements.
+          Examples: "Immediate open access mandatory", "Data Management Plan required"
+        annotations:
+          category: technical
+          examples: |
+            - "Immediate open access to peer-reviewed publications"
+            - "FAIR data principles must be followed"
+            - "Data Management Plan required at proposal stage"
+      
+      TECHNICAL_DURATION:
+        description: |
+          Project duration constraints.
+          Examples: "24-48 months", "Maximum 3 years"
+        annotations:
+          category: technical
+          examples: |
+            - "Project duration: 24-48 months"
+            - "Maximum project length: 36 months"
+            - "Minimum 12 months, maximum 24 months"
+      
+      TECHNICAL_METHODOLOGY:
+        description: |
+          Required methodological approaches.
+          Examples: "Citizen science component", "Multi-disciplinary approach"
+        annotations:
+          category: technical
+          examples: |
+            - "Must include citizen science component"
+            - "Multi-disciplinary research approach required"
+            - "Participatory heritage practices expected"
+      
+      # ========================================
+      # ADMINISTRATIVE REQUIREMENTS
+      # ========================================
+      
+      ADMINISTRATIVE_REGISTRATION:
+        description: |
+          Portal or system registration requirements.
+          Examples: "EU Funding & Tenders registration", "Flexi-Grant registration"
+        annotations:
+          category: administrative
+          examples: |
+            - "Registration in EU Funding & Tenders Portal required"
+            - "Flexi-Grant account must be created before submission"
+            - "Legal Entity Validation must be complete"
+      
+      ADMINISTRATIVE_DOCUMENTATION:
+        description: |
+          Required documentation for application.
+          Examples: "Annual accounts required", "Governance documents"
+        annotations:
+          category: administrative
+          examples: |
+            - "Last 2 years audited accounts required"
+            - "Constitution or articles of association"
+            - "Evidence of legal personality"
+      
+      ADMINISTRATIVE_LANGUAGE:
+        description: |
+          Language requirements for application.
+          Examples: "English only", "Application in any EU language"
+        annotations:
+          category: administrative
+          examples: |
+            - "Proposal must be submitted in English"
+            - "Application accepted in any EU official language"
+            - "Summary must be provided in English"
+      
+      ADMINISTRATIVE_FORMAT:
+        description: |
+          Format or template requirements.
+          Examples: "Use official template", "Page limits apply"
+        annotations:
+          category: administrative
+          examples: |
+            - "Use Part B template provided"
+            - "Maximum 45 pages for technical description"
+            - "Budget template mandatory"
+      
+      # ========================================
+      # OTHER REQUIREMENTS
+      # ========================================
+      
+      OTHER:
+        description: |
+          Requirements that don't fit other categories.
+          Use extraction_notes to describe the specific requirement.
+        annotations:
+          category: other
+          examples: |
+            - "Ethics review required for projects involving human subjects"
+            - "Security clearance may be required"
+            - "Gender equality plan required"
+    
+    comments:
+      - "Categories follow common EU/national funding call structures"
+      - "Each requirement links to WebObservation for provenance"
+      - "Use OTHER category sparingly; prefer specific categories"
+      - "requirement_value field captures machine-readable constraint"
+    
+    see_also:
+      - "https://ec.europa.eu/info/funding-tenders/opportunities/portal"
+      - "https://www.heritagefund.org.uk/funding"
+      - "https://www.europanostra.org/our-work/awards/"

@@ -1,0 +1,135 @@
+id: https://nde.nl/ontology/hc/class/WorkExperience
+name: work_experience_class
+title: Work Experience Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_location
+- ../slots/has_score
+- ../slots/current
+- ../slots/employed_by
+- ../slots/has_position
+- ../slots/temporal_extent
+classes:
+  WorkExperience:
+    is_a: Experience
+    class_uri: schema:OrganizationRole
+    description: >-
+      Employment-role record with employer, position, temporal extent, and
+      location for career-history modeling.
+    alt_descriptions:
+      nl: Enkele werkervaring uit de carrièregeschiedenis van een persoon, met functietitel, werkgever, data en locatie, met vereenvoudigde datumweergave voor LinkedIn- en CV-gegevens.
+      de: Einzelne Berufserfahrung aus der Karrieregeschichte einer Person mit Berufsbezeichnung, Arbeitgeber, Daten und Standort mit vereinfachter Datumsdarstellung für LinkedIn- und Lebenslaufdaten.
+      fr: Expérience professionnelle unique de l'historique de carrière d'une personne, modélisant l'intitulé du poste, l'employeur, les dates et le lieu avec une représentation simplifiée des dates pour les données LinkedIn et CV.
+      es: Experiencia laboral única del historial profesional de una persona, modelando título del trabajo, empleador, fechas y ubicación con representación de fecha simplificada para datos de LinkedIn y CV.
+      ar: خبرة عمل واحدة من تاريخ المهنة لشخص ما، بنمذجة المسمى الوظيفي وصاحب العمل والتواريخ والموقع مع تمثيل مبسط للتاريخ لبيانات LinkedIn والسيرة الذاتية.
+      id: Pengalaman kerja tunggal dari riwayat karier seseorang, memodelkan jabatan, pemberi kerja, tanggal, dan lokasi dengan representasi tanggal yang disederhanakan untuk data LinkedIn dan CV.
+      zh: 个人职业历史中的单一工作经历，建模职位名称、雇主、日期和地点， 对LinkedIn和简历数据使用简化的日期表示。
+    broad_mappings:
+    - schema:OrganizationRole
+    close_mappings:
+    - org:Membership
+    - crm:E7_Activity
+    related_mappings:
+    - schema:EmployeeRole
+    - prov:Association
+    slots:
+    - employed_by
+    - temporal_extent
+    - current
+    - has_description
+    - has_position
+    - has_score
+    - has_location
+    slot_usage:
+      has_position:
+        required: true
+        examples:
+        - value: Staff Adviseur
+        - value: Senior Curator, Asian Art
+      employed_by:
+        range: Employer
+        inlined: true
+        required: true
+        examples:
+        - value:
+            has_label: Rijksmuseum
+            has_url:
+              has_url: https://www.linkedin.com/company/rijksmuseum
+              has_type: LinkedInProfileURL
+            related_to:
+              has_label: Heritage Sector
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        examples:
+        - value:
+            begin_of_the_begin: 2017-08
+            end_of_the_end: 2025-04
+            has_verbatim_value: Aug 2017 - Apr 2025
+        - value:
+            begin_of_the_begin: 2025-04
+            has_verbatim_value: Apr 2025 - Present
+      current:
+        range: boolean
+        ifabsent: 'false'
+        examples:
+        - value: true
+      has_location:
+        inlined: false
+        examples:
+        - value: "Location:\n  city: \"Utrecht\"\n  country: \"Netherlands\"\n"
+        - value: "Location:\n  city: \"Amsterdam\"\n  region: \"Noord-Holland\"\n  country: \"Netherlands\"\n"
+      has_description:
+    structured_aliases:
+    - literal_form: werkervaring
+      in_language: nl
+    - literal_form: Arbeitserfahrung
+      in_language: de
+    - literal_form: expérience professionnelle
+      in_language: fr
+    - literal_form: experiencia laboral
+      in_language: es
+    - literal_form: خبرة عمل
+      in_language: ar
+    - literal_form: pengalaman kerja
+      in_language: id
+    - literal_form: 工作经验
+      in_language: zh
+    comments:
+    - Inlined in LinkedInProfile.experience[] as multivalued list
+    - Preserves raw LinkedIn date formats for provenance
+    - Current positions have current=true and null end_date
+    keywords:
+    - employment
+    - career
+    - work history
+    - job position
+    - LinkedIn
+    see_also:
+    - https://schema.org/OrganizationRole
+    - https://www.w3.org/TR/vocab-org/#class-membership
+    examples:
+    - value:
+        has_position: Staff Adviseur
+        employed_by:
+          has_label: Rijksmuseum
+        temporal_extent:
+          begin_of_the_begin: 2017-08
+          end_of_the_end: 2025-04
+        current: false
+      description: Heritage sector work experience
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

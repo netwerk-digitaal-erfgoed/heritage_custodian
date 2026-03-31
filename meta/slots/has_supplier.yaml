@@ -1,0 +1,81 @@
+# ==============================================================================
+# LinkML Slot Definition: has_supplier
+# ==============================================================================
+# Organization, vendor, or individual that provides products or services.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property        | File/Line                | Mapping  | Notes                                                                                       |
+# |----------------|-----------------|--------------------------|----------|---------------------------------------------------------------------------------------------|
+# | **Schema.org** | `schema:seller` | schemaorg.owl:34700-34723 | related | "Entity which offers/sells/leases/lends services/goods." Domain: BuyAction/Offer/Demand — transactional/commercial context, supplier is broader. |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_supplier
+name: has_supplier
+title: Has Supplier
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_supplier:
+    slot_uri: hc:hasSupplier
+    description: >-
+      To specify the organization, vendor, or individual that provides products,
+      services, or resources to an entity.
+    alt_descriptions:
+      nl: >-
+        Om de organisatie, leverancier of persoon aan te geven die producten,
+        diensten of middelen aan een entiteit levert.
+      de: >-
+        Zur Angabe der Organisation, des Lieferanten oder der Einzelperson,
+        die Produkte, Dienstleistungen oder Ressourcen an eine Entität liefert.
+      fr: >-
+        Pour spécifier l'organisation, le fournisseur ou l'individu qui fournit
+        des produits, des services ou des ressources à une entité.
+      ar: >-
+        لتحديد المنظمة أو البائع أو الفرد الذي يقدم المنتجات أو الخدمات أو
+        الموارد إلى كيان.
+      id: >-
+        Untuk menentukan organisasi, vendor, atau individu yang menyediakan
+        produk, layanan, atau sumber daya kepada suatu entitas.
+      zh: >-
+        用于指定向实体提供产品、服务或资源的组织、供应商或个人。
+      es: >-
+        Para especificar la organización, proveedor o individuo que suministra
+        productos, servicios o recursos a una entidad.
+    structured_aliases:
+      - literal_form: Leverancier
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Lieferant
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Fournisseur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مورّد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pemasok
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 供应商
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Proveedor
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_supplier
+    related_mappings:
+      - schema:seller  # schemaorg.owl:34700-34723 — "Entity which offers/sells/leases/lends services/goods." Transactional/commercial context.
+    annotations:
+      custodian_types: '["*"]'

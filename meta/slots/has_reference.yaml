@@ -1,0 +1,83 @@
+# ==============================================================================
+# LinkML Slot Definition: has_reference
+# ==============================================================================
+# A source, identifier, or mention used to point to or cite another entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property             | File/Line            | Mapping | Notes                                                                  |
+# |-------------|----------------------|----------------------|---------|------------------------------------------------------------------------|
+# | **DCTerms** | `dcterms:references` | dcterms.rdf:1782-1804| close   | "A related resource that is referenced, cited, or otherwise pointed    |
+# |             |                      |                      |         | to by the described resource." Intended for non-literal values.        |
+#
+# dcterms:references is semantically close but intended for non-literal
+# resource links (inverse of isReferencedBy). Our slot also covers string
+# identifiers and mentions, making it broader in scope.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_reference
+name: has_reference
+title: Has Reference
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_reference:
+    slot_uri: hc:hasReference
+    description: >-
+      To specify a source, identifier, or mention used to point to, cite, or link to another entity, document, or piece of information for support or context.
+    alt_descriptions:
+      nl: >-
+        Om een bron, identificator of vermelding te specificeren die wordt gebruikt om naar een andere entiteit, document of informatie te verwijzen, te citeren of te koppelen ter ondersteuning of context.
+      de: >-
+        Um eine Quelle, einen Identifikator oder eine Erwähnung anzugeben, die verwendet wird, um auf eine andere Entität, ein Dokument oder eine Information zu verweisen, diese zu zitieren oder zu verknüpfen zur Unterstützung oder zum Kontext.
+      fr: >-
+        Pour spécifier une source, un identifiant ou une mention utilisée pour pointer vers, citer ou lier une autre entité, un document ou une information à des fins de soutien ou de contexte.
+      ar: >-
+        لتحديد مصدر أو معرف أو إشارة تُستخدم للإشارة إلى كيان أو مستند أو معلومة أخرى أو الاستشهاد بها أو الربط بها للدعم أو السياق.
+      id: >-
+        Untuk menentukan sumber, pengidentifikasi, atau penyebutan yang digunakan untuk menunjuk, mengutip, atau menghubungkan ke entitas, dokumen, atau informasi lain untuk dukungan atau konteks.
+      zh: >-
+        用于指定一个来源、标识符或提及，用以指向、引用或链接另一个实体、文档或信息，以提供支持或上下文。
+      es: >-
+        Para especificar una fuente, identificador o mención utilizada para señalar, citar o vincular a otra entidad, documento o información como soporte o contexto.
+    structured_aliases:
+      - literal_form: Referentie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Referenz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Reference
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مرجع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Referensi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 参考
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Referencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - dcterms:references  # dcterms.rdf:1782-1804 - "A related resource that is referenced, cited, or otherwise pointed to by the described resource." Intended for non-literal values; our slot also covers string identifiers.
+    aliases:
+      - has_or_had_reference
+      - has_or_had_archival_reference
+      - has_archival_reference
+      - iso_standard_reference
+      - iso_standard
+    annotations:
+      custodian_types: '["*"]'

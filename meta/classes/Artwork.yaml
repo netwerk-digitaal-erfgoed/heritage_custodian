@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/Artwork
+name: Artwork
+title: Artwork
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_title
+- ../slots/has_description
+- ../slots/identified_by
+default_prefix: hc
+classes:
+  Artwork:
+    class_uri: hc:Artwork
+    description: >-
+      Visual artwork in a collection.
+
+      Represents a creative work of visual art such as a painting, sculpture,  drawing, photograph, or other artistic production held by a heritage  custodian.
+    alt_descriptions:
+      nl: "Visueel kunstwerk in een collectie.\nVertegenwoordigt een creatief werk van beeldende kunst zoals een schilderij,  beeldhouwwerk, tekening, fotografie of andere artistieke productie  in bezit van een erfgoedbeheerder."
+      de: "Visuelles Kunstwerk in einer Sammlung.\nRepräsentiert ein kreatives Werk der bildenden Kunst wie ein Gemälde,  eine Skulptur, Zeichnung, Fotografie oder andere künstlerische Produktion  im Besitz eines Kulturgüterverwalters."
+      fr: "Œuvre d'art visuel dans une collection.\nReprésente une œuvre créative d'art visuel telle qu'une peinture, sculpture,  dessin, photographie ou autre production artistique détenue par un  dépositaire du patrimoine."
+      es: "Obra de arte visual en una colección.\nRepresenta una obra creativa de arte visual como una pintura, escultura,  dibujo, fotografía u otra producción artística en posesión de un  custodio del patrimonio."
+      ar: "عمل فني بصري في مجموعة.\nيمثل عملاً إبداعيًا من الفنون البصرية مثل اللوحة أو النحت أو الرسم  أو التصوير الفوتوغرافي أو أي إنتاج فني آخر بحوزة أمين التراث."
+      id: "Karya seni visual dalam koleksi.\nMewakili karya kreatif seni visual seperti lukisan, patung, gambar,  fotografi, atau produksi artistik lainnya yang dimiliki pengelola warisan."
+      zh: "收藏中的视觉艺术作品。\n代表遗产保管人持有的绘画、雕塑、素描、摄影或其他艺术创作等视觉艺术创意作品。"
+    examples:
+    - value:
+        has_title: The Night Watch
+        has_description: Oil on canvas painting by Rembrandt van Rijn, 1642
+      description: Famous painting by Rembrandt
+    close_mappings:
+    - schema:VisualArtwork
+    - crm:E22_Human-Made_Object
+    broad_mappings:
+    - schema:CreativeWork
+    structured_aliases:
+    - literal_form: kunstwerk
+      in_language: nl
+    - literal_form: kunstobject
+      in_language: nl
+    - literal_form: Kunstwerk
+      in_language: de
+    - literal_form: œuvre d'art
+      in_language: fr
+    - literal_form: obra de arte
+      in_language: es
+    - literal_form: عمل فني
+      in_language: ar
+    - literal_form: karya seni
+      in_language: id
+    - literal_form: 艺术作品
+      in_language: zh
+    keywords:
+    - artwork
+    - visual art
+    - painting
+    - sculpture
+    - drawing
+    - photograph
+    - creative work
+    slots:
+    - has_title
+    - has_description
+    - identified_by
+    slot_usage:
+      has_title:
+        required: true
+        examples:
+        - value: The Night Watch
+        - value: Starry Night
+      has_description:
+        required: false
+        examples:
+        - value: Oil on canvas painting by Rembrandt van Rijn, 1642
+    annotations:
+      specificity_score: "0.30"
+      specificity_rationale: "Artwork is a core domain concept for museums and galleries."
+      custodian_types: "['M', 'G']"
+    comments:
+    - Represents visual artworks in heritage collections
+    - May include paintings, sculptures, drawings, photographs, etc.
+    - Use more specific classes when available (e.g., Painting, Sculpture)
+    see_also:
+    - https://schema.org/VisualArtwork
+    - http://www.cidoc-crm.org/entity/E22-Human-Made-Object

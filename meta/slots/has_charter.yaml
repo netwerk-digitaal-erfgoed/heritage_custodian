@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: has_charter
+# ==============================================================================
+# Links to a formal charter, constitution, or founding document that defines
+# the rights, privileges, and purpose of an organization, city, or institution.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:authorizedBy`   | RiC-O_1-1.rdf:1775-1816   | close   | Agent→Mandate; "Inverse of 'authorizes'" — mandate authorizes agent, charter defines rights/purpose (close but charter is broader than mandate) |
+# | **RiC-O**     | `rico:isOrWasRegulatedBy` | RiC-O_1-1.rdf:15053-15081 | related | Thing→Rule; very general regulation, not specific to founding documents |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Rewrote alt_descriptions to faithfully translate English description;
+#   replaced incorrect rico:isDocumentedBy with rico:authorizedBy (Agent→Mandate);
+#   added rico:isOrWasRegulatedBy as related
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_charter
+name: has_charter
+title: Has Charter
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_charter:
+    slot_uri: hc:hasCharter
+    description: >-
+      To possess or act under a formal written grant, document, or constitution (a charter) that defines the rights, privileges, and purpose of the organization, city, or institution.
+    alt_descriptions:
+      nl: >-
+        Een formeel geschreven verlening, document of grondwet (een handvest) bezitten of daaronder handelen, dat de rechten, voorrechten en het doel van de organisatie, stad of instelling definieert.
+      de: >-
+        Eine formelle schriftliche Verleihung, ein Dokument oder eine Verfassung (eine Satzung) besitzen oder darunter handeln, die die Rechte, Privilegien und den Zweck der Organisation, Stadt oder Einrichtung festlegt.
+      fr: >-
+        Posséder ou agir en vertu d'un acte formel écrit, d'un document ou d'une constitution (une charte) qui définit les droits, les privilèges et l'objet de l'organisation, de la ville ou de l'institution.
+      ar: >-
+        امتلاك أو العمل بموجب منحة مكتوبة رسمية أو وثيقة أو دستور (ميثاق) يحدد حقوق وامتيازات وأغراض المنظمة أو المدينة أو المؤسسة.
+      id: >-
+        Memiliki atau bertindak berdasarkan pemberian tertulis resmi, dokumen, atau konstitusi (piagam) yang mendefinisikan hak, hak istimewa, dan tujuan organisasi, kota, atau lembaga.
+      zh: >-
+        拥有或依据一份正式的书面授权、文件或章程（特许状）行事，该文件界定了组织、城市或机构的权利、特权和宗旨。
+      es: >-
+        Poseer o actuar bajo una concesión escrita formal, documento o constitución (una carta) que define los derechos, privilegios y propósito de la organización, ciudad o institución.
+    structured_aliases:
+      - literal_form: heeft handvest
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Satzung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une charte
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه ميثاق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki piagam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有特许状
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene carta constitutiva
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_articles_of_association
+    close_mappings:
+      - rico:authorizedBy  # RiC-O_1-1.rdf:1775-1816 - Agent→Mandate; mandate authorizes agent to act
+    related_mappings:
+      - rico:isOrWasRegulatedBy  # RiC-O_1-1.rdf:15053-15081 - Thing→Rule; general regulation, not specific to founding documents
+    comments:
+      - |
+        **RiC-O PATTERN**: rico:authorizedBy connects an Agent to a Mandate that gives it
+        authority or competencies to act. A charter is conceptually close to a mandate
+        (both define what an agent may do), but a charter is broader — it also defines
+        purpose, privileges, and constitutional structure, not only authorization.
+      - |
+        **TEMPORAL NOTE**: For organizations requiring articles at registration (Dutch stichting, BV, etc.),
+        the articles EXIST BEFORE the organization legally exists. The articles in PRE_EXISTENCE stage
+        cannot be linked from CustodianAdministration because no Administration exists at that point.
+      - |
+        **VERSIONING**: An organization may have multiple versions of articles over time:
+        - Original founding articles (version 1)
+        - Amended articles (versions 2, 3, ...)
+        - Current version (is_current_version = true)
+    annotations:
+      custodian_types: '["*"]'

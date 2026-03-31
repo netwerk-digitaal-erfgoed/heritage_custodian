@@ -1,0 +1,56 @@
+id: https://nde.nl/ontology/hc/enum/ChangeDetectionMethodEnum
+name: change_detection_method_enum
+title: Change Detection Method Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  ChangeDetectionMethodEnum:
+    description: |
+      Methods for detecting upstream data changes in web resources.
+      Used by WebExtractionProfile to specify how the background sync
+      pipeline determines whether a source has been updated.
+    permissible_values:
+      ETAG:
+        description: |
+          Compare HTTP ETag header.
+
+          Send HTTP HEAD request, compare ETag with stored value.
+          Most reliable when the server supports conditional requests
+          (RFC 9110). Uses If-None-Match for efficient validation.
+      LAST_MODIFIED:
+        description: |
+          Compare HTTP Last-Modified header.
+
+          Send HTTP HEAD request, compare Last-Modified timestamp
+          with stored value. Uses If-Modified-Since for conditional GET.
+      CONTENT_HASH:
+        description: |
+          SHA-256 hash of response body.
+
+          Requires full download to compute hash. Use when the server
+          does not provide ETag or Last-Modified headers. More expensive
+          but always accurate.
+      DELTA:
+        description: |
+          Field-level diff via DeltaService.
+
+          Fetches new data, parses into records, compares field-by-field
+          with previous version stored in Lakehouse. Produces granular
+          change records (added, modified, deleted fields). Most expensive
+          but enables selective Oxigraph updates.
+      FEED:
+        description: |
+          Monitor RSS/Atom feed for new entries.
+
+          Subscribe to the source's syndication feed to detect updates.
+          Only works if the source publishes a feed with change entries.
+          Aligns with ResourceSync (NISO Z39.99-2017).
+      NONE:
+        description: |
+          Always re-fetch without change detection.
+
+          Used for sources where change detection is not possible
+          (e.g., Oracle Forms, JavaScript-rendered pages without
+          stable HTTP headers).

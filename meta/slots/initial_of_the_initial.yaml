@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: initial_of_the_initial
+# ==============================================================================
+# The absolute origin or root condition before any subsequent phases begin.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                | File/Line            | Mapping | Notes                                                     |
+# |----------------|-------------------------|----------------------|---------|------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P44_has_condition` | CIDOC:2270-2285      | broad   | E18 Physical Thing→E3 Condition State; any condition,      |
+# |                |                         |                      |         | not specifically initial/baseline.                         |
+# | **CIDOC-CRM**  | `crm:P35_has_identified`| CIDOC:2045-2058      | related | E14 Condition Assessment→E3 Condition State; assessment-   |
+# |                |                         |                      |         | specific identification, different pattern.                |
+#
+# NOTE: Original file had close_mappings to crm:E3_Condition_State — this is a
+# CLASS (CIDOC:258-269), not a property. Replaced with appropriate properties.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/initial_of_the_initial
+name: initial_of_the_initial
+title: Initial of the Initial
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  initial_of_the_initial:
+    slot_uri: hc:initialOfTheInitial
+    description: >-
+      Marks the absolute origin or root condition of a hierarchical lifecycle,
+      serving as the primary baseline before any subsequent initialization phases
+      or sub-processes begin.
+    alt_descriptions:
+      nl: >-
+        Markeert de absolute oorsprong of basistoestand van een hiërarchische
+        levenscyclus, die dient als primaire basislijn voordat eventuele
+        daaropvolgende initialisatiefasen of subprocessen beginnen.
+      de: >-
+        Kennzeichnet den absoluten Ursprung oder Ausgangszustand eines
+        hierarchischen Lebenszyklus, der als primäre Basislinie dient, bevor
+        nachfolgende Initialisierungsphasen oder Teilprozesse beginnen.
+      fr: >-
+        Marque l'origine absolue ou la condition de base d'un cycle de vie
+        hiérarchique, servant de référence primaire avant le début de toute phase
+        d'initialisation ou sous-processus ultérieur.
+      ar: >-
+        يحدد الأصل المطلق أو الحالة الجذرية لدورة حياة هرمية، ويعمل كخط أساس
+        أولي قبل بدء أي مراحل تهيئة لاحقة أو عمليات فرعية.
+      id: >-
+        Menandai asal absolut atau kondisi akar dari siklus hidup hierarkis,
+        berfungsi sebagai garis dasar utama sebelum fase inisialisasi atau
+        sub-proses berikutnya dimulai.
+      zh: >-
+        标记层级生命周期的绝对起源或根条件，作为任何后续初始化阶段或子过程开始之前的
+        主要基线。
+      es: >-
+        Marca el origen absoluto o la condición raíz de un ciclo de vida
+        jerárquico, sirviendo como línea base primaria antes de que comiencen
+        las fases de inicialización o subprocesos posteriores.
+    structured_aliases:
+      - literal_form: Oorspronkelijke Basistoestand
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ursprünglicher Ausgangszustand
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Condition Initiale Originelle
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الحالة الأولية الأصلية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Kondisi Awal Asal
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 初始根条件
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Condición Inicial Original
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - crm:P44_has_condition  # CIDOC:2270-2285 - E18→E3 Condition State; any condition, not just initial
+    related_mappings:
+      - crm:P35_has_identified  # CIDOC:2045-2058 - E14 Condition Assessment→E3 Condition State
+    examples:
+      - value:
+          state_type: PoorCondition
+          state_description: Object requiring stabilization before treatment
+        description: Conservation record initial condition
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        CIDOC-CRM pattern for capturing the initial state before an event:
+        conservation treatment → initial condition state; restoration → initial
+        preservation state; processing → initial state.
+      - >-
+        Refers to the state observed at the initial moment of a process, analogous
+        to CIDOC-CRM's E3 Condition State with P5 consists of.
+      - The state BEFORE something has occurred; paired with final_of_the_final for before/after comparisons.
+      - 'Migrated from: condition_before → initial_of_the_initial + ConditionState (per slot_fixes.yaml, Rule 53)'
+      - 'Original file mapped to crm:E3_Condition_State — corrected: E3 is a class, not a property.'
+    aliases:
+      - condition_before

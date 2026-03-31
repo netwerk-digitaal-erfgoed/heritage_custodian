@@ -1,0 +1,189 @@
+# LoanStatusEnum - Loan lifecycle states
+#
+# Enumeration of states in the lifecycle of an object loan between institutions.
+#
+# Aligned with:
+# - AAT (Getty Art & Architecture Thesaurus) loan concepts
+# - SPECTRUM (UK Collections Management Standard) loan procedures
+# - CIDOC-CRM E10 Transfer of Custody events
+#
+# Created: January 2026
+
+id: https://nde.nl/ontology/hc/enum/LoanStatusEnum
+name: LoanStatusEnum
+title: Loan Status Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  aat: http://vocab.getty.edu/aat/
+  schema: http://schema.org/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  LoanStatusEnum:
+    description: |
+      Lifecycle states for object loans between heritage institutions.
+      
+      Models the progression of a loan from initial request through
+      return and documentation.
+      
+      **Loan Lifecycle Flow**:
+      
+      ```
+      REQUESTED → UNDER_REVIEW → APPROVED → AGREEMENT_PENDING → 
+      CONDITION_REPORT_PENDING → IN_TRANSIT_OUTBOUND → ON_LOAN → 
+      RETURN_REQUESTED → IN_TRANSIT_RETURN → RETURNED → CLOSED
+      
+      Alternative paths:
+      - REQUESTED → DECLINED (loan denied)
+      - ON_LOAN → EXTENDED (loan period extended)
+      - Any state → CANCELLED (loan cancelled)
+      ```
+      
+      **SPECTRUM Alignment**:
+      
+      This enum aligns with SPECTRUM Procedure:
+      - Loans Out (outgoing loans)
+      - Loans In (incoming loans)
+      - Object Entry/Exit for transit states
+    
+    permissible_values:
+      REQUESTED:
+        description: |
+          Initial loan request submitted by borrowing institution.
+          Loan is awaiting review by lending institution.
+        annotations:
+          loan_phase: "initiation"
+          next_states: '["UNDER_REVIEW", "DECLINED", "CANCELLED"]'
+      
+      UNDER_REVIEW:
+        description: |
+          Loan request is being evaluated by lending institution.
+          May involve conservation assessment, exhibition review,
+          and curatorial approval.
+        meaning: schema:ActiveActionStatus
+        annotations:
+          loan_phase: "evaluation"
+          next_states: '["APPROVED", "DECLINED", "CANCELLED"]'
+      
+      APPROVED:
+        description: |
+          Loan has been approved in principle.
+          Formal agreement and logistics to be arranged.
+        annotations:
+          loan_phase: "approval"
+          next_states: '["AGREEMENT_PENDING", "CANCELLED"]'
+      
+      DECLINED:
+        description: |
+          Loan request has been declined.
+          Object not available for loan due to condition,
+          exhibition commitments, or policy restrictions.
+        meaning: schema:FailedActionStatus
+        annotations:
+          loan_phase: "terminal"
+          is_terminal: "true"
+      
+      AGREEMENT_PENDING:
+        description: |
+          Loan approved; awaiting formal loan agreement.
+          Legal/contracts team preparing documentation.
+        annotations:
+          loan_phase: "documentation"
+          next_states: '["CONDITION_REPORT_PENDING", "CANCELLED"]'
+      
+      CONDITION_REPORT_PENDING:
+        description: |
+          Loan agreement signed; awaiting pre-loan condition report.
+          Conservation team documenting object state before transit.
+        annotations:
+          loan_phase: "preparation"
+          next_states: '["IN_TRANSIT_OUTBOUND", "CANCELLED"]'
+      
+      IN_TRANSIT_OUTBOUND:
+        description: |
+          Object in transit from lender to borrower.
+          May involve courier accompaniment for high-value items.
+        annotations:
+          loan_phase: "transit"
+          next_states: '["ON_LOAN", "RETURNED"]'
+      
+      ON_LOAN:
+        description: |
+          Object currently on loan at borrowing institution.
+          Active loan period.
+        meaning: schema:ActiveActionStatus
+        annotations:
+          loan_phase: "active"
+          next_states: '["EXTENDED", "RETURN_REQUESTED", "CANCELLED"]'
+      
+      EXTENDED:
+        description: |
+          Loan period has been formally extended.
+          New end date agreed between parties.
+        annotations:
+          loan_phase: "active"
+          next_states: '["RETURN_REQUESTED", "EXTENDED", "CANCELLED"]'
+      
+      RETURN_REQUESTED:
+        description: |
+          Return of loaned object has been requested.
+          Preparing for end of loan period.
+        annotations:
+          loan_phase: "return"
+          next_states: '["IN_TRANSIT_RETURN"]'
+      
+      IN_TRANSIT_RETURN:
+        description: |
+          Object in transit from borrower back to lender.
+          Return journey underway.
+        annotations:
+          loan_phase: "transit"
+          next_states: '["RETURNED"]'
+      
+      RETURNED:
+        description: |
+          Object has been returned to lending institution.
+          Post-loan condition report to be completed.
+        annotations:
+          loan_phase: "completion"
+          next_states: '["CLOSED"]'
+      
+      CLOSED:
+        description: |
+          Loan fully completed and documented.
+          All paperwork finalized, condition reports compared.
+        meaning: schema:CompletedActionStatus
+        annotations:
+          loan_phase: "terminal"
+          is_terminal: "true"
+      
+      CANCELLED:
+        description: |
+          Loan cancelled before completion.
+          May occur at any stage before CLOSED.
+        meaning: schema:FailedActionStatus
+        annotations:
+          loan_phase: "terminal"
+          is_terminal: "true"
+      
+      OVERDUE:
+        description: |
+          Loan has exceeded agreed return date.
+          Follow-up action required.
+        annotations:
+          loan_phase: "exception"
+          next_states: '["EXTENDED", "RETURN_REQUESTED"]'
+      
+      DISPUTED:
+        description: |
+          Dispute regarding loan terms, condition, or return.
+          Resolution process underway.
+        annotations:
+          loan_phase: "exception"
+          next_states: '["ON_LOAN", "RETURNED", "CANCELLED"]'

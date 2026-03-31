@@ -1,0 +1,85 @@
+id: https://nde.nl/ontology/hc/class/Feature
+name: Feature
+title: Feature Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_type
+- ../slots/has_label
+- ../slots/has_description
+classes:
+  Feature:
+    class_uri: crm:E27_Site
+    description: >-
+      Tangible heritage entity occupying a physical location, including buildings, monuments, and archaeological sites.
+    alt_descriptions:
+      nl: >-
+        Materieel erfgoed dat een fysieke locatie inneemt, inclusief gebouwen, monumenten en archeologische vindplaatsen.
+      de: >-
+        Materielles Erbe, das einen physischen Ort einnimmt, einschließlich Gebäude, Denkmäler und archäologische Stätten.
+      fr: >-
+        Entité patrimoniale tangible occupant un lieu physique, incluant bâtiments, monuments et sites archéologiques.
+      es: >-
+        Entidad patrimonial tangible que ocupa un lugar físico, incluyendo edificios, monumentos y sitios arqueológicos.
+      ar: >-
+        كيان تراثي مادي يشغل موقعًا فعليًا، بما في ذلك المباني والمعالم الأثرية والمواقع الأثرية.
+      id: >-
+        Entitas warisan berwujud yang menempati lokasi fisik, termasuk bangunan, monumen, dan situs arkeologi.
+      zh: >-
+        占据物理位置的有形遗产实体，包括建筑物、纪念碑和考古遗址。
+    structured_aliases:
+    - literal_form: erfgoedlocatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Erbstätte
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: site patrimonial
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: sitio patrimonial
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: موقع تراثي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: lokasi warisan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 遗产地
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - crm:E27_Site
+    close_mappings:
+    - schema:Place
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+        required: true
+    comments:
+    - Represents geospatially bounded heritage entities with physical presence.
+    - Distinguished from conceptual or digital heritage by material embodiment.
+    - 'Preserved from prior description: Physical heritage feature such as a building, site, or monument.'
+    keywords:
+    - tangible heritage
+    - physical site
+    - built heritage
+    - archaeological entity
+    examples:
+    - value:
+        has_type: Monument
+        has_label: Eiffel Tower
+      description: Iconic iron lattice monument in Paris
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Feature-level representation for physical heritage entities.
+      custodian_types: '["*"]'

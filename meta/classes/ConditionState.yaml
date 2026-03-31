@@ -1,0 +1,96 @@
+id: https://nde.nl/ontology/hc/class/ConditionState
+name: ConditionState
+title: Condition State
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_type
+default_prefix: hc
+classes:
+  ConditionState:
+    class_uri: crm:E3_Condition_State
+    description: >-
+      Time-bounded snapshot describing the physical integrity and preservation
+      status of a heritage resource at a specific moment.
+    alt_descriptions:
+      nl: >-
+        Tijdsgebonden momentopname die de fysieke integriteit en bewaartoestand van
+        een erfgoedobject op een specifiek moment beschrijft.
+      de: >-
+        Zeitgebundene Momentaufnahme, die die physische Integritaet und den
+        Erhaltungszustand eines Kulturerbeobjekts zu einem bestimmten Zeitpunkt
+        beschreibt.
+      fr: >-
+        Instantane temporelle decrivant l'integrite physique et l'etat de
+        conservation d'une ressource patrimoniale a un moment donne.
+      es: >-
+        Instantanea temporal que describe la integridad fisica y el estado de
+        preservacion de un recurso patrimonial en un momento especifico.
+      ar: >-
+        لقطة زمنية تصف السلامة المادية وحالة الحفظ لمورد تراثي في لحظة محددة.
+      id: >-
+        Cuplikan berbatas waktu yang menggambarkan integritas fisik dan status
+        pelestarian sumber daya warisan pada saat tertentu.
+      zh: >-
+        描述某一时点遗产资源物理完整性与保存状态的时间快照。
+    structured_aliases:
+      - literal_form: behoudstoestandmoment
+        in_language: nl
+      - literal_form: Erhaltungszustandsaufnahme
+        in_language: de
+      - literal_form: etat de conservation ponctuel
+        in_language: fr
+      - literal_form: estado puntual de conservacion
+        in_language: es
+      - literal_form: لقطة حالة الحفظ
+        in_language: ar
+      - literal_form: potret status pelestarian
+        in_language: id
+      - literal_form: 保存状态快照
+        in_language: zh
+    exact_mappings:
+      - crm:E3_Condition_State
+    close_mappings:
+      - schema:OfferItemCondition
+    slots:
+      - has_type
+      - has_description
+    slot_usage:
+      has_type:
+        examples:
+          - value: GoodCondition
+          - value: PoorCondition
+      has_description:
+        examples:
+          - value:
+              description_text: Minor foxing on page margins, binding intact.
+    annotations:
+      custodian_types: '["M", "A", "L", "R"]'
+      custodian_types_rationale: Primarily used by museums, archives, libraries, research centers with physical collections.
+      specificity_score: "0.6"
+      specificity_rationale: Moderately specific - used in conservation and preservation contexts.
+    examples:
+      - value:
+          has_type: GoodCondition
+          has_description:
+            description_text: Object stabilized after treatment, with minor superficial wear.
+        description: Post-treatment assessment suitable for supervised handling
+      - value:
+          has_type: PoorCondition
+          has_description:
+            description_text: Significant foxing, loose binding, and tears requiring intervention.
+        description: Assessment indicating conservation work is needed before consultation
+    keywords:
+      - preservation snapshot
+      - physical integrity
+      - deterioration assessment
+      - conservation monitoring
+      - treatment tracking
+    comments:
+      - Each instance represents one temporal observation point.
+      - Longitudinal tracking is modeled through multiple instances over time.

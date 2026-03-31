@@ -1,0 +1,160 @@
+id: https://nde.nl/ontology/hc/class/ExhibitionSpace
+name: ExhibitionSpace
+title: Exhibition Space Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  aat: http://vocab.getty.edu/aat/
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/ExhibitionSpaceTypeEnum
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_description
+- ../slots/has_type
+- ../slots/in_area
+- ../slots/has_capacity
+- ../slots/charge_fee
+- ../slots/exhibit
+- ../slots/has_schedule
+- ../slots/has_operating_hours
+- ../slots/has_accessibility_feature
+- ../slots/has_partner
+- ../slots/has_score
+- ../slots/derive_from
+- ../slots/generated_by
+classes:
+  ExhibitionSpace:
+    is_a: ReconstructedEntity
+    class_uri: aat:300005768
+    description: >-
+      Dedicated physical area for displaying heritage collections at a secondary
+      or satellite location operated by the custodian.
+    alt_descriptions:
+      nl: >-
+        Toegewijd fysiek gebied voor het tonen van erfgoedcollecties op een secundaire
+        of satellietlocatie beheerd door de beheerder.
+      de: >-
+        Dedizierter physischer Bereich zur Präsentation von Heritage-Sammlungen an einem sekundären
+        oder Satellitenstandort, der vom Kurator betrieben wird.
+      fr: >-
+        Zone physique dédiée à l'exposition de collections patrimoniales sur un site secondaire
+        ou satellite géré par le conservateur.
+      es: >-
+        Área física dedicada a exhibir colecciones patrimoniales en una ubicación secundaria
+        o satélite operada por el custodio.
+      ar: >-
+        منطقة مادية مخصصة لعرض مجموعات التراث في موقع ثانوي
+        أو تابع يديره القيم.
+      id: >-
+        Area fisik khusus untuk memamerkan koleksi warisan di lokasi sekunder
+        atau satelit yang dikelola oleh kustodian.
+      zh: >-
+        在由保管人运营的次要或卫星位置展示遗产藏品的专用物理区域。
+    structured_aliases:
+    - literal_form: tentoonstellingsruimte
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Ausstellungsraum
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: espace d'exposition
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: espacio de exposición
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مساحة المعرض
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: ruang pameran
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 展览空间
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - aat:300005768
+    close_mappings:
+    - org:Site
+    - schema:Place
+    - wd:Q1060829
+    related_mappings:
+    - schema:ArtGallery
+    - schema:Museum
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    - in_area
+    - has_capacity
+    - charge_fee
+    - exhibit
+    - has_schedule
+    - has_operating_hours
+    - has_accessibility_feature
+    - has_partner
+    - has_score
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_label:
+        required: true
+      has_type:
+        range: ExhibitionSpaceTypeEnum
+      has_capacity:
+        inlined: true
+      in_area:
+        inlined: true
+      charge_fee:
+        multivalued: true
+        inlined: true
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+      generated_by:
+        range: ReconstructionActivity
+    notes:
+    - |
+      Exhibition space, gallery, or display area operated by a heritage custodian
+      at a location separate from the main facility.
+
+      **DEFINITION**:
+
+      An ExhibitionSpace is a dedicated area for displaying collections or
+      exhibitions at a secondary location. This may be a satellite gallery,
+      exhibition pavilion, temporary exhibition venue, or partner venue where
+      the heritage custodian presents its collections.
+
+      **GETTY AAT ALIGNMENT**:
+
+      `aat:300005768` (exhibition spaces) - "Spaces designed and equipped for
+      the display and viewing of objects, artworks, or specimens."
+
+      **WIKIDATA TYPE LINKAGE**:
+
+      This class can be further classified using either:
+
+      1. **MuseumTypeEnum** (187 types) - For museum-style exhibition spaces:
+         - Q3196771 (art museum - institution)
+         - Q16735822 (history museum)
+         - Q588140 (science museum)
+
+      2. **GalleryTypeEnum** (78 types) - For gallery-style exhibition spaces:
+         - Q1007870 (art gallery)
+         - Q1060829 (exhibition hall)
+         - Q856584 (kunsthalle)
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Place model for display infrastructure and visitor-facing facilities.
+      custodian_types: '["*"]'
+    comments:
+    - 'Preserved from prior description: Secondary or dedicated space used by a custodian for public exhibitions.'

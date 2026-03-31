@@ -1,0 +1,218 @@
+id: https://nde.nl/ontology/hc/classes/AddressComponent
+name: AddressComponent
+title: Address Component
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  vcard: http://www.w3.org/2006/vcard/ns#
+  locn: http://www.w3.org/ns/locn#
+imports:
+- linkml:types
+- ../classes/ComponentType
+- ../slots/has_type
+- ../slots/has_literal_form
+- ../slots/shortened_as
+classes:
+  AddressComponent:
+    class_uri: hc:AddressComponent
+    description: >-
+      Single component of a structured address.
+    alt_descriptions:
+      nl: "Enkel onderdeel van een gestructureerd adres."
+      de: "Einzelne Komponente einer strukturierten Adresse."
+      fr: "Composant unique d'une adresse structurée."
+      es: "Componente único de una dirección estructurada."
+      ar: "مكون واحد من عنوان منظم."
+      id: "Komponen tunggal dari alamat terstruktur."
+      zh: "结构化地址的单个组件。"
+    examples:
+    - value:
+        has_literal_form: '1'
+        shortened_as: '1'
+        has_type:
+        - StreetNumber
+      description: Street number component
+    - value:
+        has_literal_form: Museumstraat
+        shortened_as: Museumstraat
+        has_type:
+        - Route
+      description: Street name component
+    - value:
+        has_literal_form: Noord-Holland
+        shortened_as: NH
+        has_type:
+        - Region
+      description: Province/region component with abbreviation
+    - value:
+        has_literal_form: Netherlands
+        shortened_as: NL
+        has_type:
+        - Country
+      description: Country component with ISO code
+    close_mappings:
+    - locn:AddressRepresentation
+    related_mappings:
+    - schema:PostalAddress
+    - vcard:Address
+    structured_aliases:
+    - literal_form: adrescomponent
+      in_language: nl
+    - literal_form: adresonderdeel
+      in_language: nl
+    - literal_form: Adresskomponente
+      in_language: de
+    - literal_form: Adressbestandteil
+      in_language: de
+    - literal_form: composant d'adresse
+      in_language: fr
+    - literal_form: élément d'adresse
+      in_language: fr
+    - literal_form: componente de dirección
+      in_language: es
+    - literal_form: elemento de dirección
+      in_language: es
+    - literal_form: مكون العنوان
+      in_language: ar
+    - literal_form: عنصر العنوان
+      in_language: ar
+    - literal_form: komponen alamat
+      in_language: id
+    - literal_form: elemen alamat
+      in_language: id
+    - literal_form: 地址组件
+      in_language: zh
+    - literal_form: 地址元素
+      in_language: zh
+    keywords:
+    - address component
+    - street number
+    - locality
+    - region
+    - country
+    - postal code
+    - parsing
+    - normalization
+    slots:
+    - has_literal_form
+    - shortened_as
+    - has_type
+    slot_usage:
+      has_literal_form:
+        required: false
+        examples:
+        - value: Netherlands
+        - value: Noord-Holland
+        - value: Museumstraat
+      shortened_as:
+        required: false
+        examples:
+        - value: NL
+        - value: NH
+        - value: Museumstraat
+      has_type:
+        range: ComponentType
+        multivalued: true
+        inlined_as_list: true
+        required: false
+        examples:
+        - value: StreetNumber
+        - value: Locality
+        - value: Region
+        - value: Country
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: "Generic address parsing component. Broadly applicable across all address sources and custodian types."
+      custodian_types: "['*']"
+      custodian_types_rationale: "Any custodian with address data may use address components during parsing/normalization."
+      component_types: "street_number, route, locality, postal_code, subregion, region, country, premise, subpremise"
+    comments:
+    - Source-agnostic representation of address components
+    - Use for parsing/normalization workflows before constructing Address objects
+    - Component types follow common geographic hierarchy conventions
+    - Multiple types allowed for components that serve multiple roles
+    - Intermediate representation between raw data and Address objects
+    - |
+      Preserved from prior description:
+
+      **PURPOSE**:
+
+      AddressComponent represents one discrete element of an address, such as
+      the street number, street name, city, region, or country. This enables:
+      - Parsing addresses from various sources into standardized components
+      - Normalizing address data from different formats/APIs
+      - Supporting multilingual address representations (long_name vs short_name)
+
+      **COMPONENT STRUCTURE**:
+
+      Each AddressComponent has:
+      - `long_name`: Full form of the value (e.g., "Netherlands", "Noord-Holland")
+      - `short_name`: Abbreviated form (e.g., "NL", "NH") - may equal long_name
+      - `has_type`: Semantic type(s) via ComponentType (e.g., Country, Locality)
+
+      **STANDARD COMPONENT TYPES**:
+
+      | Type | Description | Example long_name | Example short_name |
+      |------|-------------|-------------------|-------------------|
+      | `street_number` | House/building number | "1", "221B" | same |
+      | `route` | Street/road name | "Museumstraat" | same |
+      | `locality` | City/town/village | "Amsterdam" | same |
+      | `postal_code` | ZIP/postal code | "1071 XX" | same |
+      | `subregion` | County/district | "Amsterdam" | same |
+      | `region` | State/province | "Noord-Holland" | "NH" |
+      | `country` | Country | "Netherlands" | "NL" |
+      | `premise` | Building/complex name | "Rijksmuseum" | same |
+      | `subpremise` | Unit/floor/suite | "Floor 3" | "3" |
+
+      **RELATIONSHIP TO Address CLASS**:
+
+      AddressComponent is used for:
+      1. **Parsing workflows**: Breaking down raw address strings into components
+      2. **Normalization**: Standardizing addresses from different sources
+      3. **Intermediate representation**: Before constructing a full Address object
+
+      The Address class provides the final, ontology-aligned representation with
+      dedicated slots (street_name, locality, region, country_name, etc.).
+
+      ```
+      Raw Address Data (any source)
+          │
+          └── parse → AddressComponent[]  # Intermediate representation
+                          │
+                          └── normalize → Address  # vCard/LOCN aligned
+      ```
+
+      **USAGE EXAMPLES**:
+
+      ```yaml
+      # Street number component (MIGRATED 2026-01-22: Rule 53)
+      - long_name: "1"
+        short_name: "1"
+        has_type: [StreetNumber]
+
+      # Province with abbreviation
+      - long_name: "Noord-Holland"
+        short_name: "NH"
+        has_type: [Region]
+
+      # Country with ISO code
+      - long_name: "Netherlands"
+        short_name: "NL"
+        has_type: [Country]
+      ```
+
+      **SOURCE-AGNOSTIC DESIGN**:
+
+      This class is designed to work with addresses from ANY source:
+      - Website scraping
+      - Registry data (ISIL, KvK, etc.)
+      - API responses (when normalized)
+      - Manual data entry
+      - OCR/document extraction
+
+      API-specific raw data formats are handled by Endpoint classes.
+    - 'Preserved from prior description: Single component of a structured address. Represents one discrete element of an address such as street number, street name, city, region, or country. Used for parsing addresses from various sources into standardized components and normalizing address data from different formats/APIs.'
+    see_also:
+    - Address
+    - https://www.w3.org/ns/locn#Address

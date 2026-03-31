@@ -1,0 +1,182 @@
+id: https://nde.nl/ontology/hc/class/ArchivesForBuildingRecordsRecordSetTypes
+name: ArchivesForBuildingRecordsRecordSetTypes
+title: Archives for Building Records Record Set Types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./ArchivesForBuildingRecordsRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  BuildingPermitSeries:
+    is_a: ArchivesForBuildingRecordsRecordSetType
+    class_uri: hc:BuildingPermitSeries
+    description: >-
+      Ordered documentary sequence of applications for construction
+      authorization, approvals, and related administrative filings.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van aanvragen voor bouwtoestemming,
+        goedkeuringen en gerelateerde administratieve stukken.
+      de: >-
+        Geordnete Dokumentationsfolge von Antraegen auf Bauzulassung,
+        Genehmigungen und zugehoerigen Verwaltungsunterlagen.
+      fr: >-
+        Sequence documentaire ordonnee de demandes d'autorisation de construire,
+        d'approbations et de pieces administratives connexes.
+      es: >-
+        Secuencia documental ordenada de solicitudes de autorizacion de construccion,
+        aprobaciones y tramites administrativos relacionados.
+      ar: >-
+        تسلسل وثائقي منظم لطلبات الإذن بالإنشاء والموافقات
+        والملفات الإدارية ذات الصلة.
+      id: >-
+        Urutan dokumenter teratur atas permohonan otorisasi konstruksi,
+        persetujuan, dan berkas administratif terkait.
+      zh: >-
+        由施工授权申请、批准及相关行政材料构成的有序文献序列。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Series
+    structured_aliases:
+      - literal_form: bouwvergunningenserie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Baugenehmigungsserie
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: serie de permis de construire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: serie de permisos de construccion
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: سلسلة تصاريح البناء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: seri izin bangunan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 建筑许可证系列
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - building permit
+      - construction authorization
+      - series
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:BuildingPermitSeries
+      has_custodian:
+        equals_string: hc:ArchivesForBuildingRecords
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ArchivesForBuildingRecords custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Series organizational principle
+      - Primary series type for building permit documentation
+      - Note preserved: Earlier modeling allowed hc:ArchiveOrganizationType as a fallback has_type value.
+    annotations:
+      specificity_score: "0.45"
+      specificity_rationale: Specific series type for building permits
+      custodian_types: "['ArchivesForBuildingRecords']"
+
+  ConstructionDocumentCollection:
+    is_a: ArchivesForBuildingRecordsRecordSetType
+    class_uri: hc:ConstructionDocumentCollection
+    description: >-
+      Assembled documentary body of technical drawings, blueprints,
+      inspection reports, and project-level documentation for the built environment.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van technische tekeningen,
+        blauwdrukken, inspectierapporten en projectdocumentatie voor de gebouwde omgeving.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus technischen Zeichnungen,
+        Blaupausen, Inspektionsberichten und projektbezogener Dokumentation.
+      fr: >-
+        Ensemble documentaire reuni de dessins techniques,
+        plans, rapports d'inspection et documentation de projet pour l'environnement bati.
+      es: >-
+        Cuerpo documental reunido de planos tecnicos,
+        planos maestros, informes de inspeccion y documentacion de proyecto del entorno construido.
+      ar: >-
+        جسم وثائقي مُجمع من الرسومات الفنية والمخططات
+        وتقارير التفتيش ووثائق المشاريع للبيئة المبنية.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi gambar teknis,
+        blueprint, laporan inspeksi, dan dokumentasi proyek untuk lingkungan terbangun.
+      zh: >-
+        汇集技术图纸、蓝图、检查报告与建成环境项目文档的文献整体。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    structured_aliases:
+      - literal_form: bouwdocumentatiecollectie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Baudokumentationssammlung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de documents de construction
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de documentos de construccion
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة وثائق البناء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi dokumen konstruksi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 施工文件收藏
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - construction documents
+      - blueprints
+      - technical drawings
+      - collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ConstructionDocumentCollection
+      has_custodian:
+        equals_string: hc:ArchivesForBuildingRecords
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ArchivesForBuildingRecords custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Collection organizational principle
+      - Contains technical documentation and drawings
+    annotations:
+      specificity_score: "0.45"
+      specificity_rationale: Specific collection type for construction documents
+      custodian_types: "['ArchivesForBuildingRecords']"

@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: has_system
+# ==============================================================================
+# Identifies the legal code, political regime, or framework governing an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line                 | Mapping  | Notes                                                          |
+# |----------------|-----------------------|---------------------------|----------|----------------------------------------------------------------|
+# | **Schema.org** | `schema:jurisdiction` | schemaorg.owl:23809-23831 | related  | "Indicates a legal jurisdiction." Identifies geographic area, not system type (civil vs common law). |
+# | **W3C Org**    | `org:classification`  | org.rdf:371-386           | broad    | "A classification for this Organization within some classification scheme." General classification. |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_system
+name: has_system
+title: Has System
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+imports:
+  - linkml:types
+  - ../enums/LegalSystemTypeEnum
+default_prefix: hc
+slots:
+  has_system:
+    slot_uri: hc:hasSystem
+    description: >-
+      Identifies the specific structured framework, legal code, political regime,
+      or operational methodology that governs an entity or region.
+    alt_descriptions:
+      nl: >-
+        Identificeert het specifieke gestructureerde kader, de juridische code,
+        het politieke regime of de operationele methodologie die een entiteit of
+        regio bestuurt.
+      de: >-
+        Identifiziert den spezifischen strukturierten Rahmen, den Rechtskodex,
+        das politische Regime oder die operative Methodik, die eine Entität oder
+        Region regiert.
+      fr: >-
+        Identifie le cadre structuré spécifique, le code juridique, le régime
+        politique ou la méthodologie opérationnelle qui régit une entité ou une
+        région.
+      ar: >-
+        يحدد الإطار المنظم المحدد أو القانون أو النظام السياسي أو المنهجية
+        التشغيلية التي تحكم كياناً أو منطقة.
+      id: >-
+        Mengidentifikasi kerangka kerja terstruktur, kode hukum, rezim politik,
+        atau metodologi operasional tertentu yang mengatur suatu entitas atau
+        wilayah.
+      zh: >-
+        标识管理某一实体或地区的特定结构化框架、法典、政治体制或运作方法。
+      es: >-
+        Identifica el marco estructurado específico, el código legal, el régimen
+        político o la metodología operativa que gobierna una entidad o región.
+    structured_aliases:
+      - literal_form: Rechtsstelsel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rechtssystem
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Système Juridique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نظام قانوني
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Sistem Hukum
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 法律体系
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Sistema Jurídico
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - 'Values: CIVIL_LAW (Continental European tradition), COMMON_LAW (English tradition), MIXED (combination), RELIGIOUS (based on religious law), CUSTOMARY (based on local custom).'
+      - This affects which legal forms are available and how entities are registered.
+    related_mappings:
+      - schema:jurisdiction  # schemaorg.owl:23809-23831 — "Indicates a legal jurisdiction." Identifies the area, not the system type.
+    broad_mappings:
+      - org:classification  # org.rdf:371-386 — "A classification for this Organization within some classification scheme."
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - legal_system_type
+      - monitoring_platform
+      - primary_system

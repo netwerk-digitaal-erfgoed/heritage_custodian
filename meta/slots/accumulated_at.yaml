@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: accumulated_at
+# ==============================================================================
+# Links archival records to the location where they were accumulated.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                  | File/Line | Mapping | Notes                                |
+# |------------|---------------------------|-----------|---------|--------------------------------------|
+# | **RiC-O**  | `rico:hasAccumulator`     | N/A       | close   | Agent who accumulated (not location) |
+# | **RiC-O**  | `rico:hasAccumulationDate`| N/A       | related | Date of accumulation (not location)  |
+#
+# No exact standard mapping exists for accumulation location.
+# This is a domain-specific property for archival contexts.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Removed incorrect exact_mapping, added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/accumulated_at
+name: accumulated_at
+title: Accumulated At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  accumulated_at:
+    slot_uri: hc:accumulatedAt
+    description: >-
+      To be aggregated, collected, or accrued as a body of records within a 
+      specific archival repository, custodial institution, or storage environment.
+    alt_descriptions:
+      nl: >-
+        Verzameld, bijeengebracht of opgebouwd als een geheel van archiefstukken 
+        binnen een specifieke archiefbewaarplaats, bewaarinstelling of 
+        opslagomgeving.
+      de: >-
+        Als Bestand von Unterlagen in einem bestimmten Archivdepot, einer 
+        Verwahrinstitution oder Aufbewahrungsumgebung aggregiert, gesammelt 
+        oder angesammelt zu werden.
+      fr: >-
+        Être agrégé, collecté ou accumulé en tant que fonds d'archives au sein 
+        d'un dépôt d'archives, d'une institution de conservation ou d'un 
+        environnement de stockage spécifique.
+      ar: >-
+        أن يتم تجميعه أو جمعه أو تراكمه كمجموعة من السجلات ضمن مستودع 
+        أرشيفي محدد أو مؤسسة حفظ أو بيئة تخزين.
+      id: >-
+        Dikumpulkan, dihimpun, atau diakumulasikan sebagai kumpulan arsip 
+        dalam repositori arsip, lembaga penyimpanan, atau lingkungan 
+        penyimpanan tertentu.
+      zh: >-
+        作为档案记录集合在特定档案库、保管机构或存储环境中
+        聚集、收集或累积。
+      es: >-
+        Ser agregado, recopilado o acumulado como un cuerpo de registros 
+        dentro de un repositorio de archivos, institución custodial o 
+        entorno de almacenamiento específico.
+    structured_aliases:
+      - literal_form: geaccumuleerd bij
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: angesammelt bei
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: accumulé à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متراكم في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: terakumulasi di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 累积于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: acumulado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    related_mappings:
+      - rico:hasAccumulationDate  # About date, not location
+    aliases:
+      - has_or_had_accumulation
+      - has_accumulation
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to indicate the archival repository or 
+        institution where records were accumulated over time.
+      - |
+        **ARCHIVAL DOMAIN**: This is a domain-specific property for archival 
+        contexts. The RiC-O `rico:hasAccumulationDate` is related but captures 
+        the date, not the location of accumulation.

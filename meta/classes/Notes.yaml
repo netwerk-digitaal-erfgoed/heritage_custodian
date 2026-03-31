@@ -1,0 +1,119 @@
+id: https://nde.nl/ontology/hc/class/Notes
+name: notes_class
+title: Notes Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_score  # was: template_specificity
+  - ../slots/in_language
+  - ../slots/has_content
+  - ../slots/has_timestamp
+  - ../slots/has_type
+classes:
+  Notes:
+    class_uri: hc:Notes
+    description: >-
+      Structured documentation container for appraisal, arrangement, conservation,
+      and workflow annotations with type categorization.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde documentatiecontainer voor taxatie-, ordenings-, conserverings-
+        en workflowannotaties met typecategorisering.
+      de: >-
+        Strukturierter Dokumentationscontainer für Bewertungs-, Ordnungs-, Konservierungs-
+        und Workflow-Anmerkungen mit Typkategorisierung.
+      fr: >-
+        Conteneur de documentation structuré pour les annotations d'évaluation, de classement,
+        de conservation et de flux de travail avec catégorisation par type.
+      es: >-
+        Contenedor de documentación estructurada para anotaciones de valoración, ordenación,
+        conservación y flujo de trabajo con categorización por tipo.
+      ar: >-
+        حاوية توثيق منظمة لتعليقات التقييم والترتيب والحفظ وسير العمل مع تصنيف النوع.
+      id: >-
+        Kontainer dokumentasi terstruktur untuk anotasi penilaian, pengaturan, konservasi,
+        dan alur kerja dengan kategorisasi tipe.
+      zh: >-
+        用于评估、整理、保护和流程注释的带类型分类的结构化文档容器。
+    close_mappings:
+      - skos:note
+      - rdfs:comment
+      - dcterms:description
+    
+    slots:
+      - has_type
+      - has_content
+      - has_timestamp
+      - in_language
+      - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    
+    slot_usage:
+      has_type:
+      has_content:
+        required: true
+      has_timestamp:
+        range: date
+        required: false
+      in_language:
+        required: false
+        pattern: "^[a-z]{2}$"
+      has_score:
+        required: false
+        examples:
+          - value: appraisal
+          - value: arrangement
+          - value: conservation
+    
+    notes:
+      - |
+        Preserved from prior description (commit 6e634651):
+
+        A typed note with optional provenance metadata.
+
+        **Purpose**:
+        Notes provides a reusable class for representing documentation notes
+        across the heritage custodian schema. Supports typed notes (appraisal,
+        arrangement, conservation, etc.) with language tagging and dates.
+
+        **Ontological Alignment**:
+        - **Primary**: `skos:note` - general note
+        - **Close**: `rdfs:comment` - comment on resource
+
+        **Use Cases**:
+        - Appraisal notes documenting retention decisions
+        - Arrangement notes documenting physical organization
+        - Conservation notes documenting treatments
+        - Processing notes documenting archival workflow
+        - General documentation notes
+
+        **Replaces**:
+        - `appraisal_notes` (string) - now typed with note_type
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Generic notes class applicable to all types.
+      custodian_types_primary: null
+      specificity_score: 0.3
+      specificity_rationale: Broadly applicable generic class for documentation notes.
+    
+    examples:
+      - value: |
+          note_type: appraisal
+          note_content: "Retained all policy files; destroyed duplicate copies and routine correspondence per retention schedule RS-2020-05"
+          note_date: "2024-03-15"
+          language: en
+      - value: |
+          note_type: arrangement
+          note_content: "Maintained original order by correspondent. Created 5 series by function. Rehoused into acid-free folders and boxes."
+          note_date: "2024-06-01"
+          language: en

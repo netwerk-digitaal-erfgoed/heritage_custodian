@@ -1,0 +1,52 @@
+id: https://nde.nl/ontology/hc/class/EmailAddress
+name: EmailAddress
+title: Email Address Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  vcard: http://www.w3.org/2006/vcard/ns#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_label
+classes:
+  EmailAddress:
+    class_uri: hc:EmailAddress
+    description: >-
+      Structured electronic contact value used for messaging, notifications,
+      and service communication.
+    alt_descriptions:
+      nl: Gestructureerde e-mailwaarde voor contactpunten meldingen en servicecommunicatie.
+      de: Strukturierter E-Mail-Wert fuer Kontaktpunkte Benachrichtigungen und Servicekommunikation.
+      fr: Valeur d adresse e-mail structuree pour points de contact notifications et communication de service.
+      es: Valor de correo electronico estructurado para puntos de contacto notificaciones y comunicacion de servicio.
+      ar: قيمة بريد إلكتروني منظمة لنقاط الاتصال والإشعارات وتواصل الخدمة.
+      id: Nilai alamat email terstruktur untuk titik kontak notifikasi dan komunikasi layanan.
+      zh: 用于联系点、通知与服务沟通的结构化电子邮件地址值。
+    structured_aliases:
+    - {literal_form: e-mailadres, in_language: nl}
+    - {literal_form: E-Mail-Adresse, in_language: de}
+    - {literal_form: adresse e-mail, in_language: fr}
+    - {literal_form: direccion de correo electronico, in_language: es}
+    - {literal_form: عنوان بريد إلكتروني, in_language: ar}
+    - {literal_form: alamat email, in_language: id}
+    - {literal_form: 电子邮件地址, in_language: zh}
+    close_mappings:
+    - vcard:Email
+    related_mappings:
+    - schema:email
+
+    slots:
+    - has_label
+
+    slot_usage:
+      has_label:
+        pattern: "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$"
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.1
+      specificity_rationale: Basic datatype class.

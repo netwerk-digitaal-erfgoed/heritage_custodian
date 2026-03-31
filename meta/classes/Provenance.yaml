@@ -1,0 +1,143 @@
+id: https://nde.nl/ontology/hc/classes/Provenance
+name: Provenance
+title: Provenance
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dct: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+imports:
+  - ./LLMResponse
+  - ./RetrievalMethod
+  - ../slots/has_note
+  - linkml:types
+  - ../slots/has_agent
+  - ../slots/identified_by
+  - ../slots/has_output
+  - ../slots/has_quantity
+  - ../slots/based_on
+  - ../slots/generated_by
+  - ../slots/retrieved_by
+  - ../slots/retrieved_through
+  - ../slots/temporal_extent
+# default_range: string
+classes:
+  Provenance:
+    description: >-
+      Statement documenting the origin, derivation, or lineage of data,
+      recording the agents, activities, and sources involved in its creation or transformation.
+    alt_descriptions:
+      nl: >-
+        Verklaring die de herkomst, afleiding of afstamming van gegevens documenteert,
+        waarbij de betrokken agenten, activiteiten en bronnen worden vastgelegd.
+      de: >-
+        Erklärung, die den Ursprung, die Ableitung oder die Abstammung von Daten dokumentiert
+        und die beteiligten Akteure, Aktivitäten und Quellen erfasst.
+      fr: >-
+        Déclaration documentant l'origine, la dérivation ou la lignée des données,
+        enregistrant les agents, activités et sources impliqués dans leur création ou transformation.
+      es: >-
+        Declaración que documenta el origen, derivación o linaje de los datos,
+        registrando los agentes, actividades y fuentes involucrados en su creación o transformación.
+      ar: >-
+        بيان يوثق أصل البيانات أو اشتقاقها أو نسبها،
+        مسجلاً الوكلاء والأنشطة والمصادر المشاركة في إنشائها أو تحويلها.
+      id: >-
+        Pernyataan yang mendokumentasikan asal, turunan, atau silsilah data,
+        mencatat agen, aktivitas, dan sumber yang terlibat dalam pembuatan atau transformasinya.
+      zh: >-
+        记录数据来源、衍生或谱系的声明，
+        记录参与其创建或转换的代理、活动和来源。
+    class_uri: prov:Activity
+    close_mappings:
+      - dct:ProvenanceStatement
+      - schema:Action
+    related_mappings:
+      - prov:Entity
+      - prov:Derivation
+    broad_mappings:
+      - prov:Activity
+    keywords:
+      - provenance
+      - data lineage
+      - origin
+      - derivation
+    structured_aliases:
+      - literal_form: herkomst
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Provenienz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: provenance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    comments:
+      - Represents a SINGLE provenance statement (one source, one activity)
+      - Use ProvenanceBlock for bundling MULTIPLE provenance sources together
+    slots:
+      - has_agent
+      - temporal_extent
+      - generated_by
+      - retrieved_by
+      - retrieved_through
+      - identified_by
+      - has_quantity
+      - based_on
+      - has_output
+      - has_note
+    slot_usage:
+      retrieved_by:
+        inlined: false
+      retrieved_through:
+        range: RetrievalMethod
+        inlined: true
+      temporal_extent: null
+      identified_by: {}
+      has_quantity:
+        range: integer
+        inlined: false
+      based_on:
+        multivalued: true
+      has_output:
+        range: LLMResponse
+        inlined: true
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Provenance tracking is universal across all custodian types.
+      custodian_types_primary: '*'
+      specificity_score: 0.15
+      specificity_rationale: Very low specificity - provenance metadata applies universally.
+    examples:
+      - value:
+          extraction_method: xpath_extraction
+          source_entity: https://example.org/webpage/12345
+          generated_by:
+            has_score:
+              has_score: 0.95
+              has_method: xpath_extraction
+              has_description: Exact match at expected XPath
+          note: Extracted from archived HTML using XPath
+        description: XPath-based extraction provenance
+      - value:
+          retrieved_by:
+            has_label: claude-opus-4.5
+          retrieved_through:
+            has_label: exa_crawling_exa
+          based_on:
+            - https://www.linkedin.com/in/example
+          identified_by: exa_12345678
+          has_quantity:
+            quantity_value: 0.001
+            has_unit:
+              has_label: USD
+          temporal_extent:
+            begin_of_the_begin: "2025-12-12T22:00:00Z"
+        description: LLM-assisted retrieval provenance

@@ -1,0 +1,66 @@
+id: https://nde.nl/ontology/hc/class/settlement
+name: settlement
+title: Settlement Class
+imports:
+- linkml:types
+- ../slots/in_country
+- ../slots/has_geographic_subdivision
+- ../slots/has_score
+- ../slots/has_latitude
+- ../slots/has_longitude
+- ../slots/has_locality
+prefixes:
+  linkml: https://w3id.org/linkml/
+  gn: http://www.geonames.org/ontology#
+  schema: http://schema.org/
+  wikidata: http://www.wikidata.org/entity/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+classes:
+  Settlement:
+    class_uri: gn:Feature
+    description: >-
+      City, town, or municipality identified by GeoNames ID.
+    alt_descriptions:
+      nl: Stad, dorp of gemeente geïdentificeerd door GeoNames ID.
+      de: Stadt, Dorf oder Gemeinde, identifiziert durch GeoNames-ID.
+      fr: Ville, village ou municipalité identifié par l'ID GeoNames.
+    structured_aliases:
+    - literal_form: nederzetting
+      in_language: nl
+    - literal_form: Siedlung
+      in_language: de
+    - literal_form: établissement
+      in_language: fr
+    comments:
+    - GeoNames provides stable identifiers for settlements worldwide.
+    - Each settlement has a unique numeric GeoNames ID that persists even if names or boundaries change.
+    - Examples include Amsterdam (2759794), Pittsburgh (5206379), Rio de Janeiro (3451190).
+    broad_mappings:
+    - schema:Place
+    close_mappings:
+    - wikidata:Q486972
+    - crm:E53_Place
+    related_mappings:
+    - gn:P.PPL
+    slots:
+    - in_country
+    - has_latitude
+    - has_longitude
+    - has_locality
+    - has_geographic_subdivision
+    - has_score
+    slot_usage:
+      has_locality:
+        required: true
+      in_country:
+        required: true
+      has_geographic_subdivision:
+        required: false
+      has_latitude:
+        required: false
+      has_longitude:
+        required: false
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

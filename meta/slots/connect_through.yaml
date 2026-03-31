@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: connect_through
+# ==============================================================================
+# Type of connectivity technology used to establish a communication link.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                | Mapping | Notes                                                          |
+# |---------------|---------------------------|--------------------------|---------|----------------------------------------------------------------|
+# | **Schema.org**| `schema:availableChannel`  | schemaorg.owl:9382-9403  | related | "A means of accessing the service." Domain: Service.           |
+# | **Brick**     | `brick:connectedTo`        | Brick.ttl:31441-31445    | related | Symmetric ObjectProperty about the fact of connection.         |
+#
+# No exact/close match — slot is specifically about IoT/building connectivity
+# protocol types (WiFi, BLE, LoRaWAN, etc.). No standard ontology in our
+# collection models this concept directly.
+# slot_uri stays hc:connectivityType.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/connect_through
+name: connect_through
+title: Connect Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  brick: https://brickschema.org/schema/Brick#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  connect_through:
+    slot_uri: hc:connectivityType
+    description: >-
+      The type of connectivity technology or communication protocol used to
+      establish a link between two points or entities via an intermediary
+      system, device, interface, or medium.
+    comments:
+      - >-
+        Expected values: BLUETOOTH_LE (Bluetooth Low Energy / beacons),
+        WIFI (WiFi network connection), ETHERNET (wired network connection),
+        LORAWAN (long-range low-power IoT network), NFC (near-field
+        communication), ZIGBEE (Zigbee mesh network),
+        CELLULAR (4G/5G cellular connection).
+      - >-
+        Migrated from connectivity_type. Applies to all custodian types.
+    alt_descriptions:
+      nl: >-
+        Het type connectiviteitstechnologie of communicatieprotocol dat wordt
+        gebruikt om een verbinding tot stand te brengen tussen twee punten of
+        entiteiten via een tussenliggend systeem, apparaat, interface of medium.
+      de: >-
+        Die Art der Konnektivitaetstechnologie oder des Kommunikationsprotokolls,
+        die verwendet wird, um eine Verbindung zwischen zwei Punkten oder
+        Entitaeten ueber ein zwischengeschaltetes System, Geraet, eine
+        Schnittstelle oder ein Medium herzustellen.
+      fr: >-
+        Le type de technologie de connectivite ou de protocole de communication
+        utilise pour etablir une liaison entre deux points ou entites via un
+        systeme, un appareil, une interface ou un support intermediaire.
+      ar: >-
+        نوع تقنية الاتصال او بروتوكول الاتصالات المستخدم لانشاء ارتباط بين
+        نقطتين او كيانين عبر نظام او جهاز او واجهة او وسيط وسيط.
+      id: >-
+        Jenis teknologi konektivitas atau protokol komunikasi yang digunakan
+        untuk membuat tautan antara dua titik atau entitas melalui sistem,
+        perangkat, antarmuka, atau media perantara.
+      zh: >-
+        用于通过中间系统、设备、接口或介质在两个点或实体之间建立链路的连接技术或通信协议类型。
+      es: >-
+        El tipo de tecnologia de conectividad o protocolo de comunicacion
+        utilizado para establecer un enlace entre dos puntos o entidades a
+        traves de un sistema, dispositivo, interfaz o medio intermediario.
+    structured_aliases:
+      - literal_form: Verbindingstype
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Konnektivitaetstyp
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Type de connectivite
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نوع الاتصال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Jenis Konektivitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 连接类型
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Tipo de conectividad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - connectivity_type
+    related_mappings:
+      - schema:availableChannel  # schemaorg.owl:9382-9403 - "A means of accessing the service (e.g. a phone bank, a web site, a location, etc.)."
+      - brick:connectedTo  # Brick.ttl:31441-31445 - Symmetric ObjectProperty about the fact of physical connection between equipment.
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,550 @@
+id: https://nde.nl/ontology/hc/class/CapacityTypes
+name: capacity_types_class
+title: Capacity Types Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+default_prefix: hc
+imports:
+- ./CapacityType
+- linkml:types
+classes:
+  VolumeCapacity:
+    is_a: CapacityType
+    class_uri: hc:VolumeCapacity
+    description: >-
+      Cubic volume measurement for enclosed storage spaces.
+    alt_descriptions:
+      nl: Kubieke volume meting voor afgesloten opslagruimtes.
+      de: Kubische Volumenmessung für geschlossene Lagerräume.
+      fr: Mesure de volume cubique pour les espaces de stockage clos.
+      es: Medida de volumen cúbico para espacios de almacenamiento cerrados.
+      ar: قياس الحجم المكعب لمساحات التخزين المغلقة.
+      id: Pengukuran volume kubik untuk ruang penyimpanan tertutup.
+      zh: 封闭存储空间的体积测量。
+    structured_aliases:
+    - literal_form: volumecapaciteit
+      in_language: nl
+    - literal_form: Volumenkapazität
+      in_language: de
+    - literal_form: capacité volumétrique
+      in_language: fr
+    - literal_form: capacidad de volumen
+      in_language: es
+    - literal_form: سعة الحجم
+      in_language: ar
+    - literal_form: kapasitas volume
+      in_language: id
+    - literal_form: 体积容量
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Volume
+      typical_units: "m³, ft³, liters"
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    keywords:
+    - volume
+    - cubic
+    - storage
+    - depot
+    examples:
+    - value:
+        has_value: 500
+        has_unit: "m³"
+    comments:
+    - Replaces CapacityTypeEnum.VOLUME
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  ShelfLengthCapacity:
+    is_a: CapacityType
+    class_uri: hc:ShelfLengthCapacity
+    description: >-
+      Linear measurement of shelf or storage length in archival repositories.
+    alt_descriptions:
+      nl: Lineaire meting van plank- of opslaglengte in archiefdepots.
+      de: Lineare Messung der Regal- oder Lagerlänge in Archivmagazinen.
+      fr: Mesure linéaire de la longueur d'étagères ou de stockage dans les dépôts d'archives.
+      es: Medida lineal de longitud de estanterías o almacenamiento en depósitos de archivo.
+      ar: القياس الخطي لطول الرفوف أو التخزين في مستودعات الأرشيف.
+      id: Pengukuran linear panjang rak atau penyimpanan di gudang arsip.
+      zh: 档案库房中货架或存储长度的线性测量。
+    structured_aliases:
+    - literal_form: planklengte
+      in_language: nl
+    - literal_form: strekkende meters
+      in_language: nl
+    - literal_form: Regalmeter
+      in_language: de
+    - literal_form: Laufmeter
+      in_language: de
+    - literal_form: mètres linéaires
+      in_language: fr
+    - literal_form: metros lineales
+      in_language: es
+    - literal_form: متر خطي
+      in_language: ar
+    - literal_form: meter linier
+      in_language: id
+    - literal_form: 延米
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Length
+      typical_units: m, ft, km
+    keywords:
+    - shelf length
+    - linear meters
+    - archival storage
+    - running meters
+    examples:
+    - value:
+        has_value: 2500
+        has_unit: m
+    comments:
+    - Replaces CapacityTypeEnum.SHELF_LENGTH
+    - Primary metric for archival storage
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  FloorAreaCapacity:
+    is_a: CapacityType
+    class_uri: hc:FloorAreaCapacity
+    description: >-
+      Surface area measurement for storage rooms, galleries, and exhibition spaces.
+    alt_descriptions:
+      nl: Oppervlakte meting voor opslagruimtes, galerijen en tentoonstellingsruimtes.
+      de: Flächenmessung für Lagerräume, Galerien und Ausstellungsräume.
+      fr: Mesure de surface pour les salles de stockage, galeries et espaces d'exposition.
+      es: Medida de superficie para salas de almacenamiento, galerías y espacios de exposición.
+      ar: قياس مساحة الأرضية لغرف التخزين والمعارض ومساحات العرض.
+      id: Pengukuran luas lantai untuk ruang penyimpanan, galeri, dan ruang pamer.
+      zh: 存储室、画廊和展览空间的面积测量。
+    structured_aliases:
+    - literal_form: vloeroppervlakte
+      in_language: nl
+    - literal_form: vierkante meters
+      in_language: nl
+    - literal_form: Bodenfläche
+      in_language: de
+    - literal_form: Quadratmeter
+      in_language: de
+    - literal_form: surface au sol
+      in_language: fr
+    - literal_form: mètres carrés
+      in_language: fr
+    - literal_form: superficie
+      in_language: es
+    - literal_form: metros cuadrados
+      in_language: es
+    - literal_form: متر مربع
+      in_language: ar
+    - literal_form: meter persegi
+      in_language: id
+    - literal_form: 平方米
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Area
+      typical_units: "m², ft²"
+    keywords:
+    - floor area
+    - square meters
+    - surface area
+    - exhibition space
+    examples:
+    - value:
+        has_value: 800
+        has_unit: "m²"
+    comments:
+    - Replaces CapacityTypeEnum.FLOOR_AREA
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  ItemCountCapacity:
+    is_a: CapacityType
+    class_uri: hc:ItemCountCapacity
+    description: >-
+      Numerical count of discrete items that can be accommodated in storage.
+    alt_descriptions:
+      nl: Numerieke telling van discrete items die in opslag kunnen worden bewaard.
+      de: Numerische Zählung der in der Lagerung unterbringbaren Einzelexemplare.
+      fr: Comptage numérique des éléments discrets pouvant être stockés.
+      es: Conteo numérico de elementos discretos que pueden almacenarse.
+      ar: العد الرقمي للعناصر المنفصلة التي يمكن تخزينها.
+      id: Penghitungan numerik item diskrit yang dapat disimpan.
+      zh: 可存储的离散物品的计数。
+    structured_aliases:
+    - literal_form: itemcapaciteit
+      in_language: nl
+    - literal_form: stuks
+      in_language: nl
+    - literal_form: Stückzahl
+      in_language: de
+    - literal_form: Objektanzahl
+      in_language: de
+    - literal_form: nombre d'objets
+      in_language: fr
+    - literal_form: capacité d'objets
+      in_language: fr
+    - literal_form: número de objetos
+      in_language: es
+    - literal_form: capacidad de objetos
+      in_language: es
+    - literal_form: عدد العناصر
+      in_language: ar
+    - literal_form: jumlah item
+      in_language: id
+    - literal_form: 件数
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Dimensionless
+      typical_units: boxes, folders, objects, items
+    keywords:
+    - item count
+    - quantity
+    - objects
+    - boxes
+    - folders
+    examples:
+    - value:
+        has_value: 5000
+        has_unit: boxes
+    comments:
+    - Replaces CapacityTypeEnum.ITEM_COUNT
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  WeightCapacity:
+    is_a: CapacityType
+    class_uri: hc:WeightCapacity
+    description: >-
+      Mass or weight measurement for load limits and transport logistics.
+    alt_descriptions:
+      nl: Massa of gewichtsmeting voor belastingslimieten en transportlogistiek.
+      de: Masse- oder GewichtsMESSUNG für Belastungsgrenzen und Transportlogistik.
+      fr: Mesure de masse ou de poids pour les limites de charge et la logistique de transport.
+      es: Medida de masa o peso para límites de carga y logística de transporte.
+      ar:
+      - text: قياس الكتلة أو الوزن لحدود الحمولة ولوجستيات النقل.
+        language: ar
+      id: Pengukuran massa atau berat untuk batas beban dan logistik transportasi.
+      zh: 用于负载限制和运输物流的质量或重量测量。
+    structured_aliases:
+    - literal_form: draagvermogen
+      in_language: nl
+    - literal_form: gewichtscapaciteit
+      in_language: nl
+    - literal_form: Tragfähigkeit
+      in_language: de
+    - literal_form: Gewichtskapazität
+      in_language: de
+    - literal_form: capacité de charge
+      in_language: fr
+    - literal_form: poids maximum
+      in_language: fr
+    - literal_form: capacidad de carga
+      in_language: es
+    - literal_form: peso máximo
+      in_language: es
+    - literal_form: قدرة التحمل
+      in_language: ar
+    - literal_form: kapasitas beban
+      in_language: id
+    - literal_form: 承重能力
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Mass
+      typical_units: kg, tons, lbs
+    keywords:
+    - weight
+    - mass
+    - load limit
+    - floor load
+    - transport
+    examples:
+    - value:
+        has_value: 2000
+        has_unit: kg
+    comments:
+    - Replaces CapacityTypeEnum.WEIGHT
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  SeatingCapacity:
+    is_a: CapacityType
+    class_uri: hc:SeatingCapacity
+    description: >-
+      Maximum number of seats or attendees for venues and event spaces.
+    alt_descriptions:
+      nl: Maximum aantal zitplaatsen of bezoekers voor zalen en evenementenlocaties.
+      de: Maximale Anzahl von Sitzplätzen oder Besuchern für Veranstaltungsräume.
+      fr: Nombre maximum de places assises ou de participants pour les salles et lieux d'événements.
+      es: Número máximo de asientos o asistentes para salas y espacios de eventos.
+      ar: الحد الأقصى لعدد المقاعد أو الحضور للقاعات وأماكن الفعاليات.
+      id: Jumlah maksimum tempat duduk atau hadirin untuk ruang dan tempat acara.
+      zh: 场馆和活动场所的最大座位数或出席人数。
+    structured_aliases:
+    - literal_form: zitplaatsen
+      in_language: nl
+    - literal_form: capaciteit zaal
+      in_language: nl
+    - literal_form: Sitzplätze
+      in_language: de
+    - literal_form: Saalkapazität
+      in_language: de
+    - literal_form: places assises
+      in_language: fr
+    - literal_form: jauge
+      in_language: fr
+    - literal_form: aforo
+      in_language: es
+    - literal_form: plazas
+      in_language: es
+    - literal_form: المقاعد
+      in_language: ar
+    - literal_form: السعة
+      in_language: ar
+    - literal_form: tempat duduk
+      in_language: id
+    - literal_form: kapasitas ruangan
+      in_language: id
+    - literal_form: 座位数
+      in_language: zh
+    - literal_form: 容纳人数
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Dimensionless
+      typical_units: seats, persons
+    keywords:
+    - seating
+    - seats
+    - venue capacity
+    - event space
+    - aforo
+    examples:
+    - value:
+        has_value: 200
+        has_unit: seats
+    comments:
+    - Replaces CapacityTypeEnum.SEATING
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  DisplayAreaCapacity:
+    is_a: CapacityType
+    class_uri: hc:DisplayAreaCapacity
+    description: >-
+      Surface area available for exhibiting objects in galleries and halls.
+    alt_descriptions:
+      nl: Oppervlakte beschikbaar voor het tentoonstellen van objecten in galerijen en zalen.
+      de: Fläche für die Präsentation von Objekten in Galerien und Ausstellungshallen.
+      fr: Surface disponible pour l'exposition d'objets dans les galeries et salles d'exposition.
+      es: Superficie disponible para exponer objetos en galerías y salas de exposición.
+      ar: المساحة المتاحة لعرض الأشياء في المعارض والقاعات.
+      id: Luas area yang tersedia untuk memamerkan objek di galeri dan aula.
+      zh: 画廊和展厅中可用于展示物品的面积。
+    structured_aliases:
+    - literal_form: tentoonstellingsoppervlakte
+      in_language: nl
+    - literal_form: expositieruimte
+      in_language: nl
+    - literal_form: Ausstellungsfläche
+      in_language: de
+    - literal_form: Präsentationsfläche
+      in_language: de
+    - literal_form: surface d'exposition
+      in_language: fr
+    - literal_form: espace muséographique
+      in_language: fr
+    - literal_form: superficie expositiva
+      in_language: es
+    - literal_form: área de exhibición
+      in_language: es
+    - literal_form: مساحة العرض
+      in_language: ar
+    - literal_form: area pamer
+      in_language: id
+    - literal_form: 展示面积
+      in_language: zh
+    - literal_form: 陈列面积
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Area
+      typical_units: "m², ft²"
+    keywords:
+    - display area
+    - exhibition space
+    - gallery
+    - museum
+    examples:
+    - value:
+        has_value: 1200
+        has_unit: "m²"
+    comments:
+    - Replaces CapacityTypeEnum.DISPLAY_AREA
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  RackSlotCapacity:
+    is_a: CapacityType
+    class_uri: hc:RackSlotCapacity
+    description: >-
+      Numerical count of available rack or shelf slots in modular storage systems.
+    alt_descriptions:
+      nl: Numerieke telling van beschikbare rek- of plankvakken in modulaire opslagsystemen.
+      de: Numerische Zählung verfügbarer Regalfächer in modularen Lagersystemen.
+      fr: Comptage numérique des emplacements d'étagères disponibles dans les systèmes de stockage modulaires.
+      es: Conteo numérico de compartimentos de estantería disponibles en sistemas de almacenamiento modulares.
+      ar: العد الرقمي للفتحات أو الرفوف المتاحة في أنظمة التخزين المعيارية.
+      id: Penghitungan numerik slot rak atau rak yang tersedia dalam sistem penyimpanan modular.
+      zh: 模块化存储系统中可用货架插槽的计数。
+    structured_aliases:
+    - literal_form: rekvakken
+      in_language: nl
+    - literal_form: schuifvakken
+      in_language: nl
+    - literal_form: Regalfächer
+      in_language: de
+    - literal_form: Facheinheiten
+      in_language: de
+    - literal_form: emplacements de rayonnage
+      in_language: fr
+    - literal_form: casiers
+      in_language: fr
+    - literal_form: casillas
+      in_language: es
+    - literal_form: compartimentos
+      in_language: es
+    - literal_form: فتحات الرف
+      in_language: ar
+    - literal_form: slot rak
+      in_language: id
+    - literal_form: 货架格位
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Dimensionless
+      typical_units: slots, positions
+    keywords:
+    - rack slots
+    - modular storage
+    - shelving units
+    examples:
+    - value:
+        has_value: 150
+        has_unit: slots
+    comments:
+    - Replaces CapacityTypeEnum.RACK_SLOTS
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  DrawerUnitCapacity:
+    is_a: CapacityType
+    class_uri: hc:DrawerUnitCapacity
+    description: >-
+      Numerical count of flat file drawers for storing maps, plans, and oversize documents.
+    alt_descriptions:
+      nl: Numerieke telling van platte lades voor het bewaren van kaarten, plannen en grote documenten.
+      de: Numerische Zählung von Flachschubladen für Karten, Pläne und Großformat-Dokumente.
+      fr: Comptage numérique des tiroirs plans pour le stockage de cartes, plans et documents grand format.
+      es: Conteo numérico de cajones planos para almacenar mapas, planos y documentos de gran formato.
+      ar: العد الرقمي للأدراج المسطحة لتخزين الخرائط والمخططات والمستندات كبيرة الحجم.
+      id: Penghitungan numerik laci datar untuk menyimpan peta, rencana, dan dokumen besar.
+      zh: 用于存储地图、图纸和大尺寸文件的平放抽屉的计数。
+    structured_aliases:
+    - literal_form: platte lades
+      in_language: nl
+    - literal_form: kaartenlades
+      in_language: nl
+    - literal_form: Flachschubladen
+      in_language: de
+    - literal_form: Kartenschränke
+      in_language: de
+    - literal_form: tiroirs plans
+      in_language: fr
+    - literal_form: armoires à plans
+      in_language: fr
+    - literal_form: cajones planeros
+      in_language: es
+    - literal_form: muebles de planos
+      in_language: es
+    - literal_form: أدراج مسطحة
+      in_language: ar
+    - literal_form: laci datar
+      in_language: id
+    - literal_form: 图纸柜
+      in_language: zh
+    - literal_form: 平放抽屉
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Dimensionless
+      typical_units: drawers, units
+    keywords:
+    - drawer units
+    - flat files
+    - map storage
+    - plan chests
+    examples:
+    - value:
+        has_value: 40
+        has_unit: drawers
+    comments:
+    - Replaces CapacityTypeEnum.DRAWER_UNITS
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+  CabinetUnitCapacity:
+    is_a: CapacityType
+    class_uri: hc:CabinetUnitCapacity
+    description: >-
+      Numerical count of storage cabinets in modular collections storage systems.
+    alt_descriptions:
+      nl: Numerieke telling van opslagkasten in modulaire collectieopslagsystemen.
+      de: Numerische Zählung von Schranksystemen in modularen Sammlungslagern.
+      fr: Comptage numérique des armoires de stockage dans les systèmes modulaires de conservation des collections.
+      es: Conteo numérico de armarios de almacenamiento en sistemas modulares de depósito de colecciones.
+      ar: العد الرقمي لخزائن التخزين في أنظمة تخزين المجموعات المعيارية.
+      id: Penghitungan numerik lemari penyimpanan dalam sistem penyimpanan koleksi modular.
+      zh: 模块化藏品存储系统中存储柜的计数。
+    structured_aliases:
+    - literal_form: kasteneenheden
+      in_language: nl
+    - literal_form: museumkasten
+      in_language: nl
+    - literal_form: Schrankeinheiten
+      in_language: de
+    - literal_form: Magazinschränke
+      in_language: de
+    - literal_form: armoires de rangement
+      in_language: fr
+    - literal_form: meubles de stockage
+      in_language: fr
+    - literal_form: armarios de almacenamiento
+      in_language: es
+    - literal_form: muebles archivadores
+      in_language: es
+    - literal_form: وحدات خزائن
+      in_language: ar
+    - literal_form: unit lemari
+      in_language: id
+    - literal_form: 柜体单元
+      in_language: zh
+    - literal_form: 储物柜
+      in_language: zh
+    annotations:
+      qudt_kind: qudt:Dimensionless
+      typical_units: cabinets, units
+    keywords:
+    - cabinet units
+    - storage cabinets
+    - modular storage
+    - collections storage
+    examples:
+    - value:
+        has_value: 75
+        has_unit: cabinets
+    comments:
+    - Replaces CapacityTypeEnum.CABINET_UNITS
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue

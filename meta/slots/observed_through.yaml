@@ -1,0 +1,122 @@
+# ==============================================================================
+# LinkML Slot Definition: observed_through
+# ==============================================================================
+# Instrument, mechanism, or medium used to perceive, measure, or record.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology          | Property                       | File/Line                     | Mapping  | Notes                                                                     |
+# |-------------------|--------------------------------|-------------------------------|----------|---------------------------------------------------------------------------|
+# | **Schema.org**    | `schema:instrument`            | schemaorg.owl:22393-22414     | broad    | "Object that helped the agent perform the action." Action→Thing.          |
+# | **CIDOC CRM**     | `crm:P16_used_specific_object` | CIDOC_CRM_v7.1.3.rdf:1543-59 | broad    | "Use of material/immaterial things essential to an E7 Activity." E7→E70.  |
+# | **SOSA**          | `sosa:madeBySensor`            | sosa.ttl:244-251              | narrow   | "Sensor which made the Observation." Observation→Sensor.                  |
+# | **PROV-O**        | `prov:used`                    | prov.ttl:1039-1053            | broad    | "Entity used by an Activity." Activity→Entity. Very general.              |
+#
+# No exact external match found — no standard ontology property precisely
+# captures "instrument/mechanism/interface/medium of observation/perception."
+# schema:instrument is the closest but applies to any action, not specifically
+# observation. sosa:madeBySensor is observation-specific but restricted to
+# sensors. Retaining hc:observedThrough as slot_uri.
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/observed_through
+name: observed_through
+title: Observed Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  sosa: http://www.w3.org/ns/sosa/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  observed_through:
+    slot_uri: hc:observedThrough
+    description: >-
+      Denotes the specific instrument, mechanism, interface, or medium utilized
+      to perceive, measure, or record a phenomenon or entity. Contains
+      CustodianObservation instances that capture structured monitoring data
+      about heritage custodians over time.
+    alt_descriptions:
+      nl: >-
+        Duidt het specifieke instrument, mechanisme, interface of medium aan dat
+        is gebruikt om een fenomeen of entiteit waar te nemen, te meten of te
+        registreren.
+      de: >-
+        Bezeichnet das spezifische Instrument, den Mechanismus, die
+        Schnittstelle oder das Medium, das zur Wahrnehmung, Messung oder
+        Aufzeichnung eines Phänomens oder einer Entität verwendet wird.
+      fr: >-
+        Désigne l'instrument, le mécanisme, l'interface ou le média spécifique
+        utilisé pour percevoir, mesurer ou enregistrer un phénomène ou une
+        entité.
+      ar: >-
+        يشير إلى الأداة أو الآلية أو الواجهة أو الوسيط المحدد المستخدم لرصد أو
+        قياس أو تسجيل ظاهرة أو كيان.
+      id: >-
+        Menunjukkan instrumen, mekanisme, antarmuka, atau media spesifik yang
+        digunakan untuk mengamati, mengukur, atau mencatat fenomena atau
+        entitas.
+      zh: >-
+        表示用于感知、测量或记录现象或实体的特定仪器、机制、接口或媒介。
+      es: >-
+        Denota el instrumento, mecanismo, interfaz o medio específico utilizado
+        para percibir, medir o registrar un fenómeno o entidad.
+    structured_aliases:
+      - literal_form: Waarnemingsmiddel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beobachtungsmittel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Moyen d'observation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: وسيلة رصد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Sarana Pengamatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 观察手段
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Medio de observación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - schema:instrument  # schemaorg.owl:22393-22414 - "Object that helped the agent perform the action"; any action, not just observation
+      - crm:P16_used_specific_object  # CIDOC_CRM_v7.1.3.rdf:1543-1559 - "Material/immaterial things essential to an E7 Activity"; tools, instruments, moulds
+      - prov:used  # prov.ttl:1039-1053 - "Entity used by an Activity"; very general usage relationship
+    narrow_mappings:
+      - sosa:madeBySensor  # sosa.ttl:244-251 - "Sensor which made the Observation"; restricted to sensor→observation
+    aliases:
+      - has_or_had_custodian_observation
+      - has_or_had_observation
+      - has_observation
+      - has_or_had_person_observation
+      - has_person_observation
+      - metrics_observed_at
+      - metrics_observed_date
+    examples:
+      - value: "CustodianObservation(observed_at='2026-01-15', source='web-scraper-v2')"
+        description: >-
+          A structured observation instance capturing monitoring data about a
+          heritage custodian collected via automated web scraping.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - "Contains CustodianObservation instances (prov:Entity class)."
+      - "MIGRATED 2026-02-03 from has_or_had_custodian_observation for conciseness."
+      - >-
+        Broader than sosa:madeBySensor because it encompasses not just physical
+        sensors but also software interfaces, web scrapers, manual inspection,
+        and any other observation medium.

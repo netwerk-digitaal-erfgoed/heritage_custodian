@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: recorded
+# ==============================================================================
+# Boolean flag indicating whether an event, performance, data stream, or
+# measurement has been captured and stored for future reference.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property               | File/Line                        | Mapping  | Notes                                                        |
+# |----------------|------------------------|----------------------------------|----------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:recordedAt`    | schemaorg.owl:32440-32460        | related  | CreativeWork→Event; relational (where recorded), not boolean.|
+# | **Schema.org** | `schema:recordedIn`    | schemaorg.owl:32463-32488        | related  | Event→CreativeWork; inverse of recordedAt, not boolean.      |
+# | **CIDOC-CRM**  | `crm:P70_documents`    | CIDOC_CRM_v7.1.3.rdf:2784-2810  | related  | E31 Document→E1 Entity; documentary reference, not boolean.  |
+#
+# No external ontology defines a boolean "is recorded" or "recording available"
+# property; hc:recorded is appropriate as slot_uri.
+#
+# CREATED: 2025-11-21
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/recorded
+name: recorded
+title: Recorded
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  recorded:
+    slot_uri: hc:recorded
+    description: >-
+      Indicates whether an event, performance, data stream, or measurement has been
+      captured and stored by a device or individual for future reference.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een evenement, uitvoering, datastroom of meting is vastgelegd en
+        opgeslagen door een apparaat of persoon voor toekomstige referentie.
+      de: >-
+        Gibt an, ob ein Ereignis, eine Aufführung, ein Datenstrom oder eine Messung von
+        einem Gerät oder einer Person zur späteren Verwendung aufgezeichnet und
+        gespeichert wurde.
+      fr: >-
+        Indique si un événement, une performance, un flux de données ou une mesure a été
+        capturé et stocké par un appareil ou un individu pour référence future.
+      ar: >-
+        يشير إلى ما إذا كان حدث أو أداء أو تدفق بيانات أو قياس قد تم التقاطه وتخزينه
+        بواسطة جهاز أو فرد للرجوع إليه مستقبلاً.
+      id: >-
+        Menunjukkan apakah suatu peristiwa, pertunjukan, aliran data, atau pengukuran
+        telah ditangkap dan disimpan oleh perangkat atau individu untuk referensi di
+        masa mendatang.
+      zh: >-
+        指示事件、表演、数据流或测量是否已被设备或个人捕获并存储以供将来参考。
+      es: >-
+        Indica si un evento, actuación, flujo de datos o medición ha sido capturado y
+        almacenado por un dispositivo o individuo para referencia futura.
+    structured_aliases:
+      - literal_form: opgenomen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aufgezeichnet
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: enregistré
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُسجَّل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: direkam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 已记录
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: grabado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    related_mappings:
+      - schema:recordedAt  # schemaorg.owl:32440-32460 - CreativeWork→Event; relational (where recorded), not boolean
+      - schema:recordedIn  # schemaorg.owl:32463-32488 - Event→CreativeWork; inverse of recordedAt, not boolean
+      - crm:P70_documents  # CIDOC_CRM_v7.1.3.rdf:2784-2810 - E31 Document→E1 Entity; documentary reference
+    aliases:
+      - recording_available
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        The slot_uri was changed from hc:recordingAvailable to hc:recorded to match
+        the canonical slot name. The former name is preserved as an alias.

@@ -1,0 +1,83 @@
+id: https://nde.nl/ontology/hc/class/Permission
+name: Permission
+title: Permission Class
+description: >-
+  Represents a specific permission/authorization requirement for accessing
+  heritage materials.
+
+  **USE CASES**:
+  - Bishop's permission for diocesan archive access
+  - Institutional affiliation for research library
+  - Security clearance for government archives
+
+  **EXAMPLE**:
+  ```yaml
+  Permission:
+    has_type: BishopsPermission
+    has_description: "Written permission from the diocesan bishop required"
+    temporal_extent:
+      begin_of_the_begin: "2000-01-01"
+  ```
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_type
+- ../slots/temporal_extent
+classes:
+  Permission:
+    class_uri: rico:AccessCondition
+    description: >-
+      A permission or authorization requirement for accessing materials.
+    alt_descriptions:
+      nl: Toestemming of autorisatievereiste voor toegang tot materiaal.
+      de: Genehmigungs- oder Autorisierungsanforderung fuer den Zugang zu Materialien.
+      fr: Exigence d autorisation ou de permission pour acceder a des documents.
+      es: Requisito de permiso o autorizacion para acceder a materiales.
+      ar: شرط إذن أو تفويض للوصول إلى المواد.
+      id: Persyaratan izin atau otorisasi untuk mengakses materi.
+      zh: 获取材料访问权限所需的许可或授权要求。
+    structured_aliases:
+    - {literal_form: toegangsvergunning, in_language: nl}
+    - {literal_form: Zugangsberechtigung, in_language: de}
+    - {literal_form: autorisation d acces, in_language: fr}
+    - {literal_form: autorizacion de acceso, in_language: es}
+    - {literal_form: تصريح وصول, in_language: ar}
+    - {literal_form: izin akses, in_language: id}
+    - {literal_form: 访问许可, in_language: zh}
+    exact_mappings:
+    - rico:AccessCondition
+    slots:
+    - has_type
+    - has_description
+    - temporal_extent
+    slot_usage:
+      has_type:
+#         range: string # uriorcurie
+        required: true
+        examples:
+        - value: BishopsPermission
+      has_description:
+#         range: string
+        examples:
+        - value: "Written permission from the diocesan bishop required for access to personnel files"
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    examples:
+    - value:
+        has_type: BishopsPermission
+        has_description: "Written permission from the diocesan bishop required"
+    - value:
+        has_type: InstitutionalAffiliation
+        has_description: "Must be affiliated with accredited research institution"
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5

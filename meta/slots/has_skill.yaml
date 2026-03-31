@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: has_skill
+# ==============================================================================
+# A competency, expertise, or ability possessed by a person or organisation.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                       | File/Line                            | Mapping  | Notes                                                                    |
+# |------------|--------------------------------|--------------------------------------|----------|--------------------------------------------------------------------------|
+# | **Schema** | `schema:skills`                | schemaorg.owl:35567-35591            | slot_uri | "skills" Person/Organization/Occupation→Text/DefinedTerm. Exact match.   |
+# | **Schema** | `schema:hasCredential`         | schemaorg.owl:19949-19970            | narrow   | "hasCredential" Person/Organization→Credential. Formal subset of skills. |
+# | **CIDOC**  | `crm:P32_used_general_technique`| CIDOC_CRM_v7.1.3.rdf:1957-1971     | related  | "used general technique" E7_Activity→E55_Type. Activity-centric.         |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_skill
+name: has_skill
+title: Has Skill
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_skill:
+    slot_uri: schema:skills
+    description: >-
+      A competency, expertise, or ability possessed by a person or
+      organisation. Records the knowledge, skills, and abilities relevant
+      to heritage-custodian roles, such as conservation techniques,
+      cataloguing standards, or digital preservation workflows.
+    alt_descriptions:
+      nl: >-
+        Een competentie, expertise of vaardigheid waarover een persoon of
+        organisatie beschikt, relevant voor rollen bij erfgoedinstellingen.
+      de: >-
+        Eine Kompetenz, Fachkenntnis oder Fähigkeit, über die eine Person
+        oder Organisation verfügt, relevant für Aufgaben in
+        Gedächtnisinstitutionen.
+      fr: >-
+        Une compétence, expertise ou aptitude détenue par une personne ou
+        une organisation, pertinente pour les rôles au sein des
+        institutions patrimoniales.
+      ar: >-
+        كفاءة أو خبرة أو قدرة يمتلكها شخص أو مؤسسة، ذات صلة بأدوار
+        مؤسسات التراث الثقافي.
+      id: >-
+        Kompetensi, keahlian, atau kemampuan yang dimiliki oleh seseorang
+        atau organisasi, relevan dengan peran di lembaga warisan budaya.
+      zh: >-
+        个人或组织拥有的能力、专业知识或技能，与文化遗产机构的职责相关。
+      es: >-
+        Una competencia, pericia o habilidad que posee una persona u
+        organización, relevante para los roles en instituciones de
+        patrimonio cultural.
+    structured_aliases:
+      - literal_form: vaardigheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Fähigkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: compétence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مهارة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: keterampilan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 技能
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: habilidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    narrow_mappings:
+      - schema:hasCredential  # schemaorg.owl:19949-19970 - "hasCredential" Person/Organization→Credential; formal attestation of skills
+    related_mappings:
+      - crm:P32_used_general_technique  # CIDOC_CRM_v7.1.3.rdf:1957-1971 - "used general technique" E7_Activity→E55_Type; activity-centric not person-centric
+    aliases:
+      - skills
+      - skill
+    examples:
+      - value: "paper conservation"
+        description: >-
+          A conservator skilled in the preservation and restoration of
+          paper-based heritage materials.
+      - value: "MARC cataloguing"
+        description: >-
+          Proficiency in creating bibliographic records using MARC format.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Simple string array, not structured objects. Use for free-text
+        competency statements. For formal qualifications or certifications,
+        consider a dedicated credential slot instead.

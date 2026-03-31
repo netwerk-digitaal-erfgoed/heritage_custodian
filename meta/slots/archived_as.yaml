@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: archived_as
+# ==============================================================================
+# Designation, identifier, format, or category under which something is archived.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:archivedAt`   | schemaorg.owl:8358-8379 | related | Archive location/page - different semantic (WHERE not AS)|
+# | **DCTerms**   | `dcterms:identifier`  | dcterms.rdf          | related | Identifier - more generic                                |
+#
+# SEMANTIC NOTES:
+# - "Archived as" captures the designation/classification within archive
+# - schema:archivedAt is about WHERE archived, not classification
+# - NOT an exact mapping to schema:archivedAt (different semantic)
+# - Custom hc: URI is appropriate
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (removed migration note), corrected mapping from exact to related
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/archived_as
+name: archived_as
+title: Archived As
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  oa: http://www.w3.org/ns/oa#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  archived_as:
+    slot_uri: hc:archivedAs
+    description: >-
+      To be stored, preserved, or classified within an archival system under a 
+      specific designation, identifier, format, or category.
+    alt_descriptions:
+      nl: >-
+        Opgeslagen, bewaard of geclassificeerd binnen een archiefsysteem onder 
+        een specifieke aanduiding, identificatie, formaat of categorie.
+      de: >-
+        In einem Archivsystem unter einer bestimmten Bezeichnung, Kennung, 
+        einem Format oder einer Kategorie gespeichert, aufbewahrt oder klassifiziert.
+      fr: >-
+        Stocké, préservé ou classé dans un système d'archivage sous une 
+        désignation, identifiant, format ou catégorie spécifique.
+      ar: >-
+        أن يتم تخزينه أو حفظه أو تصنيفه ضمن نظام أرشفة تحت تسمية أو 
+        معرف أو تنسيق أو فئة محددة.
+      id: >-
+        Disimpan, dilestarikan, atau diklasifikasikan dalam sistem kearsipan 
+        di bawah penunjukan, pengidentifikasi, format, atau kategori tertentu.
+      zh: >-
+        在档案系统中以特定名称、标识符、格式或类别存储、保存或分类。
+      es: >-
+        Almacenado, preservado o clasificado dentro de un sistema de archivo 
+        bajo una designación, identificador, formato o categoría específica.
+    structured_aliases:
+      - literal_form: gearchiveerd als
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: archiviert als
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: archivé comme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مؤرشف باسم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diarsipkan sebagai
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 存档为
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: archivado como
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:archivedAt  # schemaorg.owl:8358 - archive location (WHERE, not classification)
+      - dcterms:identifier  # Identifier - more generic
+    aliases:
+      - is_or_was_archived_as
+      - has_or_had_articles_archival_stage
+      - has_articles_archival_stage
+    comments:
+      - |
+        **SEMANTIC NOTE**: This slot captures the classification/designation within 
+        an archive (e.g., "Series A, Box 12"), not the location. For archive location, 
+        use `archived_at` or `archived_in`.
+    annotations:
+      custodian_types: '["*"]'

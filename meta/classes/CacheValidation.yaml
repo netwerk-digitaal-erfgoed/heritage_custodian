@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/class/CacheValidation
+name: CacheValidation
+title: Cache Validation Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_method
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_label
+classes:
+  CacheValidation:
+    class_uri: hc:CacheValidation
+    description: >-
+      Method used to validate whether a cached resource is still fresh,
+      using mechanisms such as ETags, Last-Modified dates, or cache headers.
+    alt_descriptions:
+      nl: >-
+        Methode gebruikt om te valideren of een gecachte bron nog vers is,
+        met mechanismen zoals ETags, Last-Modified-datums of cache-headers.
+      de: >-
+        Methode zur Validierung, ob eine zwischengespeicherte Ressource noch aktuell ist,
+        mit Mechanismen wie ETags, Last-Modified-Daten oder Cache-Headern.
+      fr: >-
+        Méthode utilisée pour valider si une ressource mise en cache est encore fraîche,
+        utilisant des mécanismes tels que les ETags, les dates Last-Modified ou les en-têtes de cache.
+      es: >-
+        Método utilizado para validar si un recurso en caché sigue siendo fresco,
+        utilizando mecanismos como ETags, fechas Last-Modified o encabezados de caché.
+      ar: >-
+        طريقة تستخدم للتحقق مما إذا كان المورد المخزن مؤقتًا لا يزال جديدًا،
+        باستخدام آليات مثل ETags أو تواريخ Last-Modified أو رؤوس التخزين المؤقت.
+      id: >-
+        Metode yang digunakan untuk memvalidasi apakah sumber daya yang di-cache masih segar,
+        menggunakan mekanisme seperti ETags, tanggal Last-Modified, atau header cache.
+      zh: >-
+        用于验证缓存资源是否仍然新鲜的方法，使用ETag、Last-Modified日期或缓存头等机制。
+    structured_aliases:
+    - literal_form: cachevalidatie
+      in_language: nl
+    - literal_form: Cache-Validierung
+      in_language: de
+    - literal_form: validation de cache
+      in_language: fr
+    - literal_form: validación de caché
+      in_language: es
+    - literal_form: التحقق من ذاكرة التخزين المؤقت
+      in_language: ar
+    - literal_form: validasi cache
+      in_language: id
+    - literal_form: 缓存验证
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_type
+    - has_description
+    - has_score
+    - has_label
+    - has_method
+    slot_usage:
+      identified_by:
+        range: ETag
+        required: false
+    comments:
+    - Validates cache freshness for HTTP resources
+    - Supports ETag and Last-Modified validation mechanisms
+    - Part of HTTP caching infrastructure
+    examples:
+    - value:
+        has_label: ETag Validation
+        has_method: "ETag comparison"
+        has_description: Validate using entity tag comparison
+      description: ETag-based cache validation
+    keywords:
+    - cache validation
+    - ETag
+    - Last-Modified
+    - HTTP caching
+    - freshness
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Technical class for cache validation
+      custodian_types: "['*']"

@@ -1,0 +1,298 @@
+# ExhibitedObjectTypeEnum
+# Classifies types of objects/artworks displayed in exhibitions
+#
+# Covers museums, galleries, archives, and libraries
+# Aligned with Getty AAT (Art & Architecture Thesaurus) where possible
+#
+# Created January 2026 for ExhibitedObject class
+
+id: https://nde.nl/ontology/hc/enum/ExhibitedObjectTypeEnum
+name: exhibited_object_type_enum
+title: Exhibited Object Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  aat: http://vocab.getty.edu/aat/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  ExhibitedObjectTypeEnum:
+    description: |
+      Categorizes types of objects displayed in heritage exhibitions.
+      
+      **Coverage**:
+      - Fine arts (paintings, sculptures, prints, drawings)
+      - Decorative arts (ceramics, textiles, furniture)
+      - Archival materials (documents, photographs, manuscripts)
+      - Library materials (books, maps, ephemera)
+      - Natural history specimens
+      - Archaeological artifacts
+      - Digital/media arts
+      
+      **Ontology Alignment**:
+      - AAT: Getty Art & Architecture Thesaurus concepts
+      - Schema.org: schema:VisualArtwork subtypes
+      - CIDOC-CRM: crm:E22_Human-Made_Object subtypes
+    
+    permissible_values:
+      # === FINE ARTS ===
+      PAINTING:
+        description: |
+          Pictorial work created by applying pigment to a surface.
+          Includes oil, acrylic, watercolor, tempera, fresco.
+        meaning: aat:300033618
+        examples:
+          - value: "Girl with a Pearl Earring (Vermeer)"
+          - value: "The Night Watch (Rembrandt)"
+      
+      SCULPTURE:
+        description: |
+          Three-dimensional artwork created by shaping or combining materials.
+          Includes bronze, marble, wood, mixed media.
+        meaning: aat:300047090
+        examples:
+          - value: "David (Michelangelo)"
+          - value: "The Thinker (Rodin)"
+      
+      DRAWING:
+        description: |
+          Work on paper using pencil, charcoal, ink, pastel, or crayon.
+          Includes sketches, studies, finished drawings.
+        meaning: aat:300033973
+        examples:
+          - value: "Vitruvian Man (Leonardo da Vinci)"
+          - value: "Study for Self-Portrait (Rembrandt)"
+      
+      PRINT:
+        description: |
+          Artwork created through printmaking techniques.
+          Includes etching, lithography, woodcut, screenprint, engraving.
+        meaning: aat:300041273
+        examples:
+          - value: "The Great Wave off Kanagawa (Hokusai)"
+          - value: "Campbell's Soup Cans (Warhol)"
+      
+      PHOTOGRAPH:
+        description: |
+          Image created through photographic process.
+          Includes prints, negatives, daguerreotypes, digital photographs.
+        meaning: aat:300046300
+        examples:
+          - value: "Migrant Mother (Dorothea Lange)"
+          - value: "Afghan Girl (Steve McCurry)"
+      
+      # === DECORATIVE ARTS ===
+      CERAMIC:
+        description: |
+          Object made from clay fired at high temperatures.
+          Includes pottery, porcelain, stoneware, earthenware.
+        meaning: aat:300151343
+        examples:
+          - value: "Delftware tile panel"
+          - value: "Chinese Ming dynasty vase"
+      
+      TEXTILE:
+        description: |
+          Object made from woven, knitted, or felted fibers.
+          Includes tapestries, rugs, clothing, embroidery.
+        meaning: aat:300014063
+        examples:
+          - value: "Bayeux Tapestry"
+          - value: "Persian carpet"
+      
+      FURNITURE:
+        description: |
+          Movable objects for human use, comfort, or decoration.
+          Includes chairs, tables, cabinets, beds.
+        meaning: aat:300037680
+        examples:
+          - value: "Louis XIV commode"
+          - value: "Shaker rocking chair"
+      
+      METALWORK:
+        description: |
+          Object crafted from metal.
+          Includes jewelry, armor, vessels, decorative objects.
+        meaning: aat:300014058
+        examples:
+          - value: "Sutton Hoo helmet"
+          - value: "Faberge egg"
+      
+      GLASSWORK:
+        description: |
+          Object made from glass.
+          Includes vessels, stained glass, art glass, mirrors.
+        meaning: aat:300010853
+        examples:
+          - value: "Tiffany lamp"
+          - value: "Chihuly glass sculpture"
+      
+      # === ARCHIVAL & LIBRARY MATERIALS ===
+      DOCUMENT:
+        description: |
+          Written, printed, or digital record.
+          Includes letters, contracts, official records, certificates.
+        meaning: aat:300026030
+        examples:
+          - value: "Declaration of Independence"
+          - value: "Anne Frank's diary"
+      
+      MANUSCRIPT:
+        description: |
+          Handwritten document or book.
+          Includes medieval illuminated manuscripts, author manuscripts.
+        meaning: aat:300028569
+        examples:
+          - value: "Book of Kells"
+          - value: "Gutenberg Bible"
+      
+      RARE_BOOK:
+        description: |
+          Printed book of exceptional value due to age, rarity, or significance.
+          Includes incunabula, first editions, limited editions.
+        meaning: aat:300027363
+        examples:
+          - value: "First Folio (Shakespeare)"
+          - value: "Birds of America (Audubon)"
+      
+      MAP:
+        description: |
+          Graphic representation of geographic area.
+          Includes historical maps, atlases, globes, charts.
+        meaning: aat:300028094
+        examples:
+          - value: "Waldseemüller world map (1507)"
+          - value: "Blaeu Atlas"
+      
+      EPHEMERA:
+        description: |
+          Transitory printed matter not intended for preservation.
+          Includes posters, tickets, advertisements, postcards.
+        meaning: aat:300026671
+        examples:
+          - value: "WWI recruitment poster"
+          - value: "Vintage travel postcards"
+      
+      # === ARTIFACTS & SPECIMENS ===
+      ARCHAEOLOGICAL_ARTIFACT:
+        description: |
+          Object recovered through archaeological excavation.
+          Includes tools, vessels, ornaments from ancient civilizations.
+        meaning: aat:300234108
+        examples:
+          - value: "Rosetta Stone"
+          - value: "Terracotta Army warrior"
+      
+      ETHNOGRAPHIC_OBJECT:
+        description: |
+          Object representing material culture of a society.
+          Includes ceremonial objects, tools, costumes, masks.
+        meaning: aat:300234109
+        examples:
+          - value: "Benin Bronze"
+          - value: "Maori carving"
+      
+      NATURAL_HISTORY_SPECIMEN:
+        description: |
+          Natural object preserved for scientific or educational purposes.
+          Includes fossils, minerals, taxidermy, botanical specimens.
+        meaning: aat:300025906
+        examples:
+          - value: "Tyrannosaurus rex skeleton"
+          - value: "Hope Diamond"
+      
+      SCIENTIFIC_INSTRUMENT:
+        description: |
+          Device used for scientific measurement or observation.
+          Includes telescopes, microscopes, astrolabes, clocks.
+        meaning: aat:300024850
+        examples:
+          - value: "Galileo's telescope"
+          - value: "Harrison's marine chronometer"
+      
+      # === MEDIA & DIGITAL ===
+      VIDEO_ART:
+        description: |
+          Artwork utilizing video technology as primary medium.
+          Includes single-channel video, video installation.
+        meaning: aat:300185191
+        examples:
+          - value: "Bill Viola video installation"
+          - value: "Nam June Paik video sculpture"
+      
+      INSTALLATION:
+        description: |
+          Three-dimensional work designed to transform space.
+          Often immersive, site-specific, multi-sensory.
+        meaning: aat:300047896
+        examples:
+          - value: "The Weather Project (Olafur Eliasson)"
+          - value: "Infinity Mirror Room (Yayoi Kusama)"
+      
+      DIGITAL_ARTWORK:
+        description: |
+          Art created using digital technology.
+          Includes computer-generated art, NFTs, interactive digital works.
+        meaning: aat:300438567
+        examples:
+          - value: "Refik Anadol data sculpture"
+          - value: "Beeple digital collage"
+      
+      SOUND_ART:
+        description: |
+          Artwork where sound is primary medium.
+          Includes sound installations, audio compositions.
+        meaning: aat:300185144
+        examples:
+          - value: "Janet Cardiff audio walk"
+          - value: "Sound installation in gallery space"
+      
+      # === OTHER ===
+      MIXED_MEDIA:
+        description: |
+          Work combining multiple materials or techniques.
+          Cannot be classified under single category.
+        meaning: aat:300163347
+        examples:
+          - value: "Robert Rauschenberg combine"
+          - value: "Assemblage artwork"
+      
+      COSTUME:
+        description: |
+          Clothing worn for specific purpose or occasion.
+          Includes historical dress, theatrical costumes, fashion.
+        meaning: aat:300178802
+        examples:
+          - value: "Marie Antoinette court dress"
+          - value: "Oscar-winning film costume"
+      
+      ARCHITECTURAL_ELEMENT:
+        description: |
+          Component removed from architectural context.
+          Includes fragments, capitals, doorways, windows.
+        meaning: aat:300000885
+        examples:
+          - value: "Elgin Marbles (Parthenon frieze)"
+          - value: "Medieval cathedral portal"
+      
+      NUMISMATIC_OBJECT:
+        description: |
+          Coins, medals, tokens, and related monetary objects.
+        meaning: aat:300037222
+        examples:
+          - value: "Ancient Greek drachma"
+          - value: "Commemorative medal"
+      
+      OTHER:
+        description: |
+          Object type not covered by other categories.
+          Use when no specific type applies; document in description.
+        examples:
+          - value: "Unclassified heritage object"

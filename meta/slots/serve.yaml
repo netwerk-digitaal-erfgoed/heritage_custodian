@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: serve
+# ==============================================================================
+# The user communities, audience types, or stakeholder groups that a heritage
+# custodian serves or is intended to serve.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                    | File/Line                        | Mapping        | Notes                                                        |
+# |----------------|-----------------------------|----------------------------------|----------------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:audience`           | schemaorg.owl:9151-9177          | close_mappings | "An intended audience, i.e. a group for whom something was   |
+# |                |                             |                                  |                | created." Event/CreativeWork/Service→Audience.               |
+# |                |                             |                                  |                | Close but typed to Audience class; our slot uses strings.    |
+# | **DCTerms**    | `dcterms:audience`          | dcterms.rdf:912-932              | close_mappings | "A class of agents for whom the resource is intended or      |
+# |                |                             |                                  |                | useful." Range: AgentClass. Close semantic fit.              |
+# | **Schema.org** | `schema:serviceAudience`    | schemaorg.owl:34917-34939        | related        | "The audience eligible for this service."                    |
+# |                |                             |                                  |                | Service→Audience. Superseded by schema:audience.             |
+# | **Schema.org** | `schema:areaServed`         | schemaorg.owl:8403-8432          | related        | "The geographic area where a service or offered item is      |
+# |                |                             |                                  |                | provided." Organization/Service→Place. Geographic not        |
+# |                |                             |                                  |                | demographic focus.                                           |
+# | **W3C Org**    | `org:purpose`               | org.rdf:730-742                  | related        | "Indicates the purpose of this Organization." Related:       |
+# |                |                             |                                  |                | serving a community implies organisational purpose.          |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/serve
+name: serve
+title: Serve
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  org: http://www.w3.org/ns/org#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  serve:
+    slot_uri: hc:serve
+    description: >-
+      The user communities, audience types, or stakeholder groups that a
+      heritage custodian serves or is intended to serve. Captures the target
+      populations and constituencies for which the institution provides
+      collections, services, or programmes.
+    alt_descriptions:
+      nl: >-
+        De gebruikersgemeenschappen, doelgroepen of belanghebbenden die een
+        erfgoedinstelling bedient of beoogt te bedienen.
+      de: >-
+        Die Nutzergemeinschaften, Zielgruppen oder Interessengruppen, die eine
+        Kulturerbeeinrichtung bedient oder zu bedienen beabsichtigt.
+      fr: >-
+        Les communautés d'utilisateurs, types de publics ou groupes de parties
+        prenantes qu'une institution patrimoniale dessert ou entend desservir.
+      ar: >-
+        المجتمعات المستخدمة أو أنواع الجمهور أو مجموعات أصحاب المصلحة التي
+        تخدمها مؤسسة التراث الثقافي أو تنوي خدمتها.
+      id: >-
+        Komunitas pengguna, jenis audiens, atau kelompok pemangku kepentingan
+        yang dilayani atau dimaksudkan untuk dilayani oleh lembaga pemangku
+        warisan budaya.
+      zh: >-
+        遗产保管机构所服务或拟服务的用户社区、受众类型或利益相关者群体。
+      es: >-
+        Las comunidades de usuarios, tipos de público o grupos de interesados
+        a los que una institución patrimonial sirve o pretende servir.
+    structured_aliases:
+      - literal_form: bedient
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bedient
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dessert
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يخدم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: melayani
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 服务
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: sirve
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:audience  # schemaorg.owl:9151-9177 - "An intended audience, i.e. a group for whom something was created." Event/CreativeWork/Service→Audience.
+      - dcterms:audience  # dcterms.rdf:912-932 - "A class of agents for whom the resource is intended or useful." Range: AgentClass.
+    related_mappings:
+      - schema:serviceAudience  # schemaorg.owl:34917-34939 - "The audience eligible for this service." Superseded by schema:audience.
+      - schema:areaServed  # schemaorg.owl:8403-8432 - "The geographic area where a service or offered item is provided."
+      - org:purpose  # org.rdf:730-742 - "Indicates the purpose of this Organization."
+    aliases:
+      - serves_or_served
+    examples:
+      - value: "Academic Researchers"
+        description: "Institution serves the academic research community."
+      - value: "General Public"
+        description: "Institution is open to and serves the general public."
+      - value: "Primary and Secondary Education"
+        description: "Institution provides programmes for school-age learners."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Used to identify target user communities, audience types, and
+        stakeholder groups. Values are typically community or audience type
+        labels (e.g. Academic Researchers, General Public, Indigenous
+        Communities).

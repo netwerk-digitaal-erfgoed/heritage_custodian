@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/class/CommentReply
+name: comment_reply_class
+title: Comment Reply Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  sioc: http://rdfs.org/sioc/ns#
+  as: https://www.w3.org/ns/activitystreams#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_quantity
+- ../slots/has_measurement_unit
+- ../slots/temporal_extent
+classes:
+  CommentReply:
+    class_uri: sioc:Post
+    description: >-
+      Threaded response metric capturing engagement timing and volume for replies
+      attached to a parent discussion entry.
+    alt_descriptions:
+      nl: >-
+        Gethread reactiemetric die betrokkenheidstijd en -volume vastlegt voor reacties
+        gekoppeld aan een bovenliggende discussie-invoer.
+      de: >-
+        Verkettete Antwortmetrik, die Engagement-Timing und -Volumen für Antworten
+        erfasst, die an einen übergeordneten Diskussionseintrag angehängt sind.
+      fr: >-
+        Métrique de réponse fils capturant le timing et le volume d'engagement pour les réponses
+        attachées à une entrée de discussion parente.
+      es: >-
+        Métrica de respuesta encadenada que captura el tiempo y volumen de participación para respuestas
+        adjuntas a una entrada de discusión principal.
+      ar: >-
+        مقياس استجابة مترابط يلتقط توقيت وحجم المشاركة للردود
+        المرفقة بإدخال مناقشة أصلي.
+      id: >-
+        Metrik respons berantai yang menangkap waktu dan volume keterlibatan untuk balasan
+        yang dilampirkan ke entri diskusi induk.
+      zh: >-
+        捕获附加到父讨论条目的回复的参与时间和数量的线程响应指标。
+    structured_aliases:
+    - literal_form: reactiemetric
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Antwortmetrik
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: métrique de réponse
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: métrica de respuesta
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مقياس الرد
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: metrik respons
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 回复指标
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - sioc:Post
+    close_mappings:
+    - schema:Comment
+    - as:Note
+    related_mappings:
+    - sioc:has_reply
+    - as:inReplyTo
+    slots:
+    - has_quantity
+    - has_measurement_unit
+    - temporal_extent
+    slot_usage:
+      has_quantity:
+        range: integer
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    comments:
+    - Tracks reply counts and first-response timing for engagement analytics.
+    - Used in social media monitoring and community interaction metrics.
+    - 'Preserved from prior description: Thread-response metric entity recording counts and timing for reply activity on a parent note.'
+    keywords:
+    - engagement metric
+    - response timing
+    - thread analytics
+    - community interaction

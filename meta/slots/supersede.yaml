@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: supersede
+# ==============================================================================
+# Replacement of a resource by a newer, more authoritative version
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property              | File/Line              | Mapping | Notes                                                   |
+# |-------------|-----------------------|------------------------|---------|---------------------------------------------------------|
+# | **DCTerms** | `dcterms:replaces`    | dcterms.rdf:1827-1850  | exact   | "A related resource that is supplanted, displaced, or superseded." |
+# | **PROV-O**  | `prov:wasRevisionOf`  | prov.ttl:1225-1239     | close   | "A revision is a derivation that revises an entity into a revised version." Implies derivation lineage. |
+#
+# CHANGES:
+# - slot_uri promoted to dcterms:replaces per Rule 7 (exact match to standard property)
+# - Cleaned description: extracted usage/migration notes to comments
+# - Removed unused prefixes: crm, skos, rdfs, org, xsd, schema
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/supersede
+name: supersede
+title: Supersede
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  supersede:
+    slot_uri: dcterms:replaces
+    range: string  # uriorcurie
+    description: >-
+      To replace or take the place of a person, thing, rule, or custom, typically
+      because the new one is more modern, effective, or authoritative.
+    alt_descriptions:
+      nl: >-
+        Het vervangen of innemen van de plaats van een persoon, ding, regel of
+        gewoonte, doorgaans omdat de nieuwe moderner, effectiever of gezaghebbender is.
+      de: >-
+        Das Ersetzen oder Einnehmen des Platzes einer Person, Sache, Regel oder
+        Gewohnheit, typischerweise weil die neue moderner, wirksamer oder
+        maßgeblicher ist.
+      fr: >-
+        Remplacer ou prendre la place d'une personne, d'une chose, d'une règle ou
+        d'une coutume, généralement parce que la nouvelle est plus moderne, efficace
+        ou faisant autorité.
+      ar: >-
+        استبدال أو حلول محل شخص أو شيء أو قاعدة أو عرف، عادةً لأن البديل الجديد
+        أكثر حداثة أو فعالية أو موثوقية.
+      id: >-
+        Menggantikan atau mengambil alih posisi seseorang, sesuatu, aturan, atau
+        kebiasaan, biasanya karena yang baru lebih modern, efektif, atau berwenang.
+      zh: >-
+        替代或取代某人、某物、规则或惯例，通常因为新的更加现代、有效或具有权威性。
+      es: >-
+        Reemplazar o tomar el lugar de una persona, cosa, regla o costumbre,
+        generalmente porque la nueva es más moderna, efectiva o autoritativa.
+    structured_aliases:
+      - literal_form: Vervanging
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ersetzung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Remplacement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استبدال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penggantian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 替代
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Reemplazo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    exact_mappings:
+      - hc:supersedes  # Original slot_uri preserved
+    close_mappings:
+      - prov:wasRevisionOf  # prov.ttl:1225-1239 - "A revision is a derivation that revises an entity into a revised version." Implies derivation lineage; supersede is more general.
+    comments:
+      - "Use when a new version corrects or updates a previous one. Direction is determined by context."
+      - "Migrated from bespoke supersede slot per Rule 53/56 (2026-01-17). Original slot_uri hc:supersedes preserved in exact_mappings."
+      - "Uses uriorcurie range per Rule 55 (broaden generic predicate ranges)."
+      - "Supports temporal tracking via temporal_extent slot on containing class."
+    annotations:
+      migration_note: Consolidated from supersede slot (2026-01-17)
+      specificity_score: 0.25
+      specificity_rationale: Generic version/revision relationship applicable across many entity types
+      custodian_types: '["*"]'

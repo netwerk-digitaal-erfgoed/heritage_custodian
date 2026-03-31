@@ -1,0 +1,114 @@
+id: https://nde.nl/ontology/hc/class/MissionStatement
+name: MissionStatement
+title: Mission Statement
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/StatementTypeEnum
+- ../slots/encoded_as
+- ../slots/has_selector
+- ../slots/describe
+- ../slots/identified_by
+- ../slots/has_language
+- ../slots/has_note
+- ../slots/has_provenance
+- ../slots/has_score
+- ../slots/has_summary
+- ../slots/has_text
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/effective_at
+- ../slots/has_section
+- ../slots/retrieved_at
+- ../slots/supersede
+- ../slots/temporal_extent
+classes:
+  MissionStatement:
+    class_uri: hc:MissionStatement
+    description: Statement expressing organizational purpose, values, goals, or vision with source provenance.
+    alt_descriptions:
+      nl: Verklaring van organisatiedoel waarden doelen of visie met bronprovenance.
+      de: Aussage zu Organisationszweck Werten Zielen oder Vision mit Quellenprovenienz.
+      fr: Declaration de mission valeurs objectifs ou vision avec provenance de la source.
+      es: Declaracion de proposito valores objetivos o vision institucional con procedencia de la fuente.
+      ar: بيان يوضح غاية المنظمة وقيمها وأهدافها أو رؤيتها مع تتبع مصدر النص.
+      id: Pernyataan tujuan nilai sasaran atau visi organisasi beserta provenans sumbernya.
+      zh: 表达机构宗旨、价值、目标或愿景并附带来源溯源信息的陈述。
+    structured_aliases:
+    - {literal_form: missieverklaring, in_language: nl}
+    - {literal_form: Leitbildaussage, in_language: de}
+    - {literal_form: enonce de mission, in_language: fr}
+    - {literal_form: declaracion de mision, in_language: es}
+    - {literal_form: بيان المهمة, in_language: ar}
+    - {literal_form: pernyataan misi, in_language: id}
+    - {literal_form: 使命陈述, in_language: zh}
+    close_mappings:
+    - org:purpose
+    - schema:description
+    related_mappings:
+    - schema:slogan
+    - schema:ethicsPolicy
+    - prov:Entity
+    slots:
+    - describe
+    - encoded_as
+    - has_selector
+    - effective_at
+    - has_note
+    - temporal_extent
+    - has_section
+    - retrieved_at
+    - has_url
+    - identified_by
+    - has_language
+    - has_summary
+    - has_text
+    - has_type
+    - supersede
+    - has_score
+    - has_provenance
+    slot_usage:
+      has_type:
+        required: true
+        range: StatementType
+      has_text:
+        required: true
+      has_url:
+        required: true
+        range: uri
+      retrieved_at:
+        required: true
+      has_provenance:
+        range: XPath
+        inlined: true
+    comments:
+    - Mission and vision statements should be traceable to a retrievable source.
+    - Multiple versions can be linked through supersede for temporal tracking.
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/mission/nl-zh-zui-m-lmt/mission-2025
+        has_type: mission
+        has_text: Waar komt ons voedsel echt vandaan.
+        has_language: nl
+        has_summary: Where does our food really come from.
+        has_url: https://www.landbouwmuseumtiengemeten.nl/het-museum/missie-en-visie
+        retrieved_at: "2025-12-29T10:00:00Z"
+        has_section: Onze Missie
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      "A structured record of an organizational purpose statement (mission, vision,\ngoals, values, or motto) extracted from a heritage custodian's website with\nfull provenance documentation.\n\n**PURPOSE**:\n\nHeritage custodians publish mission and vision statements that articulate:\n- Why they exist (mission)\n- What future state they aspire to (vision)\n- What specific outcomes they pursue (goals)\n- What principles guide their work (values)\n- Memorable phrases encapsulating their purpose (mottos)\n\nThese statements are valuable for:\n- Understanding organizational identity and purpose\n- Comparing institutions within and across sectors\n- Tracking organizational evolution over time\n- Research on heritage sector discourse and priorities\n\n**PROVENANCE REQUIREMENTS**:\n\nFollowing the WebObservation pattern, every MissionStatement MUST have:\n\n1. **Source documentation**: source_url + retrieved_on\n2. **Location evidence**: xpath OR css_selector + html_file\n3. **Integrity\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

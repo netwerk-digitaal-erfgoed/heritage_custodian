@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: measure
+# ==============================================================================
+# Determines the size, amount, degree, or extent of an object or phenomenon by
+# comparing it against a standard unit or scale.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line                | Mapping  | Notes                                                         |
+# |---------------|------------------------|--------------------------|----------|---------------------------------------------------------------|
+# | **DQV**       | `dqv:isMeasurementOf`  | dqv.ttl:106-111          | close    | "Indicates the metric being observed." Domain: qb:Observation.|
+# | **Schema.org**| `schema:result`        | schemaorg.owl:33466-33487| related  | "The result produced in the action." Domain: Action.          |
+# | **SOSA**      | `sosa:observes`        | sosa.ttl:159-166         | related  | "Relation between Sensor and ObservableProperty."             |
+#
+# HIERARCHY:
+# - dqv:isMeasurementOf → domain qb:Observation, range dqv:Metric
+# - No exact standard ontology property for general "measure" — domain-specific
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10 - Full polish; ontology alignment, multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/measure
+name: measure
+title: Measure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+  schema: https://schema.org/
+  sosa: http://www.w3.org/ns/sosa/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  measure:
+    slot_uri: hc:measure
+    description: >-
+      Determines the size, amount, degree, or extent of an object or phenomenon
+      by comparing it against a standard unit or scale. In the heritage-custodian
+      context, this captures impact metrics, quality scores, or observation
+      results from monitoring and assessment activities.
+    alt_descriptions:
+      nl: >-
+        Bepaalt de grootte, hoeveelheid, mate of omvang van een object of
+        fenomeen door het te vergelijken met een standaardeenheid of schaal.
+      de: >-
+        Bestimmt die Größe, Menge, den Grad oder das Ausmaß eines Objekts
+        oder Phänomens durch Vergleich mit einer Standardeinheit oder Skala.
+      fr: >-
+        Détermine la taille, la quantité, le degré ou l'étendue d'un objet
+        ou phénomène en le comparant à une unité ou échelle standard.
+      ar: >-
+        يحدد حجم أو كمية أو درجة أو مدى كائن أو ظاهرة بمقارنته بوحدة
+        قياس أو مقياس معياري.
+      id: >-
+        Menentukan ukuran, jumlah, derajat, atau luas suatu objek atau
+        fenomena dengan membandingkannya dengan unit standar atau skala.
+      zh: >-
+        通过与标准单位或刻度进行比较来确定对象或现象的大小、数量、程度或范围。
+      es: >-
+        Determina el tamaño, cantidad, grado o extensión de un objeto o
+        fenómeno comparándolo con una unidad o escala estándar.
+    structured_aliases:
+      - literal_form: maatregel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Maßnahme
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: mesure
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قياس
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ukuran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 度量
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: medida
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - measures_or_measured
+      - has_measurement
+    close_mappings:
+      - dqv:isMeasurementOf  # dqv.ttl:106-111 - "Indicates the metric being observed." Domain: qb:Observation
+    related_mappings:
+      - schema:result  # schemaorg.owl:33466-33487 - "The result produced in the action." Domain: Action
+      - sosa:observes  # sosa.ttl:159-166 - "Relation between Sensor and ObservableProperty"
+    examples:
+      - value: "visitor_satisfaction: 4.2/5"
+        description: Result of a visitor satisfaction survey
+      - value: "collection_completeness: 87%"
+        description: Quality metric from a collection assessment
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        No exact standard ontology property for general "measure" exists;
+        hc:measure is domain-specific. dqv:isMeasurementOf is the closest
+        but is scoped to Data Quality Vocabulary observations.

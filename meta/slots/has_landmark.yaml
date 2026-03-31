@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_landmark
+# ==============================================================================
+# Connects a location to a prominent recognizable feature serving as a reference.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                      | Mapping | Notes                                                        |
+# |---------------|-----------------------|--------------------------------|---------|--------------------------------------------------------------|
+# | **Schema.org**| `schema:containsPlace`| schemaorg.owl:12711-12728      | broad   | "Containment between a place and another it contains." Generic.|
+# | **GeoNames**  | `geonames:nearby`     | geonames_ontology.rdf:290-295  | related | "A feature close to the reference feature." Proximity only.   |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_landmark
+name: has_landmark
+title: Has Landmark
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  geonames: https://www.geonames.org/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_landmark:
+    slot_uri: hc:hasLandmark
+    range: string
+    description: >-
+      Connects a specific location, region, media item, or object to a prominent, recognizable feature or structure
+      that serves as a point of reference for navigation or identification.
+    alt_descriptions:
+      nl: >-
+        Verbindt een specifieke locatie, regio, media-item of object met een prominent, herkenbaar kenmerk of structuur
+        dat dient als referentiepunt voor navigatie of identificatie.
+      de: >-
+        Verbindet einen bestimmten Ort, eine Region, ein Medienelement oder ein Objekt mit einem markanten,
+        erkennbaren Merkmal oder Bauwerk, das als Orientierungspunkt für Navigation oder Identifikation dient.
+      fr: >-
+        Relie un lieu, une région, un élément média ou un objet spécifique à un élément ou une structure proéminente
+        et reconnaissable servant de point de repère pour la navigation ou l'identification.
+      ar: >-
+        يربط موقعًا أو منطقة أو عنصرًا إعلاميًا أو كائنًا محددًا بمعلم بارز يمكن التعرف عليه يعمل كنقطة مرجعية
+        للتنقل أو التعريف.
+      id: >-
+        Menghubungkan lokasi, wilayah, item media, atau objek tertentu dengan fitur atau struktur menonjol dan mudah
+        dikenali yang berfungsi sebagai titik acuan untuk navigasi atau identifikasi.
+      zh: >-
+        将特定地点、区域、媒体项目或对象与作为导航或识别参考点的显著、可辨识的地物或建筑物相关联。
+      es: >-
+        Conecta una ubicación, región, elemento multimedia u objeto específico con un rasgo o estructura prominente y
+        reconocible que sirve como punto de referencia para la navegación o la identificación.
+    structured_aliases:
+      - literal_form: Oriëntatiepunt
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wahrzeichen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Point de Repère
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معلم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tengara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 地标
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Punto de Referencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    broad_mappings:
+      - schema:containsPlace  # schemaorg.owl:12711-12728 - "containment between a place and another it contains"
+    related_mappings:
+      - geonames:nearby  # geonames_ontology.rdf:290-295 - "a feature close to the reference feature"
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - landmark_geonames_id
+      - landmark_label
+      - landmark_segment
+      - landmark_wikidata_id

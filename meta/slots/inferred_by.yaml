@@ -1,0 +1,79 @@
+# ==============================================================================
+# LinkML Slot Definition: inferred_by
+# ==============================================================================
+# Attribution of a conclusion to the agent or algorithm that deduced it.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line              | Mapping  | Notes                                                      |
+# |---------------|-----------------------------|------------------------|----------|------------------------------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo`      | prov.ttl:1082-1097     | broad    | "Attribution is the ascribing of an entity to an agent." General attribution. |
+# | **PROV-O**    | `prov:wasInfluencedBy`      | prov.ttl:1147-1171     | broad    | Broad influence relation between Activity/Agent/Entity.    |
+# | **PROV-O**    | `prov:wasDerivedFrom`       | prov.ttl:1099-1113     | related  | "Transformation of an entity into another." Entity→Entity derivation. |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/inferred_by
+name: inferred_by
+title: Inferred By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  inferred_by:
+    slot_uri: hc:inferredBy
+    description: >-
+      Attributes a specific conclusion, value, or relationship to the agent, algorithm, or logical process that deduced it based on evidence or reasoning, rather than direct observation.
+    alt_descriptions:
+      nl: >-
+        Schrijft een specifieke conclusie, waarde of relatie toe aan de agent, het algoritme of het logische proces dat deze heeft afgeleid op basis van bewijs of redenering, in plaats van directe observatie.
+      de: >-
+        Ordnet eine bestimmte Schlussfolgerung, einen Wert oder eine Beziehung dem Agenten, Algorithmus oder logischen Prozess zu, der sie auf der Grundlage von Beweisen oder Argumentation abgeleitet hat, anstatt durch direkte Beobachtung.
+      fr: >-
+        Attribue une conclusion, une valeur ou une relation spécifique à l'agent, à l'algorithme ou au processus logique qui l'a déduite sur la base de preuves ou de raisonnement, plutôt que par observation directe.
+      ar: >-
+        ينسب استنتاجًا أو قيمة أو علاقة محددة إلى العامل أو الخوارزمية أو العملية المنطقية التي استنتجتها بناءً على الأدلة أو التفكير المنطقي، وليس من خلال الملاحظة المباشرة.
+      id: >-
+        Mengatribusikan kesimpulan, nilai, atau hubungan tertentu kepada agen, algoritma, atau proses logis yang menyimpulkannya berdasarkan bukti atau penalaran, bukan pengamatan langsung.
+      zh: >-
+        将特定结论、值或关系归因于基于证据或推理而非直接观察推导出该结论的代理、算法或逻辑过程。
+      es: >-
+        Atribuye una conclusión, valor o relación específica al agente, algoritmo o proceso lógico que la dedujo basándose en evidencia o razonamiento, en lugar de observación directa.
+    structured_aliases:
+      - literal_form: Afleiding
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Schlussfolgerung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Inférence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استدلال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Inferensi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 推理
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Inferencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+    aliases:
+      - is_inferred
+    broad_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1097 - "Attribution is the ascribing of an entity to an agent." General attribution.
+      - prov:wasInfluencedBy  # prov.ttl:1147-1171 - Broad influence relation between Activity/Agent/Entity.
+    related_mappings:
+      - prov:wasDerivedFrom  # prov.ttl:1099-1113 - "Transformation of an entity into another." Entity→Entity derivation.

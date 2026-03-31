@@ -1,0 +1,133 @@
+id: https://nde.nl/ontology/hc/class/PersonWebClaim
+name: PersonWebClaim
+title: Person Web Claim - Verifiable Person Data Claims
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  pico: https://personsincontext.org/model#
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+- linkml:types
+- ../enums/PersonClaimTypeEnum
+- ../enums/RetrievalAgentEnum
+- ../slots/has_note
+- ../slots/has_provenance
+- ../slots/has_score
+- ../slots/identified_by
+- ../slots/has_type
+- ../slots/has_value
+- ../slots/has_provenance_path
+- ../slots/retrieved_by
+- ../slots/retrieved_at
+- ../slots/has_url
+default_prefix: hc
+classes:
+  PersonWebClaim:
+    description: >-
+      A verifiable claim about a person extracted from a web page with provenance,
+      following the "XPath or Remove" principle for data verifiability.
+    alt_descriptions:
+      nl: Een verifieerbare claim over een persoon geëxtraheerd van een webpagina.
+      de: Ein verifizierbarer Anspruch über eine Person von einer Webseite.
+      fr: Une affirmation vérifiable sur une personne extraite d'une page web.
+    structured_aliases:
+    - literal_form: persoonwebclaim
+      in_language: nl
+    - literal_form: Personen-Web-Claim
+      in_language: de
+    comments:
+    - All person/staff data MUST have web claim provenance (Rule 26).
+    - Claims without verifiable source must be removed.
+    - Links to PersonObservation via web_claims slot.
+    class_uri: prov:Entity
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:PropertyValue
+    - foaf:Document
+    slots:
+    - has_note
+    - has_provenance_path
+    - has_score
+    - identified_by
+    - has_type
+    - has_value
+    - retrieved_by
+    - retrieved_at
+    - has_url
+    slot_usage:
+      has_note:
+#         range: string
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+          - note_type: extraction
+            note_content: Biography truncated from longer text on page
+        - value:
+          - note_type: extraction
+            note_content: Profile data stored in person/entity/taco-dibbits_20250115.json. No XPath for API extraction.
+      has_type:
+        required: true
+      has_value:
+        required: true
+      has_url:
+        required: true
+      retrieved_at:
+        required: true
+      retrieved_by:
+        required: true
+        range: RetrievalAgentEnum
+      has_provenance_path:
+        range: XPath
+        inlined: true
+    examples:
+    - value:
+        person_claim_type: full_name
+        person_claim_value: Taco Dibbits
+        source_url: https://www.rijksmuseum.nl/en/about-us/organisation
+        retrieved_on: '2025-01-15T10:30:00Z'
+        has_provenance_path:
+        person_html_file: web/NL-NH-AMS-M-RM/rijksmuseum.nl/organisation.html
+        retrieval_agent: firecrawl
+    - value:
+        person_claim_type: role_title
+        person_claim_value: General Director
+        source_url: https://www.rijksmuseum.nl/en/about-us/organisation
+        retrieved_on: '2025-01-15T10:30:00Z'
+        has_provenance_path:
+        person_html_file: web/NL-NH-AMS-M-RM/rijksmuseum.nl/organisation.html
+        retrieval_agent: firecrawl
+    - value:
+        person_claim_type: biography
+        person_claim_value: Taco Dibbits has been General Director since 2016...
+        source_url: https://www.rijksmuseum.nl/en/about-us/organisation
+        retrieved_on: '2025-01-15T10:30:00Z'
+        has_provenance_path:
+        person_html_file: web/NL-NH-AMS-M-RM/rijksmuseum.nl/organisation.html
+        retrieval_agent: firecrawl
+        has_note:
+        - note_type: extraction
+          note_content: Biography truncated from longer text on page
+    - value:
+        person_claim_type: linkedin_url
+        person_claim_value: https://www.linkedin.com/in/taco-dibbits
+        source_url: https://www.linkedin.com/in/taco-dibbits
+        retrieved_on: '2025-01-15T11:00:00Z'
+        retrieval_agent: exa_crawling_exa
+        has_note:
+        - note_type: extraction
+          note_content: Profile data stored in person/entity/taco-dibbits_20250115.json. No XPath for API extraction.
+    notes:
+    - |
+      Preserved from prior description (commit c2cdbed6):
+
+      "A verifiable claim about a person extracted from a web page with provenance.\n\n**RULE 26 COMPLIANCE: Person Data Provenance**\n\nAll person/staff data associated with heritage custodians MUST have\nweb claim provenance. This includes:\n- Staff names, titles, and roles\n- Contact information (if publicly available)\n- Professional history and education\n- Affiliations and expertise areas\n\n**VERIFIABILITY PRINCIPLE**\n\nLike the base WebClaim class, PersonWebClaim follows the \"XPath or Remove\" principle:\n- Claims from web pages MUST have has_provenance_path with XPath expression\n- Claims from APIs (LinkedIn via Exa) may omit has_provenance_path but MUST have source_url\n- Claims without any verifiable source are FABRICATED and must be removed\n\n**SOURCE HIERARCHY**\n\nWhen multiple sources provide the same information:\n1. Official institutional website (highest reliability)\n2. LinkedIn profile (high reliability)\n3. News articles/press releases (medium-high)\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

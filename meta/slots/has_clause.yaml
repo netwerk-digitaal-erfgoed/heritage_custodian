@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: has_clause
+# ==============================================================================
+# A specific stipulation, provision, article, or distinct part within a larger
+# document, contract, or agreement.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line                       | Mapping  | Notes                                                        |
+# |----------------|---------------------------|---------------------------------|----------|--------------------------------------------------------------|
+# | **HC**         | `hc:hasClause`            | —                               | slot_uri | No external ontology defines a "has clause" property.        |
+# | **DCTerms**    | `dcterms:hasPart`         | dcterms.rdf:1347-1368           | broad    | "Included physically or logically" — general partitive.      |
+# | **CIDOC-CRM**  | `crm:P148_has_component`  | CIDOC_CRM_v7.1.3.rdf:4399-4419 | related  | E89 Propositional Object→E89; structural part, not clause.   |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_clause
+name: has_clause
+title: Has Clause
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_clause:
+    slot_uri: hc:hasClause
+    description: >-
+      Identifies or contains a specific stipulation, provision, article, or
+      distinct part within a larger document, contract, or agreement.
+    alt_descriptions:
+      nl: >-
+        Identificeert of bevat een specifieke bepaling, voorziening, artikel of
+        afzonderlijk onderdeel binnen een groter document, contract of overeenkomst.
+      de: >-
+        Identifiziert oder enthält eine bestimmte Bestimmung, Klausel, einen
+        Artikel oder einen eigenständigen Teil innerhalb eines größeren Dokuments,
+        Vertrags oder einer Vereinbarung.
+      fr: >-
+        Identifie ou contient une stipulation, disposition, article ou partie
+        distincte au sein d'un document, contrat ou accord plus large.
+      ar: >-
+        يحدد أو يحتوي على شرط أو حكم أو مادة أو جزء مميز ضمن وثيقة أو عقد
+        أو اتفاقية أكبر.
+      id: >-
+        Mengidentifikasi atau memuat ketentuan, provisi, pasal, atau bagian
+        tersendiri dalam dokumen, kontrak, atau perjanjian yang lebih besar.
+      zh: >-
+        标识或包含较大文档、合同或协议中的特定条款、规定、条文或独立部分。
+      es: >-
+        Identifica o contiene una estipulación, disposición, artículo o parte
+        diferenciada dentro de un documento, contrato o acuerdo más amplio.
+    structured_aliases:
+      - literal_form: clausule
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Klausel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: clause
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: شرط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: klausul
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 条款
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cláusula
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1368 - "A related resource that is included physically or logically"
+    related_mappings:
+      - crm:P148_has_component  # CIDOC_CRM_v7.1.3.rdf:4399-4419 - "E89 Propositional Object → E89; structural component"
+    aliases:
+      - registered_office_clause
+    examples:
+      - value: "The lender reserves the right to inspect the object at any time."
+        description: A loan agreement clause governing inspection rights.
+      - value: "Article 5: Deaccession procedures shall follow ICOM guidelines."
+        description: A policy document article referencing professional standards.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Use this slot to capture individual clauses, articles, or provisions
+        from contracts, loan agreements, deeds of gift, acquisition policies,
+        or other legal and governance documents relevant to heritage custodians.

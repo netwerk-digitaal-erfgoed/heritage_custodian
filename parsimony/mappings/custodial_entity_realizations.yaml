@@ -1,0 +1,53 @@
+id: https://nde.nl/ontology/hc/parsimony/mappings/custodial-entity-realizations
+name: custodial_entity_realizations
+title: Custodial Entity Realizations
+description: >-
+  Structured realization notes for how the semantic CustodialEntity hub is
+  implemented through narrower engineering classes and slots.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../classes/CustodialEntity
+  - ../slots/has_spatial_scope
+  - ../../../modules/classes/Custodian
+  - ../../../modules/classes/CustodianArchive
+  - ../../../modules/classes/NationalArchives
+  - ../../../modules/classes/MunicipalArchive
+  - ../../../modules/classes/UniversityArchive
+  - ../../../modules/classes/ChurchArchive
+  - ../../../modules/classes/BankArchive
+  - ../../../modules/classes/CompanyArchives
+  - ../../../modules/classes/CommunityArchive
+  - ../../../modules/slots/identified_by
+  - ../../../modules/slots/has_type
+  - ../../../modules/slots/has_status
+  - ../../../modules/slots/has_collection
+  - ../../../modules/slots/has_digital_presence
+  - ../../../modules/slots/cover_country
+  - ../../../modules/slots/cover_geographic_subdivision
+  - ../../../modules/slots/cover_place
+comments:
+  - >-
+    REALIZATION AXIS: The semantic CustodialEntity hub is concretized first by
+    the engineering Custodian hub class, which acts as the persistent actor-like
+    node tying identifiers, status, collection links, digital presence, and type
+    assignments together.
+  - >-
+    REALIZATION AXIS: Specialized custodial organizations are then modeled as
+    narrower engineering classes such as CustodianArchive, NationalArchives,
+    MunicipalArchive, UniversityArchive, ChurchArchive, BankArchive,
+    CompanyArchives, and CommunityArchive.
+  - >-
+    REALIZATION AXIS: Much of the operational realization happens through slots
+    rather than additional semantic classes. Engineering identified_by, has_type,
+    has_status, has_collection, and has_digital_presence distribute semantic
+    custodian meaning into data-ready fields and linked records.
+  - >-
+    REALIZATION AXIS: Semantic has_spatial_scope gathers engineering
+    cover_country, cover_geographic_subdivision, and cover_place when a
+    custodial body is defined by jurisdiction, territorial remit, or area
+    served, keeping that distinct from address and present location.

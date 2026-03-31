@@ -1,0 +1,150 @@
+# ==============================================================================
+# LinkML Slot Definition: affect
+# ==============================================================================
+# General-purpose property for influence relationships. Captures how entities,
+# activities, or agents have effects on other resources.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **PROV-O**   | `prov:influenced`      | prov.ttl:706-714  | exact   | "Inverse of wasInfluencedBy." Active     |
+# |              |                        |                   |         | influence relation.                      |
+# | **PROV-O**   | `prov:generated`       | prov.ttl:585      | narrow  | subPropertyOf prov:influenced            |
+# | **PROV-O**   | `prov:invalidated`     | prov.ttl:735      | narrow  | subPropertyOf prov:influenced            |
+# | **PROV-O**   | `prov:wasInfluencedBy` | prov.ttl:1147-1176| close   | Passive: "was influenced by" relation.   |
+# | **PROV-O**   | `prov:Influence`       | prov.ttl:253-263  | related | Class for qualified influence relations. |
+# | **CIDOC-CRM**| `crm:P15_was_influenced_by`| CIDOC_CRM:1517-1530| related | Activity influenced by entity/event.  |
+# | **CIDOC-CRM**| `crm:P15i_influenced`  | CIDOC_CRM:1531-1542| related | Inverse: entity influenced activity.     |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Changed slot_uri from hc:affect to prov:influenced (exact mapping)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/affect
+name: affect
+title: affect
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  affect:
+    title: Affect
+    slot_uri: prov:influenced
+    description: >-
+      To have an effect on; make a difference to.
+    alt_descriptions:
+      nl: >-
+        Een effect hebben op; verschil maken voor.
+      de: >-
+        Einen Effekt haben auf; einen Unterschied machen für.
+      fr: >-
+        Avoir un effet sur; faire une différence pour.
+      ar: >-
+        أن يكون له تأثير على؛ إحداث فرق في.
+      id: >-
+        Memiliki efek pada; membuat perbedaan untuk.
+      zh: >-
+        对……产生影响；对……有所改变。
+      es: >-
+        Tener un efecto en; hacer una diferencia para.
+    range: uriorcurie
+    multivalued: true
+    inlined: false
+    exact_mappings:
+    narrow_mappings:
+      # prov.ttl line 585: prov:generated
+      # rdfs:subPropertyOf prov:influenced
+      # Narrow: specific influence - activity generated entity
+      - prov:generated  # from prov.ttl - activity generated entity
+      
+      # prov.ttl line 735: prov:invalidated
+      # rdfs:subPropertyOf prov:influenced
+      # Narrow: specific influence - activity invalidated entity
+      - prov:invalidated  # from prov.ttl - activity invalidated entity
+    close_mappings:
+      - prov:wasInfluencedBy
+    related_mappings:
+      - prov:Influence
+      - prov:ActivityInfluence
+      - prov:EntityInfluence
+      - prov:AgentInfluence
+      - crm:P15_was_influenced_by
+      - crm:P15i_influenced
+    aliases:
+      - affects_or_affect
+      - affects_or_affected
+      - influences
+      - is_or_was_affect
+      - objects_affected
+    structured_aliases:
+      - literal_form: beïnvloedt
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_affect
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: beeinflusst
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: affecte
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يؤثر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mempengaruhi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 影响
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: afecta
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: "hc:DigitizationPolicy"
+        description: Policy that affects collection accessibility
+      - value: "hc:BudgetReduction2023"
+        description: Budget change affecting operations
+      - value: "hc:ClimateControlSystem"
+        description: Infrastructure affecting preservation conditions
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.4
+      specificity_rationale: Broad applicability across custodian types.
+    comments:
+      - |
+        **USAGE**:
+        General influence property for:
+        - Policy impacts on operations
+        - Resource allocation effects
+        - Environmental factors
+        - Stakeholder influences
+        - Regulatory impacts
+      - |
+        **PROV-O INFLUENCE MODEL**:
+        PROV-O provides a rich model for influence relationships:
+        - `prov:influenced` - active influence (X influenced Y)
+        - `prov:wasInfluencedBy` - passive influence (Y was influenced by X)
+        - `prov:Influence` - class for qualified influence with details
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **PROV-O** | `prov:influenced` | 706-714 | exact | Active influence relation |
+        | **PROV-O** | `prov:generated` | 585 | narrow | subPropertyOf prov:influenced |
+        | **PROV-O** | `prov:invalidated` | 735 | narrow | subPropertyOf prov:influenced |
+        | **PROV-O** | `prov:wasInfluencedBy` | 1147-1176 | close | Passive influence |
+        | **PROV-O** | `prov:Influence` | 253-263 | related | Qualified influence class |
+        | **CIDOC-CRM** | `crm:P15_was_influenced_by` | 1517-1530 | related | Activity influenced by entity |
+        | **CIDOC-CRM** | `crm:P15i_influenced` | 1531-1542 | related | Inverse relation |

@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/class/SourceCommentCount
+name: SourceCommentCount
+title: Source Comment Count
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_quantity
+- ../slots/retrieved_at
+default_prefix: hc
+classes:
+  SourceCommentCount:
+    class_uri: hc:SourceCommentCount
+    alt_descriptions:
+      nl: Metadata over het ophalen van commentaaraantallen uit een externe bron (API/webpagina).
+      de: Metadaten zur Erfassung von Kommentarzaehlungen aus einer externen Quelle (API/Webseite).
+      fr: Metadonnees sur le comptage de commentaires recupere depuis une source externe (API/page web).
+      es: Metadatos de conteo de comentarios obtenidos desde una fuente externa (API/pagina web).
+      ar: بيانات وصفية لعدد التعليقات المسترجعة من مصدر خارجي (واجهة برمجة/صفحة ويب).
+      id: Metadata jumlah komentar yang diambil dari sumber eksternal (API/halaman web).
+      zh: 来自外部来源（API/网页）的评论计数抓取元数据。
+    structured_aliases:
+    - {literal_form: commentaar-telling, in_language: nl}
+    - {literal_form: Kommentarzaehlung, in_language: de}
+    - {literal_form: comptage de commentaires, in_language: fr}
+    - {literal_form: recuento de comentarios, in_language: es}
+    - {literal_form: عدد التعليقات, in_language: ar}
+    - {literal_form: hitung komentar, in_language: id}
+    - {literal_form: 评论计数, in_language: zh}
+    description: >-
+      Comment count retrieval metadata from an external source (API or web page).
+    close_mappings:
+    - schema:InteractionCounter
+    - prov:Entity
+    slots:
+    - retrieved_at
+    - has_quantity
+    slot_usage:
+      retrieved_at:
+        range: Timestamp
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_timestamp: '2025-01-14T10:30:00Z'
+      has_quantity:
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+    examples:
+    - value:
+        retrieved_at:
+          has_timestamp: '2025-01-14T10:30:00Z'
+      description: Comment count record with retrieval timestamp.
+    comments:
+    - Created 2026-01-22 from comments_fetched migration (Rule 53)
+    - Tracks fetched vs total comment counts
+    - Includes fetch timestamp for provenance
+    - Supports partial/paginated data retrieval
+    see_also:
+    - https://schema.org/InteractionCounter
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Universal - any custodian with video/social media content.
+      specificity_score: '0.70'
+      specificity_rationale: Specific to video/social media comment fetching contexts.
+      modeling_notes: |
+        Purpose
+
+        Structured representation of comment retrieval metadata, tracking how
+        many comments were fetched versus the total available at the source.
+
+        Use cases
+
+        - YouTube API: track fetched comments vs total comment count
+        - Social media: partial retrieval with pagination
+        - Web scraping: track scraped vs visible comments
+
+        Example (legacy)
+
+        ```yaml
+        part_of_total:
+          fetched_count: 100
+          total_count: 500
+          fetch_complete: false
+          was_fetched_at:
+            has_timestamp: "2025-01-14T10:30:00Z"
+        ```

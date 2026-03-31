@@ -1,0 +1,82 @@
+# ==============================================================================
+# LinkML Slot Definition: has_capacity
+# ==============================================================================
+# Specifies the maximum amount, volume, or number of entities that an object,
+# place, or system can contain, accommodate, or handle.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                          | File/Line                  | Mapping | Notes                                                  |
+# |---------------|-----------------------------------|----------------------------|---------|---------------------------------------------------------|
+# | **Schema.org**| `schema:maximumAttendeeCapacity`  | schemaorg.owl:25622-25626  | close   | "The total number of individuals that may attend an event or venue" — attendee-specific, not general capacity |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, demoted schema:maximumAttendeeCapacity from exact to close
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_capacity
+name: has_capacity
+title: Has Capacity
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_capacity:
+    slot_uri: hc:hasCapacity
+    description: >-
+      To specify the maximum amount, volume, or number of entities that the object, place, or system can contain, accommodate, or handle.
+    alt_descriptions:
+      nl: >-
+        De maximale hoeveelheid, het volume of het aantal entiteiten specificeren dat het object, de plaats of het systeem kan bevatten, herbergen of verwerken.
+      de: >-
+        Die maximale Menge, das Volumen oder die Anzahl von Entitäten angeben, die das Objekt, der Ort oder das System enthalten, aufnehmen oder verarbeiten kann.
+      fr: >-
+        Spécifier la quantité, le volume ou le nombre maximal d'entités que l'objet, le lieu ou le système peut contenir, accueillir ou traiter.
+      ar: >-
+        تحديد الكمية أو الحجم أو العدد الأقصى من الكيانات التي يمكن للكائن أو المكان أو النظام احتواؤها أو استيعابها أو معالجتها.
+      id: >-
+        Menentukan jumlah, volume, atau angka maksimum entitas yang dapat ditampung, diakomodasi, atau ditangani oleh objek, tempat, atau sistem tersebut.
+      zh: >-
+        指定对象、场所或系统可以容纳、容纳或处理的实体的最大数量、容量或数目。
+      es: >-
+        Especificar la cantidad, volumen o número máximo de entidades que el objeto, lugar o sistema puede contener, alojar o manejar.
+    structured_aliases:
+      - literal_form: heeft capaciteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Kapazität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une capacité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه سعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki kapasitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有容量
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene capacidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_capacity
+      - outdoor_seating_capacity
+      - seating_capacity
+    close_mappings:
+      - schema:maximumAttendeeCapacity  # schemaorg.owl:25622-25626 - attendee-specific, not general capacity
+    annotations:
+      custodian_types: '["*"]'

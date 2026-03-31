@@ -1,0 +1,120 @@
+# ==============================================================================
+# LinkML Slot Definition: comply_with
+# ==============================================================================
+# Generic slot for expressing conformance to standards, specifications, or guidelines.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line         | Mapping  | Notes                                    |
+# |----------------|-----------------------|-------------------|----------|------------------------------------------|
+# | **Dublin Core**| `dcterms:conformsTo`  | dcterms.rdf:987   | exact    | "An established standard to which the    |
+# |                |                       |                   |          | described resource conforms."            |
+# | **Dublin Core**| `dcterms:relation`    | dcterms.rdf:1000  | broad    | Parent property of conformsTo            |
+# | **Schema.org** | `schema:isBasedOn`    | schemaorg:22729   | close    | "A resource from which this work is      |
+# |                |                       |                   |          | derived or from which it is a            |
+# |                |                       |                   |          | modification or adaptation."             |
+# | **Dublin Core**| `dcterms:references`  | dcterms.rdf:1782  | related  | "A related resource that is referenced,  |
+# |                |                       |                   |          | cited, or otherwise pointed to."         |
+#
+# USAGE: Indicates that an institution, collection, or resource conforms to
+# specific standards, specifications, or guidelines (e.g., LIDO, MARC21, Darwin Core).
+#
+# CREATED: 2026-01-17 per Rule 53/56
+# UPDATED: 2026-02-03 - Added broad_mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/comply_with
+name: comply_with
+title: comply with
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  comply_with:
+    slot_uri: dcterms:conformsTo
+    description: >-
+      To adhere formally to specific rules, standards, or requirements to ensure full conformity.
+    alt_descriptions:
+      nl: >-
+        Formeel voldoen aan specifieke regels, normen of eisen om volledige conformiteit te waarborgen.
+      de: >-
+        Formelle Einhaltung spezifischer Regeln, Standards oder Anforderungen zur Gewährleistung vollständiger Konformität.
+      fr: >-
+        Adhérer formellement à des règles, normes ou exigences spécifiques pour assurer une conformité totale.
+      ar: >-
+        الالتزام رسمياً بقواعد أو معايير أو متطلبات محددة لضمان المطابقة الكاملة.
+      id: >-
+        Mematuhi secara formal aturan, standar, atau persyaratan tertentu untuk memastikan kepatuhan penuh.
+      zh: >-
+        正式遵守特定的规则、标准或要求，以确保完全合规。
+      es: >-
+        Adherirse formalmente a reglas, normas o requisitos específicos para garantizar la conformidad total.
+    range: uriorcurie
+    multivalued: true
+    inlined: false
+    inlined_as_list: false
+    exact_mappings:
+    broad_mappings:
+      - dcterms:relation  # dcterms.rdf:1000 - parent property; conformsTo is rdfs:subPropertyOf relation
+    close_mappings:
+      - schema:isBasedOn
+    related_mappings:
+      - dcterms:references
+    aliases:
+      - complies_or_complied_with
+      - is_or_was_comply_with
+    structured_aliases:
+      - literal_form: voldoet aan
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: entspricht
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: conforme à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يتوافق مع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: sesuai dengan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 符合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cumple con
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: hc:standard/LIDO
+        description: Museum cataloging standard
+      - value: hc:standard/MARC21
+        description: Library cataloging standard
+      - value: hc:standard/Darwin-Core
+        description: Natural history data standard
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - Updated 2026-02-03 with broad_mappings
+      - |
+        CREATED 2026-01-17 per Rule 53/56: Generic slot pattern for standards conformance.
+      - |
+        Replaces domain-specific slots like cataloging_standard.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **Dublin Core** | `dcterms:conformsTo` | 987-1010 | exact | Standard conformance property |
+        | **Dublin Core** | `dcterms:relation` | 1000 | broad | Parent property (conformsTo is subPropertyOf) |
+        | **Schema.org** | `schema:isBasedOn` | 22729-22751 | close | Derivation/adaptation relationship |
+        | **Dublin Core** | `dcterms:references` | 1782-1805 | related | General reference relationship |

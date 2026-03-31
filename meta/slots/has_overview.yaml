@@ -1,0 +1,80 @@
+# ==============================================================================
+# LinkML Slot Definition: has_overview
+# ==============================================================================
+# An overview or summary of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property          | File/Line           | Mapping | Notes                                       |
+# |----------|-------------------|---------------------|---------|---------------------------------------------|
+# | DCTerms  | `dcterms:abstract`| dcterms.rdf:765-784 | close   | "A summary of the resource." Subproperty    |
+# |          |                   |                     |         | of dcterms:description. Resource-specific.  |
+#
+# dcterms:abstract is close: both are summaries, but dcterms:abstract is
+# specifically a subproperty of dcterms:description in the bibliographic sense.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_overview
+name: has_overview
+title: has_overview
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_overview:
+    name: has_overview
+    slot_uri: hc:hasOverview
+    description: >-
+      An overview or summary of an entity.
+    alt_descriptions:
+      nl: >-
+        Een overzicht of samenvatting van een entiteit.
+      de: >-
+        Eine Übersicht oder Zusammenfassung einer Entität.
+      fr: >-
+        Un aperçu ou résumé d'une entité.
+      ar: >-
+        نظرة عامة أو ملخص لكيان.
+      id: >-
+        Ikhtisar atau ringkasan dari suatu entitas.
+      zh: >-
+        实体的概述或摘要。
+      es: >-
+        Una visión general o resumen de una entidad.
+    structured_aliases:
+      - literal_form: Overzicht
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Überblick
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Aperçu
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نظرة عامة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Ikhtisar
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 概述
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Visión general
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_overview
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:abstract  # dcterms.rdf:765-784 - "A summary of the resource"
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_overview for conciseness."

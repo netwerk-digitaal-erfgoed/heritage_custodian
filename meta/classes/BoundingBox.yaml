@@ -1,0 +1,95 @@
+id: https://nde.nl/ontology/hc/class/BoundingBox
+name: BoundingBox
+title: Bounding Box
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  geosparql: http://www.opengis.net/ont/geosparql#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_coordinates
+  - ../slots/has_height
+  - ../slots/has_width
+classes:
+  BoundingBox:
+    class_uri: hc:BoundingBox
+    description: >-
+      Rectangular region defined by coordinates, typically used for image,
+      video, or geographic annotation with normalized or absolute positioning.
+    alt_descriptions:
+      nl: >-
+        Rechthoekig gebied gedefinieerd door coördinaten, typisch gebruikt voor
+        afbeelding-, video- of geografische annotatie met genormaliseerde of
+        absolute positionering.
+      de: >-
+        Rechteckiger Bereich, definiert durch Koordinaten, typischerweise
+        verwendet fuer Bild-, Video- oder geografische Annotation mit
+        normalisierter oder absoluter Positionierung.
+      fr: >-
+        Region rectangulaire definie par des coordonnees, typiquement utilisee
+        pour l'annotation d'images, de videos ou geographique avec un
+        positionnement normalise ou absolu.
+      es: >-
+        Region rectangular definida por coordenadas, tipicamente utilizada para
+        anotacion de imagenes, video o geografica con posicionamiento
+        normalizado o absoluto.
+      ar: >-
+        منطقة مستطيلة محددة بالإحداثيات، تُستخدم عادةً للتعليق التوضيحي
+        للصور أو الفيديو أو الجغرافية مع تحديد الموضع الطبيعي أو المطلق.
+      id: >-
+        Wilayah persegi panjang yang didefinisikan oleh koordinat, biasanya
+        digunakan untuk anotasi gambar, video, atau geografis dengan pemosisian
+        ternormalisasi atau absolut.
+      zh: >-
+        由坐标定义的矩形区域，通常用于图像、视频或地理标注，采用归一化或绝对定位。
+    broad_mappings:
+      - schema:PropertyValue
+    related_mappings:
+      - geosparql:BoundingBox
+    structured_aliases:
+      - literal_form: begrenzingskader
+        in_language: nl
+      - literal_form: Begrenzungsrahmen
+        in_language: de
+      - literal_form: cadre de delimitation
+        in_language: fr
+      - literal_form: cuadro delimitador
+        in_language: es
+      - literal_form: إطار محيط
+        in_language: ar
+      - literal_form: kotak pembatas
+        in_language: id
+      - literal_form: 边界框
+        in_language: zh
+    examples:
+      - value:
+          has_coordinates:
+            x: 0.25
+            y: 0.35
+          has_width: 0.5
+          has_height: 0.3
+        description: Normalized bounding box for image region
+    keywords:
+      - coordinates
+      - rectangular
+      - annotation
+      - image region
+      - geographic extent
+    slots:
+      - has_coordinates
+      - has_width
+      - has_height
+    slot_usage:
+      has_coordinates:
+        range: PlanarCoordinates
+        required: true
+    comments:
+      - Migrated from face_bbox/region_bbox/logo_bbox/object_bbox slots
+      - Coordinates typically normalized (0.0-1.0) relative to frame dimensions
+      - Used in computer vision and geographic applications
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Specific utility class for spatial annotation
+      custodian_types: "['*']"

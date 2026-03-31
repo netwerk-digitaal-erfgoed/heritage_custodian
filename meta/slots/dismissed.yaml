@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: dismissed
+# ==============================================================================
+# Formally removed, discharged, or released from employment or duty.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                           |
+# |---------------|-----------------------|----------------------|---------|-------------------------------------------------|
+# | (none found)  | -                     | -                    | -       | Domain-specific slot for personnel records.     |
+#
+# NOTE: No standard ontology mapping found. This is a domain-specific boolean 
+# slot for tracking employment/appointment termination status, relevant for 
+# heritage institution personnel and governance records.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/dismissed
+name: dismissed
+title: Dismissed
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  dismissed:
+    slot_uri: hc:dismissed
+    description: >-
+      To be formally removed, discharged, or released from employment, office, 
+      or a specific duty by an authority.
+    alt_descriptions:
+      nl: >-
+        Formeel verwijderd, ontslagen of vrijgesteld van dienstverband, ambt 
+        of een specifieke plicht door een autoriteit.
+      de: >-
+        Formell entlassen, freigestellt oder von einer Beschäftigung, einem Amt 
+        oder einer bestimmten Pflicht durch eine Behörde entbunden.
+      fr: >-
+        Être formellement révoqué, licencié ou libéré d'un emploi, d'une fonction 
+        ou d'une obligation spécifique par une autorité.
+      ar: >-
+        أن يتم إقالته أو فصله أو إعفاؤه رسميًا من العمل أو المنصب 
+        أو واجب محدد من قبل سلطة.
+      id: >-
+        Dipecat, diberhentikan, atau dibebaskan secara resmi dari pekerjaan, 
+        jabatan, atau tugas tertentu oleh otoritas.
+      zh: >-
+        被权力机构正式解除、解雇或免除雇佣、职位或特定职责。
+      es: >-
+        Ser formalmente removido, despedido o liberado de un empleo, cargo o 
+        deber específico por una autoridad.
+    structured_aliases:
+      - literal_form: ontslagen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: entlassen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: révoqué
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مفصول
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diberhentikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被解雇
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: despedido
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    aliases:
+      - is_or_was_dismissed
+    comments:
+      - |
+        **USAGE**: Use as a boolean flag to indicate whether a person has been 
+        formally dismissed from their position within an institution.
+      - |
+        **CONTEXT**: Relevant for tracking personnel history, governance changes, 
+        and institutional records in heritage organizations.
+      - |
+        **DISTINCTION**: This indicates termination by authority decision. 
+        For voluntary departure, consider using a different slot (e.g., resigned).
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "true"
+        description: "Person was dismissed from their position"
+      - value: "false"
+        description: "Person was not dismissed (may have resigned or retired)"

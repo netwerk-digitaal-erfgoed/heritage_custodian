@@ -1,0 +1,345 @@
+id: https://nde.nl/ontology/hc/class/VideoAnnotationTypes
+name: video_annotation_types
+title: Video Annotation Types
+imports:
+- linkml:types
+- ../enums/DetectionLevelEnum
+- ../enums/SceneTypeEnum
+- ../slots/contain
+- ../slots/filter
+- ../slots/has_confidence_measure
+- ../slots/geometric_extent
+- ../slots/has_language
+- ../slots/has_level
+- ../slots/has_provenance
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_transcription
+- ../slots/track
+- ../slots/include
+- ../slots/visible_in
+- ../slots/recognized_by
+- ../slots/has_landmark
+- ../slots/part_of
+- ../slots/has_logo
+- ../slots/associated_with
+- ../slots/has_object
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_segment
+- ../slots/refer_to
+- ../slots/has_text
+- ../slots/detect
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+classes:
+  VideoSceneAnnotation:
+    is_a: VideoAnnotation
+    class_uri: hc:VideoSceneAnnotation
+    abstract: false
+    description: >-
+      Annotation capturing scene/shot boundaries and transitions in a video.
+    alt_descriptions:
+      nl: Annotatie die scènes/shots en overgangen in video vastlegt.
+      de: Annotation die Szenen/Shots und Uebergaenge in Videos erfasst.
+      fr: Annotation capturant les scenes/plans et transitions dans une video.
+      es: Anotacion que captura escenas/planos y transiciones en un video.
+      ar: حاشية تلتقط حدود المشاهد/اللقطات والانتقالات في الفيديو.
+      id: Anotasi yang menangkap batas adegan/shot dan transisi dalam video.
+      zh: 记录视频场景/镜头边界与转场的注释。
+    structured_aliases:
+    - {literal_form: scene-annotatie, in_language: nl}
+    - {literal_form: Szenenannotation, in_language: de}
+    - {literal_form: annotation de scene, in_language: fr}
+    - {literal_form: anotacion de escena, in_language: es}
+    - {literal_form: وسم مشاهد, in_language: ar}
+    - {literal_form: anotasi adegan, in_language: id}
+    - {literal_form: 场景注释, in_language: zh}
+    close_mappings:
+    - schema:Clip
+    slots:
+    - has_quantity
+    - filter
+    - contain
+    - detect
+    - has_score
+    - has_type
+    slot_usage:
+      contain:
+#         range: string
+        multivalued: true
+        required: true
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: '[{start_seconds: 0.0, end_seconds: 15.5, segment_text: ''Opening titles''}]'
+      has_quantity:
+        range: integer
+        required: true
+        minimum_value: 1
+        examples:
+        - value: 47
+      filter:
+        description: Detection level metadata for scene vs shot granularity.
+        range: DetectedEntity
+        inlined: true
+        required: true
+        examples:
+        - value:
+            has_type:
+              has_code: SCENE
+              has_label: Scene Level Detection
+        - value:
+            has_type:
+              has_code: SHOT
+              has_label: Shot Level Detection
+      detect:
+        range: SceneTypeEnum
+        multivalued: true
+        required: false
+        examples:
+        - value: '[INTERIOR, CLOSEUP, INTERVIEW]'
+      has_type:
+#         range: string # uriorcurie
+        multivalued: true
+        required: false
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: '[{has_label: "CUT"}, {has_label: "FADE_IN"}]'
+    comments:
+    - Scene and shot boundary detection
+    - Supports both technical (shot) and semantic (scene) analysis
+    - Transition type classification
+    - Scene type labeling for heritage content
+    keywords:
+    - scene detection
+    - shot detection
+    - video segmentation
+    - transition
+    - cut detection
+    - heritage video
+    see_also:
+    - https://en.wikipedia.org/wiki/Shot_(filmmaking)
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+      legacy_description: |
+        Preserved from earlier, more verbose description.
+        It included terminology tables, detection methods, transition types,
+        and heritage-oriented use-case notes.
+    broad_mappings:
+    - skos:Concept
+  VideoObjectAnnotation:
+    is_a: VideoAnnotation
+    class_uri: hc:VideoObjectAnnotation
+    abstract: false
+    description: >-
+      Annotation capturing detected visual entities in video frames (objects,
+      faces, logos, and landmarks), optionally with bounding boxes and tracking.
+    alt_descriptions:
+      nl: Annotatie voor object- gezicht- en entiteitsdetectie in videoframes.
+      de: Annotation fuer Objekt- Gesichts- und Entitaetenerkennung in Videoframes.
+      fr: Annotation pour la detection d objets visages et entites dans des images video.
+      es: Anotacion para deteccion de objetos rostros y entidades en fotogramas de video.
+      ar: حاشية لاكتشاف الكائنات والوجوه والكيانات في إطارات الفيديو.
+      id: Anotasi untuk deteksi objek wajah dan entitas pada frame video.
+      zh: 用于视频帧中对象/人脸/实体检测的注释。
+    structured_aliases:
+    - {literal_form: objectdetectie-annotatie, in_language: nl}
+    - {literal_form: Objekterkennungsannotation, in_language: de}
+    - {literal_form: annotation de detection d objets, in_language: fr}
+    - {literal_form: anotacion de deteccion de objetos, in_language: es}
+    - {literal_form: وسم كشف كائنات, in_language: ar}
+    - {literal_form: anotasi deteksi objek, in_language: id}
+    - {literal_form: 目标检测注释, in_language: zh}
+    close_mappings:
+    - crm:E1_CRM_Entity
+    related_mappings:
+    - schema:ImageObject
+    slots:
+    - has_quantity
+    - track
+    - part_of
+    - has_object
+    - has_score
+    slot_usage:
+      contain:
+        range: DetectedEntity
+        multivalued: true
+        required: false
+        inlined_as_list: true
+        any_of:
+        - range: DetectedObject
+        - range: DetectedFace
+        - range: DetectedLogo
+        - range: DetectedLandmark
+      has_quantity:
+        range: integer
+        multivalued: true
+        required: false
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_measurement_unit:
+              has_type: OBJECT
+            has_methodology:
+              methodology_type: ENTITY_RESOLUTION
+              has_label: DeepSORT tracking + embedding clustering
+        - value:
+            has_measurement_unit:
+              has_type: FACE
+            has_methodology:
+              methodology_type: ENTITY_RESOLUTION
+              has_label: ArcFace clustering
+              confidence_threshold: 0.6
+      has_object:
+#         range: string
+        multivalued: true
+        required: false
+        examples:
+        - value: '[painting, person, sculpture, book]'
+      track:
+        range: boolean
+        required: false
+        examples:
+        - value: true
+      part_of:
+        range: boolean
+        required: false
+        examples:
+        - value: true
+    comments:
+    - Object, face, and logo detection in video
+    - Supports bounding boxes and tracking
+    - Heritage-specific object vocabulary
+    - Enables linking to collection database
+    keywords:
+    - object detection
+    - face recognition
+    - logo detection
+    - landmark detection
+    - bounding box
+    - tracking
+    - computer vision
+    see_also:
+    - https://cocodataset.org/
+    - https://iiif.io/api/presentation/3.0/
+    annotations:
+      custodian_types: '[''*'']'
+      legacy_description: |
+        Preserved from earlier, more verbose description.
+        It included classification vs detection distinctions, bounding-box format,
+        and heritage-specific object categories.
+    broad_mappings:
+    - skos:Concept
+  VideoOCRAnnotation:
+    is_a: VideoAnnotation
+    class_uri: hc:VideoOCRAnnotation
+    abstract: false
+    description: >-
+      Annotation capturing text visible in video frames using OCR.
+    alt_descriptions:
+      nl: Annotatie voor OCR van zichtbare tekst in videoframes.
+      de: Annotation fuer OCR von sichtbarem Text in Videoframes.
+      fr: Annotation pour l OCR du texte visible dans des images video.
+      es: Anotacion para OCR de texto visible en fotogramas de video.
+      ar: حاشية لاستخراج النص المرئي في إطارات الفيديو عبر OCR.
+      id: Anotasi OCR untuk teks yang terlihat dalam frame video.
+      zh: 用于对视频帧中可见文字进行 OCR 的注释。
+    structured_aliases:
+    - {literal_form: ocr-annotatie, in_language: nl}
+    - {literal_form: OCR-Annotation, in_language: de}
+    - {literal_form: annotation OCR, in_language: fr}
+    - {literal_form: anotacion OCR, in_language: es}
+    - {literal_form: وسم OCR, in_language: ar}
+    - {literal_form: anotasi OCR, in_language: id}
+    - {literal_form: OCR 注释, in_language: zh}
+    close_mappings:
+    - schema:TextDigitalDocument
+    slots:
+    - has_confidence_measure
+    - has_quantity
+    - has_transcription
+    - has_score
+    - has_language
+    - contain
+    - has_type
+    slot_usage:
+      has_language:
+        range: Language
+        multivalued: true
+        required: false
+        inlined_as_list: true
+        examples:
+        - value:
+            language_name: Dutch
+        - value:
+            language_name: English
+        - value:
+            language_name: Latin
+      has_quantity:
+        range: integer
+        multivalued: true
+        required: false
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_measurement_unit:
+              has_type: TEXT_REGION
+              has_symbol: regions
+        - value:
+            has_measurement_unit:
+              has_type: CHARACTER
+              has_symbol: characters
+      has_transcription:
+        range: boolean
+        required: false
+        examples:
+        - value: true
+      has_confidence_measure:
+        range: Confidence
+        required: false
+        inlined: true
+        examples:
+        - value:
+            has_value: 0.68
+      contain:
+#         range: string
+        multivalued: true
+        required: false
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: '[{text: ''Welcome'', bbox: [0.1, 0.9, 0.4, 0.1], type: ''OVERLAY''}]'
+    comments:
+    - OCR extraction for text visible in video frames
+    - Distinct from subtitles (audio-derived)
+    - Supports printed and handwritten text
+    - 'Heritage use: documents, labels, signage, name cards'
+    keywords:
+    - OCR
+    - optical character recognition
+    - text extraction
+    - video text
+    - transcription
+    - heritage document
+    see_also:
+    - https://en.wikipedia.org/wiki/Optical_character_recognition
+    annotations:
+      custodian_types: '[''*'']'
+      legacy_description: |
+        Preserved from earlier, more verbose description.
+        It included OCR vs subtitles guidance, pipeline notes, and region-type tables.
+    broad_mappings:
+    - skos:Concept

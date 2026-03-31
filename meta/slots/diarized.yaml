@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: diarized
+# ==============================================================================
+# Recorded or logged into a diary, daybook, or daily schedule.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                           |
+# |---------------|-----------------------|----------------------|---------|-------------------------------------------------|
+# | (none found)  | -                     | -                    | -       | Domain-specific slot for heritage workflows.    |
+#
+# NOTE: No standard ontology mapping found. This is a domain-specific boolean 
+# slot for tracking whether items have been logged in institutional daybooks 
+# or diaries, common in archival and museum workflows.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/diarized
+name: diarized
+title: Diarized
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  diarized:
+    slot_uri: hc:diarized
+    description: >-
+      To be recorded, entered, or logged into a diary, daybook, or daily schedule 
+      for the purpose of documenting an event, task, or timeline.
+    alt_descriptions:
+      nl: >-
+        Geregistreerd, ingevoerd of gelogd in een dagboek, journaal of dagelijks 
+        schema met als doel het documenteren van een gebeurtenis, taak of tijdlijn.
+      de: >-
+        In einem Tagebuch, Tagesbuch oder Tagesplan aufgezeichnet, eingetragen 
+        oder protokolliert zum Zweck der Dokumentation eines Ereignisses, einer 
+        Aufgabe oder eines Zeitablaufs.
+      fr: >-
+        Être enregistré, inscrit ou consigné dans un journal, un livre de comptes 
+        journalier ou un calendrier quotidien dans le but de documenter un événement, 
+        une tâche ou un calendrier.
+      ar: >-
+        أن يتم تسجيله أو إدخاله أو تدوينه في مذكرة أو سجل يومي أو جدول 
+        زمني يومي لغرض توثيق حدث أو مهمة أو جدول زمني.
+      id: >-
+        Dicatat, dimasukkan, atau dilog ke dalam buku harian, buku catatan harian, 
+        atau jadwal harian untuk tujuan mendokumentasikan suatu peristiwa, tugas, 
+        atau garis waktu.
+      zh: >-
+        被记录、输入或登录到日记、日记簿或每日计划中，用于记录事件、任务或时间线。
+      es: >-
+        Ser registrado, ingresado o anotado en un diario, libro diario o agenda 
+        diaria con el propósito de documentar un evento, tarea o cronograma.
+    structured_aliases:
+      - literal_form: gedagboekt
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: in Tagebuch eingetragen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: consigné au journal
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مسجل في اليومية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dicatat dalam buku harian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 已记入日志
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: registrado en diario
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    aliases:
+      - is_or_was_diarized
+    comments:
+      - |
+        **USAGE**: Use as a boolean flag to indicate whether an item, event, or 
+        transaction has been formally recorded in an institutional diary or daybook.
+      - |
+        **CONTEXT**: Common in archival and museum workflows where incoming 
+        materials, visits, or events are logged in daily registers.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "true"
+        description: "Item has been recorded in the institution's daybook"
+      - value: "false"
+        description: "Item has not yet been logged"

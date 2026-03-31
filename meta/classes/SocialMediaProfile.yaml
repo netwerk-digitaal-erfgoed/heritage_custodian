@@ -1,0 +1,264 @@
+id: https://nde.nl/ontology/hc/class/social-media-profile
+name: SocialMediaProfile
+title: Social Media Profile
+imports:
+- linkml:types
+- ../slots/has_cover_image
+- ../slots/begin_of_the_begin
+- ../slots/has_engagement_metric
+- ../slots/has_score
+- ../slots/categorized_as
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/primary
+- ../slots/in_language
+- ../slots/observed_through
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/has_quantity
+- ../slots/has_description
+- ../slots/has_image
+- ../slots/has_url
+- ../slots/refer_to
+- ../slots/identified_by
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+classes:
+  SocialMediaProfile:
+    is_a: ReconstructedEntity
+    class_uri: foaf:OnlineAccount
+    alt_descriptions:
+      nl: Profiel/account op een extern sociaal-mediaplatform dat een erfgoedinstelling gebruikt.
+      de: Konto/Profil auf einer externen Social-Media-Plattform das von einer Kultureinrichtung genutzt wird.
+      fr: Compte/profil sur une plateforme de medias sociaux externe utilise par une institution patrimoniale.
+      es: Cuenta/perfil en una plataforma externa de redes sociales utilizada por una institucion patrimonial.
+      ar: حساب/ملف على منصة تواصل اجتماعي خارجية تستخدمه مؤسسة تراثية.
+      id: Akun/profil di platform media sosial pihak ketiga yang digunakan oleh lembaga warisan budaya.
+      zh: 文化遗产机构在第三方社交媒体平台上的账号/资料。
+    structured_aliases:
+    - {literal_form: socialmediaprofiel, in_language: nl}
+    - {literal_form: Social-Media-Profil, in_language: de}
+    - {literal_form: profil de reseau social, in_language: fr}
+    - {literal_form: perfil de redes sociales, in_language: es}
+    - {literal_form: ملف تواصل اجتماعي, in_language: ar}
+    - {literal_form: profil media sosial, in_language: id}
+    - {literal_form: 社交媒体账号, in_language: zh}
+    description: >-
+      Social media account/profile on a third-party platform associated with a
+      heritage custodian.
+    broad_mappings:
+    - foaf:OnlineAccount
+    close_mappings:
+    - schema:ContactPoint
+    related_mappings:
+    - schema:SocialMediaPosting
+    - crm:E73_Information_Object
+    - foaf:account
+    - schema:sameAs
+    - dcterms:identifier
+    slots:
+    - has_cover_image
+    - begin_of_the_begin
+    - has_engagement_metric
+    - primary
+    - in_language
+    - observed_through
+    - has_label
+    - has_type
+    - has_quantity
+    - has_description
+    - has_image
+    - has_url
+    - refer_to
+    - identified_by
+    - has_score
+    - temporal_extent
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/social-media/rijksmuseum-instagram
+      has_type:
+#         range: string # uriorcurie
+        required: true
+        examples:
+        - value: hc:Instagram
+        - value: hc:Facebook
+      has_label:
+#         range: string
+        required: false
+        examples:
+        - value: Instagram
+        - value: Mastodon (glammr.us)
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: The museum of the Netherlands. Open daily 9-17h.
+      primary:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+        - value: false
+        - value: true
+      has_quantity:
+        range: integer
+        required: false
+        examples:
+        - value: 2500
+      has_engagement_metric:
+        range: EngagementMetric
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_type: Engagement Rate
+            has_value: 2.5
+            has_unit: '%'
+      observed_through:
+        range: datetime
+        required: false
+        examples:
+        - value: '2025-11-29T12:00:00Z'
+      has_image:
+        range: uri
+        required: false
+        examples:
+        - value: https://instagram.com/p/rijksmuseum/avatar.jpg
+      has_cover_image:
+        range: uri
+        required: false
+        examples:
+        - value: https://facebook.com/rijksmuseum/cover.jpg
+      has_url:
+        range: uri
+        required: false
+        multivalued: true
+        examples:
+        - value: https://www.instagram.com/rijksmuseum/
+      begin_of_the_begin:
+        range: date
+        required: false
+        examples:
+        - value: '2012-03-15'
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: '2012-03-15'
+        - value:
+            begin_of_the_begin: '2012-03-15'
+            end_of_the_end: '2024-06-01'
+      in_language:
+#         range: string
+        required: false
+        examples:
+        - value: nl
+        - value: en
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+      refer_to:
+        range: Custodian
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+    comments:
+    - SocialMediaProfile models THIRD-PARTY social media accounts
+    - Distinct from DigitalPlatform (owned websites) and AuxiliaryDigitalPlatform (owned project sites)
+    - FOAF foaf:OnlineAccount as primary ontology alignment
+    - Supports both 'social media as primary presence' and 'social media supporting website' patterns
+    - Metrics (followers, posts) are observational and require timestamp - Platform type should reference SocialMediaPlatformType concepts (e.g., hc:Instagram) rather than free-text.
+    - Links to Custodian via foaf:account pattern
+    see_also:
+    - https://twitter.com
+    - http://xmlns.com/foaf/0.1/OnlineAccount
+    - http://xmlns.com/foaf/0.1/account
+    - https://schema.org/ContactPoint
+    - https://schema.org/sameAs
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/social-media/rijksmuseum-instagram
+        has_type: INSTAGRAM
+        has_label: rijksmuseum
+        has_url:
+        - https://www.instagram.com/rijksmuseum/
+        has_description: 'The museum of the Netherlands. Open daily 9-17h. #Rijksmuseum'
+        primary: false
+        has_quantity: 3500
+        has_engagement_metric:
+        - has_type: Engagement Rate
+          has_value: 2.5
+          has_unit: '%'
+        observed_through: '2025-11-29T12:00:00Z'
+        in_language: en
+        refer_to: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+    - value:
+        identified_by: https://nde.nl/ontology/hc/social-media/hvn-facebook
+        has_type: FACEBOOK
+        has_label: HistorischeVerenigingNijeveen
+        has_url:
+        - https://www.facebook.com/HistorischeVerenigingNijeveen
+        has_description: Historische Vereniging Nijeveen - preserving local heritage since 1985
+        primary: true
+        has_quantity: 320
+        observed_through: '2025-11-29T10:00:00Z'
+        in_language: nl
+        refer_to: https://nde.nl/ontology/hc/nl-dr-nvn-s-hvn
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "Represents a social media account or profile maintained by a heritage custodian.\n\n**FOAF ONTOLOGY ALIGNMENT**:\n\nMaps to `foaf:OnlineAccount` - \"An online account.\"\n\nKey FOAF properties used:\n- `foaf:accountName` - Username/handle on the platform\n- `foaf:accountServiceHomepage` - Homepage of the service provider (e.g., https://twitter.com)\n- `foaf:account` - Inverse property linking Agent to OnlineAccount\n\n**RELATIONSHIP TO DIGITAL PLATFORM HIERARCHY**:\n\nSocial media profiles exist in a three-tier digital presence model:\n\n```\n1. DigitalPlatform (PRIMARY digital presence)\n   - Main website, primary API, flagship platform\n   - Example: rijksmuseum.nl\n   - Links to Custodian via refers_to_custodian\n   \n2. AuxiliaryDigitalPlatform (SECONDARY digital properties)\n   - Project sites, exhibition microsites, specialized tools\n   - Example: Rijksstudio, Night Watch Experience\n   - Links to DigitalPlatform via is_auxiliary_of\n   \n3. SocialMediaProfile (THIRD-PARTY\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        FOAF alignment
+
+        - class_uri: foaf:OnlineAccount
+
+        Digital presence model (conceptual)
+
+        1) DigitalPlatform: primary owned presence (main website/API)
+        2) AuxiliaryDigitalPlatform: secondary owned properties (projects, microsites)
+        3) SocialMediaProfile: third-party presence on external services
+
+        Decision rule
+
+        - If social media is the custodian's main online presence, set primary: true.
+        - Otherwise, treat it as supporting presence (primary: false).
+
+        Metrics
+
+        - Counts and engagement metrics are observational; use observed_through for timestamp.
+
+      legacy_examples: |
+        Preserved from earlier migration examples; may include fields not currently modeled
+        as slots on this class.
+
+        - social_media_profile_id, platform_type, account_name, profile_url, profile_description,
+          is_primary_digital_presence, post_count, metrics_observed_date, associated_digital_platform,
+          account_status, language, refers_to_custodian, created_date

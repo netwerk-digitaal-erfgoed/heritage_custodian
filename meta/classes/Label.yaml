@@ -1,0 +1,103 @@
+id: https://nde.nl/ontology/hc/class/Label
+name: Label
+title: Label
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/in_language
+classes:
+  Label:
+    class_uri: hc:Label
+    description: >-
+      Human-readable naming artifact attached to an entity, optionally typed and
+      language-scoped.
+    alt_descriptions:
+      nl: Mensleesbaar label dat aan een entiteit is gekoppeld optioneel getypeerd en taalspecifiek.
+      de: Menschenlesbares Label das an eine Entitaet angehaengt ist optional typisiert und sprachbezogen.
+      fr: Libelle lisible par l humain attache a une entite eventuellement type et associe a une langue.
+      es: Etiqueta legible por humanos adjunta a una entidad opcionalmente tipada y con ambito de idioma.
+      ar: تسمية مقروءة بشريا مرتبطة بكيان، يمكن تمييز نوعها وربطها بلغة.
+      id: Label yang dapat dibaca manusia yang melekat pada entitas opsional bertipe dan dibatasi bahasa.
+      zh: 附着在实体上的人类可读标签，可选带类型并限定语言范围。
+    structured_aliases:
+    - {literal_form: label, in_language: nl}
+    - {literal_form: Bezeichnung, in_language: de}
+    - {literal_form: libelle, in_language: fr}
+    - {literal_form: etiqueta, in_language: es}
+    - {literal_form: تسمية, in_language: ar}
+    - {literal_form: label, in_language: id}
+    - {literal_form: 标签, in_language: zh}
+    slots:
+    - has_label
+    - has_type
+    - in_language
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+      has_type:
+        required: false
+        multivalued: false
+      in_language:
+        required: false
+    close_mappings:
+    - skos:Concept
+    - schema:Thing
+    broad_mappings:
+    - rdfs:Resource
+    comments:
+    - Used for language-tagged names and labels, including secondary label references.
+    - Typical use cases include name authority references (e.g., VIAF/ISNI labels) and typed display labels.
+    - Prefer using identifiers for unique identification; use Label for display-oriented naming.
+    examples:
+    - value:
+        has_label: Rijksmuseum
+        in_language: nl
+    - value:
+        has_label: National Library of the Netherlands
+        in_language: en
+    - value:
+        has_label: CollectiveAccess
+        has_type: hc:DisplayName
+    - value:
+        has_label: Whirl-i-Gig
+        has_type: hc:AlternativeName
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      A human-readable label for an entity, with optional language tagging.
+
+      **Purpose**:
+      Label provides a reusable class for representing named/labeled references
+      across the heritage custodian schema. Used when an identifier or reference
+      also identifies a secondary named entity (e.g., name authority records).
+
+      **Ontological Alignment**:
+      - **Primary**: `rdfs:Resource` - generic resource with label
+      - **Close**: `skos:Concept` - labeled concept in controlled vocabulary
+
+      **Use Cases**:
+      - Dual-purpose identifiers (ISNI, VIAF) that identify both an entity
+        and its name authority record
+      - Secondary labels/references for complex relationships
+      - Language-tagged names and labels
+
+      **Enables**:
+      - Multilingual label representation (via language slot)
+      - Typed labels with explicit language codes
+      - Reusable labeled references across schema
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Generic label class applicable to all types.
+      specificity_score: 0.3
+      specificity_rationale: Broadly applicable generic class for labeled references.

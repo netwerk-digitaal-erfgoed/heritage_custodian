@@ -1,0 +1,135 @@
+id: https://nde.nl/ontology/hc/class/ArchiveOrganizationType
+name: ArchiveOrganizationType
+title: Archive Organization Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - ../classes/AgentType
+  - linkml:types
+  - ../slots/has_hypernym
+  - ../slots/identified_by
+  - ../slots/has_policy
+  - ../slots/has_schema
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_hyponym
+  - ../slots/has_type
+  - ../slots/has_standard
+classes:
+  ArchiveOrganizationType:
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    description: >-
+      Specialized custodian type for archive organizations - institutions
+      that preserve and provide access to historical documents, records,
+      and other archival materials.
+    alt_descriptions:
+      nl: >-
+        Gespecialiseerd bewaarderstype voor archieforganisaties - instellingen
+        die historische documenten, archiefstukken en andere archiefmaterialen
+        bewaren en toegankelijk maken.
+      de: >-
+        Spezialisierte Verwahrerart fur Archivorganisationen - Institutionen,
+        die historische Dokumente, Unterlagen und andere Archivmaterialien
+        bewahren und zugänglich machen.
+      fr: >-
+        Type de depositeur specialise pour les organisations d'archives -
+        institutions qui preservent et donnent acces aux documents historiques,
+        aux archives et autres materiaux d'archives.
+      es: >-
+        Tipo especializado de depositario para organizaciones de archivos -
+        instituciones que preservan y proporcionan acceso a documentos
+        historicos, registros y otros materiales archivisticos.
+      ar: >-
+        نوع حارس متخصص لمنظمات الأرشيف - مؤسسات تحافظ على الوثائق التاريخية
+        والسجلات والمواد الأرشيفية الأخرى وتوفر الوصول إليها.
+      id: >-
+        Tipe penjaga khusus untuk organisasi arsip - lembaga yang melestarikan
+        dan menyediakan akses ke dokumen historis, catatan, dan materi arsip lainnya.
+      zh: >-
+        档案组织的专门保管者类型 - 保存和提供历史文件、记录和其他档案材料
+        访问的机构。
+    structured_aliases:
+    - literal_form: archieforganisatietype
+      in_language: nl
+    - literal_form: Archivorganisationstyp
+      in_language: de
+    - literal_form: type d'organisation d'archives
+      in_language: fr
+    - literal_form: tipo de organizacion de archivos
+      in_language: es
+    - literal_form: نوع منظمة الأرشيف
+      in_language: ar
+    - literal_form: tipe organisasi arsip
+      in_language: id
+    - literal_form: 档案组织类型
+      in_language: zh
+    close_mappings:
+    - rico:CorporateBody
+    related_mappings:
+    - rico:RecordResource
+    - rico:RecordSet
+    - wd:Q166118
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:ArchiveOrganization
+    slots:
+    - has_policy
+    - has_scope
+    - has_hyponym
+    - has_type
+    - has_schema
+    - has_standard
+    - has_score
+    - identified_by
+    - has_hypernym
+    slot_usage:
+      identified_by:
+        pattern: ^Q[0-9]+$
+        required: true
+      has_hypernym:
+        range: ArchiveOrganizationType
+        required: false
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+    comments:
+    - Base classification for archive organization types
+    - Implements SKOS-based classification with 144+ Wikidata subtypes
+    - Integrates with RiC-O (Records in Contexts Ontology)
+    - Supports geographic restrictions and access policy variations
+    see_also:
+    - AcademicArchive
+    - GovernmentArchive
+    - ArchitecturalArchive
+    examples:
+    - value:
+        identified_by: Q1188452
+        has_type: hc:ArchiveOrganizationType
+        has_scope: national
+      description: National archive organization type
+    - value:
+        identified_by: Q10605195
+        has_type: hc:ArchiveOrganizationType
+        has_scope: corporate
+      description: Business archive organization type
+    keywords:
+    - archive organization
+    - archival institution
+    - records repository
+    - custodian type
+    - SKOS classification
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Base type classification for archive organizations
+      custodian_types: "['Archive']"

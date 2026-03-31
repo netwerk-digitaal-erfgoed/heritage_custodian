@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: deceased
+# ==============================================================================
+# Signifies that a person or living entity has died and is no longer alive.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                  | Mapping | Notes                                                |
+# |---------------|-------------------------|----------------------------|---------|------------------------------------------------------|
+# | **Schema**    | `schema:deathDate`      | schemaorg.owl:14424-14442  | narrow  | "Date of death." Only date aspect, not full status.  |
+# | **PROV-O**    | `prov:wasEndedBy`       | prov.ttl:1116-1131         | related | Activity ended by Entity; analogous but different.   |
+# | **CIDOC-CRM** | `crm:P100i_died_in`    | CIDOC:3408-3418            | related | Person→Death event; event model, not status model.   |
+#
+# No standard ontology defines an exact "deceased status" property.
+# Retains hc:deceased.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/deceased
+name: deceased
+title: Deceased
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  deceased:
+    slot_uri: hc:deceased
+    description: >-
+      Signifies that a person or living entity has died and is no longer alive.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een persoon of levend wezen is overleden en niet meer in leven is.
+      de: >-
+        Gibt an, dass eine Person oder ein Lebewesen gestorben und nicht mehr am Leben ist.
+      fr: >-
+        Indique qu'une personne ou un être vivant est décédé et n'est plus en vie.
+      ar: >-
+        يشير إلى أن شخصاً أو كائناً حياً قد توفي ولم يعد على قيد الحياة.
+      id: >-
+        Menandakan bahwa seseorang atau makhluk hidup telah meninggal dan tidak lagi hidup.
+      zh: >-
+        表示某人或某生物已去世且不再存活。
+      es: >-
+        Indica que una persona o ser vivo ha fallecido y ya no está con vida.
+    structured_aliases:
+      - literal_form: Overleden
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Verstorben
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Décédé
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متوفى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Meninggal
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 已故
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fallecido
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Replaces: circumstances_of_death (string). Intended range is DeceasedStatus
+        class for structured death information including cause of death, temporal extent,
+        and narrative description.
+      - >-
+        Uses permanent-state semantics (not "has_or_had") because death status is irreversible.
+      - >-
+        Important for documenting heritage workers killed in conflicts (Gaza, Ukraine, etc.),
+        historical figures in the heritage sector, and biographical commemoration.
+    range: string
+    required: false
+    annotations:
+      migration_source: circumstances_of_death
+      migration_date: '2026-01-19'
+      migration_rationale: >-
+        Replaced simple string slot with structured DeceasedStatus class
+        per slot_fixes.yaml revision at line 9369.
+        Enables structured capture of cause, date, and narrative.
+      custodian_types: '["*"]'
+    examples:
+      - value: >-
+          is_deceased:
+            is_or_was_caused_by:
+              cause_type: NATURAL
+            temporal_extent:
+              begin_of_the_begin: "2020-03-15"
+              end_of_the_end: "2020-03-15"
+        description: Natural death with known date
+      - value: >-
+          is_deceased:
+            is_or_was_caused_by:
+              cause_type: CONFLICT
+              has_or_had_description: "Killed during airstrike on cultural center"
+            temporal_extent:
+              begin_of_the_begin: "2023-10-01"
+              end_of_the_end: "2023-12-31"
+        description: Death during conflict with date range (exact date unknown)
+    aliases:
+      - is_deceased
+    narrow_mappings:
+      - schema:deathDate  # schemaorg.owl:14424-14442 - "Date of death." Only the date facet.
+    related_mappings:
+      - prov:wasEndedBy  # prov.ttl:1116-1131 - Activity ended by Entity; life-ending analogy
+      - crm:P100i_died_in  # CIDOC:3408-3418 - Person died in Death event; event-based model

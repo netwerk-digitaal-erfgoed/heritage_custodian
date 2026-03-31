@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/Resolution
+name: resolution_class
+title: Resolution Class
+description: >-
+  Represents resolution or quality specifications for media content.
+imports:
+  - linkml:types
+  - ../slots/has_height
+  - ../slots/has_label
+  - ../slots/has_quantity
+  - ../slots/has_type
+  - ../slots/has_measurement_unit
+  - ../slots/has_width
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+classes:
+  Resolution:
+    class_uri: hc:Resolution
+    description: >-
+      Technical specification describing the pixel dimensions or quality level
+      of digital media content, including images, video, and display outputs.
+    alt_descriptions:
+      nl: >-
+        Technische specificatie die de pixeldimensies of het kwaliteitsniveau beschrijft
+        van digitale media-inhoud, inclusief afbeeldingen, video en weergave-uitvoer.
+      de: >-
+        Technische Spezifikation, die die Pixelabmessungen oder Qualitätsstufe
+        digitaler Medieninhalte beschreibt, einschließlich Bilder, Video und Anzeigeausgaben.
+      fr: >-
+        Spécification technique décrivant les dimensions en pixels ou le niveau de qualité
+        du contenu multimédia numérique, y compris les images, la vidéo et les sorties d'affichage.
+      es: >-
+        Especificación técnica que describe las dimensiones de píxeles o el nivel de calidad
+        del contenido multimedia digital, incluyendo imágenes, video y salidas de visualización.
+      ar: >-
+        مواصفات فنية تصف أبعاد البكسل أو مستوى الجودة
+        للمحتوى الإعلامي الرقمي، بما في ذلك الصور والفيديو ومخرجات العرض.
+      id: >-
+        Spesifikasi teknis yang menggambarkan dimensi piksel atau tingkat kualitas
+        konten media digital, termasuk gambar, video, dan output tampilan.
+      zh: >-
+        描述数字媒体内容（包括图像、视频和显示输出）的像素尺寸或质量级别的技术规格。
+    close_mappings:
+      - schema:videoQuality
+    broad_mappings:
+      - schema:PropertyValue
+    keywords:
+      - resolution
+      - pixel dimensions
+      - video quality
+      - image quality
+    structured_aliases:
+      - literal_form: resolutie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Auflösung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: résolution
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: resolución
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - Use cases include video quality levels (SD, HD, 720p, 1080p, 4K, 8K)
+      - Also used for image resolution (width x height in pixels)
+    slots:
+      - has_type
+      - has_label
+      - has_width
+      - has_height
+      - has_quantity
+      - has_measurement_unit
+    slot_usage:
+      has_type:
+        examples:
+          - value: image
+      has_label:
+        examples:
+          - value: hd
+          - value: sd
+          - value: 4k
+          - value: 8k
+      has_width:
+        range: integer
+        examples:
+          - value: 1920
+      has_height:
+        range: integer
+        examples:
+          - value: 1080
+      has_quantity:
+        range: integer
+        inlined: false
+        multivalued: true
+        required: false
+      has_measurement_unit:
+        inlined: false
+        required: false
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

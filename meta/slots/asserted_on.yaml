@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: asserted_on
+# ==============================================================================
+# Date when an assertion was made.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line            | Mapping | Notes                              |
+# |---------------|-------------------|----------------------|---------|------------------------------------|
+# | **DC Terms**  | `dcterms:date`    | dcterms.rdf          | broad   | General date (broader scope)       |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/asserted_on
+name: asserted_on
+title: Asserted On
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  asserted_on:
+    slot_uri: hc:assertedOn
+    description: >-
+      The date or point in time when an assertion, claim, or statement was
+      declared as true or valid.
+    alt_descriptions:
+      nl: >-
+        De datum of het moment waarop een bewering, claim of verklaring als
+        waar of geldig werd verklaard.
+      de: >-
+        Das Datum oder der Zeitpunkt, an dem eine Behauptung, Aussage oder
+        Erklärung als wahr oder gültig erklärt wurde.
+      fr: >-
+        La date ou le moment où une affirmation, une revendication ou une
+        déclaration a été déclarée comme vraie ou valide.
+      ar: >-
+        التاريخ أو نقطة الوقت التي تم فيها إعلان تأكيد أو ادعاء أو بيان
+        باعتباره صحيحًا أو صالحًا.
+      id: >-
+        Tanggal atau titik waktu ketika pernyataan, klaim, atau deklarasi
+        dinyatakan sebagai benar atau sah.
+      zh: >-
+        断言、声明或陈述被宣布为真实或有效的日期或时间点。
+      es: >-
+        La fecha o momento en que una afirmación, reclamación o declaración
+        fue declarada como verdadera o válida.
+    structured_aliases:
+      - literal_form: bevestigd op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: behauptet am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: affirmé le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُؤكَّد في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dinyatakan pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 断言于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: afirmado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    broad_mappings:
+      - dcterms:date  # General date property
+    aliases:
+      - is_or_was_asserted_on
+    annotations:
+      custodian_types: '["*"]'

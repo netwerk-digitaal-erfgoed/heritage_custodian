@@ -1,0 +1,131 @@
+# ==============================================================================
+# LinkML Slot Definition: in_area
+# ==============================================================================
+# Generic slot for associating an entity with a geographic region or spatial domain.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line           | Mapping  | Notes                                    |
+# |----------------|-----------------------|---------------------|----------|------------------------------------------|
+# | **Schema.org** | `schema:size`         | schemaorg.owl:35498 | exact    | "A standardized size of a product or     |
+# |                |                       |                     |          | creative work." Range: QuantitativeValue |
+# | **GeoSPARQL**  | `geosparql:hasArea`   | geo.ttl:402-414     | close    | "The area of a Spatial Object."          |
+# |                |                       |                     |          | Domain: SpatialObject                    |
+# | **QUDT**       | `qudt:quantityValue`  | qudt-all:2229-2233  | close    | "quantity value" - links to QuantityValue|
+# |                |                       |                     |          | Range: qudt:QuantityValue                |
+#
+# RULE 53 COMPLIANT:
+# This is the authoritative slot for area/spatial relationships, replacing
+# domain-specific slots like area_hectares, building_floor_area_sqm, etc.
+#
+# USAGE:
+# Range should be narrowed to Area class in slot_usage. The Area class captures
+# the numeric value, unit of measurement, and measurement date.
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_area
+name: in_area
+title: in area
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  geosparql: http://www.opengis.net/ont/geosparql#
+  qudt: http://qudt.org/schema/qudt/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  in_area:
+    slot_uri: hc:inArea
+    description: >-
+      To be situated or enclosed within the boundaries of a defined geographic region or spatial domain.
+    alt_descriptions:
+      nl: >-
+        Gesitueerd of ingesloten zijn binnen de grenzen van een gedefinieerd geografisch gebied of ruimtelijk domein.
+      de: >-
+        Sich innerhalb der Grenzen einer definierten geografischen Region oder räumlichen Domäne befinden oder eingeschlossen sein.
+      fr: >-
+        Être situé ou enclos dans les limites d'une région géographique définie ou d'un domaine spatial.
+      ar: >-
+        أن يكون واقعاً أو محصوراً ضمن حدود منطقة جغرافية محددة أو نطاق مكاني.
+      id: >-
+        Terletak atau terkurung dalam batas-batas wilayah geografis atau domain spasial yang ditentukan.
+      zh: >-
+        位于或封闭在定义的地理区域或空间域的边界内。
+      es: >-
+        Estar situado o encerrado dentro de los límites de una región geográfica definida o dominio espacial.
+    range: string
+    multivalued: true
+    inlined: false
+    inlined_as_list: false
+    close_mappings:
+      - qudt:quantityValue
+      - geosparql:hasArea
+      - schema:size
+    aliases:
+      - has_or_had_area
+      - is_or_was_in_area
+    structured_aliases:
+      - literal_form: in gebied
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_in_area
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: im Bereich
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dans la zone
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: في المنطقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: di area
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 在区域内
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: en el área
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: "hc:area/Amsterdam"
+        description: Located in Amsterdam area
+      - value: "hc:region/NorthHolland"
+        description: Located in North Holland region
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Area measurements applicable to all heritage custodian types - museums, archives, libraries, outdoor sites, historic buildings, etc.
+      custodian_types_primary: M
+      specificity_score: 0.4
+      specificity_rationale: Broadly useful slot - area measurements relevant for site planning, collection storage, visitor capacity, and facility management.
+    comments:
+      - |
+        **RULE 53 COMPLIANT**: This is the authoritative slot for area measurements,
+        replacing domain-specific slots like area_hectares, building_floor_area_sqm,
+        and has_area_in_hectare.
+      - |
+        **REPLACES**:
+        - area_hectares (OutdoorSite)
+        - building_floor_area_sqm (HistoricBuilding)
+        - has_area_in_hectare (bespoke, incorrectly created)
+      - |
+        **USAGE**: Range should be narrowed to Area class in slot_usage.
+        The Area class captures the numeric value, unit of measurement, and measurement date.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **Schema.org** | `schema:size` | 35498-35522 | exact | Standardized size with QuantitativeValue |
+        | **GeoSPARQL** | `geosparql:hasArea` | 402-414 | close | Area of a Spatial Object |
+        | **QUDT** | `qudt:quantityValue` | 2229-2233 | close | Links to quantity value |

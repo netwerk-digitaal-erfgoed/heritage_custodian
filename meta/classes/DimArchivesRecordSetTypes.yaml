@@ -1,0 +1,101 @@
+id: https://nde.nl/ontology/hc/class/DimArchivesRecordSetTypes
+name: DimArchivesRecordSetTypes
+title: DimArchives Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./DimArchivesRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  DigitallyInaccessibleCollection:
+    is_a: DimArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation with restricted network availability, requiring
+      mediated consultation or onsite access workflows.
+    alt_descriptions:
+      nl: >-
+        Documentaire aggregatie met beperkte netwerktoegang, waarvoor
+        bemiddelde raadpleging of toegang op locatie nodig is.
+      de: >-
+        Dokumentarische Aggregation mit eingeschränkter Netzverfügbarkeit, die
+        vermittelte Einsicht oder Zugang vor Ort erfordert.
+      fr: >-
+        Agrégation documentaire à disponibilité réseau restreinte nécessitant
+        une consultation médiée ou un accès sur place.
+      es: >-
+        Agregación documental con disponibilidad de red restringida que requiere
+        consulta mediada o acceso presencial.
+      ar: >-
+        تجميع وثائقي ذو إتاحة شبكية مقيدة يتطلب إتاحة عبر وسيط أو
+        الاطلاع في الموقع.
+      id: >-
+        Agregasi dokumenter dengan ketersediaan jaringan terbatas yang
+        memerlukan konsultasi terfasilitasi atau akses di lokasi.
+      zh: >-
+        网络可用性受限的文献聚合体，需要经由中介服务或现场查阅流程。
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DigitallyInaccessibleCollection
+      has_custodian:
+        equals_string: hc:DimArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by DimArchives custodians.
+    structured_aliases:
+    - literal_form: netwerkbeperkte documentaire aggregatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: netzbeschränkt verfügbare Dokumentationsaggregation
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: agrégation documentaire à accès réseau restreint
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: agregación documental de acceso en red restringido
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: تجميع وثائقي بإتاحة شبكية مقيدة
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: agregasi dokumenter dengan akses jaringan terbatas
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 受限网络访问文献聚合体
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Represents holdings where remote delivery is unavailable or heavily constrained.
+    - Supports access-policy modeling for onsite consultation environments.
+    - 'Preserved from prior description: Documentary aggregation grouped as a collection for holdings with constrained remote or online accessibility.'
+    keywords:
+    - access restriction
+    - onsite consultation
+    - documentary aggregation
+    - service mediation
+    examples:
+    - value:
+        has_type: hc:DigitallyInaccessibleCollection
+        has_custodian: hc:DimArchives
+        has_note: Access only in supervised reading room.
+      description: Documentary aggregation requiring onsite consultation

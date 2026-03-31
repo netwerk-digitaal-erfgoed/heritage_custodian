@@ -1,0 +1,119 @@
+# ==============================================================================
+# LinkML Slot Definition: replace
+# ==============================================================================
+# Indicates whether a location, service, or entity supersedes or substitutes
+# for another, typically signalling that the primary access point has changed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                | File/Line              | Mapping | Notes                                                           |
+# |------------|-------------------------|------------------------|---------|-----------------------------------------------------------------|
+# | **DCTerms**| `dcterms:replaces`      | dcterms.rdf:1827-1849  | close   | "Supplanted, displaced, or superseded by." Resource→Resource.   |
+# | **DCTerms**| `dcterms:isReplacedBy`  | dcterms.rdf:1512-1533  | related | Inverse of replaces. "Supplants, displaces, or supersedes."     |
+# | **RiC-O**  | `rico:isSuccessorOf`    | RiC-O:16659-16678      | related | Agent→Agent temporal succession. Archives domain.               |
+# | **Schema** | `schema:successorOf`    | schemaorg.owl:36938-41  | related | ProductModel→ProductModel. Newer variant→predecessor.           |
+# | **PROV**   | `prov:wasRevisionOf`    | prov.ttl:1225-1232     | related | Entity→Entity. Revision/derivation, not substitution.           |
+#
+# dcterms:replaces is close but not exact: it models resource-to-resource
+# replacement, while this slot captures a boolean-like flag indicating whether
+# a location serves as replacement for a primary access point.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/replace
+name: replace
+title: Replace
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  replace:
+    slot_uri: hc:replace
+    description: >-
+      Indicates whether a location, service, or entity substitutes, supersedes,
+      or takes the place of an existing primary access point. When true, the
+      described entity serves as the main access point in place of the original.
+      When false, the entity is supplementary to the primary location, such as a
+      pop-up or satellite facility. Important for visitor communication and
+      directing users to the correct service point.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een locatie, dienst of entiteit de bestaande primaire
+        toegangspunt vervangt of aanvult.
+      de: >-
+        Gibt an, ob ein Standort, eine Dienstleistung oder eine Einrichtung den
+        bestehenden primären Zugangspunkt ersetzt oder ergänzt.
+      fr: >-
+        Indique si un lieu, un service ou une entité remplace ou complète le
+        point d'accès principal existant.
+      ar: >-
+        يشير إلى ما إذا كان الموقع أو الخدمة أو الكيان يحل محل نقطة الوصول
+        الأساسية الحالية أو يكملها.
+      id: >-
+        Menunjukkan apakah suatu lokasi, layanan, atau entitas menggantikan atau
+        melengkapi titik akses utama yang ada.
+      zh: >-
+        指示某个地点、服务或实体是否替代或补充现有的主要访问点。
+      es: >-
+        Indica si una ubicación, servicio o entidad sustituye o complementa el
+        punto de acceso principal existente.
+    structured_aliases:
+      - literal_form: vervanging
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ersetzung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: remplacement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استبدال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: penggantian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 替换
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: reemplazo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - dcterms:replaces  # dcterms.rdf:1827-1849 - "Supplanted, displaced, or superseded by"
+    related_mappings:
+      - dcterms:isReplacedBy  # dcterms.rdf:1512-1533 - Inverse of replaces
+      - rico:isSuccessorOf  # RiC-O:16659-16678 - Agent→Agent temporal succession
+      - schema:successorOf  # schemaorg.owl:36938-36941 - ProductModel→predecessor
+      - prov:wasRevisionOf  # prov.ttl:1225-1232 - Entity→Entity revision
+    aliases:
+      - replaces_primary_location
+    examples:
+      - value: "true"
+        description: >-
+          Primary library branch closed for renovation; this temporary location
+          serves as the main access point for visitors.
+      - value: "false"
+        description: >-
+          A pop-up exhibition space that supplements the main museum building
+          but does not replace it as the primary venue.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This slot captures whether a location or service acts as a replacement
+        for a primary access point. Values are typically boolean-like strings
+        (true/false). For resource-to-resource replacement relationships, see
+        dcterms:replaces which models the relational aspect more precisely.
+      - >-
+        Important for public communication: when true, visitors should be
+        directed to this entity instead of the original primary location.

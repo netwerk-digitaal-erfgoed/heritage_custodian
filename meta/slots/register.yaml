@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: register
+# ==============================================================================
+# Officially enters, enrolls, or records an entity into a formal list, system,
+# or database.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property           | File/Line           | Mapping  | Notes                                                             |
+# |-----------|--------------------|---------------------|----------|-------------------------------------------------------------------|
+# | **HC**    | `hc:register`      | —                   | slot_uri | No external property captures "register" as a verb/action slot.   |
+# | **DCAT**  | `dcat:record`      | dcat3.ttl:1485-1515 | related  | "Registration of a dataset in a catalog" — noun, not the act.     |
+# | **ROV**   | `rov:registration`  | regorg.ttl:92-99    | related  | "Relationship between legal entity and authority" — identifier.   |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/register
+name: register
+title: Register
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  rov: http://www.w3.org/ns/regorg#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  register:
+    slot_uri: hc:register
+    description: >-
+      Officially enters, enrolls, or records an entity such as a name, item,
+      collection, or event into a formal list, system, or database.
+    alt_descriptions:
+      nl: >-
+        Schrijft een entiteit zoals een naam, item, collectie of gebeurtenis
+        officieel in bij een formele lijst, systeem of database.
+      de: >-
+        Trägt eine Entität wie einen Namen, ein Objekt, eine Sammlung oder ein
+        Ereignis offiziell in eine formelle Liste, ein System oder eine
+        Datenbank ein.
+      fr: >-
+        Inscrit officiellement une entité telle qu'un nom, un objet, une
+        collection ou un événement dans une liste, un système ou une base de
+        données formels.
+      ar: >-
+        يسجل رسميًا كيانًا مثل اسم أو عنصر أو مجموعة أو حدث في قائمة أو نظام
+        أو قاعدة بيانات رسمية.
+      id: >-
+        Secara resmi memasukkan entitas seperti nama, item, koleksi, atau
+        peristiwa ke dalam daftar, sistem, atau basis data formal.
+      zh: >-
+        将名称、项目、藏品或事件等实体正式登记到正式列表、系统或数据库中。
+      es: >-
+        Inscribe oficialmente una entidad como un nombre, elemento, colección
+        o evento en una lista, sistema o base de datos formal.
+    structured_aliases:
+      - literal_form: registreren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: registrieren
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: enregistrer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تسجيل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mendaftarkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 登记
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: registrar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - dcat:record  # dcat3.ttl:1485-1515 - "A record describing the registration of a single dataset in a catalog"
+      - rov:registration  # regorg.ttl:92-99 - "Relationship between a legal entity and the authority with which it is registered"
+    aliases:
+      - registers_or_registered
+    examples:
+      - value: "NL-HaNA"
+        description: An archive registered with the national heritage register under its ISIL code.
+      - value: "Museum of Modern Art"
+        description: An institution registered in a national museum directory.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This slot captures the act of formally entering an entity into a
+        registry or catalog. For the agent who performed the registration,
+        see registered_by. For the date of registration, see registered_on.

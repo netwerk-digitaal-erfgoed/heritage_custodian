@@ -1,0 +1,95 @@
+id: https://nde.nl/ontology/hc/classes/Scope
+name: Scope
+title: Scope
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dct: http://purl.org/dc/terms/
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/has_type
+- ../slots/has_description
+default_prefix: hc
+# default_range: string
+classes:
+  Scope:
+    description: >-
+      Coverage dimension specifying the extent or boundaries of a collection,
+      service, or institutional mandate.
+    alt_descriptions:
+      nl: >-
+        Dekkingsdimensie die de omvang of grenzen van een collectie,
+        dienst of institutioneel mandaat specificeert.
+      de: >-
+        Abdeckungsdimension, die den Umfang oder die Grenzen einer Sammlung,
+        Dienstleistung oder institutionellen Mandats festlegt.
+      fr: >-
+        Dimension de couverture spécifiant l'étendue ou les limites d'une collection,
+        d'un service ou d'un mandat institutionnel.
+      es: >-
+        Dimensión de cobertura que especifica la extensión o límites de una colección,
+        servicio o mandato institucional.
+      ar: >-
+        بُعد التغطية الذي يحدد نطاق أو حدود مجموعة
+        أو خدمة أو تفويض مؤسسي.
+      id: >-
+        Dimensi cakupan yang menentukan luas atau batasan koleksi,
+        layanan, atau mandat institusional.
+      zh: >-
+        指定馆藏、服务或机构权限的范围或边界的覆盖维度。
+    structured_aliases:
+    - literal_form: dekkingsgebied
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Geltungsbereich
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: portée
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: alcance
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: نطاق
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: cakupan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 范围
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    class_uri: dct:Coverage
+    broad_mappings:
+    - dct:Coverage
+    - schema:Thing
+    slots:
+    - has_type
+    - has_description
+    slot_usage:
+      has_type:
+        description: Reference to a ScopeType concept describing the scope dimension.
+        examples:
+        - value: hc:TemporalScope
+        - value: hc:SpatialScope
+    comments:
+    - "Common scope dimensions: temporal (time period), spatial (geographic coverage), subject (topic areas), material (media/types), linguistic (languages/scripts), institutional (sectors/levels)."
+    - 'Preserved from prior description: Coverage or scope information for a collection, service, or institution.'
+    keywords:
+    - coverage extent
+    - collection boundaries
+    - institutional scope
+    - service extent
+    examples:
+    - value:
+        has_type:
+        - hc:TemporalScope
+        has_description: 1600-1700
+      description: Temporal scope expressed as a date range.
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Scope information applicable to all custodian types.
+      custodian_types_primary: '*'
+      specificity_score: 0.3
+      specificity_rationale: Low-moderate specificity - common metadata concept.

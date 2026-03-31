@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: cancelled_by
+# ==============================================================================
+# Links an entity to the agent responsible for its cancellation.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                 | File/Line          | Mapping | Notes                              |
+# |------------|--------------------------|--------------------|---------|------------------------------------|
+# | **PROV-O** | `prov:wasInvalidatedBy`  | prov.ttl:1194-1207 | close   | "Invalidation is the start of the  |
+# |            |                          |                    |         | destruction, cessation, or ending  |
+# |            |                          |                    |         | of an existing entity"             |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/cancelled_by
+name: cancelled_by
+title: Cancelled By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  cancelled_by:
+    slot_uri: hc:cancelledBy
+    description: >-
+      To be annulled, terminated, voided, or called off by a specific 
+      individual, organization, or system responsible for stopping the 
+      action or validity.
+    alt_descriptions:
+      nl: >-
+        Geannuleerd, beëindigd, nietig verklaard of afgelast te zijn door 
+        een specifiek individu, organisatie of systeem dat verantwoordelijk 
+        is voor het stoppen van de actie of geldigheid.
+      de: >-
+        Von einer bestimmten Person, Organisation oder einem System, das 
+        für das Beenden der Aktion oder Gültigkeit verantwortlich ist, 
+        annulliert, beendet, für ungültig erklärt oder abgesagt zu werden.
+      fr: >-
+        Être annulé, terminé, invalidé ou annoncé par un individu, une 
+        organisation ou un système spécifique responsable de l'arrêt de 
+        l'action ou de la validité.
+      ar: >-
+        أن يتم إلغاؤه أو إنهاؤه أو إبطاله أو إيقافه من قبل فرد أو منظمة 
+        أو نظام محدد مسؤول عن إيقاف الإجراء أو الصلاحية.
+      id: >-
+        Dibatalkan, diakhiri, dibatalkan, atau dihentikan oleh individu, 
+        organisasi, atau sistem tertentu yang bertanggung jawab untuk 
+        menghentikan tindakan atau validitas.
+      zh: >-
+        由负责停止行动或有效性的特定个人、组织或系统取消、终止、
+        作废或撤销。
+      es: >-
+        Ser anulado, terminado, invalidado o cancelado por un individuo, 
+        organización o sistema específico responsable de detener la acción 
+        o validez.
+    structured_aliases:
+      - literal_form: geannuleerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: storniert von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: annulé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملغى من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dibatalkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被...取消
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cancelado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - prov:wasInvalidatedBy  # prov.ttl:1194-1207 - "Invalidation is the start of the destruction, cessation..."
+    aliases:
+      - is_or_was_cancelled_by
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link cancelled events, subscriptions, 
+        memberships, or other entities to the agent that cancelled them.
+      - |
+        **MAPPING NOTE**: `prov:wasInvalidatedBy` is close but not exact - 
+        PROV-O focuses on the broader concept of invalidation (destruction, 
+        cessation, ending), while this slot specifically captures cancellation 
+        by an agent.

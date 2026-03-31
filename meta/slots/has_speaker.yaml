@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: has_speaker
+# ==============================================================================
+# The agent who acts as the voice source or presenter in media content.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property             | File/Line                  | Mapping | Notes                                                    |
+# |---------------|----------------------|----------------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:actor`       | schemaorg.owl:7033-7061    | close   | "An actor (individual or group) in TV, radio, movie, etc." Media→Person; same concept but implies dramatic role. |
+# | **Schema.org**| `schema:performer`   | schemaorg.owl:29624-29645  | broad   | "A performer at the event — presenter, musician, actor." Event→Person/Org; any performer, not specifically speaker. |
+# | **Schema.org**| `schema:readBy`      | schemaorg.owl:32073-32092  | narrow  | "A person who reads the audiobook." Domain restricted to Audiobook. |
+# | **CIDOC-CRM** | `crm:P14_carried_out_by` | CIDOC:1489-1502       | broad   | "Active participation of Actor in Activity." Activity→Actor; any activity, not specifically speaking. |
+#
+# NOTES:
+# - `schema:agent` (schemaorg.owl:7463-7485) is "the direct performer or driver of the action" — Action→Person/Org; too generic.
+# - No exact match — linking media/event to the specific speaking agent is not captured precisely by any single standard property.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_speaker
+name: has_speaker
+title: Has Speaker
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_speaker:
+    slot_uri: hc:hasSpeaker
+    description: >-
+      The specific agent (person) who acts as the voice source, orator,
+      or presenter within a media file, audio segment, organisation, or event.
+    alt_descriptions:
+      nl: >-
+        De specifieke persoon die optreedt als stemgeluidsbron, spreker of
+        presentator binnen een mediabestand, audiosegment, organisatie of evenement.
+      de: >-
+        Die spezifische Person, die als Stimmquelle, Redner oder Moderator
+        in einer Mediendatei, einem Audiosegment, einer Organisation oder
+        einer Veranstaltung fungiert.
+      fr: >-
+        L'agent spécifique (personne) qui agit comme source vocale, orateur
+        ou présentateur dans un fichier multimédia, un segment audio, une
+        organisation ou un événement.
+      ar: >-
+        الشخص المحدد الذي يعمل كمصدر صوتي أو خطيب أو مقدم ضمن ملف وسائط
+        أو مقطع صوتي أو منظمة أو حدث.
+      id: >-
+        Agen spesifik (orang) yang bertindak sebagai sumber suara, orator,
+        atau presenter dalam file media, segmen audio, organisasi, atau acara.
+      zh: >-
+        在媒体文件、音频片段、组织或活动中担任声源、演说者或主持人的特定代理人（个人）。
+      es: >-
+        El agente específico (persona) que actúa como fuente de voz, orador
+        o presentador dentro de un archivo multimedia, segmento de audio,
+        organización o evento.
+    structured_aliases:
+      - literal_form: Spreker
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sprecher
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Locuteur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متحدث
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pembicara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 发言者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Hablante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        When speaker labels or diarization data are available, this slot links
+        to the identified speaker. Check speaker_count for the number of distinct speakers.
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - includes_speaker
+      - primary_speaker
+      - speaker_count
+      - speaker_id
+      - speaker_label
+      - speaker_label
+    close_mappings:
+      - schema:actor  # schemaorg.owl:7033-7061 - "An actor (individual or group) in TV, radio, movie, etc." Media→Person; same concept but implies dramatic performance.
+    broad_mappings:
+      - schema:performer  # schemaorg.owl:29624-29645 - "A performer at the event — presenter, musician, actor." Event→Person/Org; any performer, not specifically speaker.
+      - crm:P14_carried_out_by  # CIDOC:1489-1502 - "Active participation of Actor in Activity." Activity→Actor; any activity, not specifically speaking.
+    narrow_mappings:
+      - schema:readBy  # schemaorg.owl:32073-32092 - "A person who reads the audiobook." Domain restricted to Audiobook only.

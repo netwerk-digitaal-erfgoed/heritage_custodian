@@ -1,0 +1,218 @@
+# ==============================================================================
+# LinkML Slot Definition: has_format
+# ==============================================================================
+# Possess a specific structural arrangement or encoding standard that governs
+# how content is organized, stored, or displayed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line             | Mapping | Notes                              |
+# |---------------|-----------------------------|-----------------------|---------|------------------------------------|
+# | **Dublin Core**| `dcterms:format`           | dcterms.rdf:1296-1320 | exact   | File format, medium, dimensions    |
+# | **Schema.org**| `schema:encodingFormat`     | schemaorg.owl:16697   | exact   | Media type (IANA MIME types)       |
+# | **DC**        | `dc:format`                 | dcterms.rdf:1315      | broad   | Parent of dcterms:format           |
+# | **DCAT**      | `dcat:mediaType`            | dcat3.ttl:1306        | narrow  | IANA media type (subPropertyOf)    |
+# | **DCAT**      | `dcat:compressFormat`       | dcat3.ttl:767         | narrow  | Compression format (subPropertyOf) |
+# | **DCAT**      | `dcat:packageFormat`        | dcat3.ttl:1386        | narrow  | Package format (subPropertyOf)     |
+# | **RiC-O**     | `rico:hasRepresentationType`| RiC-O_1-1:9074        | related | Representation type of record      |
+# | **RiC-O**     | `rico:hasCarrierType`       | RiC-O_1-1:3863        | related | Carrier/medium type                |
+# | **Schema.org**| `schema:fileFormat`         | schemaorg.owl:18031   | related | Superseded by encodingFormat       |
+#
+# CREATED: 2026-01-16
+# UPDATED: 2026-02-03 - Added broad_mappings and narrow_mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_format
+name: has_format
+title: has format
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  dc: http://purl.org/dc/elements/1.1/
+  schema: https://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_format:
+    slot_uri: dcterms:format
+    description: >-
+      To possess a specific structural arrangement or encoding standard that
+      governs how content is organized, stored, or displayed.
+    alt_descriptions:
+      nl: >-
+        Het bezitten van een specifieke structurele rangschikking of
+        coderingsstandaard die bepaalt hoe inhoud wordt georganiseerd,
+        opgeslagen of weergegeven.
+      de: >-
+        Das Besitzen einer spezifischen strukturellen Anordnung oder eines
+        Kodierungsstandards, der bestimmt, wie Inhalte organisiert, gespeichert
+        oder angezeigt werden.
+      fr: >-
+        Posséder un arrangement structurel spécifique ou une norme de codage
+        qui régit la façon dont le contenu est organisé, stocké ou affiché.
+      ar: >-
+        امتلاك ترتيب هيكلي محدد أو معيار ترميز يحكم كيفية تنظيم المحتوى
+        أو تخزينه أو عرضه.
+      id: >-
+        Memiliki susunan struktural tertentu atau standar pengkodean yang
+        mengatur bagaimana konten diatur, disimpan, atau ditampilkan.
+      zh: >-
+        拥有特定的结构安排或编码标准，用于规定内容的组织、存储或显示方式。
+      es: >-
+        Poseer una disposición estructural específica o un estándar de
+        codificación que gobierna cómo se organiza, almacena o muestra
+        el contenido.
+    structured_aliases:
+      - literal_form: heeft formaat
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Format
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un format
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه تنسيق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki format
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有格式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene formato
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    
+    # VERIFIED MAPPINGS (2026-02-02)
+    # Source files: data/ontology/dcterms.rdf, data/ontology/schemaorg.owl,
+    #               data/ontology/dcat3.ttl, data/ontology/RiC-O_1-1.rdf
+    
+    exact_mappings:
+      # dcterms.rdf line 1296-1320: format
+      # "The file format, physical medium, or dimensions of the resource."
+      # "Recommended practice is to use a controlled vocabulary where available.
+      # For example, for file formats one could use the list of Internet Media Types [MIME]."
+      # schemaorg.owl line 16697-16704: encodingFormat
+      # "Media type typically expressed using a MIME format (see IANA site)"
+      # Used for MediaObject and CreativeWork
+      - schema:encodingFormat  # from schemaorg.owl - MIME type for media objects
+    
+    broad_mappings:
+      # dc:format is the parent property of dcterms:format (dcterms.rdf:1315)
+      - dc:format  # DC Elements 1.1 - parent property of dcterms:format
+    
+    narrow_mappings:
+      # dcat3.ttl line 1306+: mediaType rdfs:subPropertyOf dcterms:format
+      - dcat:mediaType  # from dcat3.ttl:1330 - IANA media type for distributions (subPropertyOf dcterms:format)
+      # dcat3.ttl line 767: compressFormat rdfs:subPropertyOf dcterms:format
+      - dcat:compressFormat  # from dcat3.ttl:767 - compression format (subPropertyOf dcterms:format)
+      # dcat3.ttl line 1386: packageFormat rdfs:subPropertyOf dcterms:format
+      - dcat:packageFormat  # from dcat3.ttl:1386 - package format (subPropertyOf dcterms:format)
+    
+    related_mappings:
+      # RiC-O_1-1.rdf line 9074: hasRepresentationType
+      # Links Instantiation to Type representing format/encoding
+      # Related: archival representation type (broader than just file format)
+      - rico:hasRepresentationType  # from RiC-O_1-1.rdf - instantiation representation type
+      
+      # RiC-O_1-1.rdf line 3863: hasCarrierType
+      # Links Instantiation to Type representing physical carrier
+      # Related: physical medium (narrower - carrier not digital format)
+      - rico:hasCarrierType  # from RiC-O_1-1.rdf - physical carrier type
+      
+      # schemaorg.owl line 18031-18035: fileFormat (deprecated)
+      # "Media type, typically MIME format" - superseded by encodingFormat
+      - schema:fileFormat  # from schemaorg.owl - deprecated, use encodingFormat
+    
+    aliases:
+      - has_or_had_format
+      - encoding_format
+      - media_type
+      - file_format
+      - has_or_had_articles_document_format
+      - pdf_url
+      - post_type_media_format
+      - record_format
+      - response_format
+    
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Format specifications applicable to all custodian types.
+      range_broadening_date: '2026-01-16'
+      range_broadening_rationale: >-
+        Changed from range:string to range:uriorcurie per Rule 54.
+        This allows linking to IANA media types, format registries, or format classes
+        while resolving OWL ambiguous type warnings. Replaces need for bespoke slots
+        like has_or_had_transcript_format or has_or_had_subtitle_format.
+      specificity_score: 0.3
+      specificity_rationale: >-
+        Generic format slot applicable across many entity types (documents,
+        media, datasets, transcripts, etc.).
+    
+    examples:
+      - value: iana:application/json
+        description: JSON MIME type for API responses (CURIE)
+      - value: iana:text/vtt
+        description: WebVTT subtitle/transcript format (CURIE)
+      - value: iana:image/jpeg
+        description: JPEG image format (CURIE)
+      - value: iana:application/pdf
+        description: PDF document format (CURIE)
+      - value: hc:TranscriptFormat/STRUCTURED
+        description: Structured transcript with speaker labels (internal CURIE)
+      - value: https://www.iana.org/assignments/media-types/image/jpeg
+        description: JPEG image format (full URI)
+    
+    comments:
+      - Updated 2026-02-03 with broad_mappings and narrow_mappings
+      - |
+        **PURPOSE**:
+        Generic slot for file format, media type, or encoding standard.
+        Applies to any digital or physical resource where format matters:
+        - Response formats from APIs (JSON, XML, RDF)
+        - File formats for documents (PDF, DOCX, TXT)
+        - Media formats (JPEG, MP3, MP4)
+        - Transcript formats (VTT, SRT, plain text)
+        - Subtitle formats (WebVTT, SRT, etc.)
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "has_or_had_format" alias to indicate temporal relationship -
+        the resource has a format currently or had one in the past (format
+        conversions may occur over time).
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **Dublin Core** | `dcterms:format` | 1296-1320 | exact | File format, medium, dimensions |
+        | **Schema.org** | `schema:encodingFormat` | 16697 | exact | MIME type for media objects |
+        | **DC** | `dc:format` | 1315 | broad | Parent property of dcterms:format |
+        | **DCAT** | `dcat:mediaType` | 1330 | narrow | IANA media type (subPropertyOf) |
+        | **DCAT** | `dcat:compressFormat` | 767 | narrow | Compression format (subPropertyOf) |
+        | **DCAT** | `dcat:packageFormat` | 1386 | narrow | Package format (subPropertyOf) |
+        | **RiC-O** | `rico:hasRepresentationType` | 9074 | related | Instantiation representation |
+        | **RiC-O** | `rico:hasCarrierType` | 3863 | related | Physical carrier type |
+        | **Schema.org** | `schema:fileFormat` | 18031 | related | Deprecated, use encodingFormat |
+      - |
+        **RANGE**: `uriorcurie` (Rule 54)
+        Broadened range to accept URI/CURIE references to format specifications.
+        This allows linking to IANA media types, format registries, or internal
+        format classes while resolving OWL ambiguous type warnings.
+      - |
+        **IANA MEDIA TYPES**:
+        Recommended to use IANA media types with the `iana:` prefix.
+        See: https://www.iana.org/assignments/media-types/media-types.xhtml
+        Classes can narrow to specific format enums/classes via slot_usage.
+    
+    see_also:
+      - https://www.iana.org/assignments/media-types/media-types.xhtml
+      - https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#format
+      - https://schema.org/encodingFormat

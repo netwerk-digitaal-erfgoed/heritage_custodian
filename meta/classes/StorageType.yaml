@@ -1,0 +1,370 @@
+id: https://nde.nl/ontology/hc/class/StorageType
+name: storage_type_class
+title: Storage Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  wd: http://www.wikidata.org/entity/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_condition
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score    # was: template_specificity
+- ../slots/has_use_case
+- ../slots/equivalent_to
+- ../slots/related_to
+- ../slots/require
+- ../slots/has_level
+- ../slots/store
+classes:
+  StorageType:
+    class_uri: skos:Concept
+    alt_descriptions:
+      nl: Classificatietype voor opslagfaciliteiten in erfgoedcontexten.
+      de: Klassifikationstyp fuer Lagerungsarten in Kulturerbe-Kontexten.
+      fr: Type de classification pour les modalites de stockage dans les contextes patrimoniaux.
+      es: Tipo de clasificacion para modalidades de almacenamiento en contextos patrimoniales.
+      ar: نوع تصنيف لأنماط مرافق التخزين في سياقات التراث.
+      id: Tipe klasifikasi untuk jenis penyimpanan dalam konteks warisan budaya.
+      zh: 用于文化遗产场景中存储设施类型的分类概念。
+    structured_aliases:
+    - literal_form: opslagtype
+      in_language: nl
+    - literal_form: Lagerungstyp
+      in_language: de
+    - literal_form: type de stockage
+      in_language: fr
+    - literal_form: tipo de almacenamiento
+      in_language: es
+    - literal_form: نوع التخزين
+      in_language: ar
+    - literal_form: tipe penyimpanan
+      in_language: id
+    - literal_form: 存储类型
+      in_language: zh
+    description: >-
+      Classification concept for storage facility types, supporting hierarchical
+      and condition-aware typing of Storage instances.
+    close_mappings:
+    - premis:StorageLocation
+    - wd:Q1191732
+    related_mappings:
+    - crm:E55_Type
+    - rico:RecordSetType
+    slots:
+      # Shared slots (from centralized slot files)
+    - identified_by
+    - has_code
+    - has_label
+    - has_description
+    - has_hypernym
+    - has_hyponym
+    - related_to
+      # Domain-specific slots
+    # has_access_frequency REMOVED - migrated to offers_or_offered (Rule 53)
+    - has_use_case
+    - preservation_requirement
+    - has_level
+    - store    # was: target_material - migrated per Rule 53/56 (2026-01-16)
+    - has_score    # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    - has_condition    # was: typical_condition - migrated per Rule 53 (2026-01-15)
+      # REMOVED 2026-01-15: wikidata_id - migrated to equivalent_to (Rule 53)
+    - equivalent_to
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        pattern: "^https://nde\\.nl/ontology/hc/storage-type/[a-z0-9-]+$"
+        examples:
+        - value: https://nde.nl/ontology/hc/storage-type/archive-depot
+        - value: https://nde.nl/ontology/hc/storage-type/cold-storage
+      has_code:
+#         range: string
+        required: true
+        pattern: "^[A-Z][A-Z0-9_]*$"
+        examples:
+        - value: ARCHIVE_DEPOT
+        - value: COLD_STORAGE
+        - value: ART_STORAGE
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        examples:
+        - value: ["Archive Depot@en", "Archiefbewaarplaats@nl"]
+        - value: ["Cold Storage@en", "Koudopslag@nl"]
+        - value: ["Art Storage Vault@en", "Kunstkluis@nl"]
+      has_description:
+#         range: string
+        examples:
+        - value: "Specialized climate-controlled facility for archival documents, manuscripts, and records. Maintains stable temperature and humidity optimal for paper and parchment preservation."
+      has_hypernym:
+        range: StorageType
+        examples:
+        - value: https://nde.nl/ontology/hc/storage-type/climate-controlled
+      has_hyponym:
+        range: StorageType
+        multivalued: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - https://nde.nl/ontology/hc/storage-type/cold-storage
+          - https://nde.nl/ontology/hc/storage-type/art-storage
+      related_to:
+        range: StorageType
+        multivalued: true
+        inlined_as_list: true
+      # ADDED 2026-01-15: Replaces wikidata_id slot per Rule 53
+      equivalent_to:
+        range: WikiDataIdentifier
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - qid: "Q1454974"
+        - value:
+          - qid: "Q1280667"
+      preservation_requirement:
+#         range: string
+        examples:
+        - value: "Required for paper-based materials, manuscripts, and archival documents. Prevents acid migration, foxing, and brittleness. Essential for materials with lignin content."
+      # was: typical_condition - migrated per Rule 53 (2026-01-15)
+      has_condition:
+        range: Condition
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - has_description:
+              description_text: "18-20°C, 45-55% RH, <50 lux, UV-filtered"
+              description_type: condition
+        - value:
+          - has_description:
+              description_text: "-18°C to 4°C, 30-35% RH, dark"
+              description_type: condition
+        - value:
+          - has_description:
+              description_text: "18-22°C, 45-55% RH, UV-filtered, vibration-free"
+              description_type: condition
+      # was: target_material - migrated per Rule 53/56 (2026-01-16)
+      store:
+        range: Material
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - identified_by: https://nde.nl/ontology/hc/material/paper
+            has_label:
+            - paper@en
+            - papier@nl
+            has_type: https://nde.nl/ontology/hc/material-type/organic
+          - identified_by: https://nde.nl/ontology/hc/material/parchment
+            has_label:
+            - parchment@en
+            - perkament@nl
+            has_type: https://nde.nl/ontology/hc/material-type/organic
+          - identified_by: https://nde.nl/ontology/hc/material/vellum
+            has_label:
+            - vellum@en
+            - velijn@nl
+            has_type: https://nde.nl/ontology/hc/material-type/organic
+        - value:
+          - identified_by: https://nde.nl/ontology/hc/material/nitrate-film
+            has_label:
+            - nitrate film@en
+            - nitraatfilm@nl
+            has_type: https://nde.nl/ontology/hc/material-type/synthetic
+          - identified_by: https://nde.nl/ontology/hc/material/acetate-film
+            has_label:
+            - acetate film@en
+            - acetaatfilm@nl
+            has_type: https://nde.nl/ontology/hc/material-type/synthetic
+      has_level:
+#         range: string
+        examples:
+        - value: STANDARD
+        - value: HIGH_SECURITY
+        - value: MAXIMUM
+        - value: RARE
+        - value: VERY_RARE
+      has_use_case:
+        range: UseCase
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_label: "Nationaal Archief Depot Den Haag"
+        - value:
+            has_label: "British Library Document Storage"
+      # example_instance:
+      #   range: string
+      #   multivalued: true
+      #   examples:
+      #     - value:
+      #         - Nationaal Archief Depot Den Haag
+      #         - British Library Document Storage
+      #         - Rijksmuseum Depot Amersfoort
+    annotations:
+      specificity_score: "0.65"
+      specificity_rationale: "Fairly specific - storage types primarily relevant for preservation/collection management."
+      modeling_notes: |
+        StorageType provides richer semantics than flat enums by supporting
+        hierarchical relationships, environmental conditions, and use-case context.
+
+        It is used by Storage.has_type to classify facility instances.
+      slot_migration: |
+        2026-01-13: Migrated from domain-specific to shared slots
+        - storage_type_id → identified_by
+        - storage_type_code → has_code
+        - storage_type_label → has_label
+        - storage_type_description → has_description
+        - storage_type_broader → has_hypernym
+        - storage_type_narrower → has_hyponym
+        - storage_type_related → related_to
+        2026-01-16: Migrated target_material to stores_or_stored + Material (Rule 53/56)
+        - target_material → stores_or_stored + Material
+    comments:
+    - "StorageType provides SKOS-based classification for Storage instances"
+    - "Supports hierarchical type relationships (has_hypernym/hyponym)"
+    - "Richer semantics than flat StorageTypeEnum"
+    - "Linked from DepositArchive custodian types via operates_storage"
+    - "Enables preservation-aware storage classification"
+    - "Environmental conditions align with conservation standards (EN 16893, ISO 11799)"
+    - "MIGRATED 2026-01-13: Now uses shared slots (Rule 38)"
+    - "MIGRATED 2026-01-16: target_material → stores_or_stored + Material (Rule 53/56)"
+    see_also:
+    - https://www.wikidata.org/wiki/Q1191732
+    - https://www.wikidata.org/wiki/Q1454974
+    - http://www.loc.gov/premis/rdf/v3/StorageLocation
+    - https://www.iso.org/standard/52821.html
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage-type/archive-depot
+        has_code: ARCHIVE_DEPOT
+        has_label:
+        - Archive Depot@en
+        - Archiefbewaarplaats@nl
+        has_description: |
+          Specialized climate-controlled facility for archival documents,
+          manuscripts, and records. Maintains stable temperature and 
+          humidity optimal for paper and parchment preservation.
+         # MIGRATED 2026-01-15: Use equivalent_to with WikiDataIdentifier
+        equivalent_to:
+        - qid: Q1454974
+        preservation_requirement: |
+          Required for paper-based materials, manuscripts, and archival
+          documents. Prevents acid migration, foxing, and brittleness.
+         # MIGRATED 2026-01-15: typical_condition → has_condition
+        has_condition:
+        - has_description:
+            description_text: "18-20°C, 45-55% RH, <50 lux, UV-filtered"
+            description_type: condition
+          # was: target_material - migrated per Rule 53/56 (2026-01-16)
+        store:
+        - identified_by: https://nde.nl/ontology/hc/material/paper
+          has_label:
+          - paper@en
+          - papier@nl
+          has_type: https://nde.nl/ontology/hc/material-type/organic
+        - identified_by: https://nde.nl/ontology/hc/material/parchment
+          has_label:
+          - parchment@en
+          - perkament@nl
+          has_type: https://nde.nl/ontology/hc/material-type/organic
+        - identified_by: https://nde.nl/ontology/hc/material/photograph
+          has_label:
+          - photograph@en
+          - foto@nl
+          has_type: https://nde.nl/ontology/hc/material-type/composite
+        security_level: STANDARD
+        has_use_case:
+        - has_label: Nationaal Archief Depot Den Haag
+        - has_label: British Library Document Storage
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage-type/cold-storage
+        has_code: COLD_STORAGE
+        has_label:
+        - Cold Storage@en
+        - Koudopslag@nl
+        has_description: |
+          Refrigerated or frozen storage for temperature-sensitive materials.
+          Essential for film, photographic materials, and biological specimens.
+        has_hypernym: https://nde.nl/ontology/hc/storage-type/climate-controlled
+          # MIGRATED 2026-01-15: Use equivalent_to with WikiDataIdentifier
+        equivalent_to:
+        - qid: Q1191732
+        preservation_requirement: |
+          Mandatory for nitrate and acetate film to prevent vinegar syndrome.
+          Required for color photographs to prevent dye fading.
+         # MIGRATED 2026-01-15: typical_condition → has_condition
+        has_condition:
+        - has_description:
+            description_text: "-18°C to 4°C, 30-35% RH, dark"
+            description_type: condition
+          # was: target_material - migrated per Rule 53/56 (2026-01-16)
+        store:
+        - has_material_type:
+            identified_by: hc:material-type/film-nitrate
+            has_label:
+            - Nitrate Film@en
+          material_description: "Historical nitrate film stock, highly flammable"
+        - has_material_type:
+            identified_by: hc:material-type/film-acetate
+            has_label:
+            - Acetate Film@en
+          material_description: "Acetate-based film, susceptible to vinegar syndrome"
+        - has_material_type:
+            identified_by: hc:material-type/photograph-color
+            has_label:
+            - Color Photographs@en
+          material_description: "Color photographic materials requiring cold storage"
+        - has_material_type:
+            identified_by: hc:material-type/biological-specimen
+            has_label:
+            - Biological Specimens@en
+          material_description: "Preserved biological specimens requiring cryogenic storage"
+        security_level: ENHANCED
+        has_use_case:
+        - has_label: EYE Filmmuseum Cold Vault
+        - has_label: Library of Congress Film Vault
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage-type/deposit-storage
+        has_code: DEPOSIT_STORAGE
+        has_label:
+        - Deposit Storage@en
+        - Depotbewaarplaats@nl
+        has_description: |
+          Storage facility operated by a deposit archive for materials
+          deposited by external organizations or individuals. Manages
+          custody without ownership transfer.
+        preservation_requirement: |
+          Must maintain chain of custody documentation. Materials remain
+          property of depositor. Access controlled per deposit agreement.
+         # MIGRATED 2026-01-15: typical_condition → has_condition
+        has_condition:
+        - has_description:
+            description_text: "Variable, per material type and agreement"
+            description_type: condition
+        security_level: ENHANCED
+        has_use_case:
+        - has_label: National Archives deposit storage for government records
+        - has_label: University archive deposit facility for departmental records
+    broad_mappings:
+    - skos:Concept

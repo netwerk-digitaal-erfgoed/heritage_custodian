@@ -1,0 +1,61 @@
+id: https://w3id.org/nde/ontology/HospitalArchive
+name: HospitalArchive
+title: Hospital Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/ArchiveOrganizationType
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+classes:
+  HospitalArchive:
+    class_uri: hc:HospitalArchive
+    is_a: ArchiveOrganizationType
+    description: >-
+      Archival institution within healthcare governance that preserves
+      administrative, clinical, and research records under medical privacy rules.
+    alt_descriptions:
+      nl: Archiefinstelling binnen de zorg die bestuurlijke, klinische en onderzoeksdocumentatie bewaart onder medische privacyregels.
+      de: Archiveinrichtung im Gesundheitswesen zur Bewahrung administrativer, klinischer und forschungsbezogener Unterlagen unter medizinischem Datenschutz.
+      fr: Institution archivistique du secteur hospitalier conservant des dossiers administratifs, cliniques et de recherche sous contraintes de confidentialite medicale.
+      es: Institucion archivistica del ambito hospitalario que conserva registros administrativos, clinicos y de investigacion bajo normas de privacidad medica.
+      ar: مؤسسة أرشيفية في قطاع الرعاية الصحية تحفظ سجلات إدارية وسريرية وبحثية مع التقيد بمتطلبات سرية البيانات الطبية.
+      id: Lembaga arsip dalam tata kelola kesehatan yang melestarikan rekaman administratif, klinis, dan riset dengan aturan privasi medis.
+      zh: 隶属医疗体系、在医学隐私规范下保存行政、临床与研究记录的档案机构。
+    structured_aliases:
+      - literal_form: ziekenhuisarchief
+        in_language: nl
+      - literal_form: Krankenhausarchiv
+        in_language: de
+      - literal_form: archives hospitalieres
+        in_language: fr
+      - literal_form: archivo hospitalario
+        in_language: es
+      - literal_form: أرشيف المستشفى
+        in_language: ar
+      - literal_form: arsip rumah sakit
+        in_language: id
+      - literal_form: 医院档案馆
+        in_language: zh
+    slots:
+      - has_type
+      - hold_record_set
+      - has_score
+      - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    broad_mappings:
+      - schema:ArchiveOrganization
+      - wd:Q166118
+    close_mappings:
+      - wd:Q17301917
+      - rico:CorporateBody

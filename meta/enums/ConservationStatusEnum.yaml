@@ -1,0 +1,254 @@
+# ConservationStatusEnum - Object condition and conservation states
+#
+# Enumeration of condition states for heritage objects.
+#
+# Aligned with:
+# - AAT (Getty Art & Architecture Thesaurus) condition concepts
+# - SPECTRUM (UK Collections Management Standard) condition terminology
+# - AIC (American Institute for Conservation) condition assessment scales
+# - CIDOC-CRM E3 Condition State
+#
+# Created: January 2026
+
+id: https://nde.nl/ontology/hc/enum/ConservationStatusEnum
+name: ConservationStatusEnum
+title: Conservation Status Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  aat: http://vocab.getty.edu/aat/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  ConservationStatusEnum:
+    description: |
+      Condition states for heritage objects used in conservation assessments.
+      
+      Combines two dimensions:
+      1. **Overall Condition Grade**: EXCELLENT → CRITICAL (5-point scale)
+      2. **Stability Assessment**: STABLE, UNSTABLE, DETERIORATING
+      3. **Treatment Status**: Workflow states for conservation work
+      
+      **SPECTRUM Alignment**:
+      
+      Aligns with SPECTRUM Object Condition Checking procedure terminology
+      for recording object condition before and after movement or treatment.
+      
+      **AIC/AAT Alignment**:
+      
+      Maps to Getty AAT condition terms and American Institute for
+      Conservation condition reporting standards.
+      
+      **Example Assessment Workflow**:
+      
+      ```
+      New acquisition → Condition assessment: GOOD + STABLE
+                ↓
+      Loan request → Detailed examination: FAIR + STABLE (acceptable for loan)
+                ↓
+      Post-loan → Return inspection: FAIR + STABLE (unchanged)
+      ```
+    
+    permissible_values:
+      # Overall Condition Grades (5-point scale)
+      EXCELLENT:
+        description: |
+          Object in outstanding condition with no significant damage or deterioration.
+          Museum-quality condition suitable for exhibition and loan.
+          
+          **Indicators**:
+          - No visible damage or wear
+          - All original components present and intact
+          - Colors/surfaces bright and unfaded
+          - Structurally sound
+        meaning: aat:300379779  # excellent (condition attribute)
+        annotations:
+          condition_grade: "1"
+          loan_suitability: "excellent"
+          category: "condition_grade"
+      
+      GOOD:
+        description: |
+          Object in good condition with minor wear consistent with age.
+          Suitable for exhibition and most loans.
+          
+          **Indicators**:
+          - Minor surface wear or scratches
+          - Slight fading or patina (stable)
+          - Minor losses that don't affect structural integrity
+          - Original mounting/framing may show age
+        meaning: aat:300379780  # good (condition attribute)
+        annotations:
+          condition_grade: "2"
+          loan_suitability: "good"
+          category: "condition_grade"
+      
+      FAIR:
+        description: |
+          Object shows moderate wear or damage but remains stable.
+          May require assessment before loan or exhibition.
+          
+          **Indicators**:
+          - Noticeable wear, scratches, or losses
+          - Some structural weakness but stable
+          - Fading or staining present
+          - May benefit from conservation treatment
+        meaning: aat:300379781  # fair (condition attribute)
+        annotations:
+          condition_grade: "3"
+          loan_suitability: "conditional"
+          category: "condition_grade"
+      
+      POOR:
+        description: |
+          Object shows significant damage or deterioration.
+          Not suitable for loan without treatment. May require restricted handling.
+          
+          **Indicators**:
+          - Significant structural damage
+          - Major losses or missing elements
+          - Active deterioration processes
+          - Fragile or unstable components
+          - Requires conservation intervention
+        meaning: aat:300379782  # poor (condition attribute)
+        annotations:
+          condition_grade: "4"
+          loan_suitability: "not_recommended"
+          category: "condition_grade"
+      
+      CRITICAL:
+        description: |
+          Object in critical condition requiring immediate conservation attention.
+          Not suitable for handling, exhibition, or loan.
+          
+          **Indicators**:
+          - Severe structural failure
+          - Active and rapid deterioration
+          - Risk of total loss if untreated
+          - Requires emergency stabilization
+        annotations:
+          condition_grade: "5"
+          loan_suitability: "prohibited"
+          category: "condition_grade"
+      
+      # Stability Assessment
+      STABLE:
+        description: |
+          Object condition is stable with no active deterioration.
+          No immediate conservation action required.
+          
+          **Indicators**:
+          - No ongoing chemical or biological processes
+          - Structural integrity maintained
+          - Environmental conditions adequate
+          - Suitable for storage, display, or loan
+        meaning: aat:300380049  # stable (stability attribute)
+        annotations:
+          stability_level: "stable"
+          category: "stability"
+      
+      UNSTABLE:
+        description: |
+          Object condition is unstable and may change if not addressed.
+          Requires conservation assessment and potentially treatment.
+          
+          **Indicators**:
+          - Active but slow deterioration
+          - Environmental sensitivity
+          - Structural weakness under stress
+          - Needs monitoring or intervention
+        annotations:
+          stability_level: "unstable"
+          category: "stability"
+      
+      DETERIORATING:
+        description: |
+          Object is actively deteriorating and requires urgent attention.
+          Should not be moved or displayed without stabilization.
+          
+          **Indicators**:
+          - Ongoing chemical breakdown (acidification, oxidation)
+          - Active biological attack (mold, insects)
+          - Progressive structural failure
+          - Requires immediate conservation action
+        meaning: aat:300380050  # deteriorating
+        annotations:
+          stability_level: "deteriorating"
+          urgency: "high"
+          category: "stability"
+      
+      # Treatment Status States
+      TREATMENT_REQUIRED:
+        description: |
+          Conservation treatment has been recommended or is required.
+          Object flagged for conservation work.
+          
+          **Use Case**:
+          After condition assessment identifies issues requiring intervention.
+        annotations:
+          treatment_phase: "recommended"
+          category: "treatment_status"
+      
+      UNDER_TREATMENT:
+        description: |
+          Object currently undergoing conservation treatment.
+          Not available for loan or exhibition.
+          
+          **Use Case**:
+          Object in conservation lab or with external conservator.
+        meaning: schema:ActiveActionStatus
+        annotations:
+          treatment_phase: "in_progress"
+          category: "treatment_status"
+      
+      TREATMENT_COMPLETED:
+        description: |
+          Conservation treatment has been completed.
+          Object ready for post-treatment assessment.
+          
+          **Use Case**:
+          Treatment finished, awaiting documentation and return to collection.
+        meaning: schema:CompletedActionStatus
+        annotations:
+          treatment_phase: "completed"
+          category: "treatment_status"
+      
+      # Examination States
+      EXAMINATION_REQUIRED:
+        description: |
+          Object requires detailed examination before condition can be assessed.
+          May need technical analysis (X-ray, spectroscopy, etc.).
+        annotations:
+          assessment_phase: "examination_needed"
+          category: "examination_status"
+      
+      UNDER_EXAMINATION:
+        description: |
+          Object currently undergoing detailed examination or technical analysis.
+        annotations:
+          assessment_phase: "in_examination"
+          category: "examination_status"
+      
+      # Special States
+      NOT_EXAMINED:
+        description: |
+          Object has not been examined; condition unknown.
+          Common for new acquisitions or backlog collections.
+        annotations:
+          assessment_phase: "unexamined"
+          category: "examination_status"
+      
+      CONDITION_UNKNOWN:
+        description: |
+          Condition cannot be determined from available information.
+          Object may be in storage, inaccessible, or lost.
+        annotations:
+          assessment_phase: "unknown"
+          category: "examination_status"

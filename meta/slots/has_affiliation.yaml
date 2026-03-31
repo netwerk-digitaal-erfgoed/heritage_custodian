@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: has_affiliation
+# ==============================================================================
+# A formal connection or association with an organization or institution.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line             | Mapping | Notes                                       |
+# |---------------|-----------------------|-----------------------|---------|---------------------------------------------|
+# | **Schema.org**| `schema:affiliation`  | schemaorg.owl:7418    | exact   | "An organization that this person is affiliated with" |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Updated slot_uri to standard, corrected translations
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_affiliation
+name: has_affiliation
+title: Has Affiliation
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_affiliation:
+    slot_uri: schema:affiliation
+    description: >-
+      A formal connection, association, or relationship with a specific organization, 
+      group, or institution.
+    alt_descriptions:
+      nl: >-
+        Een formele verbinding, associatie of relatie met een specifieke organisatie, 
+        groep of instelling.
+      de: >-
+        Eine formelle Verbindung, Assoziation oder Beziehung zu einer bestimmten 
+        Organisation, Gruppe oder Institution.
+      fr: >-
+        Une connexion formelle, association ou relation avec une organisation, un groupe 
+        ou une institution spécifique.
+      ar: >-
+        ارتباط رسمي أو علاقة مع منظمة أو مجموعة أو مؤسسة محددة.
+      id: >-
+        Koneksi formal, asosiasi, atau hubungan dengan organisasi, kelompok, atau 
+        institusi tertentu.
+      zh: >-
+        与特定组织、团体或机构的正式联系、关联或关系。
+      es: >-
+        Una conexión formal, asociación o relación con una organización, grupo o 
+        institución específica.
+    structured_aliases:
+      - literal_form: affiliatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zugehörigkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: affiliation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: انتماء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: afiliasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 隶属关系
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: afiliación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    aliases:
+      - has_or_had_affiliation
+    exact_mappings:
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - MIGRATED 2026-02-03 from has_or_had_affiliation for conciseness.
+      - |
+        **USAGE**: Links persons or organizations to affiliated institutions such as 
+        universities, professional associations, research networks, or consortia.

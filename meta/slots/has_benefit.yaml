@@ -1,0 +1,82 @@
+# ==============================================================================
+# LinkML Slot Definition: has_benefit
+# ==============================================================================
+# Indicates a benefit or advantage associated with the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping  | Notes                              |
+# |---------------|-----------------------|----------------------------|----------|------------------------------------|
+# | **Custom**    | `hc:hasBenefit`       | N/A                        | -        | No direct standard equivalent      |
+# | **Schema.org**| `schema:benefits`     | schemaorg.owl:9841-9845    | related  | "Description of benefits associated with the job." (job-specific, superseded) |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Rewrote alt_descriptions to faithful translations, added schema:benefits as related mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_benefit
+name: has_benefit
+title: Has Benefit
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_benefit:
+    slot_uri: hc:hasBenefit
+    description: >-
+      To offer, provide, or result in a specific advantage, gain, or positive outcome for a user, beneficiary, or entity.
+    alt_descriptions:
+      nl: >-
+        Een specifiek voordeel, winst of positief resultaat bieden, verschaffen of opleveren voor een gebruiker, begunstigde of entiteit.
+      de: >-
+        Einen spezifischen Vorteil, Gewinn oder ein positives Ergebnis für einen Benutzer, Begünstigten oder eine Entität bieten, bereitstellen oder bewirken.
+      fr: >-
+        Offrir, fournir ou entraîner un avantage, un gain ou un résultat positif spécifique pour un utilisateur, un bénéficiaire ou une entité.
+      ar: >-
+        تقديم أو توفير أو تحقيق ميزة أو مكسب أو نتيجة إيجابية محددة لمستخدم أو مستفيد أو كيان.
+      id: >-
+        Menawarkan, menyediakan, atau menghasilkan keuntungan, manfaat, atau hasil positif tertentu bagi pengguna, penerima manfaat, atau entitas.
+      zh: >-
+        为用户、受益人或实体提供、产生或带来特定的优势、收益或积极成果。
+      es: >-
+        Ofrecer, proporcionar o resultar en una ventaja, ganancia o resultado positivo específico para un usuario, beneficiario o entidad.
+    structured_aliases:
+      - literal_form: heeft voordeel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Vorteil
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un avantage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه فائدة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki manfaat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有利益
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene beneficio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_benefit
+    related_mappings:
+      - schema:benefits  # schemaorg.owl:9841-9845 - "Description of benefits associated with the job." (job-specific, superseded by jobBenefits)
+    annotations:
+      custodian_types: '["*"]'

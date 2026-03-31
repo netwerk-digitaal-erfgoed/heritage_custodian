@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: headed_by
+# ==============================================================================
+# To be led, directed, or managed by a specific individual or entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property          | File/Line          | Mapping | Notes                                     |
+# |----------------|-------------------|--------------------|---------|-------------------------------------------|
+# | **W3C ORG**    | `org:headOf`      | org.rdf:353-370    | close   | Inverse direction: person→organization.   |
+# | **Schema.org** | `schema:employee` | —                  | related | General employment, not leadership.       |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/headed_by
+name: headed_by
+title: headed by
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  headed_by:
+    name: headed_by
+    title: headed by
+    slot_uri: hc:headedBy
+    description: >-
+      To be led, directed, or managed by a specific individual or entity acting
+      as the primary authority or leader.
+    alt_descriptions:
+      nl: >-
+        Geleid, bestuurd of beheerd worden door een specifiek individu of
+        entiteit die optreedt als de primaire autoriteit of leider.
+      de: >-
+        Geleitet, geführt oder verwaltet werden von einer bestimmten Person
+        oder Einrichtung, die als primäre Autorität oder Führungskraft handelt.
+      fr: >-
+        Être dirigé, administré ou géré par un individu ou une entité
+        spécifique agissant en tant qu'autorité principale ou dirigeant.
+      ar: >-
+        أن يكون بقيادة أو إدارة أو توجيه فرد أو كيان معين يعمل بصفة السلطة
+        الرئيسية أو القائد.
+      id: >-
+        Dipimpin, diarahkan, atau dikelola oleh individu atau entitas tertentu
+        yang bertindak sebagai otoritas utama atau pemimpin.
+      zh: >-
+        由特定个人或实体作为主要权威或领导者进行领导、指挥或管理。
+      es: >-
+        Ser liderado, dirigido o gestionado por un individuo o entidad
+        específica que actúa como la autoridad principal o líder.
+    structured_aliases:
+      - literal_form: geleid door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geleitet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dirigé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بقيادة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dipimpin oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...领导
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: encabezado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    # range: Person
+    multivalued: false
+    inlined: false
+    close_mappings:
+      - org:headOf  # org.rdf:353-370 — "Indicates that a person is the leader or formal head of the Organization." Inverse direction: person→org, while this slot is org→person.
+    related_mappings:
+      - schema:employee  # General employment relationship, not specifically about leadership.
+    aliases:
+      - has_or_had_head
+      - is_or_was_headed_by
+      - has_head
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: All heritage custodian types can have organizational heads
+      specificity_score: 0.3
+      specificity_rationale: Universal organizational concept - heads exist across all institution types
+    examples:
+      - value: https://nde.nl/ontology/hc/person/dr-maria-van-der-berg
+        description: Branch director reference
+    comments:
+      - |
+        **W3C ORG Alignment**: `org:headOf` (org.rdf:353-370) links person TO organization
+        (person→org). This slot is the INVERSE: links organization TO person (org→person).
+        Semantically: "This organization has (or had) this person as head."
+      - |
+        **RiC-O Pattern**: Follows `hasOrHad*` temporal naming convention from Records in
+        Contexts Ontology, indicating the relationship may be current or historical.
+      - |
+        **USAGE**: OrganizationBranch: Branch director or manager. Department: Department head.
+        Team: Team lead.
+      - |
+        CREATED: 2026-01-14 from branch_head migration per Rule 53.

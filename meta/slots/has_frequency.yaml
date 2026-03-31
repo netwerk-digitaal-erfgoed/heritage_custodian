@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: has_frequency
+# ==============================================================================
+# To specify the rate at which an event occurs over time.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property                        | File/Line              | Mapping | Notes                                          |
+# |--------------|---------------------------------|------------------------|---------|-------------------------------------------------|
+# | **DCTerms**  | `dcterms:accrualPeriodicity`    | dcterms.rdf:837-858    | close   | Collection accrual frequency (narrower domain). |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_frequency
+name: has_frequency
+title: has_frequency
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_frequency:
+    name: has_frequency
+    title: has_frequency
+    slot_uri: hc:hasFrequency
+    description: >-
+      To specify the rate at which an event, signal, or action occurs or is
+      repeated over a particular period of time.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de frequentie waarmee een gebeurtenis, signaal of
+        actie plaatsvindt of wordt herhaald over een bepaalde tijdsperiode.
+      de: >-
+        Angabe der Rate, mit der ein Ereignis, Signal oder eine Handlung
+        innerhalb eines bestimmten Zeitraums auftritt oder wiederholt wird.
+      fr: >-
+        Spécifier le rythme auquel un événement, un signal ou une action se
+        produit ou est répété sur une période de temps donnée.
+      ar: >-
+        تحديد معدل حدوث أو تكرار حدث أو إشارة أو إجراء خلال فترة زمنية
+        معينة.
+      id: >-
+        Menentukan tingkat di mana suatu peristiwa, sinyal, atau tindakan
+        terjadi atau diulang selama periode waktu tertentu.
+      zh: >-
+        指定事件、信号或操作在特定时间段内发生或重复的频率。
+      es: >-
+        Especificar la tasa a la que un evento, señal o acción ocurre o se
+        repite durante un período de tiempo determinado.
+    structured_aliases:
+      - literal_form: heeft frequentie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Häufigkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une fréquence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له تردد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki frekuensi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有频率
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene frecuencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_frequency
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:accrualPeriodicity  # dcterms.rdf:837-858 — "The frequency with which items are added to a collection." Domain: Collection. Range: Frequency. Narrower: specifically about collection accrual frequency.
+    comments:
+      - |
+        **ONTOLOGY NOTE**: `dcterms:accrualPeriodicity` (dcterms.rdf:837-858) is specifically
+        about the frequency of adding items to a collection (Domain: Collection). This slot
+        covers general frequency of any event, signal, or action. Close but not exact.

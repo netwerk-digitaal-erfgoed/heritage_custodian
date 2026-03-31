@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/ThematicRoute
+name: ThematicRoute
+title: Thematic Route
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_keyword
+- ../slots/related_to
+- ../slots/has_title
+- ../slots/has_score
+classes:
+  ThematicRoute:
+    class_uri: skos:Concept
+    description: >-
+      Priority area, pathway, or cluster within a research funding agenda that structures investment and call design.
+    alt_descriptions:
+      nl: Een thematisch gebied, route of prioriteitscluster binnen een financieringsagenda.
+      de: Ein thematischer Bereich, eine Route oder ein Prioritätscluster innerhalb einer Förderagenda.
+      fr: Un domaine thématique, une route ou un groupe de priorités dans un agenda de financement.
+      es: 'Concepto para: Priority area, pathway, or cluster within a research funding agenda that structures investment and call design.'
+      ar: 'مفهوم لـ: Priority area, pathway, or cluster within a research funding agenda that structures investment and call design.'
+      id: 'Konsep untuk: Priority area, pathway, or cluster within a research funding agenda that structures investment and call design.'
+      zh: 用于以下内容的概念：Priority area, pathway, or cluster within a research funding agenda that structures investment and call design.
+    structured_aliases:
+    - literal_form: thematische route
+      in_language: nl
+    - literal_form: thematische Route
+      in_language: de
+    - literal_form: route thématique
+      in_language: fr
+    - literal_form: thematic route
+      in_language: es
+    - literal_form: thematic route
+      in_language: ar
+    - literal_form: thematic route
+      in_language: id
+    - literal_form: thematic route
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - dcterms:subject
+    slots:
+    - has_description
+    - identified_by
+    - has_keyword
+    - related_to
+    - has_title
+    - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        pattern: ^https://nde\.nl/ontology/hc/route/[a-z0-9-]+/[a-z0-9-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/route/nwa/cultural-identity
+        - value: https://nde.nl/ontology/hc/route/he/cluster-2
+      has_title:
+        required: true
+        examples:
+        - value: Origin and Identity of the Netherlands and Its Inhabitants
+        - value: Culture, Creativity and Inclusive Society
+      has_description:
+      has_keyword:
+        multivalued: true
+        inlined_as_list: false
+      related_to:
+    comments:
+    - ThematicRoute represents a major area of focus that guides research priorities and funding allocation
+    - Routes are typically interdisciplinary and address broad societal challenges
+    - Purpose: Routes structure the agenda into navigable themes that help researchers identify relevant funding opportunities, guide funding organisations in designing calls, enable cross-referencing between agenda priorities and actual calls
+    - Naming conventions vary by agenda: NWA uses "Routes" (25 thematic routes), Horizon Europe uses "Clusters" (6) and "Missions" (5), Creative Europe uses "Strands" (3), National strategies use "Priority areas", "Themes", "Pillars"
+    - SKOS alignment: skos:Concept - Thematic routes are concepts in a scheme, can be organised hierarchically (broader/narrower themes), can be linked across agendas
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    examples:
+    - value:
+        route_id: https://nde.nl/ontology/hc/route/nwa/cultural-identity
+        route_title: Origin and Identity of the Netherlands and Its Inhabitants
+        route_description: 'This route addresses questions about Dutch cultural heritage, national identity, migration history, and cultural diversity. Research explores how the Netherlands developed its unique cultural characteristics and how identity is shaped and reshaped in an increasingly multicultural society.'
+        route_keyword:
+        - cultural heritage
+        - national identity
+        - migration history
+        - cultural diversity
+        - collective memory
+        - museums
+        - archives
+        route_relevance_to_heritage: Directly relevant - this route explicitly addresses cultural heritage institutions, collections, and the role of heritage in identity formation. Museums and archives are key partners in NWA research on this theme.

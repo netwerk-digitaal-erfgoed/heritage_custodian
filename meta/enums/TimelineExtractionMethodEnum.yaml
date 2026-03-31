@@ -1,0 +1,41 @@
+id: https://nde.nl/ontology/hc/enum/TimelineExtractionMethodEnum
+name: timeline_extraction_method_enum
+title: Timeline Extraction Method Enum
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+imports:
+  - linkml:types
+default_prefix: hc
+
+enums:
+  TimelineExtractionMethodEnum:
+    description: |
+      Method used to extract the timeline event.
+      Source-agnostic enum covering various extraction methods.
+    permissible_values:
+      api_response_regex:
+        description: Date extracted via regex patterns from API response text
+        comments:
+          - "Patterns: YYYY-MM-DD, DD-MM-YYYY, 'in YYYY', 'op DD maand YYYY'"
+      api_response_llm:
+        description: Date extracted using LLM analysis of API response
+        comments:
+          - Used for complex temporal expressions
+      web_scrape_xpath:
+        description: Date extracted via XPath from archived HTML
+        comments:
+          - High confidence - verifiable against archived HTML
+      wikidata_sparql:
+        description: Date extracted from Wikidata SPARQL query
+        comments:
+          - Uses inception date (P571) or other temporal properties
+      manual_research:
+        description: Event discovered through manual research
+        comments:
+          - Human-verified from institutional sources
+      manual_verification:
+        description: Event manually verified and corrected
+        comments:
+          - Promoted from TIER_4 to higher tier after verification

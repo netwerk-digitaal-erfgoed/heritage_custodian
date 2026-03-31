@@ -1,0 +1,80 @@
+# ==============================================================================
+# LinkML Slot Definition: instance_of
+# ==============================================================================
+# Concrete realization or individual member of a general class or type.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property   | File/Line        | Mapping | Notes                                           |
+# |----------|------------|------------------|---------|-------------------------------------------------|
+# | **RDF**  | `rdf:type` | (RDF core vocab) | exact   | Fundamental RDF typing property; infrastructure  |
+# |          |            |                  |         | property — not suitable as slot_uri.             |
+#
+# rdf:type is the fundamental RDF typing mechanism. Semantically equivalent to
+# "is a concrete realization or individual member of a general class." Kept as
+# exact_mapping but not as slot_uri because it is an RDF infrastructure property.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/instance_of
+name: instance_of
+title: Instance Of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  instance_of:
+    name: instance_of
+    title: Instance Of
+    slot_uri: hc:instanceOf
+    description: >-
+      Indicates that a specific entity is a concrete realization or individual member of a general class, type, or category.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een specifieke entiteit een concrete realisatie of individueel lid is van een algemene klasse, type of categorie.
+      de: >-
+        Gibt an, dass eine bestimmte Entität eine konkrete Realisierung oder ein einzelnes Mitglied einer allgemeinen Klasse, eines Typs oder einer Kategorie ist.
+      fr: >-
+        Indique qu'une entité spécifique est une réalisation concrète ou un membre individuel d'une classe, d'un type ou d'une catégorie générale.
+      ar: >-
+        يشير إلى أن كياناً محدداً هو تجسيد ملموس أو عضو فردي في فئة أو نوع أو تصنيف عام.
+      id: >-
+        Menunjukkan bahwa entitas tertentu adalah realisasi konkret atau anggota individual dari kelas, jenis, atau kategori umum.
+      zh: >-
+        表示特定实体是某一一般类别、类型或范畴的具体实现或个体成员。
+      es: >-
+        Indica que una entidad específica es una realización concreta o un miembro individual de una clase, tipo o categoría general.
+    structured_aliases:
+      - literal_form: Instantie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Instanz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Instance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نسخة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Instansi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 实例
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Instancia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - is_or_was_instance_of
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+      - rdf:type  # RDF core — fundamental typing property

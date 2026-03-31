@@ -1,0 +1,129 @@
+# ==============================================================================
+# LinkML Slot Definition: has_silence
+# ==============================================================================
+# Total duration of silence (in seconds) detected within a media file.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                    | File/Line                        | Mapping | Notes                                                              |
+# |-------------|-----------------------------|----------------------------------|---------|--------------------------------------------------------------------|
+# | **HC**      | `hc:hasSilence`             | —                                | slot_uri| Custom property for silence measurement in audiovisual media.      |
+# | **CIDOC**   | `crm:P43_has_dimension`     | CIDOC_CRM_v7.1.3.rdf:2242-2257  | broad   | "has dimension" — records any E54 Dimension of an E70 Thing.       |
+# |             |                             |                                  |         | Silence duration is one specific type of quantifiable dimension.   |
+# | **Schema**  | `schema:duration`           | schemaorg.owl:15892-15923        | related | "The duration of the item (movie, audio recording, event, etc.)."  |
+# |             |                             |                                  |         | Measures total media duration, not silence within it.              |
+# | **DQV**     | `dqv:hasQualityMeasurement` | dqv.ttl:157-161                  | related | "Refers to the performed quality measurements." Silence can be     |
+# |             |                             |                                  |         | framed as an audio quality metric, but DQV is a generic framework. |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_silence
+name: has_silence
+title: Has Silence
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  dqv: http://www.w3.org/ns/dqv#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_silence:
+    slot_uri: hc:hasSilence
+    description: >-
+      The total duration of silence, in seconds, detected within a media
+      file. Silence is defined as intervals where there is no audio signal,
+      a muted signal, or a pause in dialogue. In heritage custodian
+      contexts this is a technical metadata property used to assess the
+      quality and completeness of audiovisual collection items such as
+      oral history recordings, broadcast archives, and digitised sound
+      carriers. A high silence value relative to total duration may
+      indicate extended pauses, silent B-roll segments, audio dropout,
+      or recording issues requiring conservation attention.
+    alt_descriptions:
+      nl: >-
+        De totale duur van stilte, in seconden, gedetecteerd binnen een
+        mediabestand. Stilte wordt gedefinieerd als intervallen zonder
+        audiosignaal, een gedempt signaal of een pauze in dialoog.
+      de: >-
+        Die Gesamtdauer der Stille in Sekunden, die in einer Mediendatei
+        erkannt wurde. Stille ist definiert als Intervalle ohne Audiosignal,
+        ein stummgeschaltetes Signal oder eine Pause im Dialog.
+      fr: >-
+        La durée totale de silence, en secondes, détectée dans un fichier
+        média. Le silence est défini comme des intervalles sans signal
+        audio, un signal coupé ou une pause dans le dialogue.
+      ar: >-
+        المدة الإجمالية للصمت بالثواني المكتشفة داخل ملف وسائط. يُعرَّف
+        الصمت بأنه فترات لا يوجد فيها إشارة صوتية أو إشارة مكتومة أو
+        توقف في الحوار.
+      id: >-
+        Total durasi keheningan, dalam detik, yang terdeteksi dalam file
+        media. Keheningan didefinisikan sebagai interval tanpa sinyal audio,
+        sinyal yang dibisukan, atau jeda dalam dialog.
+      zh: >-
+        在媒体文件中检测到的静音总时长（以秒为单位）。静音定义为没有音频
+        信号、信号静音或对话暂停的时间间隔。
+      es: >-
+        La duración total de silencio, en segundos, detectada en un archivo
+        multimedia. El silencio se define como intervalos sin señal de
+        audio, una señal silenciada o una pausa en el diálogo.
+    structured_aliases:
+      - literal_form: heeft stilte
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Stille
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a du silence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يحتوي على صمت
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki keheningan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 含有静音
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene silencio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    broad_mappings:
+      - crm:P43_has_dimension  # CIDOC_CRM_v7.1.3.rdf:2242-2257 - "has dimension" records any E54 Dimension of an E70 Thing. Silence duration is one specific type of quantifiable dimension.
+    related_mappings:
+      - schema:duration  # schemaorg.owl:15892-15923 - "The duration of the item (movie, audio recording, event, etc.)." Total media duration, not silence within it. Both measure time but of different aspects.
+      - dqv:hasQualityMeasurement  # dqv.ttl:157-161 - "Refers to the performed quality measurements." Silence can be framed as an audio quality metric, but DQV is a generic measurement framework.
+    aliases:
+      - silence_total_seconds
+    examples:
+      - value: "42.5"
+        description: "42.5 seconds of silence detected in an oral history recording."
+      - value: "0.0"
+        description: "No silence detected in a continuously narrated audio guide."
+      - value: "312.8"
+        description: "Over five minutes of silence in a digitised reel-to-reel tape, possibly indicating audio dropout."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        A high silence percentage relative to total duration may indicate
+        extended pauses between interview questions, silent B-roll segments
+        without audio, audio dropout from degraded source material, or
+        recording equipment issues.
+      - >-
+        In CIDOC-CRM, this measurement would be modelled as an E54 Dimension
+        instance (typed as 'silence duration') attached via P43 has dimension
+        to the media object, with P90 has value for the numeric value and
+        P91 has unit for the unit (seconds). Our slot flattens this into
+        a direct float property for practical use.
+      - >-
+        Silence detection thresholds and algorithms vary. The value recorded
+        here depends on the analysis tool and its configuration (e.g.
+        amplitude threshold, minimum silence duration). Consider documenting
+        the detection method in accompanying provenance metadata.

@@ -1,0 +1,152 @@
+# ==============================================================================
+# LinkML Slot Definition: has_email_address
+# ==============================================================================
+# Electronic identifier for digital message transmission and receipt.
+# Used for contact information of heritage institutions and personnel.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line              | Mapping | Notes                                           |
+# |--------------|------------------------|------------------------|---------|------------------------------------------------|
+# | **Schema.org**| `schema:email`        | schemaorg.owl:16432-16444| exact  | "Email address." Domain: Person, ContactPoint, Organization |
+# | **FOAF**     | `foaf:mbox`            | foaf.ttl:392-400       | exact   | "Personal mailbox" - InverseFunctionalProperty  |
+# | **Schema.org**| `schema:contactPoint` | schemaorg.owl:12577-12590| broad  | "Contact point for person/org" - includes email |
+# | **FOAF**     | `foaf:mbox_sha1sum`    | foaf.ttl:401-409       | related | SHA1 hash of mailbox URI (privacy)              |
+#
+# NOTE: schema:email is preferred as it accepts string literals directly.
+# foaf:mbox expects a mailto: URI (e.g., mailto:info@museum.nl).
+#
+# CREATED: 2026-01-26 - Migrated from contact_email, admin_email, email_address
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_email_address
+name: has_email_address
+title: has email address
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+description: |
+  To possess a unique, standardized electronic identifier designated for the transmission and receipt of digital messages.
+
+imports:
+  - linkml:types
+
+slots:
+  has_email_address:
+    slot_uri: schema:email
+    description: |
+      To possess a unique, standardized electronic identifier designated for the transmission and receipt of digital messages.
+    alt_descriptions:
+      nl: >-
+        Het bezitten van een unieke, gestandaardiseerde elektronische identificatie bestemd voor het verzenden en ontvangen van digitale berichten.
+      de: >-
+        Eine einzigartige, standardisierte elektronische Kennung besitzen, die für die Übertragung und den Empfang digitaler Nachrichten bestimmt ist.
+      fr: >-
+        Posséder un identifiant électronique unique et standardisé destiné à la transmission et à la réception de messages numériques.
+      ar: >-
+        امتلاك معرّف إلكتروني فريد وموحد مخصص لإرسال واستقبال الرسائل الرقمية.
+      id: >-
+        Memiliki pengenal elektronik unik dan terstandarisasi yang ditujukan untuk transmisi dan penerimaan pesan digital.
+      zh: >-
+        拥有用于发送和接收数字消息的唯一标准化电子标识符。
+      es: >-
+        Poseer un identificador electrónico único y estandarizado designado para la transmisión y recepción de mensajes digitales.
+    structured_aliases:
+      - literal_form: heeft e-mailadres
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat E-Mail-Adresse
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une adresse e-mail
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له عنوان بريد إلكتروني
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki alamat email
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有电子邮件地址
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene dirección de correo electrónico
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined: false
+    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.20
+      replaces_slots: contact_email, admin_email, email_address
+      migration_date: '2026-01-26'
+    exact_mappings:
+      # Schema.org email - "Email address."
+      # Domain: Person, ContactPoint, Organization
+      # Lines 16432-16444 in schemaorg.owl
+      # InverseFunctionalProperty - expects mailto: URI
+      # Lines 392-400 in foaf.ttl
+      - foaf:mbox
+    broad_mappings:
+      # Schema.org contactPoint - "A contact point for a person or organization"
+      # Broader concept that includes email, phone, fax, address, etc.
+      # Lines 12577-12590 in schemaorg.owl
+      - schema:contactPoint
+    related_mappings:
+      # FOAF mbox_sha1sum - SHA1 hash of mailbox URI for privacy
+      # Lines 401-409 in foaf.ttl
+      - foaf:mbox_sha1sum
+    aliases:
+      - has_or_had_email
+      - has_or_had_email_address
+    examples:
+      - value: "info@rijksmuseum.nl"
+        description: General information email for Rijksmuseum
+      - value: "collections@nationaalarchief.nl"
+        description: Collections department email for National Archives
+      - value: "library@kb.nl"
+        description: Library contact email for Koninklijke Bibliotheek
+    comments:
+      - Updated 2026-02-03 with verified ontology mappings and translations
+      - |
+        **PURPOSE**: Stores email addresses for heritage institutions, departments,
+        or personnel. Used for contact information in institution profiles.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | Schema.org | schema:email | 16432 | exact | Email address string |
+        | FOAF | foaf:mbox | 392 | exact | Expects mailto: URI |
+        | Schema.org | schema:contactPoint | 12577 | broad | Includes email, phone, etc. |
+        | FOAF | foaf:mbox_sha1sum | 401 | related | Privacy hash |
+      - |
+        **MIGRATION NOTES**:
+        Consolidated from multiple legacy slots (2026-01-26):
+        - `contact_email` → has_email_address
+        - `admin_email` → has_email_address
+        - `email_address` → has_email_address
+      - |
+        **FORMAT NOTES**:
+        - Uses string range with email pattern validation
+        - schema:email preferred over foaf:mbox as it accepts plain strings
+        - foaf:mbox expects mailto: URI format (e.g., mailto:info@museum.nl)
+      - |
+        **TEMPORAL SEMANTICS** (RiC-O Pattern):
+        "has_or_had_email" indicates email addresses may change over time.
+        Historical email addresses can be preserved with temporal qualifiers.

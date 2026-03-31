@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: annex_of
+# ==============================================================================
+# Designates a subsidiary building or extension attached to a larger primary entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                    | Mapping | Notes                                                |
+# |---------------|---------------------------|------------------------------|---------|------------------------------------------------------|
+# | **DCTerms**   | `dcterms:isPartOf`        | dcterms.rdf:1464-1482        | broad   | "Resource physically or logically included."         |
+# | **Schema**    | `schema:isPartOf`         | schemaorg.owl:22926-22950    | broad   | "Item or CreativeWork that is part of." Generic.     |
+# | **CIDOC-CRM** | `crm:P46i_forms_part_of`  | CIDOC:2341-2352              | related | Physical Thing part-of; composition, not annex.      |
+# | **Schema**    | `schema:containedInPlace` | schemaorg.owl:12688-12714    | related | Place containment, not architectural subsidiary.     |
+#
+# No standard ontology defines an exact "annex of" property.
+# Retains hc:annexOf.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/annex_of
+name: annex_of
+title: Annex Of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  annex_of:
+    slot_uri: hc:annexOf
+    description: >-
+      Designates a subsidiary building, extension, or document that is attached to,
+      dependent upon, or serves as an addition to a larger primary entity.
+    alt_descriptions:
+      nl: >-
+        Duidt een bijgebouw, uitbreiding of document aan dat verbonden is met, afhankelijk
+        is van, of dient als aanvulling op een grotere primaire entiteit.
+      de: >-
+        Bezeichnet ein Nebengebäude, eine Erweiterung oder ein Dokument, das an eine größere
+        primäre Entität angeschlossen ist, von ihr abhängt oder als Ergänzung dazu dient.
+      fr: >-
+        Désigne un bâtiment annexe, une extension ou un document rattaché à une entité
+        principale plus grande, dépendant d'elle ou servant de complément à celle-ci.
+      ar: >-
+        يحدد مبنى فرعياً أو امتداداً أو وثيقة مرفقة بكيان رئيسي أكبر أو تابعة له أو
+        تعمل كإضافة إليه.
+      id: >-
+        Menunjukkan bangunan tambahan, ekstensi, atau dokumen yang melekat pada, bergantung
+        pada, atau berfungsi sebagai tambahan dari entitas utama yang lebih besar.
+      zh: >-
+        指定附属于较大主要实体、依赖于该实体或作为其补充的附属建筑、扩展部分或文件。
+      es: >-
+        Designa un edificio subsidiario, extensión o documento adjunto a una entidad
+        principal más grande, dependiente de ella o que sirve como adición a la misma.
+    structured_aliases:
+      - literal_form: Bijgebouw
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Anbau
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Annexe
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملحق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Aneks
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 附属建筑
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Anexo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Schema.org: isPartOf for part-whole relationship.
+      - >-
+        Links annex to primary reading room.
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_annex_of_reading_room
+    broad_mappings:
+      - dcterms:isPartOf  # dcterms.rdf:1464-1482 - "resource physically or logically included"
+      - schema:isPartOf  # schemaorg.owl:22926-22950 - "item that is part of" generic part-whole
+    related_mappings:
+      - crm:P46i_forms_part_of  # CIDOC:2341-2352 - Physical Thing forms part of Physical Thing
+      - schema:containedInPlace  # schemaorg.owl:12688-12714 - Place→Place spatial containment

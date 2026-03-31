@@ -1,0 +1,81 @@
+# ==============================================================================
+# LinkML Slot Definition: has_operational_archive
+# ==============================================================================
+# Records maintained for current administrative, legal, or operational purposes.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property            | File/Line              | Mapping | Notes                                                   |
+# |----------|---------------------|------------------------|---------|---------------------------------------------------------|
+# | RiC-O    | `rico:hasOrHadPart` | RiC-O_1-1.rdf:7272-88 | broad   | "Connects a Thing to a constitutive or component part   |
+# |          |                     |                        |         | of that Thing." Generic Thing→Thing parthood.           |
+#
+# rico:hasOrHadPart is broader: any Thing→Thing parthood relationship.
+# This slot is narrower: specifically operational archives (NOT yet formal
+# heritage collection) owned by a custodian.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_operational_archive
+name: has_operational_archive_slot
+title: Has Operational Archive Slot
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_operational_archive:
+    slot_uri: hc:hasOperationalArchive
+    description: >-
+      To specify the collection of records, documents, or data that an organization maintains for current administrative, legal, or operational purposes, distinct from purely historical preservation.
+    alt_descriptions:
+      nl: >-
+        Om de verzameling documenten, dossiers of gegevens te specificeren die een organisatie bijhoudt voor actuele administratieve, juridische of operationele doeleinden, onderscheiden van puur historische bewaring.
+      de: >-
+        Um die Sammlung von Aufzeichnungen, Dokumenten oder Daten anzugeben, die eine Organisation für aktuelle administrative, rechtliche oder betriebliche Zwecke führt, im Unterschied zur rein historischen Bewahrung.
+      fr: >-
+        Pour spécifier la collection de documents, dossiers ou données qu'une organisation maintient à des fins administratives, juridiques ou opérationnelles courantes, distincte de la conservation purement historique.
+      ar: >-
+        لتحديد مجموعة السجلات أو المستندات أو البيانات التي تحتفظ بها منظمة لأغراض إدارية أو قانونية أو تشغيلية حالية، بشكل مميز عن الحفظ التاريخي البحت.
+      id: >-
+        Untuk menentukan koleksi catatan, dokumen, atau data yang dikelola organisasi untuk tujuan administratif, hukum, atau operasional saat ini, yang berbeda dari pelestarian historis murni.
+      zh: >-
+        用于指定组织为当前行政、法律或运营目的而维护的记录、文件或数据集合，有别于纯粹的历史保存。
+      es: >-
+        Para especificar la colección de registros, documentos o datos que una organización mantiene para fines administrativos, legales u operativos actuales, distinta de la preservación puramente histórica.
+    structured_aliases:
+      - literal_form: Operationeel archief
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Betriebsarchiv
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Archive opérationnel
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أرشيف تشغيلي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Arsip operasional
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 运营档案
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Archivo operacional
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - has_or_had_operational_archive
+    # range: CustodianArchive
+    multivalued: true
+    inlined_as_list: false  # Fixed invalid inline for primitive type
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - rico:hasOrHadPart  # RiC-O_1-1.rdf:7272-7288 - Generic Thing→Thing parthood

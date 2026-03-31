@@ -1,0 +1,65 @@
+id: https://nde.nl/ontology/hc/class/Classroom
+name: Classroom
+title: Classroom Facility
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rec: https://w3id.org/rec#
+  qudt: http://qudt.org/schema/qudt/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_quantity
+- ../slots/has_measurement_unit
+- ../slots/has_capacity
+classes:
+  Classroom:
+    is_a: Facility
+    class_uri: rec:Classroom
+    description: >-
+      Instructional room entity for teaching, workshops, and guided learning sessions within institutional premises.
+    alt_descriptions:
+      nl: Lokaalentiteit voor onderwijs, workshops en begeleide leersessies binnen institutionele ruimtes.
+      de: Raum-Entität für Unterricht, Workshops und angeleitete Lernformate innerhalb institutioneller Standorte.
+      fr: Entité de salle d'enseignement pour cours, ateliers et sessions d'apprentissage guidées dans les locaux institutionnels.
+      es: Entidad de sala docente para clases, talleres y sesiones de aprendizaje guiado en instalaciones institucionales.
+      ar: كيان غرفة تعليمية للدروس وورش العمل وجلسات التعلم الموجّه داخل مرافق المؤسسة.
+      id: Entitas ruang instruksional untuk pembelajaran, lokakarya, dan sesi belajar terpandu di fasilitas institusi.
+      zh: 用于机构场所内授课、工作坊与引导式学习活动的教学空间实体。
+    slots:
+    - has_quantity
+    - has_measurement_unit
+    - has_capacity
+    slot_usage:
+      has_quantity:
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value: 'numeric_value: 4 '
+      has_measurement_unit:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value: 'unit_type: CLASSROOM '
+    exact_mappings:
+    - rec:Classroom
+    close_mappings:
+    - schema:Room
+    - schema:Place
+    annotations:
+      specificity_score: '0.55'
+      specificity_rationale: Moderately specific - classrooms common in education centers.
+      template_specificity: '{"archive_search": 0.30, "museum_search": 0.50, "library_search": 0.45, "collection_discovery": 0.20, "person_research": 0.15, "location_browse": 0.60, "identifier_lookup": 0.10, "organizational_change": 0.25, "digital_platform": 0.15, "general_heritage": 0.55}'
+      custodian_types: '[''*'']'
+    examples:
+    - value:
+        has_quantity:
+          numeric_value: 4
+        has_unit:
+        seating_capacity: 120
+    - value:
+        has_quantity:
+          numeric_value: 2
+        has_unit:
+        seating_capacity: 40

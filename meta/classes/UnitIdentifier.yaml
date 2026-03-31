@@ -1,0 +1,64 @@
+id: https://nde.nl/ontology/hc/class/UnitIdentifier
+name: UnitIdentifier
+title: Storage Unit Identifier
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+classes:
+  UnitIdentifier:
+    class_uri: hc:UnitIdentifier
+    description: >-
+      Code assigned to a discrete storage location such as a box, shelf,
+      cabinet, rack, or drawer.
+    alt_descriptions:
+      nl: Identificatiecode voor een afgebakende opslaglocatie zoals doos, plank, kast, rek of lade.
+      de: Kennung fuer einen abgegrenzten Lagerort wie Box, Regal, Schrank, Gestell oder Schublade.
+      fr: Identifiant attribue a un emplacement de stockage distinct tel qu une boite, etagere, armoire, rack ou tiroir.
+      es: Identificador asignado a una ubicacion de almacenamiento discreta como caja, estante, armario, rack o cajon.
+      ar: معرّف مخصص لموضع تخزين منفصل مثل صندوق أو رف أو خزانة أو هيكل أو درج.
+      id: Pengenal untuk lokasi penyimpanan terpisah seperti kotak, rak, lemari, rangka, atau laci.
+      zh: 分配给箱、架、柜、货架或抽屉等独立存储位置的标识符。
+    structured_aliases:
+    - literal_form: opslageenheidcode
+      in_language: nl
+    - literal_form: Lagereinheitenkennung
+      in_language: de
+    - literal_form: identifiant d unite de stockage
+      in_language: fr
+    - literal_form: identificador de unidad de almacenamiento
+      in_language: es
+    - literal_form: معرّف وحدة التخزين
+      in_language: ar
+    - literal_form: pengenal unit simpan
+      in_language: id
+    - literal_form: 存储单元标识符
+      in_language: zh
+    keywords:
+    - barcode
+    - shelf label
+    - rack code
+    slots:
+    - has_code
+    slot_usage:
+      has_code:
+#         range: string
+        required: true
+        examples:
+        - value: BOX-2024-00145
+        - value: FF-MAPS-042
+        - value: barcode
+        - value: label
+        - value: uri
+    annotations:
+      migration_date: '2026-01-14'
+      replaces_slots: unit_id, unit_identifier
+      rule_compliance: 53 (full slot migration)
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

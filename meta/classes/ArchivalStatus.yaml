@@ -1,0 +1,108 @@
+id: https://nde.nl/ontology/hc/class/ArchivalStatus
+name: ArchivalStatus
+title: Archival Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_label
+classes:
+  ArchivalStatus:
+    class_uri: skos:Concept
+    description: >-
+      Processing status indicator for archival record sets, documenting
+      the degree of arrangement, description, and accessibility of
+      collections within a repository.
+    alt_descriptions:
+      nl: >-
+        Verwerkingsstatusindicator voor archiefbestanden, die de mate van
+        ordening, beschrijving en toegankelijkheid van collecties binnen
+        een bewaarplaats documenteert.
+      de: >-
+        Bearbeitungsstatusindikator fur Archivbestande, der den Grad der
+        Ordnung, Verzeichnung und Zugänglichkeit von Sammlungen in einem
+        Depot dokumentiert.
+      fr: >-
+        Indicateur d'etat de traitement pour les ensembles d'archives,
+        documentant le degre de classement, de description et d'accessibilite
+        des collections dans un depot.
+      es: >-
+        Indicador de estado de procesamiento para conjuntos de registros
+        archivisticos, documentando el grado de organizacion, descripcion
+        y accesibilidad de las colecciones en un repositorio.
+      ar: >-
+        مؤشر حالة المعالجة لمجموعات السجلات الأرشيفية، يوثق درجة الترتيب
+        والوصف وإمكانية الوصول إلى المجموعات داخل المستودع.
+      id: >-
+        Indikator status pemrosesan untuk kumpulan rekaman arsip, mendokumentasikan
+        tingkat pengaturan, deskripsi, dan aksesibilitas koleksi dalam repositori.
+      zh: >-
+        档案记录集的加工状态指标，记录存储库中藏品的整理、描述和可访问性程度。
+    structured_aliases:
+    - literal_form: archiefstatus
+      in_language: nl
+    - literal_form: Archivstatus
+      in_language: de
+    - literal_form: statut d'archives
+      in_language: fr
+    - literal_form: estado archivistico
+      in_language: es
+    - literal_form: حالة الأرشيف
+      in_language: ar
+    - literal_form: status arsip
+      in_language: id
+    - literal_form: 档案状态
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - rico:Rule
+    slots:
+    - has_label
+    - has_code
+    - has_description
+    slot_usage:
+      has_code:
+        required: true
+        equals_string_in:
+        - "UNPROCESSED"
+        - "IN_ARRANGEMENT"
+        - "DESCRIBED"
+        - "AVAILABLE"
+        - "RESTRICTED"
+        - "CLOSED"
+    comments:
+    - Indicates processing stage of archival collections
+    - Values: Unprocessed, In Arrangement, Described, Available, Restricted, Closed
+    - Used for collection management and access planning
+    see_also:
+    - AccessLevel
+    examples:
+    - value:
+        has_code: "DESCRIBED"
+        has_label: "Fully Described"
+        has_description: "Collection has been arranged and finding aid available"
+      description: Fully processed and described collection
+    - value:
+        has_code: "UNPROCESSED"
+        has_label: "Unprocessed"
+        has_description: "Collection not yet arranged or described"
+      description: Unprocessed collection awaiting arrangement
+    keywords:
+    - archival status
+    - processing status
+    - arrangement
+    - description
+    - accessibility
+    - collection management
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Status classification for archival processing
+      custodian_types: "['*']"

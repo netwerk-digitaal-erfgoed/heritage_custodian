@@ -1,0 +1,85 @@
+id: https://nde.nl/ontology/hc/class/TextDirection
+name: TextDirection
+title: Text Direction
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_code
+- ../slots/has_label
+classes:
+  TextDirection:
+    class_uri: hc:TextDirection
+    description: >-
+      Orientation of written content flow on a manuscript, inscription, or other information carrier (e.g., left-to-right, right-to-left, top-to-bottom, boustrophedon).
+    alt_descriptions:
+      nl: De richtingsoriëntatie van tekststroom op een informatiedrager.
+      de: Die Ausrichtung des Textflusses auf einem Informationsträger.
+      fr: L'orientation directionnelle du flux de texte sur un support d'information.
+      es: 'Concepto para: Orientation of written content flow on a manuscript, inscription, or other information carrier (e.g., left-to-right, right-to-left, top-to-bottom, boustrophedon).'
+      ar: 'مفهوم لـ: Orientation of written content flow on a manuscript, inscription, or other information carrier (e.g., left-to-right, right-to-left, top-to-bottom, boustrophedon).'
+      id: 'Konsep untuk: Orientation of written content flow on a manuscript, inscription, or other information carrier (e.g., left-to-right, right-to-left, top-to-bottom, boustrophedon).'
+      zh: 用于以下内容的概念：Orientation of written content flow on a manuscript, inscription, or other information carrier (e.g., left-to-right, right-to-left, top-to-bottom, boustrophedon).
+    structured_aliases:
+    - literal_form: tekstrichting
+      in_language: nl
+    - literal_form: Textrichtung
+      in_language: de
+    - literal_form: direction du texte
+      in_language: fr
+    - literal_form: text direction
+      in_language: es
+    - literal_form: text direction
+      in_language: ar
+    - literal_form: text direction
+      in_language: id
+    - literal_form: text direction
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_label
+    - has_code
+    slot_usage:
+      has_label:
+        examples:
+        - value: "Left to Right"
+        - value: "Right to Left"
+        - value: "Top to Bottom"
+      has_code:
+        examples:
+        - value: "LTR"
+        - value: "RTL"
+        - value: "TTB"
+        - value: "BOUSTROPHEDON"
+    comments:
+    - Captures how text is read/written on manuscripts, inscriptions, and other information carriers
+    - Essential for proper display and understanding of historical documents from different writing traditions
+    - Common directions: LEFT_TO_RIGHT (Latin, Cyrillic, Greek), RIGHT_TO_LEFT (Arabic, Hebrew, Syriac), TOP_TO_BOTTOM (Traditional CJK), BOUSTROPHEDON (Ancient Greek, Etruscan)
+    - TextDirection is distinct from WritingSystem (ISO 15924 script codes)
+    - Used with has_direction slot in InformationCarrier and similar classes
+    - Migrated From: text_direction string slot (2026-01-16) per Rule 53/56
+    annotations:
+      custodian_types: '["L", "A", "M", "R", "H"]'
+      custodian_types_rationale: Relevant to libraries, archives, museums, research centers, and holy sites holding manuscripts
+      specificity_score: 0.45
+      specificity_rationale: Moderately specific class for manuscript/document analysis
+    examples:
+    - value:
+        has_code: "LTR"
+        has_label: "Left to Right"
+    - value:
+        has_code: "RTL"
+        has_label: "Right to Left"
+    - value:
+        has_code: "TTB"
+        has_label: "Top to Bottom"
+    - value:
+        has_code: "BOUSTROPHEDON"
+        has_label: "Boustrophedon"

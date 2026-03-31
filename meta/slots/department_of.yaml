@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: department_of
+# ==============================================================================
+# Specialized functional unit or division within a larger organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                           |
+# |---------------|-----------------------|----------------------|---------|-------------------------------------------------|
+# | **W3C Org**   | `org:unitOf`          | org.rdf:406-426      | exact   | "Organization of which this Unit is a part."    |
+#
+# NOTE: org:unitOf (line 406-426) states: "Indicates an Organization of which 
+# this Unit is a part, e.g. a Department within a larger FormalOrganization."
+# This is semantically EXACT match for department_of.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, added org:unitOf exact mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/department_of
+name: department_of
+title: Department Of
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  department_of:
+    slot_uri: org:unitOf
+    description: >-
+      To be a specialized functional unit, branch, or administrative division 
+      contained within a larger organization, government, or institution.
+    alt_descriptions:
+      nl: >-
+        Een gespecialiseerde functionele eenheid, afdeling of administratieve 
+        divisie zijn die deel uitmaakt van een grotere organisatie, overheid of instelling.
+      de: >-
+        Eine spezialisierte funktionale Einheit, Abteilung oder administrative 
+        Division innerhalb einer größeren Organisation, Regierung oder Institution sein.
+      fr: >-
+        Être une unité fonctionnelle spécialisée, une branche ou une division 
+        administrative au sein d'une organisation, d'un gouvernement ou d'une 
+        institution plus grande.
+      ar: >-
+        أن تكون وحدة وظيفية متخصصة أو فرع أو قسم إداري ضمن منظمة 
+        أو حكومة أو مؤسسة أكبر.
+      id: >-
+        Menjadi unit fungsional khusus, cabang, atau divisi administratif 
+        yang terdapat dalam organisasi, pemerintah, atau institusi yang lebih besar.
+      zh: >-
+        作为较大组织、政府或机构内的专业职能单位、分支或行政部门。
+      es: >-
+        Ser una unidad funcional especializada, rama o división administrativa 
+        contenida dentro de una organización, gobierno o institución más grande.
+    structured_aliases:
+      - literal_form: afdeling van
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Abteilung von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: département de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قسم من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: departemen dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 部门属于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: departamento de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - is_or_was_archive_department_of
+      - archive_department_of
+    exact_mappings:
+    comments:
+      - |
+        **USAGE**: Use to indicate that an archive, library, or museum department 
+        is a specialized unit within a larger parent organization.
+      - |
+        **SEMANTICS**: This is the inverse of org:hasUnit. The subject is the 
+        department/unit, and the object is the parent organization.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Organization/RijksmuseumAmsterdam"
+        description: "A department that is part of the Rijksmuseum Amsterdam"
+      - value: "https://nde.nl/ontology/hc/Organization/NationaalArchief"
+        description: "A specialized archive unit within the National Archives"

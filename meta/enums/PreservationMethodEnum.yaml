@@ -1,0 +1,366 @@
+# PreservationMethodEnum - Biological specimen preservation methods
+#
+# Enumeration of preservation techniques used for biological specimens.
+#
+# Aligned with:
+# - Darwin Core (TDWG) preparations terminology
+# - GBIF occurrence data vocabulary
+# - Natural History Collections standards
+# - AAT (Getty Art & Architecture Thesaurus) preservation terms
+#
+# Created: January 2026
+
+id: https://nde.nl/ontology/hc/enum/PreservationMethodEnum
+name: PreservationMethodEnum
+title: Preservation Method Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  aat: http://vocab.getty.edu/aat/
+  dwc: http://rs.tdwg.org/dwc/terms/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  PreservationMethodEnum:
+    description: |
+      Preservation methods used for biological specimens in natural history
+      collections.
+      
+      **Categories**:
+      
+      1. **Dry Preservation**: Taxidermy, dried specimens, pinned insects
+      2. **Wet Preservation**: Fluid-preserved specimens (ethanol, formalin)
+      3. **Frozen/Cryogenic**: Ultra-cold storage for DNA/tissue
+      4. **Other Methods**: Casts, fossils, living collections
+      
+      **Darwin Core Alignment**:
+      
+      Maps to dwc:preparations - "A list of preparations and preservation
+      methods for a specimen."
+      
+      **Example Usage**:
+      
+      ```
+      Taxidermy mount: TAXIDERMY_MOUNT
+      Herbarium sheet: DRIED_PRESSED
+      Alcohol jar specimen: FLUID_ETHANOL
+      DNA sample: FROZEN_TISSUE
+      ```
+    
+    permissible_values:
+      # Dry Preservation Methods
+      TAXIDERMY_MOUNT:
+        description: |
+          Mounted specimen prepared by taxidermy for display.
+          Includes study skins and trophy mounts.
+          
+          **Typical Use**: Mammals, birds for museum display
+        meaning: aat:300053046  # taxidermy
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "vertebrates"
+      
+      TAXIDERMY_STUDY_SKIN:
+        description: |
+          Flat study skin prepared for scientific research.
+          Not posed; optimized for measurement and examination.
+          
+          **Typical Use**: Bird and mammal study collections
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "vertebrates"
+      
+      DRIED_WHOLE:
+        description: |
+          Whole organism dried without pressing or mounting.
+          
+          **Typical Use**: Fish, reptiles, small mammals
+        annotations:
+          category: "dry_preservation"
+      
+      DRIED_PRESSED:
+        description: |
+          Pressed and dried flat specimen, typically mounted on paper.
+          Standard method for herbarium specimens.
+          
+          **Typical Use**: Plants, algae, some fungi
+        meaning: aat:300053045  # pressing (preservation process)
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "plants, algae"
+      
+      PINNED:
+        description: |
+          Specimen mounted on entomological pin through thorax.
+          Standard method for insect collections.
+          
+          **Typical Use**: Insects, arachnids
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "insects, arachnids"
+      
+      CARD_MOUNTED:
+        description: |
+          Small specimen glued to card point on pin.
+          Used for very small insects that cannot be directly pinned.
+          
+          **Typical Use**: Micro-moths, small beetles, mites
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "microinsects"
+      
+      SLIDE_MOUNTED:
+        description: |
+          Microscope slide preparation with coverslip.
+          Permanent mount in mounting medium (Canada balsam, synthetic).
+          
+          **Typical Use**: Microscopic organisms, tissue sections
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "microscopic specimens"
+      
+      SKELETON:
+        description: |
+          Cleaned and prepared skeletal material.
+          May be articulated or disarticulated.
+          
+          **Typical Use**: Vertebrate osteological collections
+        meaning: aat:300191801  # skeletons (animal components)
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "vertebrates"
+      
+      SKULL_ONLY:
+        description: |
+          Cleaned skull, often with mandible.
+          Primary osteological specimen for mammals.
+          
+          **Typical Use**: Mammal comparative collections
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "vertebrates"
+      
+      SHELL:
+        description: |
+          Dried shell specimen (mollusk, brachiopod, etc.).
+          May include soft tissue remnants.
+          
+          **Typical Use**: Malacological collections
+        annotations:
+          category: "dry_preservation"
+          specimen_types: "mollusks"
+      
+      FREEZE_DRIED:
+        description: |
+          Lyophilized (freeze-dried) specimen.
+          Preserves shape while removing moisture.
+          
+          **Typical Use**: Delicate flowers, fungi, some animals
+        meaning: aat:300053042  # freeze-drying
+        annotations:
+          category: "dry_preservation"
+      
+      # Wet Preservation Methods
+      FLUID_ETHANOL:
+        description: |
+          Preserved in ethanol solution (70-95%).
+          Standard wet preservation for most specimens.
+          Suitable for DNA extraction.
+          
+          **Typical Use**: Fish, amphibians, reptiles, invertebrates
+        annotations:
+          category: "wet_preservation"
+          dna_suitable: "yes"
+      
+      FLUID_FORMALIN:
+        description: |
+          Preserved in formaldehyde solution (4-10%).
+          Superior tissue preservation but damages DNA.
+          Often used for initial fixation before transfer to ethanol.
+          
+          **Typical Use**: Fish, anatomical specimens, histology
+        annotations:
+          category: "wet_preservation"
+          dna_suitable: "limited"
+          hazard_class: "toxic"
+      
+      FLUID_ISOPROPANOL:
+        description: |
+          Preserved in isopropanol (isopropyl alcohol).
+          Alternative to ethanol for some applications.
+          
+          **Typical Use**: Insects, soft-bodied invertebrates
+        annotations:
+          category: "wet_preservation"
+      
+      FLUID_OTHER:
+        description: |
+          Preserved in other fluid medium.
+          May include glycerin, Bouins solution, other fixatives.
+          
+          **Typical Use**: Specialized preservation requirements
+        annotations:
+          category: "wet_preservation"
+      
+      # Frozen/Cryogenic Methods
+      FROZEN_STANDARD:
+        description: |
+          Standard freezer storage (-20°C).
+          Basic cold storage for temporary preservation.
+          
+          **Typical Use**: Short-term tissue storage, fresh specimens
+        annotations:
+          category: "cryogenic"
+          temperature: "-20°C"
+      
+      FROZEN_TISSUE:
+        description: |
+          Ultra-cold freezer storage (-80°C) for tissue samples.
+          Optimal for DNA preservation.
+          
+          **Typical Use**: Genetic resource collections, tissue banks
+        annotations:
+          category: "cryogenic"
+          temperature: "-80°C"
+          dna_suitable: "excellent"
+      
+      CRYOGENIC_LN2:
+        description: |
+          Liquid nitrogen storage (-196°C).
+          Indefinite preservation of viable cells and DNA.
+          
+          **Typical Use**: Cell lines, germplasm, genetic archives
+        annotations:
+          category: "cryogenic"
+          temperature: "-196°C"
+          dna_suitable: "excellent"
+      
+      # Casts and Models
+      CAST_PLASTER:
+        description: |
+          Plaster cast of original specimen.
+          Used for fossils, trackways, fragile originals.
+          
+          **Typical Use**: Paleontology, ichnology
+        annotations:
+          category: "replica"
+      
+      CAST_RESIN:
+        description: |
+          Resin or plastic cast of original.
+          May include color painting for realism.
+          
+          **Typical Use**: Display specimens, teaching collections
+        annotations:
+          category: "replica"
+      
+      EMBEDDED_RESIN:
+        description: |
+          Specimen embedded in clear resin block.
+          Provides permanent display-ready specimen.
+          
+          **Typical Use**: Insects, small organisms for education
+        annotations:
+          category: "embedding"
+      
+      EMBEDDED_AMBER:
+        description: |
+          Natural amber inclusion (fossil resin).
+          Ancient natural preservation.
+          
+          **Typical Use**: Paleontological specimens
+        annotations:
+          category: "fossil"
+          age: "ancient"
+      
+      # Fossil Methods
+      FOSSIL_UNPREPPED:
+        description: |
+          Fossil specimen as collected, not prepared.
+          Matrix may still surround specimen.
+          
+          **Typical Use**: Paleontological collections awaiting preparation
+        annotations:
+          category: "fossil"
+      
+      FOSSIL_PREPARED:
+        description: |
+          Fossil mechanically or chemically prepared.
+          Matrix removed, specimen exposed.
+          
+          **Typical Use**: Display and research fossils
+        annotations:
+          category: "fossil"
+      
+      FOSSIL_CONSOLIDATED:
+        description: |
+          Fossil treated with consolidant for stability.
+          May include paraloid B-72, other resins.
+          
+          **Typical Use**: Fragile fossils requiring stabilization
+        annotations:
+          category: "fossil"
+      
+      # Living Collections
+      LIVING:
+        description: |
+          Living organism in botanical garden, zoo, or aquarium.
+          Requires ongoing care and maintenance.
+          
+          **Typical Use**: Botanic gardens, zoos, aquaria
+        annotations:
+          category: "living"
+      
+      SEED_BANK:
+        description: |
+          Dried seeds stored for germplasm conservation.
+          Temperature and humidity controlled.
+          
+          **Typical Use**: Plant conservation, agricultural diversity
+        annotations:
+          category: "living"
+          storage_conditions: "controlled"
+      
+      # Other Methods
+      SILICA_GEL:
+        description: |
+          Dried using silica gel desiccant.
+          Rapid drying preserves DNA quality.
+          
+          **Typical Use**: Plant material for molecular work
+        annotations:
+          category: "dry_preservation"
+          dna_suitable: "good"
+      
+      CTAB_PRESERVED:
+        description: |
+          Preserved in CTAB buffer for DNA extraction.
+          Common for plant tissue.
+          
+          **Typical Use**: Molecular collections
+        annotations:
+          category: "molecular"
+          dna_suitable: "excellent"
+      
+      NOT_PRESERVED:
+        description: |
+          Observation record only; no physical specimen.
+          May have photographs or tissue samples separately.
+          
+          **Typical Use**: Occurrence records, photographic vouchers
+        annotations:
+          category: "none"
+      
+      UNKNOWN:
+        description: |
+          Preservation method not recorded or unknown.
+          Legacy collections may lack this information.
+          
+          **Typical Use**: Historical collections with incomplete data
+        annotations:
+          category: "unknown"

@@ -1,0 +1,175 @@
+# AttestationConfidenceEnum - Confidence levels for lexical attestations
+#
+# Enumeration of confidence levels for linguistic form attestations in structured_aliases.
+# Used to express certainty about the validity of terminology from various corpora.
+#
+# Aligned with:
+# - OntoLex-Lemon FrAC (Frequency, Attestation, Corpus Information)
+# - PROV-O (Provenance Ontology) confidence patterns
+# - W3C Data Quality Vocabulary (DQV) certainty levels
+# - ISO 25964 (Thesauri and interoperability)
+#
+# Created: January 2026
+
+id: https://nde.nl/ontology/hc/enum/AttestationConfidenceEnum
+name: AttestationConfidenceEnum
+title: Attestation Confidence Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  frac: http://www.w3.org/ns/lemon/frac#
+  prov: http://www.w3.org/ns/prov#
+  dqv: http://www.w3.org/ns/dqv#
+  skos: http://www.w3.org/2004/02/skos/core#
+  oa: http://www.w3.org/ns/oa#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  AttestationConfidenceEnum:
+    description: |
+      Confidence levels for lexical attestations in structured_aliases.
+      
+      Expresses certainty about the validity and reliability of terminology
+      extracted from various corpora and terminology databases.
+      
+      **OntoLex-FrAC Alignment**:
+      
+      Complements `frac:Attestation` by providing a confidence qualifier
+      for the attestation observation. Used in conjunction with:
+      - `source`: URI of the corpus/terminology database
+      - `temporal_extent`: Time period of validity (begin_of_the_begin/end_of_the_end)
+      
+      **Use Cases**:
+      
+      1. **Authoritative sources**: HIGH confidence for official thesauri (AAT, CHT, GND)
+      2. **Translations**: MEDIUM confidence for schema.org translations
+      3. **Inferred terms**: LOW confidence for machine-translated or derived terms
+      4. **Deprecated terms**: Mark with end_of_the_end + appropriate confidence
+      
+      **Example**:
+      
+      ```yaml
+      structured_aliases:
+        - literal_form: accepteert
+          predicate: EXACT_SYNONYM
+          in_language: nl
+          source: https://data.cultureelerfgoed.nl/term/id/cht
+          annotations:
+            attestation_confidence: HIGH
+            corpus: Cultuurhistorische Thesaurus (RCE)
+            begin_of_the_begin: "2010-01-01"
+      ```
+    
+    permissible_values:
+      HIGH:
+        description: |
+          Term attested in authoritative, curated terminology source.
+          High confidence in accuracy and currency of the linguistic form.
+          
+          **Indicators**:
+          - Published in official thesaurus or controlled vocabulary
+          - Maintained by recognized standards body
+          - Subject to editorial review process
+          - Versioned and dated
+          
+          **Example Sources**:
+          - Getty AAT (Art & Architecture Thesaurus)
+          - Cultuurhistorische Thesaurus (RCE/CHT)
+          - Gemeinsame Normdatei (GND)
+          - Library of Congress Subject Headings (LCSH)
+          - ISO standard terminologies
+        meaning: dqv:qualityAssessment
+        annotations:
+          confidence_score: "0.9"
+          frac_alignment: frac:attestedIn
+          verification_level: "authoritative"
+          category: "confidence_level"
+      
+      MEDIUM:
+        description: |
+          Term attested in reliable but less authoritative source.
+          Moderate confidence; may require verification for formal use.
+          
+          **Indicators**:
+          - Published in widely-used vocabulary (e.g., schema.org)
+          - Community-maintained terminology
+          - Translations from authoritative sources
+          - Wikipedia/Wikidata derived terms
+          
+          **Example Sources**:
+          - schema.org translations
+          - Wikidata labels
+          - Domain-specific glossaries
+          - Professional association terminology
+        annotations:
+          confidence_score: "0.7"
+          frac_alignment: frac:attestedIn
+          verification_level: "reliable"
+          category: "confidence_level"
+      
+      LOW:
+        description: |
+          Term inferred, machine-translated, or from unverified source.
+          Low confidence; should be verified before formal use.
+          
+          **Indicators**:
+          - Machine translation output
+          - Inferred from related terms
+          - User-contributed without review
+          - Historical usage (may be outdated)
+          
+          **Example Sources**:
+          - Machine translation services
+          - Automated terminology extraction
+          - Unreviewed crowdsourced content
+          - Legacy data without provenance
+        annotations:
+          confidence_score: "0.4"
+          frac_alignment: frac:attestedIn
+          verification_level: "unverified"
+          category: "confidence_level"
+      
+      UNCERTAIN:
+        description: |
+          Confidence level cannot be determined.
+          Term may be valid but source reliability is unknown.
+          
+          **Indicators**:
+          - Source not documented
+          - Provenance chain broken
+          - Conflicting attestations
+          - Historical term with unclear status
+          
+          **Use Case**:
+          Placeholder when migrating legacy data without provenance.
+        annotations:
+          confidence_score: "0.0"
+          frac_alignment: frac:attestedIn
+          verification_level: "unknown"
+          category: "confidence_level"
+      
+      DEPRECATED:
+        description: |
+          Term was previously valid but is now deprecated.
+          Should not be used for new data; retained for historical reference.
+          
+          **Indicators**:
+          - Superseded by preferred term
+          - Withdrawn from source vocabulary
+          - Considered offensive or inappropriate
+          - Technically obsolete
+          
+          **Usage**:
+          Set `end_of_the_end` to deprecation date.
+          Use `deprecated_element_has_exact_replacement` for successor term.
+        annotations:
+          confidence_score: "0.0"
+          frac_alignment: frac:attestedIn
+          verification_level: "deprecated"
+          is_deprecated: "true"
+          category: "confidence_level"

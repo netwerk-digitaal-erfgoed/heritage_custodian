@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: fund
+# ==============================================================================
+# To provide the necessary financial resources or capital to support an
+# enterprise, program, project, or organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property          | File/Line               | Mapping | Notes                                                  |
+# |----------------|-------------------|-------------------------|---------|---------------------------------------------------------|
+# | **Schema.org** | `schema:funder`   | schemaorg.owl:18743-747 | related | Identifies the funder (agent), not the act of funding. |
+# | **Schema.org** | `schema:funding`  | schemaorg.owl:18772-796 | related | Links to a Grant object, not the act of funding.       |
+#
+# schema:funder identifies who provides funding (an agent). schema:funding links
+# to a Grant that provides funding. Neither captures the *action* of providing
+# financial resources, which is what this slot describes.
+#
+# Note: schema:funder is already used as slot_uri for funded_by.yaml.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, schema:funder/funding as related
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/fund
+name: fund
+title: fund
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  fund:
+    name: fund
+    title: fund
+    description: >-
+      To provide the necessary financial resources or capital to support an
+      enterprise, program, project, or organization.
+    alt_descriptions:
+      nl: >-
+        De noodzakelijke financiële middelen of kapitaal verstrekken om een
+        onderneming, programma, project of organisatie te ondersteunen.
+      de: >-
+        Die erforderlichen finanziellen Mittel oder das Kapital bereitstellen,
+        um ein Unternehmen, Programm, Projekt oder eine Organisation zu
+        unterstützen.
+      fr: >-
+        Fournir les ressources financières ou le capital nécessaires pour
+        soutenir une entreprise, un programme, un projet ou une organisation.
+      ar: >-
+        توفير الموارد المالية أو رأس المال اللازم لدعم مؤسسة أو برنامج أو
+        مشروع أو منظمة.
+      id: >-
+        Menyediakan sumber daya keuangan atau modal yang diperlukan untuk
+        mendukung suatu usaha, program, proyek, atau organisasi.
+      zh: >-
+        提供必要的财务资源或资本以支持企业、计划、项目或组织。
+      es: >-
+        Proporcionar los recursos financieros o el capital necesarios para
+        apoyar una empresa, programa, proyecto u organización.
+    structured_aliases:
+      - literal_form: financieren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: finanzieren
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: financer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تمويل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mendanai
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 资助
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: financiar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:fund
+    range: string
+    aliases:
+      - has_or_had_funded
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:funder  # schemaorg.owl:18743-747 - identifies funder agent, not act of funding
+      - schema:funding  # schemaorg.owl:18772-796 - links to Grant object, not act of funding
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_funded for conciseness (2026-02-03).

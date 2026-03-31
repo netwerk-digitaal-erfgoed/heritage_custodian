@@ -1,0 +1,125 @@
+id: https://nde.nl/ontology/hc/classes/AdmissionInfo
+name: AdmissionInfo
+title: Admission Information
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_price
+- ../slots/has_note
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  AdmissionInfo:
+    class_uri: schema:PriceSpecification
+    description: >-
+      Structured admission price information including price value and notes.
+    alt_descriptions:
+      nl: "Gestructureerde informatie over entreeprijzen inclusief prijs en notities."
+      de: "Strukturierte Eintrittspreisinformationen einschließlich Preiswert und Hinweisen."
+      fr: "Informations structurées sur les prix d'entrée, y compris la valeur et les notes."
+      es: "Información estructurada sobre precios de admisión incluyendo valor y notas."
+      ar: "معلومات منظمة عن أسعار الدخول تشمل القيمة والملاحظات."
+      id: "Informasi harga masuk terstruktur termasuk nilai harga dan catatan."
+      zh: "包含价格值和注释的结构化入场价格信息。"
+    examples:
+    - value:
+        has_label: General Admission
+        has_price: 15.00
+        has_note: Audio guide available for additional €5
+      description: Museum admission with optional audio guide
+    - value:
+        has_label: Free Entry
+        has_price: 0.00
+        has_note: Free admission on the first Sunday of each month
+      description: Free admission policy with conditions
+    close_mappings:
+    - schema:Offer
+    related_mappings:
+    - schema:MonetaryAmount
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: toegangsinformatie
+      in_language: nl
+    - literal_form: entreeprijsinformatie
+      in_language: nl
+    - literal_form: Eintrittsinformationen
+      in_language: de
+    - literal_form: Zutrittsinformationen
+      in_language: de
+    - literal_form: informations d'entrée
+      in_language: fr
+    - literal_form: informations d'admission
+      in_language: fr
+    - literal_form: información de admisión
+      in_language: es
+    - literal_form: información de entrada
+      in_language: es
+    - literal_form: معلومات الدخول
+      in_language: ar
+    - literal_form: معلومات القبول
+      in_language: ar
+    - literal_form: informasi masuk
+      in_language: id
+    - literal_form: informasi penerimaan
+      in_language: id
+    - literal_form: 入场信息
+      in_language: zh
+    - literal_form: 入场须知
+      in_language: zh
+    keywords:
+    - admission information
+    - pricing
+    - entrance fee
+    - ticket information
+    - visitor information
+    slots:
+    - has_price
+    - has_note
+    - has_label
+    - has_description
+    slot_usage:
+      has_price:
+        range: float
+        required: false
+        examples:
+        - value: 15.00
+        - value: 0.00
+      has_note:
+        required: false
+        multivalued: true
+        examples:
+        - value: Audio guide available for additional €5
+        - value: Free admission on the first Sunday of each month
+        - value: Group discounts available
+      has_label:
+        required: false
+        examples:
+        - value: General Admission
+        - value: Student Rate
+        - value: Free Entry
+      has_description:
+        required: false
+        examples:
+        - value: Standard museum admission ticket
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: "Admission information is common for museums but not universally applicable to all custodians."
+      custodian_types: "['Museum', 'Archive', 'Library']"
+      data_sources: "Google Maps, official websites, visitor information systems"
+    comments:
+    - Structured pricing information from various sources
+    - May include notes about conditions, discounts, or additional fees
+    - Price of 0.00 indicates free admission
+    - Often extracted from Google Maps or official websites
+    - 'Preserved from prior description: Structured admission price information including price value and notes. Comprehensive information about admission pricing for heritage custodian facilities, typically extracted from sources like Google Maps or official websites. Includes both the price amount and contextual notes about additional fees, conditions, or special offers.'
+    see_also:
+    - AdmissionFee
+    - https://schema.org/PriceSpecification
+    - https://schema.org/Offer

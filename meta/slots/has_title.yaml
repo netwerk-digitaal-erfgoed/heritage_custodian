@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: has_title
+# ==============================================================================
+# Prime name, heading, or label given to a resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property        | File/Line                | Mapping | Notes                                                   |
+# |----------------|-----------------|--------------------------|---------|----------------------------------------------------------|
+# | **DCTerms**    | `dcterms:title` | dcterms.rdf:2034-2054    | slot_uri| "A name given to the resource."                          |
+# | **Schema.org** | `schema:name`   | schemaorg.owl:26889-26910 | exact  | "The name of the item." Domain: Thing — broader (any name, not specifically title). |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_title
+name: has_title
+title: Has Title
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_title:
+    slot_uri: dcterms:title
+    description: >-
+      To specify the prime name, heading, or label given to a document, creative
+      work, or media resource.
+    alt_descriptions:
+      nl: >-
+        Om de primaire naam, kop of het label aan te geven dat aan een document,
+        creatief werk of mediabron is gegeven.
+      de: >-
+        Zur Angabe des Hauptnamens, der Überschrift oder der Bezeichnung eines
+        Dokuments, kreativen Werks oder einer Medienressource.
+      fr: >-
+        Pour spécifier le nom principal, l'en-tête ou le libellé donné à un
+        document, une œuvre créative ou une ressource médiatique.
+      ar: >-
+        لتحديد الاسم الرئيسي أو العنوان أو التسمية الممنوحة لمستند أو عمل
+        إبداعي أو مورد إعلامي.
+      id: >-
+        Untuk menentukan nama utama, judul, atau label yang diberikan kepada
+        dokumen, karya kreatif, atau sumber daya media.
+      zh: >-
+        用于指定赋予文档、创意作品或媒体资源的主要名称、标题或标签。
+      es: >-
+        Para especificar el nombre principal, encabezado o etiqueta otorgado
+        a un documento, obra creativa o recurso mediático.
+    structured_aliases:
+      - literal_form: Titel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Titel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Titre
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عنوان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Judul
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 标题
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Título
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    exact_mappings:
+      - schema:name  # schemaorg.owl:26889-26910 — "The name of the item." Domain: Thing — broader than title.
+    aliases:
+      - has_or_had_title
+      - content_title
+      - page_title
+      - parallel_title
+      - role_title
+      - route_title
+    annotations:
+      custodian_types: '["*"]'

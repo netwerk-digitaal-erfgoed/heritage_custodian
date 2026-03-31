@@ -1,0 +1,279 @@
+id: https://nde.nl/ontology/hc/class/ScopeType
+name: ScopeType
+title: Scope Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dct: http://purl.org/dc/terms/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  ScopeType:
+    class_uri: skos:Concept
+    description: >-
+      Abstract categorization for coverage dimensions such as temporal, spatial, or thematic extent.
+    alt_descriptions:
+      nl: >-
+        Abstracte categorisatie voor dekkingsdimensies zoals temporele, ruimtelijke of thematische omvang.
+      de: >-
+        Abstrakte Kategorisierung für Abdeckungsdimensionen wie zeitliche, räumliche oder thematische Ausdehnung.
+      fr: >-
+        Catégorisation abstraite pour les dimensions de couverture telles que l'étendue temporelle, spatiale ou thématique.
+      es: >-
+        Categorización abstracta para dimensiones de cobertura como extensión temporal, espacial o temática.
+      ar: >-
+        تصنيف تجريدي لأبعاد التغطية مثل النطاق الزمني أو المكاني أو الموضوعي.
+      id: >-
+        Kategorisasi abstrak untuk dimensi cakupan seperti jangkauan temporal, spasial, atau tematis.
+      zh: >-
+        覆盖维度的抽象分类，如时间、空间或主题范围。
+    structured_aliases:
+
+      - literal_form: bereiktype
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: dekkingscategorie
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: Bereichstyp
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: Abdeckungskategorie
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: type de portée
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: catégorie de couverture
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: tipo de alcance
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: categoría de cobertura
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: نوع النطاق
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: فئة التغطية
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: jenis cakupan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: kategori jangkauan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: 范围类型
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: 覆盖类别
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: scope dimension
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: coverage type
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: classification
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: temporal
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: spatial
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: thematic
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: skos:Concept
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: dct:Coverage
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: schema:DefinedTerm
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_score
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_description
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_label
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: identified_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: Type URI (e.g., https://nde.nl/ontology/hc/scope-type/temporal)
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: Wikidata Q-number (e.g., Q186408)
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+    keywords:
+    - scope dimension
+    - coverage
+    - classification
+    - extent
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        multivalued: true
+        examples:
+        - value: https://nde.nl/ontology/hc/scope-type/temporal
+        - value: Q186408
+      has_label:
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Temporal@en
+          - temporeel@nl
+          - zeitlich@de
+      has_description:
+        required: false
+        examples:
+        - value: Time-based scope dimension covering date ranges and historical periods
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "Abstract base class for scope type classifications in the heritage domain.\n\n**DEFINITION**:\n\nScopeType represents CATEGORIES of scope/coverage dimensions, not individual\nscope instances. Each subclass defines characteristics of a scope category\n(temporal, spatial, subject, material, etc.).\n\n**CRITICAL: TYPE vs INSTANCE**\n\n| Aspect | ScopeType (This Class) | Scope (Instance Class) |\n|--------|------------------------|------------------------|\n| **Nature** | Classification/category | Individual scope |\n| **Examples** | TEMPORAL, SPATIAL, SUBJECT | \"1600-1700 Dutch painting\" |\n| **Properties** | Category metadata | Actual coverage values |\n| **Cardinality** | ~5-10 types | Thousands of instances |\n\n**SCOPE DIMENSIONS**:\n\n1. **TEMPORAL**: Time-based coverage\n   - Century, Decade, Date Range, Era, Period\n   - Historical Period, Epoch\n   \n2. **SPATIAL**: Geographic coverage\n   - Country, Region, City, Continent\n   - Administrative Division, Geographic\
+    annotations:
+      specificity_score: '0.35'
+      specificity_rationale: Moderately low specificity - scope types are generic classification concepts.
+      has_score:
+      custodian_types: "['*']"
+    comments:
+    - Abstract base class - use specific subclasses (TemporalScope, SpatialScope, etc.)
+    - Represents SCOPE TYPES, not scope instances
+    - Scope.has_type references these type classes
+    - Follows Type/Types naming convention (Rule 0b)
+    - 'Organized by dimension: temporal, spatial, subject, material'
+    - |
+      ScopeType represents categories of scope/coverage dimensions, not individual scope instances.
+
+      TYPE vs INSTANCE (informal):
+      - ScopeType examples: TEMPORAL, SPATIAL, SUBJECT
+      - Scope examples: "1600-1700", "Amsterdam", "Dutch Golden Age painting"
+
+      Common dimensions: temporal, spatial, subject, material, linguistic, institutional.
+    - 'Preserved from prior description: Controlled vocabulary concept describing a dimension of scope/coverage.'
+    see_also:
+    - https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-7
+    - https://www.w3.org/2004/02/skos/
+    examples:
+    - value:
+        identified_by:
+        - https://nde.nl/ontology/hc/scope-type/temporal
+        has_label:
+        - Temporal@en
+        - temporeel@nl
+        has_description: Time-based scope dimension

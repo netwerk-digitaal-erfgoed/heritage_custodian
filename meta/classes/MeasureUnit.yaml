@@ -1,0 +1,97 @@
+id: https://nde.nl/ontology/hc/class/MeasureUnit
+name: MeasureUnit
+title: Measure Unit Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  om: http://www.ontology-of-units-of-measure.org/resource/om-2/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/MeasureUnitEnum
+- ../slots/has_type
+- ../slots/symbolized_by
+- ../slots/has_code
+- ../slots/has_label
+classes:
+  MeasureUnit:
+    class_uri: qudt:Unit
+    description: >-
+      Standardized quantification basis for expressing physical magnitudes in heritage documentation.
+    alt_descriptions:
+      nl: >-
+        Gestandaardiseerde kwantificeringsbasis voor het uitdrukken van fysieke grootheden in erfgoeddocumentatie.
+      de: >-
+        Standardisierte Quantifizierungsgrundlage zum Ausdrücken physikalischer Größen in der Heritagedokumentation.
+      fr: >-
+        Base de quantification normalisée pour exprimer les grandeurs physiques dans la documentation patrimoniale.
+      es: >-
+        Base de cuantificación estandarizada para expresar magnitudes físicas en la documentación patrimonial.
+      ar: >-
+        أساس كمي موحد للتعبير عن المقادير الفيزيائية في توثيق التراث.
+      id: >-
+        Dasar kuantifikasi terstandarisasi untuk mengekspresikan besaran fisik dalam dokumentasi warisan.
+      zh: >-
+        用于在遗产文档中表达物理量的标准化量化基础。
+    structured_aliases:
+    - literal_form: maateenheid
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Maßeinheit
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: unité de mesure
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: unidad de medida
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: وحدة قياس
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: satuan ukur
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 计量单位
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - qudt:Unit
+    - om:Unit
+    close_mappings:
+    - schema:unitCode
+    slots:
+    - has_type
+    - symbolized_by
+    - has_code
+    - has_label
+    slot_usage:
+      has_type:
+        range: MeasureUnitEnum
+        required: true
+    comments:
+    - Supports area, length, volume, and time-based quantification.
+    - Use SI units where possible; document non-standard units clearly.
+    - 'Preserved from prior description: Unit-of-measure class for physical and quantitative heritage measurements.'
+    keywords:
+    - quantification
+    - physical measurement
+    - SI units
+    - dimensional analysis
+    examples:
+    - value:
+        has_type: HECTARE
+        has_code: ha
+        has_label: Hectare
+      description: Area unit for outdoor heritage site extent
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "A unit of measurement for expressing quantities.\nCaptures the unit type (from MeasureUnitEnum), symbol, and optional conversion factors. Used as the range for has_unit slot.\n**EXAMPLES**: - Hectare (ha) for outdoor site area - Square meter (m\xB2) for building floor area - Linear meter (m) for archival shelf extent"
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Foundational unit class reused across quantitative model components.
+      custodian_types: '["*"]'

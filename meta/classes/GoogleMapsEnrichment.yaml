@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/classes/GoogleMapsEnrichment
+name: GoogleMapsEnrichment
+title: Google Maps Enrichment Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_name
+- ../slots/has_label
+- ../slots/has_note
+- ../slots/has_coordinates
+- ../slots/has_latitude
+- ../slots/has_longitude
+- ../slots/has_url
+- ../slots/has_source
+- ../slots/has_operating_hours
+classes:
+  GoogleMapsEnrichment:
+    class_uri: prov:Entity
+    description: >-
+      Structured payload sourced from third-party place-index services,
+      containing coordinates, opening schedules, and location metadata.
+    alt_descriptions:
+      nl: >-
+        Verrijkingspayload afgeleid van cartografische servicegegevens met
+        geospatiale coördinaten, openingstijden en plaatsmetadata.
+      de: >-
+        Anreicherungsnutzdaten aus Kartendienst-Quellen mit
+        Geokoordinaten, Öffnungszeiten und Ortsmetadaten.
+      fr: >-
+        Charge d'enrichissement dérivée de données de service cartographique contenant
+        des coordonnées géospatiales, des horaires et des métadonnées de lieu.
+      es: >-
+        Carga de enriquecimiento derivada de datos de servicio cartográfico que contiene
+        coordenadas geoespaciales, horarios y metadatos de lugar.
+      ar: >-
+        حمولة إثراء مستمدة من بيانات خدمة الخرائط تحتوي على
+        إحداثيات جغرافية مكانية وساعات العمل وبيانات المكان الوصفية.
+      id: >-
+        Muatan pengayaan yang berasal dari data layanan peta yang berisi
+        koordinat geospasial, jam operasional, dan metadata tempat.
+      zh: >-
+        从地图服务数据派生的丰富化载荷，包含地理空间坐标、营业时间和地点元数据。
+    close_mappings:
+    - schema:PropertyValue
+    related_mappings:
+    - schema:Place
+    - schema:LocalBusiness
+    - prov:Generation
+    slots:
+    - has_name
+    - has_label
+    - has_note
+    - has_coordinates
+    - has_latitude
+    - has_longitude
+    - has_url
+    - has_source
+    - has_operating_hours
+    structured_aliases:
+    - literal_form: Google Maps-verrijking
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Google Maps-Anreicherung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: enrichissement Google Maps
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: enriquecimiento Google Maps
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: إثراء خرائط جوجل
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: pengayaan Google Maps
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 谷歌地图丰富化
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Derived from Google Maps place data
+    - Contains geospatial, operational, and contact metadata
+    - 'Preserved from prior description: Enrichment payload derived from Google Maps data for a location record.'
+    keywords:
+    - Google Maps
+    - enrichment
+    - geospatial
+    - place metadata
+    examples:
+    - value:
+        has_name: Rijksmuseum
+        has_latitude: 52.3600
+        has_longitude: 4.8852
+        has_operating_hours: "09:00-17:00"
+      description: Enrichment for heritage institution location
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: External-source enrichment entity for place metadata.
+      custodian_types: '["*"]'
+    broad_mappings:
+    - prov:Entity

@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_phase
+# ==============================================================================
+# Distinct period, state, or step within a process, cycle, or project lifecycle.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                   | Mapping | Notes                                                        |
+# |---------------|-----------------------------|-----------------------------|---------|--------------------------------------------------------------|
+# | **RiC-O**     | `rico:hasRecordState`       | RiC-O_1-1.rdf:8998-9014     | narrow  | Connects Record/RecordPart to RecordState; record-specific.  |
+# | **Schema.org**| `schema:creativeWorkStatus` | schemaorg.owl:13457-13480   | related | Lifecycle stage of creative works (Draft, Published, etc.).  |
+#
+# REMOVED MAPPINGS:
+# - skos:broaderTransitive (skos.rdf:311-315): concept hierarchy property, NOT a lifecycle
+#   phase property. scopeNote: "by convention, not used to make assertions." Also used
+#   invalid LinkML key `broader_mappings` (should be `broad_mappings`).
+#
+# REJECTED CANDIDATES:
+# - schema:stage (schemaorg.owl:36218-36240): domain MedicalCondition only.
+# - crm:P44_has_condition (CIDOC_CRM:2270-2279): physical condition state, not lifecycle phase.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_phase
+name: has_phase
+title: Has Phase
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_phase:
+    slot_uri: hc:has_phase
+    description: >-
+      Identifies a distinct period, state, or step within a continuous process,
+      cycle, or project lifecycle.
+    alt_descriptions:
+      nl: >-
+        Identificeert een afzonderlijke periode, toestand of stap binnen een
+        doorlopend proces, cyclus of projectlevenscyclus.
+      de: >-
+        Identifiziert einen bestimmten Zeitraum, Zustand oder Schritt innerhalb
+        eines fortlaufenden Prozesses, Zyklus oder Projektlebenszyklus.
+      fr: >-
+        Identifie une période, un état ou une étape distincts au sein d'un
+        processus continu, d'un cycle ou d'un cycle de vie de projet.
+      ar: >-
+        يحدد فترة أو حالة أو خطوة متميزة ضمن عملية مستمرة أو دورة أو دورة حياة مشروع.
+      id: >-
+        Mengidentifikasi periode, keadaan, atau langkah yang berbeda dalam suatu
+        proses berkelanjutan, siklus, atau siklus hidup proyek.
+      zh: >-
+        标识连续过程、周期或项目生命周期中的一个独特时期、状态或步骤。
+      es: >-
+        Identifica un período, estado o paso distinto dentro de un proceso continuo,
+        ciclo o ciclo de vida de un proyecto.
+    structured_aliases:
+      - literal_form: Fase
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Phase
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Phase
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مرحلة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Fase
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 阶段
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Fase
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Archive Lifecycle Types (Wikidata): Q3621648 (CurrentArchive) — active records phase;
+        Q244904 (DepositArchive) — intermediate/semi-current phase;
+        Q3621673 (HistoricalArchive) — archival/permanent phase.
+      - >-
+        Usage: Classify an operational archive by its position in the records lifecycle.
+        Most CustodianArchive records are in the intermediate phase (awaiting processing).
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    narrow_mappings:
+      - rico:hasRecordState  # RiC-O_1-1.rdf:8998-9014 — record/record-part state specifically
+    related_mappings:
+      - schema:creativeWorkStatus  # schemaorg.owl:13457-13480 — lifecycle stage of creative works
+    aliases:
+      - lifecycle_phase_type

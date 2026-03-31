@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: published_at
+# ==============================================================================
+# Specific venue, platform, URL, or physical location where a work, document,
+# or dataset is formally released or made available.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property            | File/Line          | Mapping | Notes                                                       |
+# |------------|---------------------|--------------------|---------|-------------------------------------------------------------|
+# | DCAT       | `dcat:endpointURL`  | dcat3.ttl:1008-1030| close   | "The root location or primary endpoint of the service."     |
+# |            |                     |                    |         | Domain: DataService. Data service endpoint only.            |
+# | Schema.org | `schema:url`        | schemaorg.owl:39120-39140| related | "URL of the item." General URL of any Thing.           |
+#
+# dcat:endpointURL is close but limited to DataService endpoints.
+# schema:url is related — it's the general URL of any item, not specifically
+# the publication location.
+#
+# CREATED: 2026-02-04
+# UPDATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/published_at
+name: published_at
+title: Published At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  published_at:
+    slot_uri: hc:publishesAt
+    description: >-
+      Identifies the specific venue, platform, URL, or physical location where a work, document, or dataset is formally released or made available.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke locatie, het platform, de URL of de fysieke plaats waar een werk, document of dataset formeel wordt vrijgegeven of beschikbaar gesteld.
+      de: >-
+        Identifiziert den spezifischen Veranstaltungsort, die Plattform, die URL oder den physischen Ort, an dem ein Werk, Dokument oder Datensatz formell veröffentlicht oder verfügbar gemacht wird.
+      fr: >-
+        Identifie le lieu, la plateforme, l'URL ou l'emplacement physique spécifique où une œuvre, un document ou un jeu de données est formellement publié ou mis à disposition.
+      ar: >-
+        يحدد المكان أو المنصة أو عنوان URL أو الموقع الفعلي المحدد الذي يتم فيه إصدار عمل أو مستند أو مجموعة بيانات رسمياً أو إتاحتها.
+      id: >-
+        Mengidentifikasi tempat, platform, URL, atau lokasi fisik tertentu di mana suatu karya, dokumen, atau kumpulan data secara resmi dirilis atau disediakan.
+      zh: >-
+        标识作品、文档或数据集正式发布或可用的具体场所、平台、URL或物理位置。
+      es: >-
+        Identifica el lugar, plataforma, URL o ubicación física específica donde una obra, documento o conjunto de datos se publica formalmente o se pone a disposición.
+    structured_aliases:
+      - literal_form: Publicatielocatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Veröffentlichungsort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Lieu de publication
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكان النشر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Lokasi publikasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 发布位置
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Lugar de publicación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uri
+    aliases:
+      - is_or_was_publishes_to
+      - is_or_was_publication_place
+      - place_of_publication
+    comments:
+      - "USAGE: For sensors, this may be a monitoring dashboard. For beacons, this may be an analytics platform."
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.5
+      specificity_rationale: Publication location slot.
+    close_mappings:
+      - dcat:endpointURL  # dcat3.ttl:1008-1030 - "The root location or primary endpoint of the service." Domain: DataService.
+    related_mappings:
+      - schema:url  # schemaorg.owl:39120-39140 - "URL of the item." General URL of any Thing.

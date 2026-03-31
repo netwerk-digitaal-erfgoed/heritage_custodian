@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: part_of
+# ==============================================================================
+# Entity functions as a constituent element, component, or piece of a larger
+# whole, object, or system.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                 | File/Line                | Mapping | Notes                                                          |
+# |------------|--------------------------|--------------------------|---------|----------------------------------------------------------------|
+# | DCTerms    | `dcterms:isPartOf`       | dcterms.rdf:1464-1485    | close   | "A related resource in which the described resource is          |
+# |            |                          |                          |         | physically or logically included." Resource-focused.            |
+# | Schema.org | `schema:isPartOf`        | schemaorg.owl:22926-22949| close   | "Indicates an item or CreativeWork that this item, event, or    |
+# |            |                          |                          |         | creative work is part of." CreativeWork domain.                 |
+# | RiC-O      | `rico:isOrWasIncludedIn` | RiC-O_1-1.rdf:13802-13845| close  | "Connects a Record or Record Set to a Record Set it is or was  |
+# |            |                          |                          |         | included in." Record/RecordSet domain.                          |
+#
+# All three are close but not exact: dcterms:isPartOf is resource-focused,
+# schema:isPartOf has a CreativeWork domain, and rico:isOrWasIncludedIn is
+# restricted to Record/RecordSet. This slot is entity-general.
+#
+# Note: Distinguished from `included_in` — `part_of` implies constituent
+# elements/components; `included_in` implies logical inclusion in a set.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/part_of
+name: part_of
+title: part of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  part_of:
+    slot_uri: hc:partOf
+    description: >-
+      Indicates that an entity functions as a constituent element, component, or piece of a larger whole, object, or system.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een entiteit functioneert als een bestanddeel, component of onderdeel van een groter geheel, object of systeem.
+      de: >-
+        Gibt an, dass eine Entität als Bestandteil, Komponente oder Teil eines größeren Ganzen, Objekts oder Systems fungiert.
+      fr: >-
+        Indique qu'une entité fonctionne comme un élément constitutif, un composant ou une pièce d'un ensemble, objet ou système plus vaste.
+      ar: >-
+        يشير إلى أن كيانًا يعمل كعنصر مكوّن أو مكون أو جزء من كلٍّ أو كائن أو نظام أكبر.
+      id: >-
+        Menunjukkan bahwa suatu entitas berfungsi sebagai elemen konstituen, komponen, atau bagian dari keseluruhan, objek, atau sistem yang lebih besar.
+      zh: >-
+        表示一个实体作为更大整体、对象或系统的组成元素、组件或部分而发挥作用。
+      es: >-
+        Indica que una entidad funciona como un elemento constituyente, componente o pieza de un todo, objeto o sistema más grande.
+    structured_aliases:
+      - literal_form: Onderdeel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bestandteil
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Partie
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: جزء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Bagian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 部分
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Parte
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - is_or_was_part_of
+      - is_or_was_suborganization_of
+      - is_or_was_sub_collection_of
+      - sub_collection_of
+      - is_or_was_part_of_total
+      - part_of_total
+      - is_or_was_part_of_archive_series
+      - part_of_archive_series
+      - is_part_of_complex
+      - linked_to_collection
+      - parent_corporation
+      - parent_department
+      - parent_programme
+      - parent_society
+      - parent_unit
+      - part_of_collection
+      - part_of_custodian_collection
+      - part_of_event
+      - part_of_facility
+      - part_of_storage
+      - part_of_zone
+      - suborganization_of
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:isPartOf  # dcterms.rdf:1464-1485 - "A related resource in which the described resource is physically or logically included."
+      - schema:isPartOf  # schemaorg.owl:22926-22949 - "Indicates an item or CreativeWork that this item is part of."
+      - rico:isOrWasIncludedIn  # RiC-O_1-1.rdf:13802-13845 - "Connects a Record or Record Set to a Record Set it is or was included in."

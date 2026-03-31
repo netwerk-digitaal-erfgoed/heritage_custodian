@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: has_slug
+# ==============================================================================
+# A URL-friendly string identifier for a web resource or page.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property             | File/Line                     | Mapping  | Notes                                                                 |
+# |-------------|----------------------|-------------------------------|----------|-----------------------------------------------------------------------|
+# | **SKOS**    | `skos:notation`      | skos.rdf:166-174              | close    | "notation" — short unique code string identifier for a concept.       |
+# | **Schema**  | `schema:identifier`  | schemaorg.owl:21325-21346     | broad    | "identifier" Thing→Text/URL/PropertyValue. General identifier.        |
+# | **DCTerms** | `dcterms:identifier` | dcterms.rdf:1395-1418         | broad    | "Identifier" — unambiguous reference within a given context.          |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_slug
+name: has_slug
+title: Has Slug
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_slug:
+    slot_uri: hc:hasSlug
+    description: >-
+      A user-friendly, URL-valid string that uniquely identifies a specific
+      page or resource on a website. Slugs are typically lowercase,
+      hyphen-separated, and derived from a human-readable title or name.
+    alt_descriptions:
+      nl: >-
+        Een gebruiksvriendelijke, URL-geldige tekenreeks die een specifieke
+        pagina of bron op een website uniek identificeert.
+      de: >-
+        Eine benutzerfreundliche, URL-gültige Zeichenkette, die eine
+        bestimmte Seite oder Ressource auf einer Website eindeutig
+        identifiziert.
+      fr: >-
+        Une chaîne de caractères conviviale et valide dans une URL qui
+        identifie de manière unique une page ou une ressource spécifique
+        sur un site web.
+      ar: >-
+        سلسلة أحرف سهلة الاستخدام وصالحة لعناوين URL تحدد بشكل فريد
+        صفحة أو مورداً محدداً على موقع إلكتروني.
+      id: >-
+        Rangkaian karakter yang ramah pengguna dan valid untuk URL yang
+        mengidentifikasi secara unik halaman atau sumber daya tertentu di
+        sebuah situs web.
+      zh: >-
+        一个用户友好的、URL有效的字符串，用于唯一标识网站上的特定页面或资源。
+      es: >-
+        Una cadena de caracteres amigable y válida para URL que identifica
+        de forma única una página o recurso específico en un sitio web.
+    structured_aliases:
+      - literal_form: slug
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Slug
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: slug
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: سلاغ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: slug
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 别名标识符
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: slug
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: true
+    pattern: ^[a-z0-9-]+$
+    close_mappings:
+      - skos:notation  # skos.rdf:166-174 - "notation" — short unique code string to identify a concept within a scheme
+    broad_mappings:
+      - schema:identifier  # schemaorg.owl:21325-21346 - "identifier" Thing→Text/URL/PropertyValue
+      - dcterms:identifier  # dcterms.rdf:1395-1418 - "Identifier" — unambiguous reference within a given context
+    aliases:
+      - slug
+    examples:
+      - value: familiegeschiedenis
+        description: >-
+          A slug for a page about family history at a heritage institution.
+      - value: collectie-aziatische-kunst
+        description: >-
+          A slug for an Asian art collection page, using hyphens to
+          separate words.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Slugs must match the pattern ^[a-z0-9-]+$ — only lowercase ASCII
+        letters, digits, and hyphens are allowed. This ensures consistent,
+        SEO-friendly URLs across heritage custodian web platforms.

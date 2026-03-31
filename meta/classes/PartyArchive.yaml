@@ -1,0 +1,73 @@
+id: https://w3id.org/nde/ontology/PartyArchive
+name: PartyArchive
+title: Party Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  PartyArchive:
+    description: Archive organization focused on records of political parties and their activities.
+    alt_descriptions:
+      nl: Archieforganisatie gericht op archieven van politieke partijen en hun activiteiten.
+      de: Archivorganisation mit Schwerpunkt auf Unterlagen politischer Parteien und ihrer Taetigkeiten.
+      fr: Organisation d archives consacree aux documents des partis politiques et de leurs activites.
+      es: Organizacion archivistica centrada en registros de partidos politicos y sus actividades.
+      ar: مؤسسة أرشيفية متخصصة في سجلات الأحزاب السياسية وأنشطتها.
+      id: Organisasi arsip yang berfokus pada rekaman partai politik dan kegiatannya.
+      zh: 以政党及其活动记录为重点的档案机构类型。
+    structured_aliases:
+    - {literal_form: partijarchief, in_language: nl}
+    - {literal_form: Parteiarchiv, in_language: de}
+    - {literal_form: archive de parti politique, in_language: fr}
+    - {literal_form: archivo de partido politico, in_language: es}
+    - {literal_form: أرشيف حزب سياسي, in_language: ar}
+    - {literal_form: arsip partai politik, in_language: id}
+    - {literal_form: 政党档案馆, in_language: zh}
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q53252161
+    broad_mappings:
+    - schema:ArchiveOrganization
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: hc:PartyArchive
+    annotations:
+      skos:prefLabel: Party Archive
+      skos:altLabel: "Parteiarchiv, archivo de partido político, Political Party Archive"
+      subject_domain: political/party
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - PoliticalArchive
+    - ParliamentaryArchives
+    - TradeUnionArchive
+    comments:
+    - Parteiarchiv (de)
+    - "archivo de partido político (es)"
+    - Preserves records of political parties
+    - May include campaign materials and party publications
+    - Important for political history research

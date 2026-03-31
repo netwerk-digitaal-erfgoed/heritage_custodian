@@ -1,0 +1,91 @@
+# ==============================================================================
+# LinkML Slot Definition: has_tool
+# ==============================================================================
+# Instrument, software, device, or implement used to perform a function or task
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping  | Notes                                                    |
+# |---------------|-----------------------|--------------------------|----------|----------------------------------------------------------|
+# | **Schema.org**| `schema:instrument`   | schemaorg.owl:22393-22414| close    | "The object that helped the agent perform the action."   |
+# | **Schema.org**| `schema:tool`         | schemaorg.owl:38171-38194| related  | "An object used (but not consumed) when performing       |
+# |               |                       |                          |          | instructions." Domain: HowToDirection/HowTo.             |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_tool
+name: has_tool
+title: has_tool
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_tool:
+    name: has_tool
+    description: >-
+      The instrument, software, device, or implement available to or used by
+      an entity to perform a specific function or task.
+    alt_descriptions:
+      nl: >-
+        Het instrument, de software, het apparaat of het hulpmiddel dat beschikbaar
+        is voor of gebruikt wordt door een entiteit om een specifieke functie
+        of taak uit te voeren.
+      de: >-
+        Das Instrument, die Software, das Gerät oder das Hilfsmittel, das einer
+        Entität zur Verfügung steht oder von ihr verwendet wird, um eine bestimmte
+        Funktion oder Aufgabe auszuführen.
+      fr: >-
+        L'instrument, le logiciel, le dispositif ou l'outil disponible pour
+        ou utilisé par une entité pour effectuer une fonction ou une tâche
+        spécifique.
+      ar: >-
+        الأداة أو البرنامج أو الجهاز أو الوسيلة المتاحة لكيان أو المستخدمة
+        من قبله لأداء وظيفة أو مهمة محددة.
+      id: >-
+        Instrumen, perangkat lunak, perangkat, atau alat yang tersedia untuk
+        atau digunakan oleh suatu entitas untuk melakukan fungsi atau tugas
+        tertentu.
+      zh: >-
+        可供实体使用或由实体用于执行特定功能或任务的仪器、软件、设备或工具。
+      es: >-
+        El instrumento, software, dispositivo o implemento disponible para
+        o utilizado por una entidad para realizar una función o tarea específica.
+    structured_aliases:
+      - literal_form: Hulpmiddel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Werkzeug
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Outil
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أداة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Alat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 工具
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Herramienta
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasTool
+    range: string
+    aliases:
+      - has_or_had_tool
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_tool for conciseness."
+    close_mappings:
+      - schema:instrument  # schemaorg.owl:22393-22414 — "The object that helped the agent perform the action." Domain: Action — close but domain-restricted.
+    related_mappings:
+      - schema:tool  # schemaorg.owl:38171-38194 — "An object used (but not consumed) when performing instructions." Domain: HowToDirection/HowTo — domain-restricted.
+    annotations:
+      custodian_types: '["*"]'

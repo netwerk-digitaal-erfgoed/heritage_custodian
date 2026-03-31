@@ -1,0 +1,56 @@
+id: https://nde.nl/ontology/hc/parsimony/mappings/legal-status-realizations
+name: legal_status_realizations
+title: Legal Status Realizations
+description: >-
+  Structured realization notes for how the semantic LegalStatus hub is
+  implemented through engineering legal registration and statutory classification
+  classes and slots.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../classes/LegalStatus
+  - ../slots/attested_in
+  - ../slots/realized_through
+  - ../slots/has_spatial_scope
+  - ../../../modules/classes/CustodianLegalStatus
+  - ../../../modules/enums/LegalStatusEnum
+  - ../../../modules/slots/has_status
+  - ../../../modules/slots/has_legal_form
+  - ../../../modules/slots/in_jurisdiction
+  - ../../../modules/slots/refer_to
+  - ../../../modules/slots/derive_from
+  - ../../../modules/slots/generated_by
+  - ../../../modules/slots/temporal_extent
+comments:
+  - >-
+    REALIZATION AXIS: The semantic LegalStatus hub is concretized by the
+    engineering CustodianLegalStatus class, which adds operational fields
+    such as legal form, jurisdiction, scores, and provenance links to
+    observations and reconstruction activities.
+  - >-
+    REALIZATION AXIS: Engineering LegalStatusEnum realizes a bounded
+    operational vocabulary (ACTIVE, DISSOLVED, MERGED, SUSPENDED, BANKRUPTCY,
+    LIQUIDATION, UNKNOWN) aligned with the GLEIF EntityStatus taxonomy. The
+    semantic layer captures this through typed_as pointing to Classification
+    nodes.
+  - >-
+    REALIZATION AXIS: Semantic attested_in gathers engineering derive_from
+    when the legal status is traced back to the source observation that
+    established it.
+  - >-
+    REALIZATION AXIS: Semantic realized_through gathers engineering
+    generated_by when the legal status was produced by a specific
+    reconstruction activity or verification workflow.
+  - >-
+    REALIZATION AXIS: Semantic has_spatial_scope gathers engineering
+    in_jurisdiction when the legal status is framed by a jurisdictional
+    territory such as a country or municipality.
+  - >-
+    REALIZATION AXIS: Engineering refer_to distributes the semantic
+    relationship between a legal status and the custodian it describes,
+    which in the parsimony layer is captured implicitly through the
+    Observation.indicates predicate pointing to LegalStatus.

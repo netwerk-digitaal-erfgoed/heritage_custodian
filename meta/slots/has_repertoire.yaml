@@ -1,0 +1,132 @@
+# ==============================================================================
+# LinkML Slot Definition: has_repertoire
+# ==============================================================================
+# The body of works, skills, or practices an entity is prepared to perform.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property                 | File/Line                  | Mapping  | Notes                                                                                   |
+# |--------------|--------------------------|----------------------------|----------|-----------------------------------------------------------------------------------------|
+# | **Schema**   | `schema:workPerformed`   | schemaorg.owl:40527-40549  | related  | "A work performed in some event." Event→CreativeWork. Specific work at specific event,  |
+# |              |                          |                            |          | not a body/stock of works. Domain Event, range CreativeWork.                            |
+# | **Schema**   | `schema:workFeatured`    | schemaorg.owl:40459-40475  | related  | "A work featured in some event." SuperProperty of workPerformed. Domain Event.          |
+# | **Schema**   | `schema:knowsAbout`      | schemaorg.owl:23901-23925  | related  | "A topic that is known about — suggesting possible expertise." Domain Person/Org.       |
+# |              |                          |                            |          | Broader: expertise/knowledge, not specifically performance repertoire.                  |
+# | **CRM**      | `crm:P14i_performed`     | CIDOC_CRM_v7.1.3.rdf:1504-1516 | related | "performed" — Actor→Activity. Links actor to activity performed, not to body of works. |
+#
+# No standard ontology defines a "repertoire" property (a body/stock of works,
+# skills, or practices that an entity is prepared to perform). schema:workPerformed
+# refers to a specific work at a specific event, not the aggregate repertoire.
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_repertoire
+name: has_repertoire
+title: Has Repertoire
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_repertoire:
+    slot_uri: hc:hasRepertoire
+    description: >-
+      The complete body of works, skills, songs, plays, dances, crafts, or
+      practices that an individual, group, institution, or ensemble is prepared
+      to perform, produce, or execute. Captures the aggregate stock of
+      performable or practicable items rather than a single performed work at
+      a specific event.
+    alt_descriptions:
+      nl: >-
+        Het volledige repertoire van werken, vaardigheden, liederen, toneelstukken,
+        dansen, ambachten of praktijken die een individu, groep, instelling of
+        ensemble kan uitvoeren of produceren.
+      de: >-
+        Das vollständige Repertoire an Werken, Fähigkeiten, Liedern,
+        Theaterstücken, Tänzen, Handwerken oder Praktiken, die eine Person,
+        Gruppe, Institution oder ein Ensemble aufführen oder ausüben kann.
+      fr: >-
+        L'ensemble complet des œuvres, compétences, chansons, pièces, danses,
+        artisanats ou pratiques qu'un individu, groupe, institution ou ensemble
+        est prêt à interpréter ou produire.
+      ar: >-
+        المجموعة الكاملة من الأعمال والمهارات والأغاني والمسرحيات والرقصات
+        والحرف أو الممارسات التي يستعد فرد أو مجموعة أو مؤسسة أو فرقة لأدائها
+        أو إنتاجها.
+      id: >-
+        Kumpulan lengkap karya, keterampilan, lagu, lakon, tarian, kerajinan,
+        atau praktik yang siap ditampilkan atau diproduksi oleh individu,
+        kelompok, lembaga, atau ansambel.
+      zh: >-
+        个人、团体、机构或乐团准备表演、制作或执行的完整作品、技能、歌曲、戏剧、
+        舞蹈、工艺或实践的集合。
+      es: >-
+        El conjunto completo de obras, habilidades, canciones, obras de teatro,
+        danzas, artesanías o prácticas que un individuo, grupo, institución o
+        conjunto está preparado para interpretar o producir.
+    structured_aliases:
+      - literal_form: repertoire
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Repertoire
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: répertoire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ذخيرة فنية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: repertoar
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 节目单
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: repertorio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:workPerformed  # schemaorg.owl:40527-40549 - "A work performed in some event." specific work at event, not aggregate repertoire
+      - schema:workFeatured  # schemaorg.owl:40459-40475 - "A work featured in some event." superProperty of workPerformed
+      - schema:knowsAbout  # schemaorg.owl:23901-23925 - "A topic known about, suggesting expertise." broader than repertoire
+      - crm:P14i_performed  # CIDOC_CRM_v7.1.3.rdf:1504-1516 - "performed" Actor→Activity, not body of works
+    aliases:
+      - performance_repertoire
+      - repertoire
+    examples:
+      - value: "Gong Kebyar style, Ceremonial music (odalan), Contemporary compositions"
+        description: "Balinese gamelan ensemble performing traditional and contemporary repertoire"
+      - value: "Traditional Ikat patterns, Natural dye techniques, Contemporary adaptations"
+        description: "Traditional textile craft repertoire combining heritage techniques with modern design"
+      - value: "Annual Carnival parade, Summer solstice ritual, Harvest thanksgiving"
+        description: "Community social practice repertoire following a seasonal ritual calendar"
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Repertoire encompasses several dimensions: breadth (number of pieces,
+        styles, genres), temporal range (ancient, historical, contemporary),
+        contextual uses (ceremonial, social, entertainment, commercial), and
+        the balance between strict tradition and creative adaptation.
+      - >-
+        For traditional crafts, repertoire includes product types (textiles,
+        pottery, metalwork), techniques preserved (weaving methods, firing
+        techniques), design vocabulary (patterns, motifs, color systems), and
+        material knowledge (traditional vs. modern materials).
+      - >-
+        For social practices, repertoire includes ritual calendar (annual,
+        seasonal, life-cycle events), ceremonial forms (processions, offerings,
+        feast structures), and social roles (participants, organizers, ritual
+        specialists).
+      - >-
+        Distinct from schema:workPerformed which links a specific event to a
+        specific work performed at that event. This slot captures the aggregate
+        body of performable works associated with an entity.

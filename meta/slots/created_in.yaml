@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: created_in
+# ==============================================================================
+# The geographic location (place or facility) where a resource, product, or work
+# originated or was manufactured.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                     | Mapping  | Notes                                                                         |
+# |---------------|-----------------------------|-------------------------------|----------|-------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:locationCreated`    | schemaorg.owl:25045-25066     | slot_uri | "The location where the CreativeWork was created." Domain: CreativeWork.       |
+# |               |                             |                               |          |  Our slot extends to resources/products too, but core semantic matches.        |
+# |               |                             |                               |          |  Range: Place|Role|URL|Text — compatible with string range.                   |
+# | **CIDOC-CRM** | `crm:P7_took_place_at`      | CIDOC_CRM_v7.1.3.rdf:1294-1309| broad   | "Spatial location of an instance of E4 Period." Domain: E4_Period. Any         |
+# |               |                             |                               |          |  event/period's location, not specifically creation.                          |
+# | **PROV-O**    | `prov:atLocation`           | prov.ttl:486-503              | broad    | "The Location of any resource." General location of any entity/activity,      |
+# |               |                             |                               |          |  not specific to creation.                                                    |
+# | **Schema.org**| `schema:countryOfOrigin`    | schemaorg.owl:13256-13284     | related  | "Country of origin of something." Domain: Movie/TVSeries/CreativeWork/        |
+# |               |                             |                               |          |  Product. Country-level granularity vs. our specific place/facility.          |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/created_in
+name: created_in
+title: Created In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  created_in:
+    slot_uri: schema:locationCreated
+    description: >-
+      Relates a resource, product, or work to the specific geographic location
+      (place or facility) where it originated or was manufactured.
+    alt_descriptions:
+      nl: >-
+        Relateert een bron, product of werk aan de specifieke geografische locatie
+        (plaats of faciliteit) waar het is ontstaan of vervaardigd.
+      de: >-
+        Verknüpft eine Ressource, ein Produkt oder ein Werk mit dem spezifischen
+        geografischen Standort (Ort oder Einrichtung), an dem es entstanden oder
+        hergestellt wurde.
+      fr: >-
+        Relie une ressource, un produit ou une œuvre au lieu géographique spécifique
+        (place ou établissement) où il a été créé ou fabriqué.
+      ar: >-
+        يربط موردًا أو منتجًا أو عملًا بالموقع الجغرافي المحدد (المكان أو المنشأة)
+        الذي نشأ فيه أو تم تصنيعه.
+      id: >-
+        Menghubungkan sumber daya, produk, atau karya dengan lokasi geografis
+        tertentu (tempat atau fasilitas) tempat asalnya atau tempat pembuatannya.
+      zh: >-
+        将资源、产品或作品与其起源或制造的特定地理位置（地点或设施）相关联。
+      es: >-
+        Relaciona un recurso, producto u obra con la ubicación geográfica específica
+        (lugar o instalación) donde se originó o fue fabricado.
+    structured_aliases:
+      - literal_form: Creatieplek
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Erstellungsort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Lieu de Création
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكان الإنشاء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tempat Pembuatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 创建地点
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Lugar de Creación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    # range: CustodianPlace
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - crm:P7_took_place_at  # CIDOC_CRM_v7.1.3.rdf:1294-1309 — "Spatial location of an instance of E4 Period." Any event/period's location, not specifically creation.
+      - prov:atLocation  # prov.ttl:486-503 — "The Location of any resource." General location, not creation-specific.
+    related_mappings:
+      - schema:countryOfOrigin  # schemaorg.owl:13256-13284 — "Country of origin of something." Country-level granularity vs. our specific place/facility.
+    aliases:
+      - creation_place

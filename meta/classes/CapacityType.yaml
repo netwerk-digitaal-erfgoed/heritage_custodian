@@ -1,0 +1,110 @@
+id: https://nde.nl/ontology/hc/class/CapacityType
+name: capacity_type_class
+title: Capacity Type Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  qudt: http://qudt.org/schema/qudt/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  CapacityType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract base class for storage capacity measurement types used in heritage
+      facilities, defining the taxonomy for quantifying storage space, seating,
+      display area, and other capacity dimensions.
+    alt_descriptions:
+      nl: Abstracte basisklasse voor opslagcapaciteitsmeettoetsen die in erfgoedfaciliteiten worden gebruikt, die de taxonomie definieert voor het kwantificeren van opslagruimte, zitplaatsen, tentoonstellingsruimte en andere capaciteitsdimensies.
+      de: Abstrakte Basisklasse für Speicherkapazitätsmessungstypen, die in Heritage-Einrichtungen verwendet werden und die Taxonomie für die Quantifizierung von Speicherplatz, Sitzplätzen, Ausstellungsfläche und anderen Kapazitätsdimensionen definieren.
+      fr: Classe de base abstraite pour les types de mesure de capacité de stockage utilisés dans les installations patrimoniales, définissant la taxonomie pour quantifier l'espace de stockage, les places assises, la surface d'exposition et d'autres dimensions de capacité.
+      es: Clase base abstracta para tipos de medición de capacidad de almacenamiento utilizados en instalaciones patrimoniales, definiendo la taxonomía para cuantificar el espacio de almacenamiento, asientos, área de exhibición y otras dimensiones de capacidad.
+      ar: فئة أساسية مجردة لأنواع قياس سعة التخزين المستخدمة في مرافق التراث، تحدد التصنيف لقياس مساحة التخزين والمقاعد ومساحة العرض وأبعاد السعة الأخرى.
+      id: Kelas dasar abstrak untuk jenis pengukuran kapasitas penyimpanan yang digunakan di fasilitas warisan, mendefinisikan taksonomi untuk mengukur ruang penyimpanan, tempat duduk, area pamer, dan dimensi kapasitas lainnya.
+      zh: 用于遗产设施的存储容量测量类型的抽象基类，定义了量化存储空间、 座位、展示面积和其他容量维度的分类法。
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - qudt:QuantityKind
+
+    slots:
+    - has_label
+    - has_description
+
+    slot_usage:
+      has_label:
+      has_description:
+    structured_aliases:
+    - literal_form: capaciteitstype
+      in_language: nl
+    - literal_form: Kapazitätstyp
+      in_language: de
+    - literal_form: type de capacité
+      in_language: fr
+    - literal_form: tipo de capacidad
+      in_language: es
+    - literal_form: نوع السعة
+      in_language: ar
+    - literal_form: jenis kapasitas
+      in_language: id
+    - literal_form: 容量类型
+      in_language: zh
+    comments:
+    - Abstract base class - see CapacityTypes.yaml for concrete subclasses
+    - Per Rule 0b: Type (singular) = abstract base, Types (plural) = concrete
+    - Aligns with QUDT quantity kinds for interoperability
+    keywords:
+    - capacity measurement
+    - storage space
+    - quantitative value
+    - QUDT alignment
+    examples:
+    - value:
+        has_label: Shelf Length
+        has_description: Linear measurement of shelf space in meters
+      description: Example capacity type
+    notes:
+    - |
+      Preserved from prior description (commit bd8368df):
+
+      Abstract base class for capacity measurement types.
+
+      **RULE 0b COMPLIANT**:
+
+      This is the ABSTRACT BASE CLASS (singular "Type") defining the taxonomy.
+      Concrete subclasses are defined in `CapacityTypes.yaml` (plural).
+
+      **CAPACITY TYPE HIERARCHY**:
+
+      | Type | Description | Unit Examples |
+      |------|-------------|---------------|
+      | VOLUME | Cubic capacity | m³, ft³ |
+      | SHELF_LENGTH | Linear shelf meters | m, ft |
+      | FLOOR_AREA | Floor space | m², ft² |
+      | ITEM_COUNT | Number of items | boxes, folders |
+      | WEIGHT | Weight capacity | kg, tons |
+      | SEATING | Seating capacity | seats, persons |
+      | DISPLAY_AREA | Exhibition space | m² |
+      | RACK_SLOTS | Rack/shelf slots | count |
+      | DRAWER_UNITS | Drawer units | count |
+      | CABINET_UNITS | Cabinet/storage units | count |
+
+      **QUDT ALIGNMENT**:
+
+      Capacity types align with QUDT quantity kinds for interoperability
+      with scientific measurement systems.
+
+      Created as part of capacity_type migration per slot_fixes.yaml (Rule 53).
+    annotations:
+      custodian_types: "['*']"
+      custodian_types_rationale: Capacity types apply to all storage facilities.
+      specificity_score: 0.55
+      specificity_rationale: Specialized taxonomy for storage capacity measurements.

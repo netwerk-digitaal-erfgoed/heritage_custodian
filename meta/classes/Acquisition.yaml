@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/Acquisition
+name: Acquisition
+title: Acquisition
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/temporal_extent
+classes:
+  Acquisition:
+    description: >-
+      Event capturing how and when an object or specimen was obtained for a
+      collection, including method, source, and timing information.
+    alt_descriptions:
+      nl: >-
+        Gebeurtenis die vastlegt hoe en wanneer een object of specimen is
+        verkregen voor een collectie, inclusief methode, bron en tijdsinformatie.
+      de: >-
+        Ereignis, das erfasst, wie und wann ein Objekt oder Exemplar fuer eine
+        Sammlung erworben wurde, einschliesslich Methode, Quelle und
+        Zeitangaben.
+      fr: >-
+        Evenement capturant comment et quand un objet ou specimen a ete obtenu
+        pour une collection, y compris la methode, la source et les informations
+        temporelles.
+      es: >-
+        Evento que captura como y cuando se obtuvo un objeto o especimen para una
+        coleccion, incluyendo metodo, fuente e informacion temporal.
+      ar: >-
+        حدث يسجل كيف ومتى تم الحصول على شيء أو عينة لمجموعة، بما في ذلك الطريقة
+        والمصدر والمعلومات الزمنية.
+      id: >-
+        Peristiwa yang mencatat bagaimana dan kapan objek atau spesimen
+        diperoleh untuk koleksi, termasuk metode, sumber, dan informasi waktu.
+      zh: >-
+        记录物品或标本如何以及何时为馆藏获取的事件，包括方法、来源和时间信息。
+    examples:
+    - value:
+        temporal_extent:
+          begin_of_the_begin: "1923-03-15"
+          end_of_the_end: "1923-03-15"
+      description: Museum object purchased from dealer
+    - value:
+        temporal_extent:
+          begin_of_the_begin: "1750-01-01"
+          end_of_the_end: "1759-12-31"
+      description: Biological specimen collected in the field
+    - value:
+        temporal_extent:
+          begin_of_the_begin: "2015-06-01"
+          end_of_the_end: "2015-06-30"
+      description: Art donated by artist's estate
+    class_uri: crm:E8_Acquisition
+    slots:
+    - temporal_extent
+    - has_score
+    structured_aliases:
+    - literal_form: verwerving
+      in_language: nl
+    - literal_form: Erwerbung
+      in_language: de
+    - literal_form: acquisition
+      in_language: fr
+    - literal_form: adquisicion
+      in_language: es
+    - literal_form: الاستحواذ
+      in_language: ar
+    - literal_form: akuisisi
+      in_language: id
+    - literal_form: 获取
+      in_language: zh
+    keywords:
+    - collection acquisition
+    - provenance
+    - field collection
+    - purchase
+    - donation
+    - bequest
+    - transfer
+    exact_mappings:
+    - crm:E8_Acquisition
+    close_mappings:
+    - prov:Activity
+    - schema:TradeAction
+    related_mappings:
+    - rico:Event
+    - dwc:Event
+    broad_mappings:
+    - skos:Concept
+    comments:
+    - Created per slot_fixes.yaml revision for collection_date migration
+    - Replaces simple collection_date string with structured acquisition event
+    - RULE 53: Part of collection_date to was_acquired_through plus Acquisition migration
+    annotations:
+      specificity_score: "0.7"
+      specificity_rationale: Fairly specific - applies to items with acquisition provenance
+      custodian_types: "['*']"

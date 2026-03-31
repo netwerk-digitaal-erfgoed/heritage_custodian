@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: superseded_by
+# ==============================================================================
+# Indicates what replaces, succeeds, or renders the entity obsolete.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DC Terms**  | `dcterms:isReplacedBy`| dcterms.rdf:1512-1533      | exact   | "Resource that supersedes this"    |
+# | **Schema.org**| `schema:supersededBy` | schemaorg.owl              | exact   | "Supersedes this item"             |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual, slot_uri to dcterms:isReplacedBy
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/superseded_by
+name: superseded_by
+title: Superseded By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  superseded_by:
+    slot_uri: dcterms:isReplacedBy
+    description: >-
+      To be replaced, succeeded, or rendered obsolete by a newer or more
+      authoritative version, document, or entity.
+    alt_descriptions:
+      nl: >-
+        Vervangen, opgevolgd of verouderd verklaard door een nieuwere of meer
+        gezaghebbende versie, document of entiteit.
+      de: >-
+        Durch eine neuere oder maßgeblichere Version, ein Dokument oder eine
+        Entität ersetzt, abgelöst oder obsolet gemacht zu werden.
+      fr: >-
+        Être remplacé, succédé ou rendu obsolète par une version, un document
+        ou une entité plus récent ou plus autorisé.
+      ar: >-
+        أن يتم استبداله أو خلافته أو جعله قديمًا بواسطة نسخة أو وثيقة أو كيان
+        أحدث أو أكثر موثوقية.
+      id: >-
+        Digantikan, dilanjutkan, atau dijadikan usang oleh versi, dokumen,
+        atau entitas yang lebih baru atau lebih otoritatif.
+      zh: >-
+        被更新或更权威的版本、文档或实体取代、继承或淘汰。
+      es: >-
+        Ser reemplazado, sucedido o vuelto obsoleto por una versión, documento
+        o entidad más nueva o con más autoridad.
+    structured_aliases:
+      - literal_form: vervangen door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ersetzt durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: remplacé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم استبداله بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: digantikan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被取代
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: reemplazado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - is_or_was_superseded_by
+    exact_mappings:
+      - schema:supersededBy  # Schema.org superseding relationship
+    annotations:
+      custodian_types: '["*"]'

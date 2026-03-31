@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/APIVersion
+name: APIVersion
+title: API Version Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_label
+classes:
+  APIVersion:
+    class_uri: hc:APIVersion
+    description: >-
+      Specific release or iteration of an Application Programming Interface,
+      identified by version number and potentially associated with changelogs
+      and deprecation schedules.
+    alt_descriptions:
+      nl: >-
+        Specifieke release of iteratie van een Application Programming Interface,
+        geidentificeerd door versienummer en mogelijk gekoppeld aan changelogs
+        en deprecation-schema's.
+      de: >-
+        Spezifische Veroffentlichung oder Iteration einer Programmierschnittstelle,
+        identifiziert durch Versionsnummer und moglicherweise verknupft mit
+        Anderungsprotokollen und Deprecation-Zeitplanen.
+      fr: >-
+        Version specifique ou iteration d'une interface de programmation d'application,
+        identifiee par numero de version et potentiellement associee aux journaux
+        des modifications et aux calendriers d'obsolescence.
+      es: >-
+        Version especifica o iteracion de una interfaz de programacion de aplicaciones,
+        identificada por numero de version y potencialmente asociada con registros
+        de cambios y calendarios de obsolescencia.
+      ar: >-
+        إصدار محدد أو تكرار لواجهة برمجة التطبيقات، محدد برقم الإصدار وربما
+        مرتبط بسجلات التغيير وجداول الإهمال.
+      id: >-
+        Rilis atau iterasi spesifik dari Antarmuka Pemrograman Aplikasi, diidentifikasi
+        oleh nomor versi dan berpotensi terkait dengan log perubahan dan jadwal penghentian.
+      zh: >-
+        应用程序编程接口的特定版本或迭代，由版本号标识，可能与变更日志和弃用计划相关联。
+    structured_aliases:
+    - literal_form: API-versie
+      in_language: nl
+    - literal_form: API-Version
+      in_language: de
+    - literal_form: version d'API
+      in_language: fr
+    - literal_form: version de API
+      in_language: es
+    - literal_form: إصدار API
+      in_language: ar
+    - literal_form: versi API
+      in_language: id
+    - literal_form: API版本
+      in_language: zh
+    close_mappings:
+    - schema:SoftwareVersion
+    - dcterms:hasVersion
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_label
+    - identified_by
+    slot_usage:
+      has_label:
+        pattern: "^v?[0-9]+\\.[0-9]+(\\.[0-9]+)?(-[a-zA-Z0-9]+)?$"
+        examples:
+        - value: "v2.1.0"
+        - value: "1.0.0-beta"
+        - value: "2.0"
+      identified_by:
+        range: string
+        required: true
+    comments:
+    - Follows semantic versioning convention (MAJOR.MINOR.PATCH)
+    - Used to track API compatibility and deprecation
+    - Links to endpoint definitions for versioned access
+    see_also:
+    - APIEndpoint
+    - https://semver.org/
+    examples:
+    - value:
+        has_label: "v2.1.0"
+        identified_by: "v2.1.0"
+      description: Semantic version 2.1.0 of an API
+    - value:
+        has_label: "v3.0.0-beta"
+        identified_by: "v3.0.0-beta"
+      description: Beta release of version 3.0.0
+    keywords:
+    - API version
+    - semantic versioning
+    - release
+    - changelog
+    - deprecation
+    - compatibility
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Specific to API versioning
+      custodian_types: "['*']"

@@ -1,0 +1,710 @@
+id: https://nde.nl/ontology/hc/class/SocialMediaPostTypes
+name: social_media_post_types
+title: Social Media Post Types Collection
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  as: https://www.w3.org/ns/activitystreams#
+  wd: http://www.wikidata.org/entity/
+imports:
+  - ./SocialMediaPostType
+  - linkml:types
+  - ../metadata
+  - ../slots/has_score
+  - ../slots/categorized_as
+  - ../slots/ephemeral
+  - ../slots/has_time_interval
+  - ../slots/has_format
+  - ../slots/applicable_in
+classes:
+  VideoPostType:
+    is_a: SocialMediaPostType
+    class_uri: as:Video
+    description: >-
+      Long-form video content format for educational, documentary, and promotional purposes.
+    alt_descriptions:
+      nl: Langdurig videocontentformaat voor educatieve, documentaire en promotionele doeleinden.
+      de: Langformat-Videoinhalt für Bildungs-, Dokumentar- und Werbezwecke.
+      fr: Contenu vidéo long format à des fins éducatives, documentaires et promotionnelles.
+      es: Contenido de video de formato largo para fines educativos, documentales y promocionales.
+      ar: محتوى فيديو طويل للأغراض التعليمية والوثائقية والترويجية.
+      id: Konten video format panjang untuk tujuan pendidikan, dokumenter, dan promosi.
+      zh: 用于教育、纪录片和宣传目的的长视频内容格式。
+    structured_aliases:
+    - literal_form: video-post-type
+      in_language: nl
+    - literal_form: VideoPostType
+      in_language: de
+    - literal_form: type-post-video
+      in_language: fr
+    - literal_form: tipo-post-video
+      in_language: es
+    - literal_form: نوع-منشور-الفيديو
+      in_language: ar
+    - literal_form: tipe-postingan-video
+      in_language: id
+    - literal_form: 视频帖子类型
+      in_language: zh
+    keywords:
+    - video
+    - long-form content
+    - educational video
+    - documentary
+    - promotional content
+    - YouTube
+    - Vimeo
+    broad_mappings:
+    - as:Video
+    - skos:Concept
+    close_mappings:
+    - schema:VideoObject
+    slot_usage:
+      categorized_as:
+        equals_string: VIDEO
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - YouTube
+        - Vimeo
+        - Facebook
+        - LinkedIn
+        - XTwitter
+      has_format:
+        equals_string_in:
+        - video/mp4
+        - video/webm
+        - video/quicktime
+    comments:
+    - Primary format for heritage institution video content
+    - YouTube most common platform for GLAM sector
+    - Supports captions, chapters, and community features
+    - Long-form content for educational and documentary purposes
+    slots:
+    - has_score
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+  ShortVideoPostType:
+    is_a: SocialMediaPostType
+    class_uri: hc:ShortVideo
+    description: >-
+      Vertical short-form video format optimized for mobile consumption with platform-specific duration limits.
+    alt_descriptions:
+      nl: Verticaal kort videoformaat geoptimaliseerd voor mobiel gebruik met platformspecifieke duurlimieten.
+      de: Vertikales Kurzvideoformat optimiert für mobile Nutzung mit plattformspezifischen Dauergrenzen.
+      fr: Format vidéo court vertical optimisé pour la consommation mobile avec des limites de durée spécifiques à la plateforme.
+      es: Formato de video corto vertical optimizado para consumo móvil con límites de duración específicos de la plataforma.
+      ar: تنسيق فيديو قصير عمودي محسن للاستهلاك المحمول مع حدود مدة محددة للمنصة.
+      id: Format video pendek vertikal yang dioptimalkan untuk konsumsi seluler dengan batas durasi spesifik platform.
+      zh: 针对移动消费优化并具有平台特定时长限制的垂直短视频格式。
+    structured_aliases:
+    - literal_form: korte-video-post-type
+      in_language: nl
+    - literal_form: KurzVideoPostType
+      in_language: de
+    - literal_form: type-post-video-court
+      in_language: fr
+    - literal_form: tipo-post-video-corto
+      in_language: es
+    - literal_form: نوع-منشور-الفيديو-القصير
+      in_language: ar
+    - literal_form: tipe-postingan-video-pendek
+      in_language: id
+    - literal_form: 短视频帖子类型
+      in_language: zh
+    keywords:
+    - short video
+    - vertical video
+    - TikTok
+    - Reels
+    - mobile-first
+    - short-form content
+    - 90 seconds
+    close_mappings:
+    - as:Video
+    slot_usage:
+      categorized_as:
+        equals_string: SHORT_VIDEO
+      has_time_interval:
+        equals_string: PT90S
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - TikTok
+        - YouTube
+        - Instagram
+        - Facebook
+        - Snapchat
+    comments:
+    - Fastest-growing content format 2020-2024
+    - Essential for reaching younger audiences
+    - Vertical format (9:16) required
+    - TikTok pioneered format, others followed
+    slots:
+    - has_score
+    broad_mappings:
+    - schema:VideoObject
+    - skos:Concept
+  ImagePostType:
+    is_a: SocialMediaPostType
+    class_uri: as:Image
+    description: >-
+      Static visual content format for photographs, graphics, and digitized materials.
+    alt_descriptions:
+      nl: Statisch visueel inhoudsformaat voor foto's, grafisch materiaal en gedigitaliseerde materialen.
+      de: Statisches visuelles Inhaltsformat für Fotos, Grafiken und digitalisiertes Material.
+      fr: Format de contenu visuel statique pour photographies, graphiques et matériaux numérisés.
+      es: Formato de contenido visual estático para fotografías, gráficos y materiales digitalizados.
+      ar: تنسيق محتوى بصري ثابت للصور والرسومات والمواد الرقمية.
+      id: Format konten visual statis untuk foto, grafis, dan materi yang didigitalkan.
+      zh: 用于照片、图形和数字化材料的静态视觉内容格式。
+    structured_aliases:
+    - literal_form: afbeelding-post-type
+      in_language: nl
+    - literal_form: BildPostType
+      in_language: de
+    - literal_form: type-post-image
+      in_language: fr
+    - literal_form: tipo-post-imagen
+      in_language: es
+    - literal_form: نوع-منشور-الصورة
+      in_language: ar
+    - literal_form: tipe-postingan-gambar
+      in_language: id
+    - literal_form: 图像帖子类型
+      in_language: zh
+    keywords:
+    - image
+    - photograph
+    - visual content
+    - Instagram
+    - Pinterest
+    - Flickr
+    - digitized materials
+    broad_mappings:
+    - as:Image
+    - skos:Concept
+    close_mappings:
+    - schema:ImageObject
+    slot_usage:
+      categorized_as:
+        equals_string: IMAGE
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - Instagram
+        - Pinterest
+        - Flickr
+        - Facebook
+        - XTwitter
+        - LinkedIn
+      has_format:
+        equals_string_in:
+        - image/jpeg
+        - image/png
+        - image/webp
+        - image/gif
+    comments:
+    - Core content type for visual heritage
+    - Instagram dominant for art museums
+    - Pinterest valuable for discovery
+    - Flickr for high-resolution and CC licensing
+    slots:
+    - has_score
+  TextPostType:
+    is_a: SocialMediaPostType
+    class_uri: as:Note
+    description: >-
+      Text-based content format for short written updates, announcements, and commentary.
+    alt_descriptions:
+      nl: Tekstgebaseerd inhoudsformaat voor korte geschreven updates, aankondigingen en commentaar.
+      de: Textbasiertes Inhaltsformat für kurze schriftliche Updates, Ankündigungen und Kommentare.
+      fr: Format de contenu textuel pour de courtes mises à jour écrites, annonces et commentaires.
+      es: Formato de contenido basado en texto para actualizaciones breves, anuncios y comentarios.
+      ar: تنسيق محتوى نصي للتحديثات المكتوبة القصيرة والإعلانات والتعليقات.
+      id: Format konten berbasis teks untuk pembaruan tertulis singkat, pengumuman, dan komentar.
+      zh: 用于简短书面更新、公告和评论的文本内容格式。
+    structured_aliases:
+    - literal_form: tekst-post-type
+      in_language: nl
+    - literal_form: TextPostType
+      in_language: de
+    - literal_form: type-post-texte
+      in_language: fr
+    - literal_form: tipo-post-texto
+      in_language: es
+    - literal_form: نوع-منشور-النص
+      in_language: ar
+    - literal_form: tipe-postingan-teks
+      in_language: id
+    - literal_form: 文本帖子类型
+      in_language: zh
+    keywords:
+    - text
+    - announcement
+    - commentary
+    - microblogging
+    - Mastodon
+    - Bluesky
+    - Twitter
+    - Threads
+    broad_mappings:
+    - as:Note
+    - skos:Concept
+    close_mappings:
+    - schema:SocialMediaPosting
+    slot_usage:
+      categorized_as:
+        equals_string: TEXT
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - XTwitter
+        - Mastodon
+        - Bluesky
+        - LinkedIn
+        - Facebook
+        - Threads
+    comments:
+    - Foundation of social media engagement
+    - Mastodon/Bluesky growing as X alternatives
+    - Often combined with images or links
+    - Hashtags important for heritage campaigns
+    slots:
+    - has_score
+  StoryPostType:
+    is_a: SocialMediaPostType
+    class_uri: hc:Story
+    description: >-
+      Temporary visual content format that automatically expires after a defined period.
+    alt_descriptions:
+      nl: Tijdelijk visueel inhoudsformaat dat automatisch verloopt na een gedefinieerde periode.
+      de: Vorübergehendes visuelles Inhaltsformat, das nach einem definierten Zeitraum automatisch abläuft.
+      fr: Format de contenu visuel temporaire qui expire automatiquement après une période définie.
+      es: Formato de contenido visual temporal que expira automáticamente después de un período definido.
+      ar: تنسيق محتوى بصري مؤقت ينتهي تلقائيًا بعد فترة محددة.
+      id: Format konten visual sementara yang kedaluwarsa secara otomatis setelah periode tertentu.
+      zh: 在定义时期后自动过期的临时视觉内容格式。
+    structured_aliases:
+    - literal_form: verhaal-post-type
+      in_language: nl
+    - literal_form: StoryPostType
+      in_language: de
+    - literal_form: type-post-story
+      in_language: fr
+    - literal_form: tipo-post-historia
+      in_language: es
+    - literal_form: نوع-منشور-القصة
+      in_language: ar
+    - literal_form: tipe-postingan-cerita
+      in_language: id
+    - literal_form: 故事帖子类型
+      in_language: zh
+    keywords:
+    - story
+    - ephemeral content
+    - temporary
+    - 24-hour
+    - Instagram Stories
+    - Snapchat
+    - Facebook Stories
+    close_mappings:
+    - as:Note
+    - schema:SocialMediaPosting
+    slot_usage:
+      categorized_as:
+        equals_string: STORY
+      has_time_interval:
+        equals_string: PT15S
+      ephemeral:
+        required: true
+        ifabsent: 'true'
+      applicable_in:
+        equals_string_in:
+        - Instagram
+        - Facebook
+        - Snapchat
+    comments:
+    - Ephemeral content - auto-deletes after 24 hours
+    - High engagement due to FOMO effect
+    - Highlights feature preserves selected stories
+    - Interactive stickers for engagement
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+  LiveStreamPostType:
+    is_a: SocialMediaPostType
+    class_uri: hc:LiveStream
+    description: >-
+      Real-time broadcast format enabling synchronous audience interaction during transmission.
+    alt_descriptions:
+      nl: Real-time uitzendformaat dat synchrone publieksinteractie mogelijk maakt tijdens de uitzending.
+      de: Echtzeit-Sendeformat, das synchrone Publikumsinteraktion während der Übertragung ermöglicht.
+      fr: Format de diffusion en direct permettant l'interaction synchrone avec l'audience pendant la transmission.
+      es: Formato de transmisión en vivo que permite la interacción sincrónica con la audiencia durante la transmisión.
+      ar: تنسيق بث مباشر يتيح تفاعل الجمهور المتزامن أثناء البث.
+      id: Format siaran langsung yang memungkinkan interaksi audiens sinkron selama transmisi.
+      zh: 在传输期间实现同步受众交互的实时广播格式。
+    structured_aliases:
+    - literal_form: live-stream-post-type
+      in_language: nl
+    - literal_form: LiveStreamPostType
+      in_language: de
+    - literal_form: type-post-direct
+      in_language: fr
+    - literal_form: tipo-post-en-vivo
+      in_language: es
+    - literal_form: نوع-منشور-البث-المباشر
+      in_language: ar
+    - literal_form: tipe-postingan-live-stream
+      in_language: id
+    - literal_form: 直播帖子类型
+      in_language: zh
+    keywords:
+    - live stream
+    - real-time
+    - broadcast
+    - interactive
+    - YouTube Live
+    - Twitch
+    - Facebook Live
+    - Instagram Live
+    close_mappings:
+    - as:Video
+    - schema:VideoObject
+    slot_usage:
+      categorized_as:
+        equals_string: LIVE_STREAM
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - YouTube
+        - Instagram
+        - Facebook
+        - Twitch
+        - LinkedIn
+        - TikTok
+    comments:
+    - Real-time interaction with audience
+    - Often archived as standard video after broadcast
+    - YouTube and Facebook most common for heritage
+    - Twitch for gaming/cultural crossover events
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+  AudioPostType:
+    is_a: SocialMediaPostType
+    class_uri: as:Audio
+    description: >-
+      Sound-based content format including podcasts, audio guides, and oral history recordings.
+    alt_descriptions:
+      nl: Geluidgebaseerd inhoudsformaat inclusief podcasts, audiogidsen en mondelinge geschiedenisopnames.
+      de: Klangbasiertes Inhaltsformat einschließlich Podcasts, Audioguides und Oral-History-Aufnahmen.
+      fr: Format de contenu sonore comprenant podcasts, audioguides et enregistrements d'histoire orale.
+      es: Formato de contenido basado en sonido que incluye podcasts, guías de audio y grabaciones de historia oral.
+      ar: تنسيق محتوى صوتي يشمل البودكاست والأدلة الصوتية وتسجيلات التاريخ الشفهي.
+      id: Format konten berbasis suara termasuk podcast, panduan audio, dan rekaman sejarah lisan.
+      zh: 包括播客、音频指南和口述历史录音的基于声音的内容格式。
+    structured_aliases:
+    - literal_form: audio-post-type
+      in_language: nl
+    - literal_form: AudioPostType
+      in_language: de
+    - literal_form: type-post-audio
+      in_language: fr
+    - literal_form: tipo-post-audio
+      in_language: es
+    - literal_form: نوع-منشور-الصوت
+      in_language: ar
+    - literal_form: tipe-postingan-audio
+      in_language: id
+    - literal_form: 音频帖子类型
+      in_language: zh
+    keywords:
+    - audio
+    - podcast
+    - audio guide
+    - oral history
+    - Spotify
+    - SoundCloud
+    - Apple Podcasts
+    broad_mappings:
+    - as:Audio
+    - skos:Concept
+    close_mappings:
+    - schema:AudioObject
+    - schema:PodcastEpisode
+    slot_usage:
+      categorized_as:
+        equals_string: AUDIO
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - Spotify
+        - SoundCloud
+        - ApplePodcasts
+        - Audible
+      has_format:
+        equals_string_in:
+        - audio/mpeg
+        - audio/mp4
+        - audio/wav
+        - audio/ogg
+    comments:
+    - Growing format for heritage storytelling
+    - Podcasts excellent for long-form narratives
+    - Audio guides extend museum experience
+    - Oral histories preserve community voices
+    slots:
+    - has_score
+  ArticlePostType:
+    is_a: SocialMediaPostType
+    class_uri: as:Article
+    description: >-
+      Long-form written content format for in-depth exploration of heritage topics and narratives.
+    alt_descriptions:
+      nl: Langdurig geschreven inhoudsformaat voor diepgaande verkenning van erfgoedonderwerpen en -verhalen.
+      de: Langformates schriftliches Inhaltsformat für eingehende Erkundung von Erbethemen und -erzählungen.
+      fr: Format de contenu écrit long format pour une exploration approfondie des sujets et récits patrimoniaux.
+      es: Formato de contenido escrito extenso para la exploración en profundidad de temas y narrativas patrimoniales.
+      ar: تنسيق محتوى مكتوب طويل للاستكشاف المتعمق لمواضيع وروايات التراث.
+      id: Format konten tertulis panjang untuk eksplorasi mendalam topik dan narasi warisan.
+      zh: 用于深入探索遗产主题和叙事的长篇书面内容格式。
+    structured_aliases:
+    - literal_form: artikel-post-type
+      in_language: nl
+    - literal_form: ArtikelPostType
+      in_language: de
+    - literal_form: type-post-article
+      in_language: fr
+    - literal_form: tipo-post-articulo
+      in_language: es
+    - literal_form: نوع-منشور-المقال
+      in_language: ar
+    - literal_form: tipe-postingan-artikel
+      in_language: id
+    - literal_form: 文章帖子类型
+      in_language: zh
+    keywords:
+    - article
+    - long-form writing
+    - blog
+    - Medium
+    - Substack
+    - LinkedIn Articles
+    - in-depth content
+    broad_mappings:
+    - as:Article
+    - skos:Concept
+    close_mappings:
+    - schema:Article
+    - schema:BlogPosting
+    slot_usage:
+      categorized_as:
+        equals_string: ARTICLE
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - Medium
+        - Substack
+        - LinkedIn
+        - WordPress
+    comments:
+    - Best for in-depth heritage storytelling
+    - Medium popular for cultural content
+    - Substack for newsletter-style distribution
+    - LinkedIn Articles for professional audience
+    slots:
+    - has_score
+  ThreadPostType:
+    is_a: SocialMediaPostType
+    class_uri: hc:Thread
+    description: >-
+      Sequential multi-post format for extended narrative storytelling across linked entries.
+    alt_descriptions:
+      nl: Sequentieel multi-postformaat voor uitgebreide narratieve verhalen over gekoppelde vermeldingen.
+      de: Sequentielles Multi-Post-Format für erweiterte erzählerische Geschichten über verknüpfte Einträge.
+      fr: Format multi-message séquentiel pour des récits narratifs étendus à travers des entrées liées.
+      es: Formato secuencial de múltiples publicaciones para narrativas extendidas a través de entradas vinculadas.
+      ar: تنسيق متسلسل متعدد المنشورات لسرد القصص الموسعة عبر الإدخالات المرتبطة.
+      id: Format multi-posting berurutan untuk cerita naratif yang diperpanjang melalui entri tertaut.
+      zh: 通过链接条目进行扩展叙事讲故事的顺序多帖格式。
+    structured_aliases:
+    - literal_form: thread-post-type
+      in_language: nl
+    - literal_form: ThreadPostType
+      in_language: de
+    - literal_form: type-post-fil
+      in_language: fr
+    - literal_form: tipo-post-hilo
+      in_language: es
+    - literal_form: نوع-منشور-الخيط
+      in_language: ar
+    - literal_form: tipe-postingan-utas
+      in_language: id
+    - literal_form: 串帖类型
+      in_language: zh
+    keywords:
+    - thread
+    - multi-post
+    - sequential
+    - storytelling
+    - Twitter thread
+    - Bluesky thread
+    - narrative
+    close_mappings:
+    - as:Collection
+    - schema:ItemList
+    slot_usage:
+      categorized_as:
+        equals_string: THREAD
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - XTwitter
+        - Mastodon
+        - Bluesky
+        - Threads
+    comments:
+    - Popular format for heritage storytelling
+    - Overcomes character limits creatively
+    - '#MuseumWeek and similar campaigns use threads'
+    - Thread reader tools compile into articles
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+  CarouselPostType:
+    is_a: SocialMediaPostType
+    class_uri: hc:Carousel
+    description: >-
+      Swipeable multi-item format combining multiple images or media assets in a single post.
+    alt_descriptions:
+      nl: Veegbaar multi-itemformaat dat meerdere afbeeldingen of media-assets combineert in één bericht.
+      de: Wischbares Multi-Item-Format, das mehrere Bilder oder Medien-Assets in einem einzigen Post kombiniert.
+      fr: Format multi-éléments glissable combinant plusieurs images ou ressources média dans une seule publication.
+      es: Formato deslizable de múltiples elementos que combina múltiples imágenes o recursos multimedia en una sola publicación.
+      ar: تنسيق متعدد العناصر القابلة للتمرير يجمع صورًا متعددة أو أصول وسائط في منشور واحد.
+      id: Format multi-item yang dapat digeser menggabungkan beberapa gambar atau aset media dalam satu postingan.
+      zh: 在单个帖子中组合多个图像或媒体资产的可滑动多项目格式。
+    structured_aliases:
+    - literal_form: carousel-post-type
+      in_language: nl
+    - literal_form: CarouselPostType
+      in_language: de
+    - literal_form: type-post-carrousel
+      in_language: fr
+    - literal_form: tipo-post-carrusel
+      in_language: es
+    - literal_form: نوع-منشور-الكاروسيل
+      in_language: ar
+    - literal_form: tipe-postingan-carousel
+      in_language: id
+    - literal_form: 轮播帖子类型
+      in_language: zh
+    keywords:
+    - carousel
+    - swipeable
+    - multi-image
+    - gallery
+    - Instagram carousel
+    - LinkedIn carousel
+    - engagement
+    close_mappings:
+    - as:Collection
+    - schema:ImageGallery
+    slot_usage:
+      categorized_as:
+        equals_string: CAROUSEL
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+      applicable_in:
+        equals_string_in:
+        - Instagram
+        - LinkedIn
+        - Facebook
+        - XTwitter
+    comments:
+    - Excellent for detailed collection storytelling
+    - Instagram carousels have highest engagement
+    - Good for before/after conservation
+    - LinkedIn carousels popular for professional content
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept
+  OtherPostType:
+    is_a: SocialMediaPostType
+    class_uri: as:Object
+    description: >-
+      Fallback category for content formats not matching established classifications.
+    alt_descriptions:
+      nl: Terugvalcategorie voor inhoudsformaten die niet overeenkomen met gevestigde classificaties.
+      de: Rückfallkategorie für Inhaltsformate, die nicht mit etablierten Klassifikationen übereinstimmen.
+      fr: Catégorie de repli pour les formats de contenu ne correspondant pas aux classifications établies.
+      es: Categoría alternativa para formatos de contenido que no coinciden con las clasificaciones establecidas.
+      ar: فئة احتياطية لتنسيقات المحتوى التي لا تتوافق مع التصنيفات المعمول بها.
+      id: Kategori fallback untuk format konten yang tidak cocok dengan klasifikasi yang mapan.
+      zh: 不匹配既定分类的内容格式的回退类别。
+    structured_aliases:
+    - literal_form: overig-post-type
+      in_language: nl
+    - literal_form: SonstigesPostType
+      in_language: de
+    - literal_form: type-post-autre
+      in_language: fr
+    - literal_form: tipo-post-otro
+      in_language: es
+    - literal_form: نوع-منشور-آخر
+      in_language: ar
+    - literal_form: tipe-postingan-lainnya
+      in_language: id
+    - literal_form: 其他帖子类型
+      in_language: zh
+    keywords:
+    - other
+    - fallback
+    - uncategorized
+    - miscellaneous
+    - unspecified format
+    close_mappings:
+    - as:Object
+    - schema:MediaObject
+    slot_usage:
+      categorized_as:
+        equals_string: OTHER
+      ephemeral:
+        required: true
+        ifabsent: 'false'
+    comments:
+    - Fallback for content not matching other types
+    - Document specific format for future classification
+    - Review periodically for new category creation
+    - Use sparingly - prefer specific types when possible
+    slots:
+    - has_score
+    broad_mappings:
+    - skos:Concept

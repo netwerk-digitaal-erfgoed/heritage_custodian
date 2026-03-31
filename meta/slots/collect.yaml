@@ -1,0 +1,188 @@
+# ==============================================================================
+# LinkML Slot Definition: collect
+# ==============================================================================
+# Systematically acquire, document, and safeguard items or data.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                         | File/Line             | Mapping | Notes                              |
+# |---------------|----------------------------------|-----------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:isAccumulatorOf`           | RiC-O_1-1:9859-9892   | close   | Agent accumulates record resource  |
+# | **RiC-O**     | `rico:hasAccumulator`            | RiC-O_1-1:3525-3563   | related | Record has accumulator agent       |
+# | **CIDOC-CRM** | `crm:P109_has_current_or_former_curator` | CIDOC_CRM:3639-3665 | related | Curatorial responsibility      |
+# | **CIDOC-CRM** | `crm:P22_transferred_title_to`   | CIDOC_CRM:1681-1708   | related | Acquisition event                  |
+# | **Schema.org**| `schema:acquiredFrom`            | schemaorg.owl:6762    | related | Acquisition source                 |
+# | **Schema.org**| `schema:collection`              | schemaorg.owl:12156   | related | Collection target of action        |
+# | **DCAT**      | `dcat:dataset`                   | dcat3.ttl:818         | related | Catalog has dataset                |
+# | **Schema.org**| `schema:owns`                    | schemaorg.owl:28732   | broad   | Ownership (broader)                |
+# | **RiC-O**     | `rico:hasOrHadHolder`            | RiC-O_1-1:6437        | broad   | Holder relationship                |
+# | **CIDOC-CRM** | `crm:P49_has_former_or_current_keeper` | CIDOC_CRM:2383-2408 | broad   | Custody (broader)              |
+# | **CIDOC-CRM** | `crm:P50_has_current_keeper`   | CIDOC_CRM:2410-2436   | broad   | Current custody (broader)          |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/collect
+name: collect
+title: collect
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcat: http://www.w3.org/ns/dcat#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  collect:
+    slot_uri: hc:collect
+    description: >-
+      To systematically acquire, document, and safeguard items or data.
+    alt_descriptions:
+      nl: >-
+        Systematisch objecten of gegevens verwerven, documenteren en beschermen.
+      de: >-
+        Systematisch Gegenstände oder Daten erwerben, dokumentieren und schützen.
+      fr: >-
+        Acquérir, documenter et protéger systématiquement des objets ou des données.
+      ar: >-
+        الحصول على العناصر أو البيانات وتوثيقها وحمايتها بشكل منهجي.
+      id: >-
+        Secara sistematis memperoleh, mendokumentasikan, dan melindungi item atau data.
+      zh: >-
+        系统地获取、记录和保护物品或数据。
+      es: >-
+        Adquirir, documentar y salvaguardar sistemáticamente objetos o datos.
+    structured_aliases:
+      - literal_form: verzamelt
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_collect
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: sammelt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collecte
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يجمع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengumpulkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 收集
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: colecciona
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    multivalued: true
+    inlined: false
+    inlined_as_list: false
+    
+    # VERIFIED MAPPINGS (2026-02-XX)
+    # Source files: data/ontology/RiC-O_1-1.rdf, data/ontology/CIDOC_CRM_v7.1.3.rdf, 
+    #               data/ontology/schemaorg.owl, data/ontology/dcat3.ttl
+    
+    close_mappings:
+      # RiC-O_1-1.rdf line 9859-9892: isAccumulatorOf
+      # "Connects an Agent to a Record Resource or Instantiation it accumulates"
+      # "accumulates it, be it intentionally (collecting) or not (receiving in the course of its activities)"
+      # Close: archival accumulation includes intentional collecting
+      - rico:isAccumulatorOf  # from RiC-O_1-1.rdf - agent accumulates record resource
+    
+    related_mappings:
+      # RiC-O_1-1.rdf line 3525-3563: hasAccumulator (inverse)
+      # "Connects a Record Resource or Instantiation to an Agent that accumulates it"
+      # Related: inverse direction - different axis from collecting activity
+      - rico:hasAccumulator  # from RiC-O_1-1.rdf - record resource has accumulator agent (inverse direction)
+      
+      # CIDOC_CRM_v7.1.3.rdf line 3639-3665: P109_has_current_or_former_curator
+      # Related but different: curatorial responsibility, not collecting scope
+      - crm:P109_has_current_or_former_curator  # from CIDOC_CRM_v7.1.3.rdf - curatorial responsibility
+      
+      # CIDOC_CRM_v7.1.3.rdf line 1681-1708: P22_transferred_title_to
+      # Related: acquisition event that transferred title (event-focused, not scope)
+      - crm:P22_transferred_title_to  # from CIDOC_CRM_v7.1.3.rdf - acquisition event
+      
+      # schemaorg.owl line 6762-6765: acquiredFrom
+      # Related but different direction: source of acquisition, not what is collected
+      - schema:acquiredFrom  # from schemaorg.owl - acquisition source (different direction)
+      
+      # schemaorg.owl line 12156-12161: collection
+      # Related: collection as target of action
+      - schema:collection  # from schemaorg.owl - collection target of action
+      
+      # dcat3.ttl line 818: dataset
+      # Related: links catalog to dataset (data collection context)
+      - dcat:dataset  # from dcat3.ttl - catalog has dataset (data context)
+    
+    broad_mappings:
+      # schemaorg.owl line 28732-28736: owns
+      # Broader: general ownership, not specifically about collecting activity
+      - schema:owns  # from schemaorg.owl - ownership (broader than collecting)
+      
+      # RiC-O_1-1.rdf line 6437-6439: hasOrHadHolder
+      # Broader: holding/custody relationship, not collecting activity
+      - rico:hasOrHadHolder  # from RiC-O_1-1.rdf - holder relationship (broader)
+      
+      # CIDOC_CRM_v7.1.3.rdf line 2383-2408: P49_has_former_or_current_keeper
+      # Broader: custody/keeping, not active collecting
+      - crm:P49_has_former_or_current_keeper  # from CIDOC_CRM_v7.1.3.rdf - custody (broader)
+      
+      # CIDOC_CRM_v7.1.3.rdf line 2410-2436: P50_has_current_keeper
+      # Broader: current custody relationship (narrower than P49 but still custody not collection)
+      - crm:P50_has_current_keeper  # from CIDOC_CRM_v7.1.3.rdf - current custody (broader)
+    
+    aliases:
+      - collects_or_collected
+      - has_collecting_scope
+      - acquires
+      - accumulates
+      - is_or_was_collect
+    annotations:
+      custodian_types: '["C", "M", "A", "L"]'
+      custodian_types_rationale: Primarily for Corporations (C), Museums (M), Archives (A), and Libraries (L) that actively collect materials.
+      custodian_types_primary: C
+      specificity_score: '0.45'
+      specificity_rationale: Moderate specificity - applies to custodians with collecting programs.
+    examples:
+      - value:
+          has_or_had_identifier: "https://example.org/collection-scope/dutch-masters"
+          has_or_had_label: "Dutch Masters Paintings"
+        description: Museum collects Dutch Masters paintings
+      - value:
+          has_or_had_identifier: "https://example.org/collection-scope/corporate-records"
+          has_or_had_label: "Corporate Administrative Records"
+        description: Archive collects corporate administrative records
+    comments:
+      - Created from slot_fixes.yaml migration (2026-01-19)
+      - Part of collection_purpose migration
+      - Range is uriorcurie to allow class narrowing via slot_usage
+      - |
+          Mapping corrections (2026-02-XX):
+          - Moved crm:P109_has_current_or_former_curator from close_mappings to related_mappings
+            (P109 is about curatorial RESPONSIBILITY, not collecting ACTIVITY)
+          - Moved schema:owns and rico:hasOrHadHolder to broad_mappings
+            (ownership/custody STATE is broader than collecting ACTIVITY)
+          - Added rico:isAccumulatorOf and rico:hasAccumulator as close_mappings
+            (RiC-O accumulation includes intentional collecting)
+      - |
+          CIDOC-CRM note: E8 Acquisition is the class for collecting events.
+          P22_transferred_title_to/P23_transferred_title_from are the properties
+          that connect Acquisition to Actor. This slot describes collecting SCOPE,
+          not individual acquisition events.
+      - |
+          Verified predicates from:
+          - data/ontology/RiC-O_1-1.rdf (rico:isAccumulatorOf line 9859, rico:hasAccumulator line 3525, rico:hasOrHadHolder line 6437)
+          - data/ontology/CIDOC_CRM_v7.1.3.rdf (crm:P109 line 3639, crm:P22 line 1681, crm:P49 line 2383, crm:P50 line 2410)
+          - data/ontology/schemaorg.owl (schema:owns line 28732, schema:acquiredFrom line 6762, schema:collection line 12156)
+          - data/ontology/dcat3.ttl (dcat:dataset line 818)
+    see_also:
+      - https://www.ica.org/standards/RiC/ontology#isAccumulatorOf
+      - https://www.cidoc-crm.org/Entity/e8-acquisition/version-7.1.3

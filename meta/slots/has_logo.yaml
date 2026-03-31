@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: has_logo
+# ==============================================================================
+# Associates an entity with its graphic mark, emblem, or symbol for recognition.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                                                          |
+# |---------------|-----------------------|----------------------------|---------|----------------------------------------------------------------|
+# | **Schema.org**| `schema:logo`         | schemaorg.owl:25110-25134  | exact   | "An associated logo." Domain: Organization, Service, Place, Brand, Product. Range includes Text. |
+# | **FOAF**      | `foaf:logo`           | foaf.ttl:364-372           | close   | "A logo representing some thing." Very generic domain/range (owl:Thing). |
+#
+# NOTE: Previous schema:name close_mapping removed — unrelated to logo concept.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_logo
+name: has_logo
+title: Has Logo
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_logo:
+    slot_uri: schema:logo
+    description: >-
+      Associates an organization, brand, product, or project with the specific
+      graphic mark, emblem, or symbol used to promote instant public recognition
+      and identity.
+    alt_descriptions:
+      nl: >-
+        Associeert een organisatie, merk, product of project met het specifieke
+        grafische merk, embleem of symbool dat wordt gebruikt om onmiddellijke
+        publieke herkenning en identiteit te bevorderen.
+      de: >-
+        Verknüpft eine Organisation, Marke, ein Produkt oder Projekt mit dem
+        spezifischen grafischen Zeichen, Emblem oder Symbol, das zur Förderung
+        sofortiger öffentlicher Wiedererkennung und Identität verwendet wird.
+      fr: >-
+        Associe une organisation, une marque, un produit ou un projet au signe
+        graphique, emblème ou symbole spécifique utilisé pour promouvoir la
+        reconnaissance publique immédiate et l'identité.
+      ar: >-
+        يربط منظمة أو علامة تجارية أو منتجًا أو مشروعًا بالعلامة الرسومية أو
+        الشعار أو الرمز المحدد المستخدم لتعزيز التعرف العام الفوري والهوية.
+      id: >-
+        Mengasosiasikan organisasi, merek, produk, atau proyek dengan tanda
+        grafis, lambang, atau simbol khusus yang digunakan untuk mempromosikan
+        pengenalan publik dan identitas secara instan.
+      zh: >-
+        将组织、品牌、产品或项目与用于促进公众即时识别和身份认同的特定图形标记、徽章或符号相关联。
+      es: >-
+        Asocia una organización, marca, producto o proyecto con la marca gráfica,
+        emblema o símbolo específico utilizado para promover el reconocimiento
+        público inmediato y la identidad.
+    structured_aliases:
+      - literal_form: Logo
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Logo
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Logo
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: شعار
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Logo
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 标识
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Logotipo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - logo_label
+      - logo_segment
+    exact_mappings:
+    close_mappings:
+      - foaf:logo  # foaf.ttl:364-372 - "A logo representing some thing." Generic domain/range.

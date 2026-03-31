@@ -1,0 +1,140 @@
+# ==============================================================================
+# LinkML Slot Definition: identified_as
+# ==============================================================================
+# The etic classification, categorization, or identification assigned to an
+# entity by external observers, researchers, institutions, or classification
+# systems.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line               | Mapping | Notes                              |
+# |---------------|--------------------------------|-------------------------|---------|------------------------------------|
+# | **CIDOC-CRM** | `crm:P41i_was_classified_by`   | CIDOC_CRM:2199-2211     | related | "was classified by." Inverse of    |
+# |               |                                |                         |         | P41_classified. About the           |
+# |               |                                |                         |         | classification event, not result.   |
+# | **CIDOC-CRM** | `crm:P2_has_type`              | CIDOC_CRM:1200-1214     | broad   | Generic typing property. Broader    |
+# |               |                                |                         |         | than etic identification.           |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/identified_as
+name: identified_as
+title: Identified As
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  identified_as:
+    slot_uri: hc:identifiedAs
+    description: >-
+      The etic classification, categorization, or identification assigned to
+      an entity by external observers, researchers, institutions, or
+      classification systems, representing an outsider's analytical perspective
+      rather than the entity's self-identification.
+    alt_descriptions:
+      nl: >-
+        De etische classificatie, categorisering of identificatie die aan een
+        entiteit wordt toegekend door externe waarnemers, onderzoekers,
+        instellingen of classificatiesystemen, vanuit het analytische
+        perspectief van een buitenstaander in plaats van de zelfidentificatie
+        van de entiteit.
+      de: >-
+        Die etische Klassifikation, Kategorisierung oder Identifikation, die
+        einer Entität durch externe Beobachter, Forscher, Institutionen oder
+        Klassifikationssysteme zugewiesen wird und eine analytische
+        Außenperspektive statt der Selbstidentifikation der Entität darstellt.
+      fr: >-
+        La classification, la catégorisation ou l'identification étique
+        attribuée à une entité par des observateurs externes, des chercheurs,
+        des institutions ou des systèmes de classification, représentant une
+        perspective analytique extérieure plutôt que l'auto-identification
+        de l'entité.
+      ar: >-
+        التصنيف أو التقسيم أو التعريف الإيتي المُسند إلى كيان من قبل
+        مراقبين خارجيين أو باحثين أو مؤسسات أو أنظمة تصنيف، يمثل المنظور
+        التحليلي للمراقب الخارجي بدلاً من التعريف الذاتي للكيان.
+      id: >-
+        Klasifikasi, kategorisasi, atau identifikasi etik yang diberikan kepada
+        suatu entitas oleh pengamat eksternal, peneliti, institusi, atau sistem
+        klasifikasi, yang mewakili perspektif analitis dari luar bukan
+        identifikasi diri entitas tersebut.
+      zh: >-
+        由外部观察者、研究人员、机构或分类系统赋予实体的客位分类、归类或识别，
+        代表外部分析视角而非实体的自我认同。
+      es: >-
+        La clasificación, categorización o identificación ética asignada a una
+        entidad por observadores externos, investigadores, instituciones o
+        sistemas de clasificación, que representa una perspectiva analítica
+        externa en lugar de la autoidentificación de la entidad.
+    structured_aliases:
+      - literal_form: Externe Identificatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Externe Identifikation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Identification Externe
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تعريف خارجي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Identifikasi Eksternal
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 外部识别
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Identificación Externa
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    related_mappings:
+      - crm:P41i_was_classified_by  # CIDOC_CRM:2199-2211 — "was classified by." About the classification event, not the classification result.
+    broad_mappings:
+      - crm:P2_has_type  # CIDOC_CRM:1200-1214 — Generic typing property. Broader than etic identification specifically.
+    comments:
+      - >-
+        ETIC PERSPECTIVE: This slot captures how an entity is classified from
+        the outside — by researchers, institutions, or classification systems.
+        This contrasts with identify_as, which captures emic (insider)
+        self-identification.
+      - >-
+        EMIC VS ETIC: This is a standard anthropological/social science
+        distinction. Emic = insider perspective (self-identification); Etic =
+        outsider perspective (observer classification). Both are valid and
+        important in heritage contexts.
+      - >-
+        GLAM EXAMPLES: A community self-identifies as "indigenous peoples of
+        the Pacific Northwest" (emic/identify_as), while researchers classify
+        them as "Coast Salish cultural group" (etic/identified_as). An
+        institution self-describes as a "community archive" (emic/identify_as),
+        while a classification system identifies it as a "special collections
+        repository" (etic/identified_as).
+      - >-
+        POWER DYNAMICS: Etic classifications may reflect power imbalances.
+        Heritage practitioners should be aware that externally imposed
+        categories may not align with how communities or entities see
+        themselves.
+    examples:
+      - value: Coast Salish cultural group
+        description: Researcher classification of an indigenous community
+      - value: special collections repository
+        description: Institutional classification by a library system
+      - value: Intangible Cultural Heritage
+        description: UNESCO classification of cultural practices
+      - value: non-governmental organisation
+        description: Legal/administrative classification
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.7
+      specificity_rationale: Etic identification assigned by external observers.
+    aliases:
+      - identifies_or_identified_as

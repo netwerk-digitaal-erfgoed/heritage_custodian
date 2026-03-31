@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: has_reference_system
+# ==============================================================================
+# The Coordinate Reference System (CRS) required to interpret spatial coordinates
+# on the Earth's surface for a geometry, map, or spatial dataset.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                     | File/Line                    | Mapping | Notes                                                                         |
+# |---------------|------------------------------|------------------------------|---------|-------------------------------------------------------------------------------|
+# | **RiC-O**     | `rico:referenceSystem`       | RiC-O_1-1.rdf:22880-22902   | close   | "Framework or standard used to represent an information." Domain: Thing.       |
+# |               |                              |                              |         |  Range: Literal. A CRS is a reference system, but rico:referenceSystem covers  |
+# |               |                              |                              |         |  any information representation framework, not just spatial coordinate systems.|
+# | **DCTerms**   | `dcterms:conformsTo`         | dcterms.rdf:987-1010         | broad   | "An established standard to which the described resource conforms."             |
+# |               |                              |                              |         |  Range: Standard. A CRS is a kind of standard, but conformsTo covers any      |
+# |               |                              |                              |         |  standard conformance — far broader than spatial reference systems.            |
+# |               |                              |                              |         |                                                                               |
+# | REMOVED: geosparql:hasSpatialResolution (geo.ttl:429-440) was listed as close, but it means                                                               |
+# |   "the level of detail / smallest distinguishable distance between coordinates" — about                                                                    |
+# |   precision/granularity, NOT which CRS is used. Semantic mismatch.                                                                                        |
+# | NOTE: GeoSPARQL has no dedicated CRS property. In practice, CRS is encoded within                                                                         |
+# |   serialization formats (e.g., WKT SRID prefix) rather than as a standalone property.                                                                     |
+# |   rec:coordinateSystem (Brick.ttl:32401-32404) exists but has no definition/comment —                                                                     |
+# |   too underspecified for a verified mapping.                                                                                                               |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_reference_system
+name: has_reference_system
+title: Has Reference System
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  has_reference_system:
+    slot_uri: hc:hasReferenceSystem
+    description: >-
+      Relates a geometry, map, or spatial dataset to the specific Coordinate Reference
+      System (CRS) required to interpret its coordinates on the Earth's surface.
+    comments:
+      - "Default: EPSG:4326 (WGS84)."
+      - >-
+        Common CRS codes: EPSG:4326 (WGS84, GPS coordinates),
+        EPSG:28992 (Amersfoort / RD New, Dutch national grid),
+        EPSG:3857 (Web Mercator, web maps).
+    alt_descriptions:
+      nl: >-
+        Relateert een geometrie, kaart of ruimtelijke dataset aan het specifieke
+        coördinatenreferentiesysteem (CRS) dat nodig is om de coördinaten op het
+        aardoppervlak te interpreteren.
+      de: >-
+        Verknüpft eine Geometrie, Karte oder einen räumlichen Datensatz mit dem spezifischen
+        Koordinatenreferenzsystem (CRS), das zur Interpretation der Koordinaten auf der
+        Erdoberfläche erforderlich ist.
+      fr: >-
+        Relie une géométrie, une carte ou un jeu de données spatial au système de référence
+        de coordonnées (CRS) spécifique nécessaire pour interpréter ses coordonnées à la
+        surface de la Terre.
+      ar: >-
+        يربط هندسة أو خريطة أو مجموعة بيانات مكانية بنظام الإسناد الإحداثي (CRS) المحدد
+        المطلوب لتفسير إحداثياتها على سطح الأرض.
+      id: >-
+        Menghubungkan geometri, peta, atau kumpulan data spasial dengan Sistem Referensi
+        Koordinat (CRS) tertentu yang diperlukan untuk menginterpretasikan koordinatnya
+        di permukaan bumi.
+      zh: >-
+        将几何图形、地图或空间数据集与解释其在地球表面上坐标所需的特定坐标参考系统（CRS）
+        相关联。
+      es: >-
+        Relaciona una geometría, mapa o conjunto de datos espaciales con el Sistema de
+        Referencia de Coordenadas (CRS) específico necesario para interpretar sus
+        coordenadas en la superficie terrestre.
+    structured_aliases:
+      - literal_form: Referentiesysteem
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Referenzsystem
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Système de référence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نظام الإسناد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Sistem Referensi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 参考系统
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Sistema de referencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    examples:
+    - value: EPSG:4326
+      description: WGS84 - default for GPS coordinates
+    - value: EPSG:28992
+      description: Dutch Rijksdriehoeksstelsel
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - rico:referenceSystem  # RiC-O_1-1.rdf:22880-22902 — "Framework or standard used to represent an information." Domain: Thing. Range: Literal. A CRS is a reference system, but rico covers any information representation framework, not just spatial.
+    broad_mappings:
+      - dcterms:conformsTo  # dcterms.rdf:987-1010 — "An established standard to which the described resource conforms." Range: Standard. A CRS is a kind of standard conformance, but far broader.
+    aliases:
+      - coordinate_reference_system

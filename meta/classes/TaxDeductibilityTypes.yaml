@@ -1,0 +1,272 @@
+id: https://nde.nl/ontology/hc/class/TaxDeductibilityTypes
+name: tax_deductibility_types_class
+title: Tax Deductibility Types Classes
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./TaxDeductibilityType
+- linkml:types
+classes:
+  FullyDeductible:
+    is_a: TaxDeductibilityType
+    class_uri: hc:FullyDeductible
+    description: >-
+      Status where the entire donation amount qualifies for income tax deduction.
+    alt_descriptions:
+      nl: Status waarbij het volledige donatiebedrag in aanmerking komt voor inkomstenbelastingaftrek.
+      de: Status bei dem der gesamte Spendenbetrag für die Einkommensteuerabzugsfähigkeit qualifiziert.
+      fr: Statut où le montant total du don est éligible à la déduction d'impôt sur le revenu.
+      es: Estado donde el monto total de la donación califica para deducción de impuesto sobre la renta.
+      zh: 全部捐赠金额均有资格享受所得税抵扣的状态。
+      ar: 'مفهوم لـ: Status where the entire donation amount qualifies for income tax deduction.'
+      id: 'Konsep untuk: Status where the entire donation amount qualifies for income tax deduction.'
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    keywords:
+    - full deduction
+    - 100% deductible
+    - tax benefit
+    examples:
+    - value:
+        has_label: Fully Deductible
+        has_description: 100% of donation qualifies for tax deduction
+    comments:
+    - Applies to Dutch ANBI, US 501(c)(3), UK registered charities
+    annotations:
+      replaces_enum_value: FULLY_DEDUCTIBLE
+      custodian_types: '[''*'']'
+    structured_aliases:
+    - literal_form: fully deductible
+      in_language: nl
+    - literal_form: fully deductible
+      in_language: de
+    - literal_form: fully deductible
+      in_language: fr
+    - literal_form: fully deductible
+      in_language: es
+    - literal_form: fully deductible
+      in_language: ar
+    - literal_form: fully deductible
+      in_language: id
+    - literal_form: fully deductible
+      in_language: zh
+  PartiallyDeductible:
+    is_a: TaxDeductibilityType
+    class_uri: hc:PartiallyDeductible
+    description: >-
+      Status where only a portion of the donation qualifies for tax deduction after fair market value adjustments.
+    alt_descriptions:
+      nl: Status waarbij slechts een deel van de donatie in aanmerking komt voor belastingaftrek na correctie voor marktwaarde.
+      de: Status bei dem nur ein Teil der Spende nach Marktwertanpassungen steuerlich abzugsfähig ist.
+      fr: Statut où seule une partie du don est déductible après ajustements de la juste valeur marchande.
+      es: Estado donde solo una parte de la donación califica para deducción fiscal tras ajustes de valor de mercado.
+      zh: 经公允价值调整后仅部分捐赠有资格享受税收抵扣的状态。
+      ar: 'مفهوم لـ: Status where only a portion of the donation qualifies for tax deduction after fair market value adjustments.'
+      id: 'Konsep untuk: Status where only a portion of the donation qualifies for tax deduction after fair market value adjustments.'
+    broad_mappings:
+    - skos:Concept
+    keywords:
+    - partial deduction
+    - fair market value
+    - benefit subtraction
+    examples:
+    - value:
+        has_label: Partially Deductible
+        has_description: Portion of donation after benefits subtracted
+    comments:
+    - Common for gala tickets, auction items above fair market value
+    annotations:
+      replaces_enum_value: PARTIALLY_DEDUCTIBLE
+      custodian_types: '[''*'']'
+    structured_aliases:
+    - literal_form: partially deductible
+      in_language: nl
+    - literal_form: partially deductible
+      in_language: de
+    - literal_form: partially deductible
+      in_language: fr
+    - literal_form: partially deductible
+      in_language: es
+    - literal_form: partially deductible
+      in_language: ar
+    - literal_form: partially deductible
+      in_language: id
+    - literal_form: partially deductible
+      in_language: zh
+  NotDeductible:
+    is_a: TaxDeductibilityType
+    class_uri: hc:NotDeductible
+    description: >-
+      Status where the donation provides no fiscal benefit to the donor.
+    alt_descriptions:
+      nl: Status waarbij de donatie geen fiscaal voordeel biedt aan de donor.
+      de: Status bei dem die Spende keinen steuerlichen Vorteil für den Spender bietet.
+      fr: Statut où le don ne fournit aucun avantage fiscal au donateur.
+      es: Estado donde la donación no proporciona beneficio fiscal al donante.
+      zh: 捐赠不向捐赠人提供任何税收优惠的状态。
+      ar: 'مفهوم لـ: Status where the donation provides no fiscal benefit to the donor.'
+      id: 'Konsep untuk: Status where the donation provides no fiscal benefit to the donor.'
+    broad_mappings:
+    - skos:Concept
+    keywords:
+    - no deduction
+    - non-deductible
+    - no tax benefit
+    examples:
+    - value:
+        has_label: Not Deductible
+        has_description: No tax benefit for this donation
+    comments:
+    - Applies to memberships where benefits exceed value, non-exempt organizations
+    annotations:
+      replaces_enum_value: NOT_DEDUCTIBLE
+      custodian_types: '[''*'']'
+    structured_aliases:
+    - literal_form: deductible
+      in_language: nl
+    - literal_form: deductible
+      in_language: de
+    - literal_form: deductible
+      in_language: fr
+    - literal_form: deductible
+      in_language: es
+    - literal_form: deductible
+      in_language: ar
+    - literal_form: deductible
+      in_language: id
+    - literal_form: deductible
+      in_language: zh
+  ConditionallyDeductible:
+    is_a: TaxDeductibilityType
+    class_uri: hc:ConditionallyDeductible
+    description: >-
+      Status where fiscal benefits apply only when specific conditions are satisfied.
+    alt_descriptions:
+      nl: Status waarbij fiscale voordelen alleen gelden als aan specifieke voorwaarden is voldaan.
+      de: Status bei dem steuerliche Vorteile nur gelten, wenn bestimmte Bedingungen erfüllt sind.
+      fr: Statut où les avantages fiscaux ne s'appliquent que si des conditions spécifiques sont remplies.
+      es: Estado donde los beneficios fiscales solo se aplican cuando se cumplen condiciones específicas.
+      zh: 仅当满足特定条件时才适用税收优惠的状态。
+      ar: 'مفهوم لـ: Status where fiscal benefits apply only when specific conditions are satisfied.'
+      id: 'Konsep untuk: Status where fiscal benefits apply only when specific conditions are satisfied.'
+    broad_mappings:
+    - skos:Concept
+    keywords:
+    - conditional deduction
+    - requirements
+    - declaration needed
+    examples:
+    - value:
+        has_label: Conditionally Deductible
+        has_description: Deductible if conditions are met
+    comments:
+    - UK Gift Aid requires donor declaration, US requires itemizing deductions
+    annotations:
+      replaces_enum_value: CONDITIONALLY_DEDUCTIBLE
+      custodian_types: '[''*'']'
+    structured_aliases:
+    - literal_form: conditionally deductible
+      in_language: nl
+    - literal_form: conditionally deductible
+      in_language: de
+    - literal_form: conditionally deductible
+      in_language: fr
+    - literal_form: conditionally deductible
+      in_language: es
+    - literal_form: conditionally deductible
+      in_language: ar
+    - literal_form: conditionally deductible
+      in_language: id
+    - literal_form: conditionally deductible
+      in_language: zh
+  JurisdictionDependent:
+    is_a: TaxDeductibilityType
+    class_uri: hc:JurisdictionDependent
+    description: >-
+      Status where fiscal benefits vary based on the donor's tax.
+    alt_descriptions:
+      nl: Status waarbij fiscale voordelen variëren op basis van de belastingjurisdictie van de donor.
+      de: Status bei dem steuerliche Vorteile je nach Steuergerichtsbarkeit des Spenders variieren.
+      fr: Statut où les avantages fiscaux varient selon la juridiction fiscale du donateur.
+      es: Estado donde los beneficios fiscales varían según la jurisdicción fiscal del donante.
+      zh: 税收优惠因捐赠人税务管辖区而异的状态。
+      ar: "مفهوم لـ: Status where fiscal benefits vary based on the donor's tax."
+      id: "Konsep untuk: Status where fiscal benefits vary based on the donor's tax."
+    broad_mappings:
+    - skos:Concept
+    keywords:
+    - jurisdiction dependent
+    - cross-border
+    - international donation
+    examples:
+    - value:
+        has_label: Jurisdiction Dependent
+        has_description: Varies by donor's tax jurisdiction
+    comments:
+    - Common for international donations, cross-border EU giving
+    annotations:
+      replaces_enum_value: JURISDICTION_DEPENDENT
+      custodian_types: '[''*'']'
+    structured_aliases:
+    - literal_form: jurisdiction dependent
+      in_language: nl
+    - literal_form: jurisdiction dependent
+      in_language: de
+    - literal_form: jurisdiction dependent
+      in_language: fr
+    - literal_form: jurisdiction dependent
+      in_language: es
+    - literal_form: jurisdiction dependent
+      in_language: ar
+    - literal_form: jurisdiction dependent
+      in_language: id
+    - literal_form: jurisdiction dependent
+      in_language: zh
+  UnknownDeductibility:
+    is_a: TaxDeductibilityType
+    class_uri: hc:UnknownDeductibility
+    description: >-
+      Status where fiscal benefit eligibility has not yet been determined.
+    alt_descriptions:
+      nl: Status waarbij de fiscale voordeligheid nog niet is vastgesteld.
+      de: Status bei dem die steuerliche Vorteilhaftigkeit noch nicht bestimmt wurde.
+      fr: Statut où l'éligibilité aux avantages fiscaux n'a pas encore été déterminée.
+      es: Estado donde la elegibilidad de beneficio fiscal aún no ha sido determinada.
+      zh: 税收优惠资格尚未确定的状态。
+      ar: 'مفهوم لـ: Status where fiscal benefit eligibility has not yet been determined.'
+      id: 'Konsep untuk: Status where fiscal benefit eligibility has not yet been determined.'
+    broad_mappings:
+    - skos:Concept
+    keywords:
+    - unknown status
+    - pending
+    - undetermined
+    examples:
+    - value:
+        has_label: Unknown
+        has_description: Deductibility status not determined
+    comments:
+    - Used when organization's tax status is pending or information not collected
+    annotations:
+      replaces_enum_value: UNKNOWN
+      custodian_types: '[''*'']'
+    structured_aliases:
+    - literal_form: unknown deductibility
+      in_language: nl
+    - literal_form: unknown deductibility
+      in_language: de
+    - literal_form: unknown deductibility
+      in_language: fr
+    - literal_form: unknown deductibility
+      in_language: es
+    - literal_form: unknown deductibility
+      in_language: ar
+    - literal_form: unknown deductibility
+      in_language: id
+    - literal_form: unknown deductibility
+      in_language: zh

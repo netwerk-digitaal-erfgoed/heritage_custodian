@@ -1,0 +1,62 @@
+id: https://nde.nl/ontology/hc/class/LanguageCode
+name: LanguageCode
+title: Language Code
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_score
+- ../slots/has_code
+classes:
+  LanguageCode:
+    class_uri: hc:LanguageCode
+    description: >-
+      Standardized language identifier token, typically represented as an
+      ISO 639 code.
+    alt_descriptions:
+      nl: Gestandaardiseerde taalcodetoken meestal als ISO 639-code.
+      de: Standardisiertes Sprachcode-Token typischerweise als ISO-639-Code.
+      fr: Jeton d identifiant de langue normalise generalement sous forme de code ISO 639.
+      es: Token de identificador de idioma estandarizado normalmente como codigo ISO 639.
+      ar: رمز مُعرّف لغة مُعياري، عادةً على شكل رمز ISO 639.
+      id: Token pengenal bahasa terstandar biasanya berupa kode ISO 639.
+      zh: 标准化语言标识符令牌，通常以ISO 639代码表示。
+    structured_aliases:
+    - {literal_form: taalcode, in_language: nl}
+    - {literal_form: Sprachcode, in_language: de}
+    - {literal_form: code de langue, in_language: fr}
+    - {literal_form: codigo de idioma, in_language: es}
+    - {literal_form: رمز لغة, in_language: ar}
+    - {literal_form: kode bahasa, in_language: id}
+    - {literal_form: 语言代码, in_language: zh}
+    slots:
+    - has_code
+    - has_score
+    slot_usage:
+      has_code:
+        pattern: "^[a-z]{2}$"
+        required: true
+    close_mappings:
+    - dcterms:LinguisticSystem
+    - schema:Language
+    broad_mappings:
+    - skos:Concept
+    comments:
+    - Use ISO 639-1 two-letter codes (e.g., "nl", "en", "fr", "de", "es").
+    - Intended for token-level identification; use Language for bundling with optional text content.
+    examples:
+    - value:
+        has_code: nl
+        has_score: 1.0
+    - value:
+        has_code: en
+        has_score: 0.9
+    annotations:
+      specificity_score: 0.3
+      specificity_rationale: Standardized identifier token used across multilingual fields.
+      custodian_types: "['*']"

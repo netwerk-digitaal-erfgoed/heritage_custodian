@@ -1,0 +1,81 @@
+id: https://nde.nl/ontology/hc/class/Currency
+name: Currency
+title: Currency Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  qudt: http://qudt.org/schema/qudt/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/symbolized_by
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+classes:
+  Currency:
+    class_uri: qudt:CurrencyUnit
+    exact_mappings:
+    - qudt:CurrencyUnit
+    description: >-
+      Standardized monetary unit with ISO 4217 code representation for pricing, budgeting, and financial valuation metadata.
+    alt_descriptions:
+      nl: >-
+        Gestandaardiseerde monetaire eenheid met ISO 4217-codecodering voor prijzen, begroting en financiële waarderingsmetadata.
+      de: >-
+        Standardisierte Währungseinheit mit ISO 4217-Codedarstellung für Preisgestaltung, Budgetierung und finanzielle Bewertungs-Metadaten.
+      fr: >-
+        Unité monétaire normalisée avec représentation de code ISO 4217 pour les prix, la budgétisation et les métadonnées d'évaluation financière.
+      es: >-
+        Unidad monetaria estandarizada con representación de código ISO 4217 para precios, presupuestos y metadatos de valoración financiera.
+      ar: >-
+        وحدة نقدية موحدة مع تمثيل رمز ISO 4217 للتسعير والميزانية وبيانات التقييم المالي.
+      id: >-
+        Unit mata uang terstandarisasi dengan representasi kode ISO 4217 untuk harga, penganggaran, dan metadata penilaian keuangan.
+      zh: >-
+        具有ISO 4217代码表示的标准化货币单位，用于定价、预算和财务估值元数据。
+    structured_aliases:
+      - literal_form: valuta
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Währung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: devise
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: moneda
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: عملة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mata uang
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 货币
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    broad_mappings:
+      - schema:Currency
+    close_mappings:
+      - qudt:CurrencyUnit
+    slots:
+      - identified_by
+      - has_code
+      - has_label
+      - symbolized_by
+      - has_description
+      - has_score
+    slot_usage:
+      has_code:
+        required: true
+        pattern: '^[A-Z]{3}$'
+    comments:
+      - |
+        Preserved from prior description (commit 5e94e52b):
+
+        "A currency used for monetary values.\n**SCHEMA.ORG ALIGNMENT**:\nMaps to `schema:Currency` - \"A currency as defined by ISO 4217.\"\n**ISO 4217 STANDARD**:\nISO 4217 defines three-letter currency codes:\n| Code | Currency | Symbol | |------|----------|--------| | EUR | Euro | \u20AC | | USD | US Dollar | $ | | GBP | British Pound | \xA3 | | JPY | Japanese Yen | \xA5 | | CHF | Swiss Franc | CHF |\n**WHY NOT JUST USE STRING?**\nSimple string fields like `budget_currency: \"EUR\"` lose important context: - Symbol for display purposes - Full name for accessibility - Historical validity (currencies change over time) - Link to authoritative ISO 4217 standard\nThe Currency class captures this richness while remaining simple for basic use.\n**HISTORICAL CURRENCIES**:\nHeritage institutions often deal with historical currencies: - NLG (Dutch Guilder) - replaced by EUR in 2002 - DEM (German Mark) - replaced by EUR in 2002 - FRF (French Franc) - replaced by EUR in 2002\nThe temporal\

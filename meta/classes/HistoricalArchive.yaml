@@ -1,0 +1,62 @@
+id: https://w3id.org/nde/ontology/HistoricalArchive
+name: HistoricalArchive
+title: Historical Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/ArchiveOrganizationType
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+classes:
+  HistoricalArchive:
+    class_uri: hc:HistoricalArchive
+    is_a: ArchiveOrganizationType
+    description: >-
+      Archival institution focused on long-term preservation and scholarly access
+      to records retained for enduring historical value.
+    alt_descriptions:
+      nl: Archiefinstelling gericht op duurzame bewaring en wetenschappelijke raadpleging van documenten met blijvende historische waarde.
+      de: Archiveinrichtung mit Schwerpunkt auf dauerhafter Bewahrung und wissenschaftlichem Zugang zu Unterlagen mit bleibendem historischem Wert.
+      fr: Institution archivistique axee sur la conservation a long terme et l'acces scientifique a des documents de valeur historique durable.
+      es: Institucion archivistica centrada en la preservacion a largo plazo y el acceso academico a documentos de valor historico permanente.
+      ar: مؤسسة أرشيفية تركز على الحفظ طويل الأمد وإتاحة البحث في السجلات ذات القيمة التاريخية الدائمة.
+      id: Lembaga arsip yang berfokus pada pelestarian jangka panjang dan akses ilmiah terhadap rekaman bernilai sejarah berkelanjutan.
+      zh: 以长期保存和学术利用永久历史价值记录为核心的档案机构。
+    structured_aliases:
+      - literal_form: historisch archief
+        in_language: nl
+      - literal_form: Historisches Archiv
+        in_language: de
+      - literal_form: archives historiques
+        in_language: fr
+      - literal_form: archivo historico
+        in_language: es
+      - literal_form: أرشيف تاريخي
+        in_language: ar
+      - literal_form: arsip historis
+        in_language: id
+      - literal_form: 历史档案馆
+        in_language: zh
+    slots:
+      - has_type
+      - hold_record_set
+      - has_score
+      - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    exact_mappings:
+      - wd:Q3621673
+    broad_mappings:
+      - schema:ArchiveOrganization
+      - wd:Q166118
+    close_mappings:
+      - rico:CorporateBody

@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: has_endpoint
+# ==============================================================================
+# API or service endpoint associated with an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property            | File/Line              | Mapping | Notes                                                  |
+# |----------------|---------------------|------------------------|---------|--------------------------------------------------------|
+# | **DCAT**       | `dcat:endpointURL`  | dcat3.ttl:1008-1033    | close   | Domain DataService; root endpoint of a service.        |
+# | **Schema.org** | `schema:url`        | schemaorg.owl:39120-39140| broad | Generic URL of any Thing — broader than API endpoint.  |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, demoted schema:url exact→broad, added dcat:endpointURL as close
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_endpoint
+name: has_endpoint
+title: Has Endpoint
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_endpoint:
+    name: has_endpoint
+    slot_uri: hc:hasEndpoint
+    description: >-
+      To specify the specific digital location, address, or URL (such as an API interface) where a service or resource can be accessed or interacted with.
+    alt_descriptions:
+      nl: >-
+        De specifieke digitale locatie, het adres of de URL (zoals een API-interface)
+        waar een dienst of bron kan worden benaderd of waarmee kan worden
+        geinterageerd.
+      de: >-
+        Der spezifische digitale Standort, die Adresse oder URL (wie eine
+        API-Schnittstelle), über die auf einen Dienst oder eine Ressource zugegriffen
+        oder mit ihnen interagiert werden kann.
+      fr: >-
+        L'emplacement numérique spécifique, l'adresse ou l'URL (telle qu'une
+        interface API) où un service ou une ressource peut être consulté ou avec
+        lequel on peut interagir.
+      ar: >-
+        الموقع الرقمي المحدد أو العنوان أو عنوان URL (مثل واجهة برمجة التطبيقات)
+        حيث يمكن الوصول إلى خدمة أو مورد أو التفاعل معه.
+      id: >-
+        Lokasi digital spesifik, alamat, atau URL (seperti antarmuka API) tempat
+        layanan atau sumber daya dapat diakses atau berinteraksi dengannya.
+      zh: >-
+        可以访问或交互的服务或资源的特定数字位置、地址或URL（如API接口）。
+      es: >-
+        La ubicación digital específica, dirección o URL (como una interfaz API)
+        donde se puede acceder a un servicio o recurso o interactuar con él.
+    structured_aliases:
+      - literal_form: eindpunt
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Endpunkt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: point de terminaison
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نقطة نهاية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: titik akhir
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 端点
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: punto de acceso
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uri
+    multivalued: true
+    aliases:
+      - has_or_had_endpoint
+      - oai_pmh_endpoint
+      - sparql_endpoint
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcat:endpointURL  # dcat3.ttl:1008-1033 — root endpoint of a DataService (domain DataService)
+    broad_mappings:
+      - schema:url  # schemaorg.owl:39120-39140 — generic URL of any Thing (much broader)

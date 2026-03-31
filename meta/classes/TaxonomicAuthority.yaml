@@ -1,0 +1,102 @@
+id: https://nde.nl/ontology/hc/class/TaxonomicAuthority
+name: TaxonomicAuthority
+title: Taxonomic Authority Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dwc: http://rs.tdwg.org/dwc/terms/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_author
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/recombined
+- ../slots/has_code
+default_prefix: hc
+classes:
+  TaxonomicAuthority:
+    class_uri: prov:Attribution
+    description: >-
+      Attribution record for scientific nomenclatural authorship following ICZN, ICN, or ICNP codes.
+    alt_descriptions:
+      nl: toeschrijvingsrecord voor wetenschappelijke nomenclatuurauteurschap volgens ICZN-, ICN- of ICNP-codes.
+      de: Zuschreibungsdatensatz für wissenschaftliche Nomenklaturautorenschaft nach ICZN-, ICN- oder ICNP-Codes.
+      fr: Enregistrement d'attribution pour l'auteur de nomenclature scientifique selon les codes ICZN, ICN ou ICNP.
+      es: Registro de atribución para autoría de nomenclatura científica según códigos ICZN, ICN o ICNP.
+      ar: سجل نسب لمؤلف التسمية العلمية وفقاً لرموز ICZN أو ICN أو ICNP.
+      id: Rekaman atribusi untuk kepenulisan nomenklatur ilmiah mengikuti kode ICZN, ICN, atau ICNP.
+      zh: 遵循ICZN、ICN或ICNP规范的学名命名人归属记录。
+    exact_mappings:
+    - prov:Attribution
+    close_mappings:
+    - dwc:scientificNameAuthorship
+    - schema:CreativeWork
+    keywords:
+    - taxonomic authority
+    - nomenclature
+    - authorship
+    - ICZN
+    - ICN
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_author
+    slot_usage:
+      identified_by:
+        examples:
+        - value: urn:lsid:zoobank.org:act:12345678-1234-1234-1234-123456789012
+      has_label:
+        required: true
+        examples:
+        - value: Linnaeus, 1758
+        - value: (Gray, 1821)
+        - value: L.
+      has_author:
+        multivalued: true
+        examples:
+        - value:
+          - Carl Linnaeus
+        - value:
+          - Asa Gray
+      has_description:
+        examples:
+        - value: Original description in Systema Naturae, 10th edition
+    comments:
+    - Parentheses in authority indicate recombination from original genus
+    - Link to nomenclatural databases via identified_by
+    see_also:
+    - https://www.iczn.org/
+    - https://www.iapt-taxon.org/nomen/main.php
+    examples:
+    - value:
+        has_label: Linnaeus, 1758
+        has_author:
+        - Carl Linnaeus
+        has_description: Original description of Homo sapiens in Systema Naturae, 10th edition
+    - value:
+        has_label: (Gray, 1821)
+        has_author:
+        - John Edward Gray
+    annotations:
+      specificity_score: 0.1
+      custodian_types: "['*']"
+    structured_aliases:
+    - literal_form: taxonomic authority
+      in_language: nl
+    - literal_form: taxonomic authority
+      in_language: de
+    - literal_form: taxonomic authority
+      in_language: fr
+    - literal_form: taxonomic authority
+      in_language: es
+    - literal_form: taxonomic authority
+      in_language: ar
+    - literal_form: taxonomic authority
+      in_language: id
+    - literal_form: taxonomic authority
+      in_language: zh

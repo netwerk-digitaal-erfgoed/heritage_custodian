@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: geometric_extent
+# ==============================================================================
+# To specify the mathematical boundaries or spatial coordinates of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property        | File/Line                | Mapping | Notes                                          |
+# |----------------|-----------------|--------------------------|---------|------------------------------------------------|
+# | **Schema.org** | `schema:geo`    | schemaorg.owl:19029-19051| broad   | General geo association (GeoCoords/GeoShape).  |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/geometric_extent
+name: geometric_extent
+title: geometric extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  geometric_extent:
+    name: geometric_extent
+    title: geometric extent
+    slot_uri: hc:geometricExtent
+    description: >-
+      To specify the mathematical boundaries, shape, or spatial coordinates
+      (such as a polygon or bounding box) that define the physical form or
+      limits of an entity within a coordinate system.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de wiskundige grenzen, vorm of ruimtelijke
+        coördinaten (zoals een polygoon of begrenzing) die de fysieke vorm of
+        limieten van een entiteit binnen een coördinatensysteem definiëren.
+      de: >-
+        Angabe der mathematischen Grenzen, Form oder räumlichen Koordinaten
+        (wie ein Polygon oder Begrenzungsrechteck), die die physische Form
+        oder die Grenzen einer Entität innerhalb eines Koordinatensystems
+        definieren.
+      fr: >-
+        Spécifier les limites mathématiques, la forme ou les coordonnées
+        spatiales (telles qu'un polygone ou une boîte englobante) qui
+        définissent la forme physique ou les limites d'une entité au sein
+        d'un système de coordonnées.
+      ar: >-
+        تحديد الحدود الرياضية أو الشكل أو الإحداثيات المكانية (مثل مضلع أو
+        مربع إحاطة) التي تعرّف الشكل الفيزيائي أو حدود كيان ما ضمن نظام
+        إحداثيات.
+      id: >-
+        Menentukan batas matematis, bentuk, atau koordinat spasial (seperti
+        poligon atau kotak pembatas) yang mendefinisikan bentuk fisik atau
+        batas suatu entitas dalam sistem koordinat.
+      zh: >-
+        指定在坐标系内定义实体物理形态或边界的数学边界、形状或空间坐标（如多边形或边界框）。
+      es: >-
+        Especificar los límites matemáticos, la forma o las coordenadas
+        espaciales (como un polígono o cuadro delimitador) que definen la forma
+        física o los límites de una entidad dentro de un sistema de coordenadas.
+    structured_aliases:
+      - literal_form: geometrische omvang
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geometrische Ausdehnung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: étendue géométrique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: النطاق الهندسي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: cakupan geometris
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 几何范围
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: extensión geométrica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_geometric_extent
+      - has_geometric_extent
+      - has_or_had_geometry
+      - has_geometry
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - schema:geo  # schemaorg.owl:19029-19051 — "The geo coordinates of the place." Links to GeoCoordinates or GeoShape. Broader: general geo association, not specifically about mathematical boundaries/extent.
+    comments:
+      - |
+        **ONTOLOGY NOTE**: `schema:geo` (schemaorg.owl:19029-19051) is a general-purpose
+        property linking a Place to its GeoCoordinates or GeoShape. It is broader than this
+        slot, which specifically concerns mathematical boundaries and extent definitions
+        within a coordinate system (polygons, bounding boxes, etc.).

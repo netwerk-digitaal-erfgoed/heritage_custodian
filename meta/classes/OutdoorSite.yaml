@@ -1,0 +1,543 @@
+id: https://nde.nl/ontology/hc/class/outdoor-site
+name: outdoor_site_class
+title: OutdoorSite Class
+
+imports:
+- linkml:types
+- ../enums/FeatureTypeEnum
+- ../enums/OutdoorSiteTypeEnum
+- ../slots/has_status
+- ../slots/contain
+- ../slots/has_accessibility_feature
+- ../slots/in_area
+- ../slots/has_artwork
+- ../slots/charge_fee
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_garden
+- ../slots/has_access_policy
+- ../slots/classified_as
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/has_operating_hours
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/temporal_extent
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+
+default_prefix: hc
+
+classes:
+  OutdoorSite:
+    is_a: ReconstructedEntity
+    class_uri: schema:Park
+    description: >-
+      Exterior grounds under heritage stewardship including gardens, sculpture parks, archaeological sites, and managed landscapes.
+    alt_descriptions:
+      nl: >-
+        Buitenterreinen onder erfgoedbeheer inclusief tuinen, beeldentuinen, archeologische sites en beheerde landschappen.
+      de: >-
+        Außenanlagen unter Denkmalschutzverwaltung einschließlich Gärten, Skulpturenparks, archäologischer Stätten und gepflegter Landschaften.
+      fr: >-
+        Terrains extérieurs sous gestion patrimoniale comprenant jardins, parcs de sculptures, sites archéologiques et paysages aménagés.
+      es: >-
+        Terrenos exteriores bajo gestión patrimonial que incluyen jardines, parques de esculturas, sitios arqueológicos y paisajes gestionados.
+      ar: >-
+        أراضي خارجية تحت إدارة التراث تشمل الحدائق ومتنزهات المنحوتات والمواقع الأثرية والمناظر الطبيعية المُدارة.
+      id: >-
+        Lahan luar di bawah pengelolaan warisan termasuk taman, taman patung, situs arkeologi, dan lanskap yang dikelola.
+      zh: >-
+        包括花园、雕塑公园、考古遗址和管理景观在内的遗产管理外部场地。
+    structured_aliases:
+
+      - literal_form: buitenterrein
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: buitenruimte
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: Außenanlage
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: Freigelände
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: site extérieur
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: espace extérieur
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: sitio al aire libre
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: espacio exterior
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: موقع خارجي
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: مساحة خارجية
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: situs luar ruangan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: area luar
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: 户外场地
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: 室外场所
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: outdoor site
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: garden
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: sculpture park
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: archaeological site
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: landscape
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: schema:Park
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: org:Site
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: crm:E27_Site
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: wd:Q22698
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: schema:TouristAttraction
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: crm:E53_Place
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: hc:HistoricBuilding
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "Definition: an outdoor area managed as part of a heritage custodian's mission (e.g., gardens, sculpture parks, archaeological sites, nature reserves, historic grounds)."
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "Typing: use has_type for OutdoorSiteTypeEnum and/or FeatureType values; use classified_as for biological/botanical classification when applicable."
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "Distinction: OutdoorSite models exterior grounds; see also HistoricBuilding (interior structure), ExhibitionSpace (interior gallery), Storage (interior storage)."
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "Schema.org alignment: schema:Park is used as a broad web-compatible superclass for managed outdoor places."
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "Common outdoor-site types: historic garden, sculpture park, archaeological site, botanical garden/arboretum, nature reserve, estate grounds, cemetery, plaza/courtyard."
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: 'Preserved from prior description: Outdoor area managed by a heritage custodian, such as grounds, gardens, sculpture parks, or archaeological sites.'
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: HistoricBuilding
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: ExhibitionSpace
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: Storage
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_accessibility_feature
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: charge_fee
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: contain
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: in_area
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_quantity
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: classified_as
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_status
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_type
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_garden
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_access_policy
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_opening_hour
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_description
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: identified_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_label
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: temporal_extent
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_score
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: derive_from
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: generated_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: https://nde.nl/ontology/hc/aux/kroller-muller-sculpture"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: Kroller-Muller Beeldentuin"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: Paleis Het Loo Tuinen"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: Archeologisch Park Matilo"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: One of Europe's largest sculpture gardens with 160 works set in 25 hectares of park landscape within De Hoge Veluwe National Park."
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "range: OutdoorSiteTypeEnum"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "range: FeatureType"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: SCULPTURE_GARDEN"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: ARCHAEOLOGICAL_SITE"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: FORMAL_GARDEN"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: BotanicalInstitutionClassification"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: ZoologicalInstitutionClassification"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value:"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value:"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: 160"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value: 2500"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value:"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "area_value: 25.0"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "has_label: Included with museum ticket"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "has_label: Paved paths"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "has_label: Wheelchair routes available"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value:"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "area_value: 650.0"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "has_label: Included with palace ticket"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "value:"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "area_value: 3.5"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: "has_label: Free"
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh

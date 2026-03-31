@@ -1,0 +1,45 @@
+# ==============================================================================
+# LinkML Slot Definition: transferred_from
+# ==============================================================================
+# Source party/place from which something was transferred.
+#
+# ONTOLOGY ALIGNMENT (verified against linked.art terms):
+#
+# | Ontology       | Property              | Mapping | Notes                                                       |
+# |----------------|-----------------------|---------|-------------------------------------------------------------|
+# | **Linked Art** | `la:transferred_from` | exact   | Source entity in a transfer in Linked Art extensions.       |
+# | **CIDOC-CRM**  | `crm:P27_moved_from`  | narrow  | Location-only origin (place), narrower than general source. |
+# | **Schema.org** | `schema:fromLocation` | narrow  | Location-only source in action logistics.                   |
+#
+# CREATED: 2026-02-18
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/transferred_from
+name: transferred_from
+title: Transferred From
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  la: https://linked.art/ns/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  transferred_from:
+    slot_uri: hc:transferredFrom
+    description: >-
+      Identifies the source party, owner, custodian, or location from which
+      something was transferred.
+    range: string
+    multivalued: false
+    exact_mappings:
+      - la:transferred_from
+    narrow_mappings:
+      - crm:P27_moved_from
+      - schema:fromLocation
+    aliases:
+      - is_or_was_transferred_from
+    annotations:
+      custodian_types: '["*"]'

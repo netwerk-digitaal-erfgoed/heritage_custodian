@@ -1,0 +1,126 @@
+# ==============================================================================
+# LinkML Slot Definition: encoded_as
+# ==============================================================================
+# The digital format, character set, or compression scheme used to represent data.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                      | Mapping  | Notes                                                           |
+# |---------------|---------------------------|--------------------------------|----------|-----------------------------------------------------------------|
+# | **Schema.org** | `schema:encodingFormat`  | schemaorg.owl:16697-16722      | close    | "Media type typically expressed using a MIME format."            |
+# |               |                           |                                |          | Domain: MediaObject|CreativeWork. MIME-specific; slot is wider. |
+# | **DCTerms**   | `dcterms:format`          | dcterms.rdf:1296-1322          | close    | "The file format, physical medium, or dimensions." Covers       |
+# |               |                           |                                |          | file format but also physical medium/dimensions.                |
+# | **DCAT**      | `dcat:mediaType`          | dcat3.ttl:1306-1348            | narrow   | "The media type as defined by IANA." Only IANA media types.     |
+# | **SPDX**      | `spdx:checksumValue`      | spdx2.owl:760-768              | related  | "Lower case hex encoded digest value." Hash values, not         |
+# |               |                           |                                |          | encoding format. See alias note below.                          |
+# | **PREMIS**    | `premis:fixity`           | premis3.owl:372-384            | related  | "has fixity." Integrity verification of file content.           |
+#
+# NO EXACT MATCH: Standard ontology encoding/format properties focus on
+# MIME types (schema:encodingFormat) or file format (dcterms:format), while
+# this slot also encompasses character sets, compression schemes, and languages.
+#
+# SEMANTIC NOTE: The alias "content_hash" and prior mappings to
+# spdx:checksumValue / dcat:checksum suggest this slot was also intended for
+# content hashing (SHA-256 digests). These are distinct concepts: encoding
+# format (reversible representation) vs. hashing (one-way digest for integrity).
+# Hash-related mappings retained as "related" for traceability.
+#
+# REMOVED from exact: spdx:checksumValue — about hash digest values, not
+# encoding format. Moved to related.
+# REMOVED: dcat:checksum — not found in dcat3.ttl (unverifiable).
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/encoded_as
+name: encoded_as
+title: Encoded As
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  spdx: http://spdx.org/rdf/terms#
+  premis: http://www.loc.gov/premis/rdf/v3/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  encoded_as:
+    slot_uri: hc:encodedAs
+    description: >-
+      Identifies the specific digital format, character set, compression scheme,
+      or language used to represent, store, or transmit data or content.
+    comments:
+      - >-
+        The alias "content_hash" and prior usage notes indicate this slot has
+        also been used for content hashing (SHA-256 digests for integrity
+        verification and deduplication). Content hashing is a distinct concept
+        from encoding format; consider whether a separate slot is warranted.
+      - >-
+        SHA-256 provides collision resistance for content verification. SRI
+        format (sha256-{base64}) is preferred for web content; hex format
+        ({64_hex_chars}) is acceptable for file content.
+    alt_descriptions:
+      nl: >-
+        Identificeert het specifieke digitale formaat, de tekenset, het
+        compressieschema of de taal die wordt gebruikt om gegevens of inhoud
+        weer te geven, op te slaan of te verzenden.
+      de: >-
+        Identifiziert das spezifische digitale Format, den Zeichensatz, das
+        Komprimierungsschema oder die Sprache, die zur Darstellung, Speicherung
+        oder Übertragung von Daten oder Inhalten verwendet wird.
+      fr: >-
+        Identifie le format numérique spécifique, le jeu de caractères, le
+        schéma de compression ou la langue utilisé pour représenter, stocker
+        ou transmettre des données ou du contenu.
+      ar: >-
+        يحدد التنسيق الرقمي المحدد أو مجموعة الأحرف أو مخطط الضغط أو اللغة
+        المستخدمة لتمثيل البيانات أو المحتوى أو تخزينها أو نقلها.
+      id: >-
+        Mengidentifikasi format digital, set karakter, skema kompresi, atau
+        bahasa tertentu yang digunakan untuk merepresentasikan, menyimpan,
+        atau mengirimkan data atau konten.
+      zh: >-
+        标识用于表示、存储或传输数据或内容的特定数字格式、字符集、压缩方案或语言。
+      es: >-
+        Identifica el formato digital específico, el conjunto de caracteres,
+        el esquema de compresión o el idioma utilizado para representar,
+        almacenar o transmitir datos o contenido.
+    structured_aliases:
+      - literal_form: Codering
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kodierung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Encodage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ترميز
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pengodean
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 编码格式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Codificación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - schema:encodingFormat    # schemaorg.owl:16697-16722 - "Media type typically expressed using a MIME format."
+      - dcterms:format           # dcterms.rdf:1296-1322 - "The file format, physical medium, or dimensions."
+    narrow_mappings:
+      - dcat:mediaType           # dcat3.ttl:1306-1348 - "The media type as defined by IANA."
+    related_mappings:
+      - spdx:checksumValue       # spdx2.owl:760-768 - "Hex encoded digest value." (hash, not encoding format)
+      - premis:fixity            # premis3.owl:372-384 - "has fixity." (integrity verification)
+    aliases:
+      - content_hash
+    annotations:
+      custodian_types: '["*"]'

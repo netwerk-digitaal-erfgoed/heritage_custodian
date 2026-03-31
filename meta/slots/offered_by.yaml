@@ -1,0 +1,113 @@
+# ==============================================================================
+# LinkML Slot Definition: offered_by
+# ==============================================================================
+# Identifies the organization or person making an offer available.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology        | Property              | File/Line                 | Mapping  | Notes                                                                         |
+# |-----------------|-----------------------|---------------------------|----------|-------------------------------------------------------------------------------|
+# | **Schema.org**  | `schema:offeredBy`    | schemaorg.owl:28076-28099 | slot_uri | "Organization or person making the offer." Offer→Person|Organization.          |
+# | **Schema.org**  | `schema:provider`     | schemaorg.owl:31484-31514 | close    | "Service provider, goods producer." Service|CreativeWork→Organization|Person.  |
+# | **Schema.org**  | `schema:makesOffer`   | schemaorg.owl:25353-25376 | related  | Inverse: "Products or services offered by the org/person." Org|Person→Offer.  |
+# | **Dublin Core** | `dcterms:publisher`   | dcterms.rdf:1761-1781     | broad    | "Entity responsible for making the resource available." Any resource→Agent.    |
+# | **PROV-O**      | `prov:wasAttributedTo`| prov.ttl:1082-1097        | related  | "Ascribing of an entity to an agent." Entity→Agent. General provenance.       |
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/offered_by
+name: offered_by
+title: Offered By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  offered_by:
+    slot_uri: schema:offeredBy
+    description: >-
+      Identifies the specific vendor, organization, institution, or individual
+      that makes a product, service, course, or opportunity available for
+      purchase, enrollment, or acceptance. In the heritage context, this
+      typically links to a HeritageCustodian entity.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke aanbieder, organisatie, instelling of
+        persoon die een product, dienst, cursus of kans beschikbaar stelt voor
+        aankoop, inschrijving of acceptatie.
+      de: >-
+        Identifiziert den spezifischen Anbieter, die Organisation, Einrichtung
+        oder Person, die ein Produkt, eine Dienstleistung, einen Kurs oder eine
+        Gelegenheit zum Kauf, zur Einschreibung oder zur Annahme bereitstellt.
+      fr: >-
+        Identifie le fournisseur, l'organisation, l'institution ou l'individu
+        spécifique qui rend un produit, un service, un cours ou une opportunité
+        disponible à l'achat, à l'inscription ou à l'acceptation.
+      ar: >-
+        يحدد البائع أو المنظمة أو المؤسسة أو الفرد المحدد الذي يجعل منتجًا أو
+        خدمة أو دورة أو فرصة متاحة للشراء أو التسجيل أو القبول.
+      id: >-
+        Mengidentifikasi vendor, organisasi, institusi, atau individu spesifik
+        yang menyediakan produk, layanan, kursus, atau peluang untuk pembelian,
+        pendaftaran, atau penerimaan.
+      zh: >-
+        标识使产品、服务、课程或机会可供购买、注册或接受的特定供应商、组织、机构或个人。
+      es: >-
+        Identifica al proveedor, organización, institución o individuo
+        específico que pone a disposición un producto, servicio, curso u
+        oportunidad para su compra, inscripción o aceptación.
+    structured_aliases:
+      - literal_form: Aangeboden door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Angeboten von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Offert par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مقدم من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Ditawarkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 提供方
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Ofrecido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    close_mappings:
+      - schema:provider  # schemaorg.owl:31484-31514 - "Service provider, goods producer"; broader domain (Service, CreativeWork, etc.)
+    broad_mappings:
+      - dcterms:publisher  # dcterms.rdf:1761-1781 - "Entity responsible for making the resource available"; very general
+    related_mappings:
+      - schema:makesOffer  # schemaorg.owl:25353-25376 - Inverse of offeredBy: "products or services offered by the org/person"
+      - prov:wasAttributedTo  # prov.ttl:1082-1097 - "Ascribing of an entity to an agent"; general provenance attribution
+    aliases: []
+    examples:
+      - value: "Rijksmuseum"
+        description: >-
+          The Rijksmuseum offering a guided tour service.
+      - value: "https://nde.nl/ontology/hc/custodian/rijksmuseum"
+        description: >-
+          URI reference to the HeritageCustodian entity making the offer.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Typically links to a HeritageCustodian entity representing the
+        institution that provides the service, product, or program.
+      - >-
+        schema:offeredBy has domain schema:Offer and range Person|Organization,
+        which aligns with our use case of linking offers to heritage custodians.

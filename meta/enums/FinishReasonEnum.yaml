@@ -1,0 +1,26 @@
+id: https://nde.nl/ontology/hc/enum/FinishReasonEnum
+name: finish_reason_enum
+title: Finish Reason Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+imports:
+  - linkml:types
+default_prefix: hc
+
+enums:
+  FinishReasonEnum:
+    description: |
+      Reasons why the LLM stopped generating output.
+      Standardized across providers.
+    permissible_values:
+      stop:
+        description: Natural completion - model hit a stop token or finished
+      length:
+        description: Hit max_tokens limit - response was truncated
+      tool_calls:
+        description: Model invoked a tool/function (function calling)
+      content_filter:
+        description: Response was filtered for safety/content policy
+      error:
+        description: Generation failed due to an error

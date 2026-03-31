@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: has_initials
+# ==============================================================================
+# Associates a person with the first letters derived from their full name.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property        | File/Line          | Mapping | Notes                                                  |
+# |------------|-----------------|--------------------|---------|---------------------------------------------------------|
+# | **PNV**    | `pnv:initials`  | pico.ttl:569-586   | exact   | "First letter of a person's given name"; exact match.  |
+# | **FOAF**   | `foaf:name`     | foaf.ttl:442-450   | broad   | "A name for some thing"; any name, far broader.        |
+# | **SKOS**   | `skos:altLabel` | skos.rdf:135-150   | related | "Alternative lexical label"; labels in general.        |
+#
+# slot_uri uses pnv:initials per exact mapping to standard property.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_initials
+name: has_initials
+title: Has Initials
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  pnv: https://w3id.org/pnv#
+  foaf: http://xmlns.com/foaf/0.1/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_initials:
+    slot_uri: pnv:initials
+    description: >-
+      Associates a person or named entity with the specific set of first letters
+      derived from their full name.
+    alt_descriptions:
+      nl: >-
+        Koppelt een persoon of benoemde entiteit aan de specifieke reeks eerste
+        letters die zijn afgeleid van hun volledige naam.
+      de: >-
+        Verknüpft eine Person oder benannte Entität mit dem spezifischen Satz
+        von Anfangsbuchstaben, die von ihrem vollständigen Namen abgeleitet sind.
+      fr: >-
+        Associe une personne ou une entité nommée à l'ensemble spécifique de
+        premières lettres dérivées de son nom complet.
+      ar: >-
+        يربط شخصًا أو كيانًا مسمى بمجموعة محددة من الأحرف الأولى المشتقة من
+        اسمه الكامل.
+      id: >-
+        Mengaitkan seseorang atau entitas bernama dengan kumpulan huruf pertama
+        tertentu yang berasal dari nama lengkap mereka.
+      zh: >-
+        将一个人或命名实体与从其全名中提取的特定首字母集相关联。
+      es: >-
+        Asocia una persona o entidad nombrada con el conjunto específico de
+        primeras letras derivadas de su nombre completo.
+    structured_aliases:
+      - literal_form: Initialen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Initialen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Initiales
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الأحرف الأولى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Inisial
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 姓名首字母
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Iniciales
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    pattern: ^[A-Z][a-zA-Z]*\.([A-Z][a-zA-Z]*\.)*$
+    exact_mappings:
+    broad_mappings:
+      - foaf:name       # foaf.ttl:442-450 - "A name for some thing"; any name, far broader than initials
+    related_mappings:
+      - skos:altLabel   # skos.rdf:135-150 - "Alternative lexical label"; abbreviations/alt labels in general
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - Each initial should be followed by a period (dot).
+      - 'PNV Example 1: "Peter R. de Vries" → initials: "P.R.", given_name: "Peter R."'
+      - 'PNV Example 2: "C.Joh. Kieviet" → initials: "C.Joh." (unusual abbreviation format)'
+      - 'PNV Example 3: "H.A.F.M.O. (Hans) van Mierlo" → initials: "H.A.F.M.O.", given_name: "Hans"'
+      - If only initials are known (not the full given name), use this property.
+      - Store initials exactly as they appear in the source for historical accuracy.
+      - The given_name property may also contain the initials as a fallback.
+    aliases:
+      - initial

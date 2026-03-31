@@ -1,0 +1,111 @@
+id: https://nde.nl/ontology/hc/class/Carrier
+name: Carrier
+title: Carrier Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  rda: http://rdaregistry.info/termList/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_note
+- ../slots/has_type
+classes:
+  Carrier:
+    class_uri: bf:Carrier
+    description: >-
+      Physical medium on which information can be recorded or stored, modeling
+      the physical carrier (codex, scroll, disc, etc.) as distinct from the
+      content it carries, supporting the FRBR/LRM conceptual model.
+    alt_descriptions:
+      nl: Fysiek medium waarop informatie kan worden vastgelegd of opgeslagen, dat het fysieke drager (codex, rol, schijf, enz.) modelleert als onderscheiden van de inhoud die het draagt, ter ondersteuning van het FRBR/LRM conceptuele model.
+      de: Physisches Medium, auf dem Informationen aufgezeichnet oder gespeichert werden können, das den physischen Träger (Kodex, Rolle, Scheibe usw.) als vom Inhalt getrennt modelliert und das FRBR/LRM-Konzeptmodell unterstützt.
+      fr: Support physique sur lequel des informations peuvent être enregistrées ou stockées, modélisant le support physique (codex, rouleau, disque, etc.) comme distinct du contenu qu'il porte, supportant le modèle conceptuel FRBR/LRM.
+      es: Medio físico en el que se puede grabar o almacenar información, modelando el soporte físico (códice, rollo, disco, etc.) como distinto del contenido que transporta, apoyando el modelo conceptual FRBR/LRM.
+      ar: وسيط مادي يمكن تسجيل أو تخزين المعلومات عليه، بنمذجة الحامل المادي (المخطوط، اللفافة، القرص، إلخ) كمتميز عن المحتوى الذي يحمله، دعمًا للنموذج المفاهيمي FRBR/LRM.
+      id: Media fisik tempat informasi dapat direkam atau disimpan, memodelkan pembawa fisik (kodex, gulungan, cakram, dll.) sebagai berbeda dari konten yang dibawanya, mendukung model konseptual FRBR/LRM.
+      zh: 可以记录或存储信息的物理介质，将物理载体（册籍、卷轴、光盘等） 建模为与其承载的内容相区分，支持FRBR/LRM概念模型。
+    exact_mappings:
+    - bf:Carrier
+    broad_mappings:
+    - rda:Carrier
+    close_mappings:
+    - crm:E22_Human-Made_Object
+    slots:
+    - has_type
+    - has_description
+    - has_note
+    slot_usage:
+      has_type:
+        range: CarrierType
+        required: true
+        examples:
+        - value:
+            carrier_type_code: CODEX
+            carrier_type_label: Codex
+        - value:
+            carrier_type_code: VINYL_DISC
+            carrier_type_label: Vinyl Disc
+      has_description:
+        required: false
+        examples:
+        - value: Paper codex with leather binding, 324 leaves
+      has_note:
+        required: false
+    structured_aliases:
+    - literal_form: drager
+      in_language: nl
+    - literal_form: Träger
+      in_language: de
+    - literal_form: support
+      in_language: fr
+    - literal_form: soporte
+      in_language: es
+    - literal_form: حامل
+      in_language: ar
+    - literal_form: pembawa
+      in_language: id
+    - literal_form: 载体
+      in_language: zh
+    comments:
+    - Models physical carrier distinct from content
+    - Supports FRBR/LRM Work/Expression/Manifestation/Item distinction
+    - Use has_type with CarrierType subclasses (Rule 0b pattern)
+    - MIGRATED from carrier_type enum (2026-01-23) per Rule 53
+    keywords:
+    - physical medium
+    - storage medium
+    - bibliographic carrier
+    - FRBR
+    - information carrier
+    see_also:
+    - https://www.loc.gov/bibframe/docs/
+    - http://www.rdaregistry.info/termList/RDACarrierType/
+    examples:
+    - value:
+        has_type:
+          carrier_type_code: CODEX
+          carrier_type_label: Codex
+        has_description: Paper codex, 18th-century red morocco binding
+      description: Bound manuscript codex
+    - value:
+        has_type:
+          carrier_type_code: VINYL_DISC
+          carrier_type_label: Vinyl Disc
+        has_description: "12-inch 33⅓ RPM long-playing record"
+      description: Vinyl audio disc
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,139 @@
+id: https://nde.nl/ontology/hc/class/AcademicArchive
+name: AcademicArchive
+title: Academic Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../classes/ArchiveOrganizationType
+- ../classes/WikidataAlignment
+- ../slots/has_hypernym
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/identified_by
+- ../slots/related_to
+classes:
+  AcademicArchive:
+    description: >-
+      Organizational unit serving as the official custodian for the documentary heritage of a tertiary educational institution.
+    alt_descriptions:
+      nl: >-
+        Organisatorische eenheid die fungeert als de officiële bewaarder van het documentair erfgoed van een instelling voor hoger onderwijs.
+      de: >-
+        Organisatorische Einheit, die als offizieller Verwahrer des dokumentarischen Erbes einer Hochschuleinrichtung dient.
+      fr: >-
+        Unite organisationnelle agissant en tant que depositeur officiel du patrimoine documentaire d'un etablissement d'enseignement superieur.
+      es: >-
+        Unidad organizativa que sirve como depositario oficial del patrimonio documental de una institucion de educacion superior.
+      ar: >-
+        وحدة تنظيمية تعمل كحارس رسمي للتراث الوثائقي لمؤسسة التعليم العالي.
+      id: >-
+        Unit organisasi yang berfungsi sebagai penjaga resmi warisan dokumenter institusi pendidikan tinggi.
+      zh: >-
+        作为高等教育机构文献遗产官方保管者的组织单位。
+    examples:
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: University Archives
+        has_hypernym: wd:Q166118
+        hold_record_set:
+        - hc:UniversityAdministrativeFonds
+        - hc:FacultyPaperCollection
+      description: A university archives institution holding administrative records and faculty papers
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        has_label: College Archives
+        has_hypernym: wd:Q166118
+        hold_record_set:
+        - hc:AcademicStudentRecordSeries
+      description: A college archives institution preserving student records
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - has_label
+    - has_hypernym
+    - hold_record_set
+    - has_score
+    - related_to
+    structured_aliases:
+    - literal_form: academisch archief
+      in_language: nl
+    - literal_form: Hochschularchiv
+      in_language: de
+    - literal_form: archives academiques
+      in_language: fr
+    - literal_form: archivo academico
+      in_language: es
+    - literal_form: أرشيف أكاديمي
+      in_language: ar
+    - literal_form: arsip akademik
+      in_language: id
+    - literal_form: 学术档案馆
+      in_language: zh
+    - literal_form: archivio accademico
+      in_language: it
+    - literal_form: arquivo academico
+      in_language: pt
+    keywords:
+    - administrative records
+    - governance records
+    - committee records
+    - policy records
+    - student records
+    - enrollment records
+    - graduation records
+    - academic transcripts
+    - faculty papers
+    - research documentation
+    - university publications
+    - campus photographs
+    - audiovisual materials
+    - campus life documentation
+    slot_usage:
+      hold_record_set:
+        equals_string_in:
+        - "hc:UniversityAdministrativeFonds"
+        - "hc:AcademicStudentRecordSeries"
+        - "hc:FacultyPaperCollection"
+        - "hc:CampusDocumentationCollection"
+      identified_by:
+        pattern: "^Q[0-9]+$"
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+      has_hypernym:
+        equals_string: "wd:Q166118"
+      has_label:
+        ifabsent: string(archive)
+    close_mappings:
+    - rico:CorporateBody
+    - wd:Q27032435
+    broad_mappings:
+    - wd:Q166118
+    narrow_mappings:
+    - wd:Q2496264
+    related_mappings:
+    - wd:Q1065413
+    comments:
+    - Institutional custodian type for higher education archives
+    - Distinguished from institutional repositories (wd:Q1065413) which manage published scholarly outputs
+    - The actual holdings are represented by AcademicArchiveRecordSetType instances
+    - 'Preserved from prior description: Organizational unit serving as the official custodian for the documentary heritage of a tertiary educational institution. Charged with acquiring, preserving, and providing access to administrative records, faculty papers, student records, and campus documentation. Distinguished from institutional repositories that primarily manage published scholarly outputs.'
+    see_also:
+    - AcademicArchiveRecordSetType
+    - wd:Q1065413
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Specific to higher education archival custodians
+      custodian_types: "['AcademicArchive']"

@@ -1,0 +1,151 @@
+id: https://nde.nl/ontology/hc/class/WarehouseType
+name: WarehouseType
+title: Warehouse Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/equivalent_to
+classes:
+  WarehouseType:
+    class_uri: skos:Concept
+    description: >-
+      Abstract classification concept for heritage storage-facility categories,
+      organized by function, siting, and operational characteristics.
+    alt_descriptions:
+      nl: Abstract classificatieconcept voor categorieen van erfgoedopslagfaciliteiten, geordend op functie, ligging en operationele kenmerken.
+      de: Abstraktes Klassifikationskonzept fuer Kategorien von Kulturerbe-Lagerstaetten, geordnet nach Funktion, Lage und Betriebsmerkmalen.
+      fr: Concept de classification abstrait pour des categories d'installations de stockage patrimonial, organise selon la fonction, l'implantation et les caracteristiques operationnelles.
+      es: Concepto de clasificacion abstracto para categorias de instalaciones de almacenamiento patrimonial, organizado por funcion, ubicacion y caracteristicas operativas.
+      ar: مفهوم تصنيفي مجرد لفئات مرافق حفظ التراث، منظم حسب الوظيفة والموقع والخصائص التشغيلية.
+      id: Konsep klasifikasi abstrak untuk kategori fasilitas penyimpanan warisan, diatur menurut fungsi, lokasi, dan karakteristik operasional.
+      zh: 用于遗产保存设施类别的抽象分类概念，按功能、区位和运营特征组织。
+    structured_aliases:
+    - literal_form: magazijntype
+      in_language: nl
+    - literal_form: Lagertyp
+      in_language: de
+    - literal_form: type d'entrepôt
+      in_language: fr
+    - literal_form: tipo de almacén
+      in_language: es
+    - literal_form: نوع المستودع
+      in_language: ar
+    - literal_form: jenis gudang
+      in_language: id
+    - literal_form: 仓库类型
+      in_language: zh
+    comments:
+    - Abstract base class for warehouse type categories (not instances).
+    - Subclasses define specific warehouse facility types by function/location.
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - premis:StorageLocation
+    related_mappings:
+    - crm:E27_Site
+    - schema:Place
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - equivalent_to
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/warehouse-type/[a-z-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/warehouse-type/central-depot
+        - value: https://nde.nl/ontology/hc/warehouse-type/offsite-depot
+      has_code:
+#         range: string
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+        examples:
+        - value: CENTRAL_DEPOT
+        - value: OFFSITE_DEPOT
+        - value: COLD_STORAGE_FACILITY
+        - value: HIGH_SECURITY_VAULT
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Central Depot@en
+          - hoofddepot@nl
+        - value:
+          - Offsite Storage@en
+          - externe opslag@nl
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: Primary storage facility located at main institutional site
+      equivalent_to:
+        range: WikiDataIdentifier
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - qid: Q1191732
+      has_hypernym:
+        range: WarehouseType
+        required: false
+      has_hyponym:
+        range: WarehouseType
+        multivalued: true
+        required: false
+    notes:
+    - |
+      Distinguish category terms from facility instances.
+
+      - Use this class for controlled type labels.
+      - Use Warehouse for individual physical sites.
+    annotations:
+      specificity_score: '0.55'
+      specificity_rationale: Moderately specific - warehouse types are infrastructure-related metadata.
+      has_score:
+      replaces_slot: warehouse_type
+      migration_date: '2026-01-13'
+      custodian_types: "['*']"
+      modeling_notes: |
+        Typical category dimensions include location profile (central/offsite)
+        and operational profile (security, climate control, mixed use).
+    see_also:
+    - http://www.loc.gov/premis/rdf/v3/StorageLocation
+    - http://www.cidoc-crm.org/cidoc-crm/E27_Site
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/warehouse-type/central-depot
+        has_code: CENTRAL_DEPOT
+        has_label:
+        - Central Depot@en
+        - hoofddepot@nl
+        has_description: Primary storage facility at main institutional site

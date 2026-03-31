@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/class/FundingAgenda
+name: FundingAgenda
+title: Funding Agenda
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/receive_investment
+  - ../slots/has_label
+  - ../slots/has_scope
+  - ../slots/has_score
+  - ../slots/has_url
+  - ../slots/governed_by
+  - ../slots/implemented_by
+  - ../slots/related_to
+  - ../slots/temporal_extent
+classes:
+  FundingAgenda:
+    class_uri: hc:FundingAgenda
+    description: >-
+      Strategic planning framework that defines thematic priorities and
+      investment directions used to steer funding programs over a defined period.
+    alt_descriptions:
+      nl: Strategisch kader dat thematische prioriteiten en investeringsrichtingen vastlegt om financieringsprogramma's in een bepaalde periode te sturen.
+      de: Strategischer Planungsrahmen, der thematische Prioritaeten und Investitionsrichtungen zur Steuerung von Foerderprogrammen festlegt.
+      fr: Cadre strategique definissant des priorites thematiques et des orientations d'investissement pour piloter des programmes de financement.
+      es: Marco estrategico que define prioridades tematicas y lineas de inversion para orientar programas de financiacion.
+      ar: إطار تخطيطي استراتيجي يحدد الأولويات الموضوعية واتجاهات الاستثمار لتوجيه برامج التمويل خلال فترة زمنية.
+      id: Kerangka strategis yang menetapkan prioritas tematik dan arah investasi untuk mengarahkan program pendanaan dalam periode tertentu.
+      zh: 在一定时期内用于引导资助计划之主题优先级与投资方向的战略框架。
+    structured_aliases:
+      - literal_form: financieringsagenda
+        in_language: nl
+      - literal_form: Foerderagenda
+        in_language: de
+      - literal_form: agenda de financement
+        in_language: fr
+      - literal_form: agenda de financiacion
+        in_language: es
+      - literal_form: أجندة التمويل
+        in_language: ar
+      - literal_form: agenda pendanaan
+        in_language: id
+      - literal_form: 资助议程
+        in_language: zh
+    slots:
+      - has_description
+      - has_url
+      - identified_by
+      - has_label
+      - governed_by
+      - implemented_by
+      - receive_investment
+      - related_to
+      - has_scope
+      - temporal_extent
+      - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/agenda/nl/nwa
+          has_label: Dutch Research Agenda
+          has_url: https://www.nwo.nl/en/researchprogrammes/dutch-research-agenda-nwa
+        description: National strategic framework guiding interdisciplinary research investments
+      - value:
+          identified_by: https://nde.nl/ontology/hc/agenda/eu/he-sp-2021-2024
+          has_label: Horizon Europe Strategic Plan 2021-2024
+          has_url: https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en
+        description: Multi-year EU strategy defining mission and cluster investment priorities
+    broad_mappings:
+      - schema:FundingScheme
+      - skos:ConceptScheme
+    close_mappings:
+      - dcterms:Policy
+      - prov:Plan
+    notes:
+      - |
+        Preserved from prior description (commit ee5e8e5a):
+
+        "A strategic research or funding agenda that defines priorities, themes, and\nobjectives guiding funding allocation by one or more funding organisations.\n\n**PURPOSE**:\n\nFundingAgenda represents the strategic layer ABOVE individual funding calls:\n\n```\nFundingAgenda (e.g., Dutch Research Agenda NWA)\n      \u2502\n      \u251C\u2500\u2500 thematic_routes (25 interdisciplinary routes)\n      \u2502       \u2502\n      \u2502       \u2514\u2500\u2500 \"Cultural Identity\" route\n      \u2502               \u2502\n      \u2502               \u2514\u2500\u2500 shapes \u2192 CallForApplication topics\n      \u2502\n      \u2514\u2500\u2500 implementing_organisations\n              \u2502\n              \u2514\u2500\u2500 NWO (issues calls aligned with NWA)\n```\n\n**KEY RELATIONSHIPS**:\n\n1. **Governed by**: A high-level body (government, consortium) that created the agenda\n   - `governing_body` \u2192 EncompassingBody (e.g., Dutch government, European Commission)\n\n\

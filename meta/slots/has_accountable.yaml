@@ -1,0 +1,40 @@
+id: https://nde.nl/ontology/hc/slot/has_accountable
+name: has_accountable
+title: Has Accountable
+prefixes:
+  linkml: https://w3id.org/linkml/
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+slots:
+  has_accountable:
+    slot_uri: tooi:verantwoordelijke
+    range: string # uriorcurie
+    # range: CustodianLegalStatus
+    required: true
+    description: |
+      Identifies the single entity or individual who is ultimately answerable, legally liable, and holds final authority over an object, process, or decision.
+
+
+      "Custodian legal entity that bears LEGAL RESPONSIBILITY for this collection.\n\n**TOOI Definition**: \"Overheidsorganisatie die de wettelijke verantwoordelijkheid \ndraagt voor de inhoud (strekking) van het informatieobject\"\n\nMaps information objects (collections) to the legal entity (organization or person)\nthat has formal legal accountability for their custody, preservation, and management.\n\n**Requirements**:\n- MUST reference a CustodianLegalStatus instance (formal legal entity)\n- Legal entity MUST have registration_numbers (unless natural person)\n- Legal responsibility MUST be documented (see legal_responsibility_basis)\n\n**Temporal Consistency**:\n- Collection valid_from MUST be >= legal_entity.registration_date\n- Collection valid_to MUST be <= legal_entity.dissolution_date (if dissolved)\n- During custody transfers, create NEW LegalResponsibilityCollection instance\n\n**Bidirectional Relationship**:\n- **Forward**: LegalResponsibilityCollection \u2192 CustodianLegalStatus\
+      \ (responsible_legal_entity)\n- **Reverse**: CustodianLegalStatus \u2192 LegalResponsibilityCollection (collections_under_responsibility)\n\n**Distinction from refers_to_custodian**:\n- `responsible_legal_entity`: Points to LEGAL ASPECT (CustodianLegalStatus)\n- `refers_to_custodian`: Points to HUB (Custodian)\n\nBoth link to the SAME custodian but different aspects:\n```yaml\nLegalResponsibilityCollection:\n  responsible_legal_entity: \".../legal/rijksmuseum-foundation\"  # Legal aspect\n  refers_to_custodian: \".../custodian/nl-nh-ams-m-rm-q190804\"  # Hub\n```\n"
+    examples:
+    - value: https://nde.nl/ontology/hc/legal/nha-organization
+      description: Noord-Hollands Archief foundation as responsible legal entity
+    comments:
+    - Range is a prov:Entity instance (CustodianLegalStatus)
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - responsible_legal_entity

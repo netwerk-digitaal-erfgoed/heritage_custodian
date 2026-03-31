@@ -1,0 +1,77 @@
+id: https://nde.nl/ontology/hc/class/Format
+name: Format
+title: Format
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dct: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  premis: http://www.loc.gov/premis/rdf/v3/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  Format:
+    class_uri: dct:MediaType
+    description: >-
+      Structured media or encoding format designation for files, documents,
+      APIs, and preservation objects.
+    alt_descriptions:
+      nl: Gestructureerde aanduiding van media- of coderingsformaat voor bestanden documenten API s en preservatieobjecten.
+      de: Strukturierte Bezeichnung von Medien- oder Kodierungsformaten fuer Dateien Dokumente APIs und Erhaltungsobjekte.
+      fr: Designation structuree de format media ou d encodage pour fichiers documents API et objets de preservation.
+      es: Designacion estructurada de formato de medio o codificacion para archivos documentos API y objetos de preservacion.
+      ar: تسمية منظمة لصيغة الوسائط أو الترميز للملفات والوثائق وواجهات API وكائنات الحفظ الرقمي.
+      id: Penetapan terstruktur format media atau pengodean untuk berkas dokumen API dan objek preservasi.
+      zh: 面向文件、文档、API 与保存对象的结构化媒体或编码格式标识。
+    structured_aliases:
+    - {literal_form: bestandsformaat, in_language: nl}
+    - {literal_form: Dateiformat, in_language: de}
+    - {literal_form: format de fichier, in_language: fr}
+    - {literal_form: formato de archivo, in_language: es}
+    - {literal_form: تنسيق ملف, in_language: ar}
+    - {literal_form: format berkas, in_language: id}
+    - {literal_form: 文件格式, in_language: zh}
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    exact_mappings:
+    - dct:MediaType
+    close_mappings:
+    - schema:encodingFormat
+    - premis:Format
+    examples:
+    - value:
+        format_id: iana:application/xml+ead
+        format_name: Encoded Archival Description (EAD)
+        mime_type: application/xml
+        file_extension:
+        - .xml
+        - .ead
+        format_specification_url: https://www.loc.gov/ead/
+      description: EAD finding aid format
+    - value:
+        format_id: iana:text/vtt
+        format_name: WebVTT (Web Video Text Tracks)
+        mime_type: text/vtt
+        file_extension:
+        - .vtt
+        format_specification_url: https://www.w3.org/TR/webvtt1/
+      description: WebVTT subtitle/caption format
+    - value:
+        format_id: iana:application/pdf
+        format_name: Portable Document Format (PDF)
+        mime_type: application/pdf
+        file_extension:
+        - .pdf
+        format_specification_url: https://www.iso.org/standard/75839.html
+      description: PDF document format
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Format specifications applicable to all custodian types.
+      specificity_score: 0.25
+      specificity_rationale: Broadly applicable - formats used across all heritage custodian types.

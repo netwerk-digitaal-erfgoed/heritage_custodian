@@ -1,0 +1,75 @@
+id: https://nde.nl/ontology/hc/class/CollectingArchives
+name: CollectingArchives
+title: Collecting Archives Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  wd: http://www.wikidata.org/entity/
+imports:
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  CollectingArchives:
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    description: >-
+      Repository institution that acquires documentary heritage from multiple
+      outside creators through donation, transfer, purchase, or rescue workflows.
+    alt_descriptions:
+      nl: Instelling die documentair erfgoed van meerdere externe makers verwerft via schenking, overdracht, aankoop of reddingsacties.
+      de: Einrichtung, die dokumentarisches Erbe von mehreren externen Urhebern durch Schenkung, Uebertragung, Ankauf oder Rettungsprozesse uebernimmt.
+      fr: Institution qui acquiert du patrimoine documentaire provenant de createurs externes multiples par don, transfert, achat ou sauvetage.
+      es: Institucion que adquiere patrimonio documental de multiples creadores externos mediante donacion, transferencia, compra o rescate.
+      ar: مؤسسة تحفظ تراثا وثائقيا من منشئين خارجيين متعددين عبر التبرع أو النقل أو الشراء أو الإنقاذ.
+      id: Lembaga repositori yang memperoleh warisan dokumenter dari banyak pencipta eksternal melalui donasi, transfer, pembelian, atau penyelamatan.
+      zh: 通过捐赠、移交、购买或抢救流程，从多个外部来源获取文献遗产的机构。
+    structured_aliases:
+    - literal_form: verzamelarchief
+      in_language: nl
+    - literal_form: Sammelarchiv
+      in_language: de
+    - literal_form: archives de collecte
+      in_language: fr
+    - literal_form: archivo recolector
+      in_language: es
+    - literal_form: أرشيف تجميعي
+      in_language: ar
+    - literal_form: arsip penghimpun
+      in_language: id
+    - literal_form: 征集型档案机构
+      in_language: zh
+    close_mappings:
+    - wd:Q117246276
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    related_mappings:
+    - wd:Q124762372
+    - wd:Q25105971
+    keywords:
+    - external provenance acquisition
+    - donation programs
+    - archival rescue operations
+    - multi-source stewardship
+    examples:
+    - value:
+        institution_name: Hoover Institution Library and Archives
+        hold_record_set: CollectedMaterialsFonds
+    comments:
+    - Organizational type describing governance and acquisition strategy, not record-set taxonomy
+    - May coexist with institutional-custody functions in one repository
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

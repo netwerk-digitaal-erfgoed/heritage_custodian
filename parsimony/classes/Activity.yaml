@@ -1,0 +1,63 @@
+id: https://nde.nl/ontology/hc/parsimony/class/Activity
+name: Activity
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/carried_out_by
+  - ../slots/attested_in
+  - ../slots/functions_as
+  - ../slots/has_spatial_scope
+  - ../slots/located_in
+  - ../slots/yields
+  - ../slots/received_from
+  - ../slots/passed_to
+  - ../slots/situated_in_time
+  - ../slots/marked_as
+classes:
+  Activity:
+    class_uri: prov:Activity
+    description: >-
+      Semantic class for provenance-bearing actions, including retrieval,
+      curation, and reconstruction.
+
+      **Why this slot exists:** `functions_as` lets an activity carry contextual
+      roles or qualifications such as archivist, manager, or MA-level study,
+      while `has_spatial_scope` captures the territory or country an activity
+      concerns without confusing that with its physical location.
+    close_mappings:
+      - crm:E7_Activity
+    examples:
+      - value:
+          has_label_literal:
+            - Reconciliation workflow
+          carried_out_by:
+            - Agent:CuratorialTeam
+          yields:
+            - Observation:registry_entry_observation
+        description: Semantic activity that yields observations as evidence.
+      - value:
+          has_label_literal:
+            - Employment episode at regional archive
+          functions_as:
+            - Classification:Archivist
+          has_spatial_scope:
+            - PlaceContext:Friesland
+        description: Semantic activity carrying a role classification and the regional scope in which it applies.
+    slots:
+      - has_label_literal
+      - carried_out_by
+      - attested_in
+      - functions_as
+      - has_spatial_scope
+      - located_in
+      - yields
+      - received_from
+      - passed_to
+      - situated_in_time
+      - marked_as

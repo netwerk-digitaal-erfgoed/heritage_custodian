@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: measured_through
+# ==============================================================================
+# Instrument, method, protocol, or sensor used to obtain a measurement.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property            | File/Line       | Mapping | Notes                                       |
+# |-----------|---------------------|-----------------|---------|---------------------------------------------|
+# | **SOSA**  | `sosa:madeBySensor` | sosa.ttl:244-250| related | "Relation between an Observation and the    |
+# |           |                     |                 |         | Sensor which made the Observation." Sensor- |
+# |           |                     |                 |         | specific; this slot is broader (any method).|
+#
+# sosa:madeBySensor is restricted to Observation→Sensor relationships.
+# This slot covers any instrument, method, protocol, or sensor used to obtain
+# any measurement — broader scope.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/measured_through
+name: measured_through
+title: Measured Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  measured_through:
+    name: measured_through
+    title: Measured Through
+    slot_uri: hc:measuredThrough
+    description: >-
+      To specify the instrument, method, protocol, or sensor used to obtain a measurement or generate a value during a measurement event.
+    alt_descriptions:
+      nl: >-
+        Specificeert het instrument, de methode, het protocol of de sensor die is gebruikt om een meting uit te voeren of een waarde te genereren tijdens een meetgebeurtenis.
+      de: >-
+        Gibt das Instrument, die Methode, das Protokoll oder den Sensor an, der zur Durchführung einer Messung oder zur Erzeugung eines Wertes während eines Messereignisses verwendet wurde.
+      fr: >-
+        Spécifie l'instrument, la méthode, le protocole ou le capteur utilisé pour obtenir une mesure ou générer une valeur lors d'un événement de mesure.
+      ar: >-
+        يحدد الأداة أو الطريقة أو البروتوكول أو المستشعر المستخدم للحصول على قياس أو توليد قيمة أثناء حدث قياس.
+      id: >-
+        Menentukan instrumen, metode, protokol, atau sensor yang digunakan untuk memperoleh pengukuran atau menghasilkan nilai selama peristiwa pengukuran.
+      zh: >-
+        指定在测量事件中用于获取测量值或生成数值的仪器、方法、协议或传感器。
+      es: >-
+        Especifica el instrumento, método, protocolo o sensor utilizado para obtener una medición o generar un valor durante un evento de medición.
+    structured_aliases:
+      - literal_form: Meetinstrument
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Messinstrument
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Instrument de mesure
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أداة قياس
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Instrumen Pengukuran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 测量工具
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Instrumento de medición
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    # range: Measurement
+    multivalued: true
+    aliases:
+      - has_or_had_measurement
+      - measurement_method
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - sosa:madeBySensor  # sosa.ttl:244-250 - Observation→Sensor (sensor-specific)

@@ -1,0 +1,57 @@
+id: https://nde.nl/ontology/hc/classes/VisitingScholar
+name: VisitingScholar
+title: VisitingScholar
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+# default_range: string
+classes:
+  VisitingScholar:
+    description: >-
+      Information about researcher access programs offered by heritage institutions,
+      including fellowships, residencies, and short-term research visits.
+    alt_descriptions:
+      nl: Informatie over onderzoekerstoegangsprogramma's bij erfgoedinstellingen.
+      de: Informationen über Forschungszugangsprogramme bei Kulturerbeeinrichtungen.
+      fr: Informations sur les programmes d'accès des chercheurs dans les institutions patrimoniales.
+      es: Información sobre programas de acceso para investigadores en instituciones patrimoniales.
+      ar: معلومات عن برامج وصول الباحثين في مؤسسات التراث.
+      id: Informasi tentang program akses peneliti di lembaga warisan budaya.
+      zh: 遗产机构提供的研究人员访问项目信息。
+    structured_aliases:
+    - {literal_form: gastonderzoeker, in_language: nl}
+    - {literal_form: Gastwissenschaftler, in_language: de}
+    - {literal_form: chercheur invité, in_language: fr}
+    - {literal_form: investigador visitante, in_language: es}
+    - {literal_form: باحث زائر, in_language: ar}
+    - {literal_form: peneliti tamu, in_language: id}
+    - {literal_form: 访问学者, in_language: zh}
+    comments:
+    - Covers fellowships, residencies, and short-term research visits
+    - Used with `accept` slot to indicate researcher access programs
+    - Applicable to archives, libraries, research centers, and museums
+    class_uri: schema:ResearchProject
+    close_mappings:
+    - schema:ScholarlyArticle
+    annotations:
+      custodian_types: '["A", "L", "R", "M"]'
+      custodian_types_rationale: Visiting scholar programs primarily at archives, libraries, research centers, museums.
+      custodian_types_primary: A
+      specificity_score: 0.75
+      specificity_rationale: High specificity - specific to research access programs.
+    examples:
+    - value: "VisitingScholar:\n  program_type: \"fellowship\"\n  duration: \"3-6 months\"\n  eligibility:\n    - \"PhD candidates\"\n    - \"Post-doctoral researchers\"\n  stipend_available: true\n"
+      description: Fellowship program for researchers.
+    - value: "VisitingScholar:\n  program_type: \"short_term_visit\"\n  duration: \"1-4 weeks\"\n  application_process: \"Submit research proposal via email\"\n"
+      description: Short-term research visit program.
+    slots: []

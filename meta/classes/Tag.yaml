@@ -1,0 +1,83 @@
+id: https://nde.nl/ontology/hc/class/Tag
+name: tag_class
+title: Tag Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dct: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  Tag:
+    class_uri: skos:Concept
+    description: >-
+      Structured representation of a keyword, hashtag, or classification term used for categorization and discovery.
+    alt_descriptions:
+      nl: Gestructureerde weergave van een trefwoord, hashtag of classificatieterm voor categorisatie en ontdekking.
+      de: Strukturierte Darstellung eines Schlagworts, Hashtags oder Klassifikationsbegriffs zur Kategorisierung und Entdeckung.
+      fr: Représentation structurée d'un mot-clé, hashtag ou terme de classification pour la catégorisation et la découverte.
+      es: Representación estructurada de una palabra clave, hashtag o término de clasificación para categorización y descubrimiento.
+      ar: تمثيل منظم لكلمة مفتاحية أو وسم تصنيفي لمصطلح التصنيف والاكتشاف.
+      id: Representasi terstruktur dari kata kunci, hashtag, atau istilah klasifikasi untuk kategorisasi dan penemuan.
+      zh: 用于分类和发现的关键词、标签或分类术语的结构化表示。
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    keywords:
+    - tag
+    - keyword
+    - hashtag
+    - classification
+    - taxonomy
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    slot_usage:
+      identified_by:
+      has_label:
+        multivalued: true
+        required: true
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Tags are broadly useful across social media content, collections, and organizational metadata.
+      migration_source: tag slot
+      migration_date: '2026-01-16'
+      migration_rule: Rule 53/56
+      custodian_types: "['*']"
+    examples:
+    - value:
+        has_label:
+        - heritage@en
+    - value:
+        has_label:
+        - museum exhibition@en
+    - value:
+        has_label:
+        - digitaal erfgoed@nl
+        - digital heritage@en
+    comments:
+    - Replaces string-based tag per Rule 53/56 (2026-01-16)
+    - Enables platform-specific tag handling (hashtags vs. keywords)
+    structured_aliases:
+    - literal_form: concept
+      in_language: nl
+    - literal_form: concept
+      in_language: de
+    - literal_form: concept
+      in_language: fr
+    - literal_form: concept
+      in_language: es
+    - literal_form: concept
+      in_language: ar
+    - literal_form: concept
+      in_language: id
+    - literal_form: concept
+      in_language: zh

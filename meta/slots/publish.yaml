@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: publish
+# ==============================================================================
+# Act of making a creative work, data set, or information resource available
+# to the public, formally releasing it for consumption or use.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property             | File/Line                | Mapping | Notes                                                         |
+# |------------|----------------------|--------------------------|---------|---------------------------------------------------------------|
+# | DCTerms    | `dcterms:publisher`  | dcterms.rdf:1761-1779    | related | "An entity responsible for making the resource available."     |
+# |            |                      |                          |         | Identifies the publisher agent, not the act of publishing.     |
+# | Schema.org | `schema:publisher`   | schemaorg.owl:31710-31733| related | "The publisher of the creative work." Identifies publisher     |
+# |            |                      |                          |         | agent. Domain: CreativeWork.                                   |
+#
+# dcterms:publisher and schema:publisher identify the agent responsible for
+# publishing, not the act of publishing itself. Related but different concept.
+#
+# CREATED: 2026-02-04
+# UPDATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/publish
+name: publish
+title: Publish
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  publish:
+    slot_uri: hc:publish
+    description: >-
+      Signifies the act of making a creative work, data set, or information resource available to the public, formally releasing it for consumption or use.
+    alt_descriptions:
+      nl: >-
+        Duidt de handeling aan van het beschikbaar stellen van een creatief werk, dataset of informatiebron aan het publiek, door het formeel vrij te geven voor gebruik of consumptie.
+      de: >-
+        Bezeichnet den Akt der Veröffentlichung eines kreativen Werks, Datensatzes oder einer Informationsressource für die Öffentlichkeit, indem es formell zur Nutzung oder zum Verbrauch freigegeben wird.
+      fr: >-
+        Désigne l'acte de rendre une œuvre créative, un jeu de données ou une ressource d'information accessible au public, en le publiant formellement pour la consommation ou l'utilisation.
+      ar: >-
+        يدل على فعل إتاحة عمل إبداعي أو مجموعة بيانات أو مورد معلوماتي للجمهور، وإصداره رسمياً للاستهلاك أو الاستخدام.
+      id: >-
+        Menandakan tindakan menjadikan karya kreatif, kumpulan data, atau sumber informasi tersedia untuk publik, secara resmi merilisnya untuk konsumsi atau penggunaan.
+      zh: >-
+        表示将创意作品、数据集或信息资源公开发布、正式发行供消费或使用的行为。
+      es: >-
+        Significa el acto de poner a disposición del público una obra creativa, un conjunto de datos o un recurso de información, liberándolo formalmente para su consumo o uso.
+    structured_aliases:
+      - literal_form: Publicatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Veröffentlichung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Publication
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نشر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penerbitan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 出版
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Publicación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - is_or_was_publication_series_name
+      - is_or_was_publication_output
+      - issued_call
+      - publishes_or_published
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: L
+      specificity_score: 0.5
+      specificity_rationale: Publication metadata slot.
+    related_mappings:
+      - dcterms:publisher  # dcterms.rdf:1761-1779 - "An entity responsible for making the resource available."
+      - schema:publisher  # schemaorg.owl:31710-31733 - "The publisher of the creative work."

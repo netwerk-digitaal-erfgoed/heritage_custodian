@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: has_transcription
+# ==============================================================================
+# Links a source to the decoded text string derived via OCR or HTR processes.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line                  | Mapping | Notes                                                          |
+# |---------------|--------------------------------|----------------------------|---------|----------------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P190_has_symbolic_content`| CIDOC:5028-5038            | close   | "complete representation of content as String" for E90.         |
+# | **Schema.org** | `schema:text`                 | schemaorg.owl:37718-37736  | broad   | "textual content of CreativeWork" — any text, not OCR/HTR.     |
+# | **Schema.org** | `schema:transcript`           | schemaorg.owl:38621-38642  | related | "transcript of AudioObject/VideoObject" — audio/video only.    |
+# | **OA**         | `oa:bodyValue`                | oa.ttl:173-179             | related | "plain text body of Annotation" — annotation framework model.  |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_transcription
+name: has_transcription
+title: Has Transcription
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_transcription:
+    slot_uri: hc:hasTranscription
+    description: >-
+      Links a scanned image, document region, or text line to the specific
+      decoded text string derived from it via OCR or HTR processes.
+    alt_descriptions:
+      nl: >-
+        Koppelt een gescand beeld, documentregio of tekstregel aan de specifieke
+        gedecodeerde tekenreeks die daaruit is afgeleid via OCR- of HTR-processen.
+      de: >-
+        Verknüpft ein gescanntes Bild, einen Dokumentbereich oder eine Textzeile
+        mit der daraus per OCR- oder HTR-Verfahren abgeleiteten dekodierten Zeichenkette.
+      fr: >-
+        Associe une image numérisée, une région de document ou une ligne de texte
+        à la chaîne de caractères décodée qui en est extraite par des processus OCR ou HTR.
+      ar: >-
+        يربط صورة ممسوحة ضوئيًا أو منطقة مستند أو سطر نص بالنص المفكّك المحدد
+        المستخلص منه عبر عمليات التعرف الضوئي على الأحرف أو التعرف على خط اليد.
+      id: >-
+        Menghubungkan gambar pindaian, wilayah dokumen, atau baris teks ke
+        rangkaian teks terdekode spesifik yang diperoleh darinya melalui proses OCR atau HTR.
+      zh: >-
+        将扫描图像、文档区域或文本行链接到通过OCR或HTR过程从中解码得到的特定文本字符串。
+      es: >-
+        Vincula una imagen escaneada, región de documento o línea de texto con la
+        cadena de texto decodificada específica derivada de ella mediante procesos de OCR o HTR.
+    structured_aliases:
+      - literal_form: Transcriptie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Transkription
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Transcription
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نسخ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Transkripsi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 转录
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Transcripción
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Handwriting OCR is more challenging and typically has lower confidence
+        than printed text.
+      - >-
+        Heritage relevance: manuscripts, letters, diaries, annotations, signatures.
+    range: boolean
+    close_mappings:
+      - crm:P190_has_symbolic_content  # CIDOC:5028-5038 - "complete representation of content as String" for E90 Symbolic Object
+    broad_mappings:
+      - schema:text  # schemaorg.owl:37718-37736 - "textual content of CreativeWork"
+    related_mappings:
+      - schema:transcript  # schemaorg.owl:38621-38642 - "transcript of AudioObject/VideoObject" — domain restricted to audio/video
+      - oa:bodyValue  # oa.ttl:173-179 - "plain text body of Annotation" — annotation framework model
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - includes_handwriting

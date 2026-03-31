@@ -1,0 +1,132 @@
+id: https://nde.nl/ontology/hc/class/EncompassingBody
+name: EncompassingBody
+imports:
+- linkml:types
+- ../enums/EncompassingBodyTypeEnum
+- ../slots/has_authority
+- ../slots/has_budget
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_policy
+- ../slots/has_score
+- ../slots/has_url
+- ../slots/implement
+- ../slots/dissolved_by
+- ../slots/founded_through
+- ../slots/publish
+- ../slots/in_jurisdiction
+- ../slots/has_membership_criteria
+- ../slots/has_legal_form
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/has_service
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  cpov: http://data.europa.eu/m8g/
+  foaf: http://xmlns.com/foaf/0.1/
+  odrl: http://www.w3.org/ns/odrl/2/
+  gleif_base: https://www.gleif.org/ontology/Base/
+  lcc_cr: https://www.omg.org/spec/LCC/Countries/CountryRepresentation/
+default_prefix: hc
+classes:
+  EncompassingBody:
+    class_uri: org:Organization
+    abstract: true
+    description: >-
+      Abstract external organization that frames, governs, funds, or coordinates
+      one or more heritage custodians beyond their internal legal or operational
+      structure.
+    alt_descriptions:
+      nl: Abstracte externe organisatie die erfgoedinstellingen bestuurlijk financieel of via netwerken omkadert en coordineert.
+      de: Abstrakte externe Organisation die Kultureinrichtungen durch Governance Finanzierung oder Netzwerke einbettet und koordiniert.
+      fr: Organisation externe abstraite qui encadre et coordonne les institutions patrimoniales par gouvernance financement ou reseaux.
+      es: Organizacion externa abstracta que enmarca y coordina instituciones patrimoniales mediante gobernanza financiacion o redes.
+      ar: منظمة خارجية مجردة تؤطر مؤسسات التراث وتنسقها عبر الحوكمة أو التمويل أو الشبكات.
+      id: Organisasi eksternal abstrak yang menaungi dan mengoordinasikan lembaga warisan melalui tata kelola pendanaan atau jejaring.
+      zh: 通过治理、资助或网络关系对遗产机构进行统筹与协调的抽象外部组织。
+    structured_aliases:
+    - {literal_form: overkoepelende organisatie, in_language: nl}
+    - {literal_form: uebergeordnete Organisation, in_language: de}
+    - {literal_form: organisme englobant, in_language: fr}
+    - {literal_form: entidad envolvente, in_language: es}
+    - {literal_form: جهة جامعة, in_language: ar}
+    - {literal_form: badan payung, in_language: id}
+    - {literal_form: 上位统筹机构, in_language: zh}
+    slots:
+    - has_policy
+    - has_description
+    - dissolved_by
+    - identified_by
+    - founded_through
+    - has_authority
+    - in_jurisdiction
+    - has_membership_criteria
+    - has_legal_form
+    - has_label
+    - has_type
+    - has_service
+    - has_score
+    - has_url
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Ministerie van Onderwijs, Cultuur en Wetenschap
+        - value: Digital Heritage Network
+      has_type:
+        required: true
+        range: EncompassingBodyTypeEnum
+        examples:
+        - value: UMBRELLA
+        - value: NETWORK
+      has_legal_form:
+        examples:
+        - value: Government ministry
+        - value: Non-profit foundation
+        - value: Professional association
+      founded_through:
+        range: FoundingEvent
+        inlined: true
+      dissolved_by:
+        range: DissolutionEvent
+        inlined: true
+      has_authority:
+        range: GovernanceAuthority
+      has_service:
+        multivalued: true
+      has_membership_criteria:
+        examples:
+        - value: Dutch government heritage institutions established by law
+        - value: Museums with digitization programs seeking preservation services
+      identified_by:
+        multivalued: true
+        inlined_as_list: false
+      has_url:
+        range: uri
+      in_jurisdiction:
+        range: Jurisdiction
+    broad_mappings:
+    - schema:Organization
+    - org:Organization
+    close_mappings:
+    - tooi:Samenwerkingsorganisatie
+    - cpov:PublicOrganisation
+    - foaf:Organization
+    comments:
+    - Abstract superclass; instantiate concrete subclasses for relationship type.
+    - Models external governance and coordination context, not internal structure.
+    notes:
+    - |
+      Preserved from prior description (commit ee5e8e5a):
+
+      "An extra-organizational governance entity that encompasses, oversees, or coordinates\nheritage custodian organizations. Represents the broader organizational context in which\ncustodians operate, extending beyond internal organizational structure (OrganizationalStructure)\nand legal registration (CustodianLegalStatus.governance_structure).\n\n**SIX TYPES OF ENCOMPASSING BODIES**:\n\n 1. **UmbrellaOrganisation** - LEGAL parent organizations\n   - Defined in articles of association, foundation statutes, or legislation\n   - Permanent hierarchical legal structure\n   - Example: Ministry of OCW governing National Archives\n   \n2. **NetworkOrganisation** - SERVICE provider networks\n   - Temporary agreements/treaties providing services to members\n   - NOT legally imposed, members choose to participate\n   - Example: Digital Heritage Network providing preservation services\n   \n3. **Consortium** - MUTUAL assistance bodies\n   - Temporary collaborative agreements for mutual\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,85 @@
+id: https://nde.nl/ontology/hc/class/AudiovisualArchiveRecordSetType
+name: AudiovisualArchiveRecordSetType
+title: Audiovisual Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  wd: http://www.wikidata.org/entity/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_label
+- ../slots/has_description
+classes:
+  AudiovisualArchiveRecordSetType:
+    class_uri: hc:AudiovisualArchiveRecordSetType
+    description: >-
+      Record set type classification for audiovisual archive collections.
+    alt_descriptions:
+      nl: "Recordsettype-classificatie voor audiovisuele archiefcollecties."
+      de: "Bestandstyp-Klassifikation für audiovisuelle Archivsammlungen."
+      fr: "Classification du type de fonds pour les collections d'archives audiovisuelles."
+      es: "Clasificación de tipo de conjunto documental para colecciones de archivos audiovisuales."
+      ar: "تصنيف نوع مجموعة السجلات لمجموعات الأرشيف السمعي البصري."
+      id: "Klasifikasi tipe set rekaman untuk koleksi arsip audiovisual."
+      zh: "视听档案收藏的记录集类型分类。"
+    is_a: CollectionType
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    structured_aliases:
+    - literal_form: audiovisueelarchief-recordsettype
+      in_language: nl
+    - literal_form: Audiovisuellesarchiv-Bestandstyp
+      in_language: de
+    - literal_form: type de fonds d'archives audiovisuelles
+      in_language: fr
+    - literal_form: tipo de conjunto de archivo audiovisual
+      in_language: es
+    - literal_form: نوع مجموعة سجلات الأرشيف السمعي البصري
+      in_language: ar
+    - literal_form: tipe set rekaman arsip audiovisual
+      in_language: id
+    - literal_form: 视听档案记录集类型
+      in_language: zh
+    keywords:
+    - record set type
+    - audiovisual archive
+    - recording collection
+    - production records
+    - archival classification
+    slots:
+    - has_type
+    - has_score
+    - has_scope
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+      has_label:
+        required: false
+        examples:
+        - value: Audiovisual Recording Collection
+        - value: Audiovisual Production Fonds
+    annotations:
+      specificity_score: "0.50"
+      specificity_rationale: "AudiovisualArchiveRecordSetType is specific to audiovisual archive classifications."
+      custodian_types: "['AudiovisualArchive']"
+      subclasses: "AudiovisualRecordingCollection, AudiovisualProductionFonds"
+    comments:
+    - Specialized record set type for audiovisual archives
+    - Subclasses include AudiovisualRecordingCollection, AudiovisualProductionFonds
+    - Part of dual-class pattern with AudiovisualArchive custodian type
+    - 'Preserved from prior description: Record set type classification for audiovisual archive collections. Specialized rico:RecordSetType for classifying collections held by AudiovisualArchive custodians, distinguishing between recording collections, production records, and other audiovisual material types.'
+    see_also:
+    - AudiovisualArchive
+    - AudiovisualArchiveRecordSetTypes
+    - rico:RecordSetType

@@ -1,0 +1,76 @@
+id: https://w3id.org/nde/ontology/FoundationArchive
+name: FoundationArchive
+title: Foundation Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  wd: http://www.wikidata.org/entity/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../classes/ArchiveOrganizationType
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+classes:
+  FoundationArchive:
+    class_uri: hc:FoundationArchive
+    is_a: ArchiveOrganizationType
+    description: >-
+      Archival institution governed by a foundation and responsible for preserving
+      records of philanthropic, cultural, educational, or mission-driven activities.
+    alt_descriptions:
+      nl: Archiefinstelling onder bestuur van een stichting, verantwoordelijk voor het bewaren van documentatie over filantropische, culturele, educatieve of maatschappelijke activiteiten.
+      de: Archivische Einrichtung unter Stiftungstraegerschaft, die Unterlagen zu philanthropischen, kulturellen, bildungsbezogenen oder gemeinnuetzigen Taetigkeiten bewahrt.
+      fr: Institution archivistique sous gouvernance d'une fondation, chargee de conserver les archives d'activites philanthropiques, culturelles, educatives ou d'interet general.
+      es: Institucion archivistica gestionada por una fundacion que conserva registros de actividades filantropicas, culturales, educativas o de interes social.
+      ar: مؤسسة أرشيفية تُدار من قبل مؤسسة خيرية أو وقفية وتتولى حفظ سجلات الأنشطة الخيرية أو الثقافية أو التعليمية.
+      id: Lembaga kearsipan yang dikelola yayasan dan bertanggung jawab melestarikan arsip kegiatan filantropi, budaya, pendidikan, atau misi sosial.
+      zh: 由基金会治理并负责保存慈善、文化、教育或公益活动记录的档案机构。
+    structured_aliases:
+      - literal_form: stichtingsarchief
+        in_language: nl
+      - literal_form: Stiftungsarchiv
+        in_language: de
+      - literal_form: archives de fondation
+        in_language: fr
+      - literal_form: archivo de fundacion
+        in_language: es
+      - literal_form: أرشيف مؤسسة
+        in_language: ar
+      - literal_form: arsip yayasan
+        in_language: id
+      - literal_form: 基金会档案馆
+        in_language: zh
+    slots:
+      - has_type
+      - hold_record_set
+      - has_score
+      - identified_by
+    slot_usage:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    examples:
+      - value:
+          has_type: hc:ArchiveOrganizationType
+          hold_record_set:
+            - hc:FoundationAdministrationFonds
+            - hc:GrantRecordSeries
+        description: Foundation repository holding governance and grant records
+    keywords:
+      - philanthropic governance records
+      - board minutes
+      - grant documentation
+      - project correspondence
+    exact_mappings:
+      - wd:Q27030827
+    broad_mappings:
+      - schema:ArchiveOrganization
+      - wd:Q166118
+    close_mappings:
+      - rico:CorporateBody
+    comments:
+      - Organization-focused class; holdings are represented through record set type classes.

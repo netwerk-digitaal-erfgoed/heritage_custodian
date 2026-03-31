@@ -1,0 +1,52 @@
+id: https://nde.nl/ontology/hc/parsimony/class/Agent
+name: Agent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/designated_by
+  - ../slots/affiliated_with
+  - ../slots/contactable_through
+  - ../slots/functions_as
+  - ../slots/has_spatial_scope
+  - ../slots/typed_as
+classes:
+  Agent:
+    class_uri: prov:Agent
+    description: >-
+      Broad agent class used for people, organizations, or software agents
+      active in provenance chains.
+
+      **Why this slot exists:** `functions_as` helps describe an agent in a
+      contextual capacity such as director or specialist, while
+      `has_spatial_scope` captures the national or regional frame within which
+      that agent operates.
+    close_mappings:
+      - rico:Agent
+      - schema:Person
+      - schema:Organization
+    narrow_mappings:
+      - hc:Custodian
+    examples:
+      - value:
+          has_label_literal:
+            - Example heritage professional
+          functions_as:
+            - Classification:DigitalCurator
+          has_spatial_scope:
+            - PlaceContext:Netherlands
+        description: An agent described by both role and national operating scope.
+    slots:
+      - has_label_literal
+      - designated_by
+      - affiliated_with
+      - contactable_through
+      - functions_as
+      - has_spatial_scope
+      - typed_as

@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/classes/SourceRecord
+name: SourceRecord
+title: SourceRecord
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  pav: http://purl.org/pav/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+- ../enums/DataTierEnum
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/has_note
+- ../slots/has_source
+- ../slots/has_provenance_path
+default_prefix: hc
+# default_range: string
+classes:
+  SourceRecord:
+    description: >-
+      Individual provenance capture documenting the extraction context for a set of asserted claims.
+    alt_descriptions:
+      nl: >-
+        Individuele herkomstregistratie die de extractiecontext documenteert voor een set beweringen.
+      de: >-
+        Individuelle Herkunftserfassung, die den Extraktionskontext für eine Reihe von Behauptungen dokumentiert.
+      fr: >-
+        Capture de provenance individuelle documentant le contexte d'extraction pour un ensemble d'affirmations.
+      es: >-
+        Captura de procedencia individual que documenta el contexto de extracción para un conjunto de afirmaciones.
+      ar: >-
+        تسجيل منفرد للأصل يوثق سياق الاستخراج لمجموعة من الادعاءات.
+      id: >-
+        Penangkapan asal-usul individual yang mendokumentasikan konteks ekstraksi untuk serangkaian klaim.
+      zh: >-
+        记录一组断言的提取上下文的单个来源捕获。
+    structured_aliases:
+    - literal_form: bronrecord
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Quelldatensatz
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: enregistrement source
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: registro fuente
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سجل المصدر
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: catatan sumber
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 来源记录
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    class_uri: prov:Entity
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - dcat:Distribution
+    related_mappings:
+    - prov:PrimarySource
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - has_type
+    - has_url
+    - has_note
+    - has_source
+    - has_provenance_path
+    comments:
+    - Used to record provenance per extraction run (API call, scrape, registry row) rather than as a bibliographic citation.
+    - "has_provenance_path can capture file/key paths such as YAML keys, CSV row identifiers, or archive paths."
+    - 'Preserved from prior description: Individual extraction record capturing provenance for a set of claims.'
+    keywords:
+    - data provenance
+    - extraction trace
+    - claim evidence
+    - lineage documentation

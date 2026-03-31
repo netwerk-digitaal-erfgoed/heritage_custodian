@@ -1,0 +1,81 @@
+# ==============================================================================
+# LinkML Slot Definition: contain_unit
+# ==============================================================================
+# Storage units contained within a zone or spatial area.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:containsPlace`| schemaorg.owl:12711-12733  | close   | "The basic containment relation between a place and another that it contains" — general place containment, not specific to storage units |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, cleaned description, removed self-referential exact_mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/contain_unit
+name: contain_unit_slot
+title: Contains Units
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  contain_unit:
+    slot_uri: hc:containsUnits
+    description: >-
+      Storage units contained within this zone or spatial area.
+    alt_descriptions:
+      nl: >-
+        Opslageenheden die zich binnen deze zone of ruimtelijk gebied bevinden.
+      de: >-
+        Lagereinheiten, die sich innerhalb dieser Zone oder dieses räumlichen Bereichs befinden.
+      fr: >-
+        Unités de stockage contenues dans cette zone ou aire spatiale.
+      ar: >-
+        وحدات تخزين موجودة ضمن هذه المنطقة أو المساحة المكانية.
+      id: >-
+        Unit penyimpanan yang terdapat dalam zona atau area spasial ini.
+      zh: >-
+        位于该区域或空间范围内的存储单元。
+      es: >-
+        Unidades de almacenamiento contenidas dentro de esta zona o área espacial.
+    structured_aliases:
+      - literal_form: bevat eenheden
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: enthält Einheiten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: contient des unités
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يحتوي على وحدات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berisi unit
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 包含单元
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: contiene unidades
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - contains_or_contained_contains_unit
+      - contain_contains_unit
+    close_mappings:
+      - schema:containsPlace  # schemaorg.owl:12711-12733 - general place containment, not specific to storage units
+    annotations:
+      custodian_types: '["*"]'

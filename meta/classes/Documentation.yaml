@@ -1,0 +1,130 @@
+id: https://nde.nl/ontology/hc/class/Documentation
+name: documentation_class
+title: Documentation Class
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+classes:
+  Documentation:
+    class_uri: schema:TechArticle
+    description: >-
+      Technical reference material describing platform interfaces, operational procedures, or implementation guidance for users.
+    alt_descriptions:
+      nl: >-
+        Technisch referentiemateriaal dat platforminterfaces, operationele procedures of implementatiebegeleiding voor gebruikers beschrijft.
+      de: >-
+        Technisches Referenzmaterial, das Plattformschnittstellen, Betriebsverfahren oder Implementierungsleitfäden für Benutzer beschreibt.
+      fr: >-
+        Document de référence technique décrivant les interfaces de plateforme, les procédures opérationnelles ou les conseils d'implémentation pour les utilisateurs.
+      es: >-
+        Material de referencia técnica que describe interfaces de plataforma, procedimientos operativos o guía de implementación para usuarios.
+      ar: >-
+        مادة مرجعية تقنية تصف واجهات المنصة أو الإجراءات التشغيلية أو إرشادات التنفيذ للمستخدمين.
+      id: >-
+        Materi referensi teknis yang menjelaskan antarmuka platform, prosedur operasional, atau panduan implementasi untuk pengguna.
+      zh: >-
+        描述平台界面、操作程序或用户实施指南的技术参考资料。
+    structured_aliases:
+      - literal_form: documentatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: technische handleiding
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Dokumentation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: technische Anleitung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: documentation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: guide technique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: documentación
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: guía técnica
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: التوثيق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: الدليل الفني
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dokumentasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: panduan teknis
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 文档
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: 技术指南
+        predicate: EXACT_SYNONYM
+        in_language: zh
+
+    broad_mappings:
+      - schema:TechArticle
+      - foaf:Document
+    close_mappings:
+      - crm:E73_Information_Object
+
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+      - temporal_extent
+
+    slot_usage:
+      identified_by:
+        range: uri
+        required: true
+        examples:
+          - value: https://data.rijksmuseum.nl/object-metadata/api/
+      has_label:
+        required: true
+        examples:
+          - value: Rijksmuseum Collection API
+      has_description:
+        required: false
+        examples:
+          - value: Complete REST API reference with endpoint specifications, authentication, and response formats.
+      temporal_extent:
+        required: false
+        examples:
+          - value:
+              begin_of_the_begin: '2015-01-01'
+              has_verbatim_value: 2015-
+    comments:
+    - Generic documentation class replacing domain-specific documentation slots
+    - Supports multiple documentation types (API, user, developer, system)
+    - URL stored in identified_by as the primary identifier
+    - Aligns with Schema.org TechArticle for technical documentation
+    see_also:
+    - https://schema.org/TechArticle
+    - http://usefulinc.com/ns/doap#
+    examples:
+    - value:
+        identified_by: https://data.rijksmuseum.nl/object-metadata/api/
+        has_label: Rijksmuseum Collection API
+        has_description: REST API documentation for accessing collection metadata and images
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

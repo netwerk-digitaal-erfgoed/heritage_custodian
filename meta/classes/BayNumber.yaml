@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/BayNumber
+name: bay_number_class
+title: Bay Number Class
+description: >-
+  Identifier for a storage section within a row/aisle of a storage facility.
+  Part of hierarchical storage location addressing: Facility → Zone → Row → Bay → Shelf → Unit.
+imports:
+  - linkml:types
+  - ../slots/has_score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+classes:
+  BayNumber:
+    class_uri: hc:BayNumber
+    description: >-
+      Vertical storage unit identifier within a row/aisle. Part of hierarchical
+      location addressing used in heritage storage facilities.
+    alt_descriptions:
+      nl: >-
+        Verticale opslageenheid-identificatie binnen een rij/gang. Onderdeel van hiërarchische
+        locatieadressering gebruikt in erfgoedopslagfaciliteiten.
+      de: >-
+        Vertikale Lagereinheitskennung innerhalb einer Reihe/Gasse. Teil der hierarchischen
+        Standortadressierung in Heritage-Lagereinrichtungen.
+      fr: >-
+        Identifiant d'unité de stockage verticale dans une rangée/allée. Fait partie de l'adressage
+        hiérarchique des emplacements dans les installations de stockage patrimonial.
+      es: >-
+        Identificador de unidad de almacenamiento vertical dentro de una fila/pasillo.
+        Parte del direccionamiento jerárquico de ubicaciones en instalaciones de almacenamiento patrimonial.
+      ar: >-
+        معرف وحدة التخزين الرأسية داخل صف/ممر. جزء من عنونة الموقع الهرمي في منشآت التخزين التراثية.
+      id: >-
+        Pengidentifikasi unit penyimpanan vertikal dalam baris/lorong. Bagian dari pengalamatan
+        lokasi hierarkis di fasilitas penyimpanan warisan.
+      zh: >-
+        行/过道内的垂直存储单元标识符。遗产存储设施中分层位置寻址的一部分。
+    broad_mappings:
+      - crm:E42_Identifier
+    related_mappings:
+      - schema:identifier
+    slots:
+      - has_score
+    comments:
+      - Vertical storage unit within a row/aisle
+      - Part of hierarchical storage location addressing
+      - Part of Rule 53 slot migration
+    see_also:
+      - https://nde.nl/ontology/hc/StorageUnit
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/bay-number/3
+          has_score: 0.1
+        description: Sequential numeric identifier
+      - value:
+          identified_by: https://nde.nl/ontology/hc/bay-number/A
+          has_score: 0.1
+        description: Alphabetic identifier
+    keywords:
+      - storage
+      - location
+      - section
+      - identifier
+    notes:
+      - |
+        Preserved from prior description (commit 51480891):
+
+        "An identifier for a storage bay or section within a row/aisle of a storage facility.\n\n**DEFINITION**:\n\nBayNumber represents a discrete location identifier within a storage system.\nIn heritage storage facilities, storage is typically organized hierarchically:\n\n```\nStorage Facility\n  \u2514\u2500\u2500 Zone (environmental control)\n      \u2514\u2500\u2500 Row/Aisle (physical corridor)\n          \u2514\u2500\u2500 Bay/Section (THIS CLASS - vertical unit in row)\n              \u2514\u2500\u2500 Shelf (horizontal level within bay)\n                  \u2514\u2500\u2500 Storage Unit (box, drawer, etc.)\n```\n\n**TYPICAL VALUES**:\n\n| Format | Example | Description |\n|--------|---------|-------------|\n| Numeric | \"3\", \"12\" | Sequential bay numbers |\n| Alphabetic | \"A\", \"C\", \"AA\" | Lettered bays |\n| Mixed | \"3A\", \"B2\" | Combined formats |\n| Descriptive | \"North-3\" | Location-based |\n\n**HERITAGE USE CASES**:\n\n| Institution Type | Bay Naming Convention\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: vaknummer
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bay number
+        predicate: EXACT_SYNONYM
+        in_language: en
+      - literal_form: Abschnittsnummer
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: numéro de baie
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: número de bahía
+        predicate: EXACT_SYNONYM
+        in_language: es

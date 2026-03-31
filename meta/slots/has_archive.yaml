@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: has_archive
+# ==============================================================================
+# A systematic collection of records or historical documents maintained by an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line             | Mapping | Notes                                         |
+# |---------------|-----------------------|-----------------------|---------|-----------------------------------------------|
+# | **Schema.org**| `schema:archiveHeld`  | schemaorg.owl:8335    | exact   | "Collection, fonds, or item held by archive"  |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Updated slot_uri to standard, added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_archive
+name: has_archive
+title: Has Archive
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_archive:
+    slot_uri: schema:archiveHeld
+    description: >-
+      A systematic collection of records, historical documents, or materials preserved 
+      for their long-term value and maintained by the entity.
+    alt_descriptions:
+      nl: >-
+        Een systematische verzameling van documenten, historische stukken of materialen 
+        die bewaard worden vanwege hun langetermijnwaarde en onderhouden worden door de entiteit.
+      de: >-
+        Eine systematische Sammlung von Aufzeichnungen, historischen Dokumenten oder 
+        Materialien, die wegen ihres langfristigen Werts aufbewahrt und von der Entität 
+        gepflegt werden.
+      fr: >-
+        Une collection systématique de documents, documents historiques ou matériaux 
+        préservés pour leur valeur à long terme et maintenus par l'entité.
+      ar: >-
+        مجموعة منهجية من السجلات أو الوثائق التاريخية أو المواد المحفوظة لقيمتها على 
+        المدى الطويل والتي يحتفظ بها الكيان.
+      id: >-
+        Koleksi sistematis catatan, dokumen historis, atau materi yang dilestarikan 
+        untuk nilai jangka panjangnya dan dipelihara oleh entitas.
+      zh: >-
+        由实体维护的、因其长期价值而保存的记录、历史文献或材料的系统性收藏。
+      es: >-
+        Una colección sistemática de registros, documentos históricos o materiales 
+        preservados por su valor a largo plazo y mantenidos por la entidad.
+    structured_aliases:
+      - literal_form: archief
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Archiv
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: archives
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أرشيف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: arsip
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 档案
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: archivo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    aliases:
+      - has_or_had_archive
+    exact_mappings:
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - MIGRATED 2026-02-03 from has_or_had_archive for conciseness.
+      - |
+        **USAGE**: Links an ArchiveOrganization to the archival holdings it maintains, 
+        including fonds, collections, series, and individual items.

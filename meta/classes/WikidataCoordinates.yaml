@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/classes/WikidataCoordinates
+name: WikidataCoordinates
+title: Wikidata Coordinates Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+  wikibase: http://wikiba.se/ontology#
+imports:
+  - linkml:types
+  - ../slots/has_latitude
+  - ../slots/has_longitude
+classes:
+  WikidataCoordinates:
+    description: >-
+      Geospatial point value with latitude, longitude, precision, and globe context.
+    alt_descriptions:
+      nl: >-
+        Geografische coördinaten uit Wikidata P625 (coördinatenlocatie) inclusief breedtegraad,
+        lengtegraad, nauwkeurigheidsniveau en referentiebol voor ruimtelijke positionering.
+      de: >-
+        Geografische Koordinaten aus Wikidata P625 (Koordinatenstandort) einschließlich Breitengrad,
+        Längengrad, Genauigkeitsstufe und Referenzglobus für räumliche Positionierung.
+      fr: >-
+        Coordonnées géographiques de Wikidata P625 (emplacement des coordonnées) incluant latitude,
+        longitude, niveau de précision et globe de référence pour le positionnement spatial.
+      es: >-
+        Coordenadas geográficas de Wikidata P625 (ubicación de coordenadas) incluyendo latitud,
+        longitud, nivel de precisión y globo de referencia para posicionamiento espacial.
+      ar: >-
+        الإحداثيات الجغرافية من ويكي بيانات P625 (موقع الإحداثيات) تشمل خط العرض
+        وخط الطول ومستوى الدقة والكرة المرجعية للتموضع المكاني.
+      id: >-
+        Koordinat geografis dari Wikidata P625 (lokasi koordinat) termasuk lintang,
+        bujur, tingkat presisi, dan globe referensi untuk penentuan posisi spasial.
+      zh: >-
+        来自维基数据P625（坐标位置）的地理坐标，包括纬度、经度、精度级别和参考球体，
+        用于空间定位。
+    close_mappings:
+      - geo:Point
+      - wikibase:GlobecoordinateValue
+    related_mappings:
+      - schema:GeoCoordinates
+      - prov:Entity
+    slots:
+      - has_latitude
+      - has_longitude
+    comments:
+      - Represents a specific point in WGS84 coordinate reference system
+      - Precision indicates accuracy (e.g., to nearest degree)
+    keywords:
+      - wikidata
+      - coordinates
+      - latitude
+      - longitude
+      - geolocation
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class for coordinate extraction
+      custodian_types: "['*']"
+      wikidata_property_ids: '["P625"]'
+    structured_aliases:
+      - literal_form: wikidata-coördinaten
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Wikidata-Koordinaten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: coordonnées Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coordenadas Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: إحداثيات ويكي بيانات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koordinat Wikidata
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 维基数据坐标
+        predicate: EXACT_SYNONYM
+        in_language: zh

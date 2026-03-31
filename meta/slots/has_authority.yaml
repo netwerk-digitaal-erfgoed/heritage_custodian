@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_authority
+# ==============================================================================
+# Indicates authority information for a name, classification, catalog entry,
+# or organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo`| prov.ttl:1082-1095         | close   | "Ascribing of an entity to an agent" — attribution, not jurisdiction |
+# | **DwC**       | `dwc:scientificNameAuthorship` |                     | close   | Taxonomic authorship               |
+# | **Schema.org**| `schema:author`       | schemaorg.owl:9265-9268    | close   | Author of content                  |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Changed prov:wasAttributedTo from exact→close (attribution ≠ jurisdiction), rewrote alt_descriptions
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_authority
+name: has_authority
+title: Has Authority
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_authority:
+    slot_uri: hc:hasAuthority
+    description: >-
+      To possess the official right, jurisdiction, or recognized power to originate, control, manage, or certify the entity or resource.
+    alt_descriptions:
+      nl: >-
+        Het officiële recht, de jurisdictie of de erkende bevoegdheid bezitten om de entiteit of bron te creëren, te beheren, te controleren of te certificeren.
+      de: >-
+        Das offizielle Recht, die Zuständigkeit oder die anerkannte Befugnis besitzen, die Entität oder Ressource zu erstellen, zu kontrollieren, zu verwalten oder zu zertifizieren.
+      fr: >-
+        Posséder le droit officiel, la juridiction ou le pouvoir reconnu de créer, contrôler, gérer ou certifier l'entité ou la ressource.
+      ar: >-
+        امتلاك الحق الرسمي أو الاختصاص القضائي أو السلطة المعترف بها لإنشاء أو التحكم في أو إدارة أو اعتماد الكيان أو المورد.
+      id: >-
+        Memiliki hak resmi, yurisdiksi, atau kekuasaan yang diakui untuk membuat, mengendalikan, mengelola, atau mensertifikasi entitas atau sumber daya.
+      zh: >-
+        拥有创建、控制、管理或认证实体或资源的正式权利、管辖权或公认权力。
+      es: >-
+        Poseer el derecho oficial, la jurisdicción o el poder reconocido para originar, controlar, gestionar o certificar la entidad o el recurso.
+    structured_aliases:
+      - literal_form: heeft autoriteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Autorität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une autorité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه سلطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki otoritas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有权威
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene autoridad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_authority
+    close_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1095 - "Ascribing of an entity to an agent" (attribution, not jurisdiction)
+      - dwc:scientificNameAuthorship  # Taxonomic authorship
+      - schema:author  # schemaorg.owl:9265-9268 - Author of content
+      - schema:parentOrganization  # Governance relationship
+    comments:
+      - |
+        **USE CASES**:
+        1. Taxonomic authorship (dwc:scientificNameAuthorship)
+        2. Governance authority (org:linkedTo)
+    annotations:
+      replaces_slot: taxonomic_authority, governance_authority
+      migration_date: '2026-01-26'
+      migration_rule: Rule 53/56 - bespoke to generic slot migration
+      custodian_types: '["*"]'

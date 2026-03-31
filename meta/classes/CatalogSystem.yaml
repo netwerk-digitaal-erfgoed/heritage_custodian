@@ -1,0 +1,126 @@
+id: https://nde.nl/ontology/hc/class/CatalogSystem
+name: CatalogSystem
+title: Catalog System
+description: 'Represents an integrated library system (ILS), library management system (LMS),
+
+  or catalog system used by heritage institutions for managing collections.
+
+
+  This class captures metadata about catalog/management systems including:
+
+  - System name and vendor
+
+  - System type (ILS, LMS, DAM, CMS, etc.)
+
+  - Temporal usage (when adopted, when deprecated)
+
+
+  Created per slot_fixes.yaml revision for catalog_system migration (Rule 53/56).
+
+  '
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_name
+- ../slots/has_type
+- ../slots/has_url
+default_prefix: hc
+classes:
+  CatalogSystem:
+    class_uri: schema:SoftwareApplication
+    description: >-
+      Software application for managing library, archive, or museum collections and catalog records.
+    alt_descriptions:
+      nl: Softwaretoepassing voor het beheren van bibliotheek-, archief- of museumcollecties en catalogusrecords.
+      de: Softwareanwendung zur Verwaltung von Bibliotheks-, Archiv- oder Museumssammlungen und Katalogdatensätzen.
+      fr: Application logicielle pour gérer les collections et les notices de catalogue de bibliothèques, d'archives ou de musées.
+      es: Aplicación de software para gestionar colecciones y registros de catálogo de bibliotecas, archivos o museos.
+      ar: تطبيق برمجي لإدارة مجموعات وسجلات الفهرس للمكتبات أو الأرشيفات أو المتاحف.
+      id: Aplikasi perangkat lunak untuk mengelola koleksi dan catatan katalog perpustakaan, arsip, atau museum.
+      zh: 用于管理图书馆、档案馆或博物馆藏品和目录记录的软件应用程序。
+    structured_aliases:
+    - literal_form: catalogussysteem
+      in_language: nl
+    - literal_form: bibliotheeksysteem
+      in_language: nl
+    - literal_form: Katalogsystem
+      in_language: de
+    - literal_form: Bibliothekssystem
+      in_language: de
+    - literal_form: système de catalogue
+      in_language: fr
+    - literal_form: SIGB
+      in_language: fr
+    - literal_form: sistema de catálogo
+      in_language: es
+    - literal_form: sistema de gestión bibliotecaria
+      in_language: es
+    - literal_form: نظام الفهرسة
+      in_language: ar
+    - literal_form: نظام إدارة المكتبات
+      in_language: ar
+    - literal_form: sistem katalog
+      in_language: id
+    - literal_form: sistem perpustakaan
+      in_language: id
+    - literal_form: 编目系统
+      in_language: zh
+    - literal_form: 图书馆管理系统
+      in_language: zh
+    broad_mappings:
+    - schema:SoftwareApplication
+    close_mappings:
+    - prov:SoftwareAgent
+    keywords:
+    - catalog system
+    - ILS
+    - LMS
+    - collection management
+    - integrated library system
+    examples:
+    - value:
+        has_name: ALMA
+        has_type:
+          has_name: Integrated Library System
+        has_description: Ex Libris ALMA cloud-based library services platform
+        has_url: https://exlibrisgroup.com/products/alma-library-services-platform/
+    - value:
+        has_name: Koha
+        has_type:
+          has_name: Integrated Library System
+        has_description: Open-source integrated library system
+        has_url: https://koha-community.org/
+    - value:
+        has_name: Adlib
+        has_type:
+          has_name: Collection Management System
+        has_description: Axiell Adlib museum collection management system
+        has_url: https://www.axiell.com/solutions/product/axiell-collections/
+    comments:
+    - Common systems include ALMA, Koha, Sierra, Aleph, FOLIO, Adlib, TMS
+    slots:
+    - has_name
+    - has_type
+    - has_description
+    - has_url
+    slot_usage:
+      has_name:
+        required: true
+        examples:
+        - value: ALMA
+        - value: Koha
+        - value: Sierra
+        - value: Adlib
+      has_type:
+        range: CatalogSystemType
+        inlined: true
+      has_url:
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

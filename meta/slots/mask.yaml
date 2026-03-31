@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: mask
+# ==============================================================================
+# Indicates whether pixel-level segmentation masks are available for an image.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property          | File/Line        | Mapping | Notes                                                          |
+# |----------|-------------------|------------------|---------|----------------------------------------------------------------|
+# | **OA**   | `oa:hasSelector`  | oa.ttl:254-259   | related | "Selector describing segment/region of interest in resource."  |
+#
+# No exact, close, or broad match. Segmentation masks are a computer vision
+# concept not directly modeled in standard linked data ontologies.
+# Note: oa:SvgSelector (oa.ttl:116-119) is conceptually the closest parallel
+# (non-rectangular area selection), but it is a Class, not a property.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/mask
+name: mask
+title: Mask
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  oa: http://www.w3.org/ns/oa#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  mask:
+    slot_uri: hc:mask
+    description: >-
+      Indicates whether a specific overlay or matrix (often binary) is applied
+      to an image to isolate, select, or hide specific pixels or regions of
+      interest for processing.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een specifieke overlay of matrix (vaak binair) wordt
+        toegepast op een afbeelding om specifieke pixels of interessegebieden
+        te isoleren, selecteren of verbergen voor verwerking.
+      de: >-
+        Gibt an, ob eine bestimmte Überlagerung oder Matrix (oft binär) auf
+        ein Bild angewendet wird, um bestimmte Pixel oder Interessenbereiche
+        zur Verarbeitung zu isolieren, auszuwählen oder auszublenden.
+      fr: >-
+        Indique si une superposition ou matrice spécifique (souvent binaire)
+        est appliquée à une image pour isoler, sélectionner ou masquer des
+        pixels ou des régions d'intérêt spécifiques en vue du traitement.
+      ar: >-
+        يشير إلى ما إذا كانت طبقة تراكب أو مصفوفة محددة (غالبًا ثنائية)
+        مطبقة على صورة لعزل أو تحديد أو إخفاء وحدات بكسل أو مناطق
+        اهتمام معينة للمعالجة.
+      id: >-
+        Menunjukkan apakah overlay atau matriks tertentu (sering kali biner)
+        diterapkan pada gambar untuk mengisolasi, memilih, atau menyembunyikan
+        piksel atau wilayah tertentu yang diminati untuk pemrosesan.
+      zh: >-
+        表示是否对图像应用了特定的叠加层或矩阵（通常为二值的），以隔离、选择或隐藏特定像素或感兴趣区域进行处理。
+      es: >-
+        Indica si se aplica una superposición o matriz específica (a menudo
+        binaria) a una imagen para aislar, seleccionar u ocultar píxeles o
+        regiones de interés específicas para su procesamiento.
+    structured_aliases:
+      - literal_form: Segmentatiemasker
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Segmentierungsmaske
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Masque de segmentation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قناع التجزئة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Masker Segmentasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分割掩膜
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Máscara de segmentación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Segmentation masks provide precise object boundaries, more detailed
+        than bounding boxes.
+      - >-
+        True indicates pixel masks are available (typically as separate files);
+        false indicates no segmentation data.
+      - >-
+        Masks are memory-intensive and often stored externally.
+    range: boolean
+    related_mappings:
+      - oa:hasSelector  # oa.ttl:254-259 - "Selector describing segment/region of interest" — annotation region selection, not pixel-level CV masks
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - includes_segmentation_mask

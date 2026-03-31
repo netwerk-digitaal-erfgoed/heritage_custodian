@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: has_artwork
+# ==============================================================================
+# Artworks or visual art pieces associated with an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:VisualArtwork`| schemaorg.owl:6045-6049    | related | Class for visual artworks          |
+# | **Schema.org**| `schema:artform`      | schemaorg.owl              | related | Type of art form                   |
+#
+# No direct property for "has artwork" in standard ontologies.
+# This is a heritage-specific slot for linking to artwork entities.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Renamed from has_artwork_count, changed semantics
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_artwork
+name: has_artwork
+title: Has Artwork
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_artwork:
+    slot_uri: hc:hasArtwork
+    description: >-
+      Artworks, visual art pieces, or creative works associated with,
+      contained in, or featured by the entity.
+    alt_descriptions:
+      nl: >-
+        Kunstwerken, visuele kunstwerken of creatieve werken die geassocieerd
+        zijn met, bevat zijn in, of gepresenteerd worden door de entiteit.
+      de: >-
+        Kunstwerke, visuelle Kunstwerke oder kreative Werke, die mit der
+        Entität verbunden sind, darin enthalten sind oder von ihr präsentiert
+        werden.
+      fr: >-
+        Œuvres d'art, pièces d'art visuel ou œuvres créatives associées à,
+        contenues dans ou présentées par l'entité.
+      ar: >-
+        الأعمال الفنية أو القطع الفنية المرئية أو الأعمال الإبداعية المرتبطة
+        بالكيان أو الموجودة فيه أو المعروضة من قبله.
+      id: >-
+        Karya seni, karya seni visual, atau karya kreatif yang terkait dengan,
+        terdapat dalam, atau ditampilkan oleh entitas.
+      zh: >-
+        与实体相关联、包含在其中或由其展示的艺术品、视觉艺术作品或创意作品。
+      es: >-
+        Obras de arte, piezas de arte visual u obras creativas asociadas con,
+        contenidas en o presentadas por la entidad.
+    structured_aliases:
+      - literal_form: heeft kunstwerk
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Kunstwerk
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une œuvre d'art
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه عمل فني
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki karya seni
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 拥有艺术品
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene obra de arte
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:VisualArtwork  # schemaorg.owl:6045-6049 - class, not property
+    aliases:
+      - has_or_had_artwork
+    comments:
+      - |
+        **USAGE**: Links to artwork identifiers or URIs. For counting artworks,
+        use a separate count slot.
+      - |
+        **HERITAGE CONTEXT**: Particularly relevant for museums, galleries,
+        sculpture gardens, and art collections.
+    annotations:
+      custodian_types: '["G", "M"]'
+      custodian_types_rationale: Applicable to galleries and museums with art collections.
+      custodian_types_primary: M
+      specificity_score: 0.7
+      specificity_rationale: Heritage-specific slot for artwork associations.

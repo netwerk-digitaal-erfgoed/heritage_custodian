@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: has_version
+# ==============================================================================
+# Specific edition, release, or iteration of a product, document, or system
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                              |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------|
+# | **Schema.org**| `schema:version`      | schemaorg.owl:40000-40021| exact | "The version of the CreativeWork embodied by a     |
+# |               |                       |                      |         | specified resource." Domain: CreativeWork.          |
+# | **DCTerms**   | `dcterms:hasVersion`  | dcterms.rdf:1371-1395| related | "A related resource that is a version, edition, or |
+# |               |                       |                      |         | adaptation." Relates resources, not version ID.     |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-08 - Pass 1: added multilingual, removed redundant exact_mapping, cleaned prefixes, added dcterms:hasVersion
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_version
+name: has_version
+title: Has Version
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  pav: http://purl.org/pav/2.3#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_version:
+    slot_uri: schema:version
+    description: >-
+      The specific edition, release, or iteration of a product, document,
+      or system, often indicated by a unique identifier or number.
+    alt_descriptions:
+      nl: >-
+        De specifieke editie, release of iteratie van een product, document
+        of systeem, vaak aangeduid met een unieke identificator of nummer.
+      de: >-
+        Die spezifische Ausgabe, Veröffentlichung oder Iteration eines Produkts,
+        Dokuments oder Systems, oft durch eine eindeutige Kennung oder Nummer
+        angegeben.
+      fr: >-
+        L'édition, la version ou l'itération spécifique d'un produit, document
+        ou système, souvent indiquée par un identifiant unique ou un numéro.
+      ar: >-
+        الإصدار أو النسخة أو التكرار المحدد لمنتج أو مستند أو نظام، وغالبًا
+        ما يُشار إليه بمعرف أو رقم فريد.
+      id: >-
+        Edisi, rilis, atau iterasi spesifik dari suatu produk, dokumen, atau
+        sistem, sering ditunjukkan oleh pengenal atau nomor unik.
+      zh: >-
+        产品、文档或系统的特定版本、发行版或迭代，通常由唯一标识符或编号表示。
+      es: >-
+        La edición, versión o iteración específica de un producto, documento
+        o sistema, a menudo indicada por un identificador único o número.
+    structured_aliases:
+      - literal_form: Versie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Version
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Version
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: إصدار
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Versi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 版本
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Versión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    related_mappings:
+      - dcterms:hasVersion  # dcterms.rdf:1371-1395 — "A related resource that is a version, edition, or adaptation." Relates resources to each other, not a version identifier.
+      - pav:hasVersion  # PAV 2.3 (used by ArDO): links a resource to a version resource
+    aliases:
+      - has_or_had_version
+      - api_ver
+      - is_or_was_protocol_version
+      - crawler_version
+      - has_api_version
+      - protocol_version
+    annotations:
+      custodian_types: '["*"]'

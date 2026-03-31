@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/ArchivingPlan
+name: ArchivingPlan
+title: Archiving Plan
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/temporal_extent
+classes:
+  ArchivingPlan:
+    class_uri: hc:ArchivingPlan
+    description: >-
+      Formal plan detailing archiving activities, timelines, and procedures
+      for the transfer, storage, and preservation of materials.
+    alt_descriptions:
+      nl: >-
+        Formeel plan dat archiveringsactiviteiten, tijdlijnen en procedures
+        detailleert voor de overdracht, opslag en bewaring van materialen.
+      de: >-
+        Formaler Plan, der Archivierungsaktivitaeten, Zeitplaene und Verfahren
+        fuer die Uebertragung, Lagerung und Erhaltung von Materialien detailliert.
+      fr: >-
+        Plan formel detaillant les activites d'archivage, les calendriers et
+        les procedures de transfert, de stockage et de preservation des materiaux.
+      es: >-
+        Plan formal que detalla las actividades de archivo, los cronogramas y
+        los procedimientos para la transferencia, almacenamiento y preservacion
+        de materiales.
+      ar: >-
+        خطة رسمية توضح بالتفصيل أنشطة الأرشفة والجداول الزمنية وإجراءات نقل
+        وتخزين وحفظ المواد.
+      id: >-
+        Rencana formal yang merinci aktivitas pengarsipan, jadwal, dan prosedur
+        untuk transfer, penyimpanan, dan pelestarian materi.
+      zh: >-
+        详细说明归档活动、时间表和材料移交、存储和保存程序的正式计划。
+    broad_mappings:
+      - prov:Plan
+      - schema:Plan
+    structured_aliases:
+      - literal_form: archiveringsplan
+        in_language: nl
+      - literal_form: Archivierungsplan
+        in_language: de
+      - literal_form: plan d'archivage
+        in_language: fr
+      - literal_form: plan de archivo
+        in_language: es
+      - literal_form: خطة الأرشفة
+        in_language: ar
+      - literal_form: rencana pengarsipan
+        in_language: id
+      - literal_form: 归档计划
+        in_language: zh
+    examples:
+      - value:
+          has_label: "Annual Transfer Plan 2024"
+          has_description: "Schedule for incoming archival transfers"
+          temporal_extent:
+            start_date: "2024-01-01"
+            end_date: "2024-12-31"
+        description: Annual archiving plan with transfer schedule
+    keywords:
+      - planning
+      - transfer
+      - preservation
+      - schedule
+      - archival procedure
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+      - temporal_extent
+      - has_score
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    comments:
+      - Created per Rule 53 migration for expected_transfer_date
+      - Documents planned archiving activities and timelines
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Specific planning class for archival operations
+      custodian_types: "['*']"

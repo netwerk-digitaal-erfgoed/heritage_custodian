@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_member
+# ==============================================================================
+# An agent, entity, or element that belongs to a group, organization, or collection.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property          | File/Line                  | Mapping | Notes                                              |
+# |---------------|-------------------|----------------------------|---------|----------------------------------------------------|
+# | **W3C ORG**   | `org:hasMember`   | org.rdf:427-446            | exact   | "Indicates a person who is a member of the         |
+# |               |                   |                            |         | subject Organization." Domain: Organization,       |
+# |               |                   |                            |         | Range: Agent. Organization membership only.        |
+# | **Schema.org**| `schema:member`   | schemaorg.owl:26055-26085  | exact   | "A member of an Organization or a                  |
+# |               |                   |                            |         | ProgramMembership." Domain: Organization/          |
+# |               |                   |                            |         | ProgramMembership. Does not cover collection elem. |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_member
+name: has_member
+title: has_member
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+  la: https://linked.art/ns/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_member:
+    name: has_member
+    title: has_member
+    slot_uri: hc:hasMember
+    description: >-
+      To specify an agent, entity, or element that belongs to a group, organization, or collection.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een agent, entiteit of element dat behoort tot een groep, organisatie of collectie.
+      de: >-
+        Angabe eines Agenten, einer Entitaet oder eines Elements, das zu einer Gruppe, Organisation oder Sammlung gehoert.
+      fr: >-
+        Specifier un agent, une entite ou un element qui appartient a un groupe, une organisation ou une collection.
+      ar: >-
+        تحديد عامل أو كيان أو عنصر ينتمي إلى مجموعة أو منظمة أو مجموعة.
+      id: >-
+        Menentukan agen, entitas, atau elemen yang termasuk dalam sebuah kelompok, organisasi, atau koleksi.
+      zh: >-
+        指定属于某个群体、组织或集合的代理、实体或元素。
+      es: >-
+        Especificar un agente, entidad o elemento que pertenece a un grupo, organizacion o coleccion.
+    structured_aliases:
+      - literal_form: lid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Mitglied
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: membre
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عضو
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: anggota
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 成员
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: miembro
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_member
+    exact_mappings:
+      - org:hasMember  # org.rdf:427-446 - "Indicates a person who is a member of the subject Organization." Domain: Organization, Range: Agent. Organization membership only; this slot also covers collection elements.
+      - schema:member  # schemaorg.owl:26055-26085 - "A member of an Organization or a ProgramMembership." Domain: Organization/ProgramMembership. Does not cover collection elements.
+    related_mappings:
+      - la:has_member  # Linked Art extensions: membership (Set→Entity)
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,22 @@
+id: https://nde.nl/ontology/hc/slot/has_pagination_strategy
+name: has_pagination_strategy
+title: has_pagination_strategy
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+imports:
+- linkml:types
+- ../enums/PaginationStrategyEnum
+slots:
+  has_pagination_strategy:
+    slot_uri: hc:hasPaginationStrategy
+    description: >-
+      How to navigate multi-page results during automated data extraction.
+      Specifies the pagination pattern used by the HeadlessBrowserService
+      or ExternalApiService when fetching paginated data from web resources.
+    range: PaginationStrategyEnum
+    comments:
+      - "NONE for single-page sources (small lists, API with full dump)"
+      - "NEXT_LINK for HTML pages with next-page links"
+      - "ALPHABET for library directories with A-Z navigation"
+      - "OFFSET/CURSOR for API pagination"

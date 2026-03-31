@@ -1,0 +1,109 @@
+id: https://nde.nl/ontology/hc/class/AccessionEvent
+name: AccessionEvent
+title: Accession Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/temporal_extent
+classes:
+  AccessionEvent:
+    description: >-
+      Administrative act of formally incorporating an object or record into a
+      heritage institution's permanent collection, typically assigning an
+      accession number and recording provenance.
+    alt_descriptions:
+      nl: >-
+        Administratieve handeling waarbij een object of record formeel wordt
+        opgenomen in de permanente collectie van een erfgoedinstelling, waarbij
+        doorgaans een inventarisnummer wordt toegekend en de herkomst wordt
+        vastgelegd.
+      de: >-
+        Verwaltungsakt der formalen Aufnahme eines Objekts oder Dokuments in die
+        permanente Sammlung einer Kulturerbeeinrichtung, bei dem typischerweise
+        eine Zugangsnummer vergeben und die Provenienz dokumentiert wird.
+      fr: >-
+        Acte administratif d'incorporation formelle d'un objet ou document dans
+        la collection permanente d'une institution patrimoniale, attribuant
+        generalement un numero d'accession et documentant la provenance.
+      es: >-
+        Acto administrativo de incorporar formalmente un objeto o documento a la
+        coleccion permanente de una institucion patrimonial, generalmente
+        asignando un numero de adquisicion y registrando la procedencia.
+      ar: >-
+        إجراء إداري يتمثل في إدماج رسمي لشيء أو سجل في المجموعة الدائمة لمؤسسة
+        تراثية، مع تخصيص رقم إدخال وتسجيل المصدر عادة.
+      id: >-
+        Tindakan administratif untuk memasukkan secara formal suatu objek atau
+        rekod ke dalam koleksi permanen lembaga warisan, biasanya dengan
+        menetapkan nomor aksesi dan mencatat provenans.
+      zh: >-
+        将物品或记录正式纳入遗产机构永久馆藏的行政行为，通常分配入藏编号并记录来源。
+    examples:
+    - value:
+        has_label: 2024.001 Accession
+        temporal_extent:
+          begin_of_the_begin: "2024-01-15"
+          end_of_the_end: "2024-01-15"
+        has_description: Initial accession of photographs from Van der Berg collection
+      description: First accession of a new year
+    - value:
+        has_label: 1923.042 Accession
+        temporal_extent:
+          begin_of_the_begin: "1923-06-01"
+          end_of_the_end: "1923-06-30"
+        has_description: Historical accession of medieval manuscripts
+      description: Historical accession with uncertain date
+    class_uri: crm:E63_Beginning_of_Existence
+    slots:
+    - temporal_extent
+    - has_label
+    - has_description
+    - identified_by
+    structured_aliases:
+    - literal_form: inventarisatiegebeurtenis
+      in_language: nl
+    - literal_form: Zugangsereignis
+      in_language: de
+    - literal_form: evenement d'accession
+      in_language: fr
+    - literal_form: evento de adquisicion
+      in_language: es
+    - literal_form: حدث الإدخال
+      in_language: ar
+    - literal_form: peristiwa akses
+      in_language: id
+    - literal_form: 入藏事件
+      in_language: zh
+    keywords:
+    - accessioning
+    - cataloging
+    - registration
+    - accession number
+    - collection entry
+    - provenance recording
+    slot_usage:
+      temporal_extent:
+        required: true
+    exact_mappings:
+    - crm:E63_Beginning_of_Existence
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - rico:Instantiation
+    comments:
+    - Migrated from has_accession_date slot context per Rule 53
+    - Marks formal transfer of custody or ownership to the institution
+    - Typically generates an accession number for tracking
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to accessioning activities
+      custodian_types: "['*']"

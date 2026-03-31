@@ -1,0 +1,694 @@
+# DonationSchemeTypeEnum
+# Categorizes donation and giving schemes for heritage institutions
+#
+# Created January 2026 to support:
+# - Structured representation of institutional giving programs
+# - "Museumvriend" (Museum Friend) and similar schemes across GLAMORCUBESFIXPHDNT
+# - International donation scheme typology (archives, libraries, galleries, museums, etc.)
+#
+# Categories reflect observed patterns across global heritage sector:
+#   - Membership schemes (friends, circles, societies)
+#   - Object adoption (adopt-a-book, sponsor an artifact)
+#   - Named giving (endowments, named funds)
+#   - Legacy giving (bequests, charitable trusts)
+#   - In-kind donations (objects, materials, professional services)
+#   - Sponsorship (exhibitions, events, facilities)
+#
+# Sources:
+#   - Revisiting Membership Schemes Typologies in Museums and Galleries (ResearchGate)
+#   - Historic Libraries Forum: Setting up an Adopt-a-Book scheme
+#   - Smithsonian Libraries and Archives Adopt-a-Book program
+#   - British Library Patrons Programme
+#   - IISH (International Institute of Social History) Friends programme
+#   - National Library of Scotland Patrons and Benefactors
+#   - KB (Koninklijke Bibliotheek) ANBI donation programs
+
+id: https://nde.nl/ontology/hc/enum/DonationSchemeTypeEnum
+name: DonationSchemeTypeEnum
+title: Donation Scheme Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  org: http://www.w3.org/ns/org#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  DonationSchemeTypeEnum:
+    description: |
+      Categories of donation and giving schemes offered by heritage institutions.
+      
+      This enumeration classifies the various ways individuals and organizations
+      can financially support heritage custodians (museums, libraries, archives,
+      galleries, historical societies, etc.).
+      
+      **STRUCTURE**:
+      
+      Donation schemes are organized into eight main categories:
+      
+      1. **MEMBERSHIP_*** - Recurring membership/subscription schemes
+      2. **PATRON_*** - High-value patron and benefactor circles
+      3. **ADOPTION_*** - Object/item adoption/sponsorship programs
+      4. **LEGACY_*** - Planned giving and estate gifts
+      5. **DONATION_*** - One-time and recurring monetary donations
+      6. **INKIND_*** - Non-monetary gifts (objects, services, expertise)
+      7. **SPONSORSHIP_*** - Corporate and event sponsorship
+      8. **CROWDFUNDING_*** - Campaign-based collective funding
+      
+      **HERITAGE SECTOR COVERAGE**:
+      
+      These schemes are observed across all GLAMORCUBESFIXPHDNT institution types:
+      - **Museums**: Friends schemes, patron circles, adopt-an-artifact
+      - **Libraries**: Adopt-a-book, patron programs, conservation appeals
+      - **Archives**: Friends of the archive, "adopt history" programs
+      - **Galleries**: Patron circles, acquisition fund memberships
+      - **Historical societies**: Heritage memberships, research sponsorships
+      - **Research centers**: Fellows programs, research fund donations
+      
+      **MULTILINGUAL TERMS**:
+      
+      Common translations for "Friends" scheme:
+      - Dutch: Museumvriend, Vrienden van het museum
+      - German: Förderverein, Freundeskreis
+      - French: Amis du musée, Société des amis
+      - Spanish: Amigos del museo
+      - Italian: Amici del museo
+    
+    permissible_values:
+      # ========================================
+      # MEMBERSHIP SCHEMES - Recurring support
+      # ========================================
+      
+      MEMBERSHIP_FRIENDS:
+        description: |
+          "Friends of the [Institution]" membership scheme providing basic benefits
+          in exchange for annual fee. Standard entry-level membership.
+          Known as: Museumvriend (NL), Förderverein (DE), Amis du musée (FR)
+        meaning: schema:MemberProgramTier
+        annotations:
+          category: membership
+          typical_benefits: |
+            - Free or discounted admission
+            - Newsletter subscription
+            - Member events and previews
+            - Shop discounts (typically 10%)
+          examples: |
+            - Rijksmuseum Vrienden (Netherlands)
+            - Friends of the Smithsonian (USA)
+            - British Museum Friends (UK)
+            - Amis du Louvre (France)
+          custodian_types: "G, L, A, M, O, R, C, B, E, S, H, D, N"
+      
+      MEMBERSHIP_YOUNG_FRIENDS:
+        description: |
+          Reduced-rate membership for younger supporters (typically under 35).
+          Encourages next-generation engagement with heritage institutions.
+        meaning: schema:MemberProgramTier
+        annotations:
+          category: membership
+          typical_benefits: |
+            - Reduced annual fee
+            - Age-specific events
+            - Networking with peer supporters
+          examples: |
+            - MoMA Young Fellows
+            - Tate Young Patrons
+            - Rijksmuseum Jonge Vrienden
+          custodian_types: "G, L, A, M, R, B, S, H"
+      
+      MEMBERSHIP_FAMILY:
+        description: |
+          Family membership covering adults and children in household.
+          Promotes multi-generational engagement.
+        meaning: schema:MemberProgramTier
+        annotations:
+          category: membership
+          custodian_types: "G, M, B, E, S, H"
+      
+      MEMBERSHIP_STUDENT:
+        description: |
+          Discounted membership for students with valid student ID.
+        meaning: schema:MemberProgramTier
+        annotations:
+          category: membership
+          custodian_types: "G, L, A, M, R, E"
+      
+      MEMBERSHIP_SENIOR:
+        description: |
+          Discounted membership for seniors/pensioners.
+        meaning: schema:MemberProgramTier
+        annotations:
+          category: membership
+          custodian_types: "G, L, A, M, B, S, H"
+      
+      MEMBERSHIP_CORPORATE:
+        description: |
+          Corporate membership for businesses, providing employee benefits
+          and corporate recognition.
+        meaning: org:Membership
+        annotations:
+          category: membership
+          typical_benefits: |
+            - Staff passes and visits
+            - Corporate event hosting
+            - Logo recognition
+            - Employee engagement programs
+          custodian_types: "G, L, A, M, O, R, B, E, S, H, D"
+      
+      MEMBERSHIP_INTERNATIONAL:
+        description: |
+          Membership tier specifically for international supporters,
+          often with digital-first benefits due to distance.
+        meaning: schema:MemberProgramTier
+        annotations:
+          category: membership
+          examples: |
+            - British Museum International Friends
+            - Rijksmuseum International Members
+          custodian_types: "G, L, A, M, R, B, E, H"
+      
+      MEMBERSHIP_RESEARCH_FELLOW:
+        description: |
+          Research fellowship or associate membership for scholars,
+          providing collection access and research privileges.
+        meaning: schema:MemberProgramTier
+        annotations:
+          category: membership
+          typical_benefits: |
+            - Extended reading room hours
+            - Advanced collection access
+            - Research support services
+            - Academic networking events
+          examples: |
+            - British Library Research Fellowship
+            - Huntington Library Research Fellowship
+            - IISH Research Associate
+          custodian_types: "L, A, R, E"
+      
+      # ========================================
+      # PATRON SCHEMES - High-value giving
+      # ========================================
+      
+      PATRON_CIRCLE:
+        description: |
+          High-value donor circle with exclusive benefits and recognition.
+          Often tiered (Silver, Gold, Platinum) with increasing benefits.
+        meaning: schema:DonateAction
+        annotations:
+          category: patron
+          typical_benefits: |
+            - Behind-the-scenes access
+            - Curator-led events
+            - Director engagement
+            - Named recognition
+            - Guest passes
+          examples: |
+            - Natural History Museum Patrons (Silver £1,500 / Gold £5,000 / Platinum £12,000)
+            - MoMA Patron Program
+            - Frick Collection Director's Circle
+          custodian_types: "G, L, A, M, R, B, S, H"
+      
+      PATRON_BENEFACTOR:
+        description: |
+          Major donor status for significant cumulative or annual gifts.
+          Highest individual giving level below named endowments.
+        meaning: schema:DonateAction
+        annotations:
+          category: patron
+          typical_benefits: |
+            - Invitation to all institution events
+            - Private collection viewings
+            - Conservation lab visits
+            - Annual report recognition
+          examples: |
+            - National Library of Scotland Benefactors
+            - Smithsonian Benefactors
+            - Carnegie Museums Benefactors Circle
+          custodian_types: "G, L, A, M, O, R, B, S, H"
+      
+      PATRON_FOUNDERS_CIRCLE:
+        description: |
+          Recognition society for founding donors or those making
+          transformational gifts to institution development.
+        meaning: schema:DonateAction
+        annotations:
+          category: patron
+          examples: |
+            - London Library Founders' Circle
+            - Holocaust Museum Founders Society
+          custodian_types: "G, L, A, M, R, S, H"
+      
+      PATRON_LIFE:
+        description: |
+          One-time significant gift conferring lifetime membership
+          and benefits.
+        meaning: schema:DonateAction
+        annotations:
+          category: patron
+          custodian_types: "G, L, A, M, R, B, S, H"
+      
+      PATRON_NATIONAL:
+        description: |
+          National-level patron program for institutions serving
+          national heritage collections.
+        meaning: schema:DonateAction
+        annotations:
+          category: patron
+          examples: |
+            - Holocaust Museum National Patrons
+            - National Museums Scotland Patrons
+          custodian_types: "L, A, M, O, R"
+      
+      # ========================================
+      # ADOPTION SCHEMES - Object sponsorship
+      # ========================================
+      
+      ADOPTION_BOOK:
+        description: |
+          "Adopt-a-Book" scheme where donors fund conservation, digitization,
+          or acquisition of specific books or manuscripts.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          typical_benefits: |
+            - Bookplate recognition
+            - Certificate of adoption
+            - Digital copy of item
+            - Conservation report
+          examples: |
+            - British Library Adopt a Book
+            - Smithsonian Libraries Adopt-a-Book
+            - Chawton House Adopt a Book (£25)
+            - American Philosophical Society Adopt-A-Book
+            - Peace Palace Library Adopt-A-Book
+          custodian_types: "L, A, R, E, H"
+      
+      ADOPTION_ARTIFACT:
+        description: |
+          Sponsor or adopt a museum artifact to fund its conservation
+          or display.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          examples: |
+            - Natural History Museum Adopt a Species
+            - Museum of London Object Sponsorship
+          custodian_types: "M, S, H"
+      
+      ADOPTION_ARCHIVE_COLLECTION:
+        description: |
+          "Adopt History" or sponsor an archival collection for preservation
+          and digitization.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          examples: |
+            - IISH "Adopt History" (€150+ per item)
+            - Library of Congress Adopt an Archive
+          custodian_types: "A, L, R, S"
+      
+      ADOPTION_ARTWORK:
+        description: |
+          Sponsor a specific artwork for conservation, framing, or display.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          custodian_types: "G, M, H"
+      
+      ADOPTION_ANIMAL:
+        description: |
+          Animal adoption/sponsorship program at zoos and aquariums.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          examples: |
+            - Zoo adoption programs
+            - Aquarium species sponsorship
+          custodian_types: "B"
+      
+      ADOPTION_PLANT:
+        description: |
+          Tree or plant sponsorship at botanical gardens.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          examples: |
+            - Botanical garden tree adoption
+            - Heritage orchard sponsorship
+          custodian_types: "B"
+      
+      ADOPTION_SEAT:
+        description: |
+          Sponsor or dedicate a seat in reading room, auditorium, or gallery.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          examples: |
+            - British Library Sponsor a Seat
+            - Concert hall seat naming
+          custodian_types: "L, A, M, G"
+      
+      ADOPTION_DESK:
+        description: |
+          Sponsor or dedicate a desk in reading room or study space.
+        meaning: schema:DonateAction
+        annotations:
+          category: adoption
+          examples: |
+            - British Library Dedicate a Desk
+          custodian_types: "L, A, R"
+      
+      # ========================================
+      # LEGACY SCHEMES - Planned giving
+      # ========================================
+      
+      LEGACY_BEQUEST:
+        description: |
+          Gift through will or estate, typically the most common
+          form of planned giving.
+        meaning: schema:DonateAction
+        annotations:
+          category: legacy
+          examples: |
+            - British Library Leave a Legacy
+            - National Library of Scotland Gift in Will
+            - Amsterdam Museum Legacy Program
+          custodian_types: "G, L, A, M, O, R, B, E, S, H, D, N"
+      
+      LEGACY_CHARITABLE_TRUST:
+        description: |
+          Charitable remainder trust or lead trust providing income
+          to donor with remainder to institution.
+        meaning: schema:DonateAction
+        annotations:
+          category: legacy
+          custodian_types: "G, L, A, M, R, B, H"
+      
+      LEGACY_ENDOWMENT:
+        description: |
+          Permanent endowment fund providing perpetual income stream.
+          Often named for donor.
+        meaning: schema:DonateAction
+        annotations:
+          category: legacy
+          typical_benefits: |
+            - Named fund in perpetuity
+            - Annual reporting on fund use
+            - Recognition in publications
+          custodian_types: "G, L, A, M, O, R, E, H"
+      
+      LEGACY_NAMED_FUND:
+        description: |
+          Named fund for specific purpose (acquisition, conservation,
+          education, scholarship).
+        meaning: schema:DonateAction
+        annotations:
+          category: legacy
+          examples: |
+            - Conservation Fund
+            - Acquisition Endowment
+            - Education Program Fund
+          custodian_types: "G, L, A, M, R, B, E, S, H"
+      
+      LEGACY_RETIREMENT_ASSETS:
+        description: |
+          Gift of retirement plan assets (IRA, 401k, pension) providing
+          tax benefits in many jurisdictions.
+        meaning: schema:DonateAction
+        annotations:
+          category: legacy
+          examples: |
+            - MFA Boston IRA Gift
+          custodian_types: "G, L, A, M, R, B, H"
+      
+      LEGACY_LIFE_INSURANCE:
+        description: |
+          Gift of life insurance policy naming institution as beneficiary.
+        meaning: schema:DonateAction
+        annotations:
+          category: legacy
+          custodian_types: "G, L, A, M, R, S, H"
+      
+      # ========================================
+      # DONATION SCHEMES - Direct gifts
+      # ========================================
+      
+      DONATION_ONEOFF:
+        description: |
+          Single, one-time monetary donation without ongoing commitment.
+        meaning: schema:DonateAction
+        annotations:
+          category: donation
+          custodian_types: "*"
+      
+      DONATION_RECURRING:
+        description: |
+          Regular recurring donation (monthly, quarterly, annually)
+          providing predictable income stream.
+        meaning: schema:DonateAction
+        annotations:
+          category: donation
+          examples: |
+            - Monthly giving program
+            - Innerpeffray Library regular donor scheme
+          custodian_types: "*"
+      
+      DONATION_APPEAL:
+        description: |
+          Donation to specific fundraising appeal or campaign
+          (conservation, acquisition, building project).
+        meaning: schema:DonateAction
+        annotations:
+          category: donation
+          examples: |
+            - British Library Conservation Appeals
+            - National Library of Scotland Centenary Appeal
+          custodian_types: "G, L, A, M, O, R, B, E, S, H, D"
+      
+      DONATION_PROJECT:
+        description: |
+          Donation restricted to specific project or initiative.
+        meaning: schema:DonateAction
+        annotations:
+          category: donation
+          examples: |
+            - Rembrandt House Museum project support
+            - Digitization project funding
+          custodian_types: "G, L, A, M, R, B, E, S, H, D"
+      
+      DONATION_TAX_INCENTIVE:
+        description: |
+          Donation structured to maximize tax benefits
+          (ANBI in Netherlands, Gift Aid in UK, 501(c)(3) in USA).
+        meaning: schema:DonateAction
+        annotations:
+          category: donation
+          examples: |
+            - Dutch ANBI Cultural Donation (125% deduction)
+            - UK Gift Aid
+            - US Charitable Deduction
+            - UK Cultural Gifts Scheme
+          custodian_types: "*"
+      
+      # ========================================
+      # IN-KIND SCHEMES - Non-monetary gifts
+      # ========================================
+      
+      INKIND_OBJECT:
+        description: |
+          Donation of physical objects (artworks, books, documents, artifacts)
+          to institution's collection.
+        meaning: schema:DonateAction
+        annotations:
+          category: inkind
+          examples: |
+            - Bevrijdingsmuseum Zeeland object donation
+            - KB collection donations (500+ items)
+            - Leiden University Libraries rare book gifts
+            - NIOD document donations
+          custodian_types: "G, L, A, M, R, B, S, H"
+      
+      INKIND_ARTWORK:
+        description: |
+          Donation of artwork to gallery or museum collection.
+        meaning: schema:DonateAction
+        annotations:
+          category: inkind
+          custodian_types: "G, M, H"
+      
+      INKIND_ARCHIVE:
+        description: |
+          Donation of personal papers, organizational records,
+          or other archival materials.
+        meaning: schema:DonateAction
+        annotations:
+          category: inkind
+          examples: |
+            - Dutch Diary Archive donations via Meertens Institute
+            - Personal papers to university archives
+          custodian_types: "A, L, R, S"
+      
+      INKIND_LIBRARY_COLLECTION:
+        description: |
+          Donation of book collection or library to institution.
+        meaning: schema:DonateAction
+        annotations:
+          category: inkind
+          examples: |
+            - UvA Library collection donations
+            - Private library bequests
+          custodian_types: "L, A, R, E"
+      
+      INKIND_EXPERTISE:
+        description: |
+          Pro bono professional services (legal, accounting, conservation,
+          curatorial, IT).
+        meaning: schema:DonateAction
+        annotations:
+          category: inkind
+          custodian_types: "*"
+      
+      INKIND_VOLUNTEER:
+        description: |
+          Structured volunteer program as form of in-kind support.
+        meaning: schema:DonateAction
+        annotations:
+          category: inkind
+          examples: |
+            - Museum docent programs
+            - Archive transcription volunteers
+          custodian_types: "G, L, A, M, B, E, S, H"
+      
+      # ========================================
+      # SPONSORSHIP SCHEMES - Corporate support
+      # ========================================
+      
+      SPONSORSHIP_EXHIBITION:
+        description: |
+          Corporate or individual sponsorship of temporary exhibition.
+        annotations:
+          category: sponsorship
+          typical_benefits: |
+            - Logo on exhibition materials
+            - Private viewing events
+            - Employee engagement opportunities
+            - Media coverage
+          custodian_types: "G, L, A, M, R, B, S, H"
+      
+      SPONSORSHIP_GALLERY:
+        description: |
+          Named sponsorship of permanent gallery or wing.
+        annotations:
+          category: sponsorship
+          custodian_types: "G, M, B, H"
+      
+      SPONSORSHIP_EVENT:
+        description: |
+          Sponsorship of institutional event (gala, lecture series,
+          education program).
+        annotations:
+          category: sponsorship
+          custodian_types: "G, L, A, M, O, R, B, E, S, H, D"
+      
+      SPONSORSHIP_PROGRAM:
+        description: |
+          Sponsorship of ongoing program (education, outreach,
+          conservation, research).
+        annotations:
+          category: sponsorship
+          examples: |
+            - Education program sponsorship
+            - Research fellowship funding
+          custodian_types: "G, L, A, M, O, R, B, E, S, H, D"
+      
+      SPONSORSHIP_DIGITIZATION:
+        description: |
+          Sponsorship of digitization projects for online access.
+        annotations:
+          category: sponsorship
+          examples: |
+            - Newspaper digitization sponsorship
+            - Archive digitization funding
+          custodian_types: "L, A, M, R, S"
+      
+      SPONSORSHIP_CONSERVATION:
+        description: |
+          Sponsorship of conservation or restoration work.
+        annotations:
+          category: sponsorship
+          examples: |
+            - Painting restoration sponsorship
+            - Building conservation funding
+          custodian_types: "G, L, A, M, R, B, H"
+      
+      # ========================================
+      # CROWDFUNDING SCHEMES - Collective giving
+      # ========================================
+      
+      CROWDFUNDING_ACQUISITION:
+        description: |
+          Crowdfunding campaign to acquire specific object or collection.
+        meaning: schema:DonateAction
+        annotations:
+          category: crowdfunding
+          examples: |
+            - Rijksmuseum acquisition campaigns
+            - National Art Collections Fund appeals
+          custodian_types: "G, L, A, M, R, H"
+      
+      CROWDFUNDING_CONSERVATION:
+        description: |
+          Crowdfunding for conservation or restoration project.
+        meaning: schema:DonateAction
+        annotations:
+          category: crowdfunding
+          custodian_types: "G, L, A, M, B, H"
+      
+      CROWDFUNDING_BUILDING:
+        description: |
+          Crowdfunding for building renovation, expansion, or construction.
+        meaning: schema:DonateAction
+        annotations:
+          category: crowdfunding
+          custodian_types: "G, L, A, M, R, B, S, H"
+      
+      CROWDFUNDING_EXHIBITION:
+        description: |
+          Crowdfunding for specific exhibition development.
+        meaning: schema:DonateAction
+        annotations:
+          category: crowdfunding
+          custodian_types: "G, L, A, M, R, B, S, H"
+      
+      # ========================================
+      # OTHER SCHEMES
+      # ========================================
+      
+      OTHER:
+        description: |
+          Donation scheme that doesn't fit other categories.
+          Document specifics in scheme_description field.
+        annotations:
+          category: other
+          custodian_types: "*"
+    
+    comments:
+      - "Categories follow observed patterns across global heritage sector"
+      - "Custodian type annotations indicate typical applicability (not restrictions)"
+      - "Tax incentive schemes vary significantly by jurisdiction"
+      - "In-kind donations require deed of gift and collection review process"
+      - "Adoption schemes originated with historic libraries and expanded to other heritage types"
+    
+    see_also:
+      - "https://www.researchgate.net/publication/229642356_Revisiting_Membership_Schemes_Typologies_in_Museums_and_Galleries"
+      - "https://historiclibrariesforum.com/wp-content/uploads/2023/03/adopt-a-book-schemes.pdf"
+      - "https://library.si.edu/donate/adopt-a-book"
+      - "https://support.bl.uk/Page/Adopt-a-book"
+      - "https://www.belastingdienst.nl/wps/wcm/connect/nl/aftrek-en-kortingen/content/gift-aftrekken"

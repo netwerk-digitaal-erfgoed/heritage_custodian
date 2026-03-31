@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: has_raw_data
+# ==============================================================================
+# Links to original unprocessed source material used to generate a result.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line              | Mapping  | Notes                                                        |
+# |---------------|-------------------------|------------------------|----------|--------------------------------------------------------------|
+# | **PROV-O**    | `prov:hadPrimarySource`  | prov.ttl:661-674       | close    | "particular case of wasDerivedFrom" — credits source entity. |
+# | **DCTerms**   | `dcterms:source`         | dcterms.rdf:1920-1933  | close    | "A related resource from which the described resource is derived." |
+# | **PROV-O**    | `prov:wasDerivedFrom`    | prov.ttl:1099-1114     | broad    | General derivation; raw data is a specific case.             |
+# | **Schema.org**| `schema:isBasedOn`       | schemaorg.owl:22729-22751 | related | "A resource from which this work is derived" — creative work focus. |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_raw_data
+name: has_raw_data
+title: Has Raw Data
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_raw_data:
+    slot_uri: hc:hasRawData
+    description: >-
+      Links a processed result, analysis, visualization, or system to the original,
+      unprocessed source material or dataset used to generate it.
+    alt_descriptions:
+      nl: >-
+        Koppelt een verwerkt resultaat, analyse, visualisatie of systeem aan het
+        oorspronkelijke, onbewerkte bronmateriaal of de dataset die is gebruikt
+        om het te genereren.
+      de: >-
+        Verknüpft ein verarbeitetes Ergebnis, eine Analyse, Visualisierung oder
+        ein System mit dem ursprünglichen, unverarbeiteten Quellmaterial oder
+        Datensatz, der zu seiner Erstellung verwendet wurde.
+      fr: >-
+        Relie un résultat traité, une analyse, une visualisation ou un système
+        au matériau source original et non traité ou au jeu de données utilisé
+        pour le générer.
+      ar: >-
+        يربط نتيجة معالجة أو تحليلاً أو تصويراً بيانياً أو نظاماً بالمادة
+        المصدرية الأصلية غير المعالجة أو مجموعة البيانات المستخدمة لإنشائه.
+      id: >-
+        Menghubungkan hasil olahan, analisis, visualisasi, atau sistem dengan
+        materi sumber asli yang belum diproses atau kumpulan data yang digunakan
+        untuk menghasilkannya.
+      zh: >-
+        将处理后的结果、分析、可视化或系统与用于生成它的原始未处理源材料或数据集相关联。
+      es: >-
+        Vincula un resultado procesado, análisis, visualización o sistema con el
+        material fuente original sin procesar o el conjunto de datos utilizado
+        para generarlo.
+    structured_aliases:
+      - literal_form: Ruwe Data
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rohdaten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Données Brutes
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بيانات خام
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Data Mentah
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 原始数据
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Datos Brutos
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - 'Format: "Language - Proficiency level"'
+      - Preserved for provenance.
+    examples:
+      - value: English - Native or bilingual
+        description: Native English speaker
+      - value: Dutch - Professional working proficiency
+        description: Professional Dutch
+    close_mappings:
+      - prov:hadPrimarySource  # prov.ttl:661-674 — credits the primary source entity
+      - dcterms:source  # dcterms.rdf:1920-1933 — "A related resource from which the described resource is derived."
+    broad_mappings:
+      - prov:wasDerivedFrom  # prov.ttl:1099-1114 — general derivation relationship
+    related_mappings:
+      - schema:isBasedOn  # schemaorg.owl:22729-22751 — "A resource from which this work is derived" (creative work focus)
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - language_raw
+      - languages_raw
+      - raw_subtitle_content

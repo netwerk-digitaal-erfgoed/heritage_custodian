@@ -1,0 +1,116 @@
+id: https://nde.nl/ontology/hc/class/Audit
+name: Audit
+title: Audit
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/opiniate
+- ../slots/conducted_by
+- ../slots/temporal_extent
+- ../slots/has_label
+- ../slots/has_description
+default_prefix: hc
+classes:
+  Audit:
+    class_uri: hc:Audit
+    description: >-
+      Official inspection of an organization's accounts or processes.
+    alt_descriptions:
+      nl: "Officiële inspectie van de administratie of processen van een organisatie."
+      de: "Offizielle Prüfung der Konten oder Prozesse einer Organisation."
+      fr: "Inspection officielle des comptes ou des processus d'une organisation."
+      es: "Inspección oficial de las cuentas o procesos de una organización."
+      ar: "تفتيش رسمي لحسابات أو عمليات المنظمة."
+      id: "Inspeksi resmi akun atau proses organisasi."
+      zh: "对组织账目或流程的正式检查。"
+    examples:
+    - value:
+        has_label: 2024 Financial Audit
+        temporal_extent:
+          begin_of_the_begin: '2024-01-01'
+          end_of_the_end: '2024-12-31'
+        conducted_by: PwC
+      description: Annual financial audit
+    - value:
+        has_label: Collection Management Audit
+        has_description: Review of collection documentation and procedures
+        conducted_by: Internal Audit Committee
+      description: Operational audit
+    close_mappings:
+    - prov:Activity
+    - schema:AssessAction
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: audit
+      in_language: nl
+    - literal_form: controle
+      in_language: nl
+    - literal_form: Prüfung
+      in_language: de
+    - literal_form: Revision
+      in_language: de
+    - literal_form: audit
+      in_language: fr
+    - literal_form: vérification
+      in_language: fr
+    - literal_form: auditoría
+      in_language: es
+    - literal_form: تدقيق
+      in_language: ar
+    - literal_form: pemeriksaan
+      in_language: id
+    - literal_form: 审计
+      in_language: zh
+    keywords:
+    - audit
+    - inspection
+    - verification
+    - compliance
+    - financial review
+    - assessment
+    slots:
+    - temporal_extent
+    - opiniate
+    - conducted_by
+    - has_label
+    - has_description
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: '2024-01-01'
+            end_of_the_end: '2024-12-31'
+      conducted_by:
+        required: false
+        examples:
+        - value: PwC
+        - value: Internal Audit Committee
+      opiniate:
+        range: AuditOpinion
+        required: false
+      has_label:
+        required: false
+        examples:
+        - value: 2024 Financial Audit
+        - value: Collection Management Audit
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: "Audit is moderately specific to organizational oversight and compliance."
+      custodian_types: "['*']"
+      audit_types: "Financial audit, Compliance audit, Operational audit, Collection audit"
+    comments:
+    - Official inspection of accounts or processes
+    - May be financial, compliance, or operational
+    - Results in audit opinion
+    - "Preserved from prior description: Official inspection of an organization's accounts or processes. Typically conducted by an independent body to verify accuracy of financial records, compliance with regulations, or operational effectiveness of heritage custodian activities."
+    see_also:
+    - AuditOpinion
+    - Auditor

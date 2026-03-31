@@ -1,0 +1,121 @@
+id: https://nde.nl/ontology/hc/class/Component
+name: component_class
+title: Component Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+default_prefix: hc
+
+classes:
+  Component:
+    class_uri: schema:ItemList
+    description: >-
+      Structured part-instance used to represent a constituent element within a
+      larger modeled entity.
+    alt_descriptions:
+      nl: Gestructureerde deelinstantie voor het representeren van een constituent element binnen een grotere gemodelleerde entiteit.
+      de: Strukturierte Teilinstanz zur Darstellung eines Bestandteils innerhalb einer groesseren modellierten Entitaet.
+      fr: Instance de partie structuree servant a representer un element constitutif dans une entite modelisee plus large.
+      es: Instancia de parte estructurada para representar un elemento constituyente dentro de una entidad modelada mayor.
+      ar: مثيل جزء منظم لتمثيل عنصر مكوّن داخل كيان نمذجي أكبر.
+      id: Instans bagian terstruktur untuk merepresentasikan elemen penyusun dalam entitas termodelkan yang lebih besar.
+      zh: 用于表示较大建模实体中组成要素的结构化部件实例。
+    structured_aliases:
+    - {literal_form: onderdeel, in_language: nl}
+    - {literal_form: Komponente, in_language: de}
+    - {literal_form: composant, in_language: fr}
+    - {literal_form: componente, in_language: es}
+    - {literal_form: مكوّن, in_language: ar}
+    - {literal_form: komponen, in_language: id}
+    - {literal_form: 组件项, in_language: zh}
+
+    slots:
+    - has_type
+    - has_label
+    - has_description
+
+    slot_usage:
+      has_type:
+        range: ComponentType
+        multivalued: true
+        required: false
+        examples:
+        - value: StreetNumber
+        - value: Route
+        - value: Locality
+      has_label:
+#         range: string
+        required: false
+        examples:
+        - value: "1"
+        - value: "Museumstraat"
+    close_mappings:
+    - schema:ItemList
+    - dcterms:hasPart
+
+    notes:
+    - |
+      Preserved from prior description (commit 2e1e6e5f):
+
+      A component or part of a larger entity.
+
+      **MIGRATION NOTE** (2026-01-22):
+      Created per slot_fixes.yaml migration from `component_type` string
+      to structured Component class per Rule 53.
+
+      **Purpose**:
+      Provides base class for components/parts including:
+      - Type classification via ComponentType hierarchy
+      - Value/label for the component
+      - Additional metadata
+
+      **Ontological Alignment**:
+      - **Primary** (`class_uri`): `schema:ItemList` - Schema.org (component as list item)
+      - **Close**: `dcterms:hasPart` - Dublin Core part relationship
+
+      **Use Cases**:
+      - Address components (street, city, country)
+      - System components
+      - Document components
+
+      **Pattern**:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Components applicable across all heritage domains.
+      custodian_types_primary: M
+      specificity_score: 0.30
+      specificity_rationale: >-
+        Broadly applicable - component modeling fundamental to many domains.
+      # migration_info: (Flattened)
+      migration_source_slot: component_type
+      migration_date: "2026-01-22"
+      migration_rule: "Rule 53"
+
+    comments:
+    - "Base class for component/part entities"
+    - "Type classification via ComponentType hierarchy"
+    - "Created 2026-01-22 from component_type migration (Rule 53)"
+
+    examples:
+    - value:
+        has_type: StreetNumber
+        has_label: "1"
+    - value:
+        has_type: Locality
+        has_label: "Amsterdam"
+    - value: |
+        has_component:
+          - has_type: StreetNumber
+            has_label: "1"
+            long_name: "1"
+            short_name: "1"

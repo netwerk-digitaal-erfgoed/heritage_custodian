@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: cover_geographic_subdivision
+# ==============================================================================
+# The administrative subdivision(s) within a country that a resource, dataset,
+# or policy geographically covers or applies to.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                     | Mapping | Notes                                                                          |
+# |---------------|-----------------------------|-------------------------------|---------|--------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:areaServed`         | schemaorg.owl:8403-8428       | close   | "The geographic area where a service or offered item is provided." Domain      |
+# |               |                             |                               |         |  includes Organization/Service. Range includes AdministrativeArea. Close but    |
+# |               |                             |                               |         |  doesn't specifically require administrative subdivisions.                     |
+# | **DCTerms**   | `dcterms:spatial`           | dcterms.rdf:1944-1967         | close   | "Spatial characteristics of the resource." Range: Location. SubPropertyOf      |
+# |               |                             |                               |         |  coverage. General spatial coverage — close but doesn't convey "administrative |
+# |               |                             |                               |         |  subdivision" specifically.                                                    |
+# | **Schema.org**| `schema:spatialCoverage`    | schemaorg.owl:35880-35903     | close   | "Place(s) which are the focus of the content." SubPropertyOf contentLocation.  |
+# |               |                             |                               |         |  Domain restricted to CreativeWork; our slot applies to any entity.            |
+# | **Schema.org**| `schema:addressRegion`      | schemaorg.owl:7306-7328       | related | "The region in which the locality is, and which is in the country." Domain     |
+# |               |                             |                               |         |  restricted to DefinedRegion/PostalAddress — identifies which region an        |
+# |               |                             |                               |         |  address is IN, not which subdivisions an entity COVERS.                       |
+# | **GeoNames**  | `geonames:parentADM1`       | geonames_ontology.rdf:319-321 | related | "Level 1 administrative parent." About hierarchical admin parentage of a      |
+# |               |                             |                               |         |  Feature, not about coverage area.                                            |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/cover_geographic_subdivision
+name: cover_geographic_subdivision
+title: Covers Geographic Subdivision
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  geonames: http://www.geonames.org/ontology#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  cover_geographic_subdivision:
+    slot_uri: hc:coverGeographicSubdivision
+    description: >-
+      Relates a dataset, policy, or work to the specific administrative region, state,
+      province, or municipality within a country that it applies to or describes.
+    comments:
+      - "Links to Subregion class with ISO 3166-2 codes."
+      - >-
+        A service area may cover a single subregion (provincial archive covering one
+        province), multiple subregions (regional archive spanning provinces), or part
+        of a subregion (municipal archive within province).
+    alt_descriptions:
+      nl: >-
+        Relateert een dataset, beleid of werk aan de specifieke administratieve regio,
+        staat, provincie of gemeente binnen een land waarop het betrekking heeft of
+        die het beschrijft.
+      de: >-
+        Verknüpft einen Datensatz, eine Richtlinie oder ein Werk mit der spezifischen
+        Verwaltungsregion, dem Bundesland, der Provinz oder der Gemeinde innerhalb
+        eines Landes, auf die es sich bezieht oder die es beschreibt.
+      fr: >-
+        Relie un jeu de données, une politique ou une œuvre à la région administrative
+        spécifique, l'État, la province ou la municipalité au sein d'un pays auquel
+        il s'applique ou qu'il décrit.
+      ar: >-
+        يربط مجموعة بيانات أو سياسة أو عملًا بالمنطقة الإدارية المحددة أو الولاية
+        أو المقاطعة أو البلدية داخل بلد ينطبق عليها أو يصفها.
+      id: >-
+        Menghubungkan kumpulan data, kebijakan, atau karya dengan wilayah administratif
+        tertentu, negara bagian, provinsi, atau kotamadya dalam suatu negara yang
+        berlaku atau yang dideskripsikan.
+      zh: >-
+        将数据集、政策或作品与其所适用或描述的特定国家内的行政区域、州、省或市相关联。
+      es: >-
+        Relaciona un conjunto de datos, política u obra con la región administrativa
+        específica, estado, provincia o municipio dentro de un país al que se aplica
+        o que describe.
+    structured_aliases:
+      - literal_form: Geografische Onderverdeling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Geografische Untergliederung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Subdivision Géographique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: التقسيم الجغرافي الفرعي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Subdivisi Geografis
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 地理行政区划
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Subdivisión Geográfica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    # range: Subregion
+    multivalued: true
+    inlined_as_list: false  # Fixed invalid inline for primitive type
+    examples:
+      - value: "https://nde.nl/ontology/hc/subregion/NL-NH"
+        description: Covers Noord-Holland province
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:areaServed  # schemaorg.owl:8403-8428 — "The geographic area where a service or offered item is provided." Domain includes Organization. Range includes AdministrativeArea. Close but not subdivision-specific.
+      - dcterms:spatial  # dcterms.rdf:1944-1967 — "Spatial characteristics of the resource." General spatial coverage, close but doesn't specify admin subdivision level.
+      - schema:spatialCoverage  # schemaorg.owl:35880-35903 — "Place(s) which are the focus of the content." Domain restricted to CreativeWork; our slot applies to any entity.
+    related_mappings:
+      - schema:addressRegion  # schemaorg.owl:7306-7328 — "The region in which the locality is." Domain: DefinedRegion|PostalAddress. Identifies which region an address IS IN, not which subdivisions an entity COVERS.
+      - geonames:parentADM1  # geonames_ontology.rdf:319-321 — "Level 1 administrative parent." Hierarchical admin parentage of a Feature, not coverage area.
+    aliases:
+      - cover_or_covered_subregion

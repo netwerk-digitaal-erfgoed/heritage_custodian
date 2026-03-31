@@ -1,0 +1,131 @@
+# ==============================================================================
+# LinkML Slot Definition: transported_by
+# ==============================================================================
+# The vehicle, carrier, agent, or mechanism responsible for moving an object
+# from one location to another.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                   | File/Line                        | Mapping | Notes                                                              |
+# |-------------|----------------------------|----------------------------------|---------|--------------------------------------------------------------------|
+# | **HC**      | `hc:transportedBy`         | —                                | slot_uri| Custom heritage-custodian property for transport carriers.          |
+# | **Schema**  | `schema:carrier`           | schemaorg.owl:11229-11252        | close   | "Out-dated term indicating the 'provider' for parcel delivery and  |
+# |             |                            |                                  |         | flights." Deprecated; domain constrained to ParcelDelivery/Flight. |
+# | **CIDOC**   | `crm:P25i_moved_by`        | CIDOC_CRM_v7.1.3.rdf:1779-1790  | close   | "moved by" — links E19 Physical Object to E9 Move event. Close     |
+# |             |                            |                                  |         | but range is an event class, not an agent or vehicle directly.     |
+# | **Schema**  | `schema:deliveryMethod`    | schemaorg.owl:14532-14557        | related | "A sub property of instrument. The method of delivery." Captures   |
+# |             |                            |                                  |         | mechanism/method rather than carrier/agent.                        |
+# | **CIDOC**   | `crm:P14_carried_out_by`   | CIDOC_CRM_v7.1.3.rdf:1489-1503  | related | "carried out by" — the agent performing any E7 Activity. When      |
+# |             |                            |                                  |         | combined with E9 Move gives the transport agent, but alone is too  |
+# |             |                            |                                  |         | general for a direct mapping.                                      |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/transported_by
+name: transported_by
+title: Transported By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  transported_by:
+    slot_uri: hc:transportedBy
+    description: >-
+      The vehicle, carrier, agent, or mechanism responsible for moving an
+      object, collection, or shipment from one location to another. In
+      heritage custodian contexts this covers the physical transport of
+      collection items between institutions, storage facilities, exhibition
+      venues, and conservation laboratories. The value may identify a
+      specific carrier (e.g. a logistics company name), a vehicle type
+      (e.g. climate-controlled truck), or a general transport method
+      (e.g. courier, registered post, diplomatic bag).
+    alt_descriptions:
+      nl: >-
+        Het voertuig, de vervoerder, de agent of het mechanisme dat
+        verantwoordelijk is voor het verplaatsen van een object, collectie
+        of zending van de ene locatie naar de andere.
+      de: >-
+        Das Fahrzeug, der Spediteur, der Akteur oder der Mechanismus, der
+        für den Transport eines Objekts, einer Sammlung oder einer Sendung
+        von einem Ort zum anderen verantwortlich ist.
+      fr: >-
+        Le véhicule, le transporteur, l'agent ou le mécanisme responsable
+        du déplacement d'un objet, d'une collection ou d'un envoi d'un
+        lieu à un autre.
+      ar: >-
+        المركبة أو الناقل أو الوكيل أو الآلية المسؤولة عن نقل كائن أو
+        مجموعة أو شحنة من موقع إلى آخر.
+      id: >-
+        Kendaraan, pengangkut, agen, atau mekanisme yang bertanggung jawab
+        untuk memindahkan objek, koleksi, atau kiriman dari satu lokasi
+        ke lokasi lain.
+      zh: >-
+        负责将物品、藏品或货物从一个地点运输到另一个地点的车辆、承运人、
+        代理人或机制。
+      es: >-
+        El vehículo, transportista, agente o mecanismo responsable de
+        trasladar un objeto, colección o envío de una ubicación a otra.
+    structured_aliases:
+      - literal_form: vervoerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: transportiert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: transporté par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نُقل بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diangkut oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...运输
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: transportado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - schema:carrier  # schemaorg.owl:11229-11252 - "Out-dated term indicating the 'provider' for parcel delivery and flights." Same concept but deprecated; domain constrained to ParcelDelivery/Flight.
+      - crm:P25i_moved_by  # CIDOC_CRM_v7.1.3.rdf:1779-1790 - "moved by" links E19 Physical Object to E9 Move event. Close but range is an event class, not an agent/vehicle.
+    related_mappings:
+      - schema:deliveryMethod  # schemaorg.owl:14532-14557 - "A sub property of instrument. The method of delivery." Captures mechanism/method rather than carrier/agent.
+      - crm:P14_carried_out_by  # CIDOC_CRM_v7.1.3.rdf:1489-1503 - "carried out by" the agent performing any E7 Activity. When combined with E9 Move gives the transport agent, but alone is too general.
+    aliases:
+      - shipping_method
+    examples:
+      - value: "Brinks Art Services"
+        description: "A specialised fine art logistics company transporting museum objects."
+      - value: "Climate-controlled truck, Hizkia Van Kralingen B.V."
+        description: "A Dutch art transport firm using climate-controlled vehicles for heritage items."
+      - value: "Registered post (Aangetekende post)"
+        description: "Archival documents sent via registered postal service between institutions."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        In CIDOC-CRM, physical transport is modelled through the E9 Move event
+        class (CIDOC_CRM_v7.1.3.rdf:350-361). The full CRM pattern to express
+        'transported by [agent]' is: E19 Physical Object -> P25i moved by ->
+        E9 Move -> P14 carried out by -> E39 Actor. Our slot flattens this
+        event-based pattern into a single direct property for practical use.
+      - >-
+        Schema.org's schema:carrier (superseded by schema:provider) is the
+        closest semantic match but is narrowly scoped to ParcelDelivery and
+        Flight contexts. Our slot is broader, covering all heritage transport
+        scenarios including inter-institutional loans, conservation transfers,
+        and exhibition logistics.
+      - >-
+        Values may range from formal company names to general method
+        descriptions. For structured transport event recording, consider
+        combining this slot with related slots for origin, destination,
+        date, and condition assessment.

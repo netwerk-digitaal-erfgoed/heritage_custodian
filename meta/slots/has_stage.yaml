@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: has_stage
+# ==============================================================================
+# Distinct phase, period, or step in an entity's development or lifecycle.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line          | Mapping | Notes                                                    |
+# |---------------|----------------------------|--------------------|---------|----------------------------------------------------------|
+# | **DwC**       | `dwc:lifeStage`            | dwc.rdf:980-985    | narrow  | Biological organism life stages only; our slot is broader.|
+# | **Schema.org**| `schema:creativeWorkStatus` | schemaorg.owl:13457-13475 | related | Lifecycle stage of creative works (Draft, Published, etc.); domain restricted to CreativeWork. |
+#
+# REJECTED CANDIDATES:
+# - schema:stage (schemaorg.owl:36218-36240): domain MedicalCondition only.
+# - schema:status (schemaorg.owl:36381-36410): medical domain only.
+# - crm:P2_has_type (CIDOC_CRM:1200-1215): too generic ("has type" ≠ "has stage").
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_stage
+name: has_stage
+title: Has Stage
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_stage:
+    slot_uri: hc:has_stage
+    description: >-
+      Relates an entity, organism, or process to a distinct phase, period, or step
+      in its development, lifecycle, or execution.
+    alt_descriptions:
+      nl: >-
+        Relateert een entiteit, organisme of proces aan een afzonderlijke fase, periode
+        of stap in de ontwikkeling, levenscyclus of uitvoering ervan.
+      de: >-
+        Verknüpft eine Entität, einen Organismus oder einen Prozess mit einer bestimmten
+        Phase, Periode oder einem Schritt in seiner Entwicklung, seinem Lebenszyklus
+        oder seiner Ausführung.
+      fr: >-
+        Associe une entité, un organisme ou un processus à une phase, une période ou
+        une étape distincte de son développement, de son cycle de vie ou de son exécution.
+      ar: >-
+        يربط كيانًا أو كائنًا حيًا أو عملية بمرحلة أو فترة أو خطوة متميزة في تطوره
+        أو دورة حياته أو تنفيذه.
+      id: >-
+        Menghubungkan entitas, organisme, atau proses dengan fase, periode, atau langkah
+        yang berbeda dalam pengembangan, siklus hidup, atau pelaksanaannya.
+      zh: >-
+        将实体、有机体或过程与其发展、生命周期或执行中的一个独特阶段、时期或步骤相关联。
+      es: >-
+        Relaciona una entidad, organismo o proceso con una fase, período o paso
+        distinto en su desarrollo, ciclo de vida o ejecución.
+    structured_aliases:
+      - literal_form: Stadium
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Stadium
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Stade
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مرحلة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tahap
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 阶段
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Etapa
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Values vary by taxon: Vertebrates (ADULT, JUVENILE, SUBADULT, NEONATE),
+        Insects (ADULT, LARVA, PUPA, NYMPH, EGG),
+        Plants (FLOWERING, FRUITING, VEGETATIVE, SEED).
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    narrow_mappings:
+      - dwc:lifeStage  # dwc.rdf:980-985 — biological organism life stages only
+    related_mappings:
+      - schema:creativeWorkStatus  # schemaorg.owl:13457-13475 — lifecycle stage of creative works
+    aliases:
+      - life_stage
+      - pipeline_stage

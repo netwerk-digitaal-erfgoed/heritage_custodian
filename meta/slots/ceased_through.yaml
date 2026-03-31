@@ -1,0 +1,169 @@
+# ==============================================================================
+# LinkML Slot Definition: ceased_through
+# ==============================================================================
+# Indicate the event through which an entity ceased to exist or operate.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                           | File/Line             | Mapping | Notes                              |
+# |---------------|------------------------------------|-----------------------|---------|------------------------------------|
+# | **CIDOC-CRM** | `crm:P93i_was_taken_out_of_existence_by` | CIDOC_CRM:3210-3221 | exact   | Event ended existence          |
+# | **RiC-O**     | `rico:isOrWasAffectedBy`           | RiC-O_1-1:12585       | close   | Agent affected by activity         |
+# | **PROV-O**    | `prov:wasInvalidatedBy`            | prov.ttl:1194-1206    | narrow  | Entity invalidated (data focus)    |
+# | **PROV-O**    | `prov:invalidated`                 | prov.ttl:729-740      | related | Inverse of wasInvalidatedBy        |
+# | **RiC-O**     | `rico:hasDeathDate`                | RiC-O_1-1:4428        | related | Death date for Person              |
+# | **RiC-O**     | `rico:hasEndDate`                  | RiC-O_1-1:5018        | related | End date (not ending event)        |
+# | **Schema.org**| `schema:deathDate`                 | schemaorg.owl:14424   | broad   | Death date for Person              |
+# | **Schema.org**| `schema:dissolutionDate`           | schemaorg.owl:15305   | broad   | Organization dissolution date      |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Changed slot_uri from hc:ceasedThrough to crm:P93i_was_taken_out_of_existence_by (exact mapping)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/ceased_through
+name: ceased_through
+title: ceased through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  ceased_through:
+    description: >-
+      To indicate the event through which an entity ceased to exist or operate.
+    alt_descriptions:
+      nl: >-
+        Het aangeven van de gebeurtenis waardoor een entiteit ophield te
+        bestaan of te functioneren.
+      de: >-
+        Das Ereignis angeben, durch das eine Entität aufhörte zu existieren
+        oder zu funktionieren.
+      fr: >-
+        Indiquer l'événement par lequel une entité a cessé d'exister ou
+        de fonctionner.
+      ar: >-
+        الإشارة إلى الحدث الذي من خلاله توقف كيان عن الوجود أو العمل.
+      id: >-
+        Menunjukkan peristiwa yang menyebabkan suatu entitas berhenti
+        ada atau beroperasi.
+      zh: >-
+        表示导致实体停止存在或运作的事件。
+      es: >-
+        Indicar el evento a través del cual una entidad dejó de existir
+        u operar.
+    structured_aliases:
+      - literal_form: opgehouden door
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_ceased_through
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: beendet durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: cessé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: توقف من خلال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berhenti melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...终止
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cesado mediante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    # range: CeasingEvent
+    slot_uri: crm:P93i_was_taken_out_of_existence_by
+    multivalued: true
+    
+    # VERIFIED MAPPINGS (2026-02-XX)
+    # Source files: data/ontology/CIDOC_CRM_v7.1.3.rdf, data/ontology/prov.ttl, 
+    #               data/ontology/RiC-O_1-1.rdf, data/ontology/schemaorg.owl
+    
+    exact_mappings:
+      # CIDOC_CRM_v7.1.3.rdf line 3210-3221: P93i_was_taken_out_of_existence_by
+      # "This property identifies the E64 End of Existence that ended the existence of this E77 Persistent Item"
+      # Exact semantic match: event that ended the existence of something
+    close_mappings:
+      # RiC-O_1-1.rdf line 12585: isOrWasAffectedBy
+      # "Connects an Agent, Record Resource, or Instantiation to an Activity by which it was affected"
+      # Close: agent affected by activity (includes but not limited to cessation)
+      - rico:isOrWasAffectedBy  # from RiC-O_1-1.rdf - agent/thing affected by activity
+    
+    narrow_mappings:
+      # prov.ttl line 1194-1206: wasInvalidatedBy
+      # "An entity that was invalidated by this activity"
+      # Narrower: specifically about data/provenance entities becoming invalid,
+      # not general physical cessation of existence
+      - prov:wasInvalidatedBy  # from prov.ttl - entity invalidated by activity (data focus)
+    
+    related_mappings:
+      # prov.ttl line 729-740: invalidated (inverse of wasInvalidatedBy)
+      # "The Entity that was invalidated by this Activity"
+      # Related: inverse direction - activity that invalidated entity
+      - prov:invalidated  # from prov.ttl - inverse of wasInvalidatedBy
+      
+      # RiC-O_1-1.rdf line 4428: hasDeathDate (for Persons specifically)
+      # Related but narrower: only for Person entities, and links to Date not Event
+      - rico:hasDeathDate  # from RiC-O_1-1.rdf - death date for Person (narrower)
+      
+      # RiC-O_1-1.rdf line 5018: hasEndDate
+      # Related but different: links to Date, not to the ending Event
+      - rico:hasEndDate  # from RiC-O_1-1.rdf - end date (not ending event)
+    
+    broad_mappings:
+      # schemaorg.owl line 14424-14427: deathDate (DatatypeProperty)
+      # Broader/different: date value, not event; only for Person
+      - schema:deathDate  # from schemaorg.owl - death date for Person (value, not event)
+      
+      # schemaorg.owl line 15305-15308: dissolutionDate (DatatypeProperty)  
+      # Broader/different: date value for Organization dissolution, not event
+      - schema:dissolutionDate  # from schemaorg.owl - dissolution date for Organization (value, not event)
+    
+    aliases:
+      - ceases_or_ceased_through
+      - was_ended_by
+      - terminated_by
+      - dissolved_through
+      - is_or_was_ceased_through
+    
+    examples:
+      - value:
+          has_or_had_identifier: "https://example.org/event/museum-closure-2024"
+          has_or_had_label: "Museum Closure Event 2024"
+        description: Museum ceased operations through a closure event
+      - value:
+          has_or_had_identifier: "https://example.org/event/organization-dissolution"
+          has_or_had_label: "Organization Dissolution"
+        description: Organization ceased to exist through dissolution
+    
+    comments:
+      - |
+          MIGRATED from cessation_observed_in (Rule 53).
+      - |
+          slot_uri changed from prov:wasInvalidatedBy to hc:ceasedThrough because 
+          PROV-O 'wasInvalidatedBy' is specifically about data/provenance entities
+          (prov:Entity) being invalidated by activities. Our 'ceased_through' is 
+          more general, covering physical organizations, institutions, and abstract 
+          concepts ceasing to exist.
+      - |
+          CIDOC-CRM semantics note: 'crm:P93i_was_taken_out_of_existence_by' 
+          is the inverse of 'crm:P93_took_out_of_existence' and connects
+          E77 Persistent Item to E64 End of Existence event. Subproperties
+          include P100i (died in), P99i (dissolved by), P124i (transformed by).
+      - |
+          Verified predicates from:
+          - data/ontology/CIDOC_CRM_v7.1.3.rdf (crm:P93i_was_taken_out_of_existence_by line 3210)
+          - data/ontology/prov.ttl (prov:wasInvalidatedBy line 1194, prov:invalidated line 729)
+          - data/ontology/RiC-O_1-1.rdf (rico:isOrWasAffectedBy line 12585, rico:hasDeathDate line 4428, rico:hasEndDate line 5018)
+          - data/ontology/schemaorg.owl (schema:deathDate line 14424, schema:dissolutionDate line 15305)

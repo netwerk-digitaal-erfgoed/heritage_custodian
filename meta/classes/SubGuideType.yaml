@@ -1,0 +1,138 @@
+id: https://nde.nl/ontology/hc/class/SubGuideType
+name: SubGuideType
+title: Finding Aid Sub-Guide Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  ead: https://www.loc.gov/ead/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  SubGuideType:
+    class_uri: skos:Concept
+    alt_descriptions:
+      nl: Abstracte basisclassificatie voor typen subgids-verwijzingen in archieftoegangen.
+      de: Abstrakte Basisklassifikation fuer Subguide-Referenztypen in Findmitteln.
+      fr: Classification de base abstraite pour les types de sous-guides dans les instruments de recherche archivistiques.
+      es: Clasificacion base abstracta para tipos de subguia en instrumentos de descripcion archivistica.
+      ar: تصنيف أساسي مجرد لأنواع الإحالة إلى الأدلة الفرعية في وسائل الإرشاد الأرشيفية.
+      id: Klasifikasi dasar abstrak untuk tipe sub-guide dalam finding aid arsip.
+      zh: 用于档案检索工具中子指南引用类型的抽象基础分类。
+    structured_aliases:
+    - literal_form: subgidstype
+      in_language: nl
+    - literal_form: Subguide-Typ
+      in_language: de
+    - literal_form: type de sous-guide
+      in_language: fr
+    - literal_form: tipo de subguia
+      in_language: es
+    - literal_form: نوع دليل فرعي
+      in_language: ar
+    - literal_form: tipe sub-guide
+      in_language: id
+    - literal_form: 子指南类型
+      in_language: zh
+    description: >-
+      Abstract base class for classifying sub-guide relationship types in
+      archival finding aids.
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E55_Type
+    - rico:RecordResourceRelation
+    related_mappings:
+    - rico:RecordResource
+    - ead:archdesc
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/sub-guide-type/[a-z-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/sub-guide-type/sub-guide
+        - value: https://nde.nl/ontology/hc/sub-guide-type/thematic
+      has_code:
+#         range: string
+        required: true
+        pattern: ^[a-z][a-z0-9_]*$
+        examples:
+        - value: sub_guide
+        - value: cross_reference
+        - value: thematic
+        - value: regional
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Sub-guide@en
+          - Deelgids@nl
+        - value:
+          - Thematic Collection@en
+          - Thematische collectie@nl
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: Direct sub-guide within the same repository's finding aid hierarchy
+      has_hypernym:
+        range: SubGuideType
+        required: false
+      has_hyponym:
+        range: SubGuideType
+        multivalued: true
+        required: false
+    annotations:
+      specificity_score: '0.65'
+      specificity_rationale: Fairly specific - archival finding aid domain.
+      has_score:
+      replaces_enum: SubGuideTypeEnum
+      migration_date: '2026-01-13'
+      custodian_types: "['*']"
+      modeling_notes: |
+        Type vs instance
+
+        - SubGuideType models relationship categories (e.g., direct sub-guide,
+          thematic, cross-reference).
+        - Individual links between finding aids are instance data.
+    comments:
+    - Abstract base class - use specific subclasses
+    - Represents SUB-GUIDE TYPES, not sub-guide instances
+    - FindingAid.sub_guide_type references these types
+    - Follows Type/Types naming convention (Rule 0b)
+    - Uses shared slots per Rule 38 (slot centralization)
+    see_also:
+    - https://www.loc.gov/ead/
+    - https://www.ica.org/standards/RiC/ontology
+    - https://www.w3.org/2004/02/skos/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/sub-guide-type/thematic
+        has_code: thematic
+        has_label:
+        - Thematic Sub-collection@en
+        - Thematische deelcollectie@nl
+        has_description: Subject-based grouping that cuts across organizational structure

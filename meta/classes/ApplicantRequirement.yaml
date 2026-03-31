@@ -1,0 +1,109 @@
+id: https://nde.nl/ontology/hc/class/ApplicantRequirement
+name: ApplicantRequirement
+title: Applicant Requirement Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/fulfilled_by
+  - ../slots/has_description
+  - ../slots/impose
+classes:
+  ApplicantRequirement:
+    class_uri: hc:ApplicantRequirement
+    description: >-
+      Formal prerequisite or condition that must be satisfied by an applicant,
+      such as residency requirements, organizational type, credentials, or
+      geographic restrictions.
+    alt_descriptions:
+      nl: >-
+        Formele voorwaarde of conditie die door een aanvrager moet worden vervuld,
+        zoals verblijfsvereisten, organisatietype, referenties of geografische beperkingen.
+      de: >-
+        Formelle Voraussetzung oder Bedingung, die von einem Antragsteller erfullt
+        werden muss, wie Aufenthaltsanforderungen, Organisationstyp, Qualifikationen
+        oder geografische Beschrankungen.
+      fr: >-
+        Prerequis formel ou condition qui doit etre satisfait par un demandeur,
+        comme les conditions de residence, le type d'organisation, les references
+        ou les restrictions geographiques.
+      es: >-
+        Requisito previo formal o condicion que debe ser satisfecha por un solicitante,
+        como requisitos de residencia, tipo de organizacion, credenciales o
+        restricciones geograficas.
+      ar: >-
+        شرط مسبق رسمي أو شرط يجب أن يلبيه مقدم الطلب، مثل متطلبات الإقامة
+        أو نوع المنظمة أو بيانات الاعتماد أو القيود الجغرافية.
+      id: >-
+        Prasyarat formal atau kondisi yang harus dipenuhi oleh pemohon, seperti
+        persyaratan tempat tinggal, jenis organisasi, kredensial, atau batasan geografis.
+      zh: >-
+        申请人必须满足的正式先决条件或条件，如居住要求、组织类型、资格或地理限制。
+    structured_aliases:
+    - literal_form: aanvragervereiste
+      in_language: nl
+    - literal_form: Antragstelleranforderung
+      in_language: de
+    - literal_form: exigence du demandeur
+      in_language: fr
+    - literal_form: requisito del solicitante
+      in_language: es
+    - literal_form: متطلب مقدم الطلب
+      in_language: ar
+    - literal_form: persyaratan pemohon
+      in_language: id
+    - literal_form: 申请人要求
+      in_language: zh
+    close_mappings:
+    - schema:Requirement
+    - dcterms:requires
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_description
+    - fulfilled_by
+    - impose
+    slot_usage:
+      fulfilled_by:
+        range: Applicant
+      impose:
+        range: GeographicExtent
+    comments:
+    - Defines eligibility criteria for applications
+    - Can be linked to geographic extent via impose slot
+    - Used in grant, access, and employment application workflows
+    see_also:
+    - Applicant
+    - ApplicantType
+    examples:
+    - value:
+        has_description: "Applicant must be a registered non-profit organization in the European Union"
+        impose:
+          geographic_scope: "EU"
+      description: Non-profit requirement with EU geographic restriction
+    - value:
+        has_description: "Applicant must hold a valid research affiliation"
+        fulfilled_by: "ResearchInstitution"
+      description: Institutional affiliation requirement
+    keywords:
+    - requirement
+    - prerequisite
+    - eligibility
+    - residency
+    - credential
+    - geographic restriction
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to applicant eligibility criteria
+      custodian_types: "['*']"

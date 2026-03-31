@@ -1,0 +1,718 @@
+id: https://nde.nl/ontology/hc/class/TextTypes
+name: TextTypes
+title: On-Screen Text Type Concrete Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- ./TextType
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  TitleCardText:
+    is_a: TextType
+    class_uri: hc:TitleCardText
+    description: >-
+      Opening or closing content displayed as a full-screen in video productions.
+    alt_descriptions:
+      nl: Opening of sluitende titeltekst weergegeven als een volledig schermkaart.
+      de: Eröffnungs- oder Abspanntitel, der als Vollbildkarte angezeigt wird.
+      fr: Titre d'ouverture ou de fermeture affiché en plein écran.
+      es: Título de apertura o cierre mostrado como tarjeta de pantalla completa.
+      ar: محتوى الافتتاح أو الخاتمة المعروض كبطاقة ملء الشاشة.
+      id: Konten pembuka atau penutup yang ditampilkan sebagai kartu layar penuh.
+      zh: 在视频制作中以全屏卡片形式显示的开场或结束内容。
+    structured_aliases:
+    - literal_form: titelkaarttekst
+      in_language: nl
+    - literal_form: Titelkartentext
+      in_language: de
+    - literal_form: texte de carte de titre
+      in_language: fr
+    - literal_form: texto de tarjeta de título
+      in_language: es
+    - literal_form: نص بطاقة العنوان
+      in_language: ar
+    - literal_form: teks kartu judul
+      in_language: id
+    - literal_form: 标题卡文本
+      in_language: zh
+    keywords:
+    - title card
+    - opening
+    - closing
+    - full-screen
+    - video
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/title-card)
+      has_code:
+        ifabsent: string(TITLE_CARD)
+      has_label:
+        ifabsent: string(Title Card)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+      custodian_types: '[''*'']'
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Title cards are deliberate text presentations, typically at the beginning or end of a video, or marking chapter/section divisions
+    - Visual characteristics: often centered in frame, large prominent typography, designed presentation, may include motion graphics
+    - Heritage context: film title and credits, documentary chapter headings, historical film intertitles, exhibition video titles
+  LowerThirdText:
+    is_a: TextType
+    class_uri: hc:LowerThirdText
+    description: >-
+      Name or title overlay displayed in lower portion of frame.
+    alt_descriptions:
+      nl: Naam of titeloverlay weergegeven in het onderste derde van het frame.
+      de: Namens- oder Titeloverlay im unteren Drittel des Bildes.
+      fr: Superposition de nom ou de titre affichée dans le tiers inférieur de l'image.
+      es: Superposición de nombre o título mostrada en el tercio inferior del encuadre.
+      ar: تراكب الاسم أو العنوان المعروض في الثلث السفلي من الإطار.
+      id: Hamparan nama atau judul yang ditampilkan di sepertiga bawah bingkai.
+      zh: 显示在画面下三分之一处的姓名或标题叠加层。
+    structured_aliases:
+    - literal_form: onderderdetekst
+      in_language: nl
+    - literal_form: Lower-Third-Text
+      in_language: de
+    - literal_form: texte de tiers inférieur
+      in_language: fr
+    - literal_form: texto de tercio inferior
+      in_language: es
+    - literal_form: نص الثلث السفلي
+      in_language: ar
+    - literal_form: teks sepertiga bawah
+      in_language: id
+    - literal_form: 下三分之一文本
+      in_language: zh
+    keywords:
+    - lower third
+    - name overlay
+    - title overlay
+    - identification
+    - speaker
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/lower-third)
+      has_code:
+        ifabsent: string(LOWER_THIRD)
+      has_label:
+        ifabsent: string(Lower Third)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Lower thirds are the standard method for identifying speakers, locations, or providing context without obscuring the main subject
+    - Visual characteristics: positioned in bottom third of frame, typically includes name and title/role, semi-transparent background common, consistent styling throughout video
+    - Heritage context: curator/expert identification, location/date stamps, artwork attribution, interview speaker names
+  SubtitleText:
+    is_a: TextType
+    class_uri: hc:SubtitleText
+    description: >-
+      Burned-in subtitles or captions embedded directly in video frames.
+    alt_descriptions:
+      nl: Ingebrande ondertitels of bijschriften.
+      de: Eingebrannte Untertitel oder Bildunterschriften.
+      fr: Sous-titres ou légendes incrustés.
+      es: Subtítulos o leyendas incrustados en el video.
+      ar: ترجمات أو تعليقات مدمجة في الفيديو.
+      id: Subtitel atau keterangan yang tersemat dalam video.
+      zh: 嵌入视频帧中的硬字幕或说明文字。
+    structured_aliases:
+    - literal_form: ondertiteltekst
+      in_language: nl
+    - literal_form: Untertiteltext
+      in_language: de
+    - literal_form: texte de sous-titre
+      in_language: fr
+    - literal_form: texto de subtítulo
+      in_language: es
+    - literal_form: نص الترجمة
+      in_language: ar
+    - literal_form: teks subtitel
+      in_language: id
+    - literal_form: 字幕文本
+      in_language: zh
+    keywords:
+    - subtitle
+    - caption
+    - burned-in
+    - translation
+    - embedded
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/subtitle)
+      has_code:
+        ifabsent: string(SUBTITLE)
+      has_label:
+        ifabsent: string(Subtitle)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Subtitles embedded directly in the video frames (as opposed to separate subtitle tracks)
+    - Includes translations and closed captions
+    - Visual characteristics: bottom-centered positioning, synchronized with speech, consistent font and styling, may have background/outline for readability
+    - OCR-detected subtitles (burned-in) vs. subtitle track extraction are different processes
+  SignText:
+    is_a: TextType
+    class_uri: hc:SignText
+    description: >-
+      Visible writing primarily intended for wayfinding, labeling, or public instruction.
+    alt_descriptions:
+      nl: Fysieke borden zichtbaar in de scène.
+      de: Physische Schilder, die in der Szene sichtbar sind.
+      fr: Panneaux physiques visibles dans la scène.
+      es: Letreros físicos visibles en la escena.
+      ar: لافتات مادية مرئية في المشهد.
+      id: Tanda fisik yang terlihat dalam adegan.
+      zh: 场景中可见的实体标牌。
+    structured_aliases:
+    - literal_form: bordtekst
+      in_language: nl
+    - literal_form: Schildtext
+      in_language: de
+    - literal_form: texte de panneau
+      in_language: fr
+    - literal_form: texto de letrero
+      in_language: es
+    - literal_form: نص اللافتة
+      in_language: ar
+    - literal_form: teks tanda
+      in_language: id
+    - literal_form: 标牌文本
+      in_language: zh
+    keywords:
+    - sign
+    - wayfinding
+    - labeling
+    - public instruction
+    - physical
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/sign)
+      has_code:
+        ifabsent: string(SIGN)
+      has_label:
+        ifabsent: string(Sign)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Text appearing on physical signs within the filmed environment
+    - Includes museum signage, street signs, building names, etc.
+    - Visual characteristics: part of physical scene, subject to perspective distortion, may be partially occluded, variable lighting conditions
+    - Heritage context: museum room/gallery names, historical street signs, building dedications, directional signage
+  LabelText:
+    is_a: TextType
+    class_uri: hc:LabelText
+    description: >-
+      Object labels, wall text, and interpretive panels in heritage institution settings.
+    alt_descriptions:
+      nl: Museum- of tentoonstellingslabels.
+      de: Museums- oder Aussetzungschilder.
+      fr: Labels de musée ou d'exposition.
+      es: Etiquetas de museo o exposición.
+      ar: ملصقات المتحف أو المعرض.
+      id: Label museum atau pameran.
+      zh: 博物馆或展览标签。
+    structured_aliases:
+    - literal_form: labeltekst
+      in_language: nl
+    - literal_form: Labeltext
+      in_language: de
+    - literal_form: texte d'étiquette
+      in_language: fr
+    - literal_form: texto de etiqueta
+      in_language: es
+    - literal_form: نص الملصق
+      in_language: ar
+    - literal_form: teks label
+      in_language: id
+    - literal_form: 标签文本
+      in_language: zh
+    keywords:
+    - label
+    - museum
+    - exhibition
+    - wall text
+    - interpretive
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/label)
+      has_code:
+        ifabsent: string(LABEL)
+      has_label:
+        ifabsent: string(Label)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Object labels, wall text, and interpretive panels commonly found in heritage institution settings
+    - High-value content for metadata
+    - Visual characteristics: structured format (title, date, artist), typically small text, may require zoom/close-up, consistent institutional styling
+    - Heritage significance: object identification, attribution and dating, provenance information, interpretive content
+  DocumentText:
+    is_a: TextType
+    class_uri: hc:DocumentText
+    description: >-
+      Printed or typeset content from documents, books, or manuscripts displayed on screen.
+    alt_descriptions:
+      nl: Tekst uit documenten, boeken of manuscripten getoond in video.
+      de: Text aus Dokumenten, Büchern oder Manuskripten im Video.
+      fr: Texte de documents, livres ou manuscrits montrés dans la vidéo.
+      es: Texto de documentos, libros o manuscritos mostrados en video.
+      ar: نص من وثائق أو كتب أو مخطوطات معروضة في الفيديو.
+      id: Teks dari dokumen, buku, atau manuskrip yang ditampilkan di video.
+      zh: 在屏幕上显示的来自文档、书籍或手稿的印刷或排版内容。
+    structured_aliases:
+    - literal_form: documenttekst
+      in_language: nl
+    - literal_form: Dokumenttext
+      in_language: de
+    - literal_form: texte de document
+      in_language: fr
+    - literal_form: texto de documento
+      in_language: es
+    - literal_form: نص الوثيقة
+      in_language: ar
+    - literal_form: teks dokumen
+      in_language: id
+    - literal_form: 文档文本
+      in_language: zh
+    keywords:
+    - document
+    - printed
+    - typeset
+    - book
+    - manuscript
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/document)
+      has_code:
+        ifabsent: string(DOCUMENT)
+      has_label:
+        ifabsent: string(Document)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Printed or typeset text from documents displayed on screen, often zoomed or highlighted for viewing
+    - Visual characteristics: printed/typeset text, may show page layout, often zoomed/detailed shots, various historical fonts
+    - Heritage significance: historical document digitization, primary source content, archival record access, research material extraction
+  HandwrittenText:
+    is_a: TextType
+    class_uri: hc:HandwrittenText
+    description: >-
+      Manuscript content including manuscripts, notes, and signatures requiring HTR processing.
+    alt_descriptions:
+      nl: Handgeschreven tekst (manuscripten, notities, handtekeningen).
+      de: Handschriftlicher Text (Manuskripte, Notizen, Unterschriften).
+      fr: Texte manuscrit (manuscrits, notes, signatures).
+      es: Texto manuscrito (manuscritos, notas, firmas).
+      ar: نص مكتوب بخط اليد (مخطوطات، ملاحظات، توقيعات).
+      id: Teks tulisan tangan (naskah, catatan, tanda tangan).
+      zh: 手写文本（手稿、笔记、签名）。
+    structured_aliases:
+    - literal_form: handgeschreventekst
+      in_language: nl
+    - literal_form: Handschrifttext
+      in_language: de
+    - literal_form: texte manuscrit
+      in_language: fr
+    - literal_form: texto manuscrito
+      in_language: es
+    - literal_form: نص مكتوب بخط اليد
+      in_language: ar
+    - literal_form: teks tulisan tangan
+      in_language: id
+    - literal_form: 手写文本
+      in_language: zh
+    keywords:
+    - handwritten
+    - manuscript
+    - HTR
+    - signature
+    - cursive
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/handwritten)
+      has_code:
+        ifabsent: string(HANDWRITTEN)
+      has_label:
+        ifabsent: string(Handwritten)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Text written by hand, requiring specialized handwriting recognition (HTR) rather than standard printed text OCR
+    - Visual characteristics: variable letterforms, connected characters (cursive), historical scripts may vary, often lower contrast
+    - Heritage significance: personal correspondence, historical manuscripts, artist signatures, archival documents, marginalia and annotations
+    - Requires specialized HTR models with lower accuracy than printed OCR
+  GraphicText:
+    is_a: TextType
+    class_uri: hc:GraphicText
+    description: >-
+      Labels, annotations, and captions within infographics, charts, diagrams, and data visualizations.
+    alt_descriptions:
+      nl: Infografiek-, grafiek- of gegevensvisualisatietekst.
+      de: Infografik-, Diagramm- oder Datenvisualisierungstext.
+      fr: Texte d'infographie, de graphique ou de visualisation de données.
+      es: Texto de infografía, gráfico o visualización de datos.
+      ar: نص الرسوم البيانية أو إنفوجرافيك أو تصور البيانات.
+      id: Teks infografis, bagan, atau visualisasi data.
+      zh: 信息图表、图表或数据可视化中的标签、注释和说明文字。
+    structured_aliases:
+    - literal_form: grafischetekst
+      in_language: nl
+    - literal_form: Grafiktext
+      in_language: de
+    - literal_form: texte graphique
+      in_language: fr
+    - literal_form: texto gráfico
+      in_language: es
+    - literal_form: نص رسومي
+      in_language: ar
+    - literal_form: teks grafis
+      in_language: id
+    - literal_form: 图形文本
+      in_language: zh
+    keywords:
+    - graphic
+    - infographic
+    - chart
+    - diagram
+    - data visualization
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/graphic)
+      has_code:
+        ifabsent: string(GRAPHIC)
+      has_label:
+        ifabsent: string(Graphic)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Text appearing as part of designed graphics including charts, timelines, maps, diagrams, and other data visualizations
+    - Visual characteristics: designed typography, integrated with graphics, labels and annotations, may include numeric data
+    - Heritage context: timeline visualizations, collection statistics, geographic maps, comparison charts
+  WatermarkText:
+    is_a: TextType
+    class_uri: hc:WatermarkText
+    description: >-
+      Persistent overlay indicating ownership, branding, or copyright throughout video content.
+    alt_descriptions:
+      nl: Videowatermerk, logo of auteursrechttekst.
+      de: Video-Wasserzeichen, Logo oder Urheberrechtstext.
+      fr: Filigrane vidéo, logo ou texte de droit d'auteur.
+      es: Marca de agua de video, logotipo o texto de derechos de autor.
+      ar: علامة مائية للفيديو أو شعار أو نص حقوق النشر.
+      id: Watermark video, logo, atau teks hak cipta.
+      zh: 视频水印、标志或版权文本。
+    structured_aliases:
+    - literal_form: watermerktekst
+      in_language: nl
+    - literal_form: Wasserzeichentext
+      in_language: de
+    - literal_form: texte de filigrane
+      in_language: fr
+    - literal_form: texto de marca de agua
+      in_language: es
+    - literal_form: نص العلامة المائية
+      in_language: ar
+    - literal_form: teks watermark
+      in_language: id
+    - literal_form: 水印文本
+      in_language: zh
+    keywords:
+    - watermark
+    - branding
+    - copyright
+    - ownership
+    - overlay
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/watermark)
+      has_code:
+        ifabsent: string(WATERMARK)
+      has_label:
+        ifabsent: string(Watermark)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Persistent text overlays indicating ownership, copyright, or branding that appears throughout the video
+    - Visual characteristics: semi-transparent overlay, fixed position (often corner), persistent throughout video, may include logos
+    - Heritage context: institution branding, copyright notices, archive identification, broadcast watermarks
+  UrlText:
+    is_a: TextType
+    class_uri: hc:UrlText
+    description: >-
+      Web addresses shown on screen, often at the end of videos or during calls-to-action.
+    alt_descriptions:
+      nl: Website-URL-weergave.
+      de: Website-URL-Anzeige.
+      fr: Affichage d'URL de site web.
+      es: Visualización de URL de sitio web.
+      ar: عرض عنوان URL للموقع الإلكتروني.
+      id: Tampilan URL situs web.
+      zh: 网站网址显示。
+    structured_aliases:
+    - literal_form: url-tekst
+      in_language: nl
+    - literal_form: URL-Text
+      in_language: de
+    - literal_form: texte URL
+      in_language: fr
+    - literal_form: texto URL
+      in_language: es
+    - literal_form: نص URL
+      in_language: ar
+    - literal_form: teks URL
+      in_language: id
+    - literal_form: 网址文本
+      in_language: zh
+    keywords:
+    - URL
+    - web address
+    - website
+    - link
+    - call-to-action
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/url)
+      has_code:
+        ifabsent: string(URL)
+      has_label:
+        ifabsent: string(URL)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Web addresses shown on screen, often at the end of videos or during calls-to-action
+    - Visual characteristics: URL format (www., https://, etc.), often lower third or end card, may be clickable in interactive video, branded styling
+    - Heritage context: institution website, exhibition microsites, resource links, social media handles
+  CreditsText:
+    is_a: TextType
+    class_uri: hc:CreditsText
+    description: >-
+      End credits, acknowledgments, and attribution information typically appearing at video conclusion.
+    alt_descriptions:
+      nl: Credits of attributietekst.
+      de: Credits- oder Zuschreibungstext.
+      fr: Texte de crédits ou d'attribution.
+      es: Texto de créditos o atribución.
+      ar: نص الاعتمادات أو الإسناد.
+      id: Teks kredit atau atribusi.
+      zh: 片尾字幕、致谢和归属信息文本。
+    structured_aliases:
+    - literal_form: creditstekst
+      in_language: nl
+    - literal_form: Credits-Text
+      in_language: de
+    - literal_form: texte de crédits
+      in_language: fr
+    - literal_form: texto de créditos
+      in_language: es
+    - literal_form: نص الاعتمادات
+      in_language: ar
+    - literal_form: teks kredit
+      in_language: id
+    - literal_form: 演职员表文本
+      in_language: zh
+    keywords:
+    - credits
+    - acknowledgments
+    - attribution
+    - end credits
+    - contributors
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/credits)
+      has_code:
+        ifabsent: string(CREDITS)
+      has_label:
+        ifabsent: string(Credits)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - End credits, acknowledgments, and attribution text typically appearing at the end of videos
+    - Visual characteristics: scrolling or static text, hierarchical organization, often white on black, follows standard formats
+    - Heritage context: production credits, funding acknowledgments, rights statements, contributor recognition
+  OtherText:
+    is_a: TextType
+    class_uri: hc:OtherText
+    description: >-
+      Catch-all category for on-screen content that does not fit standard classification categories.
+    alt_descriptions:
+      nl: Ander of ongeclassificeerd teksttype.
+      de: Anderer oder unklassifizierter Texttyp.
+      fr: Autre type de texte non classé.
+      es: Otro tipo de texto sin clasificar.
+      ar: نوع نص آخر غير مصنف.
+      id: Jenis teks lain yang tidak terklasifikasi.
+      zh: 不符合标准分类类别的屏幕文本的统称类别。
+    structured_aliases:
+    - literal_form: overigetekst
+      in_language: nl
+    - literal_form: Anderer-Text
+      in_language: de
+    - literal_form: autre texte
+      in_language: fr
+    - literal_form: otro texto
+      in_language: es
+    - literal_form: نص آخر
+      in_language: ar
+    - literal_form: teks lain
+      in_language: id
+    - literal_form: 其他文本
+      in_language: zh
+    keywords:
+    - other
+    - unclassified
+    - catch-all
+    - miscellaneous
+    - unknown
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    slot_usage:
+      identified_by:
+        ifabsent: string(https://nde.nl/ontology/hc/text-type/other)
+      has_code:
+        ifabsent: string(OTHER)
+      has_label:
+        ifabsent: string(Other)
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Specific to video OCR annotation domain.
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    - schema:Text
+    - crm:E33_Linguistic_Object
+    comments:
+    - Catch-all category for text that does not fit into the standard categories or could not be confidently classified
+    - Use when text detected but type unclear, novel or unusual text presentation, low confidence in type classification, or ambiguous text positioning

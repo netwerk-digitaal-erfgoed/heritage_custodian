@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/Taxon
+name: taxon_class
+title: Taxon Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  Taxon:
+    class_uri: schema:Taxon
+    description: >-
+      Biological classification unit (species, genus, family, etc.) for associating heritage objects with living organisms.
+    alt_descriptions:
+      nl: Biologische classificatie-eenheid (soort, geslacht, familie, etc.) voor het koppelen van erfgoedobjecten aan levende organismen.
+      de: Biologische Klassifikationseinheit (Art, Gattung, Familie usw.) zur Verknüpfung von Kulturobjekten mit Lebewesen.
+      fr: Unité de classification biologique (espèce, genre, famille, etc.) pour associer les objets patrimoniaux aux organismes vivants.
+      es: Unidad de clasificación biológica (especie, género, familia, etc.) para asociar objetos patrimoniales con organismos vivos.
+      ar: وحدة تصنيف بيولوجي (نوع، جنس، فصيلة، إلخ) لربط الأشياء التراثية بالكائنات الحية.
+      id: Unit klasifikasi biologi (spesies, genus, famili, dll.) untuk mengaitkan objek warisan dengan organisme hidup.
+      zh: 生物分类单元（物种、属、科等），用于将遗产对象与生物有机体相关联。
+    exact_mappings:
+    - schema:Taxon
+    - dwc:Taxon
+    close_mappings:
+    - skos:Concept
+    keywords:
+    - taxonomy
+    - biological classification
+    - species
+    - natural history
+    slots:
+    - has_label
+    - has_description
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Raphus cucullatus
+        - value: Homo sapiens
+    comments:
+    - Used for taxonomic associations in natural history collections
+    - Link to GBIF, NCBI, or Wikidata for authoritative identifiers
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/taxon/raphus-cucullatus
+        has_label: Raphus cucullatus
+    annotations:
+      specificity_score: 0.1
+      custodian_types: "['*']"
+    structured_aliases:
+    - literal_form: taxon
+      in_language: nl
+    - literal_form: taxon
+      in_language: de
+    - literal_form: taxon
+      in_language: fr
+    - literal_form: taxon
+      in_language: es
+    - literal_form: taxon
+      in_language: ar
+    - literal_form: taxon
+      in_language: id
+    - literal_form: taxon
+      in_language: zh

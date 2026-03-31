@@ -1,0 +1,169 @@
+# ==============================================================================
+# LinkML Slot Definition: has_score
+# ==============================================================================
+# Possess a quantitative value assigned to evaluate rank, quality, or performance
+# against a defined metric.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:ratingValue`       | schemaorg.owl:32043  | close   | Rating value within rating system  |
+# | **PROV-O**    | `prov:value`               | prov.ttl:1055-1064   | close   | Direct value representation        |
+# | **DQV**       | `dqv:hasQualityMeasurement`| dqv.ttl:157-161      | related | Structured quality measurement     |
+# | **SOSA**      | `sosa:hasResult`           | sosa.ttl:351-372     | related | Observation/actuation result       |
+# | **Schema.org**| `schema:bestRating`        | schemaorg.owl:9884   | related | Max rating bound                   |
+# | **Schema.org**| `schema:worstRating`       | schemaorg.owl:40641  | related | Min rating bound                   |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_score
+name: has_score
+title: has score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dqv: http://www.w3.org/ns/dqv#
+  sosa: http://www.w3.org/ns/sosa/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_score:
+    slot_uri: hc:hasScore
+    description: >-
+      To possess a quantitative value assigned to evaluate rank, quality,
+      or performance against a defined metric.
+    alt_descriptions:
+      nl: >-
+        Het bezitten van een kwantitatieve waarde toegekend om rang, kwaliteit
+        of prestatie te evalueren tegen een gedefinieerde maatstaf.
+      de: >-
+        Einen quantitativen Wert besitzen, der zur Bewertung von Rang, Qualität
+        oder Leistung anhand einer definierten Metrik zugewiesen wird.
+      fr: >-
+        Posséder une valeur quantitative attribuée pour évaluer le rang, la
+        qualité ou la performance par rapport à une métrique définie.
+      ar: >-
+        امتلاك قيمة كمية مخصصة لتقييم الرتبة أو الجودة أو الأداء وفقًا لمقياس محدد.
+      id: >-
+        Memiliki nilai kuantitatif yang ditetapkan untuk mengevaluasi peringkat,
+        kualitas, atau kinerja terhadap metrik yang ditentukan.
+      zh: >-
+        拥有一个用于根据定义的指标评估排名、质量或性能的量化值。
+      es: >-
+        Poseer un valor cuantitativo asignado para evaluar rango, calidad
+        o rendimiento según una métrica definida.
+    structured_aliases:
+      - literal_form: heeft score
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Punktzahl
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un score
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه درجة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki skor
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有分数
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene puntuación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    multivalued: true
+    
+    # VERIFIED MAPPINGS (2026-02-XX)
+    # Source files: data/ontology/schemaorg.owl, data/ontology/dqv.ttl,
+    #               data/ontology/sosa.ttl, data/ontology/prov.ttl
+    
+    close_mappings:
+      # schemaorg.owl line 32043-32054: ratingValue
+      # "The rating for the content" - ObjectProperty
+      # Close: rating/score value semantics, but schema.org ratings have
+      # min/max bounds (worstRating/bestRating) which our generic score doesn't require
+      - schema:ratingValue  # from schemaorg.owl - rating value within rating system
+      
+      # prov.ttl line 1055-1064: value
+      # "Provides a value that is a direct representation of an entity"
+      # Close: generic value representation, but prov:value is broader
+      - prov:value  # from prov.ttl - direct value representation
+    
+    related_mappings:
+      # dqv.ttl line 157-161: hasQualityMeasurement
+      # "Refers to the performed quality measurements"
+      # Related: links to QualityMeasurement object (structured), not a scalar value
+      - dqv:hasQualityMeasurement  # from dqv.ttl - links to structured quality measurement
+      
+      # sosa.ttl line 351-372: hasResult
+      # "Relation linking an Observation or Actuation or act of Sampling to its Result"
+      # Related: observation/sensor result (different context)
+      - sosa:hasResult  # from sosa.ttl - observation/actuation result
+      
+      # schemaorg.owl line 9884-9887: bestRating
+      # "The highest value allowed in this rating system"
+      # Related: defines rating scale bounds, not the score value itself
+      - schema:bestRating  # from schemaorg.owl - max rating bound
+      
+      # schemaorg.owl line 40641-40644: worstRating
+      # "The lowest value allowed in this rating system"
+      # Related: defines rating scale bounds, not the score value itself
+      - schema:worstRating  # from schemaorg.owl - min rating bound
+    
+    aliases:
+      - has_or_had_score
+      - rating_value
+      - confidence_score
+      - has_or_had_archive_search_score
+      - has_audio_quality_score
+      - library_search_score
+      - location_browse_score
+      - michelin_star
+      - museum_search_score
+      - organizational_change_score
+      - person_research_score
+    annotations:
+      custodian_types: '["*"]'
+    
+    examples:
+      - value: 0.85
+        description: XPath match confidence score (85% confidence)
+      - value: 0.72
+        description: Relevance score for search result
+      - value: 4.5
+        description: Quality rating (e.g., on 1-5 scale)
+    
+    comments:
+      - |
+        **USAGE**:
+        
+        Used for:
+        - XPath match confidence scores (0.0-1.0)
+        - Relevance scores
+        - Quality ratings
+        - Similarity scores
+      - |
+        **SEMANTIC NOTES**:
+        
+        Unlike schema:ratingValue which is part of a Rating with defined 
+        worstRating/bestRating bounds, hc:hasScore is a generic numeric 
+        score without required scale constraints. The interpretation of 
+        the score depends on context (0.0-1.0 for confidence, 1-5 for 
+        quality ratings, etc.).
+      - |
+        Verified predicates from:
+        - data/ontology/schemaorg.owl (schema:ratingValue line 32043, schema:bestRating line 9884, schema:worstRating line 40641)
+        - data/ontology/dqv.ttl (dqv:hasQualityMeasurement line 157)
+        - data/ontology/sosa.ttl (sosa:hasResult line 351)
+        - data/ontology/prov.ttl (prov:value line 1055)
+

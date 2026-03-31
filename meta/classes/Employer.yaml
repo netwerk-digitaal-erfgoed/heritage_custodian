@@ -1,0 +1,60 @@
+id: https://nde.nl/ontology/hc/class/Employer
+name: Employer
+title: Employer Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_url
+- ../slots/related_to
+classes:
+  Employer:
+    class_uri: schema:Organization
+    description: >-
+      Organization serving as current or former employer in person-centric
+      records and career history.
+    alt_descriptions:
+      nl: Organisatie die als huidige of voormalige werkgever voorkomt in persoonsgerichte registraties en loopbaanhistorie.
+      de: Organisation als aktueller oder frueherer Arbeitgeber in personenbezogenen Aufzeichnungen und Laufbahnhistorie.
+      fr: Organisation jouant le role d employeur actuel ou passe dans les dossiers de personnes et l historique de carriere.
+      es: Organizacion que actua como empleador actual o anterior en registros de personas e historial profesional.
+      ar: مؤسسة تمثل صاحب عمل حالي أو سابق في سجلات الأفراد والتاريخ المهني.
+      id: Organisasi yang berperan sebagai pemberi kerja saat ini atau sebelumnya dalam catatan personal dan riwayat karier.
+      zh: 在人物记录与职业经历中作为现任或曾任雇主的组织。
+    structured_aliases:
+    - {literal_form: werkgever, in_language: nl}
+    - {literal_form: Arbeitgeber, in_language: de}
+    - {literal_form: employeur, in_language: fr}
+    - {literal_form: empleador, in_language: es}
+    - {literal_form: صاحب عمل, in_language: ar}
+    - {literal_form: pemberi kerja, in_language: id}
+    - {literal_form: 雇主机构, in_language: zh}
+    broad_mappings:
+    - org:Organization
+    - schema:Organization
+
+    slots:
+    - has_label
+    - identified_by
+    - has_url
+    - related_to
+
+    slot_usage:
+      has_label:
+      has_url:
+        range: uri
+      related_to:
+        range: Heritage
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+      specificity_rationale: Generic employer class.

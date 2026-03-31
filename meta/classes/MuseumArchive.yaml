@@ -1,0 +1,61 @@
+id: https://w3id.org/nde/ontology/MuseumArchive
+name: MuseumArchive
+title: Museum Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  MuseumArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    description: Archive organization embedded in museum governance and dedicated to institutional records stewardship.
+    alt_descriptions:
+      nl: Archieforganisatie ingebed in museumgovernance en gericht op beheer van institutionele records.
+      de: In die Museumsorganisation eingebettete Archivorganisation fuer die Verwaltung institutioneller Unterlagen.
+      fr: Organisation archivistique integree a la gouvernance museale et dediee aux archives institutionnelles.
+      es: Organizacion archivistica integrada en la gobernanza museistica y dedicada a registros institucionales.
+      ar: جهة أرشيفية ضمن حوكمة المتحف ومكرسة لحفظ السجلات المؤسسية.
+      id: Organisasi arsip yang terintegrasi dalam tata kelola museum untuk kustodi arsip kelembagaan.
+      zh: 嵌入博物馆治理并负责机构记录保管的档案机构。
+    structured_aliases:
+    - {literal_form: museumarchief, in_language: nl}
+    - {literal_form: Museumsarchiv, in_language: de}
+    - {literal_form: archive de musee, in_language: fr}
+    - {literal_form: archivo de museo, in_language: es}
+    - {literal_form: أرشيف متحفي, in_language: ar}
+    - {literal_form: arsip museum, in_language: id}
+    - {literal_form: 博物馆档案馆, in_language: zh}
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q53566456
+    broad_mappings:
+    - wd:Q166118
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Museum Archive
+      skos:altLabel: Museumsarchiv, archivo de museo, museumarchief
+      institutional_context: museum
+      archival_function: institutional records
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

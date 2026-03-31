@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: ceased_by
+# ==============================================================================
+# Agent or event that ceased/terminated the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property             | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasEndedBy`    | prov.ttl:1116-1130   | close   | Activity ended by entity           |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/ceased_by
+name: ceased_by
+title: Ceased By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  ceased_by:
+    slot_uri: hc:ceasedBy
+    description: >-
+      The agent, event, or authority responsible for bringing the entity to
+      an end, discontinuing operations, or stopping its activity or existence.
+    alt_descriptions:
+      nl: >-
+        De agent, gebeurtenis of autoriteit die verantwoordelijk is voor het
+        beëindigen van de entiteit, het staken van activiteiten of het stoppen
+        van haar activiteit of bestaan.
+      de: >-
+        Der Agent, das Ereignis oder die Behörde, die für die Beendigung der
+        Entität, die Einstellung des Betriebs oder das Stoppen ihrer Aktivität
+        oder Existenz verantwortlich ist.
+      fr: >-
+        L'agent, l'événement ou l'autorité responsable de mettre fin à l'entité,
+        de cesser les opérations ou d'arrêter son activité ou son existence.
+      ar: >-
+        الوكيل أو الحدث أو السلطة المسؤولة عن إنهاء الكيان أو وقف العمليات
+        أو إيقاف نشاطه أو وجوده.
+      id: >-
+        Agen, peristiwa, atau otoritas yang bertanggung jawab untuk mengakhiri
+        entitas, menghentikan operasi, atau menghentikan aktivitas atau keberadaannya.
+      zh: >-
+        负责终止实体、停止运营或结束其活动或存在的代理人、事件或权力机构。
+      es: >-
+        El agente, evento o autoridad responsable de poner fin a la entidad,
+        descontinuar operaciones o detener su actividad o existencia.
+    structured_aliases:
+      - literal_form: beëindigd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: beendet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: cessé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُنهى بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dihentikan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被...终止
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cesado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    close_mappings:
+      - prov:wasEndedBy  # prov.ttl:1116-1130 - Activity ended by entity
+    aliases:
+      - is_or_was_ceased_by
+    annotations:
+      custodian_types: '["*"]'

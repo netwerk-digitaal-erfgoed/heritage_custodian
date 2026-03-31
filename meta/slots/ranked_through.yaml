@@ -1,0 +1,80 @@
+# ==============================================================================
+# LinkML Slot Definition: ranked_through
+# ==============================================================================
+# Mechanism, algorithm, competition, or system used to determine relative
+# position, status, or order of entities.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property        | File/Line                | Mapping | Notes                                                  |
+# |------------|-----------------|--------------------------|---------|--------------------------------------------------------|
+# | Schema.org | `schema:award`  | schemaorg.owl:9604-9629  | close   | "An award won by or for this item." Identifies the     |
+# |            |                 |                          |         | award itself, not the ranking mechanism/system.        |
+#
+# schema:award is about the award received (the result), not the mechanism
+# or system that determines ranking. Close but not exact.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/ranked_through
+name: ranked_through
+title: Ranked Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  ranked_through:
+    slot_uri: hc:rankedThrough
+    description: >-
+      Describes the mechanism, algorithm, competition, or system used to determine the relative position, status, or order of entities.
+    alt_descriptions:
+      nl: >-
+        Beschrijft het mechanisme, algoritme, de competitie of het systeem dat wordt gebruikt om de relatieve positie, status of volgorde van entiteiten te bepalen.
+      de: >-
+        Beschreibt den Mechanismus, Algorithmus, Wettbewerb oder das System, das verwendet wird, um die relative Position, den Status oder die Reihenfolge von Entitäten zu bestimmen.
+      fr: >-
+        Décrit le mécanisme, l'algorithme, la compétition ou le système utilisé pour déterminer la position relative, le statut ou l'ordre des entités.
+      ar: >-
+        يصف الآلية أو الخوارزمية أو المنافسة أو النظام المستخدم لتحديد الموقع النسبي أو الحالة أو ترتيب الكيانات.
+      id: >-
+        Menjelaskan mekanisme, algoritma, kompetisi, atau sistem yang digunakan untuk menentukan posisi relatif, status, atau urutan entitas.
+      zh: >-
+        描述用于确定实体相对位置、状态或顺序的机制、算法、竞赛或系统。
+      es: >-
+        Describe el mecanismo, algoritmo, competición o sistema utilizado para determinar la posición relativa, el estado o el orden de las entidades.
+    structured_aliases:
+      - literal_form: Rangschikking
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rangordnung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Classement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تصنيف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Peringkat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 排名
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Clasificación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    aliases:
+      - has_or_had_michelin_star
+    comments:
+      - "Some museum restaurants achieve fine dining recognition (e.g. Michelin stars)."
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:award  # schemaorg.owl:9604-9629 - "An award won by or for this item." Award received, not ranking mechanism.

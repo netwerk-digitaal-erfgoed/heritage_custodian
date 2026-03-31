@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/Administration
+name: Administration
+title: Administration
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  cpov: http://data.europa.eu/m8g/
+  wd: http://www.wikidata.org/entity/
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  Administration:
+    class_uri: org:OrganizationalUnit
+    description: >-
+      Administrative unit or body within a heritage custodian organization.
+    alt_descriptions:
+      nl: "Administratieve eenheid of orgaan binnen een erfgoedbeheerderorganisatie."
+      de: "Verwaltungseinheit oder Gremium innerhalb einer Kulturgüterverwalterorganisation."
+      fr: "Unité administrative ou organe au sein d'une organisation de dépositaire du patrimoine."
+      es: "Unidad administrativa u órgano dentro de una organización de custodio del patrimonio."
+      ar: "وحدة إدارية أو هيئة داخل منظمة أمين التراث."
+      id: "Unit administratif atau badan dalam organisasi pengelola warisan."
+      zh: "遗产保管人组织内的行政单位或机构。"
+    examples:
+    - value:
+        has_label: Finance Department
+        has_description: Responsible for budget management, accounting, and financial reporting
+      description: Administrative finance department
+    close_mappings:
+    - rico:CorporateBody
+    - cpov:PublicOrganisation
+    - schema:Organization
+    structured_aliases:
+    - literal_form: administratie
+      in_language: nl
+    - literal_form: bestuur
+      in_language: nl
+    - literal_form: Verwaltung
+      in_language: de
+    - literal_form: Verwaltungseinheit
+      in_language: de
+    - literal_form: administration
+      in_language: fr
+    - literal_form: organe administratif
+      in_language: fr
+    - literal_form: administración
+      in_language: es
+    - literal_form: órgano administrativo
+      in_language: es
+    - literal_form: إدارة
+      in_language: ar
+    - literal_form: هيئة إدارية
+      in_language: ar
+    - literal_form: administrasi
+      in_language: id
+    - literal_form: badan administratif
+      in_language: id
+    - literal_form: 行政
+      in_language: zh
+    - literal_form: 管理部门
+      in_language: zh
+    keywords:
+    - administration
+    - administrative unit
+    - department
+    - governance
+    - management
+    - organizational unit
+    slots:
+    - has_label
+    - has_description
+    - identified_by
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Finance Department
+        - value: Board of Directors
+      has_description:
+        required: false
+        examples:
+        - value: Responsible for budget management, accounting, and financial reporting
+      identified_by:
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/administration/finance-dept
+    annotations:
+      specificity_score: "0.10"
+      specificity_rationale: "Generic utility class - administrative units are broadly applicable across all organizational contexts."
+      custodian_types: "['*']"
+    comments:
+    - Represents internal administrative divisions within heritage custodians
+    - May include departments, committees, boards, or governance bodies
+    - Distinguished from external organizational relationships
+    - 'Preserved from prior description: Administrative unit or body within a heritage custodian organization. Represents a distinct administrative division, department, or governance body responsible for specific organizational functions such as finance, human resources, governance, or institutional policy.'
+    see_also:
+    - https://www.w3.org/TR/vocab-org/#org:OrganizationalUnit
+    - AdministrativeOffice
+    - AdministrativeUnit

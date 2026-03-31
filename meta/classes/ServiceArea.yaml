@@ -1,0 +1,165 @@
+id: https://nde.nl/ontology/hc/class/ServiceArea
+name: service_area_class
+title: ServiceArea Class
+prefixes:
+  schema: http://schema.org/
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  geosparql: http://www.opengis.net/ont/geosparql#
+  dcterms: http://purl.org/dc/terms/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- linkml:types
+- ../enums/ServiceAreaTypeEnum
+- ../metadata
+- ../slots/contain_covers_settlement
+- ../slots/cover_geographic_subdivision
+- ../slots/cover_country
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_boundary
+- ../slots/provided_by
+- ../slots/has_description
+- ../slots/has_type
+- ../slots/has_provenance
+- ../slots/temporal_extent
+classes:
+  ServiceArea:
+    class_uri: schema:AdministrativeArea
+    alt_descriptions:
+      nl: Geografisch werkgebied van een specifieke erfgoedinstelling (operationeel dienstgebied).
+      de: Geografisches Einsatz- oder Servicegebiet einer bestimmten Kultureinrichtung (operatives Gebiet).
+      fr: Zone geographique desservie par une institution patrimoniale donnee (territoire operationnel).
+      es: Area geografica atendida por una institucion patrimonial concreta (territorio operativo).
+      ar: النطاق الجغرافي الذي تخدمه مؤسسة تراثية محددة (نطاق تشغيلي).
+      id: Wilayah geografis yang dilayani oleh suatu lembaga warisan tertentu (wilayah operasional).
+      zh: 某一特定文化遗产机构所服务的地理范围（运营服务区）。
+    structured_aliases:
+    - {literal_form: werkgebied, in_language: nl}
+    - {literal_form: Einzugsgebiet, in_language: de}
+    - {literal_form: zone de service, in_language: fr}
+    - {literal_form: area de servicio, in_language: es}
+    - {literal_form: منطقة خدمة, in_language: ar}
+    - {literal_form: wilayah layanan, in_language: id}
+    - {literal_form: 服务范围, in_language: zh}
+    description: >-
+      Geographic service area ("werkgebied") of a specific heritage custodian.
+    broad_mappings:
+    - schema:AdministrativeArea
+    close_mappings:
+    - tooi:BestuurlijkeRuimte
+    - tooi:JuridischeRuimte
+    - geosparql:Feature
+    related_mappings:
+    - schema:Place
+    - dcterms:Location
+    - rico:Place
+    slots:
+    - cover_country
+    - contain_covers_settlement
+    - cover_geographic_subdivision
+    - identified_by
+    - has_label
+    - has_boundary
+    - provided_by
+    - has_description
+    - has_type
+    - has_provenance
+    - has_score
+    - temporal_extent
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/servicearea/nha-werkgebied
+        - value: https://nde.nl/ontology/hc/servicearea/vianen-historical-1500
+      has_label:
+        required: true
+      has_type:
+        required: false
+    comments:
+    - Represents the geographic SERVICE AREA ('werkgebied') of a heritage custodian
+    - UNIQUE to each custodian - each archive/library/museum has its own service area
+    - NOT to be confused with Jurisdiction, which is the legal framework scope SHARED by multiple custodians
+    - 'Example: All Dutch municipal archives share the same Jurisdiction (NL/Archiefwet) but each has a DIFFERENT ServiceArea'
+    - 'ServiceArea answers: ''Which geographic area does this specific custodian serve?'''
+    - 'Jurisdiction answers: ''Under which legal framework does this entity operate?'''
+    - Links to GeoSpatialPlace for actual boundary polygons
+    - Supports historical boundaries via is_historical_boundary and temporal_extent
+    - HALC fields (halc_adm1_code, halc_adm2_name) enable historical boundary lookups
+    - 'Display styling: current=blue, historical=brown/goldenrod'
+    - Archives use werkgebied to define which municipalities they serve
+    - Museums may have service areas indicating collection geographic scope
+    see_also:
+    - https://schema.org/areaServed
+    - https://schema.org/AdministrativeArea
+    - https://identifier.overheid.nl/tooi/def/ont/
+    - http://www.opengis.net/ont/geosparql
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/servicearea/nha-werkgebied
+        has_label: Noord-Hollands Archief Werkgebied
+        has_description: Service area covering Haarlem and surrounding municipalities in Noord-Holland province
+        has_type: REGIONAL
+        cover_country:
+          alpha_2: NL
+        cover_geographic_subdivision:
+        - iso_3166_2_code: NL-NH
+          name: Noord-Holland
+        contain_covers_settlement:
+        - geonames_id: 2755003
+          name: Haarlem
+        - geonames_id: 2754669
+          name: Heemskerk
+        has_boundary: https://nde.nl/ontology/hc/geo/nha-boundary
+        provided_by: https://nde.nl/ontology/hc/legal/noord-hollands-archief
+        temporal_extent:
+          begin_of_the_begin: '2001-01-01'
+    - value:
+        identified_by: https://nde.nl/ontology/hc/servicearea/vianen-historical-1500
+        has_label: Graafschap Vianen (Historical)
+        has_description: Historical territory of the County of Vianen, circa 1500
+        has_type: HISTORICAL
+        cover_country:
+          alpha_2: NL
+        temporal_extent:
+          begin_of_the_begin: '1500-01-01'
+          end_of_the_end: '1795-01-01'
+        provided_by: https://nde.nl/ontology/hc/legal/gemeentearchief-vianen
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "Geographic area served by a heritage custodian institution.\n\n**Dutch Term**: \"Werkgebied\" - the operational territory of an archive,\nlibrary, or museum where they provide services and collect materials.\n\n**CRITICAL DISTINCTION: ServiceArea vs Jurisdiction**\n\nServiceArea and Jurisdiction are fundamentally different concepts:\n\n| Aspect | ServiceArea | Jurisdiction |\n|--------|-------------|--------------|\n| **Definition** | Geographic area where a SPECIFIC custodian operates (\"werkgebied\") | Geographic area where specific LAWS AND POLICIES apply |\n| **Scope** | Operational territory | Legal framework scope |\n| **Sharing** | UNIQUE to each custodian | SHARED by multiple custodians operating under same legal framework |\n| **Example** | Each municipal archive has its own municipality as service area | Dutch national law creates a jurisdiction for all municipal archives in NL |\n\n**Key Example**:\n\nA national law (e.g., Archiefwet) creates a JURISDICTION covering\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Dutch term
+
+        - "Werkgebied": the operational territory of a custodian.
+
+        Critical distinction: ServiceArea vs Jurisdiction
+
+        - ServiceArea: geographic area where a specific custodian operates.
+        - Jurisdiction: geographic scope where specific laws/policies apply (often shared).
+
+        Example (NL)
+
+        - Jurisdiction (shared): Dutch national law (e.g., Archiefwet) covers the whole country.
+        - ServiceArea (unique): each municipal/regional archive serves a different municipality/region.
+
+        Historical boundaries
+
+        - Use temporal_extent to indicate time validity.
+        - Use has_boundary to link to a geospatial boundary representation.
+
+      legacy_examples: |
+        The earlier examples included additional fields and nested structures
+        (e.g., is_historical_boundary, source_dataset, detailed GeoSPARQL geometry).
+        Preserve those details in downstream profiles once the corresponding slots
+        are formalized on this class.

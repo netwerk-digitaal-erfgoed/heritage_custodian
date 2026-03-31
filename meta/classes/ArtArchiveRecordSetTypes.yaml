@@ -1,0 +1,271 @@
+id: https://nde.nl/ontology/hc/class/ArtArchiveRecordSetTypes
+name: ArtArchiveRecordSetTypes
+title: Art Archive Record Set Types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./ArtArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  ArtistPapersCollection:
+    is_a: ArtArchiveRecordSetType
+    class_uri: hc:ArtistPapersCollection
+    description: >-
+      Assembled documentary body of personal and professional manuscripts,
+      sketches, correspondence, and studio working files produced by individual creators.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van persoonlijke en professionele
+        manuscripten, schetsen, correspondentie en atelierwerkbestanden van individuele makers.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus persoenlichen und beruflichen
+        Manuskripten, Skizzen, Korrespondenz und Atelierarbeitsunterlagen einzelner Schaffender.
+      fr: >-
+        Ensemble documentaire reuni de manuscrits personnels et professionnels,
+        croquis, correspondance et dossiers d'atelier de createurs individuels.
+      es: >-
+        Cuerpo documental reunido de manuscritos personales y profesionales,
+        bocetos, correspondencia y archivos de taller de creadores individuales.
+      ar: >-
+        جسم وثائقي مُجمع يضم مخطوطات شخصية ومهنية ورسومات ومراسلات
+        وملفات عمل الاستوديو لمبدعين أفراد.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi manuskrip pribadi dan profesional,
+        sketsa, korespondensi, dan berkas kerja studio dari kreator perorangan.
+      zh: >-
+        汇集个体创作者的个人与职业手稿、素描、通信与工作室工作档案的文献整体。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    structured_aliases:
+      - literal_form: kunstenaarsarchiefcollectie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kuenstlernachlass-Sammlung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de papiers d'artiste
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de papeles de artista
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة أوراق الفنان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi kertas seniman
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 艺术家论文收藏
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - artist papers
+      - personal archive
+      - sketches
+      - correspondence
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ArtistPapersCollection
+      has_custodian:
+        equals_string: hc:ArtArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ArtArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Collection organizational principle
+      - Contains personal papers and creative documentation
+      - Note preserved: Earlier modeling in the art-domain profile allowed hc:ArchiveOrganizationType as a fallback has_type value.
+    examples:
+      - value:
+          has_type: hc:ArtistPapersCollection
+          has_custodian: hc:ArtArchive
+          has_note: Sketchbooks, studio correspondence, and draft manuscripts.
+        description: Creator working files assembled for research access.
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific collection type for artist papers
+      custodian_types: "['ArtArchive']"
+
+  GalleryRecordsFonds:
+    is_a: ArtArchiveRecordSetType
+    class_uri: hc:GalleryRecordsFonds
+    description: >-
+      Provenance-based aggregation of commercial art-dealing operations,
+      including sales ledgers, client dossiers, consignment paperwork, and stock control.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van bedrijfsvoering bij kunsthandel,
+        inclusief verkoopboeken, klantdossiers, consignatiepapieren en voorraadbeheer.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen des Kunsthandels,
+        einschliesslich Verkaufsbuecher, Kundendateien, Kommissionsunterlagen und Bestandsfuehrung.
+      fr: >-
+        Agregation fondee sur la provenance des operations de commerce d'art,
+        comprenant registres de ventes, dossiers clients, depots/consignations et suivi des stocks.
+      es: >-
+        Agregacion basada en procedencia de operaciones de comercio de arte,
+        con libros de ventas, archivos de clientes, consignaciones y control de inventario.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق أعمال تجارة الفن، بما في ذلك
+        دفاتر المبيعات وملفات العملاء ووثائق الإيداع/الوكالة ومراقبة المخزون.
+      id: >-
+        Agregasi berbasis asal-usul untuk operasi perdagangan seni,
+        termasuk buku penjualan, berkas klien, konsinyasi, dan kontrol stok.
+      zh: >-
+        基于来源原则聚合艺术交易运营文献，包括销售账簿、客户档案、寄售手续与库存控制。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    structured_aliases:
+      - literal_form: galerijrecordsfonds
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Galeriedokumente-Fonds
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds de documents de galerie
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de documentos de galeria
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: صندوق سجلات المعرض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds catatan galeri
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 画廊记录档案
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - gallery records
+      - sales records
+      - commercial gallery
+      - fonds
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:GalleryRecordsFonds
+      has_custodian:
+        equals_string: hc:ArtArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ArtArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Fonds organizational principle
+      - Contains business records from art dealers
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific fonds type for gallery records
+      custodian_types: "['ArtArchive']"
+
+  ExhibitionDocumentationCollection:
+    is_a: ArtArchiveRecordSetType
+    class_uri: hc:ExhibitionDocumentationCollection
+    description: >-
+      Assembled documentary body of catalogs, installation photographs,
+      press coverage, and curatorial files created around public presentation events.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van catalogi, installatiefoto's,
+        persverslaggeving en curatiele dossiers rond publieke presentaties.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus Katalogen, Installationsfotos,
+        Presseberichten und kuratorischen Unterlagen zu oeffentlichen Praesentationen.
+      fr: >-
+        Ensemble documentaire reuni de catalogues, photos d'installation,
+        couverture de presse et dossiers curatoriaux autour d'evenements de presentation publique.
+      es: >-
+        Cuerpo documental reunido de catalogos, fotografias de instalacion,
+        cobertura de prensa y archivos curatoriales en torno a eventos publicos.
+      ar: >-
+        جسم وثائقي مُجمع يضم كتالوجات وصور تركيب وتغطية صحفية
+        وملفات إشراف فني مرتبطة بفعاليات عرض عامة.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi katalog, foto instalasi,
+        liputan pers, dan berkas kuratorial seputar acara presentasi publik.
+      zh: >-
+        汇集目录、安装照片、媒体报道与策展文件的文献整体，用于公共呈现活动。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    structured_aliases:
+      - literal_form: tentoonstellingsdocumentatiecollectie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ausstellungsdokumentation-Sammlung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de documentation d'exposition
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de documentacion de exposicion
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة توثيق المعارض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi dokumentasi pameran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 展览文档收藏
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - exhibition documentation
+      - catalogs
+      - installation photos
+      - curatorial
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ExhibitionDocumentationCollection
+      has_custodian:
+        equals_string: hc:ArtArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ArtArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Collection organizational principle
+      - Contains exhibition history and documentation
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific collection type for exhibition documentation
+      custodian_types: "['ArtArchive']"

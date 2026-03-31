@@ -1,0 +1,65 @@
+id: https://nde.nl/ontology/hc/class/FunctionType
+name: FunctionType
+title: Function Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ./FunctionCategory
+  - ../slots/has_description
+  - ../slots/has_label
+  - ../slots/categorized_as
+  - ../slots/temporal_extent
+classes:
+  FunctionType:
+    class_uri: hc:FunctionType
+    abstract: true
+    description: >-
+      Controlled taxonomy root for describing organizational responsibilities,
+      service domains, and operational roles.
+    alt_descriptions:
+      nl: Gecontroleerde taxonomiewortel voor het beschrijven van organisatorische verantwoordelijkheden, dienstdomeinen en rollen.
+      de: Kontrollierte Taxonomie-Wurzel zur Beschreibung organisatorischer Verantwortlichkeiten, Leistungsbereiche und Rollen.
+      fr: Racine taxonomique controlee pour decrire les responsabilites organisationnelles, domaines de service et roles operationnels.
+      es: Raiz taxonomica controlada para describir responsabilidades organizativas, dominios de servicio y roles operativos.
+      ar: جذر تصنيفي مضبوط لوصف المسؤوليات التنظيمية ومجالات الخدمة والأدوار التشغيلية.
+      id: Akar taksonomi terkendali untuk mendeskripsikan tanggung jawab organisasi, domain layanan, dan peran operasional.
+      zh: 用于描述组织职责、服务领域与运营角色的受控分类根节点。
+    structured_aliases:
+      - literal_form: functietype
+        in_language: nl
+      - literal_form: Funktionstyp
+        in_language: de
+      - literal_form: type de fonction
+        in_language: fr
+      - literal_form: tipo de funcion
+        in_language: es
+      - literal_form: نوع الوظيفة
+        in_language: ar
+      - literal_form: tipe fungsi
+        in_language: id
+      - literal_form: 职能类型
+        in_language: zh
+    slots:
+      - categorized_as
+      - has_label
+      - has_description
+      - temporal_extent
+    slot_usage:
+      categorized_as:
+        range: FunctionCategory
+        inlined: true
+        required: true
+      has_label:
+        required: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    broad_mappings:
+      - skos:Concept
+    close_mappings:
+      - schema:DefinedTerm

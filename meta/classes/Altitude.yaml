@@ -1,0 +1,104 @@
+id: https://nde.nl/ontology/hc/class/Altitude
+name: Altitude
+title: Altitude
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_measurement_unit
+  - ../slots/has_value
+classes:
+  Altitude:
+    class_uri: schema:QuantitativeValue
+    description: >-
+      Vertical distance measurement of a location above a reference datum,
+      typically mean sea level, used for geographic positioning and
+      environmental characterization of heritage sites and storage facilities.
+    alt_descriptions:
+      nl: >-
+        Verticale afstandsmeting van een locatie boven een referentiepunt,
+        doorgaans gemiddeld zeeniveau, gebruikt voor geografische
+        positionering en omgevingskarakteristiek van erfgoedlocaties en
+        opslagfaciliteiten.
+      de: >-
+        Vertikale Distanzmessung eines Standortes ueber einem Referenzdatum,
+        typischerweise mittlerer Meeresspiegel, verwendet zur geografischen
+        Positionierung und Umweltcharakterisierung von Heritage-Standorten und
+        Lagereinrichtungen.
+      fr: >-
+        Mesure de distance verticale d'un emplacement au-dessus d'un datum de
+        reference, generalement le niveau moyen de la mer, utilisee pour le
+        positionnement geographique et la caracterisation environnementale des
+        sites patrimoniaux et des installations de stockage.
+      es: >-
+        Medicion de distancia vertical de una ubicacion sobre un datum de
+        referencia, tipicamente el nivel medio del mar, utilizada para el
+        posicionamiento geografico y la caracterizacion ambiental de sitios
+        patrimoniales e instalaciones de almacenamiento.
+      ar: >-
+        قياس المسافة العمودية لموقع فوق مرجع أساسي، عادة مستوى سطح البحر
+        المتوسط، يُستخدم لتحديد الموقع الجغرافي والخصائص البيئية للمواقع
+        التراثية ومرافق التخزين.
+      id: >-
+        Pengukuran jarak vertikal suatu lokasi di atas datum referensi,
+        biasanya rata-rata permukaan laut, digunakan untuk pemosisian
+        geografis dan karakterisasi lingkungan situs warisan dan fasilitas
+        penyimpanan.
+      zh: >-
+        相对于参考基准（通常为平均海平面）的位置垂直距离测量，用于遗产地点和
+        存储设施的地理定位和环境特征描述。
+    examples:
+    - value:
+        has_value: 52
+        has_measurement_unit: m
+      description: Altitude of 52 meters above sea level
+    - value:
+        has_value: 1500
+        has_measurement_unit: m
+      description: High-altitude storage facility at 1500m
+    structured_aliases:
+    - literal_form: hoogte
+      in_language: nl
+    - literal_form: Hoehe
+      in_language: de
+    - literal_form: altitude
+      in_language: fr
+    - literal_form: altitud
+      in_language: es
+    - literal_form: ارتفاع
+      in_language: ar
+    - literal_form: ketinggian
+      in_language: id
+    - literal_form: 海拔
+      in_language: zh
+    keywords:
+    - elevation
+    - height
+    - sea level
+    - geographic
+    - vertical
+    broad_mappings:
+    - crm:E54_Dimension
+    - schema:QuantitativeValue
+    slots:
+    - has_value
+    - has_measurement_unit
+    slot_usage:
+      has_value:
+        range: float
+        required: true
+      has_measurement_unit:
+        required: true
+    comments:
+    - Important for environmental control planning
+    - Affects preservation conditions for collections
+    annotations:
+      specificity_score: "0.2"
+      specificity_rationale: Geographic measurement for location characterization
+      custodian_types: "['*']"

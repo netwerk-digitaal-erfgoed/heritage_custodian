@@ -1,0 +1,101 @@
+id: https://nde.nl/ontology/hc/class/ArrangementLevel
+name: ArrangementLevel
+title: Arrangement Level
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_label
+  - ../slots/has_rank
+classes:
+  ArrangementLevel:
+    class_uri: hc:ArrangementLevel
+    description: >-
+      Hierarchical level within an archival arrangement scheme, such as fonds,
+      series, file, or item, indicating the position in the descriptive hierarchy.
+    alt_descriptions:
+      nl: >-
+        Hiërarchisch niveau binnen een archiefordeningsschema, zoals archief,
+        serie, dossier of stuk, dat de positie in de beschrijvingshiërarchie
+        aangeeft.
+      de: >-
+        Hierarchische Ebene innerhalb eines Archivordnungsschemas, wie Bestand,
+        Serie, Akte oder Einzelstueck, das die Position in der
+        Beschreibungshierarchie anzeigt.
+      fr: >-
+        Niveau hierarchique dans un schema d'arrangement d'archives, tel que
+        fonds, serie, article ou piece, indiquant la position dans la
+        hierarchie descriptive.
+      es: >-
+        Nivel jerarquico dentro de un esquema de ordenacion archivistica, como
+        fondo, serie, expediente o item, que indica la posicion en la jerarquia
+        descriptiva.
+      ar: >-
+        مستوى هرمي ضمن مخطط ترتيب أرشيفي، مثل الأرشيف أو السلسلة أو الملف
+        أو العنصر، الذي يشير إلى الموقع في التسلسل الهرمي للوصف.
+      id: >-
+        Tingkat hierarki dalam skema pengaturan arsip, seperti fonds, seri,
+        berkas, atau item, yang menunjukkan posisi dalam hierarki deskriptif.
+      zh: >-
+        档案排列方案中的层级，如全宗、系列、文件或条目，表示在描述层级中的位置。
+    abstract: true
+    broad_mappings:
+      - skos:Concept
+      - rico:RecordSetType
+      - crm:E55_Type
+    structured_aliases:
+      - literal_form: ordeningsniveau
+        in_language: nl
+      - literal_form: Ordnungsebene
+        in_language: de
+      - literal_form: niveau d'arrangement
+        in_language: fr
+      - literal_form: nivel de arreglo
+        in_language: es
+      - literal_form: مستوى الترتيب
+        in_language: ar
+      - literal_form: tingkat pengaturan
+        in_language: id
+      - literal_form: 排列层级
+        in_language: zh
+    examples:
+      - value:
+          has_code: "FONDS"
+          has_label: "Fonds"
+          has_rank: 1
+        description: Top-level arrangement (fonds)
+      - value:
+          has_code: "ITEM"
+          has_label: "Item"
+          has_rank: 6
+        description: Lowest arrangement level (item)
+    keywords:
+      - hierarchy
+      - fonds
+      - series
+      - file
+      - item
+      - archival level
+    slots:
+      - has_label
+      - has_code
+      - has_description
+      - has_rank
+    slot_usage:
+      has_code:
+        required: true
+    comments:
+      - Abstract base class - do not instantiate directly
+      - See ArrangementLevelTypes.yaml for concrete subclasses
+      - Standard levels: Fonds, Subfonds, Series, Subseries, File, Item
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Core archival hierarchy concept
+      custodian_types: "['*']"

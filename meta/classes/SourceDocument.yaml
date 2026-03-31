@@ -1,0 +1,116 @@
+id: https://nde.nl/ontology/hc/class/SourceDocument
+name: SourceDocument
+title: Source Document
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  foaf: http://xmlns.com/foaf/0.1/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../enums/SourceDocumentTypeEnum
+- ../metadata
+- ../slots/has_score
+- ../slots/created_by
+- ../slots/temporal_extent
+- ../slots/has_type
+- ../slots/has_uri
+classes:
+  SourceDocument:
+    class_uri: crm:E73_Information_Object
+    description: >-
+      Retrieved evidentiary artifact serving as the authoritative basis for extracted assertions.
+    alt_descriptions:
+      nl: >-
+        Opgehaald bewijsstuk dat dient als gezaghebbende basis voor geëxtraheerde beweringen.
+      de: >-
+        Abgerufenes Beweisstück, das als autoritative Grundlage für extrahierte Aussagen dient.
+      fr: >-
+        Artefact probatoire récupéré servant de base faisant autorité pour les affirmations extraites.
+      es: >-
+        Artefacto probatorio recuperado que sirve como base autorizada para afirmaciones extraídas.
+      ar: >-
+        قطعة أثرية إثباتية تم استرجاعها وتعمل كأساس موثوق للتأكيدات المستخرجة.
+      id: >-
+        Artefak pembuktian yang diambil yang berfungsi sebagai basis otoritatif untuk pernyataan yang diekstrak.
+      zh: >-
+        作为提取断言的权威依据的检索到的证据性人工制品。
+    structured_aliases:
+    - literal_form: brondocument
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Quelldokument
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: document source
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: documento fuente
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مستند المصدر
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: dokumen sumber
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 来源文档
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - crm:E73_Information_Object
+    - prov:Entity
+    close_mappings:
+    - crm:E31_Document
+    - rico:Record
+    - rico:RecordSet
+    - schema:CreativeWork
+    - dcterms:BibliographicResource
+    - foaf:Document
+    related_mappings:
+    - rico:RecordResource
+    - crm:E33_Linguistic_Object
+    - crm:E32_Authority_Document
+    slots:
+    - created_by
+    - temporal_extent
+    - has_type
+    - has_uri
+    - has_score
+    slot_usage:
+      has_uri:
+#         range: string # uriorcurie
+        required: true
+      has_type:
+        range: SourceDocumentTypeEnum
+      temporal_extent:
+        range: date
+      created_by:
+#         range: string
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    keywords:
+    - evidentiary artifact
+    - authoritative source
+    - provenance basis
+    - extraction evidence
+    comments:
+    - Primary reference material for assertion extraction pipelines.
+    - Supports traceability and verifiability of derived knowledge.
+    - 'Preserved from prior description: A source document where custodian information was observed. CIDOC-CRM E73_Information_Object: Identifiable immaterial items with propositional content. **Examples**: - Archival documents - Websites - Letterheads - Legal statutes - Publications **Properties**: - URI/URL of source - Document type - Publication/creation date - Creator/publisher'
+    examples:
+    - value:
+        has_uri: https://archief.nl/document/12345
+        has_type: ArchiveDocument
+        created_by: Heritage Data Aggregator
+      description: Archived documentary evidence used for entity extraction

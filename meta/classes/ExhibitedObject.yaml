@@ -1,0 +1,165 @@
+id: https://nde.nl/ontology/hc/class/ExhibitedObject
+name: ExhibitedObject
+title: Exhibited Object Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- ./Loan
+- ./ExhibitionLocation
+- ./AcquisitionEvent
+- ./Provenance
+- ./Size
+- ./CustodianPlace
+- ./TimeSpan
+- ./CreationEvent
+- ./HeritageObject
+- linkml:types
+- ../enums/ExhibitedObjectTypeEnum
+- ../metadata
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_description
+- ../slots/has_type
+- ../slots/created_by
+- ../slots/created_through
+- ../slots/created_in
+- ../slots/temporal_extent
+- ../slots/safeguarded_by
+- ../slots/located_at
+- ../slots/has_size
+- ../slots/use_material
+- ../slots/has_inscription
+- ../slots/acquired_through
+- ../slots/exhibited_at
+- ../slots/has_provenance
+- ../slots/part_of
+- ../slots/has_subject
+- ../slots/has_score
+classes:
+  ExhibitedObject:
+    is_a: HeritageObject
+    class_uri: crm:E22_Human-Made_Object
+    description: >-
+      Discrete physical item created by human activity that may be displayed
+      in curatorial or exhibition contexts.
+    alt_descriptions:
+      nl: >-
+        Discreet fysiek object gemaakt door menselijke activiteit dat kan worden getoond
+        in curatiele of tentoonstellingscontexten.
+      de: >-
+        Diskret physisches Objekt, das durch menschliche Tätigkeit geschaffen wurde und
+        in kuratorischen oder Ausstellungskontexten präsentiert werden kann.
+      fr: >-
+        Objet physique discret créé par l'activité humaine pouvant être exposé
+        dans des contextes curatoriaux ou d'exposition.
+      es: >-
+        Objeto físico discreto creado por actividad humana que puede ser exhibido
+        en contextos curatoriales o de exposición.
+      ar: >-
+        كائن مادي منفصل أنشئ بالنشاط البشري ويمكن عرضه
+        في سياقات تنظيمية أو معرضية.
+      id: >-
+        Objek fisik diskrit yang dibuat oleh aktivitas manusia yang dapat dipamerkan
+        dalam konteks kuratorial atau pameran.
+      zh: >-
+        可在策展或展览语境中展示的人为创造的离散物理物品。
+    structured_aliases:
+    - literal_form: tentoonstellingsobject
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Ausstellungsobjekt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: objet exposé
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: objeto expuesto
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: كائن معروض
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: objek pameran
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 展品
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - crm:E22_Human-Made_Object
+    close_mappings:
+    - schema:VisualArtwork
+    - crm:E19_Physical_Object
+    - rico:RecordResource
+    related_mappings:
+    - schema:CreativeWork
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    - created_by
+    - created_through
+    - created_in
+    - temporal_extent
+    - safeguarded_by
+    - located_at
+    - has_size
+    - use_material
+    - has_inscription
+    - acquired_through
+    - exhibited_at
+    - has_provenance
+    - part_of
+    - has_subject
+    - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      has_type:
+        range: ExhibitedObjectTypeEnum
+        required: true
+      created_through:
+        range: CreationEvent
+        inlined: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+      created_in:
+        range: CustodianPlace
+        inlined: true
+      has_size:
+        range: Size
+        multivalued: true
+        inlined: true
+      acquired_through:
+        range: AcquisitionEvent
+        inlined: true
+      exhibited_at:
+        range: ExhibitionLocation
+        multivalued: true
+        inlined: true
+      has_provenance:
+        range: Provenance
+        inlined: true
+    notes:
+    - |
+      Preserved from prior description (commit ee5e8e5a):
+
+      Preserved from prior description (commit ee5e8e5a):
+
+      "An individual artwork, artifact, document, or specimen that may be displayed\nin heritage exhibitions.\n\nModels the OBJECT (physical or conceptual item), linking creators, custodians,\nmaterials, and exhibition history.\n\n**Key Distinction**:\n\n| Concept | Class | Example |\n|---------|-------|---------|\n| Heritage institution | Custodian | \"Mauritshuis\" |\n| Curated display | Exhibition | \"Vermeer 2023\" |\n| **Individual object** | **ExhibitedObject** | **\"Girl with a Pearl Earring\"** |\n| Collection grouping | Collection | \"Vermeer Collection\" |\n\n**When to Use ExhibitedObject**:\n\nUse for individual items that can be displayed or loaned:\n- Paintings, sculptures, drawings, prints\n- Archival documents, manuscripts, photographs\n- Archaeological artifacts, ethnographic objects\n- Natural history specimens, scientific instruments\n- Digital artworks, installations\n\n- **CIDOC-CRM**: crm:E22_Human-Made_Object (primary - cultural heritage standard)\n  \"Physical\
+    annotations:
+      specificity_score: 0.55
+      specificity_rationale: Core exhibition object model linking identity, production, custody, and display context.
+      custodian_types: '["*"]'
+    comments:
+    - 'Preserved from prior description: Individual object that can be displayed in one or more exhibitions.'

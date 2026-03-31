@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: located_at
+# ==============================================================================
+# Specific physical coordinates, address, or fixed point of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line               | Mapping | Notes                                    |
+# |---------------|--------------------|-------------------------|---------|------------------------------------------|
+# | **Schema.org**| `schema:location`  | schemaorg.owl:25018-25046| close   | "The location of, for example, where an  |
+# |               |                    |                         |         | event is happening..." General location;  |
+# |               |                    |                         |         | this slot is more specific (coordinates). |
+#
+# schema:location is a general-purpose location property (Event/Org/Action domain).
+# This slot specifically identifies physical coordinates, address, or fixed point —
+# more specific than schema:location's broad scope.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/located_at
+name: located_at
+title: Located At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  located_at:
+    name: located_at
+    title: Located At
+    slot_uri: hc:locatedAt
+    description: >-
+      Identifies the specific physical coordinates, address, or fixed point where an object, building, or entity is situated.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke fysieke coördinaten, het adres of het vaste punt waar een object, gebouw of entiteit zich bevindt.
+      de: >-
+        Identifiziert die spezifischen physischen Koordinaten, die Adresse oder den festen Punkt, an dem sich ein Objekt, Gebäude oder eine Entität befindet.
+      fr: >-
+        Identifie les coordonnées physiques spécifiques, l'adresse ou le point fixe où un objet, un bâtiment ou une entité est situé.
+      ar: >-
+        يحدد الإحداثيات الفعلية المحددة أو العنوان أو النقطة الثابتة التي يقع فيها كائن أو مبنى أو كيان.
+      id: >-
+        Mengidentifikasi koordinat fisik spesifik, alamat, atau titik tetap tempat suatu objek, bangunan, atau entitas berada.
+      zh: >-
+        标识对象、建筑物或实体所处的具体物理坐标、地址或固定位置点。
+      es: >-
+        Identifica las coordenadas físicas específicas, la dirección o el punto fijo donde se encuentra un objeto, edificio o entidad.
+    structured_aliases:
+      - literal_form: Locatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Standort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Emplacement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موقع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Lokasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 位置
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Ubicación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    aliases:
+      - is_or_was_located_at
+      - temporarily_located_at
+      - connection_location
+      - has_or_had_location
+      - current_location
+      - example_location
+      - location
+      - performance_location
+      - permanent_location
+      - physical_location
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:location  # schemaorg.owl:25018-25046 - general location (Event/Org/Action domain)

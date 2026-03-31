@@ -1,0 +1,82 @@
+id: https://nde.nl/ontology/hc/class/DigitalProficiency
+name: DigitalProficiency
+title: Digital Proficiency Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+classes:
+  DigitalProficiency:
+    class_uri: schema:DefinedTerm
+    description: >-
+      Capability term describing a person's level of competence with digital
+      tools, methods, or technical practices.
+    alt_descriptions:
+      nl: Vaardigheidsterm die iemands competentieniveau met digitale tools methoden of technische praktijken beschrijft.
+      de: Kompetenzbegriff zur Beschreibung des Niveaus einer Person im Umgang mit digitalen Werkzeugen Methoden oder technischen Verfahren.
+      fr: Terme de competence decrivant le niveau de maitrise d une personne des outils methodes ou pratiques numeriques.
+      es: Termino de capacidad que describe el nivel de competencia de una persona en herramientas metodos o practicas digitales.
+      ar: مصطلح كفاءة يصف مستوى تمكن الشخص من الأدوات أو الأساليب أو الممارسات الرقمية.
+      id: Istilah kapabilitas yang menggambarkan tingkat kompetensi seseorang terhadap alat metode atau praktik digital.
+      zh: 描述个人在数字工具、方法或技术实践方面熟练程度的能力术语。
+    structured_aliases:
+    - {literal_form: digitale vaardigheid, in_language: nl}
+    - {literal_form: digitale Kompetenz, in_language: de}
+    - {literal_form: competence numerique, in_language: fr}
+    - {literal_form: competencia digital, in_language: es}
+    - {literal_form: كفاءة رقمية, in_language: ar}
+    - {literal_form: kemahiran digital, in_language: id}
+    - {literal_form: 数字能力, in_language: zh}
+    broad_mappings:
+    - schema:DefinedTerm
+    close_mappings:
+    - skos:Concept
+    slots:
+    - has_label
+    - has_description
+    - has_type
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Python
+        - value: Linked Data
+      has_type:
+        examples:
+        - value: PROGRAMMING_LANGUAGE
+        - value: METHODOLOGY
+    notes:
+    - |
+      Preserved from prior description (commit d52149a5):
+
+      "A digital skill, tool, competency, or proficiency indicator.\n\n**DEFINITION**:\n\nDigitalProficiency represents a specific digital capability (e.g., \"Python\",\n\"Data Analysis\", \"CMS Management\") identified in a person's profile.\n\n**Ontological Alignment**:\n- **Schema.org**: `schema:DefinedTerm` - defined concept (skill)\n- **SKOS**: `skos:Concept` - concept in a scheme\n\n**Migrated From** (per slot_fixes.yaml):\n- `digital_indicator` (string list) \u2192 emphasize + DigitalProficiency\n- `digital_professional` (boolean) \u2192 indicates_or_indicated + DigitalProficiency\n"
+    annotations:
+      custodian_types: '["P"]'
+      custodian_types_rationale: Digital proficiency applies to person profiles
+      specificity_score: 0.6
+      specificity_rationale: Specific to person profile enrichment and skills analysis
+    comments:
+    - Represents specific digital skills/indicators
+    - Migrated from digital_indicator string list
+    - Used in DigitalProfessionalAssessment
+    examples:
+    - value:
+        has_label: Python
+        has_type: PROGRAMMING_LANGUAGE
+    - value:
+        has_label: Collection Management Systems
+        has_type: DOMAIN_TOOL

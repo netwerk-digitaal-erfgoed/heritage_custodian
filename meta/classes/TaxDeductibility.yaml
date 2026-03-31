@@ -1,0 +1,186 @@
+id: https://nde.nl/ontology/hc/class/TaxDeductibility
+name: TaxDeductibility
+title: TaxDeductibility Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_condition
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_percentage
+- ../slots/has_type
+- ../slots/effective_at
+- ../slots/in_jurisdiction
+- ../slots/minimum_of_minimum
+default_prefix: hc
+classes:
+  TaxDeductibility:
+    class_uri: schema:OfferItemCondition
+    description: >-
+      Fiscal treatment status for donations, specifying conditions, percentages, and jurisdictional scope for donor benefits.
+    alt_descriptions:
+      nl: Gestructureerde weergave van fiscale aftrekbaarheid van giften, inclusief voorwaarden en jurisdictie.
+      de: Strukturierte Darstellung der steuerlichen Abzugsfähigkeit von Spenden, inkl. Bedingungen und Jurisdiktion.
+      fr: Représentation structurée de la déductibilité fiscale des dons, avec conditions et juridiction.
+      es: Representación estructurada de la deducibilidad fiscal de donaciones, con condiciones y jurisdicción.
+      ar: تمثيل منظم لقابلية الخصم الضريبي للتبرعات بما يشمل الشروط والولاية القضائية.
+      id: Representasi terstruktur status pengurangan pajak untuk donasi, termasuk syarat dan yurisdiksi.
+      zh: 捐赠税收可抵扣状态的结构化表示，包含条件与司法辖区。
+    structured_aliases:
+    - literal_form: fiscale aftrekbaarheid
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: steuerliche Abzugsfähigkeit
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: déductibilité fiscale
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: deducibilidad fiscal
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: 税收可抵扣性
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    - literal_form: deductibility
+      in_language: ar
+    - literal_form: deductibility
+      in_language: id
+    exact_mappings:
+    - schema:OfferItemCondition
+    close_mappings:
+    - prov:Entity
+    keywords:
+    - tax deductibility
+    - donation
+    - fiscal benefits
+    - charitable giving
+    comments:
+    - Replaces simple boolean tax_deductible flag with structured metadata
+    - Supports jurisdiction-specific variations and conditional deductibility
+    - Common statuses include fully, partially, conditionally, and not deductible
+    slots:
+    - has_type
+    - in_jurisdiction
+    - has_condition
+    - has_percentage
+    - minimum_of_minimum
+    - effective_at
+    slot_usage:
+      has_type:
+#         range: string # uriorcurie
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_label: Fully Deductible
+            has_description: 100% of donation is tax-deductible
+      in_jurisdiction:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            jurisdiction_code: NL
+            jurisdiction_name: Netherlands
+        - value:
+            jurisdiction_code: UK
+            jurisdiction_name: United Kingdom
+      has_condition:
+        range: Condition
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+            has_type: TAX_THRESHOLD
+            has_description:
+              description_text: "Donation must exceed €25 minimum"
+              description_type: condition
+        - value:
+            has_type: DECLARATION_REQUIRED
+            has_description:
+              description_text: Must complete Gift Aid declaration
+              description_type: condition
+      has_percentage:
+        range: Percentage
+        inlined: true
+        examples:
+        - value:
+            has_percentage_value: 100
+        - value:
+            has_percentage_value: 66
+      minimum_of_minimum:
+        range: decimal
+      effective_at:
+        range: datetime
+        inlined: false # Fixed invalid inline for primitive type
+    see_also:
+    - https://www.belastingdienst.nl/wps/wcm/connect/nl/aftrek-en-kortingen/content/gift-aftrekken
+    - https://www.gov.uk/donating-to-charity/gift-aid
+    examples:
+    - value:
+        has_type:
+          has_label: Fully Deductible
+          has_description: 100% of donation is tax-deductible
+        in_jurisdiction:
+          jurisdiction_code: NL
+          jurisdiction_name: Netherlands
+        has_condition:
+        - has_type: TAX_THRESHOLD
+          has_description:
+            description_text: "Donation must exceed €25 minimum"
+        has_percentage:
+    - value:
+        has_type:
+          has_label: Conditionally Deductible
+          has_description: Deductible if conditions are met
+        in_jurisdiction:
+          jurisdiction_code: UK
+          jurisdiction_name: United Kingdom
+        has_condition:
+        - has_type: DECLARATION_REQUIRED
+          has_description:
+            description_text: Donor must complete Gift Aid declaration
+        has_percentage:
+    - value:
+        has_type:
+          has_label: Partially Deductible
+          has_description: Only portion of donation is deductible
+        in_jurisdiction:
+          jurisdiction_code: US
+          jurisdiction_name: United States
+        has_condition:
+        - has_type: FAIR_MARKET_VALUE
+          has_description:
+            description_text: Fair market value of benefits received is subtracted
+        has_percentage:
+    - value:
+        has_type:
+          has_label: Not Deductible
+          has_description: No tax benefit for this donation
+        in_jurisdiction:
+          jurisdiction_code: NL
+          jurisdiction_name: Netherlands
+        has_condition:
+        - has_type: BENEFIT_EXCEEDS_VALUE
+          has_description:
+            description_text: Membership benefits exceed donation value
+    annotations:
+      specificity_score: 0.5
+      specificity_rationale: 'Moderately specific - tax deductibility details relevant for
+
+        donation-focused queries.
+
+        '
+      replaces_slot: tax_deductible
+      migration_date: '2026-01-16'
+      custodian_types: "['*']"
+      modeling_notes: |
+        Replaces a simple boolean with structured deductibility metadata.
+
+        Typical statuses include full, partial, conditional, and non-deductible,
+        often varying by jurisdiction and donor conditions.

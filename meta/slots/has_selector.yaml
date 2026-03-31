@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: has_selector
+# ==============================================================================
+# The CSS selector or XPath pattern used to match and locate an element within
+# a webpage's structure.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                     | Mapping | Notes                                                                          |
+# |---------------|-----------------------------|-------------------------------|---------|--------------------------------------------------------------------------------|
+# | **OA**        | `oa:hasSelector`            | oa.ttl:254-259                | close   | "Selector that describes the segment or region of interest within the source   |
+# |               |                             |                               |         |  resource." Core concept aligns (selecting document segments), but              |
+# |               |                             |                               |         |  oa:hasSelector points to a Selector resource object; our slot stores the      |
+# |               |                             |                               |         |  selector string directly.                                                    |
+# | **Schema.org**| `schema:cssSelector`        | schemaorg.owl:13569-13591     | narrow  | "A CSS selector." Only covers CSS selectors; our slot also includes XPath     |
+# |               |                             |                               |         |  patterns. Domain: SpeakableSpecification|WebPageElement.                      |
+# | **Schema.org**| `schema:xpath`              | schemaorg.owl:40663-40685     | narrow  | "An XPath." Only covers XPath expressions; our slot also includes CSS         |
+# |               |                             |                               |         |  selectors. Domain: WebPageElement|SpeakableSpecification.                    |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_selector
+name: has_selector
+title: Has Selector
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  oa: http://www.w3.org/ns/oa#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  has_selector:
+    slot_uri: hc:hasSelector
+    description: >-
+      Relates a specific style, operation, or annotation to the CSS selector or
+      XPath pattern used to match and locate an element within a webpage's
+      structure.
+    alt_descriptions:
+      nl: >-
+        Relateert een specifieke stijl, bewerking of annotatie aan de CSS-selector
+        of het XPath-patroon dat wordt gebruikt om een element binnen de structuur
+        van een webpagina te matchen en te lokaliseren.
+      de: >-
+        Verknüpft einen bestimmten Stil, eine Operation oder eine Annotation mit
+        dem CSS-Selektor oder XPath-Muster, das verwendet wird, um ein Element
+        innerhalb der Struktur einer Webseite abzugleichen und zu lokalisieren.
+      fr: >-
+        Relie un style, une opération ou une annotation spécifique au sélecteur CSS
+        ou au motif XPath utilisé pour correspondre et localiser un élément dans la
+        structure d'une page web.
+      ar: >-
+        يربط نمطًا أو عملية أو تعليقًا توضيحيًا محددًا بمحدد CSS أو نمط XPath
+        المستخدم لمطابقة وتحديد موقع عنصر ضمن بنية صفحة الويب.
+      id: >-
+        Menghubungkan gaya, operasi, atau anotasi tertentu dengan pemilih CSS atau
+        pola XPath yang digunakan untuk mencocokkan dan menemukan elemen dalam
+        struktur halaman web.
+      zh: >-
+        将特定样式、操作或注释与用于匹配和定位网页结构中元素的CSS选择器或XPath模式相关联。
+      es: >-
+        Relaciona un estilo, operación o anotación específica con el selector CSS o
+        el patrón XPath utilizado para coincidir y localizar un elemento dentro de
+        la estructura de una página web.
+    structured_aliases:
+      - literal_form: Selector
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Selektor
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Sélecteur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: المحدد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pemilih
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 选择器
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Selector
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - oa:hasSelector  # oa.ttl:254-259 — "Selector that describes the segment or region of interest within the source resource." Core concept aligns but oa:hasSelector points to Selector resource; our slot stores string directly.
+    narrow_mappings:
+      - schema:cssSelector  # schemaorg.owl:13569-13591 — "A CSS selector." Only CSS selectors; our slot also includes XPath. Domain: SpeakableSpecification|WebPageElement.
+      - schema:xpath  # schemaorg.owl:40663-40685 — "An XPath." Only XPath expressions; our slot also includes CSS selectors. Domain: WebPageElement|SpeakableSpecification.
+    aliases:
+      - css_selector

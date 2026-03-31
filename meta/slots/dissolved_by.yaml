@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: dissolved_by
+# ==============================================================================
+# To be formally terminated, disbanded, or brought to an end by a specific
+# agent, authority, or event.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|---------------------------|----------------------|---------|------------------------------------|
+# | **W3C Org**   | `org:changedBy`            | org.rdf              | slot_uri| Organization changed by event      |
+# | **PROV-O**    | `prov:invalidatedAtTime`   | prov.ttl             | related | Time entity was invalidated        |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/dissolved_by
+name: dissolved_by
+title: Dissolved By
+prefixes:
+  hc: https://nde.nl/ontology/hc/
+  linkml: https://w3id.org/linkml/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  dissolved_by:
+    slot_uri: org:changedBy
+    description: >-
+      To be formally terminated, disbanded, or brought to an end by a specific
+      agent, authority, or event.
+    alt_descriptions:
+      nl: >-
+        Om formeel te worden beëindigd, ontbonden of tot een einde te worden
+        gebracht door een specifieke agent, autoriteit of gebeurtenis.
+      de: >-
+        Formell beendet, aufgelöst oder durch einen bestimmten Akteur, eine
+        Behörde oder ein Ereignis zu einem Ende gebracht zu werden.
+      fr: >-
+        Être formellement résilié, dissous ou mis fin par un agent, une
+        autorité ou un événement spécifique.
+      ar: >-
+        أن يتم إنهاؤه أو حله أو إنهائه رسمياً بواسطة وكيل أو سلطة أو
+        حدث محدد.
+      id: >-
+        Dibubarkan secara resmi, diakhiri, atau dihentikan oleh agen,
+        otoritas, atau peristiwa tertentu.
+      zh: >-
+        由特定代理人、机构或事件正式终止、解散或结束。
+      es: >-
+        Ser terminado, disuelto o puesto fin formalmente por un agente,
+        autoridad o evento específico.
+    structured_aliases:
+      - literal_form: ontbonden door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aufgelöst durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dissous par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: حُلّ بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dibubarkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 解散者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: disuelto por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    inlined: false
+    related_mappings:
+      - prov:invalidatedAtTime
+    aliases:
+      - is_or_was_dissolved_by
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+    comments:
+      - MIGRATED from dissolution_date and dissolved_date per slot_fixes.yaml (2026-01-26).

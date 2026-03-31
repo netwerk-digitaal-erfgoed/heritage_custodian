@@ -1,0 +1,221 @@
+id: https://nde.nl/ontology/hc/class/reading-room-annex
+name: reading_room_annex_class
+title: ReadingRoomAnnex Class
+imports:
+- linkml:types
+- ../enums/ReadingRoomAnnexReasonEnum
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/annex_of
+- ../slots/created_through
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/has_roadmap
+- ../slots/has_service
+- ../slots/has_operating_hours
+- ../slots/require
+- ../slots/has_capacity
+- ../slots/has_finding_aid
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  aat: http://vocab.getty.edu/aat/
+classes:
+  ReadingRoomAnnex:
+    is_a: ReconstructedEntity
+    class_uri: aat:300004051
+    alt_descriptions:
+      nl: Aanvullende of uitwijk-studiezaal op een andere locatie dan de hoofdvestiging.
+      de: Zusaetzlicher oder ausweichender Lesesaal an einem anderen Ort als der Hauptstandort.
+      fr: Salle de lecture annexe ou supplementaire situee a un autre endroit que le site principal.
+      es: Sala de lectura anexa o suplementaria en una ubicacion distinta de la sede principal.
+      ar: قاعة مطالعة ملحقة أو بديلة في موقع منفصل عن المرفق الرئيسي.
+      id: Ruang baca tambahan/alternatif di lokasi terpisah dari fasilitas utama.
+      zh: 位于主馆之外、用于补充或分流的阅览空间。
+    structured_aliases:
+    - {literal_form: dependance studiezaal, in_language: nl}
+    - {literal_form: Lesesaal-Aussenstelle, in_language: de}
+    - {literal_form: annexe de salle de lecture, in_language: fr}
+    - {literal_form: anexo de sala de lectura, in_language: es}
+    - {literal_form: ملحق قاعة مطالعة, in_language: ar}
+    - {literal_form: aneks ruang baca, in_language: id}
+    - {literal_form: 阅览室分点, in_language: zh}
+    description: >-
+      Supplementary reading room at a separate location from the main facility,
+      used for overflow capacity or specialized access.
+    exact_mappings:
+    - aat:300004051
+    close_mappings:
+    - org:Site
+    - schema:Place
+    related_mappings:
+    - hc:ReadingRoom
+    - schema:branch
+    slots:
+    - has_description
+    - identified_by
+    - has_label
+    - created_through
+    - annex_of
+    - has_roadmap
+    - has_service
+    - has_opening_hour
+    - require
+    - has_capacity
+    - has_finding_aid
+    - has_score
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        range: CustodianIdentifier
+        required: true
+        identifier: true
+        inlined: false
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/nha-annex-kleine-houtweg
+      has_label:
+#         range: string
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            label_text: Noord-Hollands Archief Reading Room Annex
+        - value:
+            label_text: Stadsarchief Kaartenkamer Annex
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Overflow reading room for peak research periods. Same registration as main studiezaal. Materials must be pre-ordered.
+      created_through:
+#         range: string
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_reason:
+              has_label: CAPACITY_OVERFLOW
+        - value:
+            has_reason:
+              has_label: SPECIALIZED_MATERIALS
+      has_service:
+#         range: string
+        examples:
+        - value: Historical maps and atlases
+        - value: Newspaper and periodical collections
+      annex_of:
+        range: ReadingRoom
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/nha-studiezaal
+      has_capacity:
+        range: integer
+        examples:
+        - value: 15
+      require:
+        range: boolean
+        ifabsent: 'false'
+        examples:
+        - value: false
+      has_finding_aid:
+        range: boolean
+        ifabsent: 'true'
+        examples:
+        - value: true
+      has_opening_hour:
+#         range: string
+        examples:
+        - value: We-Th 10:00-16:00
+      has_roadmap:
+        range: string
+        multivalued: true
+        examples:
+        - value: true
+        - value: false
+        - value: '2025-12-31'
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    comments:
+    - ReadingRoomAnnex models secondary/overflow research spaces
+    - Distinguished from ReadingRoom by being at separate location
+    - Links to main ReadingRoom via is_annex_of_reading_room
+    - May be temporary (renovation) or permanent (specialized materials)
+    - Often has more limited hours than main reading room
+    - "Modeling note: has_roadmap is used both as a boolean-like flag (roadmap present) and for planned closure/review dates via slot aliases (e.g., planned_closure_date)."
+    see_also:
+    - http://vocab.getty.edu/aat/300004051
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/nha-annex-kleine-houtweg
+        has_label:
+          label_text: Noord-Hollands Archief Reading Room Annex
+        has_description:
+          description_text: Overflow reading room at Kleine Houtweg for peak research periods. Same registration as main studiezaal.
+        created_through:
+          has_reason:
+            has_label: CAPACITY_OVERFLOW
+        annex_of: https://nde.nl/ontology/hc/aux/nha-studiezaal
+        has_capacity: 15
+        require: false
+        has_opening_hour: Tu-Th 10:00-16:00
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/sa-renovation-annex
+        has_label:
+          label_text: Stadsarchief Temporary Reading Room
+        has_description:
+          description_text: Temporary reading room during main building renovation. Limited services available.
+        created_through:
+          has_reason:
+            has_label: RENOVATION
+        annex_of: https://nde.nl/ontology/hc/aux/sa-studiezaal
+        has_capacity: 20
+        has_opening_hour: Mo-Fr 10:00-16:00
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "Overflow or supplementary reading room at a separate location from main facility.\n\n**DEFINITION**:\n\nA ReadingRoomAnnex is a secondary research space located separately from\nthe main heritage custodian building. Annexes typically serve overflow\ncapacity, specialized materials, or specific researcher communities.\n\n**DISTINCTION FROM ReadingRoom**:\n\n| Property | ReadingRoom | ReadingRoomAnnex |\n|----------|-------------|------------------|\n| **Location** | Main building | Separate location |\n| **Status** | Primary facility | Supplementary |\n| **Materials** | Main collections | Overflow/specialized |\n| **Permanence** | Permanent | May be temporary |\n\n**TYPICAL REASONS FOR ANNEX**:\n\n1. **Capacity overflow**: Main reading room at capacity\n2. **Specialized materials**: Maps, newspapers, genealogy\n3. **Geographic reach**: Serve researchers in another city\n4. **Renovation**: Temporary reading room during construction\n5. **Partnership**: Shared space with another\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Definition
+
+        ReadingRoomAnnex models a secondary reading room located away from the
+        main facility.
+
+        Typical reasons
+
+        - capacity overflow
+        - specialized materials (maps, newspapers, genealogy)
+        - renovation/temporary relocation
+        - partnerships (shared space with another institution)
+
+        Relationship
+
+        - annex_of links this annex to the primary ReadingRoom.
+
+      legacy_examples: |
+        Preserved from earlier migration examples; may include fields not currently modeled
+        as slots on this class.
+
+        - requires_separate_registration, shares_catalog_with_main, is_temporary,
+          planned_closure_date, and similar fields appeared in legacy examples.
+          Prefer canonical slots where available (e.g., require, has_opening_hour,
+          temporal_extent) or model as notes until formalized.

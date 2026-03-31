@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/SectionLink
+name: SectionLink
+title: SectionLink
+description: >-
+  A link to a page section.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../slots/has_url
+- ../slots/has_label
+classes:
+  SectionLink:
+    class_uri: schema:WebPageElement
+    description: >-
+      Navigable reference pointing to a specific fragment or segment within
+      a larger web document.
+    alt_descriptions:
+      nl: >-
+        Navigeerbare verwijzing die wijst naar een specifiek fragment of segment binnen
+        een groter webdocument.
+      de: >-
+        Navigierbarer Verweis, der auf ein bestimmtes Fragment oder Segment innerhalb
+        eines größeren Webdokuments verweist.
+      fr: >-
+        Référence navigable pointant vers un fragment ou segment spécifique
+        dans un document web plus vaste.
+      es: >-
+        Referencia navegable que apunta a un fragmento o segmento específico
+        dentro de un documento web más amplio.
+      ar: >-
+        مرجع قابل للتنقل يشير إلى جزء أو مقطع محدد
+        داخل مستند ويب أكبر.
+      id: >-
+        Referensi yang dapat dinavigasi yang menunjuk ke fragmen atau segmen tertentu
+        dalam dokumen web yang lebih besar.
+      zh: >-
+        指向较大网页文档中特定片段或段落的可导航引用。
+    structured_aliases:
+    - literal_form: sectieverwijzing
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Abschnittslink
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: lien de section
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: enlace de sección
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رابط القسم
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: tautan bagian
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 章节链接
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - schema:WebPageElement
+    comments:
+    - Typically used alongside PageSection to provide navigable section references.
+    - Supports anchor-based navigation within long-form content.
+    - 'Preserved from prior description: Link pointing to a page section.'
+    keywords:
+    - page fragment
+    - section anchor
+    - document navigation
+    - internal link
+    examples:
+    - value:
+        has_url: https://example.com/page#section-2
+        has_label: Methodology Section
+      description: Link to methodology section within research article
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: "Generic utility class created during migration"
+      custodian_types: '["*"]'
+    slots:
+    - has_url
+    - has_label

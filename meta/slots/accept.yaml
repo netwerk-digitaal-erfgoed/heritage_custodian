@@ -1,0 +1,141 @@
+# ==============================================================================
+# LinkML Slot Definition: accept
+# ==============================================================================
+# Consenting to receive or undertake something offered. Used for documenting
+# what heritage institutions accept (payments, donations, contracts, etc.).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **Schema.org**| `schema:AcceptAction`  | schemaorg.owl:51-63| close  | "The act of committing to/adopting       |
+# |              |                        |                   |         | an object." Action class.                |
+# | **CIDOC-CRM**| `crm:P22i_acquired_title_through`| CIDOC_CRM| close | Inverse of title transfer (receiver).    |
+# | **CIDOC-CRM**| `crm:E8_Acquisition`   | CIDOC_CRM         | related | Transfer of legal ownership class.       |
+# | **ODRL**     | `odrl:permission`      | odrl.ttl:547-553  | related | Permission to perform action.            |
+# | **Schema.org**| `schema:paymentAccepted`| schemaorg.owl    | narrow  | Payment methods accepted.                |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/accept
+name: accept
+title: Accept
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  gr: http://purl.org/goodrelations/v1#
+  odrl: http://www.w3.org/ns/odrl/2/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  accept:
+    slot_uri: hc:accept
+    description: >-
+      To consent to receive or undertake something offered.
+    alt_descriptions:
+      nl: >-
+        Toestemmen om iets aangeboden te ontvangen of op zich te nemen.
+      de: >-
+        Zustimmen, etwas Angebotenes zu empfangen oder zu übernehmen.
+      fr: >-
+        Consentir à recevoir ou entreprendre quelque chose d'offert.
+      ar: >-
+        الموافقة على استلام أو تولي شيء معروض.
+      id: >-
+        Menyetujui untuk menerima atau melakukan sesuatu yang ditawarkan.
+      zh: >-
+        同意接收或承担所提供的事物。
+      es: >-
+        Consentir en recibir o emprender algo ofrecido.
+    range: uriorcurie
+    multivalued: true
+    inlined: false
+    minimum_cardinality: 0
+    close_mappings:
+      - schema:AcceptAction
+      - crm:P22i_acquired_title_through
+    related_mappings:
+      - crm:E8_Acquisition
+      - crm:P24_transferred_title_of
+      - crm:P22_transferred_title_to
+      - odrl:permission
+    narrow_mappings:
+      - schema:paymentAccepted
+      - schema:acceptsReservations
+      - schema:acceptedPaymentMethod
+      - schema:acceptedOffer
+      - schema:acceptedAnswer
+      - schema:currenciesAccepted
+      - gr:acceptedPaymentMethods
+    aliases:
+      - accepts_or_accepted
+      - receives
+      - is_or_was_accept
+    structured_aliases:
+      - literal_form: accepteert
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_accept
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: akzeptiert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: accepte
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يقبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menerima
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 接受
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: acepta
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: '["credit_card", "debit_card", "cash", "iDEAL", "contactless"]'
+        description: Payment methods accepted by a Dutch museum
+      - value: '["conservation_contracts", "digitization_requests"]'
+        description: External work types accepted by a regional archive
+      - value: '["visiting_scholar", "research_fellowship", "artist_residency"]'
+        description: Residency programs accepted by a research library
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+      specificity_rationale: Broadly applicable across custodian types.
+    comments:
+      - |
+        **USAGE**:
+        Used for documenting what institutions accept:
+        - Payment methods (credit cards, cash, iDEAL)
+        - Donation types (objects, archives, funds)
+        - Contract types (conservation, digitization)
+        - Application types (fellowships, residencies)
+      - |
+        **CIDOC-CRM ACQUISITION**:
+        Maps to CIDOC-CRM's acquisition model:
+        - `crm:E8_Acquisition` - Transfer of legal ownership
+        - `crm:P22_transferred_title_to` - New owner
+        - `crm:P24_transferred_title_of` - Object transferred
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **Schema.org** | `schema:AcceptAction` | 51-63 | close | Committing/adopting action |
+        | **CIDOC-CRM** | `crm:P22i_acquired_title_through` | - | close | Title acquisition |
+        | **CIDOC-CRM** | `crm:E8_Acquisition` | - | related | Ownership transfer |
+        | **ODRL** | `odrl:permission` | 547-553 | related | Permission model |
+        | **Schema.org** | `schema:paymentAccepted` | - | narrow | Payment methods |

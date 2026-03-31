@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: has_object
+# ==============================================================================
+# Object classes detected in an image by a computer vision model.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property / Class       | File/Line                    | Mapping  | Notes                                                                                    |
+# |----------------|------------------------|------------------------------|----------|------------------------------------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P138_represents`  | CIDOC_CRM_v7.1.3.rdf:4155   | related  | E36 Visual Item→E1 CRM Entity. "Visually represents." Our slot stores ML output labels,  |
+# |                |                        |                              |          | not entity references, and records automated detection rather than human assertion.       |
+# | **CIDOC-CRM**  | `crm:P62_depicts`      | CIDOC_CRM_v7.1.3.rdf:2649   | related  | E24 Physical Human-Made Thing→E1 CRM Entity. Shortcut of P65→P138. Same distinction:     |
+# |                |                        |                              |          | depicts is human-asserted and entity-valued; our slot is ML-asserted and string-valued.   |
+# | **OA**         | `oa:hasBody`           | oa.ttl:229-233               | related  | Annotation→body resource. In tagging workflows (oa:tagging motivation), the body carries  |
+# |                |                        |                              |          | the tag/label. Structurally analogous but our slot flattens to a string list.             |
+#
+# CREATED: 2026-02-10
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_object
+name: has_object
+title: Has Object
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_object:
+    slot_uri: hc:hasObject
+    description: >-
+      Object class labels detected in an image or visual resource by a computer
+      vision model. Each value is a category name from the vocabulary used
+      during model training, such as COCO (80 common object categories),
+      ImageNet (1000 categories), or a custom heritage-specific taxonomy.
+      Multiple values indicate multiple distinct object classes were recognised
+      in the same image.
+    alt_descriptions:
+      nl: >-
+        Objectklassen die door een computervisiemodel in een afbeelding zijn
+        gedetecteerd, uitgedrukt als categorienamen uit het trainingsvocabularium.
+      de: >-
+        Von einem Computer-Vision-Modell in einem Bild erkannte Objektklassen,
+        ausgedrückt als Kategorienamen aus dem Trainingsvokabular.
+      fr: >-
+        Classes d'objets détectées dans une image par un modèle de vision par
+        ordinateur, exprimées sous forme de noms de catégories issus du
+        vocabulaire d'entraînement.
+      ar: >-
+        فئات الكائنات المكتشفة في صورة بواسطة نموذج رؤية حاسوبية، معبراً عنها
+        بأسماء فئات من مفردات التدريب.
+      id: >-
+        Kelas objek yang terdeteksi dalam gambar oleh model computer vision,
+        dinyatakan sebagai nama kategori dari kosakata pelatihan.
+      zh: >-
+        计算机视觉模型在图像中检测到的对象类别，以训练词汇表中的类别名称表示。
+      es: >-
+        Clases de objetos detectadas en una imagen por un modelo de visión
+        artificial, expresadas como nombres de categorías del vocabulario de
+        entrenamiento.
+    structured_aliases:
+      - literal_form: gedetecteerd object
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erkanntes Objekt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: objet détecté
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: كائن مكتشف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: objek terdeteksi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 检测到的对象
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: objeto detectado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - crm:P138_represents  # CIDOC_CRM_v7.1.3.rdf:4155-4169 - "represents" what a Visual Item visually depicts. Entity-valued and human-asserted, unlike our ML string labels.
+      - crm:P62_depicts  # CIDOC_CRM_v7.1.3.rdf:2649-2661 - Shortcut "depicts" (Physical Human-Made Thing→CRM Entity). Same distinction as P138.
+      - oa:hasBody  # oa.ttl:229-233 - Annotation body. In oa:tagging workflows the body carries the tag label; structurally analogous but our slot flattens to a string list.
+    aliases:
+      - object_classes_detected
+    examples:
+      - value: "person"
+        description: >-
+          COCO category detected in a museum surveillance image.
+      - value: "painting"
+        description: >-
+          Custom heritage-specific category detected in a gallery photograph.
+      - value: "vase"
+        description: >-
+          COCO/heritage category for a ceramic object detected in a collection image.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        The vocabulary of valid values depends on the model used: COCO provides
+        80 common object categories, ImageNet provides 1000, and heritage
+        institutions may define custom taxonomies for domain-specific objects
+        such as paintings, manuscripts, pottery, or architectural elements.
+      - >-
+        This slot stores the raw string label output from the detection model.
+        For structured annotations with confidence scores, bounding boxes, or
+        provenance, consider using the Web Annotation (OA) data model with
+        an oa:tagging motivation instead.

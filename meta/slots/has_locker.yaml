@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: has_locker
+# ==============================================================================
+# Whether a facility provides secure storage lockers for personal belongings.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property               | File/Line                | Mapping | Notes                                                    |
+# |----------------|------------------------|--------------------------|---------|----------------------------------------------------------|
+# | **Schema.org** | `schema:amenityFeature` | schemaorg.owl:7869-7893  | broad   | "An amenity feature of the Accommodation."               |
+# |                |                        |                          |         | Domain: Place/LodgingBusiness. Any amenity, not just      |
+# |                |                        |                          |         | lockers. Range: LocationFeatureSpecification.            |
+#
+# No standard ontology has a property specifically for "has locker" or
+# "has secure storage unit." This is a domain-specific boolean facility attribute.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_locker
+name: has_locker
+title: Has Locker
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_locker:
+    slot_uri: hc:hasLocker
+    description: >-
+      Indicates whether a facility provides secure storage units (lockers) for
+      the temporary safekeeping of personal belongings during a visit.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een faciliteit beveiligde opbergunits (kluisjes) biedt voor
+        de tijdelijke bewaring van persoonlijke bezittingen tijdens een bezoek.
+      de: >-
+        Gibt an, ob eine Einrichtung sichere Aufbewahrungseinheiten (Schließfächer)
+        zur vorübergehenden Verwahrung persönlicher Gegenstände während eines Besuchs bereitstellt.
+      fr: >-
+        Indique si un établissement fournit des unités de rangement sécurisées (casiers)
+        pour la garde temporaire des effets personnels pendant une visite.
+      ar: >-
+        يشير إلى ما إذا كانت المنشأة توفر وحدات تخزين آمنة (خزائن)
+        للحفظ المؤقت للمتعلقات الشخصية أثناء الزيارة.
+      id: >-
+        Menunjukkan apakah fasilitas menyediakan unit penyimpanan aman (loker)
+        untuk penyimpanan sementara barang-barang pribadi selama kunjungan.
+      zh: >-
+        表明设施是否提供安全存储单元（储物柜），
+        用于在访问期间临时保管个人物品。
+      es: >-
+        Indica si una instalación proporciona unidades de almacenamiento seguras (taquillas)
+        para la custodia temporal de pertenencias personales durante una visita.
+    structured_aliases:
+      - literal_form: Kluisje
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Schließfach
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Casier
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خزانة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Loker
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 储物柜
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Taquilla
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    broad_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7893 - "An amenity feature of the Accommodation." Any amenity, not specifically lockers.
+    aliases:
+      - has_lockers
+    comments:
+      - >-
+        Many reading rooms in libraries and archives require bags and coats
+        to be stored in lockers before entry.
+    examples:
+      - value: "true"
+        description: Lockers available at the facility
+    annotations:
+      custodian_types: '["*"]'

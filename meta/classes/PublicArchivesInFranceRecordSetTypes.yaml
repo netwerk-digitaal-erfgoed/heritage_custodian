@@ -1,0 +1,107 @@
+id: https://nde.nl/ontology/hc/class/PublicArchivesInFranceRecordSetTypes
+name: PublicArchivesInFranceRecordSetTypes
+title: PublicArchivesInFrance Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./PublicArchivesInFranceRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  FrenchPublicFonds:
+    is_a: PublicArchivesInFranceRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation produced by French public
+      authorities, administrations, and state-linked service bodies.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie die is gevormd door
+        Franse publieke autoriteiten, administraties en publieke dienstorganen.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen franzoesischer
+        oeffentlicher Behoerden, Verwaltungen und staatsnaher Dienststellen.
+      fr: >-
+        Agregation fondee sur la provenance de documentation produite par des
+        autorites publiques francaises, administrations et services rattaches.
+      es: >-
+        Agregacion basada en procedencia de documentacion producida por
+        autoridades publicas francesas, administraciones y servicios vinculados.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق صادرة عن السلطات العامة الفرنسية
+        والإدارات والهيئات المرتبطة بالخدمة العامة.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi yang dihasilkan oleh
+        otoritas publik Prancis, administrasi, dan badan layanan terkait negara.
+      zh: >-
+        基于来源原则聚合法国公共机构、行政部门与国家关联服务主体形成的文献。
+    structured_aliases:
+    - literal_form: fonds publieke sector Frankrijk
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fonds oeffentlicher Sektor Frankreich
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds du secteur public francais
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo del sector publico frances
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: فوندس القطاع العام الفرنسي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds sektor publik Prancis
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 法国公共部门全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Note preserved: Public-sector provenance remains explicit across national and territorial administrations.
+    - 'Preserved from prior description: Fonds-oriented record set type for French public-sector records.'
+    keywords:
+    - public authority
+    - French administration
+    - state service body
+    - fonds provenance
+    examples:
+    - value:
+        has_type: hc:FrenchPublicFonds
+        has_custodian: hc:PublicArchivesInFrance
+        has_note: Ministerial circulars, departmental directives, and public-service registers.
+      description: French public-administration documentation grouped by originating institutional provenance.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - PublicArchivesInFranceRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:FrenchPublicFonds
+      has_custodian:
+        equals_string: hc:PublicArchivesInFrance
+      has_note:
+        equals_string: This RecordSetType is typically held by PublicArchivesInFrance custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

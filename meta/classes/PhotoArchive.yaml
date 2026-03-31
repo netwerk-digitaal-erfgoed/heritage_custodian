@@ -1,0 +1,64 @@
+id: https://w3id.org/nde/ontology/PhotoArchive
+name: PhotoArchive
+title: Photo Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  PhotoArchive:
+    description: >-
+      Type of heritage institution specializing in photographic materials including
+      prints, negatives, slides, and digital images.
+    alt_descriptions:
+      nl: Type erfgoedinstelling gespecialiseerd in fotografisch materiaal.
+      de: Art der Kulturerbeeinrichtung, spezialisiert auf fotografisches Material.
+      fr: Type d'institution patrimoniale spécialisée dans les matériaux photographiques.
+      es: Tipo de institución patrimonial especializada en materiales fotográficos.
+    structured_aliases:
+    - literal_form: fotoarchief
+      in_language: nl
+    - literal_form: Fotoarchiv
+      in_language: de
+    - literal_form: archive photographique
+      in_language: fr
+    - literal_form: archivo fotográfico
+      in_language: es
+    comments:
+    - Specialized in photographic materials (prints, negatives, slides, digital).
+    - Requires specialized preservation conditions.
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - wd:Q27032363
+    broad_mappings:
+    - skos:Concept
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Photo Archive
+      skos:altLabel: "Fotoarchiv, archivo fotográfico, archive photographique, Photograph Archive, Photographic Archive"
+      media_type: photographic
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:

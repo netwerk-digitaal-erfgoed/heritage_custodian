@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/classes/LogoClaim
+name: LogoClaim
+title: Logo Claim Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_type
+- ../slots/has_url
+- ../slots/has_selector
+- ../slots/retrieved_at
+classes:
+  LogoClaim:
+    class_uri: prov:Entity
+    description: >-
+      Extracted assertion about a brand visual identifier, including its source location,
+      retrieval context, and extraction selector.
+    alt_descriptions:
+      nl: >-
+        Geëxtraheerde bewering over een visueel merkteken, inclusief de bronlocatie,
+        ophaalcontext en extractieselector.
+      de: >-
+        Extrahierte Aussage über ein visuelles Markenidentifikator, einschließlich Quellort,
+        Abrufkontext und Extraktionsselektor.
+      fr: >-
+        Assertion extraite sur un identifiant visuel de marque, y compris son emplacement source,
+        le contexte de récupération et le sélecteur d'extraction.
+      es: >-
+        Aserción extraída sobre un identificador visual de marca, incluyendo su ubicación de origen,
+        contexto de recuperación y selector de extracción.
+      ar: >-
+        تأكيد مستخرج حول معرف بصري للعلامة التجارية، بما في ذلك موقع المصدر
+        وسياق الاسترجاع ومحدد الاستخراج.
+      id: >-
+        Pernyataan yang diekstrak tentang pengidentifikasi visual merek, termasuk lokasi sumbernya,
+        konteks pengambilan, dan pemilih ekstraksi.
+      zh: >-
+        关于品牌视觉标识符的提取断言，包括其来源位置、检索上下文和提取选择器。
+    structured_aliases:
+    - literal_form: logoclaim
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Logo-Behauptung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: assertion de logo
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: afirmación de logotipo
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مطالبة الشعار
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: klaim logo
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 标识声明
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:ImageObject
+    related_mappings:
+    - prov:Derivation
+    slots:
+    - has_type
+    - has_url
+    - has_selector
+    - retrieved_at
+    comments:
+    - Captures provenance of brand imagery extraction from web sources.
+    - Supports visual brand verification and enrichment workflows.
+    - 'Preserved from prior description: Extracted claim about a logo or favicon, including source selector and retrieval context.'
+    keywords:
+    - brand identifier
+    - logo extraction
+    - visual claim
+    - favicon assertion
+    examples:
+    - value:
+        has_type: FAVICON
+        has_url: https://example.com/favicon.ico
+        retrieved_at: '2025-01-15T10:30:00Z'
+      description: Extracted favicon claim with retrieval timestamp
+    annotations:
+      specificity_score: 0.4
+      specificity_rationale: Image-claim unit for visual brand extraction provenance.
+      custodian_types: '["*"]'

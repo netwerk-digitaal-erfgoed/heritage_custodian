@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/class/HeritageRelevanceAssessment
+name: HeritageRelevanceAssessment
+title: Heritage Relevance Assessment Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../enums/HeritageTypeEnum
+- ../metadata
+- ../slots/has_note
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/related_to
+# default_range: string
+classes:
+  HeritageRelevanceAssessment:
+    class_uri: hc:HeritageRelevanceAssessment
+    description: >-
+      Structured assessment describing how strongly a profile or entity is
+      connected to heritage domains, including type assignment and rationale.
+    alt_descriptions:
+      nl: Gestructureerde beoordeling van hoe sterk een profiel of entiteit verbonden is met erfgoeddomeinen inclusief type en motivatie.
+      de: Strukturierte Bewertung wie stark ein Profil oder eine Entitaet mit Erbedomaenen verbunden ist inklusive Typzuordnung und Begruendung.
+      fr: Evaluation structuree du degre de lien d un profil ou d une entite avec les domaines patrimoniaux avec type et justification.
+      es: Evaluacion estructurada de cuan fuertemente un perfil o entidad se vincula a dominios patrimoniales con tipo y justificacion.
+      ar: تقييم منظم يوضح مدى ارتباط ملف شخصي أو كيان بمجالات التراث، مع نوع التصنيف ومبرراته.
+      id: Penilaian terstruktur tentang seberapa kuat profil atau entitas terhubung ke ranah warisan termasuk jenis dan alasan.
+      zh: 结构化评估，用于说明某档案或实体与遗产领域关联程度，并记录类型归类及依据。
+    structured_aliases:
+    - {literal_form: beoordeling erfgoedrelevantie, in_language: nl}
+    - {literal_form: Erberelevanzbewertung, in_language: de}
+    - {literal_form: evaluation de pertinence patrimoniale, in_language: fr}
+    - {literal_form: evaluacion de relevancia patrimonial, in_language: es}
+    - {literal_form: تقييم الصلة بالتراث, in_language: ar}
+    - {literal_form: asesmen relevansi warisan, in_language: id}
+    - {literal_form: 遗产相关性评估, in_language: zh}
+    close_mappings:
+    - skos:Concept
+    - schema:DefinedTerm
+    slots:
+    - has_score
+    - has_type
+    - related_to
+    - has_note
+    slot_usage:
+      related_to:
+        range: Heritage
+        required: true
+        examples:
+        - value:
+            has_label: Heritage
+      has_type:
+        range: HeritageTypeEnum
+        multivalued: true
+        examples:
+        - value:
+          - M
+        - value:
+          - A
+          - D
+        - value:
+          - E
+      has_score:
+        range: float
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_value: 0.85
+            has_description: High confidence - clear heritage role
+        - value:
+            has_value: 0.55
+            has_description: Low confidence - intern position
+      has_note:
+#         range: string
+        required: true
+        examples:
+        - value: Education sector professional at government education inspectorate
+        - value: Senior curator at Rijksmuseum with 15+ years experience
+        - value: Digital archivist specializing in AV heritage preservation
+    comments:
+    - Every person entity profile should have heritage_relevance
+    - See AGENTS.md Rule 30 for scoring guidelines
+    - is_heritage_relevant=false for non-heritage professionals
+    - Multiple heritage_types indicate cross-domain expertise
+    see_also:
+    - https://nde.nl/ontology/hc/enum/HeritageTypeEnum
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

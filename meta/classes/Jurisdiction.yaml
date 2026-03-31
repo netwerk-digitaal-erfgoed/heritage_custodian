@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/Jurisdiction
+name: Jurisdiction
+title: Jurisdiction
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  lcc_cr: https://www.omg.org/spec/LCC/Countries/CountryRepresentation/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/in_country
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_geographic_subdivision
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/in_jurisdiction
+  - ../slots/has_system
+  - ../slots/has_locality
+classes:
+  Jurisdiction:
+    class_uri: hc:Jurisdiction
+    description: >-
+      Geographical area within which a governing authority applies specific
+      laws, regulations, and administrative policies.
+    alt_descriptions:
+      nl: >-
+        Geografisch gebied waarbinnen een bestuursinstantie specifieke wetten,
+        verordeningen en beleidsregels toepast.
+      de: >-
+        Geografisches Gebiet, in dem eine Regierungsgewalt spezifische Gesetze,
+        Verordnungen und Verwaltungsrichtlinien anwendet.
+      fr: >-
+        Zone géographique dans laquelle une autorité gouvernementale applique des lois,
+        règlements et politiques administratives spécifiques.
+      es: >-
+        Área geográfica dentro de la cual una autoridad gubernamental aplica leyes,
+        regulaciones y políticas administrativas específicas.
+      ar: >-
+        منطقة جغرافية تطبق فيها سلطة حاكمة قوانين ولوائح وسياسات إدارية محددة.
+      id: >-
+        Area geografis di mana otoritas pemerintahan menerapkan hukum, peraturan,
+        dan kebijakan administratif tertentu.
+      zh: >-
+        政府当局在其中应用特定法律、法规和行政政策的地理区域。
+    slots:
+      - in_country
+      - has_description
+      - identified_by
+      - in_jurisdiction
+      - has_system
+      - has_locality
+      - has_geographic_subdivision
+      - has_code
+      - has_score
+    slot_usage:
+      in_jurisdiction:
+        required: true
+      identified_by:
+        required: true
+    broad_mappings:
+      - lcc_cr:GeographicRegion
+    close_mappings:
+      - schema:AdministrativeArea
+
+    notes:
+      - |
+        Preserved from prior description (commit 6e634651):
+
+        Preserved from prior description (commit 6e634651):
+
+        "A distinct area subject to a government and set of laws.\n\n**CRITICAL DISTINCTION: Jurisdiction vs ServiceArea**\n\nJurisdiction and ServiceArea are fundamentally different concepts:\n\n| Aspect | Jurisdiction | ServiceArea |\n|--------|--------------|-------------|\n| **Definition** | Geographic area where specific LAWS AND POLICIES apply | Geographic area where a SPECIFIC custodian operates (\"werkgebied\") |\n| **Scope** | Legal framework scope | Operational territory |\n| **Sharing** | SHARED by multiple custodians operating under same legal framework | UNIQUE to each custodian |\n| **Example** | Dutch national law creates a jurisdiction for all municipal archives in NL | Each municipal archive has its own municipality as service area |\n\n**Key Example**:\n\nA national law (e.g., Archiefwet) creates a JURISDICTION covering the entire Netherlands.\nALL Dutch municipal archives operate within this SAME jurisdiction - they share it!\nBut each municipal archive has a\

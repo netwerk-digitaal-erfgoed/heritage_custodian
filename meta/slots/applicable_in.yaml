@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: applicable_in
+# ==============================================================================
+# Geographic area, jurisdiction, or context where something is valid or relevant.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                | Mapping | Notes                                                    |
+# |---------------|-------------------------|--------------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:spatialCoverage`| schemaorg.owl:35880-35886| close   | Spatial coverage of content - close semantic             |
+# | **Schema.org**| `schema:jurisdiction`   | schemaorg.owl:23809-23812| close   | Legal jurisdiction - more specific to legal context      |
+# | **DCTerms**   | `dcterms:coverage`      | dcterms.rdf:1039         | related | Coverage includes spatial and temporal                   |
+#
+# SEMANTIC NOTES:
+# - Our slot is general: applies to policies, rules, services, etc.
+# - schema:spatialCoverage is for content coverage
+# - schema:jurisdiction is for legal jurisdiction
+# - Custom hc: URI appropriate for this general applicability concept
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, close_mappings, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/applicable_in
+name: applicable_in
+title: Applicable In
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  applicable_in:
+    slot_uri: hc:applicableIn
+    description: >-
+      To be valid, relevant, or enforceable within a specific geographic area, 
+      jurisdiction, or context.
+    alt_descriptions:
+      nl: >-
+        Geldig, relevant of afdwingbaar binnen een specifiek geografisch gebied, 
+        rechtsgebied of context.
+      de: >-
+        Gültig, relevant oder durchsetzbar innerhalb eines bestimmten geografischen 
+        Gebiets, einer Gerichtsbarkeit oder eines Kontexts.
+      fr: >-
+        Valide, pertinent ou exécutoire dans une zone géographique, juridiction 
+        ou contexte spécifique.
+      ar: >-
+        أن يكون صالحاً أو ذا صلة أو قابلاً للتنفيذ ضمن منطقة جغرافية أو 
+        اختصاص قضائي أو سياق معين.
+      id: >-
+        Berlaku, relevan, atau dapat ditegakkan dalam wilayah geografis, yurisdiksi, 
+        atau konteks tertentu.
+      zh: >-
+        在特定地理区域、管辖范围或情境中有效、相关或可执行。
+      es: >-
+        Válido, relevante o aplicable dentro de un área geográfica, jurisdicción 
+        o contexto específico.
+    structured_aliases:
+      - literal_form: van toepassing in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: anwendbar in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: applicable dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قابل للتطبيق في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berlaku di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 适用于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: aplicable en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - schema:spatialCoverage  # schemaorg.owl:35880 - spatial coverage of content
+      - schema:jurisdiction  # schemaorg.owl:23809 - legal jurisdiction
+    related_mappings:
+      - dcterms:coverage  # dcterms.rdf:1039 - coverage (spatial and temporal)
+    aliases:
+      - is_or_was_applicable_in
+      - has_or_had_applicable_country
+      - has_applicable_country
+      - post_type_supported_platform
+    annotations:
+      custodian_types: '["*"]'

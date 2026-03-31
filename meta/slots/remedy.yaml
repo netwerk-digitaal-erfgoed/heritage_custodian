@@ -1,0 +1,130 @@
+# ==============================================================================
+# LinkML Slot Definition: remedy
+# ==============================================================================
+# Records remediation actions or recommendations for issues affecting heritage
+# assets, including data integrity failures, format obsolescence, or physical
+# deterioration of archival materials.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property              | File/Line              | Mapping | Notes                                                        |
+# |------------|-----------------------|------------------------|---------|--------------------------------------------------------------|
+# | **PREMIS** | `premis:outcomeNote`  | premis3.owl:583-589    | related | "has outcome note" DatatypeProperty. Event→Literal.          |
+# | **CIDOC**  | `crm:P44_has_condition` | CIDOC:2270-2283      | related | PhysicalThing→ConditionState. Records condition, not remedy. |
+# | **ODRL**   | `odrl:remedy`         | odrl.ttl:806-814       | related | ObjectProperty. Prohibition→Duty. Policy violation remedies. |
+# | **SKOS**   | `skos:note`           | skos.rdf:176-184       | broad   | AnnotationProperty. "A general note, for any purpose."       |
+# | **Schema** | `schema:correction`   | schemaorg.owl:13039-42 | related | ObjectProperty. "Indicates a correction to a CreativeWork."  |
+# | **DCTerms**| `dcterms:description` | dcterms.rdf:1227       | broad   | Generic description property — too broad for slot_uri.       |
+#
+# No external property precisely captures "remediation note for heritage
+# preservation." Using hc:remedy as the slot_uri.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/remedy
+name: remedy
+title: Remedy
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  premis: http://www.loc.gov/premis/rdf/v3/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  odrl: http://www.w3.org/ns/odrl/2/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  remedy:
+    slot_uri: hc:remedy
+    description: >-
+      Records remediation actions, plans, or recommendations that rectify,
+      resolve, or mitigate issues affecting heritage assets. Covers data
+      integrity failures, format obsolescence, and the physical deterioration
+      of archival materials, ensuring the continued accessibility and
+      authenticity of the asset.
+    alt_descriptions:
+      nl: >-
+        Documenteert herstelacties of aanbevelingen voor problemen met
+        gegevensintegriteit, formaatveroudering of fysiek verval van
+        archiefmateriaal.
+      de: >-
+        Dokumentiert Abhilfemaßnahmen oder Empfehlungen für Probleme mit
+        Datenintegrität, Formatveralterung oder physischem Verfall von
+        Archivmaterial.
+      fr: >-
+        Documente les actions correctives ou recommandations pour les problèmes
+        d'intégrité des données, d'obsolescence de format ou de détérioration
+        physique des documents d'archives.
+      ar: >-
+        يوثق إجراءات المعالجة أو التوصيات المتعلقة بمشاكل سلامة البيانات أو
+        تقادم الصيغ أو التدهور المادي للمواد الأرشيفية.
+      id: >-
+        Mendokumentasikan tindakan perbaikan atau rekomendasi untuk masalah
+        integritas data, keusangan format, atau kerusakan fisik bahan arsip.
+      zh: >-
+        记录针对数据完整性问题、格式过时或档案材料物理劣化的补救措施或建议。
+      es: >-
+        Documenta acciones correctivas o recomendaciones para problemas de
+        integridad de datos, obsolescencia de formato o deterioro físico de
+        materiales de archivo.
+    structured_aliases:
+      - literal_form: herstelmaatregel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Abhilfemaßnahme
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: remède
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: علاج
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: perbaikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 补救措施
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: remedio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - skos:note  # skos.rdf:176-184 - "A general note, for any purpose."
+    related_mappings:
+      - premis:outcomeNote  # premis3.owl:583-589 - "has outcome note" Event→Literal
+      - crm:P44_has_condition  # CIDOC:2270-2283 - PhysicalThing→ConditionState
+      - odrl:remedy  # odrl.ttl:806-814 - Prohibition→Duty, policy violation remedies
+      - schema:correction  # schemaorg.owl:13039-13042 - "correction to a CreativeWork"
+    aliases:
+      - remediation_note
+    examples:
+      - value: "Migrate TIFF files from LZW to uncompressed format to ensure long-term readability."
+        description: >-
+          A remediation action addressing format obsolescence for digitised
+          archival photographs.
+      - value: "Re-house acidic paper documents in acid-free folders to halt deterioration."
+        description: >-
+          A physical preservation remedy for archival materials suffering from
+          acid degradation.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Use this slot to record specific remediation steps taken or recommended
+        for heritage assets. For condition assessment itself, see condition-
+        related slots. For general descriptive notes, use description or notes
+        slots instead.
+      - >-
+        In digital preservation contexts, remedies may include format migration,
+        checksum repair, metadata correction, or re-ingest of corrupted objects.
+        The PREMIS Event model (premis:outcomeNote) captures similar information
+        in a more structured, event-centric framework.
+      - >-
+        The ODRL ontology defines odrl:remedy for policy violation contexts
+        (Prohibition→Duty); while the term overlaps, the semantic domain is
+        different from heritage preservation remediation.

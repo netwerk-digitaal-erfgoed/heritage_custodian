@@ -1,0 +1,83 @@
+id: https://w3id.org/nde/ontology/MediaArchive
+name: MediaArchive
+title: Media Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  MediaArchive:
+    description: >-
+      Archive organization focused on preservation and access of audiovisual,
+      photographic, and other time-based media records.
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    alt_descriptions:
+      nl: Archieforganisatie gericht op behoud en toegang tot audiovisuele fotografische en andere tijdgebonden mediarecords.
+      de: Archivorganisation mit Fokus auf Erhalt und Zugang zu audiovisuellen fotografischen und anderen zeitbasierten Medienunterlagen.
+      fr: Organisation archivistique consacree a la preservation et a l acces aux archives audiovisuelles photographiques et autres medias temporels.
+      es: Organizacion archivistica enfocada en preservar y facilitar acceso a registros audiovisuales fotograficos y otros medios basados en el tiempo.
+      ar: منظمة أرشيفية تركز على حفظ وإتاحة السجلات السمعية البصرية والفوتوغرافية وغيرها من الوسائط الزمنية.
+      id: Organisasi arsip yang berfokus pada pelestarian dan akses rekaman audiovisual fotografi serta media berbasis waktu lainnya.
+      zh: 专注保存并提供视听、摄影及其他时基媒体记录访问的档案机构。
+    structured_aliases:
+    - {literal_form: media-archieforganisatie, in_language: nl}
+    - {literal_form: Medienarchiv, in_language: de}
+    - {literal_form: archive de medias, in_language: fr}
+    - {literal_form: archivo de medios, in_language: es}
+    - {literal_form: أرشيف وسائط, in_language: ar}
+    - {literal_form: arsip media, in_language: id}
+    - {literal_form: 媒体档案机构, in_language: zh}
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q116809817
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Media Archive
+      skos:altLabel: "Medienarchiv, archives de médias, media-archief, Audiovisual Archive"
+      media_type: mixed media
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - FilmArchive
+    - SoundArchive
+    - BroadcastArchive
+    - PhotoArchive
+    - TelevisionArchive
+    - RadioArchive
+    comments:
+    - Medienarchiv (de)
+    - "archives de médias (fr)"
+    - media-achief (nl)
+    - Broad category covering multiple media types
+    - Often associated with broadcasters and media companies
+    - Preservation of time-based media is key challenge

@@ -1,0 +1,52 @@
+id: https://nde.nl/ontology/hc/class/Embargo
+name: Embargo
+title: Embargo Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  odrl: http://www.w3.org/ns/odrl/2/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/temporal_extent
+classes:
+  Embargo:
+    class_uri: odrl:Prohibition
+    description: >-
+      Time-bounded access restriction applied to a resource, dataset, or
+      publication until release conditions are met.
+    alt_descriptions:
+      nl: Tijdgebonden toegangsbeperking op een bron dataset of publicatie tot vrijgavevoorwaarden zijn vervuld.
+      de: Zeitlich begrenzte Zugangsbeschraenkung fuer Ressource Datensatz oder Publikation bis Freigabebedingungen erfuellt sind.
+      fr: Restriction d acces limitee dans le temps appliquee a une ressource un jeu de donnees ou une publication jusqu a levee des conditions.
+      es: Restriccion temporal de acceso aplicada a un recurso conjunto de datos o publicacion hasta cumplir condiciones de liberacion.
+      ar: قيد وصول محدد زمنيا يطبق على مورد أو مجموعة بيانات أو منشور حتى استيفاء شروط الإتاحة.
+      id: Pembatasan akses berbatas waktu pada sumber daya dataset atau publikasi sampai syarat rilis terpenuhi.
+      zh: 对资源、数据集或出版物施加的限时访问限制，直至满足开放条件。
+    structured_aliases:
+    - {literal_form: embargoregeling, in_language: nl}
+    - {literal_form: Embargoregelung, in_language: de}
+    - {literal_form: regime d embargo, in_language: fr}
+    - {literal_form: regimen de embargo, in_language: es}
+    - {literal_form: حظر مؤقت, in_language: ar}
+    - {literal_form: ketentuan embargo, in_language: id}
+    - {literal_form: 禁运限制, in_language: zh}
+    exact_mappings:
+    - odrl:Prohibition
+
+    slots:
+    - temporal_extent
+    - has_description
+
+    slot_usage:
+      temporal_extent:
+      has_description:
+    annotations:
+      custodian_types: '["A", "R"]'
+      specificity_score: 0.6
+      specificity_rationale: Common in archives and research data.

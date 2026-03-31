@@ -1,0 +1,285 @@
+id: https://nde.nl/ontology/hc/class/ParishArchiveRecordSetTypes
+name: ParishArchiveRecordSetTypes
+title: ParishArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- ./ParishArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  ParishSpecificRegisterSeries:
+    is_a: ParishArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of local vital-status entries maintained by
+      ecclesiastical administration.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van lokale burgerlijke statusinschrijvingen
+        die door kerkelijke administratie worden beheerd.
+      de: >-
+        Geordnete Dokumentationsfolge lokaler Personenstands-Einträge, die von
+        kirchlicher Verwaltung geführt werden.
+      fr: >-
+        Séquence documentaire ordonnée d'inscriptions locales d'état civil,
+        tenue par l'administration ecclésiastique.
+      es: >-
+        Secuencia documental ordenada de asientos locales de estado civil,
+        mantenida por la administración eclesiástica.
+      ar: >-
+        تسلسل وثائقي منظم لقيود الحالة المدنية المحلية تديره الإدارة
+        الكنسية.
+      id: >-
+        Urutan dokumenter terstruktur berisi entri status sipil lokal yang
+        dikelola oleh administrasi gerejawi.
+      zh: >-
+        由教会行政维护的地方民事身份登记有序文献序列。
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - ParishArchiveRecordSetType
+    - rico:RecordSetType
+    - ParishRegisterSeries
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ParishSpecificRegisterSeries
+      has_custodian:
+        equals_string: hc:ParishArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ParishArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    structured_aliases:
+    - literal_form: parochiale statusregisterreeks
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Reihe kirchlicher Personenstandsregister
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: série de registres paroissiaux d'état civil
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: serie de registros parroquiales de estado civil
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة سجلات رعوية للحالة المدنية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: seri register status sipil paroki
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 堂区民事登记序列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Captures recurring registration workflows in parish administration.
+    - Preserves local demographic and family-history evidence over time.
+    - 'Preserved from prior description: Series of parish-specific baptism, marriage, and burial registers.'
+    keywords:
+    - vital-status entries
+    - ecclesiastical administration
+    - documentary sequence
+    - local demographic evidence
+    examples:
+    - value:
+        has_type: hc:ParishSpecificRegisterSeries
+        has_custodian: hc:ParishArchive
+      description: Ordered sequence of local vital-status entries.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+  ParishAdministrationFonds:
+    is_a: ParishArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Highest-level aggregation of governance and operational documentation
+      created by parish administration.
+    alt_descriptions:
+      nl: >-
+        Hoogste aggregatielaag van bestuurs- en operationele documentatie die
+        door parochiebestuur is gevormd.
+      de: >-
+        Höchste Aggregationsebene von Leitungs- und Betriebsdokumentation, die
+        von der Pfarrverwaltung erzeugt wurde.
+      fr: >-
+        Niveau d'agrégation le plus élevé de la documentation de gouvernance et
+        de fonctionnement produite par l'administration paroissiale.
+      es: >-
+        Nivel de agregación más alto de documentación de gobierno y operación
+        producida por la administración parroquial.
+      ar: >-
+        أعلى مستوى تجميعي لوثائق الحوكمة والتشغيل التي أنشأتها الإدارة
+        الرعوية.
+      id: >-
+        Tingkat agregasi tertinggi untuk dokumentasi tata kelola dan operasi
+        yang dihasilkan administrasi paroki.
+      zh: >-
+        由堂区行政形成的治理与运营文档的最高聚合层级。
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - ParishArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:ParishAdministrationFonds
+      has_custodian:
+        equals_string: hc:ParishArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ParishArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    structured_aliases:
+    - literal_form: parochiebestuursdocumentatiefonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fonds der Pfarrverwaltungsdokumentation
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds documentaire d'administration paroissiale
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo documental de administración parroquial
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: صندوق وثائق إدارة الرعية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds dokumentasi administrasi paroki
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 堂区行政文档总成
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Groups governance and operational output at the highest aggregation layer.
+    - Supports institutional continuity and accountability reconstruction.
+    - 'Preserved from prior description: Fonds containing parish administrative records.'
+    keywords:
+    - governance output
+    - operational documentation
+    - highest aggregation
+    - accountability evidence
+    examples:
+    - value:
+        has_type: hc:ParishAdministrationFonds
+        has_custodian: hc:ParishArchive
+      description: Highest-level governance and operational documentation grouping.
+  SacramentalRecordCollection:
+    is_a: ParishArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Curated documentary aggregation of ritual-administration entries for
+      faith-community lifecycle events.
+    alt_descriptions:
+      nl: >-
+        Gecureerde documentaire aggregatie van ritueel-administratieve
+        inschrijvingen voor levensloopgebeurtenissen binnen geloofsgemeenschappen.
+      de: >-
+        Kuratierte dokumentarische Aggregation ritualadministrativer Einträge zu
+        Lebensereignissen von Glaubensgemeinschaften.
+      fr: >-
+        Agrégation documentaire curatée d'inscriptions
+        d'administration rituelle liées aux événements du cycle de vie d'une
+        communauté confessionnelle.
+      es: >-
+        Agregación documental curada de asientos de administración ritual para
+        eventos del ciclo vital de una comunidad de fe.
+      ar: >-
+        تجميع وثائقي منسق لقيود الإدارة الطقسية الخاصة بأحداث دورة الحياة في
+        المجتمع الديني.
+      id: >-
+        Agregasi dokumenter terkurasi dari entri administrasi ritual untuk
+        peristiwa siklus hidup komunitas keagamaan.
+      zh: >-
+        面向信仰共同体生命周期事件的礼仪行政登记策展式文献聚合体。
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - ParishArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:SacramentalRecordCollection
+      has_custodian:
+        equals_string: hc:ParishArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by ParishArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    structured_aliases:
+    - literal_form: collectie ritueel-administratieve inschrijvingen
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlung ritualadministrativer Einträge
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection d'inscriptions d'administration rituelle
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: colección de asientos de administración ritual
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مجموعة قيود الإدارة الطقسية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi entri administrasi ritual
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 礼仪行政登记集合
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Aggregates lifecycle-related ritual administration documentation.
+    - Useful for community-history and lineage reconstruction workflows.
+    - 'Preserved from prior description: Collection of sacramental documentation held by parish archives.'
+    keywords:
+    - ritual administration
+    - lifecycle entries
+    - curated aggregation
+    - community history
+    examples:
+    - value:
+        has_type: hc:SacramentalRecordCollection
+        has_custodian: hc:ParishArchive
+      description: Curated aggregation of ritual administration entries.

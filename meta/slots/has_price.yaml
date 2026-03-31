@@ -1,0 +1,83 @@
+# ==============================================================================
+# LinkML Slot Definition: has_price
+# ==============================================================================
+# A monetary value assigned to a product, service, or asset for purchase or usage.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                          |
+# |---------------|-----------------------|--------------------------|---------|-------------------------------------------------|
+# | **Schema.org**| `schema:price`        | schemaorg.owl:30600-30636| exact   | Domain: DonateAction/TradeAction/PriceSpec/Offer.|
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_price
+name: has_price
+title: Has Price
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_price:
+    slot_uri: hc:hasPrice
+    description: >-
+      To specify the amount of money or monetary value assigned to a product, service, or asset as the cost required for its purchase or usage.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van het geldbedrag of de monetaire waarde die aan een product,
+        dienst of bezitting is toegekend als de kosten die vereist zijn voor de aankoop
+        of het gebruik ervan.
+      de: >-
+        Zur Angabe des Geldbetrags oder monetären Wertes, der einem Produkt, einer
+        Dienstleistung oder einem Vermögenswert als erforderliche Kosten für den Kauf
+        oder die Nutzung zugewiesen wird.
+      fr: >-
+        Spécifier le montant d'argent ou la valeur monétaire attribuée à un produit,
+        un service ou un actif comme coût requis pour son achat ou son utilisation.
+      ar: >-
+        لتحديد المبلغ المالي أو القيمة النقدية المخصصة لمنتج أو خدمة أو أصل كتكلفة
+        مطلوبة لشرائه أو استخدامه.
+      id: >-
+        Untuk menentukan jumlah uang atau nilai moneter yang ditetapkan untuk suatu
+        produk, layanan, atau aset sebagai biaya yang diperlukan untuk pembelian atau
+        penggunaannya.
+      zh: >-
+        指定分配给产品、服务或资产的金额或货币价值，作为购买或使用所需的费用。
+      es: >-
+        Especificar la cantidad de dinero o valor monetario asignado a un producto,
+        servicio o activo como el costo requerido para su compra o uso.
+    structured_aliases:
+      - literal_form: Prijs
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Preis
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Prix
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: سعر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Harga
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 价格
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Precio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_price
+      - price
+    exact_mappings:
+      - schema:price  # schemaorg.owl:30600-30636 - "The offer price of a product, or of a price component when attached to PriceSpecification." Domain: DonateAction/TradeAction/PriceSpecification/Offer. Commerce-specific.
+    annotations:
+      custodian_types: '["*"]'

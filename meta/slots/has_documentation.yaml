@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: has_documentation
+# ==============================================================================
+# A collection of written or digital material (manuals, specifications, guides)
+# that explains, describes, or records the functionality, history, or usage.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                 | File/Line                  | Mapping | Notes                              |
+# |---------------|--------------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:documentation`   | schemaorg.owl:15438-15459  | close   | "Further documentation describing the Web API in more detail" — domain WebAPI only (pending.schema.org) |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, demoted schema:documentation from
+#   exact to close (domain restricted to WebAPI, pending.schema.org)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_documentation
+name: has_documentation
+title: Has Documentation
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_documentation:
+    slot_uri: hc:hasDocumentation
+    description: >-
+      To possess or be supported by a collection of written or digital material (such as manuals, specifications, or guides) that explains, describes, or records the functionality, history, or usage of the entity.
+    alt_descriptions:
+      nl: >-
+        Beschikken over of worden ondersteund door een verzameling geschreven of digitaal materiaal (zoals handleidingen, specificaties of gidsen) dat de functionaliteit, geschiedenis of het gebruik van de entiteit uitlegt, beschrijft of vastlegt.
+      de: >-
+        Über eine Sammlung schriftlicher oder digitaler Materialien (wie Handbücher, Spezifikationen oder Leitfäden) verfügen oder davon unterstützt werden, die die Funktionalität, Geschichte oder Nutzung der Entität erklären, beschreiben oder dokumentieren.
+      fr: >-
+        Posséder ou être soutenu par une collection de matériel écrit ou numérique (tels que des manuels, des spécifications ou des guides) qui explique, décrit ou documente la fonctionnalité, l'histoire ou l'utilisation de l'entité.
+      ar: >-
+        امتلاك أو الاستناد إلى مجموعة من المواد المكتوبة أو الرقمية (مثل الأدلة والمواصفات أو الإرشادات) التي تشرح أو تصف أو تسجل وظائف الكيان أو تاريخه أو استخدامه.
+      id: >-
+        Memiliki atau didukung oleh kumpulan materi tertulis atau digital (seperti manual, spesifikasi, atau panduan) yang menjelaskan, mendeskripsikan, atau mencatat fungsionalitas, sejarah, atau penggunaan entitas.
+      zh: >-
+        拥有或由书面或数字资料集合（如手册、规格或指南）支持，用于解释、描述或记录实体的功能、历史或用途。
+      es: >-
+        Poseer o estar respaldado por una colección de material escrito o digital (como manuales, especificaciones o guías) que explica, describe o documenta la funcionalidad, historia o uso de la entidad.
+    structured_aliases:
+      - literal_form: heeft documentatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Dokumentation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une documentation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه توثيق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki dokumentasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有文档
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene documentación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_documentation
+    close_mappings:
+      - schema:documentation  # schemaorg.owl:15438-15459 - "Further documentation describing the Web API in more detail" — domain WebAPI only
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_documentation for conciseness.
+    annotations:
+      custodian_types: '["*"]'

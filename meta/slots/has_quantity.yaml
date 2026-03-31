@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: has_quantity
+# ==============================================================================
+# The amount, count, or magnitude of an entity with a value and unit.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property        | File/Line                | Mapping | Notes                                                       |
+# |---------------|-----------------|--------------------------|---------|-------------------------------------------------------------|
+# | **Schema.org**| `schema:value`  | schemaorg.owl:39461-39485| close   | "The value of a QuantitativeValue or property value node."  |
+#
+# schema:value is the value component of a structured QuantitativeValue/
+# MonetaryAmount/PropertyValue node. Our slot is a general "quantity"
+# concept that may or may not use Schema.org structured value patterns.
+#
+# CREATED: 2026-02-03
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_quantity
+name: has_quantity
+title: Has Quantity
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_quantity:
+    slot_uri: hc:hasQuantity
+    description: >-
+      To specify the amount, count, or magnitude of an entity, often consisting of a numerical value and a unit of measurement.
+    alt_descriptions:
+      nl: >-
+        Om de hoeveelheid, het aantal of de omvang van een entiteit te specificeren, vaak bestaande uit een numerieke waarde en een meeteenheid.
+      de: >-
+        Um die Menge, Anzahl oder Groessenordnung einer Entitaet anzugeben, die oft aus einem numerischen Wert und einer Masseinheit besteht.
+      fr: >-
+        Pour specifier la quantite, le nombre ou la grandeur d'une entite, consistant souvent en une valeur numerique et une unite de mesure.
+      ar: >-
+        لتحديد الكمية أو العدد أو المقدار لكيان ما، والتي تتكون غالبًا من قيمة رقمية ووحدة قياس.
+      id: >-
+        Untuk menentukan jumlah, hitungan, atau besaran suatu entitas, yang sering terdiri dari nilai numerik dan satuan pengukuran.
+      zh: >-
+        用于指定实体的数量、计数或量级，通常由数值和计量单位组成。
+      es: >-
+        Para especificar la cantidad, el conteo o la magnitud de una entidad, que frecuentemente consiste en un valor numerico y una unidad de medida.
+    structured_aliases:
+      - literal_form: Hoeveelheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Menge
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Quantite
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: كمية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Jumlah
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 数量
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Cantidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:value  # schemaorg.owl:39461-39485 - "The value of a QuantitativeValue (including Observation) or property value node." Domain: MonetaryAmount/PropertyValue/QuantitativeValue. Close: schema:value is the value component of structured value nodes, not a general quantity concept.
+    aliases:
+      - has_or_had_quantity
+      - extent_item
+      - is_or_was_extent_item
+      - is_or_was_extent
+      - extent
+      - is_or_was_quantity_value
+      - current_item_count
+      - like_count
+      - membership_size
+      - objects_count
+      - plant_species_count
+      - post_count
+      - scene_count
+      - sentence_count
+      - specimen_count
+      - square_meters
+      - has_artwork_count
+      - link_count
+    annotations:
+      custodian_types: '["*"]'

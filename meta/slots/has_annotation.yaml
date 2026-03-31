@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: has_annotation
+# ==============================================================================
+# Critical, explanatory, or linguistic commentary associated with an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property          | File/Line        | Mapping | Notes                              |
+# |---------------|-------------------|------------------|---------|------------------------------------|
+# | **W3C OA**    | `oa:Annotation`   | oa.ttl:31-33     | related | Web Annotation class (OWL Class)   |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description, added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_annotation
+name: has_annotation
+title: Has Annotation
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  oa: http://www.w3.org/ns/oa#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_annotation:
+    slot_uri: hc:hasAnnotation
+    description: >-
+      Critical, explanatory, or linguistic commentary or markup that interprets, clarifies, 
+      or classifies specific aspects or segments of the entity's content.
+    alt_descriptions:
+      nl: >-
+        Kritisch, verklarend of taalkundig commentaar of opmaak die specifieke aspecten 
+        of segmenten van de inhoud van de entiteit interpreteert, verduidelijkt of classificeert.
+      de: >-
+        Kritische, erklärende oder linguistische Kommentare oder Markierungen, die bestimmte 
+        Aspekte oder Segmente des Inhalts der Entität interpretieren, erläutern oder klassifizieren.
+      fr: >-
+        Commentaire critique, explicatif ou linguistique ou balisage qui interprète, clarifie 
+        ou classifie des aspects ou segments spécifiques du contenu de l'entité.
+      ar: >-
+        تعليق نقدي أو توضيحي أو لغوي أو ترميز يفسر أو يوضح أو يصنف جوانب أو أجزاء 
+        محددة من محتوى الكيان.
+      id: >-
+        Komentar kritis, penjelasan, atau linguistik atau markup yang menafsirkan, menjelaskan, 
+        atau mengklasifikasikan aspek atau segmen tertentu dari konten entitas.
+      zh: >-
+        对实体内容的特定方面或片段进行解释、阐明或分类的批判性、解释性或语言学评论或标记。
+      es: >-
+        Comentario crítico, explicativo o lingüístico o marcado que interpreta, aclara 
+        o clasifica aspectos o segmentos específicos del contenido de la entidad.
+    structured_aliases:
+      - literal_form: annotatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Anmerkung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: annotation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تعليق توضيحي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: anotasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 注释
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: anotación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_annotation
+    related_mappings:
+      - oa:Annotation  # oa.ttl:31-33 - "The class for Web Annotations" (W3C OA model)
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - MIGRATED 2026-02-03 from has_or_had_annotation for conciseness.
+      - |
+        **USAGE**: Used for scholarly annotations, cataloguing notes, provenance remarks, 
+        or any interpretive commentary attached to heritage objects or records.
+      - 'Mapping Note: W3C Web Annotation (oa:Annotation) is the standard for web-based annotations.'

@@ -1,0 +1,112 @@
+# ==============================================================================
+# LinkML Slot Definition: has_fonds
+# ==============================================================================
+# To specify or contain the entire aggregated body of records originating from
+# a specific creator accumulated naturally during the course of their daily
+# activities and functions.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                     | File/Line                  | Mapping | Notes                                                  |
+# |------------|------------------------------|----------------------------|---------|---------------------------------------------------------|
+# | **RiC-O**  | `rico:includesOrIncluded`    | RiC-O_1-1.rdf:9522-9540   | broad   | "Connects a Record Set to a Record or Record Set."     |
+# | **RiC-O**  | `rico:recordSetTypes#Fonds`  | RiC-O_1-1.rdf:30782-30809 | related | NamedIndividual (vocabulary term), not a property.     |
+#
+# rico:includesOrIncluded is broader: it describes general inclusion of records
+# in any record set, not specifically the fonds-level aggregation.
+# rico:recordSetTypes#Fonds is the vocabulary concept defining what a fonds is,
+# but it is a NamedIndividual, not a property.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, RiC-O research
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_fonds
+name: has_fonds
+title: has_fonds
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_fonds:
+    name: has_fonds
+    title: has_fonds
+    description: >-
+      To specify or contain the entire aggregated body of records originating
+      from a specific creator (individual, family, or organization) accumulated
+      naturally during the course of their daily activities and functions.
+    alt_descriptions:
+      nl: >-
+        Het gehele samengevoegde bestand van archiefstukken specificeren of
+        bevatten dat afkomstig is van een specifieke maker (individu, familie
+        of organisatie) en op natuurlijke wijze is geaccumuleerd tijdens de
+        dagelijkse activiteiten en functies.
+      de: >-
+        Den gesamten zusammengeführten Bestand an Unterlagen angeben oder
+        enthalten, der von einem bestimmten Urheber (Einzelperson, Familie
+        oder Organisation) stammt und im Laufe seiner täglichen Aktivitäten
+        und Funktionen auf natürliche Weise entstanden ist.
+      fr: >-
+        Spécifier ou contenir l'ensemble agrégé des documents provenant d'un
+        créateur spécifique (individu, famille ou organisation), accumulés
+        naturellement au cours de leurs activités et fonctions quotidiennes.
+      ar: >-
+        تحديد أو احتواء المجموعة الكاملة المجمعة من السجلات الصادرة عن منشئ
+        محدد (فرد أو عائلة أو منظمة) والمتراكمة بشكل طبيعي خلال أنشطتهم
+        ووظائفهم اليومية.
+      id: >-
+        Menentukan atau memuat keseluruhan kumpulan rekaman yang berasal dari
+        pencipta tertentu (individu, keluarga, atau organisasi) yang
+        terakumulasi secara alami selama aktivitas dan fungsi sehari-hari
+        mereka.
+      zh: >-
+        指定或包含源自特定创建者（个人、家庭或组织）在日常活动和职能过程中自然积累的
+        全部档案记录集合体。
+      es: >-
+        Especificar o contener el cuerpo agregado completo de registros
+        originados por un creador específico (individuo, familia u
+        organización) acumulados naturalmente durante el curso de sus
+        actividades y funciones diarias.
+    structured_aliases:
+      - literal_form: archief (fonds)
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bestand (Archiv)
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds d'archives
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أرشيف (فوند)
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds arsip
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 全宗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: fondo archivístico
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasFonds
+    range: string
+    aliases:
+      - has_or_had_fond
+      - has_fond
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - rico:includesOrIncluded  # RiC-O_1-1.rdf:9522-9540 - "Connects a Record Set to a Record or Record Set."
+    comments:
+      - |
+        **ARCHIVAL CONTEXT**: In archival science, a fonds is the fundamental
+        unit of arrangement. It refers to all records created by a single
+        provenance entity, reflecting the principle of respect des fonds.
+        See also: rico:recordSetTypes#Fonds (RiC-O_1-1.rdf:30782-30809).

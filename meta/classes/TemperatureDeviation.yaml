@@ -1,0 +1,138 @@
+id: https://nde.nl/ontology/hc/class/TemperatureDeviation
+name: TemperatureDeviation
+title: Temperature Deviation
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  brick: https://brickschema.org/schema/Brick#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_measurement_unit
+- ../slots/has_quantity
+classes:
+  TemperatureDeviation:
+    class_uri: qudt:Tolerance
+    description: >-
+      Specification of the acceptable variance range from a target setpoint value in climate-controlled storage environments.
+    alt_descriptions:
+      nl: Gestructureerde specificatie van toegestane temperatuurafwijking/tolerantie van een instelpunt.
+      de: Strukturierte Spezifikation der zulässigen Temperaturabweichung/Toleranz von einem Sollwert.
+      fr: Spécification structurée de l'écart/tolérance de température autorisé par rapport à un point de consigne.
+      es: 'Concepto para: Specification of the acceptable variance range from a target setpoint value in climate-controlled storage environments.'
+      ar: 'مفهوم لـ: Specification of the acceptable variance range from a target setpoint value in climate-controlled storage environments.'
+      id: 'Konsep untuk: Specification of the acceptable variance range from a target setpoint value in climate-controlled storage environments.'
+      zh: 用于以下内容的概念：Specification of the acceptable variance range from a target setpoint value in climate-controlled storage environments.
+    structured_aliases:
+    - literal_form: temperatuurafwijking
+      in_language: nl
+    - literal_form: Temperaturabweichung
+      in_language: de
+    - literal_form: écart de température
+      in_language: fr
+    - literal_form: temperature deviation
+      in_language: es
+    - literal_form: temperature deviation
+      in_language: ar
+    - literal_form: temperature deviation
+      in_language: id
+    - literal_form: temperature deviation
+      in_language: zh
+    close_mappings:
+    - qudt:Tolerance
+    related_mappings:
+    - wd:Q11466
+    - schema:additionalProperty
+    slots:
+    - has_quantity
+    - has_measurement_unit
+    - has_description
+    - has_label
+    - has_reference
+    slot_usage:
+      has_quantity:
+        range: integer
+        required: false
+        inlined: false
+        examples:
+        - value:
+            has_measurement_unit:
+              has_type: DEGREE_CELSIUS
+              has_symbol: °C
+      has_measurement_unit:
+        range: MeasureUnit
+        required: false
+        inlined: true
+        examples:
+        - value:
+            has_type: DEGREE_CELSIUS
+            has_symbol: °C
+      has_description:
+        required: false
+        examples:
+        - value: Tighter tolerance required for daguerreotype collection
+      has_label:
+        required: false
+        examples:
+        - value: Archive Standard Tolerance
+        - value: Cold Storage Precision Tolerance
+    comments:
+    - MIGRATED from temperature_tolerance slot (float) per Rule 53/56
+    - Used via allow slot for temporal flexibility
+    - Companion to humidity_tolerance migration (HumidityDeviation class)
+    - Setpoint class already handles target values - this handles deviations
+    - ISO 11799:2015 Archives: ±2°C daily
+    - ISO 18911:2010 Cold/Frozen Storage: ±2°C
+    - BS 4971:2017 UK Sensitive Materials: ±1°C
+    - EN 16893:2018 Museums: ±2°C recommended
+    - Temperature fluctuations cause dimensional changes in hygroscopic materials (paper, parchment, leather, textiles)
+    see_also:
+    - https://www.iso.org/standard/63810.html
+    - https://www.iso.org/standard/46602.html
+    - http://qudt.org/schema/qudt/Tolerance
+    annotations:
+      specificity_score: '0.65'
+      specificity_rationale: Specialized for environmental control in storage facilities
+      qudt_unit: unit:DEG_C
+      ucum_code: Cel
+      iso_reference: ISO 11799:2015, ISO 18911:2010, BS 4971:2017
+      preservation_parameter: 'true'
+      custodian_types: '[''*'']'
+    examples:
+    - value:
+        has_measurement_unit:
+          has_type: DEGREE_CELSIUS
+          has_symbol: °C
+        iso_standard_reference: ISO 11799:2015
+        has_label: Standard Archive Tolerance
+        has_description: Per ISO 11799:2015 for paper-based materials
+    - value:
+        has_measurement_unit:
+          has_type: DEGREE_CELSIUS
+          has_symbol: °C
+        iso_standard_reference: BS 4971:2017
+        has_label: Sensitive Materials Tolerance
+    - value:
+        iso_standard_reference: ISO 18911:2010
+        has_description: Precision cold storage for film negatives
+enums:
+  DeviationDirectionEnum:
+    description: Orientation of allowed variance from a target setpoint value (positive, negative, or bidirectional).
+    alt_descriptions:
+      nl: Richting van toegestane afwijking van een instelpunt.
+      de: Richtung der zulaessigen Abweichung von einem Sollwert.
+      fr: Direction de l ecart autorise par rapport a un point de consigne.
+      es: Direccion de la desviacion permitida respecto de un valor objetivo.
+      ar: اتجاه الانحراف المسموح به عن قيمة الضبط المستهدفة.
+      id: Arah deviasi yang diizinkan dari nilai setpoint target.
+      zh: 相对于目标设定值的允许偏差方向。
+    permissible_values:
+      PLUS_MINUS:
+      PLUS:
+      MINUS:

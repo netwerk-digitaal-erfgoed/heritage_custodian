@@ -1,0 +1,69 @@
+id: https://nde.nl/ontology/hc/parsimony/mappings/observation-realizations
+name: observation_realizations
+title: Observation Realizations
+description: >-
+  Structured realization notes for how the semantic Observation hub is
+  implemented through engineering evidence classes and how it absorbs the
+  former Reconstruction semantics via the indicates predicate.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../classes/Observation
+  - ../classes/LegalStatus
+  - ../classes/EncompassingBody
+  - ../slots/functions_as
+  - ../slots/indicates
+  - ../slots/yields
+  - ../../../modules/classes/Observation
+  - ../../../modules/classes/CustodianObservation
+  - ../../../modules/classes/PersonObservation
+  - ../../../modules/classes/WebObservation
+  - ../../../modules/classes/CustodianNameConsensus
+  - ../../../modules/classes/CustodianLegalStatus
+  - ../../../modules/classes/CustodianPlace
+  - ../../../modules/classes/CustodianLegalNameClaim
+  - ../../../modules/classes/CustodianTimelineEvent
+  - ../../../modules/slots/has_role
+  - ../../../modules/slots/has_source
+  - ../../../modules/slots/observe
+  - ../../../modules/slots/derive_from
+  - ../../../modules/slots/generated_by
+  - ../../../modules/slots/refer_to
+  - ../../../modules/slots/temporal_extent
+comments:
+  - >-
+    REALIZATION AXIS: The semantic Observation hub is grounded in the abstract
+    engineering Observation class, which defines evidence as a reusable modeling
+    pattern rather than a single domain instance.
+  - >-
+    REALIZATION AXIS: Concrete engineering realizations include CustodianObservation,
+    PersonObservation, and WebObservation, each specializing observation for a
+    different evidence and provenance context.
+  - >-
+    REALIZATION AXIS: Engineering has_source and observe distribute semantic
+    observation semantics into explicit source links and observed-target
+    relations.
+  - >-
+    REALIZATION AXIS: Semantic functions_as gathers engineering has_role when an
+    observation-bearing membership or profile record states the role under which
+    a person is described in a source, avoiding collapse into a generic label.
+  - >-
+    REALIZATION AXIS (formerly Reconstruction): The semantic Observation hub now
+    absorbs reconstruction semantics via the indicates predicate. Engineering
+    reconstruction products (CustodianNameConsensus, CustodianLegalStatus,
+    CustodianPlace, CustodianLegalNameClaim, CustodianTimelineEvent) are the
+    operational targets that observations indicate.
+  - >-
+    REALIZATION AXIS (formerly Reconstruction): Engineering derive_from,
+    generated_by, refer_to, and temporal_extent distribute the observation-to-
+    target indication pattern across source derivation, workflow provenance,
+    referential targeting, and temporal framing.
+  - >-
+    DESIGN NOTE: The former Reconstruction class has been collapsed into the
+    Observation class. Where Reconstruction was an intermediate node between
+    Observation and semantic targets, the indicates predicate now directly
+    links observations to what they are evidence about.

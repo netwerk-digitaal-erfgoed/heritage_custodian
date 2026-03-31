@@ -1,0 +1,135 @@
+id: https://nde.nl/ontology/hc/class/WebLink
+name: web_link_class
+title: Web Link
+description: Structured hyperlink reference with URL, display text, type, and context metadata.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../enums/LinkTypeEnum
+- ../slots/has_description
+- ../slots/has_label    # was: title
+- ../slots/has_provenance
+- ../slots/has_score    # was: template_specificity
+- ../slots/has_url
+- ../slots/has_context
+- ../slots/has_text
+- ../slots/has_type
+- ../slots/temporal_extent    # was: valid_from + valid_to
+default_prefix: hc
+# default_range: string
+classes:
+  WebLink:
+    class_uri: schema:WebPage
+    description: >-
+      URI target reference with display text, relation classification, and
+      contextual metadata.
+    alt_descriptions:
+      nl: Een hyperlink naar een webbron met bijbehorende metadata.
+      de: Ein Hyperlink zu einer Webressource mit zugehörigen Metadaten.
+      fr: Un hyperlien vers une ressource web avec des métadonnées associées.
+      es: Un hipervínculo a un recurso web con metadatos asociados.
+      ar: ارتباط تشعبي إلى مورد ويب مع بيانات وصفية مرتبطة.
+      id: Tautan ke sumber web dengan metadata terkait.
+      zh: 带有关联元数据的网页资源超链接。
+    structured_aliases:
+    - literal_form: weblink
+      in_language: nl
+    - literal_form: Web-Link
+      in_language: de
+    - literal_form: lien web
+      in_language: fr
+    - literal_form: enlace web
+      in_language: es
+    comments:
+    - Represents web link with URL, display text, type classification, and context.
+    - Links can change over time (link rot, text updates).
+    - 'Preserved from prior description: Hyperlink to a web resource with associated metadata including display text, type classification, and contextual information.'
+    broad_mappings:
+    - schema:WebPage
+    close_mappings:
+    - foaf:Document
+    - dcterms:URI
+    slots:
+    - has_url    # was: url - migrated per Rule 53 (2025-01-15)
+    - has_text
+    - has_label    # was: title
+    - has_description
+    - has_type
+    - has_context
+    - has_provenance    # was: xpath - migrated per Rule 53 (2026-01-15)
+    - temporal_extent    # was: valid_from + valid_to
+    - has_score    # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    slot_usage:
+      has_url:
+        range: uri
+        inlined: false # Fixed invalid inline for primitive type
+        required: true
+      has_text:
+#         range: string
+      has_label:  # was: title
+#         range: string
+      has_type:
+        range: LinkTypeEnum
+      has_context:
+#         range: string
+      has_provenance:
+        range: XPath
+        inlined: true
+      temporal_extent:
+        description: 'Validity period for this link (legacy: valid_from/valid_to).'
+      has_score:
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      A hyperlink to a web resource with associated metadata.
+      **DEFINITION**:
+      Represents a web link with its URL, display text, type classification,
+      and optional contextual information about where and why the link appears.
+      **SCHEMA.ORG ALIGNMENT**:
+      Maps to `schema:WebPage` as it represents a reference to a web page
+      or web resource.
+      **TEMPORAL SEMANTICS**:
+      Links can change over time:
+      - URLs may become invalid (link rot)
+      - Link text or context may be updated
+      - Links may be added or removed from pages
+      **EXAMPLE**:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        Applicable to all heritage custodian types as web links
+        are universal navigation elements.
+      custodian_types_primary: "*"
+      specificity_score: 0.25
+      specificity_rationale: >-
+        Very low specificity - fundamental web element applicable
+        across all contexts.
+    see_also:
+    - http://schema.org/WebPage
+    - http://xmlns.com/foaf/0.1/Document
+    examples:
+    - value:
+        id: hc:link/na-civil-registry
+        url: https://www.nationaalarchief.nl/onderzoeken/zoekhulpen/burgerlijke-stand
+        link_text: "Burgerlijke Stand"
+        link_type: SUB_GUIDE
+        link_context: "Related finding aids section"
+    - value:
+        id: hc:link/external-genealogy-db
+        url: https://www.wiewaswie.nl
+        link_text: "WieWasWie"
+        link_type: EXTERNAL_RESOURCE
+    - value: |
+        web_link:
+          id: hc:link/findingaid-civil-registry
+          url: https://www.nationaalarchief.nl/onderzoeken/zoekhulpen/burgerlijke-stand
+          link_text: "Burgerlijke Stand"
+          link_type: SUB_GUIDE
+          link_context: "Related finding aids for family history research"

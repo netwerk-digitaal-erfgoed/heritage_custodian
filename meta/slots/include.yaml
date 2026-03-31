@@ -1,0 +1,147 @@
+# ==============================================================================
+# LinkML Slot Definition: include
+# ==============================================================================
+# Models inclusion/containment relationships where a parent entity encompasses
+# child entities as constituent parts, members, or features.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                      | File/Line               | Mapping | Notes                                            |
+# |---------------|-------------------------------|-------------------------|---------|--------------------------------------------------|
+# | **RiC-O**     | `rico:includesOrIncluded`     | RiC-O:9522-9570         | exact   | "Connects a Record Set to a Record or Record Set |
+# |               |                               |                         |         | it aggregates."                                  |
+# | **DCTerms**   | `dcterms:hasPart`             | dcterms.rdf:1347-1370   | close   | "A related resource that is included either      |
+# |               |                               |                         |         | physically or logically."                        |
+# | **Schema.org**| `schema:hasPart`              | schemaorg.owl:20403-425 | close   | "Indicates an item that is part of this item."   |
+# | **W3C ORG**   | `org:hasUnit`                 | org.rdf:510-528         | close   | "Indicates a unit which is part of this          |
+# |               |                               |                         |         | Organization."                                   |
+# | **CIDOC-CRM** | `crm:P46_is_composed_of`      | CIDOC_CRM:2324-2340     | close   | Physical Thing composition.                      |
+# | **RiC-O**     | `rico:hasOrHadPart`           | RiC-O:7272-7300         | broad   | Parent property; includes as constituent part.   |
+# | **RiC-O**     | `rico:directlyIncludes`       | RiC-O:2420-2438         | narrow  | Direct (non-transitive) inclusion.               |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/include
+name: include
+title: Include
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+description: |
+  To incorporate or comprise a distinct entity as a constituent part, member, or feature within a larger whole or system.
+slots:
+  include:
+    slot_uri: rico:includesOrIncluded
+    description: |
+      To incorporate or comprise a distinct entity as a constituent part, member, or feature within a larger whole or system.
+    alt_descriptions:
+      nl: Een afzonderlijke entiteit opnemen of omvatten als een samenstellend deel, lid of kenmerk binnen een groter geheel of systeem.
+      de: Eine eigenständige Entität als konstituierenden Teil, Mitglied oder Merkmal in ein größeres Ganzes oder System einbeziehen oder umfassen.
+      fr: Incorporer ou comprendre une entité distincte en tant que partie constituante, membre ou caractéristique au sein d'un ensemble ou système plus large.
+      ar: دمج أو احتواء كيان مميز كجزء مكون أو عضو أو ميزة ضمن كل أو نظام أكبر.
+      id: Memasukkan atau mencakup entitas yang berbeda sebagai bagian konstituen, anggota, atau fitur dalam keseluruhan atau sistem yang lebih besar.
+      zh: 将一个独立实体作为组成部分、成员或特征纳入或包含在更大的整体或系统中。
+      es: Incorporar o comprender una entidad distinta como parte constituyente, miembro o característica dentro de un todo o sistema más grande.
+    structured_aliases:
+      - literal_form: bevat
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_include
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: enthält
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: inclut
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يتضمن
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mencakup
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 包含
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: incluye
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "A related resource that is included either physically or logically"
+      - schema:hasPart  # schemaorg.owl:20403-20425 - "Indicates an item that is part of this item"
+      - org:hasUnit  # org.rdf:510-528 - "Indicates a unit which is part of this Organization"
+      - crm:P46_is_composed_of  # CIDOC_CRM:2324-2340 - physical thing composition
+    broad_mappings:
+      - rico:hasOrHadPart  # RiC-O:7272-7300 - parent property; rico:includesOrIncluded is subPropertyOf this
+      - dcterms:relation  # dcterms:hasPart is subPropertyOf dcterms:relation
+    narrow_mappings:
+      - rico:directlyIncludes  # RiC-O:2420-2438 - direct (non-transitive) inclusion
+      - rico:includesTransitive  # RiC-O:9613+ - transitive inclusion
+    related_mappings:
+      - org:subOrganizationOf  # inverse direction - child to parent
+      - rico:isOrWasIncludedIn  # inverse of rico:includesOrIncluded
+    aliases:
+      - includes_or_included
+      - is_or_was_include
+      - has_or_had_subtype
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Hierarchical relationships applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.30
+      specificity_rationale: Broadly applicable - hierarchical inclusion is a fundamental pattern used across many organizational and collection modeling contexts.
+    examples:
+      - value: https://nde.nl/ontology/hc/function/finance
+        description: Administrative function includes Finance as a child function.
+      - value: https://nde.nl/ontology/hc/collection/paintings
+        description: Museum collection includes a paintings sub-collection.
+      - value: https://nde.nl/ontology/hc/department/conservation
+        description: Organization includes a Conservation department.
+    comments:
+      - |
+        **USAGE**:
+        ```yaml
+        parent_function:
+          includes_or_included:
+            - child_function_1
+            - child_function_2
+        ```
+      - |
+        **DESIGN RATIONALE**:
+        This is a GENERIC hierarchical slot for modeling containment/inclusion relationships. 
+        Use when a parent entity encompasses child entities.
+      - |
+        **COMMON USE CASES**:
+        - FunctionType hierarchy (e.g., "Administrative" includes "Finance", "HR")
+        - Organizational unit hierarchy
+        - Collection hierarchy
+        - Record Set aggregation
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | RiC-O | rico:includesOrIncluded | 9522-9570 | exact | RecordSet aggregation |
+        | DCTerms | dcterms:hasPart | 1347-1370 | close | Part-whole relationship |
+        | Schema.org | schema:hasPart | 20403-425 | close | Part of item |
+        | W3C ORG | org:hasUnit | 510-528 | close | Org unit hierarchy |
+        | CIDOC-CRM | crm:P46_is_composed_of | 2324-2340 | close | Physical composition |
+        | RiC-O | rico:hasOrHadPart | 7272-7300 | broad | Parent property |
+        | RiC-O | rico:directlyIncludes | 2420-2438 | narrow | Direct inclusion |
+      - Updated 2026-02-03 with verified ontology mappings and translations.

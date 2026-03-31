@@ -1,0 +1,121 @@
+# ==============================================================================
+# LinkML Slot Definition: has_infrastructure
+# ==============================================================================
+# Records the fundamental facilities, systems, equipment, and services that
+# a heritage custodian possesses or relies on.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                   | File/Line                    | Mapping          | Notes                                                                  |
+# |----------------|----------------------------|------------------------------|------------------|------------------------------------------------------------------------|
+# | **Schema.org** | `schema:amenityFeature`     | schemaorg.owl:7869-7881      | related_mappings | "amenityFeature" Place/Accommodation→LocationFeatureSpecification. Related: amenities for places, not organizational infrastructure.   |
+# | **SSN**        | `ssn:hasSubSystem`          | ssn.ttl:359-363              | related_mappings | "has subsystem" System→System. Related: SSN models sensor/observation systems, not heritage facilities.                                |
+# | **SOSA**       | `sosa:hosts`                | sosa.ttl:115-125             | related_mappings | "hosts" Platform→Sensor/Actuator/Sampler/Platform. Related: hosting relationship for sensor platforms.                                 |
+# | **PROV**       | `prov:used`                 | prov.ttl:1039-1050           | related_mappings | "used" Activity→Entity. Related: activity-entity usage, not possession of infrastructure.                                             |
+# | **DCTerms**    | `dcterms:hasPart`           | dcterms.rdf:1347-1370        | broad_mappings   | "Has Part" general part-whole. Much broader: any resource part relationship.                                                           |
+# | **RiC-O**      | `rico:hasOrHadPart`         | RiC-O_1-1.rdf:7271-7308     | broad_mappings   | "has or had part" Thing→Thing. Broader: any constitutive part relationship.                                                            |
+#
+# CREATED: 2026-02-11
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_infrastructure
+name: has_infrastructure
+title: Has Infrastructure
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  ssn: http://www.w3.org/ns/ssn/
+  sosa: http://www.w3.org/ns/sosa/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_infrastructure:
+    slot_uri: hc:hasInfrastructure
+    description: >-
+      Records the fundamental facilities, systems, equipment, and services
+      that a heritage custodian possesses, relies on, or provides access to
+      for the operation of its mission. This includes scientific instruments,
+      computing resources, storage facilities, and specialized laboratories.
+    alt_descriptions:
+      nl: >-
+        Registreert de fundamentele faciliteiten, systemen, apparatuur en
+        diensten waarover een erfgoedbeheerder beschikt of waarop deze
+        vertrouwt voor de uitvoering van zijn missie.
+      de: >-
+        Erfasst die grundlegenden Einrichtungen, Systeme, Geräte und Dienste,
+        über die ein Kulturerbe-Verwalter verfügt oder auf die er sich für
+        die Erfüllung seines Auftrags stützt.
+      fr: >-
+        Enregistre les installations fondamentales, systèmes, équipements et
+        services qu'un dépositaire du patrimoine possède ou sur lesquels il
+        s'appuie pour l'exécution de sa mission.
+      ar: >-
+        يسجل المرافق والأنظمة والمعدات والخدمات الأساسية التي يمتلكها أمين
+        التراث أو يعتمد عليها لتنفيذ مهمته.
+      id: >-
+        Mencatat fasilitas fundamental, sistem, peralatan, dan layanan yang
+        dimiliki atau diandalkan oleh lembaga warisan budaya untuk pelaksanaan
+        misinya.
+      zh: >-
+        记录遗产保管机构拥有或依赖的用于执行其使命的基本设施、系统、设备和服务。
+      es: >-
+        Registra las instalaciones fundamentales, sistemas, equipos y servicios
+        que un custodio del patrimonio posee o en los que se apoya para el
+        cumplimiento de su misión.
+    structured_aliases:
+      - literal_form: infrastructuur
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Infrastruktur
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: infrastructure
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بنية تحتية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: infrastruktur
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 基础设施
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: infraestructura
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "Has Part" general part-whole relationship
+      - rico:hasOrHadPart  # RiC-O_1-1.rdf:7271-7308 - "has or had part" Thing→Thing
+    related_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7881 - "amenityFeature" Place→LocationFeatureSpecification
+      - ssn:hasSubSystem  # ssn.ttl:359-363 - "has subsystem" System→System
+      - sosa:hosts  # sosa.ttl:115-125 - "hosts" Platform→Sensor/Actuator/Sampler/Platform
+      - prov:used  # prov.ttl:1039-1050 - "used" Activity→Entity
+    aliases:
+      - research_infrastructure
+    examples:
+      - value: X-ray fluorescence spectrometer
+        description: Scientific instrument for elemental analysis of heritage materials.
+      - value: electron microscopy facility
+        description: Laboratory facility for high-resolution imaging of material surfaces.
+      - value: climate-controlled storage
+        description: Environmental control system for preservation of collection items.
+      - value: DNA sequencing laboratory
+        description: Specialized facility for genetic analysis of biological heritage specimens.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Use this slot to list the key infrastructure assets available to or
+        operated by a heritage custodian. Examples include scientific
+        instruments (X-ray equipment, microscopes, spectrometers), computing
+        clusters, field stations, experimental plots, climate chambers, and
+        DNA sequencers.

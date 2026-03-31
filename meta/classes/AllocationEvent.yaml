@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/AllocationEvent
+name: AllocationEvent
+title: Allocation Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/temporal_extent
+classes:
+  AllocationEvent:
+    class_uri: prov:Activity
+    description: >-
+      Occurrence of assigning an identifier to an entity by an allocation
+      agency, capturing when and within what timeframe the allocation took
+      place.
+    alt_descriptions:
+      nl: >-
+        Gebeurtenis waarbij een identifier aan een entiteit wordt toegewezen
+        door een toewijzingsagentschap, vastleggend wanneer en binnen welk
+        tijdsbestek de toewijzing plaatsvond.
+      de: >-
+        Ereignis der Zuweisung einer Kennung an eine Entitaet durch eine
+        Zuweisungsstelle, das erfasst, wann und in welchem Zeitraum die
+        Zuweisung stattfand.
+      fr: >-
+        Evenement d'attribution d'un identifiant a une entite par une agence
+        d'allocation, capturant quand et dans quel delai l'allocation a eu
+        lieu.
+      es: >-
+        Evento de asignacion de un identificador a una entidad por una agencia
+        de asignacion, capturando cuando y en que periodo de tiempo ocurrio la
+        asignacion.
+      ar: >-
+        حدث تخصيص معرف لكيان من قبل وكالة تخصيص، مع تسجيل متى وفي أي
+        إطار زمني تم التخصيص.
+      id: >-
+        Peristiwa pengalokasian pengidentifikasi ke entitas oleh lembaga
+        alokasi, mencatat kapan dan dalam jangka waktu apa alokasi terjadi.
+      zh: >-
+        由分配机构向实体分配标识符的事件，记录分配发生的时间和时限。
+    examples:
+    - value:
+        temporal_extent:
+          start_date: "2024-01-15"
+          end_date: "2024-01-15"
+      description: Allocation event on a specific date
+    structured_aliases:
+    - literal_form: toewijzingsgebeurtenis
+      in_language: nl
+    - literal_form: Zuweisungsereignis
+      in_language: de
+    - literal_form: evenement d'allocation
+      in_language: fr
+    - literal_form: evento de asignacion
+      in_language: es
+    - literal_form: حدث التخصيص
+      in_language: ar
+    - literal_form: peristiwa alokasi
+      in_language: id
+    - literal_form: 分配事件
+      in_language: zh
+    keywords:
+    - identifier assignment
+    - allocation
+    - timestamp
+    - provenance
+    broad_mappings:
+    - schema:Action
+    - prov:Activity
+    slots:
+    - temporal_extent
+    slot_usage:
+      temporal_extent:
+        required: true
+    comments:
+    - Records when an identifier was officially assigned
+    - Links to AllocationAgency that performed the allocation
+    - |
+        Preserved from prior description:
+        
+        **Ontological Alignment**:
+        - `prov:Activity`: An activity that occurred over a period of time and acted upon or with entities.
+    annotations:
+      specificity_score: "0.15"
+      specificity_rationale: Specific event type for identifier allocation
+      custodian_types: "['*']"

@@ -1,0 +1,25 @@
+id: https://nde.nl/ontology/hc/parsimony/slot/received_from
+name: received_from
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: https://schema.org/
+  owl: http://www.w3.org/2002/07/owl#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  received_from:
+    slot_uri: hc:receivedFrom
+    description: Indicates the source agent or place from which custody, possession, or a resource is received in a transfer context.
+    range: Agent
+    inverse: passed_to
+    implements:
+      - owl:ObjectProperty
+    multivalued: true
+    narrow_mappings:
+      - crm:P27_moved_from
+      - crm:P28_custody_surrendered_by
+      - schema:fromLocation
+      - hc:transferred_from

@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: measured_on
+# ==============================================================================
+# The instant of time when a measurement, observation, or metrics snapshot was
+# completed or recorded.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property          | File/Line            | Mapping  | Notes                                                        |
+# |------------|-------------------|----------------------|----------|--------------------------------------------------------------|
+# | **SOSA**   | `sosa:resultTime` | sosa.ttl:406-414     | slot_uri | "The instant of time when the Observation was completed."    |
+# | **PROV-O** | `prov:atTime`     | prov.ttl:505-515     | close    | "The time at which an InstantaneousEvent occurred."          |
+# | **DCTerms**| `dcterms:date`    | dcterms.rdf:408-432  | broad    | Generic "date associated with a resource" — broader.         |
+#
+# HIERARCHY:
+# - sosa:resultTime → DatatypeProperty, domain Observation/Actuation/Sampling, range xsd:dateTime
+# - prov:atTime → DatatypeProperty, domain InstantaneousEvent, range xsd:dateTime
+# - dcterms:date → generic, no typed range constraint
+#
+# CREATED: 2026-01-20
+# UPDATED: 2026-02-10 - Full polish; absorbed metrics_observed_at, metrics_observed_date, measurement_date
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/measured_on
+name: measured_on
+title: Measured On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  measured_on:
+    slot_uri: sosa:resultTime
+    description: >-
+      The instant of time when a measurement, observation, or metrics snapshot
+      was completed or recorded. In the heritage-custodian context this captures
+      when engagement metrics (view counts, follower counts, like counts) or
+      environmental sensor readings were observed. Because metrics change
+      constantly, the timestamp is critical for interpreting the associated
+      values.
+    alt_descriptions:
+      nl: >-
+        Het tijdstip waarop een meting, observatie of metriekenmomentopname
+        werd voltooid of vastgelegd.
+      de: >-
+        Der Zeitpunkt, zu dem eine Messung, Beobachtung oder
+        Metrik-Momentaufnahme abgeschlossen oder aufgezeichnet wurde.
+      fr: >-
+        L'instant où une mesure, observation ou instantané de métriques a été
+        complété ou enregistré.
+      ar: >-
+        اللحظة الزمنية التي تم فيها إكمال أو تسجيل قياس أو ملاحظة أو لقطة
+        مقاييس.
+      id: >-
+        Waktu instan ketika pengukuran, observasi, atau snapshot metrik
+        diselesaikan atau dicatat.
+      zh: >-
+        完成或记录测量、观察或指标快照的时刻。
+      es: >-
+        El instante en que se completó o registró una medición, observación o
+        instantánea de métricas.
+    structured_aliases:
+      - literal_form: gemeten op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: gemessen am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: mesuré le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم القياس في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diukur pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 测量于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: medido el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    close_mappings:
+      - prov:atTime  # prov.ttl:505-515 - "The time at which an InstantaneousEvent occurred." Domain: InstantaneousEvent, range xsd:dateTime
+    broad_mappings:
+      - dcterms:date  # dcterms.rdf:408-432 - Generic "date associated with a resource" — much broader
+    aliases:
+      - measurement_date
+    examples:
+      - value: "2025-12-29T10:00:00Z"
+        description: Timestamp when social media follower count was recorded
+      - value: "2026-01-15T14:30:00Z"
+        description: Timestamp when environmental sensor reading was taken
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Metrics change constantly — this timestamp indicates when the associated
+        values (view_count, follower_count, like_count, etc.) were observed.
+      - >-
+        Uses sosa:resultTime because it specifically models the completion time
+        of an observation activity, which matches the semantics of recording
+        metric snapshots.

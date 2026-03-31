@@ -1,0 +1,278 @@
+id: https://nde.nl/ontology/hc/class/SchoolArchiveRecordSetTypes
+name: SchoolArchiveRecordSetTypes
+title: SchoolArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./SchoolArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  SchoolAdministrationFonds:
+    is_a: SchoolArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Provenance-based aggregation of documentation created through institutional
+      governance, staffing, finance, and policy administration in education.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van documentatie die ontstaat uit
+        institutioneel bestuur, personeelsbeheer, financiën en beleid in onderwijs.
+      de: >-
+        Provenienzbasierte Aggregation von Unterlagen aus institutioneller
+        Leitung, Personalverwaltung, Finanzen und Bildungspolitik.
+      fr: >-
+        Agrégation fondée sur la provenance de documentation issue de la
+        gouvernance institutionnelle, des ressources humaines et de l'administration.
+      es: >-
+        Agregación basada en procedencia de documentación creada por
+        gobierno institucional, personal, finanzas y administración educativa.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق نتجت عن الحوكمة المؤسسية وشؤون الموظفين
+        والمالية وإدارة السياسات في التعليم.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi yang dibentuk melalui
+        tata kelola institusi, kepegawaian, keuangan, dan administrasi pendidikan.
+      zh: >-
+        基于来源原则聚合教育机构在治理、人事、财务与政策管理中形成的文献。
+    structured_aliases:
+    - literal_form: schoolbestuursfonds
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fonds schulischer Verwaltungsunterlagen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: fonds d'administration scolaire
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fondo de administracion escolar
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: رصيد إدارة تعليمية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: fonds administrasi sekolah
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 学校行政文献全宗
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Fonds organization principle."
+    - Note preserved: Governance provenance remains primary even when files mix policy and operational content.
+    - 'Preserved from prior description: Fonds containing school administrative records.'
+    keywords:
+    - institutional governance
+    - staffing administration
+    - school finance
+    - education policy
+    examples:
+    - value:
+        has_type: hc:SchoolAdministrationFonds
+        has_custodian: hc:SchoolArchive
+        has_note: Board minutes, staffing records, and annual budget files.
+      description: Educational governance documentation grouped by originating institution.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    see_also:
+    - SchoolArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:SchoolAdministrationFonds
+      has_custodian:
+        equals_string: hc:SchoolArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by SchoolArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  SchoolStudentRecordSeries:
+    is_a: SchoolArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of learner enrollment, progression,
+      performance, and attendance evidence across academic cycles.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks met bewijzen van inschrijving,
+        voortgang, prestaties en aanwezigheid van lerenden per schoolcyclus.
+      de: >-
+        Geordnete Dokumentationsfolge zu Einschreibung, Lernfortschritt,
+        Leistung und Anwesenheit ueber schulische Zyklen hinweg.
+      fr: >-
+        Sequence documentaire ordonnee des traces d'inscription,
+        de progression, de performance et de presence des apprenants.
+      es: >-
+        Secuencia documental ordenada de evidencias de matricula,
+        progreso, rendimiento y asistencia del alumnado por ciclos.
+      ar: >-
+        تسلسل وثائقي منظم لأدلة التسجيل والتقدم والتحصيل والحضور
+        عبر الدورات التعليمية.
+      id: >-
+        Urutan dokumenter teratur berisi bukti pendaftaran,
+        perkembangan, capaian, dan kehadiran peserta didik lintas siklus.
+      zh: >-
+        按学段组织的学习者入学、进展、成绩与出勤证据文献序列。
+    structured_aliases:
+    - literal_form: reeks leerlingdossiers
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Folge von Schuelerakten
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: sequence de dossiers d'apprenants
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: secuencia de expedientes estudiantiles
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة سجلات المتعلمين
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: urutan berkas peserta didik
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 学生档案文献序列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Series organization principle."
+    - Note preserved: Sequence structure supports continuity of individual educational trajectories.
+    - 'Preserved from prior description: Series containing student records.'
+    keywords:
+    - enrollment evidence
+    - progression record
+    - performance history
+    - attendance trace
+    examples:
+    - value:
+        has_type: hc:SchoolStudentRecordSeries
+        has_custodian: hc:SchoolArchive
+        has_note: Enrollment registers, report cards, and attendance books.
+      description: Learner trajectory documentation arranged as a recurring sequence.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - SchoolArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:SchoolStudentRecordSeries
+      has_custodian:
+        equals_string: hc:SchoolArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by SchoolArchive custodians. Inverse of rico:isOrWasHolderOf.
+  CurriculumDocumentCollection:
+    is_a: SchoolArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of teaching plans, curricular frameworks,
+      and instructional resources used across learning programs.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van lesplannen,
+        curriculumkaders en didactische middelen voor onderwijsprogramma's.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus Lehrplaenen,
+        curricularen Rahmen und Unterrichtsmaterialien fuer Lernprogramme.
+      fr: >-
+        Ensemble documentaire réuni de plans d'enseignement,
+        de cadres curriculaires et de ressources pedagogiques.
+      es: >-
+        Cuerpo documental reunido de planes de enseñanza,
+        marcos curriculares y recursos de instrucción para programas formativos.
+      ar: >-
+        جسم وثائقي مُجمع يضم خطط التدريس والأطر المنهجية
+        والموارد التعليمية المستخدمة عبر البرامج الدراسية.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi rencana pengajaran,
+        kerangka kurikulum, dan sumber belajar lintas program pendidikan.
+      zh: >-
+        汇集教学计划、课程框架与教学资源的文献整体，用于各类学习项目。
+    structured_aliases:
+    - literal_form: verzameling curriculumdocumentatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlung curricularer Lehrunterlagen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection de ressources curriculaires
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: conjunto de recursos curriculares
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: تجميعة وثائق منهجية وتعليمية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: himpunan dokumentasi kurikulum
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 课程资源文献汇编
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Collection organization principle."
+    - Note preserved: Materials may be assembled from multiple teaching units and revision cycles.
+    - 'Preserved from prior description: Collection containing curriculum documents and educational materials.'
+    keywords:
+    - teaching plan
+    - curriculum framework
+    - instructional material
+    - learning program
+    examples:
+    - value:
+        has_type: hc:CurriculumDocumentCollection
+        has_custodian: hc:SchoolArchive
+        has_note: Program syllabi, lesson plans, and instructional packets.
+      description: Teaching and curriculum resources assembled across educational programs.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - SchoolArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:CurriculumDocumentCollection
+      has_custodian:
+        equals_string: hc:SchoolArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by SchoolArchive custodians. Inverse of rico:isOrWasHolderOf.

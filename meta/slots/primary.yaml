@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: primary
+# ==============================================================================
+# Boolean flag marking first rank or highest importance relative to others.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                    | File/Line                 | Mapping | Notes                                                      |
+# |----------------|-----------------------------|---------------------------|---------|-------------------------------------------------------------|
+# | **Schema.org** | `schema:primaryImageOfPage` | schemaorg.owl:30800-30802 | related | Specific to images on a page; not a general primary flag.   |
+# | **Schema.org** | `schema:mainEntity`         | schemaorg.owl:25283-25285 | related | Main entity of a page; different concept (entity, not flag).|
+#
+# No external ontology defines a general-purpose boolean "primary" flag.
+# Properties like schema:primaryImageOfPage and schema:mainEntity are
+# domain-specific and structural, not boolean flags.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/primary
+name: primary
+title: Primary
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  primary:
+    slot_uri: hc:primary
+    description: >-
+      Marks the entity, attribute, or status that holds the first rank, highest
+      importance, or original standing relative to others. Used as a boolean
+      flag to distinguish a primary instance from secondary or auxiliary ones,
+      such as the primary digital presence of a heritage institution.
+    alt_descriptions:
+      nl: >-
+        Markeert de entiteit, het attribuut of de status die de eerste rang,
+        het hoogste belang of de oorspronkelijke positie ten opzichte van
+        anderen inneemt.
+      de: >-
+        Kennzeichnet die Entität, das Attribut oder den Status, der den
+        ersten Rang, die höchste Bedeutung oder die ursprüngliche Stellung
+        gegenüber anderen einnimmt.
+      fr: >-
+        Marque l'entité, l'attribut ou le statut qui détient le premier rang,
+        la plus haute importance ou la position originale par rapport aux
+        autres.
+      ar: >-
+        يحدد الكيان أو السمة أو الحالة التي تحتل المرتبة الأولى أو الأهمية
+        القصوى أو المكانة الأصلية بالنسبة للآخرين.
+      id: >-
+        Menandai entitas, atribut, atau status yang memegang peringkat pertama,
+        kepentingan tertinggi, atau kedudukan asli relatif terhadap yang lain.
+      zh: >-
+        标记相对于其他实体、属性或状态具有第一等级、最高重要性或原始地位的项目。
+      es: >-
+        Marca la entidad, atributo o estado que ostenta el primer rango, la
+        mayor importancia o la posición original en relación con otros.
+    structured_aliases:
+      - literal_form: primair
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: primär
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: primaire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أساسي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: utama
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 主要的
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: primario
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    aliases:
+      - is_primary_digital_presence
+    examples:
+      - value: "true"
+        description: >-
+          Indicates that a particular website is the primary digital presence
+          for a heritage institution.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Boolean flag distinguishing a primary item from secondary or
+        auxiliary alternatives. Use in contexts where multiple instances
+        exist and one needs to be marked as authoritative or preferred.

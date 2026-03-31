@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: occur_at
+# ==============================================================================
+# The place where an event occurred.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property               | File/Line                     | Mapping  | Notes                                                     |
+# |----------------|------------------------|-------------------------------|----------|------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P7_took_place_at` | CIDOC_CRM_v7.1.3.rdf:1294-1312 | slot_uri | "took place at" E4 Period→E53 Place. Event location.      |
+# | **PROV-O**     | `prov:atLocation`      | prov.ttl:486-505              | close    | Activity/Agent/Entity→Location. General location.          |
+# | **Schema.org** | `schema:location`      | schemaorg.owl:25018-25046     | close    | Event/Organization/Action→Place. Generic location.         |
+#
+# crm:P7_took_place_at is the most semantically precise match for the location
+# where an event occurred. prov:atLocation and schema:location are close but
+# more general (not restricted to events/periods).
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/occur_at
+name: occur_at
+title: Occur At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  occur_at:
+    slot_uri: crm:P7_took_place_at
+    description: >-
+      The place where an event occurred. Links an event such as a birth, death,
+      ceremony, organizational change, or provenance event to the geographic
+      location where it took place. Follows RiC-O temporal naming conventions
+      to indicate the event may be historical.
+    alt_descriptions:
+      nl: >-
+        De plaats waar een gebeurtenis heeft plaatsgevonden. Koppelt een
+        gebeurtenis aan de geografische locatie waar deze plaatsvond.
+      de: >-
+        Der Ort, an dem ein Ereignis stattfand. Verknüpft ein Ereignis mit
+        dem geografischen Ort, an dem es stattfand.
+      fr: >-
+        Le lieu où un événement s'est produit. Relie un événement à
+        l'emplacement géographique où il a eu lieu.
+      ar: >-
+        المكان الذي وقع فيه حدث ما. يربط حدثًا بالموقع الجغرافي الذي وقع فيه.
+      id: >-
+        Tempat di mana suatu peristiwa terjadi. Menghubungkan peristiwa dengan
+        lokasi geografis tempat terjadinya.
+      zh: >-
+        事件发生的地点。将事件与其发生的地理位置关联起来。
+      es: >-
+        El lugar donde ocurrió un evento. Vincula un evento con la ubicación
+        geográfica donde tuvo lugar.
+    structured_aliases:
+      - literal_form: vond plaats op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: fand statt in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a eu lieu à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: وقع في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: terjadi di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 发生在
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: ocurrió en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    close_mappings:
+      - prov:atLocation  # prov.ttl:486-505 - Activity/Agent/Entity→Location; general location
+      - schema:location  # schemaorg.owl:25018-25046 - Event/Organization/Action→Place; generic
+    aliases:
+      - occurs_or_occurred_at
+    examples:
+      - value: "Amsterdam"
+        description: >-
+          A death event occurred in Amsterdam.
+      - value: "Leiden University Library"
+        description: >-
+          A provenance transfer event took place at Leiden University Library.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Semantic distinction: occur_at is for events (death, birth, ceremony);
+        has_or_had_location is for entities (organization location, object
+        location).
+      - >-
+        Replaces the former death_place slot per Rule 53 (no bespoke slots).
+        Migration date 2026-01-24.

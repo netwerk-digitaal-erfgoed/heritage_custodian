@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: retrieved_at
+# ==============================================================================
+# To denote the specific point in time or timestamp when a resource, data, or
+# entity was accessed, fetched, or collected.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:atTime`         | prov.ttl:501-565     | slot_uri| Time at which event occurred       |
+# | ~~Schema.org~~| ~~`schema:dateRetrieved`~~| ~~schemaorg.owl~~  | ~~exact~~| REMOVED: does not exist in Schema.org |
+#
+# HIERARCHY: prov:atTime has no rdfs:subPropertyOf declaration (it is used in
+# property chains with qualified forms like prov:qualifiedEnd o prov:atTime)
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/retrieved_at
+name: retrieved_at
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  retrieved_at:
+    slot_uri: prov:atTime
+    description: >-
+      To denote the specific point in time or timestamp when a resource, data,
+      or entity was accessed, fetched, or collected.
+    alt_descriptions:
+      nl: >-
+        Om het specifieke tijdstip of de tijdstempel aan te duiden waarop een
+        bron, gegevens of entiteit is geopend, opgehaald of verzameld.
+      de: >-
+        Zur Angabe des spezifischen Zeitpunkts oder Zeitstempels, zu dem eine
+        Ressource, Daten oder Entität abgerufen, geholt oder gesammelt wurde.
+      fr: >-
+        Pour indiquer le moment précis ou l'horodatage auquel une ressource,
+        des données ou une entité a été consultée, récupérée ou collectée.
+      ar: >-
+        للإشارة إلى النقطة الزمنية المحددة أو الطابع الزمني الذي تم فيه
+        الوصول إلى مورد أو بيانات أو كيان أو جلبه أو جمعه.
+      id: >-
+        Untuk menunjukkan titik waktu atau stempel waktu tertentu ketika
+        sumber daya, data, atau entitas diakses, diambil, atau dikumpulkan.
+      zh: >-
+        表示访问、获取或收集资源、数据或实体的特定时间点或时间戳。
+      es: >-
+        Para denotar el momento específico o marca de tiempo en que un
+        recurso, datos o entidad fue accedido, obtenido o recopilado.
+    structured_aliases:
+      - literal_form: opgehaald op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgerufen am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: récupéré le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استُرجع في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diambil pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 检索于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: recuperado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    # NOTE: schema:dateRetrieved was removed — it does not exist in Schema.org.
+    # No exact Schema.org equivalent for "date retrieved" exists.
+    aliases:
+      - is_or_was_retrieved_at
+      - was_fetched_at
+      - retrieval_timestamp
+      - retrieved_on
+      - scraped_timestamp
+    comments:
+      - |
+        **PROV-O USAGE NOTE**:
+        prov:atTime is used to specify the time at which an InstantaneousEvent 
+        occurred. In PROV-O, it is typically used with qualified forms like
+        prov:qualifiedEnd and prov:qualifiedStart for more detailed provenance.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **PROV-O** | `prov:atTime` | 501-565 | slot_uri | Time at which event occurred |
+        | ~~Schema.org~~ | ~~`schema:dateRetrieved`~~ | N/A | REMOVED | Does not exist in Schema.org |
+    examples:
+      - value: "2026-01-15T14:30:00Z"
+        description: ISO 8601 timestamp when data was retrieved from API
+    annotations:
+      custodian_types: '["*"]'

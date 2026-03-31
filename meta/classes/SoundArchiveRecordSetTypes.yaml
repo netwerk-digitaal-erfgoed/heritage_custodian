@@ -1,0 +1,278 @@
+id: https://nde.nl/ontology/hc/class/SoundArchiveRecordSetTypes
+name: SoundArchiveRecordSetTypes
+title: SoundArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+- ./SoundArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  AudioRecordingCollection:
+    is_a: SoundArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of captured audio outputs,
+      including master takes, preservation transfers, and access derivatives.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van vastgelegde audio-uitvoer,
+        inclusief masters, preservatietransfers en toegangsafgeleiden.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus aufgezeichneten Audioausgaben,
+        einschliesslich Mastertakes, Erhaltungstransfers und Nutzungsderivaten.
+      fr: >-
+        Ensemble documentaire reuni de sorties audio capturees,
+        incluant prises maitres, transferts de preservation et derives d'acces.
+      es: >-
+        Cuerpo documental reunido de salidas de audio capturadas,
+        con tomas maestras, transferencias de preservacion y derivados de acceso.
+      ar: >-
+        جسم وثائقي مُجمع من مخرجات صوتية مسجلة، يشمل النسخ الأصلية
+        وتحويلات الحفظ والمشتقات المخصصة للإتاحة.
+      id: >-
+        Kumpulan dokumenter terhimpun dari keluaran audio terekam,
+        termasuk rekaman master, transfer preservasi, dan turunan akses.
+      zh: >-
+        汇集采集音频成品的文献整体，包含母带、保存转换件与访问衍生物。
+    structured_aliases:
+    - literal_form: collectie audioregistraties
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlung von Audioaufnahmen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection d'enregistrements sonores
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: coleccion de grabaciones sonoras
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مجموعة تسجيلات صوتية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi rekaman audio
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 音频录音文献汇编
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Collection organization principle."
+    - Note preserved: Materials may combine born-digital and digitized analog sources.
+    - 'Preserved from prior description: Collection containing sound recordings.'
+    keywords:
+    - captured audio
+    - preservation transfer
+    - access derivative
+    - recording corpus
+    examples:
+    - value:
+        has_type: hc:AudioRecordingCollection
+        has_custodian: hc:SoundArchive
+        has_note: Studio masters, transfer files, and listening copies.
+      description: Audio outputs assembled across capture and preservation workflows.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - SoundArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:AudioRecordingCollection
+      has_custodian:
+        equals_string: hc:SoundArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by SoundArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+  OralHistorySeries:
+    is_a: SoundArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of interview sessions,
+      testimony segments, and contextual narration metadata.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van interviewsessies,
+        getuigenisfragmenten en contextuele narratieve metadata.
+      de: >-
+        Geordnete Dokumentationsfolge aus Interviewsitzungen,
+        Zeugnissegmenten und kontextuellen Erzaehlmetadaten.
+      fr: >-
+        Sequence documentaire ordonnee de sessions d'entretien,
+        de segments testimoniaux et de metadonnees narratives contextuelles.
+      es: >-
+        Secuencia documental ordenada de sesiones de entrevista,
+        segmentos testimoniales y metadatos narrativos contextuales.
+      ar: >-
+        تسلسل وثائقي منظم لجلسات المقابلات ومقاطع الشهادات
+        وبيانات وصفية سردية سياقية.
+      id: >-
+        Urutan dokumenter teratur dari sesi wawancara,
+        segmen kesaksian, dan metadata naratif kontekstual.
+      zh: >-
+        由访谈场次、证言片段与叙事语境元数据构成的有序文献序列。
+    structured_aliases:
+    - literal_form: reeks mondelinge-geschiedenisinterviews
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Folge von Oral-History-Interviews
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: sequence d'entretiens d'histoire orale
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: secuencia de entrevistas de historia oral
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة مقابلات تاريخ شفهي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: urutan wawancara sejarah lisan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 口述史访谈文献序列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Series organization principle."
+    - Note preserved: Sequence ordering supports chronology of testimony collection campaigns.
+    - 'Preserved from prior description: Series containing oral history interviews.'
+    keywords:
+    - interview session
+    - testimony segment
+    - narrative context
+    - oral evidence
+    examples:
+    - value:
+        has_type: hc:OralHistorySeries
+        has_custodian: hc:SoundArchive
+        has_note: Interview reels, transcript references, and session metadata.
+      description: Oral-testimony documentation arranged as a recurring sequence.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - SoundArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:OralHistorySeries
+      has_custodian:
+        equals_string: hc:SoundArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by SoundArchive custodians. Inverse of rico:isOrWasHolderOf.
+  MusicRecordingCollection:
+    is_a: SoundArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of performance captures,
+      studio productions, and release-oriented music masters.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van uitvoeringsopnamen,
+        studioproducties en op publicatie gerichte muziekmasterbestanden.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus Auffuehrungsaufnahmen,
+        Studioproduktionen und veroeffentlichungsbezogenen Musikmastern.
+      fr: >-
+        Ensemble documentaire reuni de captations de performance,
+        de productions studio et de masters musicaux destines a la diffusion.
+      es: >-
+        Cuerpo documental reunido de capturas de interpretacion,
+        producciones de estudio y masters musicales orientados a publicacion.
+      ar: >-
+        جسم وثائقي مُجمع لتسجيلات الأداء والإنتاجات الاستديوية
+        والنسخ الموسيقية الرئيسية الموجهة للنشر.
+      id: >-
+        Kumpulan dokumenter terhimpun dari rekaman pertunjukan,
+        produksi studio, dan master musik untuk rilis.
+      zh: >-
+        汇集演出录音、录音室制作与发行导向音乐母带的文献整体。
+    structured_aliases:
+    - literal_form: collectie muziekopnamen
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Sammlung von Musikaufnahmen
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection d'enregistrements musicaux
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: coleccion de grabaciones musicales
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مجموعة تسجيلات موسيقية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi rekaman musik
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 音乐录音文献汇编
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - "RiC-O alignment: specialized rico:RecordSetType following rico-rst:Collection organization principle."
+    - Note preserved: Sources may include studio, live, broadcast, and remastering workflows.
+    - 'Preserved from prior description: Collection containing music recordings.'
+    keywords:
+    - performance capture
+    - studio production
+    - music master
+    - release workflow
+    examples:
+    - value:
+        has_type: hc:MusicRecordingCollection
+        has_custodian: hc:SoundArchive
+        has_note: Session masters, live performance recordings, and release masters.
+      description: Music documentation assembled across recording and publication workflows.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - SoundArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:MusicRecordingCollection
+      has_custodian:
+        equals_string: hc:SoundArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by SoundArchive custodians. Inverse of rico:isOrWasHolderOf.

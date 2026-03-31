@@ -1,0 +1,109 @@
+# ==============================================================================
+# LinkML Slot Definition: has_numerator
+# ==============================================================================
+# The specific value, count, or event of interest (the numerator) representing
+# the subset being measured against a total in a ratio, rate, or percentage.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                     | File/Line                | Mapping | Notes                                                                             |
+# |---------------|------------------------------|--------------------------|---------|-----------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:measuredProperty`    | schemaorg.owl:25746-25768| related | "The measuredProperty of an Observation." Identifies WHAT property is measured.    |
+# |               |                              |                          |         |  Both describe what is being counted, but different formality and scope.            |
+# | **DQV**       | `dqv:isMeasurementOf`        | dqv.ttl:106-111          | related | "Indicates the metric being observed." Domain: Observation. Range: Metric.         |
+# |               |                              |                          |         |  Tangentially related; about which metric is observed, not the numerator itself.    |
+# | **Schema.org**| `schema:variableMeasured`    | schemaorg.owl:39643-39667| broad   | "Indicates the variables that are measured in some dataset." Domain:                |
+# |               |                              |                          |         |  Observation|Dataset. Any measured variable is broader than numerator subset.       |
+# |               |                              |                          |         |                                                                                    |
+# | NOTE: No `schema:measurementNumerator` exists. Schema.org only defines                                                                                  |
+# |   `measurementDenominator`. The numerator concept has no direct standard ontology counterpart.                                                           |
+# |   `qudt:hasNumeratorPart` is about unit dimension vectors (e.g. meters in m/s), not statistical numerators.                                              |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_numerator
+name: has_numerator
+title: Has Numerator
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dqv: http://www.w3.org/ns/dqv#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  has_numerator:
+    slot_uri: hc:hasNumerator
+    description: >-
+      Relates a ratio, rate, or percentage to the specific value or count (the top number)
+      representing the subset or events of interest being measured against a total.
+    alt_descriptions:
+      nl: >-
+        Relateert een verhouding, tarief of percentage aan de specifieke waarde of telling
+        (het bovenste getal) die de deelverzameling of gebeurtenissen van belang vertegenwoordigt
+        die worden gemeten ten opzichte van een totaal.
+      de: >-
+        Verknüpft ein Verhältnis, eine Rate oder einen Prozentsatz mit dem spezifischen Wert
+        oder der Anzahl (der Zähler), die die Teilmenge oder die relevanten Ereignisse
+        darstellt, die gegen eine Gesamtzahl gemessen werden.
+      fr: >-
+        Relie un ratio, un taux ou un pourcentage à la valeur ou au décompte spécifique
+        (le numérateur) représentant le sous-ensemble ou les événements d'intérêt mesurés
+        par rapport à un total.
+      ar: >-
+        يربط نسبة أو معدلًا أو نسبة مئوية بالقيمة أو العدد المحدد (البسط) الذي يمثل
+        المجموعة الفرعية أو الأحداث محل الاهتمام التي يتم قياسها مقابل إجمالي.
+      id: >-
+        Menghubungkan rasio, tingkat, atau persentase dengan nilai atau jumlah tertentu
+        (pembilang) yang mewakili subset atau peristiwa yang diminati yang diukur terhadap
+        suatu total.
+      zh: >-
+        将比率、速率或百分比与代表针对总数进行测量的感兴趣子集或事件的特定值或计数（分子）
+        相关联。
+      es: >-
+        Relaciona una proporción, tasa o porcentaje con el valor o conteo específico
+        (el numerador) que representa el subconjunto o los eventos de interés que se miden
+        en relación con un total.
+    structured_aliases:
+      - literal_form: Teller
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zähler
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Numérateur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: البسط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pembilang
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 分子
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Numerador
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    examples:
+    - value: made gift shop purchase
+      description: Visitor completed a purchase
+    - value: became member/supporter
+      description: Visitor signed up for membership
+    - value: clicked link in email
+      description: Recipient clicked a link
+    - value: visited venue physically
+      description: Online visitor came in person
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:measuredProperty  # schemaorg.owl:25746-25768 — "The measuredProperty of an Observation, typically via its StatisticalVariable." Both describe what is being counted, but different formality (schema Property vs. string action description).
+      - dqv:isMeasurementOf  # dqv.ttl:106-111 — "Indicates the metric being observed." Domain: Observation. Range: Metric. Tangentially related, about which metric is observed.
+    broad_mappings:
+      - schema:variableMeasured  # schemaorg.owl:39643-39667 — "Indicates the variables that are measured in some dataset." Domain: Observation|Dataset. Any measured variable is broader than a specific numerator subset.
+    aliases:
+      - conversion_target_action

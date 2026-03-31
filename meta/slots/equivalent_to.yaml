@@ -1,0 +1,115 @@
+# ==============================================================================
+# LinkML Slot Definition: equivalent_to
+# ==============================================================================
+# Semantic equivalence with another entity (typically Wikidata).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property          | File/Line            | Mapping | Notes                                                      |
+# |----------------|-------------------|----------------------|---------|--------------------------------------------------------------|
+# | **SKOS**       | `skos:exactMatch` | skos.rdf:438-454     | exact   | "Link two concepts, high confidence of interchangeability."  |
+# | **OWL**        | `owl:sameAs`      | W3C OWL 2 standard   | close   | Identity assertion (stronger claim than equivalence).        |
+# | **Schema.org** | `schema:sameAs`   | schemaorg.owl:34129-34148 | close | "URL unambiguously indicating the item's identity."          |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/equivalent_to
+name: equivalent_to
+title: Equivalent To
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  owl: http://www.w3.org/2002/07/owl#
+  schema: https://schema.org/
+  la: https://linked.art/ns/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  equivalent_to:
+    slot_uri: hc:equivalentTo
+    description: >-
+      Asserts semantic equivalence between this entity and another entity,
+      indicating that both represent the same real-world concept or thing.
+    alt_descriptions:
+      nl: >-
+        Stelt semantische equivalentie vast tussen deze entiteit en een andere entiteit,
+        wat aangeeft dat beide hetzelfde concept of ding uit de werkelijkheid vertegenwoordigen.
+      de: >-
+        Stellt die semantische Äquivalenz zwischen dieser Entität und einer anderen Entität fest
+        und zeigt an, dass beide dasselbe reale Konzept oder Ding repräsentieren.
+      fr: >-
+        Affirme l'equivalence sémantique entre cette entité et une autre entité,
+        indiquant que les deux représentent le même concept ou objet du monde réel.
+      ar: >-
+        يؤكد التكافؤ الدلالي بين هذا الكيان وكيان آخر،
+        مما يشير إلى أن كليهما يمثلان نفس المفهوم أو الشيء في العالم الحقيقي.
+      id: >-
+        Menyatakan kesetaraan semantik antara entitas ini dan entitas lain,
+        yang menunjukkan bahwa keduanya mewakili konsep atau hal yang sama di dunia nyata.
+      zh: >-
+        声明此实体与另一个实体之间的语义等价关系，
+        表明两者代表相同的现实世界概念或事物。
+      es: >-
+        Afirma la equivalencia semántica entre esta entidad y otra entidad,
+        indicando que ambas representan el mismo concepto o cosa del mundo real.
+    structured_aliases:
+      - literal_form: Equivalent
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Äquivalent
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Équivalent
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكافئ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Ekuivalen
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 等价物
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Equivalente
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    implements:
+      - owl:ObjectProperty
+    required: false
+    multivalued: true
+    exact_mappings:
+      - skos:exactMatch  # skos.rdf:438-454 - "High degree of confidence that concepts can be used interchangeably."
+    close_mappings:
+      - owl:sameAs  # W3C OWL 2 standard - Identity assertion (stronger claim than semantic equivalence).
+      - schema:sameAs  # schemaorg.owl:34129-34148 - "URL unambiguously indicating the item's identity."
+      - la:equivalent  # Linked Art extensions: equivalent instance (skos:exactMatch-like without Concept inference)
+    aliases:
+      - is_or_was_equivalent_to
+      - wikidata_equivalent
+      - record_equivalent
+    comments:
+      - >-
+        DESIGN DECISION: equivalent_to is a symmetric property — if X is equivalent to Y then
+        Y is equivalent to X. No distinct inverse property is needed or meaningful. OOPS P13
+        (missing inverse) is accepted for this slot; declaring owl:SymmetricProperty triggers
+        OOPS P28 (wrong symmetric), so symmetry is documented here instead.
+      - >-
+        Distinction from related_to: equivalent_to asserts semantic identity (same concept),
+        while related_to asserts associative relationship (related but distinct concepts).
+      - >-
+        Use case: Links a heritage custodian type or concept to its Wikidata equivalent.
+        Example: Our "Museum" type is equivalent to Wikidata Q33506.
+    examples:
+      - value: Q33506
+        description: Wikidata equivalence for museum concept
+      - value: Q166118
+        description: Wikidata equivalence for archive concept
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.25

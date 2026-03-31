@@ -1,0 +1,43 @@
+id: https://nde.nl/ontology/hc/enum/TranscriptFormatEnum
+name: transcript_format_enum
+title: Transcript Format Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+
+enums:
+  TranscriptFormatEnum:
+    description: |
+      Format/structure of transcript text content.
+
+      Indicates how the full_text is organized.
+    permissible_values:
+      PLAIN_TEXT:
+        description: |
+          Continuous text without structural markers.
+          No speaker labels, no timestamps, no paragraph breaks.
+          Suitable for simple full-text search indexing.
+      PARAGRAPHED:
+        description: |
+          Text broken into paragraphs.
+          May be based on topic changes, speaker pauses, or semantic units.
+          Improves human readability.
+      STRUCTURED:
+        description: |
+          Text with speaker labels and/or section markers.
+          Format: "[Speaker] Text content" or similar.
+          Enables speaker-specific analysis.
+      TIMESTAMPED:
+        description: |
+          Text with inline time markers.
+          Format: "[00:30] Text content" or similar.
+          Enables temporal navigation in text view.
+      VERBATIM:
+        description: |
+          Exact transcription including fillers, false starts, overlaps.
+          Format preserves "um", "uh", stutters, and interruptions.
+          Required for linguistic analysis.

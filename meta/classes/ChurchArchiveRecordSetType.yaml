@@ -1,0 +1,70 @@
+id: https://nde.nl/ontology/hc/class/ChurchArchiveRecordSetType
+name: ChurchArchiveRecordSetType
+title: Church Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_type
+- ../slots/has_score
+classes:
+  ChurchArchiveRecordSetType:
+    abstract: true
+    class_uri: rico:RecordSetType
+    description: >-
+      Abstract taxonomy node for ecclesiastical holdings, used to categorize record aggregations by provenance and arrangement principle.
+    alt_descriptions:
+      nl: Abstracte taxonomieknoop voor kerkelijke holdings om aggregaties op herkomst en ordeningsprincipe te classificeren.
+      de: Abstrakter Taxonomieknoten für kirchliche Bestände zur Klassifikation von Aggregationen nach Provenienz und Ordnungsprinzip.
+      fr: Nœud taxonomique abstrait pour fonds ecclésiastiques classant les agrégats selon la provenance et le principe d'organisation.
+      es: Nodo taxonómico abstracto para fondos eclesiásticos que clasifica agregados por procedencia y principio de ordenación.
+      ar: عقدة تصنيفية مجردة للمقتنيات الكنسية لتصنيف التجميعات حسب المنشأ ومبدأ الترتيب.
+      id: Simpul taksonomi abstrak untuk koleksi gerejawi guna mengelompokkan agregasi berdasarkan asal-usul dan prinsip penataan.
+      zh: 用于教会馆藏的抽象分类节点，按来源与编排原则对记录聚合体进行归类。
+    structured_aliases:
+    - literal_form: type kerkelijke recordset
+      in_language: nl
+    - literal_form: Typ kirchlicher Überlieferungseinheit
+      in_language: de
+    - literal_form: type d'ensemble documentaire ecclésiastique
+      in_language: fr
+    - literal_form: tipo de conjunto documental eclesiástico
+      in_language: es
+    - literal_form: نوع مجموعة سجلات كنسية
+      in_language: ar
+    - literal_form: jenis set rekod gerejawi
+      in_language: id
+    - literal_form: 教会记录集类型
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    - rico:RecordSetType
+    - crm:E55_Type
+    keywords:
+    - church records
+    - ecclesiastical archives
+    - religious holdings
+    - provenance-based classification
+    see_also:
+    - ChurchArchive
+    - ChurchGovernanceFonds
+    - ParishRegisterSeries
+    - PastoralCorrespondenceCollection
+    - ChurchPropertyFonds
+    - CongregationalLifeCollection
+    slots:
+    - has_type
+    - has_score
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      "Abstract base class for all church archive record set types.\n\n**Definition**:\nA rico:RecordSetType that classifies collections held by church archives.\nChurch archives preserve records documenting religious administration, \nchurch life, pastoral care, and the spiritual community.\n\n**Subclasses**:\n- ChurchGovernanceFonds (synods, councils, consistory records)\n- ParishRegisterSeries (baptisms, marriages, burials)\n- PastoralCorrespondenceCollection (clergy correspondence, visitation records)\n- ChurchPropertyFonds (property, finance, building records)\n- CongregationalLifeCollection (societies, events, publications)\n\n**RiC-O Alignment**:\nThis is an abstract type classifier. Subclasses specify both the domain \n(type of church records) and organizational principle (fonds, series, collection).\n\n**Dual-Class Pattern**:\nChurchArchive (ArchiveOrganizationType) = the custodian institution.\nChurchArchiveRecordSetType (rico:RecordSetType) = the collection types held.\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

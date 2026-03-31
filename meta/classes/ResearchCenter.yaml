@@ -1,0 +1,150 @@
+id: https://nde.nl/ontology/hc/class/research-center
+name: research_center_class
+title: ResearchCenter Class
+imports:
+- linkml:types
+- ../enums/ResearchCenterTypeEnum
+- ../slots/accept
+- ../slots/has_description
+- ../slots/has_facility
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/in_project
+- ../slots/publish
+- ../slots/focus_on
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+classes:
+  ResearchCenter:
+    is_a: ReconstructedEntity
+    class_uri: schema:ResearchOrganization
+    description: >-
+      Research center or research facility operated by or affiliated with a heritage custodian.
+    alt_descriptions:
+      nl: Onderzoekscentrum of onderzoeksfaciliteit beheerd door of gelieerd aan een erfgoedbeheerder.
+      de: Forschungszentrum oder Forschungseinrichtung, betrieben von oder verbunden mit einem Heritage-Custodian.
+      fr: Centre de recherche ou installation de recherche géré par ou affilié à un dépositaire du patrimoine.
+    structured_aliases:
+    - literal_form: onderzoekscentrum
+      in_language: nl
+    - literal_form: Forschungszentrum
+      in_language: de
+    - literal_form: centre de recherche
+      in_language: fr
+    comments:
+    - Distinguished from ConservationLab (object treatment) by emphasis on academic research and publication.
+    - Typical characteristics include academic focus, specialized staff, library/archive access, publication output.
+    - May have fellowship programs, publication series, university affiliations.
+    broad_mappings:
+    - schema:ResearchOrganization
+    close_mappings:
+    - org:Site
+    - wd:Q31855
+    - wd:Q1542449
+    related_mappings:
+    - schema:EducationalOrganization
+    - hc:ConservationLab
+    - hc:EducationCenter
+    slots:
+    - accept
+    - has_type
+    - publish
+    - has_facility
+    - in_project
+    - has_description
+    - identified_by
+    - has_label
+    - focus_on
+    - has_quantity
+    - has_score
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/rijksmuseum-research
+      has_label:
+        required: true
+        inlined: false
+        examples:
+        - value:
+            label_text: Rijksmuseum Research Department
+        - value:
+            label_text: KB Digital Humanities Lab
+        - value:
+            label_text: NIOD Institute for War, Holocaust and Genocide Studies
+      has_description:
+        inlined: false
+        examples:
+        - value:
+            description_text: The Rijksmuseum Research Department conducts scholarly research on Dutch art and history, with particular focus on the Golden Age. Publishes the Rijksmuseum Bulletin and monograph series.
+      has_type:
+        range: ResearchCenterTypeEnum
+        required: true
+        examples:
+        - value: RESEARCH_DEPARTMENT
+        - value: DIGITAL_HUMANITIES_CENTER
+        - value: RESEARCH_INSTITUTE
+      focus_on:
+        multivalued: true
+        examples:
+        - value: Dutch Golden Age painting
+        - value: Technical art history
+        - value: Provenance research
+        - value: Leiden University
+      publish:
+        range: boolean
+        examples:
+        - value: true
+        - value: Rijksmuseum Bulletin
+      has_facility:
+        range: boolean
+        examples:
+        - value: true
+      accept:
+        range: VisitingScholar
+        inlined: true
+        multivalued: true
+        examples:
+        - value:
+      in_project:
+        multivalued: true
+        examples:
+        - value: Rembrandt Database
+        - value: Operation Night Watch
+      has_quantity:
+        range: integer
+        inlined: false
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    notes:
+    - |
+      Preserved from prior description (commit 6251b84d):
+
+      Preserved from prior description (commit 6251b84d):
+
+      "Research center or research facility operated by or affiliated with a heritage custodian.\n\n**DEFINITION**:\n\nA ResearchCenter is a dedicated facility where scholarly research, academic\nstudy, and knowledge production take place in connection with a heritage\ncustodian's mission. Distinguished from ConservationLab (which focuses on\nobject treatment) by its emphasis on academic research and publication.\n\n**SCHEMA.ORG ALIGNMENT**:\n\n`schema:ResearchOrganization` - \"A Research Organization, such as a research\ninstitute or university research group.\"\n\n**WIKIDATA TYPE LINKAGE**:\n\nThis class links to `ResearchCenterTypeEnum` which provides 45 Wikidata-sourced\nresearch organization types including:\n- Q31855 (research institute)\n- Q1542449 (research center)\n- Q7315155 (research department)\n- Q62078547 (digital humanities center)\n- Q16917 (hospital - for medical research)\n\n**DISTINCTION FROM OTHER AUXILIARY PLACE TYPES**:\n\n| Type | Primary Focus | Output\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

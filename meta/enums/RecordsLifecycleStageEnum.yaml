@@ -1,0 +1,192 @@
+# Records Lifecycle Stage Enumeration
+# Three-tier lifecycle for organizational records as they move from active use to heritage
+#
+# Pattern:
+#   CustodianAdministration (ACTIVE) → CustodianArchive (INACTIVE) → CustodianCollection (HERITAGE)
+#
+# This enum is used by document classes (FinancialStatement, ArticlesOfAssociation, etc.)
+# to indicate their current position in the records lifecycle
+
+id: https://nde.nl/ontology/hc/enum/RecordsLifecycleStageEnum
+name: records_lifecycle_stage_enum
+title: Records Lifecycle Stage Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+
+
+enums:
+  RecordsLifecycleStageEnum:
+    description: |
+      Three-tier records lifecycle indicating current position of an organizational document.
+      
+      **LIFECYCLE MODEL**:
+      
+      ```
+      ┌─────────────────────────────────────────────────────────────────────┐
+      │  ACTIVE (CustodianAdministration)                                   │
+      │  - Records in current use for organizational operations             │
+      │  - Actively referenced, updated, or legally required                │
+      │  - Managed by originating department                                │
+      │  - Retention period has NOT expired                                 │
+      └─────────────────────────────────────────────────────────────────────┘
+                                     ↓
+                          (Retention period ends,
+                           no longer active use,
+                           transferred to records management)
+                                     ↓
+      ┌─────────────────────────────────────────────────────────────────────┐
+      │  INACTIVE (CustodianArchive)                                        │
+      │  - Records no longer in active use but retained                     │
+      │  - Subject to retention schedule                                    │
+      │  - May be accessed for reference, legal, audit purposes             │
+      │  - Managed by records management/archive                            │
+      │  - Awaiting disposal or heritage transfer                           │
+      └─────────────────────────────────────────────────────────────────────┘
+                                     ↓
+                          (Historical significance recognized,
+                           selected for permanent preservation)
+                                     ↓
+      ┌─────────────────────────────────────────────────────────────────────┐
+      │  HERITAGE (CustodianCollection)                                     │
+      │  - Records of enduring historical or cultural value                 │
+      │  - Permanent preservation                                           │
+      │  - Part of institutional heritage collection                        │
+      │  - May be made accessible to researchers                            │
+      └─────────────────────────────────────────────────────────────────────┘
+      ```
+      
+      **RiC-O ALIGNMENT**:
+      
+      - Maps to rico:hasRecordState conceptually
+      - Links document instances to CustodianAdministration, CustodianArchive, or CustodianCollection
+      
+      **EXAMPLES BY DOCUMENT TYPE**:
+      
+      | Document | ACTIVE | INACTIVE | HERITAGE |
+      |----------|--------|----------|----------|
+      | Financial Statement | Current year | Prior years (7-year retention) | Founding era financials |
+      | Articles of Association | Current version | Prior versions | Original founding articles |
+      | Employment Records | Current employees | Terminated (retention period) | Notable historical figures |
+      | Board Minutes | Current year | Prior years | Founding board meetings |
+      
+    permissible_values:
+      ACTIVE:
+        description: |
+          Records in active operational use.
+          
+          **Location**: CustodianAdministration
+          
+          **Characteristics**:
+          - Currently referenced for operations
+          - Legal or regulatory requirement for availability
+          - Subject to modification or update
+          - Managed by originating unit/department
+          
+          **Examples**:
+          - Current fiscal year financial statements
+          - Current version of articles of association
+          - Active employee personnel files
+          - Current contract documents
+          
+          **Duration**: Typically 1-3 years depending on document type
+        meaning: rico:hasRecordState
+        
+      INACTIVE:
+        description: |
+          Records no longer in active use but retained per policy.
+          
+          **Location**: CustodianArchive
+          
+          **Characteristics**:
+          - Retention period in effect
+          - Occasional reference for audit, legal, compliance
+          - Awaiting eventual disposal or heritage transfer
+          - Managed by records management or archive unit
+          
+          **Examples**:
+          - Prior year financial statements (7-year retention)
+          - Superseded articles of association
+          - Terminated employee records (retention period)
+          - Expired contracts
+          
+          **Duration**: Varies by document type and jurisdiction
+          - Financial records: 7-10 years typical
+          - Employment records: 7 years post-termination
+          - Corporate records: Often permanent
+        meaning: rico:hasRecordState
+        
+      HERITAGE:
+        description: |
+          Records of permanent historical or cultural value.
+          
+          **Location**: CustodianCollection
+          
+          **Characteristics**:
+          - Permanent preservation
+          - Historical, cultural, or evidentiary significance
+          - May be accessible to researchers
+          - Part of institutional memory/heritage
+          
+          **Examples**:
+          - Original founding articles (notarial deed)
+          - Historical financial records (pre-1900)
+          - Records of notable historical figures
+          - Founding board minutes
+          - Records documenting organizational milestones
+          
+          **Selection Criteria**:
+          - Historical significance
+          - Uniqueness
+          - Evidentiary value
+          - Research potential
+          - Cultural/heritage value
+        meaning: rico:hasRecordState
+        
+      PRE_EXISTENCE:
+        description: |
+          Special stage for documents that exist BEFORE the organization.
+          
+          **Location**: NOT in CustodianAdministration (organization doesn't exist yet!)
+          
+          **Characteristics**:
+          - Document predates the organization's legal existence
+          - Cannot be part of organizational records lifecycle
+          - Held by notary, founder, or registration authority
+          - Becomes ACTIVE only after organization is registered
+          
+          **Examples**:
+          - Articles of association (statuten) before registration
+          - Founding agreement before incorporation
+          - Incorporation documents during approval process
+          
+          **Temporal Paradox**:
+          For organizations legally required to have articles at registration
+          (Dutch BV, stichting), the articles EXIST before the organization exists.
+          
+          They can NEVER have been CustodianAdministration because there was
+          no Custodian to have Administration at that point.
+          
+          **Transition**:
+          PRE_EXISTENCE → ACTIVE (upon organization registration)
+          
+          **Note**: This stage resolves the ontological paradox of founding
+          documents that predate the entity they document.
+        meaning: prov:Entity
+    
+    comments:
+      - "Three-tier lifecycle: ACTIVE → INACTIVE → HERITAGE"
+      - "PRE_EXISTENCE handles founding documents that predate the organization"
+      - "Maps to CustodianAdministration, CustodianArchive, CustodianCollection respectively"
+      - "RiC-O rico:hasRecordState conceptual alignment"
+      - "Temporal transitions should be documented with timestamps"
+    
+    see_also:
+      - "https://www.ica.org/standards/RiC/ontology#hasRecordState"
+      - "https://nde.nl/ontology/hc/class/CustodianAdministration"
+      - "https://nde.nl/ontology/hc/class/CustodianArchive"
+      - "https://nde.nl/ontology/hc/class/CustodianCollection"
+      - "https://nde.nl/ontology/hc/slot/current_archival_stage"

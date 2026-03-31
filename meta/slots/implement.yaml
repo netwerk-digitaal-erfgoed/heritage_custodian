@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: implement
+# ==============================================================================
+# Links an entity to a plan, specification, or algorithm it realizes.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line              | Mapping | Notes                                            |
+# |---------------|-----------------------|------------------------|---------|--------------------------------------------------|
+# | **SSN**       | `ssn:implements`       | ssn.ttl:165-171        | close   | "Relation between an entity that implements a     |
+# |               |                        |                        |         | Procedure in some executable way and the           |
+# |               |                        |                        |         | Procedure." Same core semantics, but SSN domain   |
+# |               |                        |                        |         | is sensor/system-specific.                        |
+# | **DOAP**      | `doap:implements`      | doap.rdf:844-852       | close   | "A specification that a project implements. Could |
+# |               |                        |                        |         | be a standard, API or legally defined level of     |
+# |               |                        |                        |         | conformance." Same core semantics, but DOAP       |
+# |               |                        |                        |         | domain is software project-specific.              |
+# | **PROV-O**    | `prov:used`            | prov.ttl:1039-1053     | related | "A prov:Entity that was used by this              |
+# |               |                        |                        |         | prov:Activity." Using an entity is not the same   |
+# |               |                        |                        |         | as implementing a plan or specification.          |
+# | **DCTerms**   | `dcterms:conformsTo`   | dcterms.rdf:987-1010   | related | "An established standard to which the described   |
+# |               |                        |                        |         | resource conforms." Passive compliance, not        |
+# |               |                        |                        |         | active realization.                               |
+#
+# DEMOTED: prov:used from close→related (using ≠ implementing).
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/implement
+name: implement
+title: Implement
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  ssn: http://www.w3.org/ns/ssn/
+  doap: http://usefulinc.com/ns/doap#
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  implement:
+    slot_uri: hc:implement
+    range: string  # uriorcurie
+    multivalued: true
+    description: >-
+      Realizes or puts into effect a specific plan, design, specification, or
+      algorithm in a concrete form.
+    alt_descriptions:
+      nl: >-
+        Realiseert of voert een specifiek plan, ontwerp, specificatie of
+        algoritme uit in een concrete vorm.
+      de: >-
+        Realisiert oder setzt einen bestimmten Plan, Entwurf, eine
+        Spezifikation oder einen Algorithmus in konkreter Form um.
+      fr: >-
+        Realise ou met en oeuvre un plan, un concept, une specification ou
+        un algorithme specifique sous une forme concrete.
+      ar: >-
+        ينفذ أو يطبق خطة أو تصميما أو مواصفة أو خوارزمية محددة في شكل
+        ملموس.
+      id: >-
+        Mewujudkan atau menerapkan rencana, desain, spesifikasi, atau
+        algoritma tertentu dalam bentuk konkret.
+      zh: >-
+        以具体形式实现或执行特定的计划、设计、规范或算法。
+      es: >-
+        Realiza o pone en practica un plan, diseno, especificacion o
+        algoritmo especifico en forma concreta.
+    structured_aliases:
+      - literal_form: Implementatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Implementierung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Implementation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تنفيذ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Implementasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 实施
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Implementacion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    aliases:
+      - implements_or_implemented
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - ssn:implements  # ssn.ttl:165-171 - "Relation between an entity that implements a Procedure in some executable way and the Procedure." Same core semantics; SSN domain is sensor/system-specific.
+      - doap:implements  # doap.rdf:844-852 - "A specification that a project implements." Same core semantics; DOAP domain is software project-specific.
+    related_mappings:
+      - prov:used  # prov.ttl:1039-1053 - "A prov:Entity that was used by this prov:Activity." Using ≠ implementing.
+      - dcterms:conformsTo  # dcterms.rdf:987-1010 - "An established standard to which the described resource conforms." Passive compliance, not active realization.

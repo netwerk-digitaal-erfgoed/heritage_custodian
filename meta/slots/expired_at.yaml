@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: expired_at
+# ==============================================================================
+# The date/time when an entity ceased to be valid or effective.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line              | Mapping | Notes                              |
+# |----------------|---------------------------|------------------------|---------|------------------------------------|
+# | **Schema.org** | `schema:expires`          | schemaorg.owl:17832-52 | exact   | "Date the content expires and is   |
+# |                |                           |                        |         | no longer useful or available"     |
+# | **PROV-O**     | `prov:invalidatedAtTime`  | prov.ttl:743-753       | close   | Time of invalidation (broader)     |
+# | **DC Terms**   | `dcterms:valid`           | dcterms.ttl:11116-75   | related | Date range of validity             |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Updated slot_uri to schema:expires (exact match), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/expired_at
+name: expired_at
+title: Expired At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  expired_at:
+    slot_uri: schema:expires
+    description: >-
+      To cease to be valid, effective, or active at a specific date or 
+      point in time.
+    alt_descriptions:
+      nl: >-
+        Ophouden geldig, effectief of actief te zijn op een specifieke 
+        datum of tijdstip.
+      de: >-
+        An einem bestimmten Datum oder Zeitpunkt aufhören, gültig, wirksam 
+        oder aktiv zu sein.
+      fr: >-
+        Cesser d'être valide, effectif ou actif à une date ou un moment 
+        spécifique.
+      ar: >-
+        أن ينتهي كونه صالحًا أو فعالًا أو نشطًا في تاريخ أو وقت محدد.
+      id: >-
+        Berhenti menjadi valid, efektif, atau aktif pada tanggal atau 
+        titik waktu tertentu.
+      zh: >-
+        在特定日期或时间点停止有效、生效或活跃。
+      es: >-
+        Dejar de ser válido, efectivo o activo en una fecha o momento 
+        específico.
+    structured_aliases:
+      - literal_form: verlopen op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgelaufen am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: expiré le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: انتهى في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: kedaluwarsa pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 过期于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: expirado el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    exact_mappings:
+    close_mappings:
+      - prov:invalidatedAtTime  # prov.ttl:743-753 - Time of invalidation
+    related_mappings:
+      - dcterms:valid  # dcterms.ttl:11116-11175 - Date range of validity
+    aliases:
+      - is_or_was_expired_at
+      - expires_on_expired_at
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to indicate when memberships, certifications, 
+        licenses, subscriptions, or other time-limited entities expire.

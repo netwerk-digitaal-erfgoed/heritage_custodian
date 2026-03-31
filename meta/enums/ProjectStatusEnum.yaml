@@ -1,0 +1,221 @@
+# ProjectStatusEnum
+# Lifecycle states for heritage network projects and initiatives
+#
+# Created November 2025 to support Project class linking:
+# - EncompassingBody (NetworkOrganisation) → Project
+# - Custodian → participated_in_projects → Project
+#
+# Example: NDE Versnellen 2024 project status tracking
+
+id: https://nde.nl/ontology/hc/enum/ProjectStatus
+name: ProjectStatusEnum
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  ProjectStatusEnum:
+    description: |
+      Lifecycle status of a heritage network project or initiative.
+      
+      Projects run by EncompassingBody organizations (especially NetworkOrganisation)
+      have defined lifecycles from conception through completion or discontinuation.
+      
+      **Lifecycle Stages**:
+      
+      1. **PROPOSED** - Project concept submitted for approval
+      2. **APPROVED** - Project approved, funding secured, not yet started
+      3. **IN_PROGRESS** - Project actively underway
+      4. **ON_HOLD** - Temporarily suspended (funding, capacity, external factors)
+      5. **COMPLETED** - Project finished, deliverables achieved
+      6. **DISCONTINUED** - Project terminated before completion
+      7. **EXTENDED** - Project extended beyond original timeline
+      
+      **Example - NDE Versnellen 2024**:
+      ```yaml
+      Project:
+        project_name: "Versnellen 2024"
+        project_status: IN_PROGRESS
+        # Started 2024, active work ongoing
+      ```
+      
+      **Status Transitions**:
+      ```
+      PROPOSED → APPROVED → IN_PROGRESS → COMPLETED
+                    ↓              ↓
+                  (rejected)    ON_HOLD → IN_PROGRESS
+                                   ↓
+                              DISCONTINUED
+                              
+      IN_PROGRESS → EXTENDED → COMPLETED
+      ```
+    
+    permissible_values:
+      PROPOSED:
+        description: |
+          Project has been conceptualized and submitted for approval.
+          Not yet approved or funded.
+          
+          **Characteristics**:
+          - Project proposal exists
+          - Awaiting governance/board approval
+          - Funding not yet secured
+          - No active work underway
+          
+          **Examples**:
+          - Grant application submitted to NDE board
+          - Partnership proposal under review
+          - Pilot program awaiting ministry approval
+        meaning: schema:EventStatusType
+        comments:
+          - "PROPOSED = concept stage, awaiting approval"
+          - "No commitment of resources yet"
+      
+      APPROVED:
+        description: |
+          Project has been approved and funded but work has not yet begun.
+          
+          **Characteristics**:
+          - Governance/board approval received
+          - Funding secured or committed
+          - Start date defined (future)
+          - Staff/resources being allocated
+          
+          **Examples**:
+          - NDE project approved in November, starting January
+          - EU Horizon grant awarded, contracting underway
+          - Ministry mandate issued, implementation planning
+        meaning: schema:EventStatusType
+        comments:
+          - "APPROVED = green light given, pre-launch phase"
+          - "Resources committed but work not started"
+      
+      IN_PROGRESS:
+        description: |
+          Project is actively underway with work being performed.
+          
+          **Characteristics**:
+          - Active work by project team
+          - Deliverables being produced
+          - Budget being spent
+          - Regular progress reporting
+          
+          **Examples**:
+          - NDE Versnellen 2024 - active acceleration program
+          - Europeana aggregation project - ongoing data harvesting
+          - Digitization partnership - scanning and metadata creation
+        meaning: schema:EventStatusType
+        comments:
+          - "IN_PROGRESS = active project execution"
+          - "Primary status during project lifecycle"
+      
+      ON_HOLD:
+        description: |
+          Project temporarily suspended due to external factors.
+          Expected to resume when conditions change.
+          
+          **Characteristics**:
+          - Work paused (not cancelled)
+          - Resources may be reallocated temporarily
+          - Specific resumption conditions defined
+          - Different from DISCONTINUED (reversible)
+          
+          **Reasons**:
+          - Funding delay (grant payment pending)
+          - Staff capacity (key personnel unavailable)
+          - External dependency (partner not ready)
+          - Strategic reprioritization
+          - COVID-19 or similar disruption
+          
+          **Examples**:
+          - Digitization project paused due to renovation
+          - Partnership suspended pending partner funding
+          - Training program delayed for facility upgrade
+        meaning: schema:EventStatusType
+        comments:
+          - "ON_HOLD = reversible pause, not cancellation"
+          - "Must have defined resumption conditions"
+      
+      COMPLETED:
+        description: |
+          Project has finished with deliverables achieved.
+          All objectives met or formally closed.
+          
+          **Characteristics**:
+          - All deliverables produced or accepted
+          - Budget fully spent or returned
+          - Final reporting complete
+          - Lessons learned documented
+          - May transition to operational status
+          
+          **Examples**:
+          - NDE Versnellen 2023 - completed acceleration cycle
+          - Metadata enrichment project - target records enriched
+          - Training program - all workshops delivered
+        meaning: schema:EventStatusType
+        comments:
+          - "COMPLETED = successful conclusion"
+          - "Deliverables achieved, project closed"
+      
+      DISCONTINUED:
+        description: |
+          Project terminated before completion. Work stopped with no
+          expectation of resumption.
+          
+          **Characteristics**:
+          - Work permanently stopped
+          - Deliverables incomplete or abandoned
+          - Formal closure decision made
+          - Lessons learned documented
+          - Not same as ON_HOLD (irreversible)
+          
+          **Reasons**:
+          - Funding withdrawn or exhausted
+          - Strategic priorities changed
+          - Partner withdrawal
+          - Technical infeasibility discovered
+          - Superseded by different initiative
+          
+          **Examples**:
+          - Partnership cancelled due to partner insolvency
+          - Technology project abandoned for obsolescence
+          - Grant terminated for non-compliance
+        meaning: schema:EventStatusType
+        comments:
+          - "DISCONTINUED = permanent termination"
+          - "Different from ON_HOLD (irreversible)"
+          - "Requires formal closure documentation"
+      
+      EXTENDED:
+        description: |
+          Project extended beyond original timeline while remaining active.
+          Continuation approved with revised end date.
+          
+          **Characteristics**:
+          - Original end date passed
+          - Extension formally approved
+          - Revised timeline defined
+          - Work continues (like IN_PROGRESS)
+          - May involve additional funding
+          
+          **Examples**:
+          - Multi-year partnership extended for additional year
+          - Digitization project expanded scope, extended timeline
+          - Grant period extended with no-cost extension
+        meaning: schema:EventStatusType
+        comments:
+          - "EXTENDED = approved continuation beyond original timeline"
+          - "Functionally similar to IN_PROGRESS but denotes extension"
+    
+    comments:
+      - "ProjectStatusEnum tracks project lifecycle from proposal through completion"
+      - "ON_HOLD vs DISCONTINUED: reversible vs permanent"
+      - "EXTENDED denotes approved continuation beyond original timeline"
+      - "Maps to schema:EventStatusType for broad interoperability"

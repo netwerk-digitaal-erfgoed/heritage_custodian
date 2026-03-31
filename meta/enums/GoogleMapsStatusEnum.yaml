@@ -1,0 +1,38 @@
+# Google Maps Status Enumeration - Status of Google Maps API enrichment
+# Extracted from custodian_source.yaml per Rule 38 (modular schema files)
+
+id: https://nde.nl/ontology/hc/enums/GoogleMapsStatusEnum
+name: GoogleMapsStatusEnum
+title: Google Maps Status Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+
+imports:
+  - linkml:types
+
+default_range: string
+
+enums:
+  GoogleMapsStatusEnum:
+    description: Status of Google Maps API enrichment
+    permissible_values:
+      SUCCESS:
+        description: Successfully fetched place data
+      FOUND:
+        description: Place found in Google Maps (alias for SUCCESS)
+      NOT_FOUND:
+        description: Place not found in Google Maps
+      FAILED:
+        description: API error during fetch
+      SKIPPED:
+        description: Enrichment skipped
+      NO_MATCH:
+        description: No matching place found (alias for NOT_FOUND)
+      FALSE_POSITIVE_REMOVED:
+        description: Previously matched place was determined to be a false positive and removed
+      MANUALLY_CORRECTED:
+        description: Manually corrected after review
+      UNVERIFIED:
+        description: Place data not yet verified

@@ -1,0 +1,54 @@
+id: https://nde.nl/ontology/hc/class/DataServiceEndpoint
+name: data_service_endpoint
+title: DataServiceEndpoint Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  schema: http://schema.org/
+  hydra: http://www.w3.org/ns/hydra/core#
+imports:
+- linkml:types
+- ../slots/has_score
+- ../slots/has_url
+- ../slots/required
+- ../slots/has_format
+classes:
+  DataServiceEndpoint:
+    abstract: true
+    class_uri: dcat:DataService
+    description: >-
+      Abstract service-access node representing a callable interface for
+      retrieval, query, or delivery operations over managed resources.
+    alt_descriptions:
+      nl: Abstract servicetoegangsknooppunt dat een aanroepbare interface voor ophalen bevragen of leveren van beheerde bronnen representeert.
+      de: Abstrakter Servicezugangsknoten der eine aufrufbare Schnittstelle fuer Abruf- Abfrage- oder Lieferoperationen darstellt.
+      fr: Noeud abstrait d acces au service representant une interface appelable pour des operations de recuperation requete ou livraison.
+      es: Nodo abstracto de acceso a servicio que representa una interfaz invocable para operaciones de recuperacion consulta o entrega.
+      ar: عقدة مجردة لوصول الخدمة تمثل واجهة قابلة للاستدعاء لعمليات الاسترجاع أو الاستعلام أو التسليم.
+      id: Simpul akses layanan abstrak yang merepresentasikan antarmuka yang dapat dipanggil untuk operasi pengambilan kueri atau pengiriman.
+      zh: 表示可调用接口的抽象服务访问节点，用于检索、查询或交付操作。
+    structured_aliases:
+    - {literal_form: service-endpoint, in_language: nl}
+    - {literal_form: Service-Endpunkt, in_language: de}
+    - {literal_form: point d acces de service, in_language: fr}
+    - {literal_form: punto de acceso de servicio, in_language: es}
+    - {literal_form: نقطة نهاية خدمة, in_language: ar}
+    - {literal_form: endpoint layanan, in_language: id}
+    - {literal_form: 服务端点, in_language: zh}
+    broad_mappings:
+    - dcat:DataService
+    close_mappings:
+    - schema:WebAPI
+    - hydra:ApiDocumentation
+    comments:
+    - Abstract class; use concrete endpoint subtype classes for protocol-specific behavior
+    slots:
+    - required
+    - has_format
+    - has_url
+    - has_score
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

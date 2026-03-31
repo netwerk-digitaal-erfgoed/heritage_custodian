@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: indicate
+# ==============================================================================
+# A sign, signal, or marker that points to a particular condition, state, or value.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                   | Mapping  | Notes                                                        |
+# |---------------|-----------------------|-----------------------------|----------|--------------------------------------------------------------|
+# | **PROV-O**    | `prov:generated`      | prov.ttl:579-591            | related  | Activity→Entity it generated; generation ≠ indication.       |
+# | **Schema.org**| `schema:result`       | schemaorg.owl:33466-33487   | related  | Action→Thing produced; result of action, not signalling.     |
+# | **SSN/SOSA**  | `sosa:hasResult`      | sosa.ttl:351-361            | related  | Observation→Result; observation result, not general signal.  |
+# | **CIDOC-CRM** | `crm:P141_assigned`   | CIDOC:4232-4244             | related  | E13 Attribute Assignment→E1 Entity; attribution, not signal. |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/indicate
+name: indicate
+title: indicate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  sosa: http://www.w3.org/ns/sosa/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  indicate:
+    slot_uri: hc:indicate
+    description: >-
+      To serve as a sign, signal, or marker that points to, specifies, or suggests
+      a particular condition, state, or value.
+    alt_descriptions:
+      nl: >-
+        Dienen als teken, signaal of markering die wijst op, specificeert of
+        suggereert een bepaalde toestand, staat of waarde.
+      de: >-
+        Als Zeichen, Signal oder Markierung dienen, das auf einen bestimmten
+        Zustand, Status oder Wert hinweist, ihn spezifiziert oder nahelegt.
+      fr: >-
+        Servir de signe, signal ou marqueur qui indique, spécifie ou suggère
+        une condition, un état ou une valeur particulière.
+      ar: >-
+        العمل كعلامة أو إشارة أو دلالة تشير إلى أو تحدد أو توحي بحالة أو
+        وضع أو قيمة معينة.
+      id: >-
+        Berfungsi sebagai tanda, sinyal, atau penanda yang menunjukkan, menentukan,
+        atau menyarankan suatu kondisi, keadaan, atau nilai tertentu.
+      zh: >-
+        作为标志、信号或标记，指向、指定或暗示特定的条件、状态或值。
+      es: >-
+        Servir como signo, señal o marcador que apunta a, especifica o sugiere
+        una condición, estado o valor particular.
+    structured_aliases:
+      - literal_form: Indicatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Anzeige
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Indication
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: دلالة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Indikasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 指示
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Indicación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    multivalued: false
+    related_mappings:
+      - prov:generated      # prov.ttl:579-591 - Activity→Entity generated; production ≠ indication
+      - schema:result       # schemaorg.owl:33466-33487 - Action→Thing; result ≠ signal
+      - sosa:hasResult      # sosa.ttl:351-361 - Observation→Result; observation-specific
+      - crm:P141_assigned   # CIDOC:4232-4244 - E13 Attr Assignment→E1 Entity; attribution
+    annotations:
+      replaces_slots: digital_professional
+      migration_date: '2026-01-25'
+      custodian_types: '["*"]'
+    comments:
+      - Generic indication slot
+      - Links enrichment/analysis to its result/assessment
+      - Replaces digital_professional slot
+      - 'RiC-O naming: indicatesOrIndicated'
+      - >-
+        Usage pattern: WhatsAppEnrichment → indicates_or_indicated →
+        DigitalProfessionalAssessment → estimates_or_estimated →
+        DigitalConfidence / emphasizes_or_emphasized → DigitalProficiency
+      - 'Migrated from: digital_professional → indicates_or_indicated + DigitalProficiency/Assessment'
+      - Cardinality is single or multivalued depending on context
+    examples:
+      - value:
+          likely_whatsapp_proficient: true
+        description: Indicates digital proficiency assessment
+    aliases:
+      - indicates_or_indicated

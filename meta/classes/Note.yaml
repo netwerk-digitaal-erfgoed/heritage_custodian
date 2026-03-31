@@ -1,0 +1,173 @@
+id: https://nde.nl/ontology/hc/class/Note
+name: note_class
+title: Note Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_score
+- ../slots/in_language
+- ../slots/has_content
+- ../slots/has_timestamp
+- ../slots/has_type
+classes:
+  Note:
+    class_uri: hc:Note
+    description: >-
+      Structured annotation entry with optional language tag, date marker, and
+      confidence metadata.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde annotatie-invoer met optionele taalcode,
+        datummarkering en betrouwbaarheidsmetadata.
+      de: >-
+        Strukturierter Annotationseintrag mit optionalem Sprachkennzeichen,
+        Datumsangabe und Vertrauensmetadaten.
+      fr: >-
+        Entrée d'annotation structurée avec balise linguistique facultative,
+        repère de date et métadonnées de confiance.
+      es: >-
+        Entrada de anotación estructurada con etiqueta de idioma opcional,
+        marca temporal y metadatos de confianza.
+      ar: >-
+        مُدخل شرح منظم مع وسم لغة اختياري وعلامة زمنية وبيانات وصفية للثقة.
+      id: >-
+        Entri anotasi terstruktur dengan tag bahasa opsional, penanda tanggal,
+        dan metadata tingkat kepercayaan.
+      zh: >-
+        结构化注释条目，支持可选语言标签、日期标记和置信度元数据。
+
+    close_mappings:
+    - skos:note
+    - rdfs:comment
+    - dcterms:description
+    structured_aliases:
+    - literal_form: annotatie-item
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Annotationseintrag
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: entrée d'annotation
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: entrada de anotación
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مُدخل توضيحي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: entri anotasi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 注释条目
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Reusable documentation unit for claims, conservation context, and extraction rationale.
+    - Preserved migration context remains in notes and should be retained for governance traceability.
+    - 'Preserved from prior description: Typed note content with optional language, timestamp, and confidence metadata.'
+    keywords:
+    - documentation annotation
+    - provenance context
+    - confidence remark
+    - reusable metadata unit
+
+    slots:
+    - has_type
+    - has_content
+    - has_timestamp
+    - in_language
+    - has_score
+
+    slot_usage:
+      has_type:
+        required: false
+        examples:
+        - value: claim
+        - value: category
+        - value: conservation
+        - value: extraction
+        - value: general
+      has_content:
+#         range: string
+        required: true
+      has_timestamp:
+        range: date
+        required: false
+      in_language:
+#         range: string
+        required: false
+        pattern: "^[a-z]{2}$"
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      A typed note with optional provenance metadata.
+
+      **Purpose**:
+      Note provides a reusable class for representing documentation notes
+      across the heritage custodian schema. Supports typed notes (claim,
+      appraisal, arrangement, conservation, extraction, etc.) with language
+      tagging and dates.
+
+      **Ontological Alignment**:
+      - **Primary**: `skos:note` - general note
+      - **Close**: `rdfs:comment` - comment on resource
+
+      **Use Cases**:
+      - Claim notes documenting extraction details
+      - Category notes for classification explanations
+      - Certainty notes for confidence documentation
+      - Conservation notes documenting treatments
+      - Extraction notes for pipeline documentation
+      - General documentation notes
+
+      **Replaces** (per slot_fixes.yaml):
+      - `claim_note` (string) → has_note with Note class
+      - `category_note` (string) → has_note with Note class
+      - `certainty_note` (string) → has_note with Note class
+      - `conservation_note` (string) → has_note with Note class
+      - `copy_note` (string) → has_note with Note class
+      - `event_note` (string) → has_note with Note class
+      - `extraction_note` (string) → has_note with Note class
+      - `feature_note` (string) → has_note with Note class
+      - Other *_note slots per slot_fixes.yaml
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Generic note class applicable to all custodian types.
+      custodian_types_primary:
+      specificity_score: 0.2
+      specificity_rationale: Very broadly applicable generic class for documentation notes.
+
+    examples:
+    - value: |
+        note_type: claim
+        note_content: "Additional verification required for this claim. Source webpage may have changed since extraction."
+        note_date: "2026-01-18"
+        language: en
+      description: Claim-focused annotation entry with language and date metadata.
+    - value: |
+        note_type: extraction
+        note_content: "Biography truncated from longer text on page. Original text exceeded 500 chars."
+        note_date: "2025-11-29"
+        language: en
+      description: Extraction-focused annotation entry preserving pipeline rationale.
+    - value: |
+        note_type: conservation
+        note_content: "Surface cleaning completed. No further treatment recommended at this time."
+        note_date: "2024-06-15"
+        language: en
+      description: Conservation-focused annotation entry documenting treatment context.

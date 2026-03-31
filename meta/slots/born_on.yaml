@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: born_on
+# ==============================================================================
+# Date of birth for a person or agent.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                              |
+# |---------------|-----------------------|-------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:birthDate`    | schemaorg.owl:10099-10102| exact  | "Date of birth."                   |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Updated slot_uri to schema:birthDate, cleaned description,
+#                       added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/born_on
+name: born_on
+title: Born On
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  org: http://www.w3.org/ns/org#
+  oa: http://www.w3.org/ns/oa#
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  born_on:
+    slot_uri: schema:birthDate
+    description: >-
+      The date on which a person came into existence or was brought forth
+      into life.
+    alt_descriptions:
+      nl: >-
+        De datum waarop een persoon tot bestaan kwam of ter wereld werd gebracht.
+      de: >-
+        Das Datum, an dem eine Person ins Leben getreten ist oder geboren wurde.
+      fr: >-
+        La date à laquelle une personne est venue à l'existence ou est née.
+      ar: >-
+        التاريخ الذي وُلد فيه الشخص أو جاء إلى الوجود.
+      id: >-
+        Tanggal ketika seseorang lahir atau mulai ada.
+      zh: >-
+        一个人出生或诞生的日期。
+      es: >-
+        La fecha en que una persona nació o vino a la existencia.
+    structured_aliases:
+      - literal_form: geboren op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geboren am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: né le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مولود في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: lahir pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 出生于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: nacido el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    multivalued: false
+    exact_mappings:
+    aliases:
+      - is_or_was_born_on
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MIGRATION NOTE (2026-02-03)**:
+        Migrated from is_or_was_born_on for conciseness.
+        Updated slot_uri from hc:bornOn to schema:birthDate since exact mapping exists.

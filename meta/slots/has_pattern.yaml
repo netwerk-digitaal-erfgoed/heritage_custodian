@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: has_pattern
+# ==============================================================================
+# Identifies or describes a recurring design, sequence, structure, or regularity
+# found within an object, data set, or series of events.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                      | File/Line                        | Mapping  | Notes                                                        |
+# |----------------|-------------------------------|----------------------------------|----------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:pattern`              | schemaorg.owl:29270-29293        | related  | Product/CreativeWork→Text; visual/design pattern ("polka dot"). |
+# | **Schema.org** | `schema:repeatFrequency`      | schemaorg.owl:33007-33032        | related  | Schedule→Duration; event recurrence interval.                |
+# | **DCTerms**    | `dcterms:accrualPeriodicity`  | dcterms.rdf:837-855              | related  | Frequency of additions to a collection; narrower domain.     |
+#
+# No external ontology defines a general "has pattern" property covering both
+# structural regularity and temporal recurrence; hc:hasPattern is appropriate.
+#
+# CREATED: 2025-11-21
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_pattern
+name: has_pattern
+title: Has Pattern
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_pattern:
+    slot_uri: hc:hasPattern
+    description: >-
+      Identifies or describes a recurring design, sequence, structure, or regularity
+      found within an object, data set, or series of events.
+    alt_descriptions:
+      nl: >-
+        Identificeert of beschrijft een terugkerend ontwerp, reeks, structuur of
+        regelmaat binnen een object, dataset of reeks gebeurtenissen.
+      de: >-
+        Identifiziert oder beschreibt ein wiederkehrendes Muster, eine Abfolge, Struktur
+        oder Regelmäßigkeit innerhalb eines Objekts, Datensatzes oder einer Reihe von
+        Ereignissen.
+      fr: >-
+        Identifie ou décrit un motif, une séquence, une structure ou une régularité
+        récurrente trouvée dans un objet, un jeu de données ou une série d'événements.
+      ar: >-
+        يحدد أو يصف تصميمًا أو تسلسلًا أو هيكلًا أو انتظامًا متكررًا موجودًا داخل
+        كائن أو مجموعة بيانات أو سلسلة أحداث.
+      id: >-
+        Mengidentifikasi atau mendeskripsikan desain, urutan, struktur, atau keteraturan
+        berulang yang ditemukan dalam objek, kumpulan data, atau rangkaian peristiwa.
+      zh: >-
+        识别或描述在对象、数据集或事件系列中发现的重复出现的设计、序列、结构或规律性。
+      es: >-
+        Identifica o describe un diseño, secuencia, estructura o regularidad recurrente
+        encontrada dentro de un objeto, conjunto de datos o serie de eventos.
+    structured_aliases:
+      - literal_form: heeft patroon
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Muster
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un motif
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه نمط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki pola
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有模式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene patrón
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    related_mappings:
+      - schema:pattern  # schemaorg.owl:29270-29293 - Product/CreativeWork→Text; visual/design pattern
+      - schema:repeatFrequency  # schemaorg.owl:33007-33032 - Schedule→Duration; event recurrence interval
+      - dcterms:accrualPeriodicity  # dcterms.rdf:837-855 - Frequency of additions to a collection
+    aliases:
+      - recurrence_pattern
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        For temporal recurrence patterns, use ISO 8601 duration notation (e.g. "P1Y"
+        for annual, "P3M" for quarterly, "P1M" for monthly) or a human-readable
+        description.
+    examples:
+      - value: "P1Y"
+        description: Annual recurrence
+      - value: "P3M"
+        description: Quarterly recurrence
+      - value: "P1M"
+        description: Monthly recurrence

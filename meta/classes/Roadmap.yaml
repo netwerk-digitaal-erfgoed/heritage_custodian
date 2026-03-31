@@ -1,0 +1,94 @@
+id: https://nde.nl/ontology/hc/class/Roadmap
+name: Roadmap
+title: Roadmap
+description: A strategic plan or schedule for future activities.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+  - ../slots/contain
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+default_prefix: hc
+classes:
+  Roadmap:
+    class_uri: skos:Concept
+    description: >-
+      Strategic planning document outlining scheduled milestones, objectives,
+      or action items to be achieved over a defined timeline.
+    alt_descriptions:
+      nl: >-
+        Strategisch planningsdocument met geplande mijlpalen, doelstellingen
+        of actiepunten die binnen een gedefinieerde tijdlijn moeten worden bereikt.
+      de: >-
+        Strategisches Planungsdokument, das geplante Meilensteine, Ziele
+        oder Aktionspunkte skizziert, die innerhalb eines definierten Zeitplans erreicht werden sollen.
+      fr: >-
+        Document de planification stratégique décrivant les jalons planifiés, les objectifs
+        ou les points d'action à atteindre sur une chronologie définie.
+      es: >-
+        Documento de planificación estratégica que describe los hitos programados, objetivos
+        o puntos de acción a lograr en un cronograma definido.
+      ar: >-
+        وثيقة تخطيط استراتيجي تحدد المعالم المجدولة والأهداف
+        أو بنود العمل التي يجب تحقيقها خلال جدول زمني محدد.
+      id: >-
+        Dokumen perencanaan strategis yang menguraikan tonggak pencapaian terjadwal, tujuan,
+        atau item tindakan yang akan dicapai dalam timeline yang ditentukan.
+      zh: >-
+        概述在定义时间表内要实现的计划里程碑、目标或行动项目的战略规划文件。
+    broad_mappings:
+      - skos:Concept
+      - prov:Plan
+    keywords:
+      - roadmap
+      - strategic plan
+      - milestone
+      - timeline
+    structured_aliases:
+      - literal_form: routekaart
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Roadmap
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: feuille de route
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: hoja de ruta
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - Created during Rule 53 migration for representing planned future activities
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+      - contain
+      - has_score
+    examples:
+      - value:
+          identified_by:
+            - https://example.org/roadmap/2026
+          has_label:
+            - Digitization roadmap@en
+          has_description: Planned digitization milestones for 2026.
+          contain:
+            - https://example.org/milestone/scan-collection
+            - https://example.org/milestone/publish-metadata
+        description: Roadmap containing two milestone references
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

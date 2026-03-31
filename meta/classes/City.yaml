@@ -1,0 +1,130 @@
+id: https://nde.nl/ontology/hc/class/City
+name: city_class
+title: City Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  gn: http://www.geonames.org/ontology#
+  wikidata: http://www.wikidata.org/entity/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+imports:
+- linkml:types
+default_prefix: hc
+
+classes:
+  City:
+    is_a: Settlement
+    class_uri: schema:City
+    description: >-
+      Urban settlement entity used for municipal-scale place representation in location metadata.
+    alt_descriptions:
+      nl: Entiteit voor stedelijke nederzetting, gebruikt voor plaatsrepresentatie op gemeentelijke schaal in locatiemetadata.
+      de: Entität für städtische Siedlungen zur Repräsentation von Orten auf kommunaler Ebene in Standortmetadaten.
+      fr: Entité d'implantation urbaine utilisée pour représenter des lieux à l'échelle municipale dans les métadonnées de localisation.
+      es: Entidad de asentamiento urbano utilizada para representar lugares a escala municipal en metadatos de ubicación.
+      ar: كيان لمستوطنة حضرية يُستخدم لتمثيل الأماكن على المستوى البلدي ضمن بيانات الموقع الوصفية.
+      id: Entitas permukiman perkotaan untuk representasi tempat skala kota dalam metadata lokasi.
+      zh: 用于位置元数据中市级地点表达的城市聚落实体。
+    structured_aliases:
+    - literal_form: stad
+      in_language: nl
+    - literal_form: Stadt
+      in_language: de
+    - literal_form: ville
+      in_language: fr
+    - literal_form: ciudad
+      in_language: es
+    - literal_form: مدينة
+      in_language: ar
+    - literal_form: kota
+      in_language: id
+    - literal_form: 城市
+      in_language: zh
+    exact_mappings:
+    - schema:City
+    close_mappings:
+    - gn:P.PPLA
+    - gn:P.PPLC
+    - wikidata:Q515
+    related_mappings:
+    - crm:E53_Place
+
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      A city or large town settlement.
+
+      **RELATIONSHIP TO SETTLEMENT**:
+
+      City is a subclass of Settlement representing urban areas that are
+      typically larger and more administratively significant than villages
+      or small towns.
+
+      **GeoNames Feature Codes**:
+
+      Cities typically correspond to GeoNames feature codes:
+      - PPL: Populated place (general)
+      - PPLA: Seat of first-order administrative division
+      - PPLA2: Seat of second-order administrative division
+      - PPLC: Capital of a political entity
+      - PPLS: Populated places (urban agglomerations)
+
+      **USAGE**:
+
+      Use City class when:
+      - The settlement is known to be a city (not village/hamlet)
+      - You need to express city-specific semantics
+      - Schema.org City alignment is important
+
+      Use Settlement class when:
+      - The settlement type is unknown or mixed
+      - You want the most general geographic entity
+
+      **EXAMPLES**:
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: |
+        Slightly more specific than Settlement (0.30) as it indicates 
+        urban status, but still broadly applicable across heritage contexts.
+      custodian_types: '["*"]'
+      custodian_types_rationale: |
+        All heritage custodians are located in cities or settlements.
+      custodian_types_primary: "*"
+
+    examples:
+    - value:
+        settlement_name: "Amsterdam"
+        geonames_id: 2759794
+        country: "NL"
+        has_geographic_subdivision:
+          subregion_code: "NL-NH"
+      description: Amsterdam - capital and largest city of the Netherlands
+
+    - value:
+        settlement_name: "Haarlem"
+        geonames_id: 2755420
+        country: "NL"
+        latitude: 52.3873
+        longitude: 4.6462
+      description: Haarlem - city in Noord-Holland province
+
+    - value:
+        settlement_name: "Tokyo"
+        geonames_id: 1850147
+        country: "JP"
+      description: Tokyo - capital of Japan
+
+    - value: |
+        located_in:
+          - settlement_name: "Amsterdam"
+            geonames_id: 2759794
+            country: "NL"
+    comments:
+    - City is_a Settlement following semantic hierarchy
+    - Inherits all Settlement slots including GeoNames ID
+    - Use for explicit urban classification
+    - Created per slot_fixes.yaml migration for city slot (2026-01-18)

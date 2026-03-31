@@ -1,0 +1,164 @@
+# ==============================================================================
+# LinkML Slot Definition: contain
+# ==============================================================================
+# Hold within defined limits or comprise specific components as integral parts.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:containsOrContained` | RiC-O_1-1:2002-2043  | slot_uri| Primary containment property       |
+# | **RiC-O**     | `rico:hasOrHadPart`        | RiC-O_1-1:2004       | broad   | Parent of containsOrContained      |
+# | **RiC-O**     | `rico:containsTransitive`  | RiC-O_1-1:2046       | narrow  | Transitive subproperty             |
+# | **Schema.org**| `schema:hasPart`           | schemaorg.owl:20403  | close   | CreativeWork parts                 |
+# | **Dublin Core**| `dcterms:hasPart`         | dcterms.rdf:1347-1370| close   | Physical/logical inclusion         |
+# | **CIDOC-CRM** | `crm:P46_is_composed_of`   | CIDOC_CRM:2324-2340  | related | Physical thing composition         |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added broad_mappings (rico:hasOrHadPart), narrow_mappings (rico:containsTransitive)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/contain
+name: contain
+title: contain
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  contain:
+    slot_uri: rico:containsOrContained
+    description: >-
+      To hold within defined limits or to comprise specific components as
+      integral parts.
+    alt_descriptions:
+      nl: >-
+        Binnen gedefinieerde grenzen houden of specifieke componenten als
+        integrale onderdelen omvatten.
+      de: >-
+        Innerhalb definierter Grenzen halten oder spezifische Komponenten als
+        integrale Bestandteile umfassen.
+      fr: >-
+        Contenir dans des limites définies ou comprendre des composants
+        spécifiques comme parties intégrantes.
+      ar: >-
+        الاحتفاظ ضمن حدود محددة أو تضمين مكونات محددة كأجزاء متكاملة.
+      id: >-
+        Menampung dalam batas yang ditentukan atau terdiri dari komponen
+        tertentu sebagai bagian integral.
+      zh: >-
+        在规定的范围内容纳，或将特定组件作为整体部分包含在内。
+      es: >-
+        Contener dentro de límites definidos o comprender componentes
+        específicos como partes integrales.
+    structured_aliases:
+      - literal_form: bevatten
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: enthalten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: contenir
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يحتوي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengandung
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 包含
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: contener
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+      # RiC-O containsOrContained - Lines 2002-2043 in RiC-O_1-1.rdf
+      # "Connects a Place to a region that is or was within it."
+      # Domain: rico:Place, Range: rico:Place
+      # SubPropertyOf: hasOrHadPart, isAssociatedWithPlace
+    broad_mappings:
+      # RiC-O_1-1.rdf line 2004: containsOrContained rdfs:subPropertyOf hasOrHadPart
+      # Broad: general part-whole relation
+      - rico:hasOrHadPart  # from RiC-O_1-1.rdf - parent of containsOrContained
+    narrow_mappings:
+      # RiC-O_1-1.rdf line 2046: containsTransitive rdfs:subPropertyOf containsOrContained
+      # Narrow: transitive version for chained containment
+      - rico:containsTransitive  # from RiC-O_1-1.rdf - transitive subproperty
+    close_mappings:
+      # Schema.org hasPart - Lines 20403-20425 in schemaorg.owl
+      # "Indicates an item or CreativeWork that is part of this item"
+      # Domain: CreativeWork, Range: CreativeWork
+      - schema:hasPart
+      # Dublin Core hasPart - Lines 1347-1370 in dcterms.rdf
+      # "A related resource that is included either physically or logically
+      # in the described resource."
+      - dcterms:hasPart
+    related_mappings:
+      # CIDOC-CRM P46 is_composed_of - Lines 2324-2340 in CIDOC_CRM_v7.1.3.rdf
+      # "Associates an instance of E18 Physical Thing with another instance
+      # of Physical Thing that forms part of it."
+      - crm:P46_is_composed_of
+    aliases:
+      - contains_or_contained
+      - has_or_had_part
+      - is_or_was_contain
+      - has_or_had_animal_species_count
+      - has_animal_species_count
+      - part_type
+    examples:
+      - value: https://nde.nl/ontology/hc/name/last-name-component
+        description: >-
+          PersonName contains_or_contained LastName (name contains surname component)
+      - value: https://nde.nl/ontology/hc/document/text-content
+        description: >-
+          Document contains_or_contained Text (document contains text content)
+      - value: https://nde.nl/ontology/hc/collection/item-123
+        description: >-
+          Collection contains_or_contained Item (collection contains items)
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.2
+      specificity_rationale: >-
+        Very generic slot - containment applicable across all entity types.
+    comments:
+      - Updated 2026-02-02 with verified ontology mappings and translations
+      - |
+        **PURPOSE**:
+        Generic slot for containment relationships. Captures both spatial
+        containment (places containing other places) and logical containment
+        (collections containing items, documents containing content).
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "contains_or_contained" alias following RiC-O temporal naming
+        pattern - indicates current or past containment relationship.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **RiC-O** | `rico:containsOrContained` | 2002-2043 | slot_uri | Primary containment property |
+        | **RiC-O** | `rico:hasOrHadPart` | 2004 | broad | Parent of containsOrContained |
+        | **RiC-O** | `rico:containsTransitive` | 2046 | narrow | Transitive subproperty |
+        | **Schema.org** | `schema:hasPart` | 20403-20425 | close | CreativeWork parts |
+        | **Dublin Core** | `dcterms:hasPart` | 1347-1370 | close | Physical/logical inclusion |
+        | **CIDOC-CRM** | `crm:P46_is_composed_of` | 2324-2340 | related | Physical thing composition |
+      - |
+        **USE CASES**:
+        - PersonName contains_or_contained LastName (name contains surname component)
+        - Document contains_or_contained Text (document contains text content)
+        - Collection contains_or_contained Item (collection contains items)
+      - |
+        **NOTE**:
+        For specialized containment relationships, use domain-specific variants:
+        - contains_or_contained_collection (for CustodianCollection)
+        - contains_or_contained_covers_settlement (for geographic coverage)

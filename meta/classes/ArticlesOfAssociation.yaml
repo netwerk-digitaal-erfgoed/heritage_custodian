@@ -1,0 +1,188 @@
+id: https://nde.nl/ontology/hc/class/ArticlesOfAssociation
+name: articles_of_association_class
+title: Articles of Association
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  rov: http://www.w3.org/ns/regorg#
+  lkif-legal: http://www.estrellaproject.org/lkif-core/legal-action.owl#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/RecordsLifecycleStageEnum
+  - ../slots/has_description
+  - ../slots/has_format
+  - ../slots/has_score
+  - ../slots/has_status
+  - ../slots/has_title
+  - ../slots/has_type
+  - ../slots/has_url
+  - ../slots/has_version
+  - ../slots/current
+  - ../slots/amended_through
+  - ../slots/archived_in
+  - ../slots/derive_from
+  - ../slots/effective_at
+  - ../slots/generated_by
+  - ../slots/included_in
+  - ../slots/signed_at
+  - ../slots/in_jurisdiction
+  - ../slots/in_language
+  - ../slots/has_legal_form
+  - ../slots/identified_by
+  - ../slots/signed_by
+  - ../slots/refer_to
+  - ../slots/has_clause
+  - ../slots/require
+  - ../slots/supersede
+  - ../slots/temporal_extent
+classes:
+  ArticlesOfAssociation:
+    is_a: ReconstructedEntity
+    class_uri: hc:ArticlesOfAssociation
+    description: >-
+      Founding legal document establishing a heritage custodian organization,
+      defining governance structure, purpose, and operational rules, with
+      version tracking for amendments over time.
+    alt_descriptions:
+      nl: >-
+        Oprichtingsdocument dat een erfgoedinstelling vestigt, de
+        bestuursstructuur, doelstelling en operationele regels definieert,
+        met versietracking voor wijzigingen in de loop der tijd.
+      de: >-
+        Gruendungsdokument, das eine Heritage-Institution etabliert, die
+        Verwaltungsstruktur, den Zweck und die Betriebsregeln definiert,
+        mit Versionsverfolgung fuer Aenderungen im Laufe der Zeit.
+      fr: >-
+        Document juridique fondateur etablissant une institution patrimoniale,
+        definissant la structure de gouvernance, l'objet et les regles
+        operationnelles, avec suivi des versions pour les modifications.
+      es: >-
+        Documento legal fundacional que establece una institucion patrimonial,
+        definiendo la estructura de gobernanza, proposito y reglas operativas,
+        con seguimiento de versiones para enmiendas a lo largo del tiempo.
+      ar: >-
+        وثيقة قانونية تأسيسية تنشئ مؤسسة تراثية، وتحدد هيكل الحوكمة والغرض
+        والقواعد التشغيلية، مع تتبع الإصدارات للتعديلات بمرور الوقت.
+      id: >-
+        Dokumen hukum pendiri yang mendirikan lembaga warisan, mendefinisikan
+        struktur tata kelola, tujuan, dan aturan operasional, dengan pelacakan
+        versi untuk amandemen dari waktu ke waktu.
+    exact_mappings:
+      - rico:Record
+    close_mappings:
+      - crm:E31_Document
+      - schema:LegislationObject
+      - lkif-legal:Legal_Document
+    related_mappings:
+      - prov:Entity
+      - rov:orgType
+    structured_aliases:
+      - literal_form: statuten
+        in_language: nl
+      - literal_form: Satzung
+        in_language: de
+      - literal_form: statuts
+        in_language: fr
+      - literal_form: estatutos
+        in_language: es
+      - literal_form: النظام الأساسي
+        in_language: ar
+      - literal_form: anggaran dasar
+        in_language: id
+      - literal_form: 章程
+        in_language: zh
+    examples:
+      - value:
+          has_title:
+            has_label: "Statuten Stichting Rijksmuseum"
+          has_type:
+            has_type: NotarialDeed
+          signed_at:
+            has_timestamp: "1885-06-28"
+          effective_at: "1885-07-01"
+          current: false
+        description: Original founding articles of Rijksmuseum
+    keywords:
+      - founding document
+      - statutes
+      - bylaws
+      - incorporation
+      - governance
+      - legal
+    slots:
+      - amended_through
+      - archived_in
+      - has_status
+      - has_format
+      - has_url
+      - included_in
+      - has_description
+      - has_title
+      - has_type
+      - effective_at
+      - signed_at
+      - current
+      - in_jurisdiction
+      - in_language
+      - has_legal_form
+      - identified_by
+      - signed_by
+      - refer_to
+      - has_clause
+      - require
+      - supersede
+      - has_score
+      - temporal_extent
+      - has_version
+      - derive_from
+      - generated_by
+    slot_usage:
+      has_title:
+        required: true
+      has_type:
+        range: DocumentType
+        inlined: true
+        required: true
+      signed_at:
+        range: Timestamp
+        inlined: true
+        required: true
+      effective_at:
+        range: date
+        required: false
+      current:
+        range: boolean
+        required: true
+      refer_to:
+        range: CustodianLegalStatus
+        required: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+    comments:
+      - Represents founding legal documents (statuten, articles of incorporation)
+      - Handles PRE_EXISTENCE paradox - articles exist before organization exists
+      - Links to CustodianLegalStatus via rico:documents relationship
+      - Version chain via supersedes/superseded_by relationships
+      - Jurisdiction and LegalForm determine registration requirements
+    see_also:
+      - rico:Record
+      - CustodianLegalStatus
+      - LegalForm
+      - RecordsLifecycleStageEnum
+    notes:
+      - |
+        Preserved from prior description (commit 1fe1d1ad):
+
+        "Founding legal document (articles of association, statuten, akte van oprichting)\nthat establishes a heritage custodian organization.\n\n**WHAT ARE ARTICLES OF ASSOCIATION?**\n\nArticles of Association (also known as statutes, charter, bylaws, or deed of\nincorporation depending on jurisdiction) are the foundational legal document\nthat establishes an organization's:\n\n- Legal name and registered office\n- Purpose/objects (doelstelling)\n- Governance structure (board composition, voting)\n- Membership rules (for associations)\n- Capital structure (for companies)\n- Amendment procedures\n- Dissolution procedures\n\n**TERMINOLOGY BY JURISDICTION**:\n\n| Country | Term | Notes |\n|---------|------|-------|\n| Netherlands | Statuten, Akte van oprichting | Notarial deed required |\n| Germany | Satzung, Gesellschaftsvertrag | Varies by legal form |\n| UK | Articles of Association | Memorandum + Articles |\n| USA | Articles of Incorporation, Bylaws | State-specific |\n| France\
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Core legal document for institutional establishment
+      custodian_types: "['*']"

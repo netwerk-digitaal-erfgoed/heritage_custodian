@@ -1,0 +1,51 @@
+id: https://nde.nl/ontology/hc/class/SubsidiaryOrganization
+name: SubsidiaryOrganization
+title: SubsidiaryOrganization Type
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/managed_by
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/related_to
+- ../slots/has_label
+- ../slots/has_type
+classes:
+  SubsidiaryOrganization:
+    description: >-
+      An entity or organization administered by a larger entity or organization.
+    alt_descriptions:
+      nl: Een entiteit of organisatie die wordt beheerd door een grotere entiteit of organisatie.
+      de: Eine Entität oder Organisation, die von einer größeren Entität oder Organisation verwaltet wird.
+      fr: Une entité ou organisation administrée par une entité ou organisation plus grande.
+    structured_aliases:
+    - literal_form: dochterorganisatie
+      in_language: nl
+    - literal_form: Tochterorganisation
+      in_language: de
+    - literal_form: organisation subsidiaire
+      in_language: fr
+    comments:
+    - In heritage context, subsidiary organizations are archives, museums, libraries operating under governance of a parent institution.
+    is_a: CustodianType
+    class_uri: skos:Concept
+    mixins:
+    - OrganizationalStructure
+    slots:
+    - has_score
+    - related_to
+    - identified_by
+    slot_usage:
+      identified_by:
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+    see_also:
+    - ParentOrganizationUnit
+    - OrganizationalSubdivision
+    - Department
+    - JointArchives
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

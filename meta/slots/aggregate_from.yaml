@@ -1,0 +1,149 @@
+# ==============================================================================
+# LinkML Slot Definition: aggregate_from
+# ==============================================================================
+# Collecting and combining content from multiple sources into a unified view.
+# Essential for digital heritage aggregators and portals.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **ORE**      | `ore:aggregates`       | ore.rdf:54-62     | slot_uri| "Object resource is member of Aggregated |
+# |              |                        |                   | exact   | Resources of subject (Aggregation)."     |
+# | **DC Terms** | `dcterms:source`       | dcterms.ttl       | close   | Related resource from which derived.     |
+# | **PROV-O**   | `prov:wasDerivedFrom`  | prov.ttl          | close   | Entity derived from another.             |
+# | **ORE**      | `ore:isAggregatedBy`   | ore.rdf:64-72     | close   | Inverse: resource is aggregated by.      |
+# | **ORE**      | `ore:Aggregation`      | ore.rdf           | related | Class representing grouped resources.    |
+# | **CIDOC-CRM**| `crm:E78_Curated_Holding`| CIDOC_CRM       | related | Curated collection of items.             |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-02 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/aggregate_from
+name: aggregate_from
+title: aggregate from
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  ore: http://www.openarchives.org/ore/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  edm: http://www.europeana.eu/schemas/edm/
+  dcat: http://www.w3.org/ns/dcat#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  aggregate_from:
+    slot_uri: ore:aggregates
+    description: >-
+      To collect and combine content or data from multiple distinct sources
+      into a single, unified location or view.
+    alt_descriptions:
+      nl: >-
+        Inhoud of gegevens van meerdere afzonderlijke bronnen verzamelen en
+        combineren tot één enkele, uniforme locatie of weergave.
+      de: >-
+        Inhalte oder Daten aus mehreren verschiedenen Quellen sammeln und
+        zu einem einzigen, einheitlichen Ort oder einer Ansicht kombinieren.
+      fr: >-
+        Collecter et combiner du contenu ou des données provenant de plusieurs
+        sources distinctes en un seul emplacement ou vue unifiée.
+      ar: >-
+        جمع ودمج المحتوى أو البيانات من مصادر متعددة مختلفة في موقع أو عرض موحد واحد.
+      id: >-
+        Mengumpulkan dan menggabungkan konten atau data dari berbagai sumber
+        yang berbeda ke dalam satu lokasi atau tampilan terpadu.
+      zh: >-
+        从多个不同来源收集和整合内容或数据，形成单一统一的位置或视图。
+      es: >-
+        Recopilar y combinar contenido o datos de múltiples fuentes distintas
+        en una única ubicación o vista unificada.
+    range: uriorcurie
+    multivalued: true
+    inlined: false
+    exact_mappings:
+    close_mappings:
+      - dcterms:source
+      - prov:wasDerivedFrom
+      - ore:isAggregatedBy
+      - edm:aggregatedCHO
+    related_mappings:
+      - ore:Aggregation
+      - ore:AggregatedResource
+      - dcterms:hasPart
+      - dcat:Resource
+      - crm:E78_Curated_Holding
+      - crm:E87_Curation_Activity
+    narrow_mappings:
+      - edm:EuropeanaAggregation
+    aliases:
+      - aggregates_or_aggregated_from
+      - harvests_from
+      - collects_from
+      - is_or_was_aggregate_from
+    structured_aliases:
+      - literal_form: aggregeert van
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_aggregate_from
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aggregiert von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: agrège de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يجمع من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengagregasi dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 聚合自
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: agrega de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: "hc:RijksmuseumAPI"
+        description: Aggregating from Rijksmuseum's API
+      - value: "hc:EuropeanaPortal"
+        description: Aggregating from Europeana's portal
+      - value: "hc:NationalArchivesOAI"
+        description: Aggregating via OAI-PMH from National Archives
+    annotations:
+      custodian_types: '["aggregator", "portal", "discovery_service"]'
+      specificity_score: 0.5
+      specificity_rationale: Core function for aggregation services.
+    comments:
+      - |
+        **USAGE**:
+        Used for digital heritage aggregation:
+        - OAI-PMH harvesting sources
+        - API data sources
+        - Linked data endpoints
+        - Partner institution feeds
+      - |
+        **ORE (Object Reuse and Exchange)**:
+        The ORE ontology defines aggregation patterns for web resources:
+        - `ore:Aggregation` - Collection of related resources
+        - `ore:aggregates` - Membership relationship
+        - `ore:AggregatedResource` - Resource within aggregation
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **ORE** | `ore:aggregates` | 54-62 | exact/slot_uri | Core aggregation property |
+        | **DC Terms** | `dcterms:source` | - | close | Resource derivation source |
+        | **PROV-O** | `prov:wasDerivedFrom` | - | close | Provenance derivation |
+        | **ORE** | `ore:isAggregatedBy` | 64-72 | close | Inverse relationship |
+        | **CIDOC-CRM** | `crm:E78_Curated_Holding` | - | related | Curated collections |

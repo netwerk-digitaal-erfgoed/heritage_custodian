@@ -1,0 +1,126 @@
+# ==============================================================================
+# LinkML Slot Definition: has_mission_statement
+# ==============================================================================
+# Links an organization to its documented mission, vision, goal, value, or
+# motto statements that articulate organizational purpose.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property        | File/Line          | Mapping  | Notes                                                            |
+# |-------------|-----------------|--------------------|----------|------------------------------------------------------------------|
+# | **W3C Org** | `org:purpose`   | org.rdf:730-741    | close    | "Indicates the purpose of this Organization." Domain: org:Org.   |
+# | **DCTerms** | `dcterms:description` | dcterms.rdf  | broad    | Generic resource description — much broader.                     |
+#
+# HIERARCHY:
+# - org:purpose → rdf:Property, domain org:Organization, range open
+# - Recommended: value as skos:Concept from controlled vocabulary
+# - Alternative names per spec: _remit_, _responsibility_
+# - hc:hasMissionStatement is more specific than org:purpose (statement vs purpose)
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10 - Full polish; fixed broken description, ontology alignment
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_mission_statement
+name: has_mission_statement
+title: Has Mission Statement
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_mission_statement:
+    slot_uri: hc:hasMissionStatement
+    description: >-
+      Links an organization to its documented mission, vision, goal, value,
+      or motto statements that articulate organizational purpose. Heritage
+      custodians publish purpose statements on their websites that describe
+      why the organization exists (mission), what future state they aspire to
+      (vision), specific measurable objectives (goals), guiding principles
+      (values), and memorable phrases or slogans (mottos).
+    alt_descriptions:
+      nl: >-
+        Koppelt een organisatie aan haar gedocumenteerde missie-, visie-,
+        doel-, waarden- of mottoverklaring die het organisatiedoel beschrijft.
+      de: >-
+        Verknüpft eine Organisation mit ihren dokumentierten Missions-,
+        Visions-, Ziel-, Werte- oder Mottoerklärungen, die den
+        Organisationszweck artikulieren.
+      fr: >-
+        Relie une organisation à ses déclarations documentées de mission,
+        vision, objectifs, valeurs ou devise qui articulent la raison
+        d'être organisationnelle.
+      ar: >-
+        يربط المنظمة ببيانات الرسالة والرؤية والأهداف والقيم أو الشعارات
+        الموثقة التي تعبر عن غرض المنظمة.
+      id: >-
+        Menghubungkan organisasi dengan pernyataan misi, visi, tujuan,
+        nilai, atau moto yang terdokumentasi yang mengartikulasikan
+        tujuan organisasi.
+      zh: >-
+        将组织与其记录的使命、愿景、目标、价值观或座右铭声明联系起来，
+        这些声明阐述了组织的宗旨。
+      es: >-
+        Vincula una organización con sus declaraciones documentadas de
+        misión, visión, objetivos, valores o lema que articulan el
+        propósito organizacional.
+    structured_aliases:
+      - literal_form: missieverklaring
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Leitbild
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: déclaration de mission
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بيان المهمة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pernyataan misi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 使命宣言
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: declaración de misión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - mission_statement
+      - organizational_mission
+    close_mappings:
+      - org:purpose  # org.rdf:730-741 - "Indicates the purpose of this Organization." org:purpose is broader (purpose vs documented statement)
+    broad_mappings:
+      - dcterms:description  # dcterms.rdf - Generic resource description, much broader
+    examples:
+      - value: "Waar komt ons voedsel echt vandaan."
+        description: >-
+          Mission statement of Landbouwmuseum Tiengemeten (Dutch agricultural museum)
+      - value: "To inspire wonder, discovery, and responsibility for our natural world."
+        description: >-
+          Mission statement of a natural history museum
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Statement types include mission (core purpose / missie), vision
+        (aspirational future / visie), goal (specific objectives / doelstelling),
+        value (guiding principles / kernwaarden), and motto (memorable phrase /
+        slagzin).
+      - >-
+        hc:hasMissionStatement is more specific than org:purpose: it refers to
+        the documented statement text, not the abstract purpose itself.
+        org:purpose mapped as close rather than slot_uri for this reason.
+      - >-
+        Mission statements express OPERATIONAL purpose, not legal obligations.
+        They may change without legal reorganization.
+      - >-
+        Following the WebObservation pattern, each statement should have
+        provenance: source_url, retrieved_on, xpath/css_selector, content_hash.

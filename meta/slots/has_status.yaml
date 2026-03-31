@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: has_status
+# ==============================================================================
+# Current state, condition, or stage of a process or entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property         | File/Line              | Mapping  | Notes                                                                |
+# |---------------|------------------|------------------------|----------|----------------------------------------------------------------------|
+# | **Schema.org** | `schema:status` | schemaorg.owl:36381-36399 | related | "The status of the study (enumerated)." Domain: MedicalProcedure/MedicalStudy/MedicalCondition — medical-domain specific. |
+#
+# NOTE: dcterms:status does NOT exist in standard DCTerms — REMOVED.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_status
+name: has_status
+title: Has Status
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_status:
+    slot_uri: hc:hasStatus
+    range: string
+    description: >-
+      To specify the current state, condition, or stage of a process or entity.
+    alt_descriptions:
+      nl: >-
+        Om de huidige toestand, conditie of fase van een proces of entiteit
+        aan te geven.
+      de: >-
+        Zur Angabe des aktuellen Zustands, der Bedingung oder der Phase eines
+        Prozesses oder einer Entität.
+      fr: >-
+        Pour spécifier l'état actuel, la condition ou l'étape d'un processus
+        ou d'une entité.
+      ar: >-
+        لتحديد الحالة الراهنة أو الوضع أو المرحلة لعملية أو كيان.
+      id: >-
+        Untuk menentukan keadaan, kondisi, atau tahap saat ini dari suatu proses
+        atau entitas.
+      zh: >-
+        用于指定流程或实体的当前状态、条件或阶段。
+      es: >-
+        Para especificar el estado actual, la condición o la etapa de un proceso
+        o entidad.
+    structured_aliases:
+      - literal_form: Status
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Status
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Statut
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: حالة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Status
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 状态
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Estado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    related_mappings:
+      - schema:status  # schemaorg.owl:36381-36399 — "The status of the study (enumerated)." Medical-domain specific.
+    aliases:
+      - has_or_had_status
+      - http_status_code
+      - has_http_status
+      - has_or_had_http_status
+      - has_or_had_organization_status
+      - has_organization_status
+      - conservation_status
+      - is_official_assessment
+      - iucn_status
+      - legal_status
+      - loan_status
+      - operational_status
+      - overall_status
+      - portal_status
+      - processing_status
+      - secularization_status
+    examples:
+      - value: Active
+        description: Simple string status
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,78 @@
+id: https://nde.nl/ontology/hc/class/ChurchArchive
+name: ChurchArchive
+title: Church Archive Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/hold_record_set
+classes:
+  ChurchArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    description: >-
+      Ecclesiastical repository institution that governs, funds, and manages long-term custody of records created by church administration and community life.
+    alt_descriptions:
+      nl: Kerkelijke bewaarinstelling die bestuur, financiering en duurzaam beheer voert over archiefmateriaal uit kerkbestuur en gemeenschapsleven.
+      de: Kirchliche Aufbewahrungsinstitution, die Leitung, Finanzierung und langfristige Verwaltung von Unterlagen aus Kirchenverwaltung und Gemeindeleben übernimmt.
+      fr: Institution de conservation ecclésiastique qui assure la gouvernance, le financement et la gestion durable des archives de l'administration religieuse et de la vie communautaire.
+      es: Institución de custodia eclesiástica que asume gobernanza, financiación y gestión a largo plazo de documentos de la administración religiosa y de la vida comunitaria.
+      ar: مؤسسة حفظ كنسية تتولى الحوكمة والتمويل والإدارة طويلة الأمد لسجلات الإدارة الدينية والحياة المجتمعية.
+      id: Lembaga penyimpanan gerejawi yang menjalankan tata kelola, pendanaan, dan pengelolaan jangka panjang atas arsip administrasi gereja dan kehidupan komunitas.
+      zh: 负责教会治理、经费与长期保管管理的宗教档案机构，保存教会行政与社群生活形成的记录。
+    structured_aliases:
+    - literal_form: kerkarchiefinstelling
+      in_language: nl
+    - literal_form: Kirchenarchivinstitution
+      in_language: de
+    - literal_form: institution d'archives ecclésiastiques
+      in_language: fr
+    - literal_form: institución archivística eclesiástica
+      in_language: es
+    - literal_form: مؤسسة الأرشيف الكنسي
+      in_language: ar
+    - literal_form: lembaga arsip gerejawi
+      in_language: id
+    - literal_form: 教会档案机构
+      in_language: zh
+    broad_mappings:
+    - schema:ArchiveOrganization
+    - skos:Concept
+    related_mappings:
+    - wd:Q2877653
+    slots:
+    - identified_by
+    - hold_record_set
+    slot_usage:
+      hold_record_set:
+        any_of:
+        - equals_string: hc:ChurchGovernanceFonds
+        - equals_string: hc:ParishRegisterSeries
+        - equals_string: hc:PastoralCorrespondenceCollection
+        - equals_string: hc:ChurchPropertyFonds
+        - equals_string: hc:CongregationalLifeCollection
+    see_also:
+    - CathedralArchive
+    - DiocesanArchive
+    - MonasteryArchive
+    - ParishArchive
+    - ReligiousArchive
+    - ChurchArchiveRecordSetType
+    keywords:
+    - ecclesiastical repository
+    - church governance
+    - diocesan administration
+    - congregational records
+    comments:
+    - Covers institutional forms at denominational, diocesan, and local levels
+    - Organizational profile is distinct from record-set taxonomies
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: transmit_through
+# ==============================================================================
+# Medium, channel, or intermediate entity through which something is transmitted
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                                               |
+# |---------------|-----------------------|----------------------------|---------|-----------------------------------------------------|
+# | **Schema.org**| `schema:instrument`   | schemaorg.owl:22393-22415  | related | "The object that helped the agent perform the action." Domain: Action. |
+#
+# REMOVED:
+# - schema:potentialAction (schemaorg.owl:30318-30340): "Indicates a potential Action in which
+#   this thing would play an 'object' role." About actions performable on a thing, NOT about
+#   transmission medium. Semantically unrelated.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/transmit_through
+name: transmit_through
+title: Transmit Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  transmit_through:
+    slot_uri: hc:transmitThrough
+    description: >-
+      To pass, convey, or send a signal, object, disease, or information via a specific
+      medium, channel, or intermediate entity.
+    alt_descriptions:
+      nl: >-
+        Het overbrengen, transporteren of verzenden van een signaal, object, ziekte of
+        informatie via een specifiek medium, kanaal of tussenpersoon.
+      de: >-
+        Das Übertragen, Befördern oder Senden eines Signals, Objekts, einer Krankheit
+        oder Information über ein bestimmtes Medium, einen Kanal oder eine
+        zwischengeschaltete Einheit.
+      fr: >-
+        Transmettre, acheminer ou envoyer un signal, un objet, une maladie ou une
+        information par l'intermédiaire d'un médium, d'un canal ou d'une entité
+        intermédiaire spécifique.
+      ar: >-
+        نقل أو إرسال إشارة أو كائن أو مرض أو معلومات عبر وسيط أو قناة أو كيان وسيط
+        محدد.
+      id: >-
+        Meneruskan, menyampaikan, atau mengirimkan sinyal, objek, penyakit, atau
+        informasi melalui media, saluran, atau entitas perantara tertentu.
+      zh: >-
+        通过特定的媒介、渠道或中间实体传递、输送或发送信号、物体、疾病或信息。
+      es: >-
+        Transmitir, transportar o enviar una señal, objeto, enfermedad o información
+        a través de un medio, canal o entidad intermediaria específica.
+    structured_aliases:
+      - literal_form: Overdracht
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Übertragung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Transmission
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نقل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Transmisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 传输
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Transmisión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - transmits_or_transmitted_through
+    related_mappings:
+      - schema:instrument  # schemaorg.owl:22393-22415 - "The object that helped the agent perform the action." Domain: Action, Range: Thing. Conceptually related to medium/channel but Action-specific.

@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: has_coordinates
+# ==============================================================================
+# Specific numerical values (such as latitude and longitude) that determine a
+# precise position in a geographic or spatial system.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:geo`          | schemaorg.owl:19029-19051  | exact   | "The geo coordinates of the place." — domain Place, range GeoShape/GeoCoordinates (expects structured objects, not raw string) |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, demoted schema:geo from exact to close
+#   (expects GeoCoordinates/GeoShape objects, not raw coordinate strings)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_coordinates
+name: has_coordinates
+title: Has Coordinates
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_coordinates:
+    slot_uri: hc:hasCoordinates
+    description: >-
+      To possess or be defined by specific numerical values (such as latitude and longitude) that determine a precise position in a geographic or spatial system.
+    alt_descriptions:
+      nl: >-
+        Beschikken over of worden gedefinieerd door specifieke numerieke waarden (zoals breedte- en lengtegraad) die een precieze positie in een geografisch of ruimtelijk systeem bepalen.
+      de: >-
+        Über bestimmte numerische Werte (wie Breiten- und Längengrad) verfügen oder durch diese definiert werden, die eine genaue Position in einem geografischen oder räumlichen System bestimmen.
+      fr: >-
+        Posséder ou être défini par des valeurs numériques spécifiques (telles que la latitude et la longitude) qui déterminent une position précise dans un système géographique ou spatial.
+      ar: >-
+        امتلاك أو التحديد بقيم رقمية محددة (مثل خط العرض وخط الطول) تحدد موقعًا دقيقًا في نظام جغرافي أو مكاني.
+      id: >-
+        Memiliki atau didefinisikan oleh nilai numerik tertentu (seperti garis lintang dan garis bujur) yang menentukan posisi tepat dalam sistem geografis atau spasial.
+      zh: >-
+        拥有或由特定数值（如纬度和经度）定义，这些数值确定在地理或空间系统中的精确位置。
+      es: >-
+        Poseer o estar definido por valores numéricos específicos (como latitud y longitud) que determinan una posición precisa en un sistema geográfico o espacial.
+    structured_aliases:
+      - literal_form: heeft coördinaten
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Koordinaten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a des coordonnées
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه إحداثيات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki koordinat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有坐标
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene coordenadas
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_coordinates
+      - coordinates
+    exact_mappings:
+      - schema:geo  # schemaorg.owl:19029-19051 - "The geo coordinates of the place." — expects GeoCoordinates/GeoShape objects
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_coordinates for conciseness.
+      - |
+        **USAGE**: schema:geo expects structured GeoCoordinates or GeoShape objects;
+        this slot stores coordinates as a raw string value. Consider migrating to a
+        structured representation in future versions.
+    annotations:
+      custodian_types: '["*"]'

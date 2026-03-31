@@ -1,0 +1,603 @@
+id: https://nde.nl/ontology/hc/class/Budget
+name: budget_class
+title: Budget Class
+imports:
+  - linkml:types
+  - ../slots/allocate
+  - ../slots/has_currency
+  - ../slots/has_description
+  - ../slots/draw_endowment
+  - ../slots/has_label
+  - ../slots/has_main_part
+  - ../slots/has_quantity
+  - ../slots/has_score
+  - ../slots/has_status
+  - ../slots/has_type
+  - ../slots/has_measurement_unit
+  - ../slots/include
+  - ../slots/has_budget
+  - ../slots/funded_by
+  - ../slots/approved_by
+  - ../slots/approved_on
+  - ../slots/based_on
+  - ../slots/derive_from
+  - ../slots/documented_by
+  - ../slots/generated_by
+  - ../slots/has_operational_unit
+  - ../slots/has_section
+  - ../slots/refer_to
+  - ../slots/updated_at
+  - ../slots/identified_by
+  - ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  time: http://www.w3.org/2006/time#
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+  frapo: http://purl.org/cerif/frapo/
+classes:
+  Budget:
+    is_a: ReconstructedEntity
+    class_uri: frapo:FundingProgramme
+    description: >-
+      Structured financial plan allocating monetary resources across operational categories and time periods for institutional activities.
+    alt_descriptions:
+      nl: >-
+        Gestructureerd financieel plan dat monetaire middelen toewijst over operationele categorieën en tijdsperioden voor institutionele activiteiten.
+      de: >-
+        Strukturierter Finanzplan, der finanzielle Mittel über betriebliche Kategorien und Zeiträume für institutionelle Aktivitäten zuweist.
+      fr: >-
+        Plan financier structuré allouant des ressources monétaires à travers des catégories opérationnelles et des périodes pour les activités institutionnelles.
+      es: >-
+        Plan financiero estructurado que asigna recursos monetarios a través de categorías operativas y períodos para actividades institucionales.
+      ar: >-
+        خطة مالية منظمة تخصص الموارد النقدية عبر الفئات التشغيلية والفترات الزمنية للأنشطة المؤسسية.
+      id: >-
+        Rencana keuangan terstruktur yang mengalokasikan sumber daya moneter melintasi kategori operasional dan periode waktu untuk aktivitas kelembagaan.
+      zh: >-
+        在运营类别和时间段内分配货币资源用于机构活动的结构化财务计划。
+    structured_aliases:
+
+      - literal_form: begroting
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: financieringsplan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: nl
+
+      - literal_form: Haushalt
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: Budgetplan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: de
+
+      - literal_form: budget
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: plan financier
+
+        predicate: EXACT_SYNONYM
+
+        in_language: fr
+
+      - literal_form: presupuesto
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: plan financiero
+
+        predicate: EXACT_SYNONYM
+
+        in_language: es
+
+      - literal_form: الميزانية
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: الخطة المالية
+
+        predicate: EXACT_SYNONYM
+
+        in_language: ar
+
+      - literal_form: anggaran
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: rencana keuangan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: id
+
+      - literal_form: 预算
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: 财务计划
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: budget
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: financial plan
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: allocation
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: fiscal planning
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: institutional finance
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: frapo:FundingProgramme
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: schema:FinancialProduct
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: crm:E54_Dimension
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: schema:MonetaryAmount
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: frapo:hasFunding
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: approved_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_currency
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_description
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_label
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_status
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_type
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_main_part
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: allocate
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: draw_endowment
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: include
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: temporal_extent
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_budget
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: funded_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_operational_unit
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_section
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: refer_to
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: updated_at
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: identified_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_score
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: has_quantity
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: derive_from
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: generated_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+
+      - literal_form: documented_by
+
+        predicate: EXACT_SYNONYM
+
+        in_language: zh
+    keywords:
+    - budget
+    - financial plan
+    - allocation
+    - fiscal period
+    - resource planning
+    broad_mappings:
+    - schema:FinancialProduct
+    - frapo:FundingProgramme
+    slots:
+    - has_label
+    - has_description
+    - has_type
+    - temporal_extent
+    - has_quantity
+    - has_currency
+    - has_budget
+    - has_main_part
+    - has_section
+    - allocate
+    - include
+    - funded_by
+    - draw_endowment
+    - approved_by
+    - approved_on
+    - based_on
+    - has_status
+    - identified_by
+    - updated_at
+    - documented_by
+    - refer_to
+    - derive_from
+    - generated_by
+    - has_operational_unit
+    - has_score
+    - has_measurement_unit
+    slot_usage:
+      has_label:
+        required: true
+        close_mappings:
+        - dcterms:title
+        description: Name/title for this budget document. MIGRATED from budget_name (2026-01-15) per Rule 53. Maps to dcterms:title as a formal title for a financial planning resource.
+        examples:
+        - value: Rijksmuseum Operating Budget FY2024
+        - value: Noord-Hollands Archief Annual Budget 2024-2025
+      has_description:
+        required: false
+        close_mappings:
+        - dcterms:description
+        description: Narrative description of this budget document's scope and purpose. MIGRATED from budget_description (2026-01-15) per Rule 53. Maps to dcterms:description for financial planning documentation.
+        examples:
+        - value: Annual operating budget for fiscal year 2024, including major exhibition initiatives and digitization expansion.
+      has_type:
+        multivalued: true
+        required: true
+        examples:
+        - value:
+          - OperatingBudget
+          - ConsolidatedBudget
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: '2024-01-01'
+            end_of_the_begin: '2024-01-01'
+            begin_of_the_end: '2024-12-31'
+            end_of_the_end: '2024-12-31'
+        - value:
+            begin_of_the_begin: '2024-04-01'
+            end_of_the_begin: '2024-04-01'
+            begin_of_the_end: '2025-03-31'
+            end_of_the_end: '2025-03-31'
+      has_quantity:
+        range: decimal
+        required: false
+        examples:
+        - value: 45000000.0
+      has_currency:
+        range: Currency
+        inlined: true
+        required: true
+        examples:
+        - value:
+            currency_code: EUR
+            has_label: Euro
+            currency_symbol: "\u20AC"
+        - value:
+            currency_code: USD
+            has_label: US Dollar
+            currency_symbol: $
+      has_budget:
+        range: decimal
+        required: false
+      has_main_part:
+        inlined: false
+        required: false
+        examples:
+        - value:
+            has_quantity:
+            part_type: capital_budget
+            currency_code: EUR
+      has_section:
+        range: decimal
+        required: false
+      allocate:
+        required: false
+        multivalued: true
+        inlined: false
+      include:
+        multivalued: true
+        inlined: false
+      funded_by:
+        range: decimal
+        required: false
+      draw_endowment:
+        range: decimal
+        required: false
+      approved_by:
+        range: Approver
+        required: false
+      has_status:
+        range: BudgetStatus
+        required: true
+        examples:
+        - value: '{value: "ACTIVE", effective_at: "2024-01-01"}'
+        - value: '{value: "DRAFT", effective_at: "2023-10-01"}'
+      identified_by:
+        range: integer
+        required: false
+      updated_at:
+        range: date
+        required: false
+      documented_by:
+        multivalued: true
+        inlined: false
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/financial/rijksmuseum-annual-report-2024
+      refer_to:
+        range: Custodian
+        required: true
+      derive_from:
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    comments:
+    - Represents PLANNED financial allocations (not actuals)
+    - 'Heritage-specific categories: acquisition, preservation, digitization budgets'
+    - Links to FinancialStatement via documented_by inverse relationship
+    - FRAPO frapo:FundingProgramme as primary ontology class
+    - Budget transparency often legally required for nonprofits
+    see_also:
+    - http://purl.org/cerif/frapo/FundingProgramme
+    - https://schema.org/FinancialStatement
+    - https://nde.nl/ontology/hc/class/Custodian
+    examples:
+    - value:
+        id: https://nde.nl/ontology/hc/budget/rm/fy2024
+        has_label: Rijksmuseum Operating Budget FY2024
+        has_description: Annual operating budget for fiscal year 2024, including major exhibition initiatives and digitization expansion.
+        has_type:
+        - OperatingBudget
+        - ConsolidatedBudget
+        temporal_extent:
+          start_of_the_start: '2024-01-01'
+          end_of_the_end: '2024-12-31'
+        has_quantity: 45000000.0
+        has_currency:
+          currency_code: EUR
+          has_label: Euro
+          currency_symbol: "\u20AC"
+        operating_budget: 38000000.0
+        has_main_part:
+          has_quantity:
+          part_type: capital_budget
+          currency_code: EUR
+        acquisition_budget: 2000000.0
+        personnel_budget: 22000000.0
+        preservation_budget: 1500000.0
+        allocate:
+        - has_quantity:
+            has_value: 500000.0
+          has_unit:
+            has_label: EUR
+        innovation_budget: 750000.0
+        include:
+        - has_quantity:
+          has_label: External Grants & Subsidies
+        internal_funding: 25000000.0
+        has_endowment_draw: 5000000.0
+        approved_on:
+          start_of_the_start: '2023-11-15'
+        approved_by:
+          approver_name: Board of Directors
+        has_status:
+          value: ACTIVE
+          effective_at: '2024-01-01'
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-ams-m-rm-q190804
+    - value:
+        id: https://nde.nl/ontology/hc/budget/nha/fy2024-2025
+        has_label: Noord-Hollands Archief Annual Budget 2024-2025
+        has_description: Provincial archive annual budget aligned with government fiscal year.
+        has_type:
+        - OperatingBudget
+        - ConsolidatedBudget
+        temporal_extent:
+          start_of_the_start: '2024-04-01'
+          end_of_the_end: '2025-03-31'
+        has_quantity: 8500000.0
+        has_currency:
+          currency_code: EUR
+          has_label: Euro
+          currency_symbol: "\u20AC"
+        operating_budget: 7500000.0
+        has_main_part:
+          has_quantity:
+          part_type: capital_budget
+          currency_code: EUR
+        personnel_budget: 5200000.0
+        allocate:
+        - has_quantity:
+            has_value: 800000.0
+          has_unit:
+            has_label: EUR
+        include:
+        - has_quantity:
+          has_label: Province Subsidy
+        internal_funding: 2500000.0
+        approved_on:
+          start_of_the_start: '2024-03-01'
+        approved_by:
+          approver_name: Province of Noord-Holland
+        has_status:
+          value: ACTIVE
+          effective_at: '2024-04-01'
+        refers_to_custodian: https://nde.nl/ontology/hc/nl-nh-haa-a-nha
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Distinguish budget plans from financial statements:
+        budgets represent planned allocations, while financial statements report actuals.
+
+        Typical heritage budget categories include operating, capital,
+        acquisition, project, and endowment draw.
+
+        Fiscal periods vary by institution and jurisdiction; model explicitly
+        with temporal_extent.
+
+        Mapping rationale:
+        - class_uri: frapo:FundingProgramme for planned allocation programs
+        - related_mappings: schema:MonetaryAmount and frapo:hasFunding for value modeling

@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: provide
+# ==============================================================================
+# Supplies, furnishes, or makes available a resource, service, or item.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property               | File/Line                     | Mapping  | Notes                                                     |
+# |----------------|------------------------|-------------------------------|----------|------------------------------------------------------------|
+# | **Schema.org** | `schema:provider`      | schemaorg.owl:31484-31485     | related  | "provider" ObjectProperty; agent/role, not the action.     |
+# | **PROV-O**     | `prov:wasGeneratedBy`  | prov.ttl:1132-1147            | related  | Entity→Activity; about generation, tangential to provide.  |
+#
+# No external ontology defines a general "provide" action predicate suitable
+# as slot_uri. Related properties like schema:provider focus on the agent role,
+# not the act of providing. The slot captures the action/verb sense.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/provide
+name: provide
+title: Provide
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  provide:
+    slot_uri: hc:provide
+    description: >-
+      Supplies, furnishes, or makes available a resource, service, or item to an
+      entity that requires it. Records what a heritage custodian or organization
+      provides, such as access services, educational programs, conservation
+      expertise, or collection materials.
+    alt_descriptions:
+      nl: >-
+        Levert, verschaft of stelt een bron, dienst of item beschikbaar aan een
+        entiteit die dit nodig heeft.
+      de: >-
+        Liefert, stellt bereit oder macht eine Ressource, Dienstleistung oder
+        einen Gegenstand für eine Entität verfügbar, die dies benötigt.
+      fr: >-
+        Fournit, procure ou met à disposition une ressource, un service ou un
+        élément à une entité qui en a besoin.
+      ar: >-
+        يوفر أو يقدم أو يتيح موردًا أو خدمة أو عنصرًا لكيان يحتاج إليه.
+      id: >-
+        Menyediakan, memasok, atau membuat tersedia sumber daya, layanan, atau
+        item kepada entitas yang membutuhkannya.
+      zh: >-
+        向需要的实体供应、提供或使资源、服务或项目可用。
+      es: >-
+        Suministra, proporciona o pone a disposición un recurso, servicio o
+        elemento a una entidad que lo requiere.
+    structured_aliases:
+      - literal_form: leveren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: bereitstellen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fournir
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يوفر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menyediakan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 提供
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: proporcionar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:provider  # schemaorg.owl:31484-31485 - "provider" agent/role, not the action
+      - prov:wasGeneratedBy  # prov.ttl:1132-1147 - Entity→Activity generation relationship
+    aliases:
+      - provides_or_provided
+    examples:
+      - value: "digitization services"
+        description: >-
+          A heritage institution provides digitization services to partner
+          organizations.
+      - value: "conservation expertise"
+        description: >-
+          A museum provides conservation expertise for loaned artworks.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Migrated from entity_types_covered (via ContributingAgency) and
+        funding_program (via OfficialInstitutionType).
+      - >-
+        Companion slots provide_to (hc:provideTo) and provided_by
+        (hc:providedBy) capture the directional relationships of this action.

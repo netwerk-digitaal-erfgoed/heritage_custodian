@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: accredited_with
+# ==============================================================================
+# Formal acknowledgment of a qualification or accreditation by a recognized body.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line                  | Mapping | Notes                                              |
+# |---------------|---------------------------|----------------------------|---------|---------------------------------------------------  |
+# | **Schema**    | `schema:hasCertification` | schemaorg.owl:19877-19907  | close   | "Certification information about a product, org."   |
+# | **Schema**    | `schema:hasCredential`    | schemaorg.owl:19949-19973  | related | "A credential awarded to the Person or Org."        |
+# | **DCTerms**   | `dcterms:conformsTo`      | dcterms.rdf:987-1008       | related | "An established standard to which resource conforms."|
+#
+# No standard ontology defines an exact "accredited with" property.
+# Retains hc:accreditedWith.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/accredited_with
+name: accredited_with
+title: Accredited With
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  accredited_with:
+    slot_uri: hc:accreditedWith
+    description: >-
+      Ascribes or formally acknowledges a specific achievement, discovery, responsibility,
+      or qualification to a particular agent or entity.
+    alt_descriptions:
+      nl: >-
+        Schrijft een specifieke prestatie, ontdekking, verantwoordelijkheid of kwalificatie
+        formeel toe aan een bepaalde actor of entiteit, of erkent deze formeel.
+      de: >-
+        Schreibt eine bestimmte Leistung, Entdeckung, Verantwortung oder Qualifikation
+        einem bestimmten Akteur oder einer Entität formell zu oder erkennt diese formell an.
+      fr: >-
+        Attribue ou reconnaît formellement une réalisation, une découverte, une responsabilité
+        ou une qualification spécifique à un agent ou une entité particulière.
+      ar: >-
+        ينسب أو يعترف رسمياً بإنجاز أو اكتشاف أو مسؤولية أو مؤهل محدد لعامل أو كيان معين.
+      id: >-
+        Mengaitkan atau secara resmi mengakui pencapaian, penemuan, tanggung jawab, atau
+        kualifikasi tertentu kepada agen atau entitas tertentu.
+      zh: >-
+        将特定的成就、发现、职责或资质正式归属或授予特定的代理人或实体。
+      es: >-
+        Atribuye o reconoce formalmente un logro, descubrimiento, responsabilidad o
+        cualificación específica a un agente o entidad particular.
+    structured_aliases:
+      - literal_form: Accreditatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Akkreditierung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Accréditation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: اعتماد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Akreditasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 认证
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Acreditación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Accreditation bodies include: AIC (American Institute for Conservation),
+        ICON (Institute of Conservation, UK), VeRes (Dutch Restorers Association).
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_accredited
+    close_mappings:
+      - schema:hasCertification  # schemaorg.owl:19877-19907 - certification info about product/org/person
+    related_mappings:
+      - schema:hasCredential  # schemaorg.owl:19949-19973 - credential awarded to Person or Org
+      - dcterms:conformsTo  # dcterms.rdf:987-1008 - established standard resource conforms to

@@ -1,0 +1,108 @@
+# Location Resolution Method Enumeration - Method used to resolve settlement location
+# Extracted from custodian_source.yaml per Rule 38 (modular schema files)
+
+id: https://nde.nl/ontology/hc/enums/LocationResolutionMethodEnum
+name: LocationResolutionMethodEnum
+title: Location Resolution Method Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+
+imports:
+  - linkml:types
+
+default_range: string
+
+enums:
+  LocationResolutionMethodEnum:
+    description: Method used to resolve settlement location
+    permissible_values:
+      GOOGLE_MAPS_LOCALITY:
+        description: Resolved from Google Maps locality field
+      WIKIDATA_LOCATION:
+        description: Resolved from Wikidata located_in_admin_entity
+      WIKIDATA_P131:
+        description: Resolved from Wikidata P131 (located in administrative entity)
+      WIKIDATA_COORDINATES:
+        description: Resolved from Wikidata coordinate location
+      WIKIDATA_COORDS_REVERSE_GEOCODE:
+        description: Reverse geocoded from Wikidata coordinates via GeoNames
+      REVERSE_GEOCODE:
+        description: Reverse geocoded from coordinates via GeoNames
+      NAME_LOOKUP:
+        description: Looked up settlement name in GeoNames
+      GEONAMES_LOOKUP:
+        description: Looked up in GeoNames database (alias for NAME_LOOKUP)
+      MANUAL:
+        description: Manually assigned
+      SWISS_ISIL_ENRICHMENT:
+        description: Resolved from Swiss ISIL registry data
+      CH_ANNOTATOR_SOURCE:
+        description: Resolved from CH-Annotator source file
+      ISIL_REGISTRY:
+        description: Resolved from national ISIL registry
+      CSV_SOURCE:
+        description: Taken from source CSV file
+      CH_ANNOTATOR_TOP_SET:
+        description: Resolved via CH-Annotator TOP entity set (toponyms)
+      GHCID_RESOLUTION_DIRECT:
+        description: Directly taken from GHCID location resolution
+      ORIGINAL_ENTRY:
+        description: Taken from original source entry
+      POSTAL_CODE_LOOKUP:
+        description: Resolved from postal code lookup
+      GOOGLE_PLACES_GEONAMES:
+        description: Resolved from Google Places then matched to GeoNames
+      INFERRED_FROM_CITY:
+        description: Inferred from city name without coordinates
+      WEB_SEARCH_VERIFIED:
+        description: Verified through web search
+      CITY_NAME_LOOKUP:
+        description: Looked up city name directly
+      MANUAL_RESEARCH:
+        description: Manually researched and assigned location
+      GEONAMES_CITY_LOOKUP:
+        description: Looked up city in GeoNames database
+      NAME_EXTRACTION:
+        description: Extracted from institution name
+      GEONAMES_RESEARCH:
+        description: Researched and matched in GeoNames
+      BELGIAN_ISIL_REGISTRY:
+        description: Resolved from Belgian ISIL registry
+      WIKIDATA_P:
+        description: Resolved from Wikidata property
+      NAME_PATTERN_EXTRACTION:
+        description: Extracted using name patterns
+      WIKIDATA_P17:
+        description: Resolved from Wikidata P17 (country) property
+      WIKIDATA_LOCATION_RESEARCH:
+        description: Resolved via manual Wikidata location research
+      KIEN_PROFILE_SCRAPE:
+        description: Scraped from KIEN intangible heritage profile
+      NAME_EXTRACTION_GEONAMES:
+        description: Extracted from name and matched to GeoNames
+      EXTRACTED_FROM_NAME:
+        description: Extracted location from institution name
+      GEONAMES_FUZZY:
+        description: Fuzzy matched in GeoNames
+      WIKIDATA_ENRICHMENT:
+        description: Enriched from Wikidata
+      COORDINATE_LOOKUP:
+        description: Looked up from coordinates
+      REVERSE_GEOCODE_FROM_FILE_COORDS:
+        description: Reverse geocoded from coordinates found in the source file
+      TEXT_FALLBACK:
+        description: Fallback method using text-based location resolution
+      WIKIDATA_IMPORT:
+        description: Imported directly from Wikidata data import process
+      FILENAME_CITY_EXTRACTION:
+        description: Extracted city from source filename
+      CITY_INFERRED_FROM_NAME:
+        description: City inferred from institution name
+      CITY_LOOKUP:
+        description: Looked up city via direct lookup
+      EXA_WEB_SEARCH:
+          description: Resolved via Exa AI web search
+      INFERRED_FROM_NEIGHBORHOOD:
+          description: Inferred from neighborhood or district name

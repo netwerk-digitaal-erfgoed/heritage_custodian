@@ -1,0 +1,134 @@
+# ==============================================================================
+# LinkML Slot Definition: has_finding_aid
+# ==============================================================================
+# Finding aids hosted or served by a heritage custodian or its digital platform.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                         | File/Line                        | Mapping        | Notes                                                        |
+# |----------------|----------------------------------|----------------------------------|----------------|--------------------------------------------------------------|
+# | **DCTerms**    | `dcterms:hasPart`                | dcterms.rdf:1347-1370            | broad_mappings | "A related resource that is included either physically or    |
+# |                |                                  |                                  |                | logically in the described resource." Finding aids are a     |
+# |                |                                  |                                  |                | logical part of a custodian's resource ecosystem.            |
+# | **RiC-O**      | `rico:hasOrHadPart`              | RiC-O:7271-7308                  | broad_mappings | "Connects a Thing to a constitutive or component part of     |
+# |                |                                  |                                  |                | that Thing." Archival partitive relationship.                |
+# | **CIDOC-CRM**  | `crm:P70i_is_documented_in`     | CIDOC:2799-2811                  | related        | "is documented in" — Entity→E31_Document. Finding aids are   |
+# |                |                                  |                                  |                | a form of archival documentation.                            |
+# | **Schema.org** | `schema:hasPart`                 | schemaorg.owl:20403-20425        | broad_mappings | "Indicates an item or CreativeWork that is part of this      |
+# |                |                                  |                                  |                | item." CreativeWork→CreativeWork.                            |
+#
+# NOTE: rico:isOrWasProviderOf does not exist in RiC-O 1.1; hc namespace is used.
+# NOTE: schema:availableService (schemaorg.owl:9515-9540) was considered but rejected
+#       as it is medical-domain-specific (Hospital/Physician → MedicalProcedure).
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_finding_aid
+name: has_finding_aid
+title: Has Finding Aid
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_finding_aid:
+    slot_uri: hc:hasFindingAid
+    description: >-
+      Finding aids hosted or served by a heritage custodian or its digital
+      platform. References FindingAid instances by URI, linking a custodian,
+      archive, or digital platform to the archival descriptions, inventories,
+      and collection guides it makes available.
+    alt_descriptions:
+      nl: >-
+        Toegangen die door een erfgoedinstelling of haar digitale platform
+        worden aangeboden of gehost. Verwijst naar archiefinventarissen,
+        collectiegidsen en andere zoekingangen.
+      de: >-
+        Findmittel, die von einer Kulturerbeeinrichtung oder ihrer digitalen
+        Plattform gehostet oder bereitgestellt werden. Verweist auf
+        Archivinventare, Sammlungsführer und andere Erschließungshilfen.
+      fr: >-
+        Instruments de recherche hébergés ou mis à disposition par une
+        institution patrimoniale ou sa plateforme numérique. Renvoie aux
+        inventaires d'archives, guides de collections et autres outils de
+        recherche.
+      ar: >-
+        أدوات البحث المستضافة أو المقدمة من قبل مؤسسة التراث الثقافي أو
+        منصتها الرقمية. تشير إلى قوائم الجرد الأرشيفية وأدلة المجموعات
+        وأدوات البحث الأخرى.
+      id: >-
+        Sarana temu balik yang dihosting atau disediakan oleh lembaga
+        pemangku warisan budaya atau platform digitalnya. Merujuk pada
+        inventaris arsip, panduan koleksi, dan alat bantu penelusuran lainnya.
+      zh: >-
+        由遗产保管机构或其数字平台托管或提供的检索工具。指向档案清册、馆藏指南
+        和其他检索辅助工具。
+      es: >-
+        Instrumentos de descripción alojados o proporcionados por una
+        institución patrimonial o su plataforma digital. Se refieren a
+        inventarios archivísticos, guías de colecciones y otros instrumentos
+        de consulta.
+    structured_aliases:
+      - literal_form: heeft toegang
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Findmittel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un instrument de recherche
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه أداة بحث
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki sarana temu balik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 拥有检索工具
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene instrumento de descripción
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "A related resource that is included either physically or logically in the described resource."
+      - rico:hasOrHadPart  # RiC-O:7271-7308 - "Connects a Thing to a constitutive or component part of that Thing."
+      - schema:hasPart  # schemaorg.owl:20403-20425 - "Indicates an item or CreativeWork that is part of this item."
+    related_mappings:
+      - crm:P70i_is_documented_in  # CIDOC:2799-2811 - "is documented in" E1_CRM_Entity→E31_Document.
+    aliases:
+      - serves_finding_aid
+      - shares_catalog_with_main
+    examples:
+      - value: "https://nde.nl/ontology/hc/finding-aid/na/voc-inventory"
+        description: "VOC Archives inventory finding aid served by the Nationaal Archief."
+      - value: "https://nde.nl/ontology/hc/finding-aid/gelders-archief/ead-001"
+        description: "Gelders Archief EAD finding aid."
+      - value: "https://example.org/finding-aid/archives-portal-europe/cross-border-collection"
+        description: "Cross-border collection guide served by Archives Portal Europe."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This is the inverse direction of FindingAid.served_by: a custodian or
+        digital platform has finding aids, while a finding aid is served by a
+        platform.
+      - >-
+        References FindingAid instances by URI. For full objects, dereference or
+        query the FindingAid directly.
+      - >-
+        rico:isOrWasProviderOf does not exist in RiC-O 1.1; the hc namespace
+        is used for the slot_uri.
+      - >-
+        Use cases include inventorying all finding aids on a platform, querying
+        which platforms host EAD finding aids, and mapping finding aid coverage
+        across digital infrastructure.

@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: auxiliary_of
+# ==============================================================================
+# Designates a supporting or supplementary entity attached to a primary entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                  | Mapping | Notes                                              |
+# |---------------|-----------------------------|----------------------------|---------|----------------------------------------------------|
+# | **DCTerms**   | `dcterms:isPartOf`          | dcterms.rdf:1464-1482      | broad   | "Resource physically or logically included."       |
+# | **Schema**    | `schema:isPartOf`           | schemaorg.owl:22926-22950  | broad   | "Item that is part of." Generic part-whole.        |
+# | **ORG**       | `org:subOrganizationOf`     | org.rdf:663-681            | related | Hierarchical org containment, not auxiliary role.  |
+# | **CIDOC-CRM** | `crm:P46i_forms_part_of`    | CIDOC:2341-2352            | related | Physical Thing composition, not supportive role.   |
+#
+# No standard ontology defines an exact "auxiliary of" property.
+# Retains hc:auxiliaryOf.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/auxiliary_of
+name: auxiliary_of
+title: Auxiliary Of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  auxiliary_of:
+    slot_uri: hc:auxiliaryOf
+    description: >-
+      Designates an entity, component, or group that functions in a supporting,
+      supplementary, or backup capacity to a primary entity.
+    alt_descriptions:
+      nl: >-
+        Duidt een entiteit, component of groep aan die functioneert in een ondersteunende,
+        aanvullende of reservecapaciteit ten opzichte van een primaire entiteit.
+      de: >-
+        Bezeichnet eine Entität, Komponente oder Gruppe, die in einer unterstützenden,
+        ergänzenden oder Reservekapazität für eine primäre Entität fungiert.
+      fr: >-
+        Désigne une entité, un composant ou un groupe qui fonctionne en capacité de soutien,
+        de complément ou de remplacement par rapport à une entité principale.
+      ar: >-
+        يحدد كياناً أو مكوناً أو مجموعة تعمل بصفة داعمة أو تكميلية أو احتياطية
+        لكيان رئيسي.
+      id: >-
+        Menunjukkan entitas, komponen, atau kelompok yang berfungsi dalam kapasitas
+        pendukung, pelengkap, atau cadangan bagi entitas utama.
+      zh: >-
+        指定以支持、补充或备用能力为主要实体服务的实体、组件或群组。
+      es: >-
+        Designa una entidad, componente o grupo que funciona en capacidad de apoyo,
+        complementaria o de respaldo para una entidad principal.
+    structured_aliases:
+      - literal_form: Hulplocatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Nebenstandort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Auxiliaire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مساعد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tambahan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 辅助设施
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Auxiliar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        SKOS: broader links subordinate to main concept.
+      - >-
+        Analogous to CustodianAppellation.variant_of_name linking to CustodianName;
+        this links AuxiliaryPlace to CustodianPlace (main place).
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_auxiliary_of_place
+      - is_auxiliary_of_platform
+      - is_sub_guide
+    broad_mappings:
+      - dcterms:isPartOf  # dcterms.rdf:1464-1482 - "resource physically or logically included"
+      - schema:isPartOf  # schemaorg.owl:22926-22950 - "item that is part of" generic part-whole
+    related_mappings:
+      - org:subOrganizationOf  # org.rdf:663-681 - hierarchical org containment
+      - crm:P46i_forms_part_of  # CIDOC:2341-2352 - Physical Thing forms part of Physical Thing

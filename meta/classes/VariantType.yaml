@@ -1,0 +1,90 @@
+id: https://nde.nl/ontology/hc/class/VariantType
+name: VariantType
+title: Variant Type Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+
+classes:
+  VariantType:
+    class_uri: crm:E55_Type
+    abstract: true
+    description: >-
+      Abstract category for classifying alternative lexical forms that refer to
+      the same or closely related concept in naming contexts.
+    alt_descriptions:
+      nl: Abstracte categorie voor het classificeren van alternatieve lexicale vormen die naar hetzelfde of nauw verwante concept verwijzen.
+      de: Abstrakte Kategorie zur Klassifikation alternativer lexikalischer Formen, die auf dasselbe oder ein eng verwandtes Konzept verweisen.
+      fr: Categorie abstraite pour classer des formes lexicales alternatives renvoyant au meme concept ou a un concept proche.
+      es: Categoria abstracta para clasificar formas lexicas alternativas que remiten al mismo concepto o a uno estrechamente relacionado.
+      ar: فئة تجريدية لتصنيف الصيغ المعجمية البديلة التي تشير إلى المفهوم نفسه أو مفهوم قريب منه.
+      id: Kategori abstrak untuk mengklasifikasikan bentuk leksikal alternatif yang merujuk pada konsep yang sama atau berdekatan.
+      zh: 用于分类指向同一或近似概念的替代词汇形式的抽象类别。
+    structured_aliases:
+    - literal_form: varianttype
+      in_language: nl
+    - literal_form: Varianttyp
+      in_language: de
+    - literal_form: type de variante
+      in_language: fr
+    - literal_form: tipo de variante
+      in_language: es
+    - literal_form: نوع المتغير
+      in_language: ar
+    - literal_form: tipe varian
+      in_language: id
+    - literal_form: 变体类型
+      in_language: zh
+    keywords:
+    - abbreviation
+    - synonym
+    - regional form
+
+    slots:
+    - has_label
+    - has_description
+
+    slot_usage:
+      has_label:
+#         range: string
+        required: true
+        examples:
+        - value: "Abbreviation"
+        - value: "Synonym"
+      has_description:
+#         range: string
+        required: false
+
+    broad_mappings:
+    - crm:E55_Type
+    - skos:Concept
+
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Variant types applicable across all heritage domains.
+      custodian_types_primary: M
+      specificity_score: 0.35
+      specificity_rationale: >-
+        Moderately specific - variant handling is common across naming contexts
+        but specific implementations vary by domain.
+      design_pattern: "Type/Types (Rule 0b)"
+      # migration_info: (Flattened)
+      migration_source_slot: common_variant
+      migration_date: "2026-01-22"
+      migration_rule: "Rule 53"
+
+    comments:
+    - "Abstract base class - see VariantTypes.yaml for concrete subclasses"
+    - "Follows Rule 0b Type/Types naming pattern"
+    - "Used with has_type to classify variant types"
+    - "Created 2026-01-22 from common_variant migration (Rule 53)"

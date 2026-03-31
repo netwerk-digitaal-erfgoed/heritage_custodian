@@ -1,0 +1,131 @@
+# ==============================================================================
+# LinkML Slot Definition: succeeded_by
+# ==============================================================================
+# Indicates that this entity is followed by a specific entity or event that
+# occupies the subsequent position in a sequence, hierarchy, or timeline.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                     | File/Line         | Mapping  | Notes                                    |
+# |----------------|------------------------------|-------------------|----------|------------------------------------------|
+# | **RiC-O**      | `rico:isSuccessorOf`         | RiC-O_1-1.rdf:16660| exact    | Succession relationship in archives.     |
+# | **RiC-O**      | `rico:hasAncestor`           | RiC-O L3648       | narrow   | Ancestor relationship (subPropertyOf).   |
+# | **RiC-O**      | `rico:resultedFromTheMergerOf`| RiC-O L19435     | narrow   | Merger succession (subPropertyOf).       |
+# | **RiC-O**      | `rico:resultedFromTheSplitOf`| RiC-O L19472      | narrow   | Split succession (subPropertyOf).        |
+# | **CIDOC-CRM**  | `crm:P134_continued`         | CIDOC_CRM         | close    | Temporal continuation.                   |
+# | **PROV-O**     | `prov:wasInformedBy`         | prov.ttl          | related  | Activity dependencies.                   |
+#
+# CREATED: 2026-01-13
+# UPDATED: 2026-02-03 - Added header, narrow mappings (children of isSuccessorOf)
+# UPDATED: 2026-02-03 - Fixed corrupted description field, moved notes to comments
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/succeeded_by
+name: succeeded_by
+title: Succeeded By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  succeeded_by:
+    slot_uri: rico:isSuccessorOf
+    description: >-
+      To be followed by a specific entity or event that occupies the
+      subsequent position in a sequence, hierarchy, or timeline.
+    alt_descriptions:
+      nl: >-
+        Om gevolgd te worden door een specifieke entiteit of gebeurtenis die
+        de volgende positie inneemt in een reeks, hiërarchie of tijdlijn.
+      de: >-
+        Von einer bestimmten Entität oder einem Ereignis gefolgt zu werden,
+        das die nachfolgende Position in einer Sequenz, Hierarchie oder
+        Zeitlinie einnimmt.
+      fr: >-
+        Être suivi par une entité ou un événement spécifique qui occupe la
+        position suivante dans une séquence, une hiérarchie ou une chronologie.
+      ar: >-
+        أن يتبعه كيان أو حدث محدد يحتل الموقع التالي في تسلسل أو تسلسل
+        هرمي أو خط زمني.
+      id: >-
+        Diikuti oleh entitas atau peristiwa tertentu yang menempati posisi
+        berikutnya dalam urutan, hierarki, atau garis waktu.
+      zh: >-
+        被在序列、层次结构或时间线中占据后续位置的特定实体或事件所继承。
+      es: >-
+        Ser seguido por una entidad o evento específico que ocupa la posición
+        subsiguiente en una secuencia, jerarquía o línea de tiempo.
+    structured_aliases:
+      - literal_form: opgevolgd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: nachgefolgt von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: succédé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: خلفه
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: digantikan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 继任者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: sucedido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    required: false
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - crm:P134_continued
+    related_mappings:
+      - prov:wasInformedBy
+      - schema:followup
+    narrow_mappings:
+      - rico:hasAncestor             # RiC-O: Person has ancestor (rdfs:subPropertyOf isSuccessorOf, line 3651)
+      - rico:resultedFromTheMergerOf # RiC-O: CorporateBody from merger (rdfs:subPropertyOf isSuccessorOf, line 19436)
+      - rico:resultedFromTheSplitOf  # RiC-O: CorporateBody from split (rdfs:subPropertyOf isSuccessorOf, line 19473)
+    aliases:
+      - is_or_was_succeeded_by
+    annotations:
+      replaces_slots: following_activity
+      migration_date: '2026-01-13'
+      inverse_slot: is_or_was_preceded_by
+      custodian_types: '["*"]'
+    examples:
+      - value: hc:activity/digitization-phase-2
+        description: Phase 2 follows Phase 1
+      - value: hc:activity/conservation-treatment-2025
+        description: Treatment follows condition survey
+    comments:
+      - Slot for succession relationships between activities/events.
+      - slot_uri=rico:isSuccessorOf is a PREDICATE.
+      - |
+        TEMPORAL SEMANTICS (RiC-O Pattern): The "isOrWas" naming follows RiC-O
+        convention indicating this is an inverse relationship - "A isOrWasSucceededBy B"
+        means B follows A.
+      - |
+        USE CASES:
+        - Link activity phases: Phase 1 → Phase 2 → Phase 3
+        - Track project continuation: 2024 inventory → 2025 inventory
+        - Document workflow: condition survey → conservation treatment
+      - |
+        INVERSE: The inverse relationship is `is_or_was_preceded_by`
+        (or `preceding_activity`).
+      - Multivalued because an entity may have multiple successors.

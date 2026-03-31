@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/OfficialInstitutionType
+name: OfficialInstitutionType
+title: Official Institution Type Classification
+imports:
+- linkml:types
+- ../enums/OfficialInstitutionTypeEnum
+- ../slots/has_mandate    # was: heritage_mandate
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/part_of
+- ../slots/has_hyponym
+- ../slots/in_jurisdiction
+- ../slots/authorized_to
+- ../slots/regulated_by
+classes:
+  OfficialInstitutionType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      "Specialized custodian type for official government institutions - public sector\norganizations with formal governmental authority, heritage mandates, or regulatory\nresponsibilities related to cultural heritage preservation, funding, or advocacy.\n\n**Wikidata Base Concept**: Q2659904 (government organization)\n\n**Scope**:\nOfficial institutions are distinguished by their:\n- Formal government authority and legal mandates\n- Heritage preservation or regulatory responsibilities\n- Public sector funding and accountability\n- Policy-making or enforcement powers\n- National, regional, or local government has_affiliation\n\n**Key Official Institution Subtypes** (50+ heritage-relevant entities):\n\n**By Administrative Level**:\n- National heritage agencies - Top-level cultural heritage authorities\n- State/provincial heritage departments - Regional heritage agencies\n- Municipal cultural departments - Local government heritage offices\n- Federal cultural ministries -\
+    annotations:
+      skos:prefLabel: Official Institution
+      skos:altLabel: government agency, heritage agency, overheid, erfgoedinstelling
+      distinguishing_characteristics:
+      - formal legal mandate
+      - public sector funding and accountability
+      - policy making, oversight, or enforcement responsibility
+      administrative_levels:
+      - national
+      - regional
+      - local
+      - supranational
+      mandate_types:
+      - regulation
+      - funding
+      - advisory
+      - aggregation
+      example_institutions_nl:
+      - Rijksdienst voor het Cultureel Erfgoed (RCE)
+      - Nationaal Archief
+      - Netwerk Digitaal Erfgoed (NDE)
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    description: Custodian type for public-sector institutions with formal governmental authority or mandate.
+    alt_descriptions:
+      nl: Bewaardertype voor publieke instellingen met formeel overheidsgezag of mandaat.
+      de: Verwahrertyp fuer oeffentliche Einrichtungen mit formaler staatlicher Autoritaet oder Mandat.
+      fr: Type de depositaire pour les institutions publiques disposant d une autorite ou d un mandat gouvernemental formel.
+      es: Tipo de custodio para instituciones del sector publico con autoridad o mandato gubernamental formal.
+      ar: نوع جهة حافظة للمؤسسات العامة ذات السلطة أو التفويض الحكومي الرسمي.
+      id: Tipe kustodian untuk institusi sektor publik dengan otoritas atau mandat pemerintahan formal.
+      zh: 适用于具有正式政府授权或法定职责之公共机构的保管者类型。
+    structured_aliases:
+    - {literal_form: overheidsinstelling, in_language: nl}
+    - {literal_form: staatliche Einrichtung, in_language: de}
+    - {literal_form: institution publique officielle, in_language: fr}
+    - {literal_form: institucion oficial publica, in_language: es}
+    - {literal_form: مؤسسة حكومية رسمية, in_language: ar}
+    - {literal_form: institusi pemerintah resmi, in_language: id}
+    - {literal_form: 官方公共机构, in_language: zh}
+    slots:
+    - part_of
+    - has_type
+    - has_mandate  # was: heritage_mandate - migrated per Rule 53 (2026-01-28)
+    - has_hyponym
+    - in_jurisdiction
+    - authorized_to
+    - regulated_by
+    - has_score
+    slot_usage:
+      part_of:
+#         range: string # uriorcurie
+        # range: GovernmentHierarchy
+        examples:
+        - value:
+            has_label: National Government
+            has_tier:
+              has_label: National
+      has_mandate:  # was: heritage_mandate - migrated per Rule 53 (2026-01-28)
+#         range: string # uriorcurie
+        # range: Mandate
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+        examples:
+        - value:
+            has_label: "preservation"
+            has_description: "Legal responsibility to preserve national heritage"
+      regulated_by:
+        range: boolean
+        required: false
+      in_jurisdiction:
+#         range: string
+        required: false
+      authorized_to:
+#         range: string
+        required: false
+      has_type:
+        any_of:
+        - equals_string: hc:OfficialInstitutionType

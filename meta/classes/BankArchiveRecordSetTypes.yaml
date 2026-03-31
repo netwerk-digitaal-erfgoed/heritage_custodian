@@ -1,0 +1,265 @@
+id: https://nde.nl/ontology/hc/class/BankArchiveRecordSetTypes
+name: BankArchiveRecordSetTypes
+title: Bank Archive Record Set Types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./BankArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  BankingRecordsFonds:
+    is_a: BankArchiveRecordSetType
+    class_uri: hc:BankingRecordsFonds
+    description: >-
+      Provenance-based aggregation of governance, policy, and administrative
+      documentation produced by banking institutions.
+    alt_descriptions:
+      nl: >-
+        Herkomstgebaseerde aggregatie van bestuurs-, beleids- en
+        administratieve documentatie van bankinstellingen.
+      de: >-
+        Provenienzbasierte Aggregation von Leitungs-, Politik- und
+        Verwaltungsunterlagen von Bankinstitutionen.
+      fr: >-
+        Agregation fondee sur la provenance de documentation de gouvernance,
+        de politique et d'administration produite par des institutions bancaires.
+      es: >-
+        Agregacion basada en procedencia de documentacion de gobierno,
+        politica y administracion producida por instituciones bancarias.
+      ar: >-
+        تجميع قائم على المنشأ لوثائق الحوكمة والسياسات والإدارة
+        الصادرة عن المؤسسات المصرفية.
+      id: >-
+        Agregasi berbasis asal-usul untuk dokumentasi tata kelola, kebijakan,
+        dan administrasi yang dihasilkan institusi perbankan.
+      zh: >-
+        基于来源原则聚合银行机构形成的治理、政策与行政文献。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    structured_aliases:
+      - literal_form: bankinstellingsfonds
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bankinstitutsfonds
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds d'institution bancaire
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de institucion bancaria
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: صندوق المؤسسة المصرفية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds institusi perbankan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 银行机构档案
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - banking institution
+      - fonds
+      - governance
+      - administrative
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:BankingRecordsFonds
+      has_custodian:
+        equals_string: hc:BankArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by BankArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Fonds organizational principle
+      - Primary fonds type for bank institutional records
+      - Note preserved: Earlier modeling in the banking-domain profile allowed hc:ArchiveOrganizationType as a fallback has_type value.
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific fonds type for banking records
+      custodian_types: "['BankArchive']"
+
+  FinancialTransactionSeries:
+    is_a: BankArchiveRecordSetType
+    class_uri: hc:FinancialTransactionSeries
+    description: >-
+      Ordered documentary sequence of monetary exchanges,
+      transfers, and account-activity traces.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks met gelduitwisselingen,
+        overschrijvingen en sporen van rekeningactiviteiten.
+      de: >-
+        Geordnete Dokumentationsfolge zu Geldtausch,
+        Ueberweisungen und Nachweisen von Kontotaetigkeiten.
+      fr: >-
+        Sequence documentaire ordonnee de transactions financieres,
+        retraçant echanges monetaires, virements et activites de compte.
+      es: >-
+        Secuencia documental ordenada de transacciones financieras,
+        con intercambios monetarios, transferencias y actividad de cuenta.
+      ar: >-
+        تسلسل وثائقي منظم لمعاملات مالية يوثق تبادل الأموال
+        والتحويلات وآثار نشاط الحساب.
+      id: >-
+        Urutan dokumenter teratur transaksi keuangan yang merekam
+        pertukaran moneter, transfer, dan jejak aktivitas rekening.
+      zh: >-
+        记录货币交换、转账与账户活动痕迹的金融交易文献序列。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Series
+    structured_aliases:
+      - literal_form: financiële-transactieserie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Finanztransaktionsserie
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: serie de transactions financieres
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: serie de transacciones financieras
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: سلسلة المعاملات المالية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: seri transaksi keuangan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 金融交易系列
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - transactions
+      - financial
+      - series
+      - monetary
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:FinancialTransactionSeries
+      has_custodian:
+        equals_string: hc:BankArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by BankArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Series organizational principle
+      - Documents historical financial transactions
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific series type for financial transactions
+      custodian_types: "['BankArchive']"
+
+  CustomerAccountSeries:
+    is_a: BankArchiveRecordSetType
+    class_uri: hc:CustomerAccountSeries
+    description: >-
+      Ordered documentary sequence of account openings,
+      closures, balances, and account-holder information.
+    alt_descriptions:
+      nl: >-
+        Reeks historische klantenaccountgegevens die het openen en sluiten van
+        rekeningen, saldi en accounthouderinformatie documenteren.
+      de: >-
+        Serie historischer Kundenkontounterlagen, die Kontoeroeffnungen,
+        -schliessungen, Kontostaende und Kontoinhaberinformationen dokumentieren.
+      fr: >-
+        Serie d'enregistrements historiques de comptes clients documentant les
+        ouvertures, fermetures, soldes et informations des titulaires de compte.
+      es: >-
+        Serie de registros historicos de cuentas de clientes que documentan
+        aperturas, cierres, saldos e informacion del titular de la cuenta.
+      ar: >-
+        سلسلة سجلات حسابات العملاء التاريخية التي توثق فتح الحسابات وإغلاقها
+        والأرصدة ومعلومات حامل الحساب.
+      id: >-
+        Seri catatan rekening nasabah historis yang mendokumentasikan pembukaan,
+        penutupan, saldo, dan informasi pemegang rekening.
+      zh: >-
+        记录开户、销户、余额与账户持有人信息的客户账户文献序列。
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Series
+    structured_aliases:
+      - literal_form: klantenaccountserie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kundenkontenserie
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: serie de comptes clients
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: serie de cuentas de clientes
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: سلسلة حسابات العملاء
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: seri rekening nasabah
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 客户账户系列
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    keywords:
+      - customer accounts
+      - historical
+      - account holders
+      - series
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:CustomerAccountSeries
+      has_custodian:
+        equals_string: hc:BankArchive
+      has_note:
+        equals_string: >-
+          This RecordSetType is typically held by BankArchive custodians.
+          Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Follows rico-rst:Series organizational principle
+      - Contains historical customer account documentation
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific series type for customer accounts
+      custodian_types: "['BankArchive']"

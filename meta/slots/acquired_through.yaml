@@ -1,0 +1,113 @@
+# ==============================================================================
+# LinkML Slot Definition: acquired_through
+# ==============================================================================
+# Method or event through which something was acquired.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                          | File/Line                    | Mapping | Notes                                                    |
+# |---------------|-----------------------------------|------------------------------|---------|----------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P24i_changed_ownership_through`| CIDOC_CRM_v7.1.3.rdf:1752-1762 | exact | Links Physical Thing to E8_Acquisition event             |
+# | **PROV-O**    | `prov:wasGeneratedBy`             | prov.ttl:1104-1113           | close   | Generation by activity - more generic                    |
+#
+# SEMANTIC NOTES:
+# - crm:P24i domain is E18_Physical_Thing, range is E8_Acquisition
+# - "changed ownership through" directly captures acquisition via event/transaction
+# - Inverse of P24_transferred_title_of (which links acquisition TO object)
+# - Exact semantic match: object changed ownership through acquisition event
+#
+# HIERARCHY: crm:P24 is a top-level property (no subPropertyOf)
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, exact_mapping crm:P24i, updated slot_uri
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/acquired_through
+name: acquired_through
+title: Acquired Through
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  acquired_through:
+    slot_uri: crm:P24i_changed_ownership_through
+    description: >-
+      To be obtained via a specific event, process, or transaction—such as a donation, 
+      purchase, or bequest—that facilitated the transfer of ownership or custody.
+    alt_descriptions:
+      nl: >-
+        Verkregen via een specifieke gebeurtenis, proces of transactie—zoals een schenking, 
+        aankoop of legaat—die de overdracht van eigendom of beheer mogelijk maakte.
+      de: >-
+        Erworben durch ein spezifisches Ereignis, einen Prozess oder eine Transaktion—wie 
+        eine Schenkung, einen Kauf oder ein Vermächtnis—die die Übertragung von Eigentum 
+        oder Verwahrung ermöglichte.
+      fr: >-
+        Obtenu par le biais d'un événement, processus ou transaction spécifique—tel qu'un 
+        don, un achat ou un legs—qui a facilité le transfert de propriété ou de garde.
+      ar: >-
+        تم الحصول عليه عبر حدث أو عملية أو معاملة محددة—مثل التبرع أو الشراء أو الوصية—
+        التي سهلت نقل الملكية أو الحيازة.
+      id: >-
+        Diperoleh melalui peristiwa, proses, atau transaksi tertentu—seperti donasi, 
+        pembelian, atau wasiat—yang memfasilitasi pengalihan kepemilikan atau hak asuh.
+      zh: >-
+        通过特定的事件、过程或交易获得——如捐赠、购买或遗赠——促成了所有权或保管权的转移。
+      es: >-
+        Obtenido a través de un evento, proceso o transacción específica—como una donación, 
+        compra o legado—que facilitó la transferencia de propiedad o custodia.
+    structured_aliases:
+      - literal_form: verworven via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erworben durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: acquis par le biais de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكتسب عبر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diperoleh melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...获得
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: adquirido mediante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - prov:wasGeneratedBy  # prov.ttl:1104 - entity generation by activity (more generic)
+    aliases:
+      - is_or_was_acquired_through
+      - was_acquired_through
+    comments:
+      - |
+        **USAGE**: Use this slot to link an object to the acquisition event or transaction 
+        through which it was obtained. Values should reference E8_Acquisition events such as 
+        donations, purchases, bequests, or field collection activities.
+      - |
+        **SEMANTIC NOTE**: This corresponds to CIDOC-CRM P24i, which links a physical thing 
+        to the acquisition event that changed its ownership. For identifying WHO acquired 
+        the item, use `acquired_by`.
+    annotations:
+      custodian_types: '["*"]'

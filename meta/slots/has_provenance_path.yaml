@@ -1,0 +1,121 @@
+# ==============================================================================
+# LinkML Slot Definition: has_provenance_path
+# ==============================================================================
+# A hierarchical path or reference chain tracing the origin and location of an item.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                         | File/Line                  | Mapping | Notes                                                      |
+# |----------------|----------------------------------|----------------------------|---------|--------------------------------------------------------------|
+# | **DCTerms**    | `dcterms:provenance`             | dcterms.rdf:1740-1760      | broad   | "Changes in ownership and custody." General provenance       |
+# |                |                                  |                            |         | statement, not specifically a hierarchical path string.      |
+# | **DCTerms**    | `dcterms:source`                 | dcterms.rdf:1921-1940      | broad   | "A related resource from which the resource is derived."     |
+# |                |                                  |                            |         | About derivation source, not the path expression itself.     |
+# | **Schema.org** | `schema:breadcrumb`              | schemaorg.owl:10542-10561  | related | "Links to help navigate a website hierarchy."                |
+# |                |                                  |                            |         | Conceptually similar (hierarchical path) but web-only.       |
+# | **RiC-O**      | `rico:identifier`                | RiC-O_1-1.rdf:21677-21715 | related | "Word, number, symbol to uniquely identify an entity."       |
+# |                |                                  |                            |         | Archival ref codes (e.g. NAS1/A/1.1) can be hierarchical.   |
+#
+# NOTE: schema:contentUrl ("Actual bytes of the media object") was originally listed
+# as close_mapping but is semantically wrong — it's a media download URL, not a
+# hierarchical provenance/location path. Removed.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_provenance_path
+name: has_provenance_path
+title: Has Provenance Path
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_provenance_path:
+    slot_uri: hc:hasProvenancePath
+    description: >-
+      The hierarchical sequence, URL, or archival reference chain that traces
+      the origin and location of a data point, digital object, or physical item
+      within its custodial or organizational structure.
+    alt_descriptions:
+      nl: >-
+        De hiërarchische reeks, URL of archivalische referentieketen die de herkomst
+        en locatie van een gegevenspunt, digitaal object of fysiek item traceert
+        binnen zijn bewaar- of organisatiestructuur.
+      de: >-
+        Die hierarchische Abfolge, URL oder archivarische Referenzkette, die den Ursprung
+        und Standort eines Datenpunkts, digitalen Objekts oder physischen Gegenstands
+        innerhalb seiner Verwahrungs- oder Organisationsstruktur nachverfolgt.
+      fr: >-
+        La séquence hiérarchique, l'URL ou la chaîne de référence archivistique qui retrace
+        l'origine et l'emplacement d'un point de données, d'un objet numérique ou d'un élément
+        physique au sein de sa structure de conservation ou d'organisation.
+      ar: >-
+        التسلسل الهرمي أو عنوان URL أو سلسلة المراجع الأرشيفية التي تتتبع
+        أصل ومكان نقطة بيانات أو كائن رقمي أو عنصر مادي
+        ضمن هيكله التنظيمي أو هيكل الحفظ.
+      id: >-
+        Urutan hierarkis, URL, atau rantai referensi arsip yang menelusuri
+        asal-usul dan lokasi titik data, objek digital, atau item fisik
+        dalam struktur penyimpanan atau organisasinya.
+      zh: >-
+        追踪数据点、数字对象或实物在其保管或组织结构中来源和位置的
+        层级序列、URL或档案参考链。
+      es: >-
+        La secuencia jerárquica, URL o cadena de referencia archivística que rastrea
+        el origen y la ubicación de un punto de datos, objeto digital o elemento físico
+        dentro de su estructura de custodia u organización.
+    structured_aliases:
+      - literal_form: Herkomstpad
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Provenienzpfad
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Chemin de Provenance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مسار المصدر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Jalur Provenance
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 出处路径
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Ruta de Procedencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - dcterms:provenance  # dcterms.rdf:1740-1760 - "Changes in ownership and custody." General provenance statement, not a specific path string.
+      - dcterms:source  # dcterms.rdf:1921-1940 - "A related resource from which the resource is derived." About derivation source, not the path expression.
+    related_mappings:
+      - schema:breadcrumb  # schemaorg.owl:10542-10561 - "Links to help navigate a website hierarchy." Conceptually similar hierarchical path but web-only.
+      - rico:identifier  # RiC-O_1-1.rdf:21677-21715 - "Word/number/symbol to uniquely identify an entity." Archival ref codes can be hierarchical paths.
+    aliases:
+      - has_archive_path
+      - linkedin_profile_path
+      - person_html_file
+    comments:
+      - >-
+        Examples of provenance paths: archival reference chains like
+        "Collection > Box > Folder > Item", URLs tracing digital object location,
+        or hierarchical classification codes like "NAS1/A/1.1".
+      - >-
+        schema:contentUrl ("Actual bytes of the media object", schemaorg.owl:12864-12883)
+        was originally listed as close_mapping but is semantically wrong — it is a
+        media download URL (Domain: MediaObject), not a hierarchical provenance/location path.
+        Removed.
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.5
+      specificity_rationale: Moderately specific slot.

@@ -1,0 +1,115 @@
+# ==============================================================================
+# LinkML Slot Definition: retrieved_through
+# ==============================================================================
+# Denotes the specific method, mechanism, or event through which data was
+# accessed, fetched, or collected. Used for provenance tracking.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                  | File/Line          | Mapping | Notes                                      |
+# |------------|---------------------------|--------------------|---------|--------------------------------------------|
+# | **PROV-O** | `prov:used`               | prov.ttl:1039-1053 | exact   | "Entity used by Activity." Method/tool.    |
+# | **PROV-O** | `prov:wasInfluencedBy`    | prov.ttl:1099-1121 | broad   | Parent property of prov:used.              |
+# | **PROV-O** | `prov:qualifiedUsage`     | prov.ttl:985-995   | narrow  | Qualified usage with additional details.   |
+#
+# HIERARCHY: prov:used rdfs:subPropertyOf prov:wasInfluencedBy (line 1046)
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added ontology alignment header, broad/narrow mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/retrieved_through
+name: retrieved_through
+title: Retrieved Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  retrieved_through:
+    slot_uri: prov:used
+    description: >-
+      To denote the specific method, mechanism, or discrete event instance
+      through which a resource, data, or entity was accessed, fetched, or
+      collected.
+    alt_descriptions:
+      nl: >-
+        Om de specifieke methode, mechanisme of discrete gebeurtenisinstantie
+        aan te duiden waardoor een bron, gegevens of entiteit is geopend,
+        opgehaald of verzameld.
+      de: >-
+        Zur Bezeichnung der spezifischen Methode, des Mechanismus oder der
+        diskreten Ereignisinstanz, durch die eine Ressource, Daten oder
+        Entität abgerufen, geholt oder gesammelt wurde.
+      fr: >-
+        Pour désigner la méthode, le mécanisme ou l'instance d'événement
+        discret spécifique par lequel une ressource, des données ou une
+        entité a été consultée, récupérée ou collectée.
+      ar: >-
+        للإشارة إلى الطريقة أو الآلية أو حالة الحدث المنفصلة المحددة التي
+        تم من خلالها الوصول إلى مورد أو بيانات أو كيان أو جلبه أو جمعه.
+      id: >-
+        Untuk menunjukkan metode, mekanisme, atau instans peristiwa diskrit
+        tertentu yang melaluinya sumber daya, data, atau entitas diakses,
+        diambil, atau dikumpulkan.
+      zh: >-
+        表示访问、获取或收集资源、数据或实体所使用的特定方法、机制或离散事件实例。
+      es: >-
+        Para denotar el método, mecanismo o instancia de evento discreto
+        específico a través del cual se accedió, obtuvo o recopiló un
+        recurso, datos o entidad.
+    structured_aliases:
+      - literal_form: opgehaald via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgerufen über
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: récupéré via
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: استُرجع عبر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diambil melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过检索
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: recuperado a través de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    # range: RetrievalMethod
+    multivalued: false
+    inlined: false # Fixed invalid inline for primitive type
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+    broad_mappings:
+    - prov:wasInfluencedBy  # prov.ttl:1099-1121 - parent property (prov:used subPropertyOf)
+    narrow_mappings:
+    - prov:qualifiedUsage  # prov.ttl:985-995 - qualified usage with additional details
+    aliases:
+    - is_or_was_retrieved_through
+    - retrieval_method
+    comments:
+    - MIGRATED from extraction_method per slot_fixes.yaml (Rule 53).
+    - |
+      **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+      | Ontology | Property | Line | Mapping | Notes |
+      |----------|----------|------|---------|-------|
+      | PROV-O | prov:used | 1039-1053 | exact | Entity used by Activity |
+      | PROV-O | prov:wasInfluencedBy | 1099-1121 | broad | Parent property |
+      | PROV-O | prov:qualifiedUsage | 985-995 | narrow | Qualified usage |

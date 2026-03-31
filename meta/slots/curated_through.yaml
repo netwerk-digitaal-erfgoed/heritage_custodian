@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: curated_through
+# ==============================================================================
+# The curation activity associated with this entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line            | Mapping | Notes                              |
+# |---------------|------------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasGeneratedBy`  | prov.ttl:1132-1145   | close   | Generation (curation is specific)  |
+#
+# NOTE: prov:wasGeneratedBy is broader than curation - it covers any generation,
+# not specifically curatorial activities. Hence close_mapping.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, cleaned description, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/curated_through
+name: curated_through
+title: Curated Through
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  curated_through:
+    slot_uri: hc:curatedThrough
+    description: >-
+      The curation activity, process, or event through which this entity was
+      selected, organized, and maintained for preservation or presentation.
+    alt_descriptions:
+      nl: >-
+        De curatieactiviteit, het proces of de gebeurtenis waardoor deze
+        entiteit werd geselecteerd, georganiseerd en onderhouden voor
+        bewaring of presentatie.
+      de: >-
+        Die Kurationsaktivität, der Prozess oder das Ereignis, durch das
+        diese Entität für Erhaltung oder Präsentation ausgewählt, organisiert
+        und gepflegt wurde.
+      fr: >-
+        L'activité de curation, le processus ou l'événement par lequel cette
+        entité a été sélectionnée, organisée et maintenue pour la conservation
+        ou la présentation.
+      ar: >-
+        نشاط التنسيق أو العملية أو الحدث الذي تم من خلاله اختيار هذا الكيان
+        وتنظيمه وصيانته للحفظ أو العرض.
+      id: >-
+        Aktivitas kurasi, proses, atau peristiwa yang melaluinya entitas ini
+        dipilih, diorganisir, dan dipelihara untuk pelestarian atau presentasi.
+      zh: >-
+        通过其选择、组织和维护此实体以进行保存或展示的策展活动、过程或事件。
+      es: >-
+        La actividad de curación, proceso o evento a través del cual esta
+        entidad fue seleccionada, organizada y mantenida para su preservación
+        o presentación.
+    structured_aliases:
+      - literal_form: gecureerd via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: kuratiert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: conservé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مُنسَّق من خلال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dikurasi melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...策展
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: curado a través de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - prov:wasGeneratedBy  # prov.ttl:1132-1145 - Generation (broader than curation)
+    aliases:
+      - is_or_was_curated_through
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MAPPING NOTE**: prov:wasGeneratedBy is broader than curation - it covers
+        any form of generation, not specifically curatorial activities in the GLAM
+        context. Hence close_mapping rather than exact_mapping.
+      - |
+        **MIGRATION NOTE (2026-02-03)**:
+        Migrated from is_or_was_curated_through for conciseness.

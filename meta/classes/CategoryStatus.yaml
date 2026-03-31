@@ -1,0 +1,97 @@
+id: https://nde.nl/ontology/hc/class/CategoryStatus
+name: CategoryStatus
+title: Category Status
+description: 'Represents the status of a storage condition category assessment.
+
+
+  This class wraps the StorageConditionStatusEnum with additional metadata
+
+  capabilities such as notes, timestamps, and assessor information.
+
+
+  Created per slot_fixes.yaml revision for category_status migration (Rule 53/56).
+
+  '
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+- linkml:types
+- ../enums/StorageConditionStatusEnum
+- ../slots/has_description
+- ../slots/has_name
+- ../slots/has_value
+default_prefix: hc
+classes:
+  CategoryStatus:
+    class_uri: crm:E55_Type
+    description: >-
+      Assessment status classification for storage condition categories in preservation evaluations.
+    alt_descriptions:
+      nl: Beoordelingsstatusclassificatie voor opslagconditiecategorieën in behoudsevaluaties.
+      de: Bewertungsstatus-Klassifikation für Lagerungszustandskategorien in Erhaltungsbewertungen.
+      fr: Classification du statut d'évaluation pour les catégories de conditions de stockage dans les évaluations de conservation.
+      es: Clasificación del estado de evaluación para categorías de condiciones de almacenamiento en evaluaciones de preservación.
+      ar: تصنيف حالة التقييم لفئات حالات التخزين في تقييمات الحفظ.
+      id: Klasifikasi status penilaian untuk kategori kondisi penyimpanan dalam evaluasi pelestarian.
+      zh: 保存评估中存储条件类别的评估状态分类。
+    structured_aliases:
+    - literal_form: categoriestatus
+      in_language: nl
+    - literal_form: beoordelingsstatus
+      in_language: nl
+    - literal_form: Kategoriestatus
+      in_language: de
+    - literal_form: Bewertungsstatus
+      in_language: de
+    - literal_form: statut de catégorie
+      in_language: fr
+    - literal_form: état d'évaluation
+      in_language: fr
+    - literal_form: estado de categoría
+      in_language: es
+    - literal_form: estado de evaluación
+      in_language: es
+    - literal_form: حالة الفئة
+      in_language: ar
+    - literal_form: status kategori
+      in_language: id
+    - literal_form: 类别状态
+      in_language: zh
+    broad_mappings:
+    - crm:E55_Type
+    close_mappings:
+    - skos:Concept
+    keywords:
+    - category status
+    - storage condition
+    - assessment
+    - preservation
+    - evaluation
+    examples:
+    - value:
+        has_value: GOOD
+        has_name: Good
+        has_description: Acceptable temperature control with minor fluctuations
+    - value:
+        has_value: CRITICAL
+        has_name: Critical
+        has_description: Immediate pest treatment required
+    comments:
+    - Values follow StorageConditionStatusEnum (EXCELLENT, GOOD, FAIR, POOR, CRITICAL)
+    slots:
+    - has_name
+    - has_description
+    - has_value
+    slot_usage:
+      has_value:
+        range: StorageConditionStatusEnum
+        required: true
+      has_name:
+      has_description:
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

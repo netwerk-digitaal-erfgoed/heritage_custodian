@@ -1,0 +1,130 @@
+# ==============================================================================
+# LinkML Slot Definition: has_age
+# ==============================================================================
+# Quantifiable measure of time elapsed since an entity's inception or creation.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property         | File/Line               | Mapping | Notes                              |
+# |------------|------------------|-------------------------|---------|-------------------------------------|
+# | **FOAF**   | `foaf:age`       | foaf.ttl:145-153        | exact   | "The age in years of some agent."  |
+# |            |                  |                         |         | Domain: foaf:Agent                 |
+# |            |                  |                         |         | Range: rdfs:Literal                |
+# | **Schema** | `schema:duration`| schemaorg.owl:15892-15915| broad  | General duration concept           |
+# | **FOAF**   | `foaf:birthday`  | foaf.ttl:172-180        | related | Birthday in mm-dd format           |
+# | **Schema** | `schema:birthDate`| schemaorg.owl:10099-10102| related| Date of birth                      |
+# | **RiC-O**  | `rico:birthDate` | RiC-O_1-1.rdf:20891-20892| related| Date of birth for agents           |
+#
+# TEMPORAL SEMANTICS (RiC-O Pattern):
+# "hasOrHad" indicates the age is relative to a specific time or context
+# (e.g., age at death, age at acquisition, age of artifact at discovery).
+#
+# RANGE NOTES:
+# - Kept as `string` since age is typically a numeric/literal value
+# - Can be a simple integer (years) via slot_usage narrowing
+# - Can be an `Age` class for structured representation (e.g. range, unit)
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added broad_mappings and related_mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_age
+name: has_age
+title: has age
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  foaf: http://xmlns.com/foaf/0.1/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  has_age:
+    slot_uri: foaf:age
+    description: >-
+      To possess a quantifiable measure of the time elapsed since an entity's inception or creation.
+    alt_descriptions:
+      nl: >-
+        Het bezitten van een kwantificeerbare maat voor de tijd verstreken sinds het ontstaan of de creatie van een entiteit.
+      de: >-
+        Eine quantifizierbare Messung der seit der Entstehung oder Schaffung einer Entität verstrichenen Zeit besitzen.
+      fr: >-
+        Posséder une mesure quantifiable du temps écoulé depuis la création ou l'origine d'une entité.
+      ar: >-
+        امتلاك مقياس قابل للقياس للوقت المنقضي منذ نشأة أو إنشاء كيان.
+      id: >-
+        Memiliki ukuran yang dapat dikuantifikasi dari waktu yang telah berlalu sejak awal atau penciptaan suatu entitas.
+      zh: >-
+        拥有自实体诞生或创建以来经过时间的可量化度量。
+      es: >-
+        Poseer una medida cuantificable del tiempo transcurrido desde el inicio o creación de una entidad.
+    range: string
+    multivalued: false
+    required: false
+    exact_mappings:
+    broad_mappings:
+      - schema:duration  # schemaorg.owl:15892-15915 - general duration concept; age is a specific duration
+    related_mappings:
+      - foaf:birthday  # foaf.ttl:172-180 - birthday in mm-dd format
+      - schema:birthDate  # schemaorg.owl:10099-10102 - date of birth
+      - rico:birthDate  # RiC-O_1-1.rdf:20891-20892 - date of birth for agents
+    aliases:
+      - has_or_had_age
+    structured_aliases:
+      - literal_form: heeft leeftijd
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Alter
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a l'âge de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له عمر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki usia
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有年龄
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene edad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: "42"
+        description: Age of a person in years
+      - value: "150"
+        description: Age of a historical artifact in years
+      - value: "2500"
+        description: Age of an archaeological object in years
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - Updated 2026-02-03 with broad/related mappings
+      - |
+        **Temporal Semantics** (RiC-O Pattern):
+        "hasOrHad" indicates the age is relative to a specific time or context
+        (e.g., age at death, age at acquisition).
+      - |
+        **Range Notes**:
+        - Kept as `string` since age is typically a numeric/literal value
+        - Can be a simple integer (years) via slot_usage narrowing
+        - Can be an `Age` class for structured representation (e.g. range, unit)
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **FOAF** | `foaf:age` | 145-153 | exact | "The age in years of some agent" |
+        | **Schema** | `schema:duration` | 15892-15915 | broad | General duration concept |
+        | **FOAF** | `foaf:birthday` | 172-180 | related | Birthday in mm-dd format |
+        | **Schema** | `schema:birthDate` | 10099-10102 | related | Date of birth |
+        | **RiC-O** | `rico:birthDate` | 20891-20892 | related | Date of birth for agents |

@@ -1,0 +1,91 @@
+# ==============================================================================
+# LinkML Slot Definition: has_percentage
+# ==============================================================================
+# A value, ratio, or proportion expressed as a fraction of 100.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                | File/Line                | Mapping | Notes                                              |
+# |------------|-------------------------|--------------------------|---------|----------------------------------------------------|
+# | Schema.org | `schema:valueReference` | schemaorg.owl:39594-39618 | related | "A secondary value that provides additional info    |
+# |            |                         |                          |         | on the original value." Domain: PropertyValue/      |
+# |            |                         |                          |         | QuantitativeValue/QualitativeValue. Not about       |
+# |            |                         |                          |         | percentages; it provides context to other values.   |
+#
+# No standard ontology property specifically for percentage values.
+# schema:valueReference is about reference context for quantitative values,
+# not about expressing percentages.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_percentage
+name: has_percentage
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_percentage:
+    slot_uri: hc:hasPercentage
+    description: >-
+      To specify a value, ratio, or proportion expressed as a fraction of 100.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een waarde, verhouding of proportie uitgedrukt als een fractie van 100.
+      de: >-
+        Zur Angabe eines Wertes, Verhältnisses oder Anteils, ausgedrückt als Bruchteil von 100.
+      fr: >-
+        Spécifier une valeur, un ratio ou une proportion exprimée en fraction de 100.
+      ar: >-
+        لتحديد قيمة أو نسبة أو تناسب معبر عنها ككسر من 100.
+      id: >-
+        Untuk menentukan nilai, rasio, atau proporsi yang dinyatakan sebagai pecahan dari 100.
+      zh: >-
+        指定以100为分母的分数形式表示的数值、比率或比例。
+      es: >-
+        Especificar un valor, proporción o razón expresada como fracción de 100.
+    structured_aliases:
+      - literal_form: Percentage
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Prozentsatz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Pourcentage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نسبة مئوية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Persentase
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 百分比
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Porcentaje
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string  # uriorcurie
+    # range: Percentage
+    inlined: false
+    aliases:
+      - has_or_had_percentage
+      - current_utilization_percent
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:valueReference  # schemaorg.owl:39594-39618 - Secondary value providing context, not percentage-specific
+    examples:
+      - value:
+          percentage_value: 50
+          percentage_display: 50%
+        description: 50 percent
+    comments:
+      - |
+        **USAGE**: Used for commission rates, discounts, completion percentages, etc.
+        Links entities to structured percentage representations.

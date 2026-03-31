@@ -1,0 +1,116 @@
+id: https://nde.nl/ontology/hc/class/OutputData
+name: output_data
+title: Output Data
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  sosa: http://www.w3.org/ns/sosa/
+  dct: http://purl.org/dc/terms/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_format
+- ../slots/identified_by
+classes:
+  OutputData:
+    class_uri: hc:OutputData
+    description: >-
+      Specification describing the data output produced by a device, service,
+      process, or transformation pipeline.
+    alt_descriptions:
+      nl: >-
+        Specificatie die de gegevensuitvoer beschrijft die door een apparaat, dienst,
+        proces of transformatiepijplijn wordt geproduceerd.
+      de: >-
+        Spezifikation, die den Datenausgang beschreibt, der von einem Gerät, Dienst,
+        Prozess oder Transformationspipeline erzeugt wird.
+      fr: >-
+        Spécification décrivant la sortie de données produite par un appareil, service,
+        processus ou pipeline de transformation.
+      es: >-
+        Especificación que describe la salida de datos producida por un dispositivo,
+        servicio, proceso o pipeline de transformación.
+      ar: >-
+        مواصفة تصف مخرجات البيانات التي ينتجها جهاز أو خدمة
+        أو عملية أو خط أنابيب تحويل.
+      id: >-
+        Spesifikasi yang mendeskripsikan keluaran data yang dihasilkan oleh perangkat,
+        layanan, proses, atau pipeline transformasi.
+      zh: >-
+        描述由设备、服务、流程或转换管道产生的数据输出的规范。
+    comments:
+    - "Use cases: IoT device outputs (sensor readings), API responses (JSON/XML/RDF), export files (CSV/PDF), and streaming data."
+    - "Captures format and description; use identified_by when the output is addressable (e.g., URL or file identifier)."
+    - 'Preserved from prior description: Specification of the data output produced by a device, service, or process.'
+    structured_aliases:
+    - literal_form: uitvoergegevens
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Ausgabedaten
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: données de sortie
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: datos de salida
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: بيانات الإخراج
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: data keluaran
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 输出数据
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - output
+    - data format
+    - IoT
+    - API response
+    - export
+    close_mappings:
+    - sosa:Result
+    - schema:DataDownload
+    slots:
+    - has_format
+    - has_description
+    - identified_by
+    slot_usage:
+      has_format:
+#         range: string # uriorcurie
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_type: JsonFormat
+      has_description:
+#         range: string
+        examples:
+        - value: Temperature and humidity readings from conservation sensors
+        - value: https://analytics.museum.nl/data
+        - value: https://api.museum.nl/schemas/climate-v1.json
+        - value: true
+        - value: false
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Output data specifications apply to all custodian types with digital systems.
+      specificity_score: 0.65
+      specificity_rationale: Fairly specific to IoT and digital platform contexts.
+
+    examples:
+    - value:
+        has_format:
+          has_type: JsonFormat
+          has_media_type: application/json
+        has_description: Climate sensor readings
+        identified_by: https://analytics.museum.nl/climate

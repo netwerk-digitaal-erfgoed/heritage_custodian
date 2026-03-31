@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: approved_by
+# ==============================================================================
+# Individual, organization, or governing body that approved something.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo`| prov.ttl:428-437     | close   | Attribution to agent - similar but broader               |
+# | **DCTerms**   | `dcterms:publisher`   | dcterms.rdf          | related | Publisher - different semantic                           |
+#
+# SEMANTIC NOTES:
+# - Approval implies formal authorization/validation by authority
+# - prov:wasAttributedTo is about provenance attribution, not approval
+# - Custom hc: URI is appropriate for this formal approval context
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, close_mappings, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/approved_by
+name: approved_by
+title: Approved By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  approved_by:
+    slot_uri: hc:approvedBy
+    description: >-
+      To be formally validated, authorized, or agreed upon by a specific individual, 
+      organization, or governing body with the power to sanction the action or content.
+    alt_descriptions:
+      nl: >-
+        Formeel gevalideerd, geautoriseerd of overeengekomen door een specifiek 
+        individu, organisatie of bestuursorgaan met de bevoegdheid om de actie 
+        of inhoud te bekrachtigen.
+      de: >-
+        Formell validiert, autorisiert oder vereinbart von einer bestimmten Person, 
+        Organisation oder einem Leitungsgremium mit der Befugnis, die Handlung 
+        oder den Inhalt zu genehmigen.
+      fr: >-
+        Formellement validé, autorisé ou convenu par un individu, une organisation 
+        ou un organe directeur spécifique ayant le pouvoir de sanctionner l'action 
+        ou le contenu.
+      ar: >-
+        أن يتم التحقق منه رسمياً أو الموافقة عليه من قبل فرد أو منظمة أو 
+        هيئة حاكمة معينة لديها صلاحية اعتماد الإجراء أو المحتوى.
+      id: >-
+        Divalidasi secara formal, diotorisasi, atau disetujui oleh individu, 
+        organisasi, atau badan pengatur tertentu yang memiliki wewenang untuk 
+        menyetujui tindakan atau konten.
+      zh: >-
+        由具有批准行动或内容权力的特定个人、组织或管理机构正式验证、授权或同意。
+      es: >-
+        Formalmente validado, autorizado o acordado por un individuo, organización 
+        u órgano de gobierno específico con el poder de sancionar la acción o contenido.
+    structured_aliases:
+      - literal_form: goedgekeurd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: genehmigt von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: approuvé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موافق عليه من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disetujui oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...批准
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: aprobado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - prov:wasAttributedTo  # prov.ttl:428-437 - attribution to agent
+    aliases:
+      - is_or_was_approved_by
+    annotations:
+      custodian_types: '["*"]'

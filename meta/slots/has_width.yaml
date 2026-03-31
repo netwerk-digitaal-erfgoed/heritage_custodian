@@ -1,0 +1,96 @@
+# ==============================================================================
+# LinkML Slot Definition: has_width
+# ==============================================================================
+# To possess a specific linear measurement representing the horizontal distance
+# from one side of an entity to the other.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:width`        | schemaorg.owl        | exact   | Width of item                      |
+# | **CIDOC-CRM** | `crm:P43_has_dimension`| CIDOC_CRM           | broad   | General dimension property         |
+#
+# CREATED: 2026-01-28
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_width
+name: has_width
+title: Has Width
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  has_width:
+    slot_uri: schema:width
+    description: >-
+      To possess a specific linear measurement representing the horizontal
+      distance from one side of an entity to the other.
+    alt_descriptions:
+      nl: >-
+        Om een specifieke lineaire meting te bezitten die de horizontale
+        afstand van de ene kant van een entiteit naar de andere vertegenwoordigt.
+      de: >-
+        Ein spezifisches lineares Maß zu besitzen, das den horizontalen
+        Abstand von einer Seite einer Entität zur anderen darstellt.
+      fr: >-
+        Posséder une mesure linéaire spécifique représentant la distance
+        horizontale d'un côté d'une entité à l'autre.
+      ar: >-
+        امتلاك قياس خطي محدد يمثل المسافة الأفقية من جانب واحد من
+        الكيان إلى الآخر.
+      id: >-
+        Memiliki pengukuran linier tertentu yang mewakili jarak horizontal
+        dari satu sisi entitas ke sisi lainnya.
+      zh: >-
+        拥有代表实体一侧到另一侧水平距离的特定线性测量值。
+      es: >-
+        Poseer una medida lineal específica que representa la distancia
+        horizontal de un lado de una entidad al otro.
+    structured_aliases:
+      - literal_form: breedte
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Breite
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: largeur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عرض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: lebar
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 宽度
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: ancho
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    exact_mappings:
+    broad_mappings:
+      - crm:P43_has_dimension
+    aliases:
+      - has_or_had_width
+    annotations:
+      rico_naming_convention: Follows RiC-O "hasOrHad" pattern for temporal predicates.
+      replaces_slots: width
+      migration_date: '2026-01-28'
+      custodian_types: '["*"]'
+    comments:
+      - MIGRATED from width per slot_fixes.yaml (Rule 53).

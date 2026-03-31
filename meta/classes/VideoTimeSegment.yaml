@@ -1,0 +1,136 @@
+id: https://nde.nl/ontology/hc/class/VideoTimeSegment
+name: video_time_segment_class
+title: Video Time Segment Class
+imports:
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_time_interval
+  - ../slots/generated_by
+  - ../slots/indexed_as
+  - ../slots/has_text
+  - ../slots/has_speaker
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+  ma: http://www.w3.org/ns/ma-ont#
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+classes:
+  VideoTimeSegment:
+    class_uri: crm:E52_Time-Span
+    abstract: false
+    description: >-
+      Bounded temporal portion of video content defined by start and end times,
+      serving as the foundational unit for time-coded subtitles, annotations,
+      and chapter markers.
+    alt_descriptions:
+      nl: Begrensde temporele portie van video-inhoud voor ondertitels, annotaties en hoofdstukmarkeringen.
+      de: Begrenzter zeitlicher Abschnitt eines Videos für Untertitel, Annotationen und Kapitelmarkierungen.
+      fr: Portion temporelle bornée d'un contenu vidéo pour sous-titres, annotations et marqueurs de chapitre.
+      es: Porción temporal delimitada de contenido de video para subtítulos, anotaciones y marcadores de capítulo.
+      ar: جزء زمني محدد من محتوى الفيديو للترجمات والتعليقات وعلامات الفصول.
+      id: Bagian temporal yang dibatasi dari konten video untuk subtitle, anotasi, dan penanda bab.
+      zh: 视频内容的有界时间部分，用于字幕、注释和章节标记。
+    structured_aliases:
+    - {literal_form: videotijdsegment, in_language: nl}
+    - {literal_form: Video-Zeitsegment, in_language: de}
+    - {literal_form: segment temporel vidéo, in_language: fr}
+    - {literal_form: segmento temporal de video, in_language: es}
+    - {literal_form: مقطع زمني للفيديو, in_language: ar}
+    - {literal_form: segmen waktu video, in_language: id}
+    - {literal_form: 视频时间片段, in_language: zh}
+    broad_mappings:
+    - crm:E52_Time-Span
+    close_mappings:
+    - oa:FragmentSelector
+    - ma:MediaFragment
+    related_mappings:
+    - schema:Clip
+    slots:
+    - has_time_interval
+    - indexed_as
+    - has_text
+    - has_speaker
+    - has_score
+    - generated_by
+    - begin_of_the_begin
+    slot_usage:
+      has_time_interval:
+        range: TimeInterval
+        required: true
+        inlined: true
+        examples:
+        - value: null
+      has_text:
+#         range: string
+        required: false
+        examples:
+        - value: Welkom bij het Rijksmuseum
+        - value: The curator explains the painting's history
+      indexed_as:
+        range: integer
+        required: false
+        minimum_value: 0
+        examples:
+        - value: 0
+        - value: 42
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+        description: 'Generation event containing confidence score for ASR/CV segment
+          accuracy. MIGRATED 2026-01-19: Replaces confidence slot with structured
+          pattern.'
+        examples:
+        - value:
+            has_score:
+              has_score: 0.95
+              has_method: asr_transcription
+        - value:
+            has_score:
+              has_score: 0.72
+              has_method: cv_detection
+      has_speaker:
+#         range: string
+        required: false
+        examples:
+        - value: SPEAKER_01
+        - value: curator_taco_dibbits
+      speaker_label:
+#         range: string
+        required: false
+        examples:
+        - value: Narrator
+        - value: Dr. Taco Dibbits, Museum Director
+
+    comments:
+    - Reusable time segment for subtitles, annotations, chapters
+    - Dual time format: ISO 8601 for serialization, seconds for computation
+    - Aligns with W3C Media Fragments URI 1.0 specification
+    - Maps to oa:FragmentSelector for Web Annotation compatibility
+    - Confidence scoring for AI-generated content via generated_by
+    - Speaker diarization support for multi-speaker transcripts
+    - MIGRATED 2026-01-19: confidence → generated_by + ConfidenceScore
+    keywords:
+    - time-segment
+    - temporal
+    - subtitle
+    - annotation
+    - video
+    see_also:
+    - https://www.w3.org/TR/media-frags/
+    - https://www.w3.org/TR/annotation-model/
+    - https://www.w3.org/ns/ma-ont
+    - http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

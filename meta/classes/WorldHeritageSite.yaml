@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/class/WorldHeritageSite
+name: WorldHeritageSite
+title: WorldHeritageSite Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/managed_by
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/related_to
+- ../slots/has_label
+classes:
+  WorldHeritageSite:
+    description: >-
+      Custodial organization type for bodies responsible for management and
+      stewardship of UNESCO-inscribed places.
+    alt_descriptions:
+      nl: UNESCO Werelderfgoed-aanduiding voor instellingen die plaatsen van uitzonderlijke culturele of natuurlijke betekenis beheren die op de Werelderfgoedlijst staan, inclusief monumenten, historische steden en natuurlijke landschappen.
+      de: UNESCO-Welterbe-Bezeichnung für Institutionen, die Stätten von herausragendem kulturellem oder natürlichem Wert verwalten, die in die Welterbeliste eingetragen sind, einschließlich Denkmäler, historische Städte und Naturlandschaften.
+      fr: Désignation de site du patrimoine mondial de l'UNESCO pour les institutions gérant des lieux d'une importance culturelle ou naturelle exceptionnelle inscrits sur la Liste du patrimoine mondial, y compris les monuments, les villes historiques et les paysages naturels.
+      es: Designación de Sitio del Patrimonio Mundial de la UNESCO para instituciones que gestionan lugares de importancia cultural o natural excepcional inscritos en la Lista del Patrimonio Mundial, incluidos monumentos, ciudades históricas y paisajes naturales.
+      ar: تسمية موقع التراث العالمي لليونسكو للمؤسسات التي تدير أماكن ذات أهمية ثقافية أو طبيعية بارزة مدرجة في قائمة التراث العالمي، بما في ذلك المعالم والمدن التاريخية والمناظر الطبيعية.
+      id: Penunjukan Situs Warisan Dunia UNESCO untuk lembaga yang mengelola tempat penting budaya atau alam yang luar biasa yang terdaftar dalam Daftar Warisan Dunia, termasuk monumen, kota bersejarah, dan lanskap alami.
+      zh: 联合国教科文组织世界遗产指定，用于管理列入世界遗产名录的具有突出文化 或自然价值的地点的机构，包括古迹、历史名城和自然景观。
+    is_a: CustodianType
+    class_uri: skos:Concept
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_type
+    - has_score
+    - has_label
+    - related_to
+    - identified_by
+    slot_usage:
+      identified_by:
+      has_type:
+        equals_string: hc:FeatureCustodianType
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+      has_label:
+        any_of:
+        - equals_string: UNESCO-Welterbe
+        - equals_string: Patrimonio de la Humanidad
+        - equals_string: patrimoine mondial
+    structured_aliases:
+    - literal_form: werelderfgoed
+      in_language: nl
+    - literal_form: Welterbe
+      in_language: de
+    - literal_form: patrimoine mondial
+      in_language: fr
+    - literal_form: Patrimonio de la Humanidad
+      in_language: es
+    - literal_form: تراث عالمي
+      in_language: ar
+    - literal_form: Warisan Dunia
+      in_language: id
+    - literal_form: 世界遗产
+      in_language: zh
+    comments:
+    - Designates institutions managing UNESCO World Heritage Sites
+    - Includes cultural monuments, historic cities, and natural landscapes
+    keywords:
+    - UNESCO
+    - World Heritage
+    - cultural heritage
+    - natural heritage
+    - outstanding universal value
+    see_also:
+    - TentativeWorldHeritageSite
+    - NationalTreasure
+    - NationalTreasureOfFrance
+    - MemoryInstitution
+    examples:
+    - value:
+        has_label: Rijksmuseum
+        related_to:
+          qid: Q190804
+      description: Museum at a World Heritage Site location
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

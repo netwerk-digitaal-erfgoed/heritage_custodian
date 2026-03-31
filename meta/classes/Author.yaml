@@ -1,0 +1,134 @@
+id: https://nde.nl/ontology/hc/class/Author
+name: author_class
+title: Author Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  bibo: http://purl.org/ontology/bibo/
+  foaf: http://xmlns.com/foaf/0.1/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+- linkml:types
+- ../enums/AuthorRoleEnum
+- ../metadata
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_name
+- ../slots/has_role
+- ../slots/has_score
+- ../slots/affiliated_with
+default_prefix: hc
+classes:
+  Author:
+    class_uri: schema:Person
+    description: >-
+      Individual or organization responsible for creating a creative or documentary work.
+    alt_descriptions:
+      nl: Persoon of organisatie die verantwoordelijk is voor het creëren van een creatief of documentair werk.
+      de: Einzelperson oder Organisation, die für die Erstellung eines kreativen oder dokumentarischen Werks verantwortlich ist.
+      fr: Personne ou organisation responsable de la création d'une œuvre créative ou documentaire.
+      es: Persona u organización responsable de crear una obra creativa o documental.
+      ar: فرد أو منظمة مسؤولة عن إنشاء عمل إبداعي أو وثائقي.
+      id: Individu atau organisasi yang bertanggung jawab untuk membuat karya kreatif atau dokumentaris.
+      zh: 负责创作创意或文献作品的个人或组织。
+    broad_mappings:
+    - foaf:Person
+    - schema:Person
+    close_mappings:
+    - bf:Agent
+    - rico:Agent
+    related_mappings:
+    - bf:Contribution
+    - dcterms:creator
+    slots:
+    - has_name
+    - has_role
+    - affiliated_with
+    - identified_by
+    - has_label
+    - has_description
+    - has_score
+    slot_usage:
+      has_name:
+        required: true
+        examples:
+        - value: Jan de Vries
+        - value: Rijksmuseum Research Department
+      has_role:
+        range: AuthorRoleEnum
+        required: false
+        ifabsent: string(AUTHOR)
+        examples:
+        - value: AUTHOR
+        - value: EDITOR
+      affiliated_with:
+        required: false
+        examples:
+        - value: Rijksmuseum Amsterdam
+        - value: Universiteit van Amsterdam
+      identified_by:
+        required: false
+        examples:
+        - value: https://orcid.org/0000-0001-2345-6789
+        - value: https://viaf.org/viaf/12345678
+    structured_aliases:
+    - literal_form: auteur
+      in_language: nl
+    - literal_form: Autor
+      in_language: de
+    - literal_form: auteur
+      in_language: fr
+    - literal_form: autor
+      in_language: es
+    - literal_form: مؤلف
+      in_language: ar
+    - literal_form: penulis
+      in_language: id
+    - literal_form: 作者
+      in_language: zh
+    comments:
+    - Replaces simple string author lists with structured data
+    - Supports both individual and organizational authors
+    - Includes roles (author, editor, compiler, translator, illustrator, contributor)
+    - Can link to identifier systems (ORCID, VIAF)
+    - Author types include individual persons, organizations, anonymous, and collective
+    - 'Preserved from prior description: Individual or organization responsible for creating a creative or documentary work. Models creators of heritage custodian outputs such as exhibition catalogs, research publications, finding aids, and institutional reports.'
+    keywords:
+    - authorship
+    - creator
+    - attribution
+    - contributor
+    - bibliographic
+    - creative work
+    see_also:
+    - https://schema.org/author
+    - https://schema.org/Person
+    - http://id.loc.gov/ontologies/bibframe/Contribution
+    examples:
+    - value:
+        has_name: Jan de Vries
+        has_role: AUTHOR
+        affiliated_with: Rijksmuseum Amsterdam
+        identified_by: https://orcid.org/0000-0001-2345-6789
+      description: Individual author with ORCID and affiliation
+    - value:
+        has_name: Maria van Dijk
+        has_role: EDITOR
+      description: Editor role
+    - value:
+        has_name: Rijksmuseum Research Department
+        has_role: AUTHOR
+      description: Organizational author
+    notes:
+    - |
+      Preserved from prior description (commit 51480891):
+
+      "Person or organization that authored/created a creative work.\n**PURPOSE**:\nAuthor models the creator(s) of works produced by heritage custodians, such as exhibition catalogs, research publications, finding aids, and reports. Replaces simple string author lists with structured data.\n**ONTOLOGY ALIGNMENT**:\n| Ontology | Class/Property | Usage | |----------|----------------|-------| | **Schema.org** | `schema:Person`, `schema:author` | Primary class and property | | **Dublin Core** | `dcterms:creator` | Creator relationship | | **BIBFRAME** | `bf:Contribution`, `bf:Agent` | Bibliographic contributions | | **FOAF** | `foaf:Person`, `foaf:name` | Personal information | | **RiC-O** | `rico:Agent` | Archival agent modeling |\n**AUTHOR TYPES**:\nAuthors may be: - **Individual persons**: Named authors with affiliations - **Organizations**: Corporate authors (e.g., \"Rijksmuseum Staff\") - **Anonymous**: Works with unknown authorship - **Collective**: Group authorships\n**ROLES**:\n\
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Authorship is broadly useful for creative/documentary works.
+      custodian_types: "['*']"

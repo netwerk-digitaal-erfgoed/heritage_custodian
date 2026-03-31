@@ -1,0 +1,46 @@
+id: https://nde.nl/ontology/hc/class/Content
+name: Content
+title: Content Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/temporal_extent
+classes:
+  Content:
+    class_uri: rico:RecordSetType
+    description: >-
+      Intellectual-subject profile describing what a resource set documents across topic, period, and context.
+    alt_descriptions:
+      nl: Intellectueel onderwerp-profiel dat beschrijft wat een bronnenverzameling documenteert qua thema, periode en context.
+      de: Intellektuelles Themenprofil, das beschreibt, was eine Ressourcenmenge in Bezug auf Thema, Zeitraum und Kontext dokumentiert.
+      fr: Profil intellectuel de contenu decrivant ce qu'un ensemble de ressources documente en termes de sujet, periode et contexte.
+      es: Perfil intelectual de contenido que describe que documenta un conjunto de recursos en tema, periodo y contexto.
+      ar: ملف موضوعي فكري يصف ما توثقه مجموعة الموارد من حيث الموضوع والفترة والسياق.
+      id: Profil intelektual isi yang menjelaskan apa yang didokumentasikan oleh suatu himpunan sumber dalam topik, periode, dan konteks.
+      zh: 描述资源集合在主题、时期与语境上所记录内容的知识主题画像。
+    broad_mappings:
+    - rico:RecordSetType
+    close_mappings:
+    - dcterms:coverage
+    - schema:about
+    slots:
+    - has_label
+    - has_description
+    - has_type
+    - temporal_extent
+    slot_usage:
+      has_type:
+        range: ContentType
+      temporal_extent:
+        range: TimeSpan
+        inlined: true

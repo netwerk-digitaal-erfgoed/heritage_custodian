@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/Description
+name: description_class
+title: Description Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_type
+- ../slots/has_content
+- ../slots/has_score
+- ../slots/in_language
+classes:
+  Description:
+    class_uri: hc:Description
+    description: >-
+      Reusable typed text statement used to supply contextual explanatory
+      content with optional language tagging.
+    alt_descriptions:
+      nl: Herbruikbare getypeerde tekstverklaring voor contextuele toelichting met optionele taalmarkering.
+      de: Wiederverwendbare typisierte Textaussage fuer kontextuelle Erlaeuterungen mit optionaler Sprachkennzeichnung.
+      fr: Enonce textuel type reutilisable pour fournir un contexte explicatif avec marquage linguistique optionnel.
+      es: Enunciado textual tipado reutilizable para aportar contexto explicativo con etiquetado de idioma opcional.
+      ar: بيان نصي نمطي قابل لإعادة الاستخدام لتقديم سياق توضيحي مع وسم لغوي اختياري.
+      id: Pernyataan teks bertipe yang dapat digunakan ulang untuk memberi konteks penjelasan dengan penandaan bahasa opsional.
+      zh: 可复用的类型化文本说明，用于提供解释性上下文并可选语言标注。
+    structured_aliases:
+    - {literal_form: toelichting, in_language: nl}
+    - {literal_form: Beschreibungseintrag, in_language: de}
+    - {literal_form: notice descriptive, in_language: fr}
+    - {literal_form: descripcion tipada, in_language: es}
+    - {literal_form: وصف توضيحي, in_language: ar}
+    - {literal_form: deskripsi bertipe, in_language: id}
+    - {literal_form: 描述条目, in_language: zh}
+    close_mappings:
+    - dcterms:description
+    - skos:definition
+    - rdfs:comment
+    related_mappings:
+    - schema:description
+    slots:
+    - has_content
+    - has_type
+    - in_language
+    - has_score
+    slot_usage:
+      has_content:
+        required: true
+        inlined: false
+      has_type:
+        required: false
+      in_language:
+        required: false
+        pattern: ^[a-z]{2}$
+    notes:
+    - |
+      Preserved from prior description (commit 86b9dceb):
+
+      Preserved from prior description (commit 86b9dceb):
+
+      A typed description with optional language tagging and type metadata.
+
+      **Purpose**:
+      Description provides a reusable class for representing textual descriptions
+      across the heritage custodian schema. Supports typed descriptions (binding,
+      branch, budget, zone, etc.) with language tagging.
+
+      **Ontological Alignment**:
+      - **Primary**: `dcterms:description` - Dublin Core description
+      - **Close**: `skos:definition` - formal definition
+      - **Related**: `schema:description` - Schema.org description
+
+      **Use Cases**:
+      - Binding descriptions for physical carriers
+      - Branch/office descriptions for organizational units
+      - Budget descriptions for financial records
+      - Zone/warehouse descriptions for storage facilities
+      - Type descriptions for classification explanations
+
+      **Replaces** (per slot_fixes.yaml):
+      - `binding_description` (string)
+      - `branch_description` (string)
+      - `branch_office_description` (string)
+      - `budget_description` (string)
+      - `zone_description` (string)
+      - `warehouse_description` (string)
+      - `unit_description` (string)
+      - `type_description` (string)
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Generic description class applicable to all domains
+      specificity_score: 0.2
+      specificity_rationale: Broad reusable text-annotation class

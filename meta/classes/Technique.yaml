@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/Technique
+name: Technique
+title: Technique Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  aat: http://vocab.getty.edu/aat/
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/include
+default_prefix: hc
+classes:
+  Technique:
+    class_uri: crm:E29_Design_or_Procedure
+    description: >-
+      Documented procedure or method applied in heritage activities including conservation, examination, and production.
+    alt_descriptions:
+      nl: Gedocumenteerde procedure of methode toegepast in erfgoedactiviteiten inclusief conservering, onderzoek en productie.
+      de: Dokumentiertes Verfahren oder Methode, angewendet in Heritage-Aktivitäten einschließlich Konservierung, Untersuchung und Produktion.
+      fr: Procédure ou méthode documentée appliquée dans les activités patrimoniales, y compris la conservation, l'examen et la production.
+      es: Procedimiento o método documentado aplicado en actividades patrimoniales incluyendo conservación, examen y producción.
+      ar: إجراء أو طريقة موثقة تطبق في أنشطة التراث بما في ذلك الحفظ والفحص والإنتاج.
+      id: Prosedur atau metode terdokumentasi yang diterapkan dalam kegiatan warisan termasuk konservasi, pemeriksaan, dan produksi.
+      zh: 应用于遗产活动（包括保护、检查和生产）的文档化程序或方法。
+    broad_mappings:
+    - crm:E29_Design_or_Procedure
+    - crm:E55_Type
+    close_mappings:
+    - schema:HowTo
+    related_mappings:
+    - aat:300264237
+    keywords:
+    - technique
+    - procedure
+    - conservation method
+    - examination method
+    slots:
+    - identified_by
+    - has_type
+    - has_label
+    - has_description
+    - include
+    slot_usage:
+      identified_by:
+        examples:
+        - value: aat:300379752
+      has_type:
+        required: true
+        examples:
+        - value: SolventCleaning
+        - value: InfraredReflectography
+      has_label:
+        examples:
+        - value: Varnish removal with acetone mixture
+        - value: Macro XRF scanning
+    comments:
+    - Requires has_type to classify the technique
+    - Use include for complex multi-step procedures
+    - Link to AAT vocabulary via identified_by when applicable
+    see_also:
+    - https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E29
+    - https://www.getty.edu/research/tools/vocabularies/aat/
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/technique/mauritshuis-670-1994-solvent-cleaning
+        has_type: SolventCleaning
+        has_label: Varnish removal with acetone/white spirit mixture
+        has_description: Removal of discolored natural resin varnish using 50:50 acetone/white spirit mixture.
+    annotations:
+      specificity_score: 0.1
+      custodian_types: "['*']"
+    structured_aliases:
+    - literal_form: technique
+      in_language: nl
+    - literal_form: technique
+      in_language: de
+    - literal_form: technique
+      in_language: fr
+    - literal_form: technique
+      in_language: es
+    - literal_form: technique
+      in_language: ar
+    - literal_form: technique
+      in_language: id
+    - literal_form: technique
+      in_language: zh

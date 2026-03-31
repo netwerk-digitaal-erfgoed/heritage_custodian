@@ -1,0 +1,129 @@
+id: https://nde.nl/ontology/hc/class/CustodianTimelineEvent
+name: CustodianTimelineEvent
+title: Custodian Timeline Event Class - Organizational Change Events
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_provenance
+- ../slots/degree_of_certainty
+- ../slots/has_description
+- ../slots/has_level
+- ../slots/has_method
+- ../slots/has_note
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/approximate
+- ../slots/retrieved_through
+- ../slots/based_on
+- ../slots/has_url
+- ../slots/temporal_extent
+- ../enums/OrganizationalChangeEventTypeEnum
+- ../enums/TimelineExtractionMethodEnum
+classes:
+  CustodianTimelineEvent:
+    class_uri: prov:Entity
+    description: >-
+      Dated occurrence capturing significant transitions, mergers, foundings,
+      or structural changes in an institution's organizational history.
+    alt_descriptions:
+      nl: >-
+        Gedateerde gebeurtenis die belangrijke overgangen, fusies, oprichtingen
+        of structurele veranderingen in de organisatiegeschiedenis vastlegt.
+      de: >-
+        Datiertes Ereignis, das bedeutende Übergänge, Fusionen, Gründungen
+        oder strukturelle Veränderungen in der Organisationsgeschichte erfasst.
+      fr: >-
+        Événement daté capturant les transitions importantes, fusions, fondations
+        ou changements structurels dans l'histoire organisationnelle.
+      es: >-
+        Evento fechado que captura transiciones significativas, fusiones, fundaciones
+        o cambios estructurales en la historia organizacional.
+      ar: >-
+        حدث مؤرخ يلتقط التحولات المهمة والاندماجات والتأسيسات
+        أو التغييرات الهيكلية في التاريخ التنظيمي.
+      id: >-
+        Peristiwa bertanggal yang menangkap transisi signifikan, merger, pendirian,
+        atau perubahan struktural dalam sejarah organisasi.
+      zh: >-
+        记录机构历史中重大过渡、合并、创立或结构变化的注明日期的事件。
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - crm:E5_Event
+    - schema:Event
+    - tooi:Wijzigingsgebeurtenis
+    slots:
+    - approximate
+    - has_provenance
+    - has_level
+    - degree_of_certainty
+    - has_description
+    - temporal_extent
+    - has_type
+    - has_method
+    - has_note
+    - retrieved_through
+    - based_on
+    - has_url
+    - has_score
+    slot_usage:
+      has_type:
+        required: true
+        range: OrganizationalChangeEventTypeEnum
+      degree_of_certainty:
+        required: true
+      approximate:
+        required: true
+      has_method:
+        required: true
+        range: TimelineExtractionMethodEnum
+    structured_aliases:
+    - literal_form: tijdlijn-gebeurtenis
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Timeline-Ereignis
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: événement de chronologie
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: evento de cronología
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: حدث الجدول الزمني
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: peristiwa garis waktu
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 时间线事件
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Source-agnostic design - models WHAT happened, not HOW discovered
+    - Use has_level (DataTierLevel) to indicate trustworthiness
+    - Links to WebObservation or CustodianObservation for provenance
+    - 'Preserved from prior description: Organizational-change event entity representing dated transitions in institutional lifecycle.'
+    keywords:
+    - timeline
+    - organizational history
+    - institutional change
+    - lifecycle event
+    examples:
+    - value:
+        has_type: FOUNDING
+        temporal_extent:
+          begin_of_the_begin: "1800-01-01"
+        degree_of_certainty: 1.0
+      description: Institution founding event
+    annotations:
+      specificity_score: 0.4
+      specificity_rationale: Organizational lifecycle event tracking for heritage institutions
+      custodian_types: "['*']"

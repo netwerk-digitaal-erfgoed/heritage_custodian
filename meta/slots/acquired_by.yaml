@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: acquired_by
+# ==============================================================================
+# Entity (institution, organization, or individual) that acquired something.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                      | File/Line                    | Mapping | Notes                                                    |
+# |---------------|-------------------------------|------------------------------|---------|----------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P22_transferred_title_to`| CIDOC_CRM_v7.1.3.rdf:1681-1696 | exact   | "identifies the E39 Actor that acquires legal ownership" |
+# | **Schema.org**| `schema:acquiredFrom`         | schemaorg.owl (inverse)      | related | Inverse relationship - identifies seller, not buyer     |
+#
+# SEMANTIC NOTES:
+# - crm:P22 domain is E8_Acquisition, range is E39_Actor
+# - Our slot links from an object perspective to the acquiring actor
+# - The inverse crm:P22i_acquired_title_through links Actor TO Acquisition event
+# - P22 is exact: "identifies the instance of E39 Actor that acquires the legal ownership"
+#
+# HIERARCHY: crm:P22 rdfs:subPropertyOf crm:P14_carried_out_by (line 1694)
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, upgraded to exact_mapping, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/acquired_by
+name: acquired_by
+title: Acquired By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  acquired_by:
+    slot_uri: crm:P22_transferred_title_to
+    description: >-
+      To be obtained or gained by a specific institution, organization, or individual, 
+      typically involving a transfer of legal title or custody.
+    alt_descriptions:
+      nl: >-
+        Verkregen of verworven door een specifieke instelling, organisatie of persoon, 
+        doorgaans met overdracht van juridische eigendom of beheer.
+      de: >-
+        Von einer bestimmten Institution, Organisation oder Einzelperson erworben, 
+        typischerweise mit Übertragung des rechtlichen Eigentums oder der Verwahrung.
+      fr: >-
+        Obtenu ou acquis par une institution, organisation ou individu spécifique, 
+        impliquant généralement un transfert de titre légal ou de garde.
+      ar: >-
+        أن يتم الحصول عليه أو اكتسابه من قبل مؤسسة أو منظمة أو فرد معين، 
+        عادةً ما يتضمن نقل الملكية القانونية أو الحيازة.
+      id: >-
+        Diperoleh atau didapatkan oleh institusi, organisasi, atau individu tertentu, 
+        biasanya melibatkan pengalihan hak milik atau hak asuh yang sah.
+      zh: >-
+        由特定机构、组织或个人获得或取得，通常涉及法律所有权或保管权的转让。
+      es: >-
+        Obtenido o adquirido por una institución, organización o individuo específico, 
+        generalmente involucrando una transferencia de título legal o custodia.
+    structured_aliases:
+      - literal_form: verworven door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erworben von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: acquis par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكتسب من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diperoleh oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被...收购
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: adquirido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+    aliases:
+      - is_or_was_acquired_by
+    comments:
+      - |
+        **USAGE**: Use this slot to identify the actor (institution, organization, person) that 
+        acquired an object or collection. The value should be a reference to an Actor entity.
+      - |
+        **SEMANTIC NOTE**: This property corresponds to CIDOC-CRM P22, which specifically 
+        identifies the new owner in an acquisition event. For the acquisition event itself, 
+        use `acquired_through`.
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,178 @@
+id: https://nde.nl/ontology/hc/class/DarkArchiveRecordSetTypes
+name: DarkArchiveRecordSetTypes
+title: DarkArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./DarkArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  PreservationCopyCollection:
+    is_a: DarkArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation grouped as a collection for continuity copies and
+      recovery-ready replicas.
+    alt_descriptions:
+      nl: >-
+        Documentaire aggregatie gegroepeerd als collectie voor continuiteitskopieën
+        en herstelklare replica's.
+      de: >-
+        Dokumentarische Aggregation als Sammlung fuer Kontinuitaetskopien
+        und wiederherstellungsbereite Repliken.
+      fr: >-
+        Agregation documentaire regroupee en collection pour des copies de
+        continuite et des repliques pretes a la reprise.
+      es: >-
+        Agregacion documental agrupada como coleccion para copias de continuidad
+        y replicas listas para recuperacion.
+      ar: >-
+        تجميع وثائقي مصنف كمجموعة لنسخ الاستمرارية ونسخ جاهزة للاستعادة.
+      id: >-
+        Agregasi dokumenter yang dikelompokkan sebagai koleksi untuk salinan
+        kesinambungan dan replika siap pemulihan.
+      zh: >-
+        作为集合编组的连续性副本与可恢复副本的文献聚合体。
+    structured_aliases:
+      - literal_form: collectie continuiteitskopieen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung von Kontinuitaetskopien
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de copies de continuite
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de copias de continuidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة نسخ الاستمرارية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi salinan kesinambungan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 连续性副本文献集合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Includes continuity copies and recovery-ready replicas used for controlled preservation access.
+    keywords:
+      - continuity copy
+      - recovery replica
+      - restricted access storage
+      - digital preservation
+    examples:
+      - value:
+          has_type: hc:PreservationCopyCollection
+          has_custodian: hc:DarkArchive
+          has_note: Access limited to preservation staff; used for disaster recovery tests.
+        description: Continuity copy aggregation managed for recovery readiness.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:PreservationCopyCollection
+      has_custodian:
+        equals_string: hc:DarkArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by DarkArchive custodians.
+
+  DigitalPreservationFonds:
+    is_a: DarkArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation arranged as a fonds for policy-bound digital
+      preservation evidence.
+    alt_descriptions:
+      nl: >-
+        Documentaire aggregatie ingericht als fonds voor beleidsgebonden
+        bewijsstukken van digitale bewaring.
+      de: >-
+        Dokumentarische Aggregation als Fonds fuer richtliniengebundene
+        Nachweise digitaler Erhaltung.
+      fr: >-
+        Agregation documentaire organisee en fonds pour des preuves
+        de preservation numerique liees aux politiques.
+      es: >-
+        Agregacion documental dispuesta como fondo para evidencias
+        de preservacion digital sujetas a politicas.
+      ar: >-
+        تجميع وثائقي منظم كرصيد لأدلة الحفظ الرقمي المرتبطة بالسياسات.
+      id: >-
+        Agregasi dokumenter yang disusun sebagai fonds untuk bukti preservasi
+        digital yang terikat kebijakan.
+      zh: >-
+        以全宗方式组织的、受政策约束的数字保存证据文献聚合体。
+    structured_aliases:
+      - literal_form: fonds digitaal-bewaringsbewijs
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Fonds digitaler Erhaltungsnachweise
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds de preuves de preservation numerique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de evidencia de preservacion digital
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: رصيد أدلة الحفظ الرقمي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds bukti preservasi digital
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 数字保存证据全宗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: Includes policy-bound evidence such as fixity checks, transfer logs, and audit trails.
+    keywords:
+      - preservation policy
+      - audit trail
+      - fixity evidence
+      - transfer log
+    examples:
+      - value:
+          has_type: hc:DigitalPreservationFonds
+          has_custodian: hc:DarkArchive
+          has_note: Fixity reports and transfer manifests maintained under retention policy.
+        description: Policy-bound preservation evidence grouped by provenance.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DigitalPreservationFonds
+      has_custodian:
+        equals_string: hc:DarkArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by DarkArchive custodians.

@@ -1,0 +1,140 @@
+id: https://nde.nl/ontology/hc/class/StatementType
+name: StatementType
+title: Statement Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+classes:
+  StatementType:
+    class_uri: skos:Concept
+    description: >-
+      Abstract classification for categorizing organizational declarations
+      such as mission statements, vision statements, goals, values, or mottos.
+    alt_descriptions:
+      nl: >-
+        Abstracte classificatie voor het categoriseren van organisatorische verklaringen
+        zoals missieverklaringen, visieverklaringen, doelen, waarden of motto's.
+      de: >-
+        Abstrakte Klassifikation zur Kategorisierung organisatorischer Erklärungen
+        wie Leitbilder, Visionen, Ziele, Werte oder Mottos.
+      fr: >-
+        Classification abstraite pour catégoriser les déclarations organisationnelles
+        telles que les énoncés de mission, de vision, les objectifs, les valeurs ou les devises.
+      es: >-
+        Clasificación abstracta para categorizar declaraciones organizacionales
+        como declaraciones de misión, visión, objetivos, valores o lemas.
+      ar: >-
+        تصنيف مجرد لتصنيف البيانات التنظيمية
+        مثل بيانات المهمة والرؤية والأهداف والقيم أو الشعارات.
+      id: >-
+        Klasifikasi abstrak untuk mengkategorikan deklarasi organisasi
+        seperti pernyataan misi, visi, tujuan, nilai, atau motto.
+      zh: >-
+        用于对组织声明（如使命声明、愿景声明、目标、价值观或座右铭）进行分类的抽象分类。
+    abstract: true
+    close_mappings:
+    - crm:E55_Type
+    - schema:DefinedTerm
+    related_mappings:
+    - org:purpose
+    - schema:description
+    broad_mappings:
+    - crm:E55_Type
+    - skos:Concept
+    keywords:
+    - statement type
+    - mission statement
+    - vision statement
+    - organizational declaration
+    structured_aliases:
+    - literal_form: verklaringtype
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Erklärungstyp
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: type de déclaration
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    comments:
+    - Abstract base class - use specific subclasses (MissionStatement, etc.)
+    - Represents STATEMENT TYPES, not statement instances
+    - Follows Type/Types naming convention (Rule 0b)
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/statement-type/[a-z-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/statement-type/mission
+        - value: https://nde.nl/ontology/hc/statement-type/vision
+      has_code:
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+        examples:
+        - value: MISSION
+        - value: VISION
+        - value: GOAL
+        - value: VALUE
+        - value: MOTTO
+      has_label:
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Mission Statement@en
+          - missieverklaring@nl
+        - value:
+          - Vision Statement@en
+          - visieverklaring@nl
+      has_description:
+        required: false
+        examples:
+        - value: Statement defining the organization's core purpose and reason for existence
+      has_hypernym:
+        range: StatementType
+        required: false
+      has_hyponym:
+        range: StatementType
+        multivalued: true
+        required: false
+    annotations:
+      specificity_score: '0.45'
+      specificity_rationale: Moderately specific - statement types are organizational metadata.
+      has_score:
+      replaces_enum: StatementTypeEnum
+      migration_date: '2026-01-13'
+      custodian_types: "['*']"
+    see_also:
+    - https://www.w3.org/2004/02/skos/
+    - https://schema.org/Mission
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/statement-type/mission
+        has_code: MISSION
+        has_label:
+        - Mission Statement@en
+        - missieverklaring@nl
+        has_description: Statement defining the organization's core purpose

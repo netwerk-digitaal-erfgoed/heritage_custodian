@@ -1,0 +1,125 @@
+id: https://nde.nl/ontology/hc/class/organization-branch
+name: organization_branch_class
+title: OrganizationBranch Class
+imports:
+- linkml:types
+- ../enums/OrganizationBranchTypeEnum
+- ../slots/has_contact_point
+- ../slots/has_branch
+- ../slots/has_description
+- ../slots/headed_by
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/branch_of
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/located_at
+- ../slots/refer_to
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  foaf: http://xmlns.com/foaf/0.1/
+  vcard: http://www.w3.org/2006/vcard/ns#
+classes:
+  OrganizationBranch:
+    is_a: ReconstructedEntity
+    class_uri: org:OrganizationalUnit
+    description: Formal branch-level organizational unit linked to a parent custodian and operating location.
+    alt_descriptions:
+      nl: Formele organisatorische branche-eenheid gekoppeld aan een moederinstelling en vestigingslocatie.
+      de: Formale Zweigstellen-Organisationseinheit verknuepft mit einer uebergeordneten Einrichtung und einem Standort.
+      fr: Unite organisationnelle de branche formelle reliee a un depositaire parent et a un lieu d activite.
+      es: Unidad organizativa formal de sucursal vinculada a un custodio matriz y a una ubicacion operativa.
+      ar: وحدة تنظيمية فرعية رسمية مرتبطة بجهة حافظة أم وموقع تشغيل.
+      id: Unit organisasi cabang formal yang terhubung ke kustodian induk dan lokasi operasional.
+      zh: 与上级保管机构及运营地点关联的正式分支组织单元。
+    structured_aliases:
+    - {literal_form: formele organisatievestiging, in_language: nl}
+    - {literal_form: formale Organisationszweigstelle, in_language: de}
+    - {literal_form: branche organisationnelle formelle, in_language: fr}
+    - {literal_form: sucursal organizativa formal, in_language: es}
+    - {literal_form: فرع تنظيمي رسمي, in_language: ar}
+    - {literal_form: cabang organisasi formal, in_language: id}
+    - {literal_form: 正式组织分支单元, in_language: zh}
+    broad_mappings:
+    - org:OrganizationalUnit
+    close_mappings:
+    - schema:Organization
+    - foaf:Organization
+    related_mappings:
+    - org:subOrganizationOf
+    - schema:branchOf
+    - schema:department
+    slots:
+    - has_description
+    - headed_by
+    - identified_by
+    - has_label
+    - has_type
+    - has_contact_point
+    - has_branch
+    - branch_of
+    - located_at
+    - refer_to
+    - has_quantity
+    - has_score
+    - temporal_extent
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_label:
+        required: true
+        multivalued: false
+      has_type:
+        required: true
+      located_at:
+        range: AuxiliaryPlace
+        multivalued: true
+        inlined_as_list: true
+      branch_of:
+        required: true
+      has_branch:
+        range: OrganizationBranch
+        multivalued: true
+        inlined_as_list: true
+      headed_by:
+        range: Person
+      has_quantity:
+        range: integer
+        inlined: false
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+      derive_from:
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+      refer_to:
+        range: Custodian
+        required: true
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      "Formal organizational branch or sub-organization of a heritage custodian\nthat operates at a specific physical location (AuxiliaryPlace).\n\n**CRITICAL DISTINCTION FROM OrganizationalStructure**:\n\n| OrganizationBranch | OrganizationalStructure |\n|-------------------|------------------------|\n| **Formal** branches with administrative status | **Informal** operational units |\n| Tied to PHYSICAL LOCATION (AuxiliaryPlace) | May or may not have fixed location |\n| Semi-autonomous (may have own budget, staff) | Part of main organizational hierarchy |\n| Examples: Regional archive, branch library | Examples: Department, team, division |\n\n**W3C ORG ALIGNMENT**:\n\n`org:OrganizationalUnit` - \"An Organization such as a University Support Unit \nwhich is part of some larger FormalOrganization and only has full recognition \nwithin the context of that FormalOrganization.\"\n\nKey properties:\n- `org:unitOf` - links unit to parent organization\n- `org:hasSite` - links organization\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

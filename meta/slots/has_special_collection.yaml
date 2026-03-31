@@ -1,0 +1,120 @@
+# ==============================================================================
+# LinkML Slot Definition: has_special_collection
+# ==============================================================================
+# A distinct group of materials held by an institution, separated from general
+# holdings due to rarity, format, subject matter, or provenance.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property             | File/Line                       | Mapping | Notes                                                                    |
+# |-------------|----------------------|---------------------------------|---------|--------------------------------------------------------------------------|
+# | **Schema**  | `schema:hasPart`     | schemaorg.owl:20403-20425       | broad   | "hasPart" CreativeWork→CreativeWork/Text. General part-of relationship.   |
+# | **DCTerms** | `dcterms:hasPart`    | dcterms.rdf:1347-1370           | broad   | "Has Part" — included physically or logically. Non-literal intended.      |
+# | **RiC-O**   | `rico:hasOrHadPart`  | RiC-O_1-1.rdf:7272-7289         | related | "has or had part" Thing→Thing. Archival domain, object-to-object.        |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_special_collection
+name: has_special_collection
+title: Has Special Collection
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_special_collection:
+    slot_uri: hc:hasSpecialCollection
+    description: >-
+      A distinct group of materials housed, maintained, or curated by an
+      institution, separated from general holdings due to their rarity,
+      format, subject matter, or provenance. Records the name or type of
+      each special collection as a free-text string.
+    alt_descriptions:
+      nl: >-
+        Een afzonderlijke groep materialen die door een instelling worden
+        bewaard, onderhouden of beheerd, gescheiden van de algemene
+        collectie vanwege hun zeldzaamheid, formaat, onderwerp of
+        herkomst.
+      de: >-
+        Eine eigenständige Gruppe von Materialien, die von einer
+        Einrichtung aufbewahrt, gepflegt oder kuratiert wird und aufgrund
+        ihrer Seltenheit, ihres Formats, ihres Themas oder ihrer Herkunft
+        von den allgemeinen Beständen getrennt ist.
+      fr: >-
+        Un ensemble distinct de documents conservés, entretenus ou gérés
+        par une institution, séparé des fonds généraux en raison de leur
+        rareté, de leur format, de leur sujet ou de leur provenance.
+      ar: >-
+        مجموعة متميزة من المواد التي تحتفظ بها مؤسسة أو تصونها أو
+        تشرف عليها، منفصلة عن المقتنيات العامة بسبب ندرتها أو شكلها
+        أو موضوعها أو مصدرها.
+      id: >-
+        Kelompok materi yang berbeda yang disimpan, dipelihara, atau
+        dikurasi oleh suatu lembaga, dipisahkan dari koleksi umum karena
+        kelangkaan, format, pokok bahasan, atau asal-usulnya.
+      zh: >-
+        由机构保管、维护或策展的一组独特材料，因其稀有性、格式、主题或来源而
+        与一般馆藏分开。
+      es: >-
+        Un grupo distinto de materiales albergados, mantenidos o curados
+        por una institución, separados de las colecciones generales debido
+        a su rareza, formato, tema o procedencia.
+    structured_aliases:
+      - literal_form: bijzondere collectie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sondersammlung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection spéciale
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مجموعة خاصة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi khusus
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 特藏
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: colección especial
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - schema:hasPart  # schemaorg.owl:20403-20425 - "hasPart" CreativeWork→CreativeWork/Text; general part-of relationship
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "Has Part" — included physically or logically in the described resource
+    related_mappings:
+      - rico:hasOrHadPart  # RiC-O_1-1.rdf:7272-7289 - "has or had part" Thing→Thing; archival domain, object-to-object
+    aliases:
+      - special_collection
+    examples:
+      - value: incunabula
+        description: >-
+          Books printed before 1501.
+      - value: manuscripts
+        description: >-
+          Handwritten documents and codices.
+      - value: maps
+        description: >-
+          Cartographic materials.
+      - value: genealogy
+        description: >-
+          Family history and genealogical records.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Common types of special collections include rare books, manuscripts,
+        incunabula, maps, music scores, archives, photographs, genealogy,
+        local history, and special subjects such as art books, technical
+        literature, or children's literature. Use simple free-text strings
+        for collection type names.

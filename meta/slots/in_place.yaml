@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: in_place
+# ==============================================================================
+# The geographic location, region, or physical setting where an entity exists,
+# an event occurs, or an object is situated.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                       |
+# |---------------|-----------------------|--------------------------|---------|---------------------------------------------|
+# | **Schema.org**| `schema:location`     | schemaorg.owl:25018-25046| close   | Domain: Event/InteractionCounter/Org/Action. |
+# |               |                       |                          |         | "The location of, for example, where an     |
+# |               |                       |                          |         | event is happening, where an organization   |
+# |               |                       |                          |         | is located, or where an action takes place."|
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-08 — Synced alt_descriptions to current English description;
+#   capitalized structured_aliases to noun forms; updated header one-liner.
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_place
+name: in_place
+title: In Place
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_place:
+    slot_uri: hc:inPlace
+    description: >-
+      The geographic location, region, or physical setting where an entity
+      exists, an event occurs, or an object is situated.
+    alt_descriptions:
+      nl: >-
+        De geografische locatie, regio of fysieke omgeving waar een entiteit
+        bestaat, een gebeurtenis plaatsvindt of een object zich bevindt.
+      de: >-
+        Der geografische Standort, die Region oder die physische Umgebung, in
+        der eine Entität existiert, ein Ereignis stattfindet oder ein Objekt
+        sich befindet.
+      fr: >-
+        L'emplacement géographique, la région ou le cadre physique où une
+        entité existe, un événement se produit ou un objet est situé.
+      ar: >-
+        الموقع الجغرافي أو المنطقة أو البيئة المادية التي يوجد فيها كيان أو
+        يقع فيها حدث أو يتواجد فيها كائن.
+      id: >-
+        Lokasi geografis, wilayah, atau lingkungan fisik tempat suatu entitas
+        berada, suatu peristiwa terjadi, atau suatu objek terletak.
+      zh: >-
+        实体存在、事件发生或物体所在的地理位置、区域或物理环境。
+      es: >-
+        La ubicación geográfica, región o entorno físico donde existe una
+        entidad, ocurre un evento o se sitúa un objeto.
+    structured_aliases:
+      - literal_form: Plaats
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Lieu
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكان
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tempat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 地点
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Lugar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_place
+      - has_place
+    close_mappings:
+      - schema:location  # schemaorg.owl:25018-25046 — "The location of, for example, where an event is happening, where an organization is located, or where an action takes place." Domain: Event/InteractionCounter/Organization/Action.
+    annotations:
+      custodian_types: '["*"]'

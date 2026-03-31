@@ -1,0 +1,168 @@
+# ==============================================================================
+# LinkML Slot Definition: begin_of_the_begin
+# ==============================================================================
+# CIDOC-CRM fuzzy temporal bound: earliest possible start time of a temporal
+# extent. Part of the four-point fuzzy date pattern.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **CIDOC-CRM**| `crm:P82a_begin_of_the_begin`| CIDOC_CRM  | slot_uri| Earliest possible start of E52 Time-Span.|
+# |              |                        |                   | exact   |                                          |
+# | **RiC-O**    | `rico:hasBeginningDate`| RiC-O_1-1.rdf     | close   | Thing has beginning Date.                |
+# | **OWL Time** | `time:hasBeginning`    | time.ttl          | related | Exact instant, not fuzzy.                |
+# | **PROV-O**   | `prov:startedAtTime`   | prov.ttl          | related | Exact start time, not fuzzy.             |
+# | **Schema.org**| `schema:startDate`     | schemaorg.owl     | broad   | Simple date, no uncertainty semantics.   |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added broad_mappings (crm:P82_at_some_time_within - parent of P82a)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/begin_of_the_begin
+name: begin_of_the_begin
+title: Begin of the Begin
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  time: http://www.w3.org/2006/time#
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  begin_of_the_begin:
+    # Primary semantic: CIDOC-CRM fuzzy temporal bound (earliest possible start)
+    slot_uri: crm:P82a_begin_of_the_begin
+    description: >-
+      To indicate the earliest possible start time of a temporal extent, used
+      to express uncertainty about when something began.
+    alt_descriptions:
+      nl: >-
+        Het aangeven van de vroegst mogelijke starttijd van een tijdsspanne,
+        gebruikt om onzekerheid over het begin uit te drukken.
+      de: >-
+        Die frühestmögliche Startzeit eines zeitlichen Umfangs angeben, um
+        Unsicherheit darüber auszudrücken, wann etwas begann.
+      fr: >-
+        Indiquer le moment de début le plus tôt possible d'une étendue
+        temporelle, pour exprimer l'incertitude sur le commencement.
+      ar: >-
+        الإشارة إلى أقرب وقت بداية ممكن لنطاق زمني، يستخدم للتعبير عن عدم
+        اليقين حول متى بدأ شيء ما.
+      id: >-
+        Menunjukkan waktu mulai paling awal yang mungkin dari rentang waktu,
+        digunakan untuk mengekspresikan ketidakpastian tentang kapan sesuatu dimulai.
+      zh: >-
+        表示时间范围最早可能的开始时间，用于表达某事何时开始的不确定性。
+      es: >-
+        Indicar el momento de inicio más temprano posible de una extensión
+        temporal, para expresar incertidumbre sobre cuándo comenzó algo.
+    structured_aliases:
+      - literal_form: begin van het begin
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_begin_of_the_begin
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beginn des Beginns
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: début du début
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بداية البداية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: awal dari awal
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 开始之始
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: inicio del inicio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    any_of:
+    - range: Timestamp
+    - range: string
+    - range: datetime
+    inlined: false
+    required: false
+    multivalued: false
+    # Semantic mappings (SKOS predicates)
+    # From: CIDOC_CRM_v7.1.3.rdf, RiC-O_1-1.rdf, time ontology, prov.ttl, schemaorg.owl
+    exact_mappings:
+    close_mappings:
+    - rico:hasBeginningDate        # RiC-O: Thing has beginning Date (ObjectProperty, range: rico:Date)
+    related_mappings:
+    - crm:P81a_end_of_the_begin    # CIDOC-CRM: Latest possible start (partner in fuzzy start pattern)
+    - time:hasBeginning            # OWL Time: Temporal entity has beginning Instant (exact, not fuzzy)
+    - rico:isBeginningDateOf       # RiC-O: Inverse - Date is beginning date of Thing
+    - prov:startedAtTime           # PROV-O: Activity started at time (exact instant, not fuzzy)
+    broad_mappings:
+    - crm:P82_at_some_time_within  # CIDOC-CRM: Parent property - P82a is subPropertyOf P82 (line 3051)
+    - rico:isAssociatedWithDate    # RiC-O: Generic date association (parent of hasBeginningDate)
+    - schema:startDate             # schema.org: Start date (simple date, no fuzzy semantics)
+    - schema:foundingDate          # schema.org: Organization founding date (specific start type)
+    - dcterms:date                 # Dublin Core: Generic date association
+    aliases:
+      - contribution_start_date
+      - created_date
+      - created
+      - has_accumulation_start_date
+      - launch_date_slot
+      - loan_start_date
+      - origin_period
+      - period_start
+      - reporting_period_start
+      - role_start_date
+      - segment_start_seconds
+      - start_of_the_start
+      - start_seconds
+      - start_time
+      - start
+      - started_at_time
+      - launch_date
+    annotations:
+      slot_fixes_compliance: Range changed from datetime to Timestamp class per slot_fixes.yaml
+      migration_date: '2026-01-15'
+      replaces_slots: valid_from, valid_from_geo
+      custodian_types: '["*"]'
+    examples:
+    - value: |
+        timestamp_value: "1800-01-01"
+        timestamp_precision: day
+      description: Earliest possible date as Timestamp object
+    - value: |
+        # For "Founded between 1800-1805":
+        begin_of_the_begin: "1800-01-01"  # earliest possible founding
+        end_of_the_begin: "1805-12-31"    # latest possible founding
+      description: Expressing uncertainty about founding date using fuzzy bounds
+    comments:
+      - |
+        **CIDOC-CRM Fuzzy Date Pattern**:
+        
+        P82a defines the earliest possible time an E52 Time-Span could have started.
+        Used together with P81a (end_of_the_begin) to express uncertainty about start time.
+        The four fuzzy bound properties are:
+        - P82a_begin_of_the_begin: earliest possible start
+        - P81a_end_of_the_begin: latest possible start  
+        - P81b_begin_of_the_end: earliest possible end
+        - P82b_end_of_the_end: latest possible end
+      - |
+        **Ontological Alignment**:
+        
+        - **Primary** (`slot_uri`): `crm:P82a_begin_of_the_begin` - CIDOC-CRM fuzzy temporal bound
+        - **Close**: `rico:hasBeginningDate` - RiC-O beginning date (ObjectProperty with rico:Date range)
+        - **Related**: `time:hasBeginning` - OWL Time (note: exact instant semantics, not fuzzy)
+        - **Broad**: `schema:startDate` - simple start date without uncertainty semantics
+        
+        Note: time:hasBeginning and prov:startedAtTime represent exact instants, not fuzzy bounds.
+        They are related but semantically distinct from the CIDOC-CRM uncertainty pattern.
+      - |
+        **Range**: Supports Timestamp class, string, and datetime values

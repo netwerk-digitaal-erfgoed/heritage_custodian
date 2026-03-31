@@ -1,0 +1,180 @@
+id: https://nde.nl/ontology/hc/class/Source
+name: Source
+title: Source
+description: Source or origin from which data, content, or information was derived.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+default_prefix: hc
+classes:
+  Source:
+    class_uri: prov:Entity
+    description: >-
+      Origin or provenance entity indicating how information was derived, whether
+      through manual input, automated extraction, or external import.
+    alt_descriptions:
+      nl: >-
+        Oorsprong of herkomstentiteit die aangeeft hoe informatie is verkregen,
+        hetzij via handmatige invoer, geautomatiseerde extractie of extern import.
+      de: >-
+        Ursprungs- oder Herkunftseinheit, die angibt, wie Informationen abgeleitet wurden,
+        ob durch manuelle Eingabe, automatisierte Extraktion oder externen Import.
+      fr: >-
+        Entité d'origine ou de provenance indiquant comment l'information a été dérivée,
+        que ce soit par saisie manuelle, extraction automatisée ou import externe.
+      es: >-
+        Entidad de origen o procedencia que indica cómo se derivó la información,
+        ya sea mediante entrada manual, extracción automatizada o importación externa.
+      ar: >-
+        كيان الأصل أو المصدر الذي يشير إلى كيفية اشتقاق المعلومات،
+        سواء من خلال الإدخال اليدوي أو الاستخراج الآلي أو الاستيراد الخارجي.
+      id: >-
+        Entitas asal atau asal-usul yang menunjukkan bagaimana informasi diperoleh,
+        baik melalui input manual, ekstraksi otomatis, atau impor eksternal.
+      zh: >-
+        指示信息如何派生的来源或出处实体，无论是通过手动输入、
+        自动提取还是外部导入。
+    close_mappings:
+    - dcterms:source
+    - schema:CreativeWork
+    slots:
+    - has_type
+    - has_label
+    - has_description
+    slot_usage:
+      has_type:
+#         range: string # uriorcurie
+        required: false
+      has_label:
+#         range: string
+        required: false
+      has_description:
+#         range: string
+        required: false
+    annotations:
+      specificity_score: 0.2
+      specificity_rationale: Generic provenance concept. Sources are fundamental to data quality tracking across all heritage domains.
+      custodian_types: "['*']"
+    structured_aliases:
+    - literal_form: bron
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Quelle
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: source
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fuente
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مصدر
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: sumber
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 来源
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Subclass to specialize by domain (e.g., ChapterSource for chapter generation provenance).
+    - 'Preserved from prior description: Source entity used for provenance tracking (manual, automated, or external).'
+    keywords:
+    - provenance
+    - origin
+    - derivation
+    - data lineage
+    examples:
+    - value:
+        has_type: MANUAL
+        has_label: Creator-defined chapters
+        has_description: Chapters manually defined in video description
+    - value:
+        has_type: YOUTUBE_AI
+        has_label: YouTube Auto-Chapters
+        has_description: AI-generated chapter markers from YouTube
+    - value:
+        has_type: WHISPER_CHAPTERS
+        has_label: Whisper Transcript Analysis
+    broad_mappings:
+    - prov:Entity
+  ChapterSource:
+    is_a: Source
+    class_uri: hc:ChapterSource
+    description: >-
+      Method or mechanism that generated video chapter divisions, specializing
+      the base provenance class for temporal segmentation contexts.
+    alt_descriptions:
+      nl: >-
+        Methode of mechanisme dat videohoofdstukverdelingen genereerde,
+        gespecialiseerd voor temporele segmentering.
+      de: >-
+        Methode oder Mechanismus, der Videokapitelaufteilungen generierte,
+        spezialisiert auf temporale Segmentierung.
+      fr: >-
+        Méthode ou mécanisme qui a généré des divisions de chapitres vidéo,
+        spécialisé pour la segmentation temporelle.
+      es: >-
+        Método o mecanismo que generó divisiones de capítulos de video,
+        especializado para segmentación temporal.
+      ar: >-
+        طريقة أو آلية أنتجت تقسيمات فصول الفيديو،
+        متخصصة في التجزئة الزمنية.
+      id: >-
+        Metode atau mekanisme yang menghasilkan pembagian bab video,
+        dikhususkan untuk segmentasi temporal.
+      zh: >-
+        生成视频章节划分的方法或机制，
+        专门用于时间分割。
+    structured_aliases:
+    - literal_form: hoofdstukbron
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Kapitelquelle
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: source de chapitre
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: fuente de capítulo
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مصدر الفصل
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: sumber bab
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 章节来源
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Used to distinguish AI-generated vs manually-created chapter markers
+    - Supports provenance tracking for video content segmentation
+    - 'Preserved from prior description: Source or method that created video chapters. Specializes Source for video chapter generation provenance.'
+    keywords:
+    - video chapters
+    - temporal segmentation
+    - chapter generation
+    annotations:
+      specificity_score: 0.75
+      specificity_rationale: Specific to video chapter generation domain.
+      custodian_types: "['*']"
+    examples:
+    - value:
+        has_type: YOUTUBE_AI
+        has_label: YouTube Auto-Chapters

@@ -1,0 +1,58 @@
+id: https://nde.nl/ontology/hc/classes/SourceProvenance
+name: SourceProvenance
+title: SourceProvenance
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  pav: http://purl.org/pav/
+imports:
+- linkml:types
+- ../slots/has_file_location
+- ../slots/has_provenance_path
+- ../slots/retrieved_at
+default_prefix: hc
+# default_range: string
+classes:
+  SourceProvenance:
+    description: >-
+      Metadata capturing file location, extraction path, and retrieval timestamp for
+      data derived from external sources.
+    alt_descriptions:
+      nl: >-
+        Metagegevens die bestandslocatie, extractiepad en ophaaltijdstempel vastleggen voor
+        gegevens afkomstig uit externe bronnen.
+      de: >-
+        Metadaten, die Dateispeicherort, Extraktionspfad und Abrufzeitstempel für Daten aus
+        externen Quellen erfassen.
+      fr: >-
+        Métadonnées capturant l'emplacement du fichier, le chemin d'extraction et l'horodatage
+        de récupération pour les données provenant de sources externes.
+      es: >-
+        Metadatos que capturan la ubicación del archivo, la ruta de extracción y la marca
+        de tiempo de recuperación para datos derivados de fuentes externas.
+      ar: >-
+        بيانات وصفية تلتقط موقع الملف ومسار الاستخراج والطابع الزمني للاسترجاع للبيانات المشتقة من مصادر خارجية.
+      id: >-
+        Metadata yang menangkap lokasi file, jalur ekstraksi, dan stempel waktu pengambilan
+        untuk data yang berasal dari sumber eksternal.
+      zh: >-
+        捕获从外部源派生的数据的文件位置、提取路径和检索时间戳的元数据。
+    class_uri: prov:Entity
+    close_mappings:
+    - pav:SourceAccessedAt
+    related_mappings:
+    - schema:PropertyValue
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - has_file_location
+    - has_provenance_path
+    - retrieved_at
+    comments:
+    - Use to record where, within a file or hierarchy, a value was extracted from (e.g., CSV row, YAML key path, archived HTML path).
+    - 'Preserved from prior description: File- and path-level provenance metadata about an extracted source.'

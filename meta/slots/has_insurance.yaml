@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: has_insurance
+# ==============================================================================
+# Whether an entity or asset is covered by a policy for financial protection.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line            | Mapping | Notes                                                  |
+# |----------------|---------------------------|----------------------|---------|---------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P104_is_subject_to`  | CIDOC:3502-3516      | broad   | E72 Legal Object→E30 Right; any legal right, not       |
+# |                |                           |                      |         | insurance specifically.                                |
+#
+# No standard ontology defines a "has insurance" property for collection objects.
+# Schema.org has HealthInsurancePlan but that is health-domain-specific.
+# Retains hc:hasInsurance.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_insurance
+name: has_insurance
+title: Has Insurance
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_insurance:
+    slot_uri: hc:hasInsurance
+    description: >-
+      Signifies that a specific entity, asset, or event is covered by a valid
+      policy providing financial protection against loss, damage, or liability.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een specifieke entiteit, bezitting of gebeurtenis gedekt
+        is door een geldige polis die financiële bescherming biedt tegen verlies,
+        schade of aansprakelijkheid.
+      de: >-
+        Bedeutet, dass eine bestimmte Entität, ein Vermögenswert oder ein
+        Ereignis durch eine gültige Police abgedeckt ist, die finanziellen
+        Schutz gegen Verlust, Schaden oder Haftung bietet.
+      fr: >-
+        Signifie qu'une entité, un actif ou un événement spécifique est couvert
+        par une police valide offrant une protection financière contre la perte,
+        les dommages ou la responsabilité.
+      ar: >-
+        يدل على أن كيانًا أو أصلًا أو حدثًا محددًا مشمول بوثيقة تأمين صالحة
+        توفر حماية مالية ضد الخسارة أو الضرر أو المسؤولية.
+      id: >-
+        Menandakan bahwa entitas, aset, atau peristiwa tertentu dilindungi oleh
+        polis yang sah yang memberikan perlindungan finansial terhadap kerugian,
+        kerusakan, atau tanggung jawab.
+      zh: >-
+        表示特定实体、资产或事件受到有效保单的保障，提供针对损失、损害或责任的
+        财务保护。
+      es: >-
+        Significa que una entidad, activo o evento específico está cubierto por
+        una póliza válida que proporciona protección financiera contra pérdida,
+        daño o responsabilidad.
+    structured_aliases:
+      - literal_form: Verzekering
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Versicherung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Assurance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تأمين
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Asuransi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 保险
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Seguro
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - crm:P104_is_subject_to  # CIDOC:3502-3516 - E72 Legal Object→E30 Right; any legal right, not insurance
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - insurance_currency
+      - insurance_value
+      - insurance_provider

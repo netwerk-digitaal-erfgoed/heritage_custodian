@@ -1,0 +1,85 @@
+id: https://nde.nl/ontology/hc/class/DataSource
+name: data_source_class
+title: DataSource Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_url
+default_prefix: hc
+classes:
+  DataSource:
+    class_uri: prov:Entity
+    description: >-
+      Origin entity from which facts, values, or assertions are obtained during
+      enrichment, extraction, or integration workflows.
+    alt_descriptions:
+      nl: Herkomstentiteit waaruit feiten waarden of beweringen worden verkregen tijdens verrijkings- extractie- of integratieworkflows.
+      de: Ursprungseinheit aus der Fakten Werte oder Aussagen in Anreicherungs- Extraktions- oder Integrationsablaeufen gewonnen werden.
+      fr: Entite d origine a partir de laquelle des faits valeurs ou assertions sont obtenus dans des flux d enrichissement extraction ou integration.
+      es: Entidad de origen de la cual se obtienen hechos valores o afirmaciones en flujos de enriquecimiento extraccion o integracion.
+      ar: كيان مصدر تُستمد منه الحقائق أو القيم أو الادعاءات أثناء سير عمل الإثراء أو الاستخراج أو التكامل.
+      id: Entitas asal tempat fakta nilai atau asersi diperoleh selama alur kerja pengayaan ekstraksi atau integrasi.
+      zh: 在增强、抽取或集成流程中用于获取事实、数值或断言的来源实体。
+    structured_aliases:
+    - {literal_form: bron, in_language: nl}
+    - {literal_form: Datenquelle, in_language: de}
+    - {literal_form: source de donnees, in_language: fr}
+    - {literal_form: fuente de datos, in_language: es}
+    - {literal_form: مصدر بيانات, in_language: ar}
+    - {literal_form: sumber data, in_language: id}
+    - {literal_form: 数据来源, in_language: zh}
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:CreativeWork
+    related_mappings:
+    - dcterms:source
+    slots:
+    - has_label
+    - has_code
+    - has_description
+    - has_url
+    slot_usage:
+      has_label:
+        required: true
+      has_code:
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+      has_description:
+        required: false
+      has_url:
+        required: false
+    notes:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      A source of data used for enrichment or information gathering.
+
+      **Common Source Types**:
+
+      | Type | Short Code | Description |
+      |------|------------|-------------|
+      | WhatsApp | WHATSAPP | WhatsApp messaging platform |
+      | LinkedIn | LINKEDIN | LinkedIn social network |
+      | Web Scrape | WEB_SCRAPE | Website scraping |
+      | API | API | External API |
+      | Database | DATABASE | Database query |
+      | Manual | MANUAL | Manual entry |
+      | Wikidata | WIKIDATA | Wikidata knowledge base |
+      | Google Maps | GOOGLE_MAPS | Google Maps API |
+
+      **PROV-O Alignment**: Maps to prov:Entity as the source entity
+      from which data was derived.
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Broadly applicable across provenance tracking contexts
+      custodian_types: '["*"]'
+      custodian_types_rationale: Source attribution is universally required

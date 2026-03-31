@@ -1,0 +1,109 @@
+# ==============================================================================
+# LinkML Slot Definition: has_digital_platform
+# ==============================================================================
+# The online framework, software environment, or service architecture that
+# facilitates interaction or content delivery for the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                    | Mapping | Notes                              |
+# |---------------|-----------------------|------------------------------|---------|------------------------------------|
+# | **FOAF**      | `foaf:homepage`       | foaf.ttl:291-301             | close   | "A homepage for some thing" — only a URL, not a full platform description |
+# | **DCTerms**   | `dcterms:hasPart`     | dcterms.rdf:1347-1370        | broad   | "A related resource that is included" — very general part-whole |
+# | **RiC-O**     | `rico:hasOrHadPart`   | RiC-O_1-1.rdf:7271-7310      | broad   | "Connects a Thing to a constitutive or component part" — generic part-whole |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, cleaned description (moved verbose
+#   usage/examples to comments), verified foaf:homepage and rico:hasOrHadPart references
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_digital_platform
+name: has_digital_platform
+title: Has Digital Platform
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_digital_platform:
+    slot_uri: hc:hasDigitalPlatform
+    description: >-
+      To be hosted on, operated through, or associated with a specific online framework, software environment, or service architecture that facilitates interaction or content delivery.
+    alt_descriptions:
+      nl: >-
+        Gehost worden op, bediend worden via of geassocieerd zijn met een specifiek online raamwerk, softwareomgeving of dienstarchitectuur die interactie of contentlevering faciliteert.
+      de: >-
+        Auf einem bestimmten Online-Framework, einer Softwareumgebung oder Dienstarchitektur gehostet, betrieben oder damit verbunden sein, die Interaktion oder Inhaltsbereitstellung ermöglicht.
+      fr: >-
+        Être hébergé sur, opéré via ou associé à un cadre en ligne, un environnement logiciel ou une architecture de service spécifique qui facilite l'interaction ou la diffusion de contenu.
+      ar: >-
+        أن يكون مستضافًا على أو يعمل من خلال أو مرتبطًا بإطار عمل عبر الإنترنت أو بيئة برمجية أو بنية خدمة محددة تسهل التفاعل أو تقديم المحتوى.
+      id: >-
+        Dihosting pada, dioperasikan melalui, atau dikaitkan dengan kerangka kerja daring, lingkungan perangkat lunak, atau arsitektur layanan tertentu yang memfasilitasi interaksi atau penyampaian konten.
+      zh: >-
+        托管于、通过或关联到促进交互或内容交付的特定在线框架、软件环境或服务架构。
+      es: >-
+        Estar alojado en, operado a través de o asociado con un marco en línea, entorno de software o arquitectura de servicio específica que facilita la interacción o la entrega de contenido.
+    structured_aliases:
+      - literal_form: heeft digitaal platform
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat digitale Plattform
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une plateforme numérique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه منصة رقمية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki platform digital
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有数字平台
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene plataforma digital
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_digital_platform
+      - has_or_had_primary_platform
+      - has_primary_platform
+      - has_or_had_secondary_platform
+      - has_secondary_platform
+      - monitoring_platform_url
+      - monitoring_platform
+      - online_shop
+    close_mappings:
+      - foaf:homepage  # foaf.ttl:291-301 - "A homepage for some thing" — only a URL, not full platform description
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "A related resource that is included" — very general part-whole
+      - rico:hasOrHadPart  # RiC-O_1-1.rdf:7271-7310 - "Connects a Thing to a component part" — generic part-whole
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_digital_platform for conciseness.
+      - |
+        **USAGE**: Digital platforms can be decommissioned, transferred, replaced, or merged.
+        This property documents digital infrastructure for ANY custodian type.
+        CRITICAL DISTINCTION: DigitalPlatform (this slot) = infrastructure documentation;
+        DigitalPlatformType = custodian type classification for digital-first institutions.
+        Multivalued to support custodians with multiple platforms (website, API, SPARQL, etc.).
+      - |
+        **PATTERN**: RiC-O hasOrHad* for temporal platform relationships.
+        Inverse: is_or_was_platform_of.
+    annotations:
+      inverse_slot: is_or_was_platform_of
+      custodian_types: '["*"]'

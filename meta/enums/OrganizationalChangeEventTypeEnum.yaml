@@ -1,0 +1,271 @@
+# OrganizationalChangeEventTypeEnum
+# Types of organizational change events aligned with TOOI, W3C ORG, and CIDOC-CRM
+# See: https://identifier.overheid.nl/tooi/def/ont/ (TOOI Ontology)
+
+id: https://nde.nl/ontology/hc/enum/OrganizationalChangeEventTypeEnum
+name: OrganizationalChangeEventTypeEnum
+title: Organizational Change Event Type Enumeration
+
+prefixes:
+  tooi: https://identifier.overheid.nl/tooi/def/ont/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+
+enums:
+  OrganizationalChangeEventTypeEnum:
+    description: |
+      Types of organizational change events in heritage custodian institutions.
+      
+      **Ontology Alignment**:
+      - TOOI (Dutch Government): tooi:Wijzigingsgebeurtenis hierarchy
+        - Existential: tooi:ExistentieleWijziging (affects entity existence)
+        - State: tooi:Toestandswijziging (preserves entity identity)
+      - CIDOC-CRM: crm:E5_Event and subclasses
+      - W3C ORG: org:ChangeEvent
+      - PROV-O: prov:Activity
+      
+      **Semantic Patterns** (PROV-O alignment):
+      - prov:generated - New entities created by event
+      - prov:invalidated - Entities that cease to exist
+      - prov:used - Entities that participate but continue
+    
+    see_also:
+      - "https://identifier.overheid.nl/tooi/def/ont/"
+      - "https://www.w3.org/TR/vocab-org/#org:ChangeEvent"
+      - "https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E5"
+    
+    permissible_values:
+      # =================================================================
+      # EXISTENTIAL CHANGES (tooi:ExistentieleWijziging)
+      # These events affect whether entities exist
+      # =================================================================
+      
+      FOUNDING:
+        description: |
+          Creation of new organizational unit (tooi:Oprichting).
+          Example: New Digital Preservation Department established.
+        meaning: tooi:Oprichting
+        annotations:
+          tooi_class: tooi:Oprichting
+          crm_class: crm:E12_Production
+          prov_generated: "≥1"
+          prov_invalidated: "0"
+          prov_used: "0"
+          existential: "true"
+        comments:
+          - "TOOI: tooi:Oprichting (founding)"
+          - "Affected units: None (new creation)"
+          - "Resulting units: Single new unit"
+          - "FTE: New hires or transfers from other units"
+      
+      DISSOLUTION:
+        description: |
+          Organizational unit ceasing to exist with no successor (tooi:Opheffing).
+          Example: Department closed due to budget cuts, functions not transferred.
+        meaning: tooi:Opheffing
+        annotations:
+          tooi_class: tooi:Opheffing
+          crm_class: crm:E64_End_of_Existence
+          prov_generated: "0"
+          prov_invalidated: "≥1"
+          prov_used: "0"
+          existential: "true"
+        comments:
+          - "TOOI: tooi:Opheffing (dissolution)"
+          - "Affected units: Single unit being dissolved"
+          - "Resulting units: None (no successor)"
+          - "FTE reassigned or redundant"
+      
+      MERGER:
+        description: |
+          Multiple organizational units combining into one new entity (tooi:Samenvoeging).
+          Example: Two departments merge to form one larger department.
+          All original units cease to exist; a new entity is created.
+        meaning: tooi:Samenvoeging
+        annotations:
+          tooi_class: tooi:Samenvoeging
+          crm_class: crm:E12_Production
+          prov_generated: "1"
+          prov_invalidated: "≥2"
+          prov_used: "0"
+          existential: "true"
+        comments:
+          - "TOOI: tooi:Samenvoeging (merger)"
+          - "Affected units: Multiple (2+) being merged"
+          - "Resulting units: Single combined unit"
+          - "Original units invalidated, new unit generated"
+          - "FTE typically retained or increased"
+      
+      SPLIT:
+        description: |
+          One organizational unit dividing into multiple new entities (tooi:Opsplitsing).
+          Example: Large department splits into two specialized departments.
+          Original unit ceases to exist; multiple new entities created.
+        meaning: tooi:Opsplitsing
+        annotations:
+          tooi_class: tooi:Opsplitsing
+          crm_class: crm:E12_Production
+          prov_generated: "≥2"
+          prov_invalidated: "1"
+          prov_used: "0"
+          existential: "true"
+        comments:
+          - "TOOI: tooi:Opsplitsing (split)"
+          - "Affected units: Single unit being split"
+          - "Resulting units: Multiple (2+) new units"
+          - "Original unit invalidated, new units generated"
+          - "FTE distributed across new units"
+      
+      SPIN_OFF:
+        description: |
+          Parts separate from whole, original continues (tooi:Afsplitsing).
+          Example: Branch office becomes independent entity while parent continues.
+          Original entity continues; new entities created from parts.
+        meaning: tooi:Afsplitsing
+        annotations:
+          tooi_class: tooi:Afsplitsing
+          crm_class: crm:E12_Production
+          prov_generated: "≥1"
+          prov_invalidated: "0"
+          prov_used: "≥1"
+          existential: "true"
+        comments:
+          - "TOOI: tooi:Afsplitsing (spin-off)"
+          - "Original unit continues (prov:used)"
+          - "New units created (prov:generated)"
+          - "Differs from SPLIT: original does NOT cease to exist"
+      
+      EXPANSION:
+        description: |
+          Existing entity absorbs other entities (tooi:Uitbreiding).
+          Example: Department absorbs smaller unit, which ceases to exist.
+          Absorbing entity continues; absorbed entities cease to exist.
+        meaning: tooi:Uitbreiding
+        annotations:
+          tooi_class: tooi:Uitbreiding
+          crm_class: crm:E5_Event
+          prov_generated: "0"
+          prov_invalidated: "≥1"
+          prov_used: "≥1"
+          existential: "true"
+        comments:
+          - "TOOI: tooi:Uitbreiding (expansion/absorption)"
+          - "Absorbing unit continues (prov:used)"
+          - "Absorbed units cease to exist (prov:invalidated)"
+          - "Differs from MERGER: absorbing entity does NOT cease to exist"
+          - "FTE typically increased"
+      
+      REORGANIZATION:
+        description: |
+          Complex restructure affecting multiple units (tooi:Herschikking).
+          Example: Multiple departments reorganized with some merging, splitting.
+          May involve both entities ceasing and new entities being created.
+        meaning: tooi:Herschikking
+        annotations:
+          tooi_class: tooi:Herschikking
+          crm_class: crm:E5_Event
+          prov_generated: "≥1"
+          prov_invalidated: "≥1"
+          prov_used: "≥0"
+          existential: "true"
+        comments:
+          - "TOOI: tooi:Herschikking (reorganization)"
+          - "Complex change involving multiple patterns"
+          - "May combine elements of merger, split, dissolution"
+          - "Use when simple patterns don't apply"
+      
+      # =================================================================
+      # STATE CHANGES (tooi:Toestandswijziging)
+      # These events preserve entity identity
+      # =================================================================
+      
+      RENAMING:
+        description: |
+          Unit name change without functional change (tooi:Toestandswijziging).
+          Example: 'Restoration Department' renamed to 'Conservation Department'.
+          Identity preserved; creates historical version of previous state.
+        meaning: tooi:Toestandswijziging
+        annotations:
+          tooi_class: tooi:Toestandswijziging
+          crm_class: crm:E5_Event
+          prov_generated: "0 (HV)"
+          prov_invalidated: "0 (HV)"
+          prov_used: "≥1"
+          existential: "false"
+        comments:
+          - "TOOI: tooi:Toestandswijziging (state change)"
+          - "Entity identity preserved"
+          - "Creates HistorischeVersie (historical version)"
+          - "FTE unchanged, functions unchanged"
+      
+      TRANSFER:
+        description: |
+          Organizational unit moving to different parent (tooi:Toestandswijziging).
+          Example: Lab transferred from Research Division to Collections Division.
+          Identity preserved; reporting relationship changes.
+        meaning: tooi:Toestandswijziging
+        annotations:
+          tooi_class: tooi:Toestandswijziging
+          crm_class: crm:E10_Transfer_of_Custody
+          prov_generated: "0"
+          prov_invalidated: "0"
+          prov_used: "≥1"
+          existential: "false"
+        comments:
+          - "TOOI: tooi:Toestandswijziging (state change)"
+          - "Entity identity preserved"
+          - "Parent organization changes"
+          - "FTE unchanged, functions unchanged"
+      
+      REDUCTION:
+        description: |
+          Organizational unit scope or mandate decreased (tooi:Toestandswijziging).
+          Example: Department loses function to another unit.
+          Identity preserved; scope changes.
+        meaning: tooi:Toestandswijziging
+        annotations:
+          tooi_class: tooi:Toestandswijziging
+          crm_class: crm:E5_Event
+          prov_generated: "0"
+          prov_invalidated: "0"
+          prov_used: "≥1"
+          existential: "false"
+        comments:
+          - "TOOI: tooi:Toestandswijziging (state change)"
+          - "Entity identity preserved"
+          - "Scope reduced but unit continues"
+          - "FTE typically decreased"
+
+  # =================================================================
+  # TOOI Change Event Category Enum (for categorization)
+  # =================================================================
+  
+  OrganizationalChangeEventCategoryEnum:
+    description: |
+      High-level categorization of organizational change events based on TOOI ontology.
+      Distinguishes between existential changes (affecting entity existence) and
+      state changes (preserving entity identity).
+    
+    see_also:
+      - "https://identifier.overheid.nl/tooi/def/ont/"
+    
+    permissible_values:
+      EXISTENTIAL:
+        description: |
+          Change affects whether entities exist (tooi:ExistentieleWijziging).
+          Includes: FOUNDING, DISSOLUTION, MERGER, SPLIT, SPIN_OFF, EXPANSION, REORGANIZATION.
+        meaning: tooi:ExistentieleWijziging
+        comments:
+          - "Entities may be created or cease to exist"
+          - "Uses prov:generated and prov:invalidated"
+      
+      STATE:
+        description: |
+          Change preserves entity identity (tooi:Toestandswijziging).
+          Includes: RENAMING, TRANSFER, REDUCTION.
+        meaning: tooi:Toestandswijziging
+        comments:
+          - "Entity identity preserved"
+          - "Uses prov:used (entity continues)"
+          - "Creates HistorischeVersie for previous state"

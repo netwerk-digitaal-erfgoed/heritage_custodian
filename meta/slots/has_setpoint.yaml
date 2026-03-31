@@ -1,0 +1,130 @@
+# ==============================================================================
+# LinkML Slot Definition: has_setpoint
+# ==============================================================================
+# The reference value or target level that a controlled environmental parameter
+# aims to maintain.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                      | File/Line                  | Mapping  | Notes                                                                                 |
+# |----------------|-------------------------------|----------------------------|----------|---------------------------------------------------------------------------------------|
+# | **HC**         | `hc:hasSetpoint`              | —                          | slot_uri | No external property captures "has a setpoint value" for conservation climate control. |
+# | **Brick**      | `brick:hasPoint`              | Brick.ttl:43935-43942      | broad    | "The subject has a source of telemetry." brick:Setpoint <: brick:Point.               |
+# | **Schema.org** | `schema:valueReference`       | schemaorg.owl:39594-39623  | related  | "A secondary value providing additional info, e.g. a reference temperature."          |
+# | **SOSA**       | `sosa:hasFeatureOfInterest`   | sosa.ttl:203-214           | related  | "Entity whose quality was observed or property was modified."                         |
+#
+# NOTE: brick:hasSetpoint does NOT exist as a property in Brick.ttl.
+# Brick defines Setpoint as a class (Brick.ttl:48187-48198) but has no
+# hasSetpoint object property — the relationship is through brick:hasPoint.
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_setpoint
+name: has_setpoint
+title: Has Setpoint
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  brick: https://brickschema.org/schema/Brick#
+  schema: https://schema.org/
+  sosa: http://www.w3.org/ns/sosa/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_setpoint:
+    slot_uri: hc:hasSetpoint
+    description: >-
+      The reference value, desired level, or nominal parameter that a controlled
+      environmental system aims to maintain or achieve. In the heritage custodian
+      context, setpoints are critical for preventive conservation, specifying
+      target values for temperature, relative humidity, light levels, air quality,
+      and other climate-controlled conditions in storage vaults, exhibition
+      galleries, and conservation laboratories.
+    alt_descriptions:
+      nl: >-
+        De referentiewaarde, het gewenste niveau of de nominale parameter die een
+        gecontroleerd omgevingssysteem nastreeft te handhaven, zoals temperatuur-
+        en luchtvochtigheidsinstellingen voor bewaarruimten en tentoonstellingszalen.
+      de: >-
+        Der Referenzwert, das gewünschte Niveau oder der Nennparameter, den ein
+        kontrolliertes Umgebungssystem aufrechtzuerhalten versucht, wie Temperatur-
+        und Luftfeuchtigkeitssollwerte für Depots und Ausstellungsräume.
+      fr: >-
+        La valeur de référence, le niveau souhaité ou le paramètre nominal qu'un
+        système environnemental contrôlé vise à maintenir, comme les consignes de
+        température et d'humidité pour les réserves et les salles d'exposition.
+      ar: >-
+        القيمة المرجعية أو المستوى المطلوب أو المعلمة الاسمية التي يهدف نظام
+        التحكم البيئي إلى الحفاظ عليها، مثل نقاط ضبط درجة الحرارة والرطوبة
+        لمخازن الحفظ وصالات العرض.
+      id: >-
+        Nilai referensi, tingkat yang diinginkan, atau parameter nominal yang
+        ingin dipertahankan oleh sistem lingkungan terkendali, seperti titik
+        setel suhu dan kelembapan untuk ruang penyimpanan dan ruang pameran.
+      zh: >-
+        受控环境系统旨在维持的参考值、期望水平或标称参数，例如用于文物库房和展厅的温度
+        和湿度设定值。
+      es: >-
+        El valor de referencia, nivel deseado o parámetro nominal que un sistema
+        ambiental controlado busca mantener, como puntos de ajuste de temperatura
+        y humedad para depósitos y salas de exposición.
+    structured_aliases:
+      - literal_form: instelpunt
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sollwert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: point de consigne
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نقطة الضبط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: titik setel
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 设定值
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: punto de ajuste
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    broad_mappings:
+      - brick:hasPoint  # Brick.ttl:43935-43942 - "The subject has a source of telemetry identified by the object"; brick:Setpoint is a subclass of brick:Point
+    related_mappings:
+      - schema:valueReference  # schemaorg.owl:39594-39623 - "A secondary value that provides additional information on the original value, e.g. a reference temperature"; a setpoint is conceptually a reference value for a controlled parameter
+      - sosa:hasFeatureOfInterest  # sosa.ttl:203-214 - "Entity whose quality was observed or property was modified"; setpoints define target values for features of interest
+    aliases:
+      - has_or_had_setpoint
+      - setpoint_type
+      - setpoint_unit
+      - setpoint_value
+    examples:
+      - value: "Temperature: 18°C ± 1°C"
+        description: "Climate setpoint for a cold storage vault holding paper-based collections"
+      - value: "Relative Humidity: 50% ± 5%"
+        description: "Humidity setpoint for a general exhibition gallery"
+      - value: "Light Level: 50 lux maximum"
+        description: "Illumination setpoint for a gallery displaying light-sensitive textiles"
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        slot_uri is hc:hasSetpoint because no external ontology property directly
+        captures the concept of a conservation climate-control setpoint. The Brick
+        ontology defines brick:Setpoint as a class (Brick.ttl:48187-48198) meaning
+        "an input value at which the desired property is set," which is the closest
+        class-level concept in building automation ontologies.
+      - >-
+        In heritage custodian practice, setpoints are established per conservation
+        standards (e.g., ASHRAE guidelines for museums) and may vary by collection
+        type, season, and building zone. Common parameters include temperature,
+        relative humidity, light level (lux), UV radiation, and air exchange rates.
+      - >-
+        Values should include the parameter name, target value, unit, and tolerance
+        range where applicable.

@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/WebArchive
+name: WebArchive
+title: Web Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- ../classes/WikidataAlignment
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+- ../slots/related_to
+classes:
+  WebArchive:
+    description: >-
+      Heritage organization that captures, preserves, and provides access to
+      born-digital online content for long-term research use.
+    alt_descriptions:
+      nl: Erfgoedorganisatie die websites en online content bewaart voor langetermijnonderzoek.
+      de: Kulturerbeorganisation, die Websites und Online-Inhalte bewahrt.
+      fr: Organisation patrimoniale qui préserve les sites web et le contenu en ligne.
+      es: Organización patrimonial que preserva sitios web y contenido en línea.
+      ar: مؤسسة تراثية تحافظ على مواقع الويب والمحتوى عبر الإنترنت.
+      id: Organisasi warisan yang melestarikan situs web dan konten daring.
+      zh: 保存网站和在线内容以供长期研究的遗产机构。
+    structured_aliases:
+    - literal_form: webarchief
+      in_language: nl
+    - literal_form: Webarchiv
+      in_language: de
+    - literal_form: archive du Web
+      in_language: fr
+    - literal_form: archivo web
+      in_language: es
+    - literal_form: أرشيف الويب
+      in_language: ar
+    - literal_form: arsip web
+      in_language: id
+    - literal_form: 网络档案馆
+      in_language: zh
+    comments:
+    - Organization (not collection) focused on web content preservation.
+    - Addresses digital preservation challenge of ephemeral web content.
+    - 'Preserved from prior description: Heritage organization focused on capturing, preserving, and providing access to websites, web pages, and online content for long-term research use.'
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - related_to
+    - identified_by
+    - has_scope
+    broad_mappings:
+    - wd:Q166118
+    - skos:Concept
+    close_mappings:
+    - rico:CorporateBody
+    - wd:Q30047053
+    mixins:
+    - DigitalPlatformType
+    slot_usage:
+      has_type:
+        identifier: false
+        equals_string: hc:ArchiveOrganizationType
+      related_to:
+        range: WikidataAlignment
+        inlined: true
+    see_also:
+    - DigitalArchive
+    - OnlineNewsArchive
+    - MailingListArchive
+    - DigitalLibrary
+    annotations:
+      label_de: Webarchiv
+      label_es: archivo web
+      label_fr: archive du Web
+      record_set_type: true
+      custodian_type: true
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

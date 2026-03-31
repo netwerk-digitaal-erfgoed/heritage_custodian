@@ -1,0 +1,255 @@
+id: https://nde.nl/ontology/hc/class/StateArchivesRecordSetTypes
+name: StateArchivesRecordSetTypes
+title: StateArchives Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./StateArchivesRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  StateGovernmentFonds:
+    is_a: StateArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Fonds-level arrangement of state or provincial administrative records.
+    alt_descriptions:
+      nl: >-
+        Fonds-niveau ordening van staats- of provinciale administratieve archieven.
+      de: >-
+        Bestandsordnung auf Fonds-Ebene für staatliche oder provinzielle Verwaltungsunterlagen.
+      fr: >-
+        Organisation au niveau du fonds des archives administratives d'État ou provinciales.
+      es: >-
+        Organización a nivel de fondo de archivos administrativos estatales o provinciales.
+      ar: >-
+        ترتيب على مستوى الفوندس للأرشيفات الإدارية الحكومية أو الإقليمية.
+      id: >-
+        Pengaturan tingkat fonds arsip administrasi pemerintah negara atau provinsi.
+      zh: >-
+        州/省政府行政档案的全宗级整理。
+    structured_aliases:
+    - {literal_form: overheidsfonds, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Verwaltungsfonds, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: fonds administratif, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: fondo administrativo, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: صندوق إداري حكومي, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: fonds administrasi negara, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 政府行政全宗, predicate: EXACT_SYNONYM, in_language: zh}
+    comments:
+    - Note preserved: This class continues to denote fonds-level provenance for state and provincial public administration.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Fonds
+    keywords:
+    - fonds
+    - state archives
+    - administrative records
+    see_also:
+    - StateArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:StateGovernmentFonds
+      has_custodian:
+        equals_string: hc:StateArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by StateArchives custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+
+  JudicialRecordSeries:
+    is_a: StateArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Series-level arrangement of court records and legal documentation.
+    alt_descriptions:
+      nl: >-
+        Reeks-niveau ordening van rechtbankarchieven en juridische documentatie.
+      de: >-
+        Serienordnung für Gerichtsakten und juristische Dokumentation.
+      fr: >-
+        Organisation en série des archives judiciaires et de la documentation légale.
+      es: >-
+        Organización en serie de expedientes judiciales y documentación legal.
+      ar: >-
+        ترتيب على مستوى السلسلة لسجلات المحاكم والوثائق القانونية.
+      id: >-
+        Pengaturan tingkat seri arsip pengadilan dan dokumentasi hukum.
+      zh: >-
+        法院记录与法律文书的系列级整理。
+    structured_aliases:
+    - {literal_form: reeks rechtbankarchief, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Serie Gerichtsakten, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: série judiciaire, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: serie judicial, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: سلسلة سجلات قضائية, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: seri arsip pengadilan, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 法院记录系列, predicate: EXACT_SYNONYM, in_language: zh}
+    comments:
+    - Note preserved: Court and legal-documentation scope remains explicit for this recurring sequence class.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    keywords:
+    - judicial records
+    - court archives
+    - legal documentation
+    - series
+    see_also:
+    - StateArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:JudicialRecordSeries
+      has_custodian:
+        equals_string: hc:StateArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by StateArchives custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      custodian_types: '[''*'']'
+
+  LandRecordsSeries:
+    is_a: StateArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Series-level arrangement of property and land registry records.
+    alt_descriptions:
+      nl: >-
+        Reeks-niveau ordening van kadastrale en eigendomsregistraties.
+      de: >-
+        Serienordnung für Grundbuch- und Liegenschaftsunterlagen.
+      fr: >-
+        Organisation en série des registres fonciers et cadastraux.
+      es: >-
+        Organización en serie de registros de propiedad y catastro.
+      ar: >-
+        ترتيب على مستوى السلسلة لسجلات الأراضي والملكية.
+      id: >-
+        Pengaturan tingkat seri arsip pertanahan dan registrasi properti.
+      zh: >-
+        土地/不动产登记记录的系列级整理。
+    structured_aliases:
+    - {literal_form: reeks kadaster, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Serie Grundbuch, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: série cadastrale, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: serie catastral, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: سلسلة سجلات الأراضي, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: seri registrasi pertanahan, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 土地登记系列, predicate: EXACT_SYNONYM, in_language: zh}
+    comments:
+    - Note preserved: Property and cadastral registration context remains the defining thematic focus.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    keywords:
+    - land records
+    - cadastral records
+    - property registry
+    - series
+    see_also:
+    - StateArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:LandRecordsSeries
+      has_custodian:
+        equals_string: hc:StateArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by StateArchives custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      custodian_types: '[''*'']'
+
+  TaxRecordsSeries:
+    is_a: StateArchivesRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Series-level arrangement of taxation and fiscal documentation.
+    alt_descriptions:
+      nl: >-
+        Reeks-niveau ordening van belasting- en financiële documentatie.
+      de: >-
+        Serienordnung für Steuer- und Finanzdokumentation.
+      fr: >-
+        Organisation en série des documents fiscaux et financiers.
+      es: >-
+        Organización en serie de documentación fiscal y financiera.
+      ar: >-
+        ترتيب على مستوى السلسلة للوثائق الضريبية والمالية.
+      id: >-
+        Pengaturan tingkat seri dokumentasi perpajakan dan fiskal.
+      zh: >-
+        税务与财政文书的系列级整理。
+    structured_aliases:
+    - {literal_form: reeks belastingdossiers, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Serie Steuerunterlagen, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: série fiscale, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: serie fiscal, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: سلسلة سجلات ضريبية, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: seri arsip perpajakan, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 税务档案系列, predicate: EXACT_SYNONYM, in_language: zh}
+    comments:
+    - Note preserved: Fiscal and taxation evidence remains central to this sequence-oriented class.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    keywords:
+    - tax records
+    - fiscal documentation
+    - taxation archives
+    - series
+    see_also:
+    - StateArchivesRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:TaxRecordsSeries
+      has_custodian:
+        equals_string: hc:StateArchives
+      has_note:
+        equals_string: This RecordSetType is typically held by StateArchives custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      custodian_types: '[''*'']'

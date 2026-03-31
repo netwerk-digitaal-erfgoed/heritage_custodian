@@ -1,0 +1,42 @@
+id: https://nde.nl/ontology/hc/classes/RejectedGoogleMapsData
+name: RejectedGoogleMapsData
+title: RejectedGoogleMapsData
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+classes:
+  RejectedGoogleMapsData:
+    description: >-
+      Rejected Google Maps data preserved for audit trail, documenting place data
+      that was fetched but rejected due to validation failures (e.g., country mismatch).
+    alt_descriptions:
+      nl: Afgewezen Google Maps-gegevens bewaard voor audittrail.
+      de: Abgelehnte Google Maps-Daten, die für Prüfzwecke aufbewahrt werden.
+    structured_aliases:
+    - literal_form: afgewezen Google Maps-gegevens
+      in_language: nl
+    - literal_form: abgelehnte Google Maps-Daten
+      in_language: de
+    comments:
+    - Includes place ID, name, address, coordinates, expected vs returned country, and timestamps.
+    - Preserved for provenance tracking and debugging.
+    class_uri: prov:Entity
+    close_mappings:
+    - prov:InvalidatedEntity
+    related_mappings:
+    - schema:Place
+    broad_mappings:
+    - prov:Entity
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - has_name
+    - has_latitude
+    - has_longitude

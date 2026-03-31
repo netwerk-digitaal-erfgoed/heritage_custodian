@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: has_loading_dock
+# ==============================================================================
+# Indicates whether a facility has a dedicated loading dock area.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                  | Mapping | Notes                                         |
+# |---------------|-------------------------|----------------------------|---------|-----------------------------------------------|
+# | Schema.org    | `schema:amenityFeature` | schemaorg.owl:7869-7893    | related | Accommodation-specific amenity feature.       |
+#
+# No standard ontology property for loading dock presence. schema:amenityFeature
+# is related but domain-restricted to Accommodation/LodgingBusiness/Place.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_loading_dock
+name: has_loading_dock_slot
+title: Has Loading Dock Slot
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_loading_dock:
+    slot_uri: hc:hasLoadingDock
+    description: >-
+      To specify the presence or characteristics of a dedicated platform or area at a facility
+      where goods vehicles (such as trucks) can be loaded and unloaded.
+    alt_descriptions:
+      nl: >-
+        Geeft de aanwezigheid of kenmerken aan van een speciaal platform of gebied bij een
+        faciliteit waar goederenvoertuigen (zoals vrachtwagens) kunnen worden geladen en gelost.
+      de: >-
+        Gibt das Vorhandensein oder die Merkmale einer dedizierten Plattform oder eines Bereichs
+        an einer Einrichtung an, an der Güterfahrzeuge (wie Lastwagen) be- und entladen werden können.
+      fr: >-
+        Indique la présence ou les caractéristiques d'une plate-forme ou d'une zone dédiée dans
+        une installation où les véhicules de marchandises (tels que les camions) peuvent être
+        chargés et déchargés.
+      ar: >-
+        يحدد وجود أو خصائص منصة أو منطقة مخصصة في منشأة حيث يمكن تحميل وتفريغ مركبات البضائع
+        (مثل الشاحنات).
+      id: >-
+        Menentukan keberadaan atau karakteristik platform atau area khusus di fasilitas tempat
+        kendaraan barang (seperti truk) dapat dimuat dan dibongkar.
+      zh: >-
+        指定设施中专用平台或区域的存在或特征，货运车辆（如卡车）可在此装卸货物。
+      es: >-
+        Especifica la presencia o características de una plataforma o área dedicada en una
+        instalación donde los vehículos de mercancías (como camiones) pueden ser cargados y
+        descargados.
+    structured_aliases:
+      - literal_form: Laadperron
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Laderampe
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Quai de chargement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: رصيف تحميل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Dok pemuatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 装卸码头
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Muelle de carga
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    aliases:
+      - has_or_had_loading_dock
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7893 - Accommodation-specific amenity feature

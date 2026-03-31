@@ -1,0 +1,109 @@
+id: https://nde.nl/ontology/hc/class/ApplicantType
+name: ApplicantType
+title: Applicant Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/identified_by
+  - ../slots/has_label
+classes:
+  ApplicantType:
+    class_uri: skos:Concept
+    description: >-
+      Category for classifying applicants by their organizational or individual
+      status, such as Individual, NonProfit, University, Commercial, or
+      Government entity.
+    alt_descriptions:
+      nl: >-
+        Categorie voor het classificeren van aanvragers op basis van hun
+        organisatorische of individuele status, zoals Individu, NonProfit,
+        Universiteit, Commercieel of Overheidsinstantie.
+      de: >-
+        Kategorie zur Klassifizierung von Antragstellern nach ihrem organisatorischen
+        oder individuellen Status, wie Individuum, NonProfit, Universitat,
+        Kommerziell oder Behorde.
+      fr: >-
+        Categorie pour classer les demandeurs selon leur statut organisationnel
+        ou individuel, comme Individu, Association a but non lucratif, Universite,
+        Commercial ou Entite gouvernementale.
+      es: >-
+        Categoria para clasificar a los solicitantes por su estatus organizacional
+        o individual, como Individual, Sin fines de lucro, Universidad, Comercial
+        o Entidad gubernamental.
+      ar: >-
+        فئة لتصنيف مقدمي الطلبات حسب وضعهم التنظيمي أو الفردي، مثل فرد أو
+        غير ربحي أو جامعة أو تجاري أو كيان حكومي.
+      id: >-
+        Kategori untuk mengklasifikasikan pemohon berdasarkan status organisasi
+        atau individu mereka, seperti Individu, Nirlaba, Universitas, Komersial,
+        atau Entitas Pemerintah.
+      zh: >-
+        按组织或个人身份对申请人进行分类的类别，如个人、非营利、大学、商业或政府实体。
+    structured_aliases:
+    - literal_form: aanvragerstype
+      in_language: nl
+    - literal_form: Antragstellertyp
+      in_language: de
+    - literal_form: type de demandeur
+      in_language: fr
+    - literal_form: tipo de solicitante
+      in_language: es
+    - literal_form: نوع مقدم الطلب
+      in_language: ar
+    - literal_form: tipe pemohon
+      in_language: id
+    - literal_form: 申请人类型
+      in_language: zh
+    close_mappings:
+    - schema:definedTerm
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - has_label
+    - identified_by
+    slot_usage:
+      has_label:
+        required: true
+        equals_string_in:
+        - "Individual"
+        - "NonProfit"
+        - "University"
+        - "Commercial"
+        - "Government"
+        - "ResearchInstitute"
+      identified_by:
+        required: true
+    comments:
+    - Abstract classification for applicant categories
+    - Used to determine eligibility and fee structures
+    - Linked to Applicant instances via has_type slot
+    see_also:
+    - Applicant
+    - ApplicantRequirement
+    examples:
+    - value:
+        has_label: "Individual"
+        identified_by: "hc:IndividualApplicant"
+      description: Individual person applicant type
+    - value:
+        has_label: "University"
+        identified_by: "hc:UniversityApplicant"
+      description: Higher education institution applicant type
+    keywords:
+    - applicant type
+    - individual
+    - non-profit
+    - university
+    - commercial
+    - government
+    - classification
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Type classification for applicant categories
+      custodian_types: "['*']"

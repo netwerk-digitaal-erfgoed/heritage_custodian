@@ -1,0 +1,59 @@
+id: https://nde.nl/ontology/hc/class/Claim
+name: Claim
+title: Claim Class - Base Class for Assertions
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  arg: http://www.w3.org/ns/argument#
+imports:
+- linkml:types
+default_prefix: hc
+classes:
+  Claim:
+    class_uri: prov:Entity
+    description: >-
+      Assertion unit representing a proposition with evidential provenance and potential support relations to other propositions.
+    alt_descriptions:
+      nl: Assertie-eenheid die een propositie met bewijsherkomst en mogelijke ondersteuningsrelaties tot andere proposities weergeeft.
+      de: Behauptungseinheit, die eine Proposition mit Evidenzprovenienz und möglichen Unterstützungsbeziehungen zu anderen Propositionen repräsentiert.
+      fr: Unité d'assertion représentant une proposition avec provenance des preuves et relations potentielles de soutien avec d'autres propositions.
+      es: Unidad de aseveración que representa una proposición con procedencia de evidencia y posibles relaciones de apoyo con otras proposiciones.
+      ar: وحدة ادعاء تمثل قضية مع مصدر إثبات وعلاقات دعم محتملة مع قضايا أخرى.
+      id: Unit asersi yang merepresentasikan proposisi dengan asal-usul bukti serta relasi dukungan potensial ke proposisi lain.
+      zh: 表示命题的断言单元，带有证据来源并可与其他命题形成支持关系。
+    structured_aliases:
+    - literal_form: bewering
+      in_language: nl
+    - literal_form: Behauptung
+      in_language: de
+    - literal_form: assertion
+      in_language: fr
+    - literal_form: afirmación
+      in_language: es
+    - literal_form: ادعاء
+      in_language: ar
+    - literal_form: klaim
+      in_language: id
+    - literal_form: 断言
+      in_language: zh
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:Claim
+    - schema:PropertyValue
+    slots: []
+    comments:
+    - Base class for claim type hierarchy
+    - Subclasses add specific provenance mechanisms
+    - 'CREATED 2026-01-19: Per slot_fixes.yaml revision (Rule 53/56)'
+    notes:
+    - |
+      Preserved from prior description (commit 2c9d3598):
+
+      "Base class for assertions or claims made about heritage entities.\n\nA claim represents a statement that warrants (supports or justifies) \nother statements or conclusions. Claims can come from various sources:\n- Web pages (WebClaim subclass)\n- Wikidata (WikidataClaim)\n- Research sources\n- Human annotations\n\n**Argumentation Semantics**:\nThe term \"warrants\" comes from argumentation theory (Toulmin model):\n- Claims provide evidence that WARRANTS (justifies) conclusions\n- A claim can be warranted BY other supporting claims\n\nThis bidirectional relationship is captured by the `warrants_or_warranted` slot.\n\n**Subclasses**:\n- WebClaim: Claims extracted from web pages with XPath provenance\n- WikidataClaim: Claims from Wikidata with property/value structure\n- PersonWebClaim: Claims about persons from web sources\n- CustodianLegalNameClaim: Claims about custodian legal names\n\n**MIGRATION NOTE (2026-01-19)**:\nCreated as base class for claim type hierarchy per\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

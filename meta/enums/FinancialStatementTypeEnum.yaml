@@ -1,0 +1,273 @@
+# FinancialStatementTypeEnum
+# Types of financial statements for heritage custodian institutions
+# Focuses on nonprofit/foundation reporting requirements
+
+id: https://nde.nl/ontology/hc/enum/FinancialStatementTypeEnum
+name: financial_statement_type_enum
+title: Financial Statement Type Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+
+enums:
+  FinancialStatementTypeEnum:
+    description: |
+      Types of financial statements and reports produced by heritage custodian
+      institutions. Focuses on nonprofit/foundation reporting requirements
+      common to museums, libraries, archives, and other heritage organizations.
+      
+      **CATEGORY OVERVIEW**:
+      
+      1. **Comprehensive Reports**: Annual reports combining narrative + financials
+      2. **Core Financial Statements**: Standard accounting statements (GAAP/IFRS)
+      3. **Regulatory Filings**: Government-mandated disclosures
+      4. **Audit Documents**: Independent verification
+      5. **Interim Reports**: Quarterly/periodic reporting
+    
+    permissible_values:
+      # Comprehensive Reports
+      ANNUAL_REPORT:
+        description: |
+          Comprehensive year-end report combining narrative and financial information.
+          
+          **Contents**:
+          - Mission and activities
+          - Program highlights
+          - Governance information
+          - Financial statements
+          - Donor recognition
+          - Impact metrics
+          
+          **Legal Requirements**:
+          - ANBI (NL): Annual report with financial statement required
+          - 501(c)(3) (US): Often published alongside Form 990
+          - UK Charities: Trustees' Annual Report
+        meaning: schema:Report
+      
+      # Core Financial Statements (GAAP/IFRS)
+      STATEMENT_OF_FINANCIAL_POSITION:
+        description: |
+          Balance sheet showing assets, liabilities, and net assets at a point in time.
+          
+          **Nonprofit terminology**:
+          - "Net assets" instead of "shareholders' equity"
+          - "Without donor restrictions" + "With donor restrictions"
+          
+          **Components**:
+          - Current assets / Non-current assets
+          - Current liabilities / Long-term liabilities
+          - Net assets without donor restrictions
+          - Net assets with donor restrictions
+        meaning: schema:Report
+      
+      STATEMENT_OF_ACTIVITIES:
+        description: |
+          Income statement showing revenue, expenses, and change in net assets.
+          
+          **Nonprofit terminology**:
+          - "Change in net assets" instead of "net income"
+          - Shows changes in both restricted and unrestricted net assets
+          
+          **Structure**:
+          - Revenue and gains
+          - Expenses (by function or nature)
+          - Change in net assets
+        meaning: schema:Report
+      
+      STATEMENT_OF_CASH_FLOWS:
+        description: |
+          Cash inflows and outflows for the reporting period.
+          
+          **Categories**:
+          - Operating activities
+          - Investing activities
+          - Financing activities
+          
+          **Nonprofit considerations**:
+          - Donor-restricted cash for long-term purposes
+          - Endowment investment activities
+        meaning: schema:Report
+      
+      STATEMENT_OF_FUNCTIONAL_EXPENSES:
+        description: |
+          Nonprofit-specific statement showing expenses by function.
+          
+          **Required for Form 990; recommended for GAAP**
+          
+          **Functional Categories**:
+          - Program expenses (mission-related)
+          - Management and general expenses (administrative)
+          - Fundraising expenses
+          
+          **Efficiency Metrics**:
+          - Program expense ratio = Program / Total expenses
+          - Fundraising efficiency = Fundraising / Total contributions
+        meaning: schema:Report
+      
+      # Regulatory Filings
+      FORM_990:
+        description: |
+          IRS Form 990 - US nonprofit annual information return.
+          
+          **Filed by**: 501(c)(3) and other tax-exempt organizations
+          
+          **Contents**:
+          - Part I: Summary
+          - Part III: Statement of Program Service Accomplishments
+          - Part VII: Compensation of Officers, Directors, Key Employees
+          - Part VIII: Statement of Revenue
+          - Part IX: Statement of Functional Expenses
+          - Part X: Balance Sheet
+          - Schedule A: Public Charity Status
+          - Schedule B: Contributors (confidential)
+          
+          **Public availability**: GuideStar, ProPublica Nonprofit Explorer
+        meaning: schema:Report
+      
+      FORM_990_PF:
+        description: |
+          IRS Form 990-PF - Private Foundation annual return.
+          
+          **Filed by**: Private foundations (not public charities)
+          
+          **Includes**:
+          - Minimum investment return calculation
+          - Qualifying distributions
+          - Grants paid
+          - Investment income
+        meaning: schema:Report
+      
+      FORM_990_EZ:
+        description: |
+          IRS Form 990-EZ - Short form for smaller nonprofits.
+          
+          **Eligibility**: Gross receipts < $200,000 and total assets < $500,000
+        meaning: schema:Report
+      
+      ANBI_PUBLICATION:
+        description: |
+          ANBI (Algemeen Nut Beogende Instelling) publication requirements.
+          
+          **Dutch charity status requirements**:
+          - Mission statement
+          - Board composition
+          - Policy plan
+          - Financial statement
+          - Annual report
+          
+          **Must be published on organization's website**
+        meaning: schema:Report
+      
+      CHARITY_ANNUAL_RETURN:
+        description: |
+          UK Charity Commission Annual Return.
+          
+          **Required for**: Charities with income > £10,000
+          
+          **Contents**:
+          - Basic charity information
+          - Financial information
+          - Trustee declarations
+        meaning: schema:Report
+      
+      # Audit Documents
+      AUDIT_REPORT:
+        description: |
+          Independent auditor's report on financial statements.
+          
+          **Opinion Types**:
+          - Unqualified (clean): Statements fairly presented
+          - Qualified: Exception noted
+          - Adverse: Material misstatement
+          - Disclaimer: Unable to form opinion
+          
+          **Components**:
+          - Auditor's opinion
+          - Basis for opinion
+          - Key audit matters (if applicable)
+          - Management's responsibility
+          - Auditor's responsibility
+        meaning: schema:Report
+      
+      REVIEW_REPORT:
+        description: |
+          CPA review engagement (limited assurance).
+          
+          **Less rigorous than audit**: Inquiry and analytical procedures
+          
+          **Conclusion**: "Nothing came to our attention..."
+          (negative assurance vs. positive assurance in audit)
+        meaning: schema:Report
+      
+      COMPILATION_REPORT:
+        description: |
+          CPA compilation (no assurance).
+          
+          **Accountant compiles** financial statements from management's data
+          
+          **No assurance** provided on accuracy or GAAP compliance
+        meaning: schema:Report
+      
+      # Interim Reports
+      QUARTERLY_REPORT:
+        description: |
+          Interim financial report (typically unaudited).
+          
+          **Frequency**: Q1, Q2, Q3 (Q4 often replaced by annual report)
+          
+          **Contents**:
+          - Condensed financial statements
+          - Management discussion
+          - Year-to-date comparisons
+        meaning: schema:Report
+      
+      INTERIM_REPORT:
+        description: |
+          General interim financial report (non-quarterly).
+          
+          **May be**:
+          - Semi-annual (half-yearly)
+          - Monthly (internal management)
+          - Special purpose (grant reporting)
+        meaning: schema:Report
+      
+      # Specialized Reports
+      GRANT_FINANCIAL_REPORT:
+        description: |
+          Financial report to grant funders.
+          
+          **Contents**:
+          - Expenditure of grant funds
+          - Budget vs. actual
+          - Indirect cost recovery
+          - Matching fund documentation
+          
+          **Common for**: Government grants, foundation grants
+        meaning: schema:Report
+      
+      ENDOWMENT_REPORT:
+        description: |
+          Report on endowment fund performance.
+          
+          **Contents**:
+          - Beginning/ending market value
+          - Investment returns
+          - Spending distribution
+          - Underwater funds (if applicable)
+          - Investment policy compliance
+        meaning: schema:Report
+      
+      SINGLE_AUDIT:
+        description: |
+          Single Audit (OMB Uniform Guidance) for US federal grant recipients.
+          
+          **Required when**: Federal expenditures exceed $750,000
+          
+          **Contents**:
+          - Financial statements audit
+          - Internal control assessment
+          - Compliance with federal requirements
+          - Schedule of Expenditures of Federal Awards (SEFA)
+        meaning: schema:Report

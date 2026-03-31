@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: appreciated
+# ==============================================================================
+# Whether something increased in monetary value over time.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | (none found)  | -                     | -                    | -       | Financial appreciation is domain-specific                |
+#
+# SEMANTIC NOTES:
+# - Financial appreciation is a specialized concept in asset valuation
+# - No standard ontology property found for this boolean concept
+# - Custom hc: URI is appropriate for this domain-specific property
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/appreciated
+name: appreciated
+title: Appreciated
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  appreciated:
+    slot_uri: hc:appreciated
+    description: >-
+      To have increased in monetary value, price, or worth over a specific period, 
+      typically due to market factors, scarcity, or asset improvements.
+    alt_descriptions:
+      nl: >-
+        In monetaire waarde, prijs of waarde gestegen over een bepaalde periode, 
+        doorgaans door marktfactoren, schaarste of verbeteringen aan het bezit.
+      de: >-
+        An monetärem Wert, Preis oder Wert über einen bestimmten Zeitraum gestiegen, 
+        typischerweise aufgrund von Marktfaktoren, Knappheit oder Vermögensverbesserungen.
+      fr: >-
+        Avoir augmenté en valeur monétaire, prix ou valeur sur une période spécifique, 
+        généralement en raison de facteurs de marché, de rareté ou d'améliorations d'actifs.
+      ar: >-
+        أن تزداد قيمته النقدية أو سعره أو قيمته خلال فترة محددة، عادةً بسبب 
+        عوامل السوق أو الندرة أو تحسينات الأصول.
+      id: >-
+        Meningkat nilai moneter, harga, atau nilainya selama periode tertentu, 
+        biasanya karena faktor pasar, kelangkaan, atau peningkatan aset.
+      zh: >-
+        在特定时期内货币价值、价格或价值上涨，通常是由于市场因素、稀缺性或资产改善。
+      es: >-
+        Haber aumentado en valor monetario, precio o valor durante un período 
+        específico, generalmente debido a factores de mercado, escasez o mejoras de activos.
+    structured_aliases:
+      - literal_form: in waarde gestegen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: im Wert gestiegen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: apprécié
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ارتفعت قيمته
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengalami apresiasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 增值
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: apreciado
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    aliases:
+      - is_or_was_appreciated
+    comments:
+      - |
+        **USAGE**: Use this boolean flag to indicate whether an asset (artwork, property, 
+        collection item) has appreciated in value. For the appreciation amount or rate, 
+        use additional properties.
+    annotations:
+      custodian_types: '["*"]'

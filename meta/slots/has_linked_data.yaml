@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_linked_data
+# ==============================================================================
+# Whether a dataset or resource is published as Linked Data using web standards.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                        | File/Line              | Mapping | Notes                                                                   |
+# |-------------|---------------------------------|------------------------|---------|-------------------------------------------------------------------------|
+# | **DCTerms** | `dcterms:conformsTo`            | dcterms.rdf:987-1010   | broad   | "An established standard to which the described resource conforms."      |
+# | **DCAT**    | `dcat:accessService`            | dcat3.ttl:536-561      | narrow  | "A site or end-point that gives access to the distribution."            |
+# | **ADMS**    | `adms:representationTechnique`  | adms.ttl:121-126       | related | "Links an AssetDistribution to a skos:Concept that is its technique."   |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_linked_data
+name: has_linked_data
+title: Has Linked Data
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  adms: http://www.w3.org/ns/adms#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_linked_data:
+    slot_uri: hc:hasLinkedData
+    description: >-
+      Connects a dataset or resource to external, structured data sources using standard
+      web technologies (like URIs and RDF) to create a web of interlinked information.
+    comments:
+      - >-
+        Dublin Core: dcterms:conformsTo can indicate LOD compliance.
+      - >-
+        Linked data features include RDF triples (Turtle, JSON-LD, N-Triples),
+        SPARQL endpoints, dereferenceable URIs, and links to external vocabularies
+        (Wikidata, Getty, etc.).
+    alt_descriptions:
+      nl: >-
+        Verbindt een dataset of bron met externe, gestructureerde gegevensbronnen met
+        behulp van standaard webtechnologieën (zoals URI's en RDF) om een web van
+        onderling gekoppelde informatie te creëren.
+      de: >-
+        Verbindet einen Datensatz oder eine Ressource mit externen, strukturierten
+        Datenquellen unter Verwendung standardisierter Webtechnologien (wie URIs und RDF),
+        um ein Netz miteinander verknüpfter Informationen zu schaffen.
+      fr: >-
+        Relie un jeu de données ou une ressource à des sources de données structurées
+        externes en utilisant des technologies web standard (comme les URI et RDF) pour
+        créer un réseau d'informations interconnectées.
+      ar: >-
+        يربط مجموعة بيانات أو موردًا بمصادر بيانات خارجية منظمة باستخدام تقنيات الويب
+        القياسية (مثل معرّفات الموارد الموحدة وRDF) لإنشاء شبكة من المعلومات المترابطة.
+      id: >-
+        Menghubungkan dataset atau sumber daya ke sumber data terstruktur eksternal
+        menggunakan teknologi web standar (seperti URI dan RDF) untuk membuat jaringan
+        informasi yang saling terkait.
+      zh: >-
+        使用标准网络技术（如URI和RDF）将数据集或资源连接到外部结构化数据源，以创建互联信息网络。
+      es: >-
+        Conecta un conjunto de datos o recurso a fuentes de datos estructuradas externas
+        utilizando tecnologías web estándar (como URIs y RDF) para crear una red de
+        información interconectada.
+    structured_aliases:
+      - literal_form: Gekoppelde Data
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Verknüpfte Daten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Données Liées
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بيانات مترابطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Data Tertaut
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 关联数据
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Datos Enlazados
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - dcterms:conformsTo  # dcterms.rdf:987-1010 — "An established standard to which the described resource conforms."
+    narrow_mappings:
+      - dcat:accessService  # dcat3.ttl:536-561 — "A site or end-point that gives access to the distribution."
+    related_mappings:
+      - adms:representationTechnique  # adms.ttl:121-126 — "Links an AssetDistribution to a skos:Concept that is its representation technique."
+    aliases:
+      - linked_data

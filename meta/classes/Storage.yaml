@@ -1,0 +1,199 @@
+id: https://nde.nl/ontology/hc/class/Storage
+name: storage_class
+title: Storage Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  wd: http://www.wikidata.org/entity/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/CapacityTypeEnum
+- ../enums/StorageStandardEnum
+- ../enums/StorageTypeEnum
+- ../enums/StorageUnitTypeEnum
+- ../slots/has_percentage
+- ../slots/has_capacity
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_policy
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/stored_at
+- ../slots/managed_by
+- ../slots/provide
+- ../slots/refer_to
+- ../slots/has_standard
+- ../slots/temporal_extent
+classes:
+  Storage:
+    class_uri: hc:StorageFacility
+    description: >-
+      Designated physical location or controlled environment intended for preserving and managing heritage collections under appropriate conditions.
+    alt_descriptions:
+      nl: >-
+        Aangewezen fysieke locatie of gecontroleerde omgeving bedoeld voor het behoud en beheer van erfgoedcollecties onder geschikte omstandigheden.
+      de: >-
+        Bestimmter physischer Ort oder kontrollierte Umgebung zur Erhaltung und Verwaltung von Kultursammlungen unter geeigneten Bedingungen.
+      fr: >-
+        Lieu physique désigné ou environnement contrôlé destiné à la préservation et à la gestion de collections patrimoniales dans des conditions appropriées.
+      es: >-
+        Ubicación física designada o entorno controlado destinado a la preservación y gestión de colecciones patrimoniales en condiciones adecuadas.
+      ar: >-
+        موقع مادي مخصص أو بيئة خاضعة للرقابة مخصصة للحفاظ على مجموعات التراث وإدارتها في ظروف مناسبة.
+      id: >-
+        Lokasi fisik yang ditunjuk atau lingkungan terkendali yang dimaksudkan untuk pelestarian dan pengelolaan koleksi warisan dalam kondisi yang tepat.
+      zh: >-
+        指定的物理场所或受控环境，旨在适当条件下保存和管理遗产藏品。
+    structured_aliases:
+    - literal_form: depot
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Depot
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: depot de conservation
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: depósito de conservación
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مستودع حفظ
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: depot penyimpanan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 文物库房
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    keywords:
+    - repository
+    - depot
+    - vault
+    - preservation facility
+    - collection housing
+    close_mappings:
+    - premis:StorageLocation
+    - rico:Place
+    - schema:Place
+    - wd:Q1191732
+    broad_mappings:
+    - crm:E27_Site
+    related_mappings:
+    - hc:StorageUnit
+    - hc:EnvironmentalZone
+    - premis:StorageMedium
+    - org:Site
+    - crm:E53_Place
+    slots:
+    - has_capacity
+    - has_policy
+    - has_percentage
+    - provide
+    - managed_by
+    - refer_to
+    - has_standard
+    - has_description
+    - identified_by
+    - stored_at
+    - has_label
+    - has_type
+    - has_score
+    - temporal_extent
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/storage/rijksmuseum-depot-amersfoort
+      has_label:
+        required: true
+        examples:
+        - value: Depot Amersfoort
+        - value: Cold Storage Vault A
+      has_type:
+        required: true
+        examples:
+        - value: ARCHIVE_DEPOT
+        - value: COLD_STORAGE
+        - value: ART_STORAGE
+      has_description:
+        multivalued: true
+        required: false
+      stored_at:
+        range: StorageLocation
+        required: false
+        inlined: true
+      has_capacity:
+        range: Capacity
+        multivalued: true
+        inlined_as_list: true
+      has_percentage:
+        range: float
+        minimum_value: 0.0
+        maximum_value: 100.0
+      has_standard:
+        range: StorageStandardEnum
+        multivalued: true
+      has_policy:
+        required: false
+      managed_by:
+        required: false
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+      refer_to:
+        range: Custodian
+        required: true
+    comments:
+    - Storage models the preservation function, not only the physical building
+    - AuxiliaryPlace can provide location context for a storage facility
+    - StorageCondition captures observed state; StorageConditionPolicy captures intended state
+    - Multiple Storage instances can coexist in one physical site
+    see_also:
+    - http://www.loc.gov/premis/rdf/v3/StorageLocation
+    - https://www.wikidata.org/wiki/Q1191732
+    - http://www.cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E27
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage/rijksmuseum-depot-amersfoort
+        has_label: Depot Amersfoort
+        has_type: ART_STORAGE
+        has_standard:
+        - EN_16893_2018
+        - EN_15757_2010
+        has_percentage: 78.5
+    - value:
+        identified_by: https://nde.nl/ontology/hc/storage/nationaal-archief-depot-b
+        has_label: Depot B - Cold Storage
+        has_type: COLD_STORAGE
+        has_standard:
+        - ISO_TR_19815_2018
+        refer_to: https://nde.nl/ontology/hc/nl-na
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Key distinction
+
+        - Storage: functional role of preserving collections.
+        - AuxiliaryPlace: physical site/building context.
+        - StorageCondition: observed state.
+        - StorageConditionPolicy: intended target conditions.
+
+        Typical use cases
+
+        - archive depot
+        - cold storage for film/photographic materials
+        - open study storage

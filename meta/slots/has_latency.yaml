@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: has_latency
+# ==============================================================================
+# Quantifies the time delay between a request and corresponding response.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                     | File/Line         | Mapping  | Notes                                                    |
+# |------------|------------------------------|-------------------|----------|----------------------------------------------------------|
+# | **DQV**    | `dqv:hasQualityMeasurement`  | dqv.ttl:157-161   | broad    | "Refers to the performed quality measurements." Latency is one specific quality measurement. |
+# | **SSN**    | `ssn:hasProperty`            | ssn.ttl:66-71     | broad    | "Relation between an entity and a Property of that entity." Very general. |
+# | **SOSA**   | `sosa:hasSimpleResult`       | sosa.ttl:375-383  | related  | "The simple value of an Observation." Different relationship (observation→result vs system→latency). |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_latency
+name: has_latency
+title: Has Latency
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+  ssn: http://www.w3.org/ns/ssn/
+  sosa: http://www.w3.org/ns/sosa/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_latency:
+    slot_uri: hc:hasLatency
+    description: >-
+      Quantifies the time delay experienced between a request, input, or cause
+      and the corresponding response, output, or effect within a system or network.
+    alt_descriptions:
+      nl: >-
+        Kwantificeert de tijdsvertraging tussen een verzoek, invoer of oorzaak
+        en de bijbehorende respons, uitvoer of effect binnen een systeem of netwerk.
+      de: >-
+        Quantifiziert die Zeitverzögerung zwischen einer Anfrage, Eingabe oder
+        Ursache und der entsprechenden Antwort, Ausgabe oder Wirkung innerhalb
+        eines Systems oder Netzwerks.
+      fr: >-
+        Quantifie le délai temporel entre une requête, une entrée ou une cause
+        et la réponse, la sortie ou l'effet correspondant au sein d'un système
+        ou d'un réseau.
+      ar: >-
+        يحدد كمياً التأخير الزمني بين طلب أو مُدخل أو سبب والاستجابة أو المُخرج
+        أو التأثير المقابل داخل نظام أو شبكة.
+      id: >-
+        Mengukur jeda waktu yang dialami antara permintaan, masukan, atau penyebab
+        dan respons, keluaran, atau efek yang sesuai dalam suatu sistem atau jaringan.
+      zh: >-
+        量化系统或网络中请求、输入或原因与相应响应、输出或效果之间经历的时间延迟。
+      es: >-
+        Cuantifica el retardo temporal experimentado entre una solicitud, entrada
+        o causa y la respuesta, salida o efecto correspondiente dentro de un sistema
+        o red.
+    structured_aliases:
+      - literal_form: Latentie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Latenz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Latence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: زمن الاستجابة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Latensi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 延迟
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Latencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - Measured client-side (includes network time).
+    broad_mappings:
+      - dqv:hasQualityMeasurement  # dqv.ttl:157-161 — "Refers to the performed quality measurements." Latency is one specific quality measurement.
+      - ssn:hasProperty  # ssn.ttl:66-71 — "Relation between an entity and a Property of that entity."
+    related_mappings:
+      - sosa:hasSimpleResult  # sosa.ttl:375-383 — "The simple value of an Observation." Links observation→result, not system→latency.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - latency_ms

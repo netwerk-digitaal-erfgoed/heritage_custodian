@@ -1,0 +1,79 @@
+id: https://nde.nl/ontology/hc/class/DatePrecision
+name: date_precision_class
+title: DatePrecision Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  time: http://www.w3.org/2006/time#
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  DatePrecision:
+    class_uri: hc:DatePrecision
+    description: >-
+      Granularity category specifying how finely a temporal value is resolved,
+      from exact day-level statements to coarse historical approximation.
+    alt_descriptions:
+      nl: Granulariteitscategorie die aangeeft hoe fijn een temporele waarde is bepaald van dagniveau tot grove historische benadering.
+      de: Granularitaetskategorie zur Angabe wie fein ein Zeitwert aufgeloest ist von Tagesgenauigkeit bis grober historischer Annaeherung.
+      fr: Categorie de granularite indiquant le niveau de resolution d une valeur temporelle du jour exact a l approximation historique grossiere.
+      es: Categoria de granularidad que indica cuan fina es la resolucion temporal desde nivel de dia hasta aproximacion historica amplia.
+      ar: فئة دقة زمنية تحدد مدى تفصيل القيمة الزمنية من يوم محدد إلى تقريب تاريخي عام.
+      id: Kategori granularitas yang menyatakan seberapa rinci nilai temporal ditentukan dari tingkat hari hingga pendekatan sejarah kasar.
+      zh: 指定时间值细化程度的粒度类别，从精确到日到粗略历史近似。
+    structured_aliases:
+    - {literal_form: datumgranulariteit, in_language: nl}
+    - {literal_form: Datumsgranularitaet, in_language: de}
+    - {literal_form: granularite temporelle, in_language: fr}
+    - {literal_form: granularidad temporal, in_language: es}
+    - {literal_form: درجة الدقة الزمنية, in_language: ar}
+    - {literal_form: granularitas tanggal, in_language: id}
+    - {literal_form: 日期精度级别, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - time:TemporalUnit
+    - crm:E52_Time-Span
+    slots:
+    - has_label
+    - has_code
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+      has_code:
+        required: true
+        pattern: ^[A-Z]+$
+      has_description:
+        required: false
+    notes:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      Date precision level classification.
+
+      **Standard Precision Levels**:
+
+      | Level | Short Code | Format | Example |
+      |-------|------------|--------|---------|
+      | Day | DAY | YYYY-MM-DD | 2005-04-30 |
+      | Month | MONTH | YYYY-MM | 2005-04 |
+      | Year | YEAR | YYYY | 2005 |
+      | Decade | DECADE | YYYY0s | 2000s |
+      | Century | CENTURY | YYth century | 21st century |
+      | Unknown | UNKNOWN | - | Date mentioned but precision unclear |
+
+      **CIDOC-CRM Alignment**: Related to time dimension concepts in CRM.
+
+      **OWL Time Alignment**: Related to time:TemporalUnit for precision levels.
+    annotations:
+      specificity_score: 0.4
+      specificity_rationale: Moderately specific to temporal modeling contexts
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable across all domains using time values

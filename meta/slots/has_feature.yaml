@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: has_feature
+# ==============================================================================
+# To possess a distinctive attribute or functionality of the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line                | Mapping | Notes                                            |
+# |----------------|---------------------------|--------------------------|---------|--------------------------------------------------|
+# | **Schema.org** | `schema:amenityFeature`   | schemaorg.owl:7869-7893  | related | Accommodation-specific amenity feature.          |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_feature
+name: has_feature
+title: has_feature
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_feature:
+    name: has_feature
+    title: has_feature
+    slot_uri: hc:hasFeature
+    description: >-
+      To possess a distinctive attribute, aspect, quality, or functionality
+      that characterizes the entity or distinguishes it from others.
+    alt_descriptions:
+      nl: >-
+        Het bezitten van een onderscheidend kenmerk, aspect, kwaliteit of
+        functionaliteit dat de entiteit karakteriseert of onderscheidt van
+        andere.
+      de: >-
+        Besitzen eines kennzeichnenden Merkmals, Aspekts, einer Eigenschaft
+        oder Funktionalität, die die Entität charakterisiert oder von anderen
+        unterscheidet.
+      fr: >-
+        Posséder un attribut distinctif, un aspect, une qualité ou une
+        fonctionnalité qui caractérise l'entité ou la distingue des autres.
+      ar: >-
+        امتلاك سمة مميزة أو جانب أو خاصية أو وظيفة تميز الكيان أو تفرقه
+        عن غيره.
+      id: >-
+        Memiliki atribut, aspek, kualitas, atau fungsionalitas yang khas
+        yang mencirikan entitas atau membedakannya dari yang lain.
+      zh: >-
+        拥有一个独特的属性、方面、品质或功能，以表征该实体或将其与其他实体区分开来。
+      es: >-
+        Poseer un atributo distintivo, aspecto, cualidad o funcionalidad que
+        caracteriza la entidad o la distingue de otras.
+    structured_aliases:
+      - literal_form: heeft kenmerk
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Merkmal
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une caractéristique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له ميزة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki fitur
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有特征
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene característica
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string # uriorcurie
+    multivalued: true
+    aliases:
+      - has_or_had_feature
+      - social_media_feature
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7893 — "An amenity feature of the Accommodation." Domain: Place/LodgingBusiness/Accommodation/FloorPlan. Accommodation-specific, not general entity features.
+    comments:
+      - |
+        **ONTOLOGY NOTE**: `schema:amenityFeature` (schemaorg.owl:7869-7893) is specifically
+        about amenity features of accommodations (hotels, lodgings, etc.). Domain:
+        Place/LodgingBusiness/Accommodation/FloorPlan. This slot covers general features of
+        any entity. Demoted from exact to related.

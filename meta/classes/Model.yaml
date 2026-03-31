@@ -1,0 +1,51 @@
+id: https://nde.nl/ontology/hc/class/Model
+name: Model
+title: Model Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  Model:
+    class_uri: schema:ProductModel
+    description: Product or equipment model designation used to identify a design variant.
+    alt_descriptions:
+      nl: Product- of apparatuuraanduiding waarmee een ontwerpvariant wordt geidentificeerd.
+      de: Produkt- oder Geraetemodellbezeichnung zur Identifikation einer Designvariante.
+      fr: Designation de modele de produit ou d equipement identifiant une variante de conception.
+      es: Designacion de modelo de producto o equipo usada para identificar una variante de diseno.
+      ar: تسمية نموذج منتج أو جهاز تُستخدم لتحديد متغير تصميمي.
+      id: Penamaan model produk atau perangkat untuk mengidentifikasi varian desain.
+      zh: 用于标识产品或设备设计变体的型号名称。
+    structured_aliases:
+    - {literal_form: modelaanduiding, in_language: nl}
+    - {literal_form: Modellbezeichnung, in_language: de}
+    - {literal_form: designation de modele, in_language: fr}
+    - {literal_form: denominacion de modelo, in_language: es}
+    - {literal_form: تسمية الطراز, in_language: ar}
+    - {literal_form: nama model, in_language: id}
+    - {literal_form: 型号标识, in_language: zh}
+    exact_mappings:
+    - schema:ProductModel
+    slots:
+    - identified_by
+    - has_label
+    slot_usage:
+      has_label:
+        required: true
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Represents a product model or design variant.\n\n**MIGRATION SOURCE**: Created from device_model slot migration (Rule 53, 2026-01-25).\n\n**Pattern**: Simple string model name replaced with structured class:\n- has_label: Model name/designation\n- identified_by: Model number or SKU\n\n**Ontological Alignment**:\n- **Primary**: `schema:ProductModel` - Schema.org product model\n\n**Use Cases**:\n- IoT device models (Estimote Proximity Beacon, Sensirion SHT45)\n- Equipment model variants\n- Hardware versions\n\n**Relationship to InternetOfThings**:\n```\nInternetOfThings\n  \u2514\u2500\u2500 has_model \u2192 Model\n                          \u251C\u2500\u2500 has_label \u2192 \"Estimote Proximity Beacon\"\n                          \u2514\u2500\u2500 identified_by \u2192 \"EPB-v3.0\"\n```\n"
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Product models applicable to all custodian types using equipment.
+      custodian_types_primary:
+      specificity_score: 0.6
+      specificity_rationale: Specific to equipment and technology tracking.

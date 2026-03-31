@@ -1,0 +1,89 @@
+id: https://nde.nl/ontology/hc/class/CanonicalForm
+name: canonical_form_class
+title: Canonical Form Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label
+  - ../slots/has_description
+classes:
+  CanonicalForm:
+    class_uri: skos:Concept
+    description: >-
+      Standardized representation of an identifier or value after normalization,
+      enabling consistent storage, deduplication, and cross-system interoperability.
+    alt_descriptions:
+      nl: >-
+        Gestandaardiseerde weergave van een identificator of waarde na normalisatie,
+        voor consistente opslag, deduplicatie en systeemoverschrijdende interoperabiliteit.
+      de: >-
+        Standardisierte Darstellung eines Bezeichners oder Wertes nach Normalisierung,
+        die konsistente Speicherung, Deduplizierung und systemübergreifende Interoperabilität ermöglicht.
+      fr: >-
+        Représentation normalisée d'un identifiant ou d'une valeur après normalisation,
+        permettant un stockage cohérent, la déduplication et l'interopérabilité inter-systèmes.
+      es: >-
+        Representación estandarizada de un identificador o valor después de la normalización,
+        que permite almacenamiento consistente, desduplicación e interoperabilidad entre sistemas.
+      ar: >-
+        التمثيل المعياري لمعرف أو قيمة بعد التطبيع، مما يتيح التخزين المتسق
+        وإزالة التكرار والتشغيل البيني عبر الأنظمة.
+      id: >-
+        Representasi standar dari pengenal atau nilai setelah normalisasi,
+        memungkinkan penyimpanan yang konsisten, deduplikasi, dan interoperabilitas lintas sistem.
+      zh: >-
+        标准化后的标识符或值的标准表示，实现一致的存储、去重和跨系统互操作性。
+    structured_aliases:
+    - literal_form: canonieke vorm
+      in_language: nl
+    - literal_form: kanonische Form
+      in_language: de
+    - literal_form: forme canonique
+      in_language: fr
+    - literal_form: forma canónica
+      in_language: es
+    - literal_form: الشكل القياسي
+      in_language: ar
+    - literal_form: bentuk kanonik
+      in_language: id
+    - literal_form: 规范形式
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:PropertyValue
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+    comments:
+    - Provides normalized/standardized form of identifiers
+    - Enables consistent matching and database joins
+    - Examples: ISNI spaces removed, Wikidata URI to QID conversion
+    examples:
+    - value:
+        has_label: "0000000121465765"
+        has_description: Canonical ISNI with spaces removed
+      description: Canonical ISNI form
+    - value:
+        has_label: "Q190804"
+        has_description: Canonical Wikidata QID from full URI
+      description: Canonical Wikidata identifier
+    keywords:
+    - canonical form
+    - normalization
+    - identifier
+    - standardization
+    - deduplication
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Technical class for identifier normalization
+      custodian_types: "['*']"

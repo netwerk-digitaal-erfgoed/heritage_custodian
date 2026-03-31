@@ -1,0 +1,146 @@
+id: https://nde.nl/ontology/hc/class/Area
+name: area_class
+title: Area
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  qudt: http://qudt.org/schema/qudt/
+  geosparql: http://www.opengis.net/ont/geosparql#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label
+  - ../slots/has_measurement_unit
+  - ../slots/has_value
+  - ../slots/approximate
+  - ../slots/measured_on
+  - ../slots/measured_through
+classes:
+  Area:
+    class_uri: hc:Area
+    description: >-
+      Measurement of spatial extent with value, unit, and metadata, supporting
+      multiple units (m², hectares, acres) for heritage facilities including
+      outdoor sites, buildings, rooms, and storage areas.
+    alt_descriptions:
+      nl: >-
+        Meting van ruimtelijke omvang met waarde, eenheid en metadata, ondersteunend
+        meerdere eenheden (m², hectare, acres) voor erfgoedfaciliteiten inclusief
+        buitenterreinen, gebouwen, ruimtes en opslagruimtes.
+      de: >-
+        Messung der raeumlichen Ausdehnung mit Wert, Einheit und Metadaten, die
+        mehrere Einheiten (m², Hektar, Acres) fuer Heritage-Einrichtungen
+        unterstuetzt, einschliesslich Aussenanlagen, Gebaeude, Raeume und
+        Lagerraeume.
+      fr: >-
+        Mesure de l'etendue spatiale avec valeur, unite et metadonnees, prenant
+        en charge plusieurs unites (m², hectares, acres) pour les installations
+        patrimoniales, y compris les sites exterieurs, les batiments, les
+        salles et les espaces de stockage.
+      es: >-
+        Medicion de la extension espacial con valor, unidad y metadatos, que
+        admite multiples unidades (m², hectareas, acres) para instalaciones
+        patrimoniales, incluidos sitios al aire libre, edificios, salas y
+        areas de almacenamiento.
+      ar: >-
+        قياس المدى المكاني مع القيمة والوحدة والبيانات الوصفية، ودعم وحدات
+        متعددة (م²، هكتار، فدان) لمرافق التراث بما في ذلك المواقع الخارجية
+        والمباني والغرف ومساحات التخزين.
+      id: >-
+        Pengukuran luas ruang dengan nilai, satuan, dan metadata, mendukung
+        berbagai satuan (m², hektar, acre) untuk fasilitas warisan termasuk
+        situs luar ruangan, bangunan, ruangan, dan area penyimpanan.
+      zh: >-
+        具有值、单位和元数据的空间范围测量，支持多种单位（平方米、公顷、英亩），
+        用于遗产设施，包括户外场地、建筑物、房间和存储区域。
+    broad_mappings:
+      - qudt:QuantityValue
+      - schema:QuantitativeValue
+    related_mappings:
+      - geosparql:hasArea
+    structured_aliases:
+      - literal_form: oppervlakte
+        in_language: nl
+      - literal_form: Flaeche
+        in_language: de
+      - literal_form: superficie
+        in_language: fr
+      - literal_form: area
+        in_language: es
+      - literal_form: مساحة
+        in_language: ar
+      - literal_form: luas
+        in_language: id
+      - literal_form: 面积
+        in_language: zh
+    examples:
+      - value:
+          has_value: 25.0
+          has_measurement_unit:
+            has_type: HECTARE
+            has_symbol: "ha"
+          has_label: "Sculpture garden area"
+        description: Site area in hectares
+      - value:
+          has_value: 5000.0
+          has_measurement_unit:
+            has_type: SQUARE_METER
+            has_symbol: "m²"
+          approximate: false
+          has_label: "Total floor area"
+        description: Building floor area in square meters
+    keywords:
+      - measurement
+      - spatial
+      - square meters
+      - hectares
+      - facility
+      - floor area
+    slots:
+      - has_value
+      - has_measurement_unit
+      - measured_on
+      - approximate
+      - measured_through
+      - has_label
+    slot_usage:
+      has_value:
+        range: float
+        required: true
+      has_measurement_unit:
+        range: MeasureUnit
+        required: true
+        inlined: true
+      measured_on:
+        range: datetime
+        required: false
+      approximate:
+        range: boolean
+        required: false
+      measured_through:
+        required: false
+    comments:
+      - Rule 53 compliant - replaces domain-specific float slots
+      - Replaces area_hectares, building_floor_area_sqm
+      - Supports temporal context via measurement_date
+      - Estimation flag for approximate values
+    notes:
+      - |
+        Preserved from prior description (commit 1fe1d1ad):
+
+        A measurement of spatial extent (area) with value, unit, and metadata.
+
+        Captures area measurements for heritage facilities including outdoor sites,
+        buildings, rooms, and storage areas. Supports multiple units (m², hectares,
+        acres) with explicit unit specification.
+
+        **TEMPORAL ASPECT**: Areas can change over time (building extensions,
+        site acquisitions). The measurement_date captures when the area was measured.
+
+        **ESTIMATION SUPPORT**: Heritage facilities often have estimated areas,
+        especially for historic buildings. The is_estimate flag indicates uncertainty.
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Broadly useful class for facility measurements
+      custodian_types: "['*']"

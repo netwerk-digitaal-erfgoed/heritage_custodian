@@ -1,0 +1,200 @@
+# ==============================================================================
+# LinkML Slot Definition: listed_in
+# ==============================================================================
+# Indicates that an entity is recorded or enumerated within a specific catalog,
+# register, or structured collection. Used for regulatory listings, heritage
+# registers, and classification schemes.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                        | File/Line             | Mapping | Notes                              |
+# |---------------|---------------------------------|-----------------------|---------|------------------------------------|
+# | **RiC-O**     | `rico:isOrWasIncludedIn`        | RiC-O_1-1:13803-13850 | exact   | Record included in RecordSet       |
+# | **Schema.org**| `schema:includedInDataCatalog`  | schemaorg.owl:21975-21997| close   | Dataset included in DataCatalog    |
+# | **DCAT**      | `dcat:inCatalog`                | dcat3.ttl:1178-1186   | close   | Resource in catalog                |
+# | **DCAT**      | `dcat:inSeries`                 | dcat3.ttl:1188-1198   | close   | Dataset in series                  |
+# | **SKOS**      | `skos:inScheme`                 | skos.rdf:75-86        | close   | Concept in concept scheme          |
+# | **Dublin Core**| `dcterms:isPartOf`             | dcterms.rdf:1464-1486 | broad   | Physically/logically included      |
+# | **Schema.org**| `schema:isPartOf`               | schemaorg.owl:22926-22948| broad  | Item part of CreativeWork          |
+#
+# NOTE: rico:isOrWasIncludedIn is the primary mapping as it captures temporal
+# semantics (current or historical listing) which aligns with regulatory listings
+# that may change over time (e.g., CITES appendices, heritage registers).
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/listed_in
+name: listed_in
+title: listed in
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcat: http://www.w3.org/ns/dcat#
+  owl: http://www.w3.org/2002/07/owl#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  listed_in:
+    slot_uri: rico:isOrWasIncludedIn
+    description: |
+      To be recorded or enumerated as an item within a specific catalog, register, or structured collection.
+    alt_descriptions:
+      nl: >-
+        Geregistreerd of opgesomd zijn als een item binnen een specifieke
+        catalogus, register of gestructureerde verzameling.
+      de: >-
+        Als Eintrag in einem bestimmten Katalog, Register oder einer
+        strukturierten Sammlung erfasst oder aufgeführt sein.
+      fr: >-
+        Être enregistré ou énuméré comme un élément dans un catalogue,
+        registre ou collection structurée spécifique.
+      ar: >-
+        أن يكون مسجلاً أو مدرجاً كعنصر ضمن فهرس أو سجل أو مجموعة منظمة محددة.
+      id: >-
+        Tercatat atau terdaftar sebagai item dalam katalog, register, atau
+        koleksi terstruktur tertentu.
+      zh: >-
+        作为特定目录、登记册或结构化收藏中的项目被记录或列举。
+      es: >-
+        Estar registrado o enumerado como un elemento dentro de un catálogo,
+        registro o colección estructurada específica.
+    structured_aliases:
+      - literal_form: vermeld in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: aufgeführt in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: répertorié dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مدرج في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: terdaftar dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 列于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: listado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    inverse: has_listing
+    implements:
+      - owl:ObjectProperty
+    required: false
+    multivalued: true
+    inlined: false
+    exact_mappings:
+      # RiC-O isOrWasIncludedIn - Record/RecordSet included in RecordSet
+      # Lines 13803-13850 in RiC-O_1-1.rdf
+      # Exact: temporal semantics match (is or was listed)
+      # SubPropertyOf: isOrWasPartOf, isRecordResourceAssociatedWithRecordResource
+    close_mappings:
+      # Schema.org includedInDataCatalog - Dataset included in DataCatalog
+      # Lines 21975-21997 in schemaorg.owl
+      # Close: specific to datasets/catalogs, but same "included in" semantics
+      - schema:includedInDataCatalog
+      # DCAT inCatalog - Resource in catalog
+      # Lines 1178-1186 in dcat3.ttl
+      # Close: inverse of dcat:resource, specific to data catalogs
+      - dcat:inCatalog
+      # DCAT inSeries - Dataset in series
+      # Lines 1188-1198 in dcat3.ttl
+      # Close: subPropertyOf dcterms:isPartOf, specific to dataset series
+      - dcat:inSeries
+      # SKOS inScheme - Concept in concept scheme
+      # Lines 75-86 in skos.rdf
+      # Close: concept membership in scheme (narrower - concepts only)
+      - skos:inScheme
+    broad_mappings:
+      # Dublin Core isPartOf - Physically or logically included
+      # Lines 1464-1486 in dcterms.rdf
+      # Broad: general inclusion (listed_in is more specific to registers/catalogs)
+      - dcterms:isPartOf
+      # Schema.org isPartOf - Item part of CreativeWork
+      # Lines 22926-22948 in schemaorg.owl
+      # Broad: general part-whole relationship
+      - schema:isPartOf
+    aliases:
+      - is_or_was_listed_in
+      - registered_in
+      - catalogued_in
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Listing/registration applicable to all heritage custodian types.
+      specificity_score: 0.50
+      specificity_rationale: >-
+        Moderately specific - applies to entities that can be listed in
+        regulatory registers, heritage catalogs, or classification schemes.
+    examples:
+      - value: "hc:Register/CITES-Appendix-I"
+        description: Species specimen listed in CITES Appendix I
+      - value: "hc:Register/UNESCO-WorldHeritage"
+        description: Site listed in UNESCO World Heritage List
+      - value: "hc:Register/NL-Rijksmonumenten"
+        description: Building listed in Dutch National Monuments Register
+      - value: "hc:Register/IUCN-RedList-EN"
+        description: Species listed as Endangered in IUCN Red List
+      - value: "hc:Register/NationalArchivesNL"
+        description: Document listed in National Archives of the Netherlands
+    comments:
+      - Updated 2026-02-03 with verified ontology mappings and translations
+      - |
+        **PURPOSE**:
+        Captures listing/registration relationships for heritage entities.
+        Indicates that an entity is recorded in a specific catalog, register,
+        or structured collection. Supports temporal semantics - entities may
+        be added to or removed from listings over time.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | RiC-O | rico:isOrWasIncludedIn | 13803-13850 | exact | Record in RecordSet |
+        | Schema.org | schema:includedInDataCatalog | 21975-21997 | close | Dataset in catalog |
+        | DCAT | dcat:inCatalog | 1178-1186 | close | Resource in catalog |
+        | DCAT | dcat:inSeries | 1188-1198 | close | Dataset in series |
+        | SKOS | skos:inScheme | 75-86 | close | Concept in scheme |
+        | Dublin Core | dcterms:isPartOf | 1464-1486 | broad | General inclusion |
+        | Schema.org | schema:isPartOf | 22926-22948 | broad | Part-whole |
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "is_or_was_listed_in" alias following RiC-O temporal naming
+        pattern - indicates current or historical listing relationship.
+        Entities may be added to or removed from regulatory lists over time.
+      - |
+        **COMMON USE CASES**:
+        - CITES appendix listings for endangered species specimens
+        - IUCN Red List categorizations for species
+        - National heritage register listings for buildings/sites
+        - UNESCO World Heritage Site designations
+        - Protected species schedules
+        - Museum collection catalogs
+        - Archive finding aids
+      - |
+        **STRUCTURED LISTING PATTERN**:
+        For detailed listings with dates and authorities, use with a
+        Listing class that captures:
+        - listing_type: Type of listing (e.g., CITESAppendix, IUCNRedList)
+        - listing_value: Specific category (e.g., APPENDIX_I, ENDANGERED)
+        - listing_date: Date of listing
+        - listing_authority: Authority that made the listing
+      - |
+        **RANGE NOTES**:
+        Range is `uriorcurie` (Rule 55) to allow references to Register/Catalog
+        URIs or internal Listing class instances. Classes may narrow via
+        slot_usage to specific Register enums or Listing classes.

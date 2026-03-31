@@ -1,0 +1,91 @@
+id: https://nde.nl/ontology/hc/class/DetectionThreshold
+name: DetectionThreshold
+title: Detection Threshold Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+classes:
+  DetectionThreshold:
+    class_uri: dqv:QualityMeasurement
+    description: >-
+      Confidence cutoff specification used to filter automated detection results
+      and determine acceptance criteria in analysis pipelines.
+    alt_descriptions:
+      nl: >-
+        Betrouwbaarheidsdrempelspecificatie gebruikt om geautomatiseerde detectieresultaten te filteren
+        en acceptatiecriteria te bepalen in analysepijplijnen.
+      de: >-
+        Konfidenzschwellen-Spezifikation zur Filterung automatischer Erkennungsergebnisse
+        und Bestimmung von Akzeptanzkriterien in Analyse-Pipelines.
+      fr: >-
+        Spécification de seuil de confiance utilisée pour filtrer les résultats de détection automatisée
+        et déterminer les critères d'acceptation dans les pipelines d'analyse.
+      es: >-
+        Especificación de umbral de confianza utilizada para filtrar resultados de detección automatizada
+        y determinar criterios de aceptación en pipelines de análisis.
+      ar: >-
+        مواصفة عتبة الثقة المستخدمة لتصفية نتائج الكشف الآلي
+        وتحديد معايير القبول في خطوط تحليل البيانات.
+      id: >-
+        Spesifikasi ambang kepercayaan yang digunakan untuk menyaring hasil deteksi otomatis
+        dan menentukan kriteria penerimaan dalam pipeline analisis.
+      zh: >-
+        用于过滤自动检测结果并确定分析管道中接受标准的置信度阈值规范。
+    broad_mappings:
+    - dqv:QualityMeasurement
+    close_mappings:
+    - schema:QuantitativeValue
+    slots:
+    - has_label
+    - has_description
+    - has_type
+    structured_aliases:
+    - literal_form: detectiedrempel
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Erkennungsschwelle
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: seuil de détection
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: umbral de detección
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: عتبة الكشف
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: ambang deteksi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 检测阈值
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Controls quality filtering in automated analysis
+    - Higher thresholds reduce false positives but may miss valid detections
+    - 'Preserved from prior description: Confidence cutoff specification used to filter machine-detection results in analysis pipelines.'
+    keywords:
+    - threshold
+    - confidence
+    - filtering
+    - quality control
+    - detection
+    examples:
+    - value:
+        has_label: High Confidence
+        has_type: confidence_cutoff
+        has_description: Minimum 0.85 confidence for automated classification
+      description: Threshold for high-confidence automated detection
+    annotations:
+      specificity_score: 0.5
+      specificity_rationale: Quality measurement parameter for automated analysis pipelines
+      custodian_types: "['*']"

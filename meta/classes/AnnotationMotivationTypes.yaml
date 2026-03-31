@@ -1,0 +1,856 @@
+id: https://nde.nl/ontology/hc/class/AnnotationMotivationTypes
+name: annotation_motivation_types
+title: Annotation Motivation Types Collection
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  oa: http://www.w3.org/ns/oa#
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  wcag: https://www.w3.org/WAI/WCAG21/
+default_prefix: hc
+imports:
+- ./AnnotationMotivationType
+- linkml:types
+- ../metadata
+- ../slots/has_score
+- ../slots/has_label
+classes:
+  ClassifyingMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:ClassifyingMotivation
+    description: >-
+      Intent to assign the target to a specific category or classification scheme,
+      such as assigning subject headings, genre labels, or object types.
+    alt_descriptions:
+      nl: >-
+        Intentie om het doel toe te wijzen aan een specifieke categorie of
+        classificatieschema, zoals het toewijzen van trefwoorden, genrelabels
+        of objecttypes.
+      de: >-
+        Absicht, das Ziel einer bestimmten Kategorie oder einem Klassifizierungsschema
+        zuzuweisen, wie das Zuweisen von Schlagwortern, Genre-Labels oder Objekttypen.
+      fr: >-
+        Intention d'attribuer la cible a une categorie specifique ou a un schema
+        de classification, comme l'attribution de mots-cles, d'etiquettes de genre
+        ou de types d'objets.
+      es: >-
+        Intencion de asignar el objetivo a una categoria especifica o esquema de
+        clasificacion, como asignar encabezados de materia, etiquetas de genero
+        o tipos de objetos.
+      ar: >-
+        نية تعيين الهدف لفئة محددة أو مخطط تصنيف، مثل تعيين عناوين موضوعية
+        أو تسميات نوعية أو أنواع كائنات.
+      id: >-
+        Niat untuk menetapkan target ke kategori spesifik atau skema klasifikasi,
+        seperti menetapkan tajuk subjek, label genre, atau tipe objek.
+      zh: >-
+        将目标分配到特定类别或分类方案的意图，例如分配主题标题、类型标签或对象类型。
+    structured_aliases:
+    - literal_form: classificerende motivatie
+      in_language: nl
+    - literal_form: Klassifizierungsmotivation
+      in_language: de
+    - literal_form: motivation de classification
+      in_language: fr
+    - literal_form: motivacion de clasificacion
+      in_language: es
+    - literal_form: دافع التصنيف
+      in_language: ar
+    - literal_form: motivasi klasifikasi
+      in_language: id
+    - literal_form: 分类动机
+      in_language: zh
+    close_mappings:
+    - crm:E17_Type_Assignment
+    - oa:classifying
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: classifying
+    slots:
+    - has_score
+    comments:
+    - W3C Web Annotation standard motivation
+    - Primary use in heritage cataloging and classification
+    - Supports LCSH, AAT, Iconclass, DDC and other controlled vocabularies
+    - |
+      Preserved from prior description:
+
+      **DEFINITION**:
+
+      ClassifyingMotivation describes annotations where the intent is to
+      assign the target to a specific category or classification scheme.
+
+      **W3C WEB ANNOTATION**:
+
+      From oa:classifying:
+      > The motivation for when the user intends to classify the Target
+      > as something.
+
+      **USE CASES**:
+
+      | Use Case | Example |
+      |----------|---------|
+      | Subject classification | Assigning LCSH or AAT terms |
+      | Genre classification | Labeling artwork as "Baroque" |
+      | Object type | Classifying as "painting", "sculpture" |
+      | Content rating | Age-appropriate classifications |
+
+      **HERITAGE CONTEXT**:
+
+      Classification is fundamental to heritage cataloging:
+      - Museum object classification (Getty AAT)
+      - Archival arrangement and description
+      - Library subject cataloging (LCSH, DDC)
+      - Iconographic classification (Iconclass)
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/#motivation
+    examples:
+    - value:
+        has_label: classifying
+        has_score: 1.0
+      description: Standard classifying motivation instance
+    keywords:
+    - classification
+    - categorization
+    - subject headings
+    - LCSH
+    - AAT
+    - Iconclass
+    - DDC
+    - genre classification
+    - object type
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: W3C standard motivation for classification tasks
+      custodian_types: "['*']"
+  DescribingMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:DescribingMotivation
+    description: >-
+      Intent to provide a description of the target resource, such as physical
+      descriptions, content summaries, or accessibility alt-text.
+    alt_descriptions:
+      nl: >-
+        Intentie om een beschrijving te geven van de doelbron, zoals fysieke
+        beschrijvingen, inhoudssamenvattingen of toegankelijkheids-alt-tekst.
+      de: >-
+        Absicht, eine Beschreibung der Zielressource zu liefern, wie physische
+        Beschreibungen, Inhaltszusammenfassungen oder Barrierefreiheits-Alt-Text.
+      fr: >-
+        Intention de fournir une description de la ressource cible, comme des
+        descriptions physiques, des resumes de contenu ou du texte alternatif
+        d'accessibilite.
+      es: >-
+        Intencion de proporcionar una descripcion del recurso objetivo, como
+        descripciones fisicas, resumenes de contenido o texto alternativo de
+        accesibilidad.
+      ar: >-
+        نية توفير وصف للمورد المستهدف، مثل الأوصاف المادية أو ملخصات المحتوى
+        أو النص البديل لإمكانية الوصول.
+      id: >-
+        Niat untuk memberikan deskripsi sumber daya target, seperti deskripsi fisik,
+        ringkasan konten, atau teks alt aksesibilitas.
+      zh: >-
+        提供目标资源描述的意图，如物理描述、内容摘要或无障碍替代文本。
+    structured_aliases:
+    - literal_form: beschrijvende motivatie
+      in_language: nl
+    - literal_form: Beschreibungsmotivation
+      in_language: de
+    - literal_form: motivation de description
+      in_language: fr
+    - literal_form: motivacion de descripcion
+      in_language: es
+    - literal_form: دافع الوصف
+      in_language: ar
+    - literal_form: motivasi deskripsi
+      in_language: id
+    - literal_form: 描述动机
+      in_language: zh
+    close_mappings:
+    - dcterms:description
+    - oa:describing
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: describing
+    slots:
+    - has_score
+    comments:
+    - W3C Web Annotation standard motivation
+    - Fundamental to heritage cataloging and accessibility
+    - Distinct from commenting which expresses opinions
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/#motivation
+    examples:
+    - value:
+        has_label: describing
+        has_score: 1.0
+      description: Standard describing motivation instance
+    keywords:
+    - description
+    - physical description
+    - content summary
+    - alt-text
+    - accessibility
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: W3C standard motivation for description tasks
+      custodian_types: "['*']"
+  IdentifyingMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:IdentifyingMotivation
+    description: >-
+      Intent to assign an identity to what is depicted or described, such as
+      identifying portrait subjects, depicted locations, or linking to entity records.
+    alt_descriptions:
+      nl: >-
+        Intentie om een identiteit toe te wijzen aan wat wordt afgebeeld of
+        beschreven, zoals het identificeren van portretonderwerpen, afgebeelde
+        locaties of het koppelen aan entiteitsrecords.
+      de: >-
+        Absicht, dem Abgebildeten oder Beschriebenen eine Identitat zuzuweisen,
+        wie das Identifizieren von Portratsubjekten, abgebildeten Orten oder
+        das Verknupfen mit Entitatsdatensatzen.
+      fr: >-
+        Intention d'attribuer une identite a ce qui est represente ou decrit,
+        comme l'identification des sujets de portraits, des lieux representes
+        ou la liaison aux enregistrements d'entites.
+      es: >-
+        Intencion de asignar una identidad a lo que se representa o describe,
+        como identificar sujetos de retratos, lugares representados o vincular
+        a registros de entidades.
+      ar: >-
+        نية تعيين هوية لما يتم تصويره أو وصفه، مثل تحديد موضوعات الصور
+        الشخصية أو الأماكن المصورة أو الربط بسجلات الكيانات.
+      id: >-
+        Niat untuk menetapkan identitas pada apa yang digambarkan atau dijelaskan,
+        seperti mengidentifikasi subjek potret, lokasi yang digambarkan, atau
+        menautkan ke rekaman entitas.
+      zh: >-
+        为所描绘或描述的内容分配身份的意图，如识别肖像主体、描绘的地点或链接到实体记录。
+    structured_aliases:
+    - literal_form: identificerende motivatie
+      in_language: nl
+    - literal_form: Identifizierungsmotivation
+      in_language: de
+    - literal_form: motivation d'identification
+      in_language: fr
+    - literal_form: motivacion de identificacion
+      in_language: es
+    - literal_form: دافع التعريف
+      in_language: ar
+    - literal_form: motivasi identifikasi
+      in_language: id
+    - literal_form: 识别动机
+      in_language: zh
+    close_mappings:
+    - crm:E15_Identifier_Assignment
+    - schema:identifier
+    - oa:identifying
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: identifying
+    slots:
+    - has_score
+    comments:
+    - W3C Web Annotation standard motivation
+    - Links content to identified entities
+    - Used for named entity recognition and computer vision tasks
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/#motivation
+    examples:
+    - value:
+        has_label: identifying
+        has_score: 1.0
+      description: Standard identifying motivation instance
+    keywords:
+    - identification
+    - entity recognition
+    - named entity
+    - person identification
+    - place identification
+    - attribution
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: W3C standard motivation for identification tasks
+      custodian_types: "['*']"
+  TaggingMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:TaggingMotivation
+    description: >-
+      Intent to associate a tag or keyword with the target resource, typically
+      user-generated or crowdsourced rather than from controlled vocabularies.
+    alt_descriptions:
+      nl: >-
+        Intentie om een tag of trefwoord te koppelen aan de doelbron, meestal
+        door gebruikers gegenereerd of door crowdsourcing in plaats van uit
+        gecontroleerde woordenlijsten.
+      de: >-
+        Absicht, ein Tag oder Schlusselwort mit der Zielressource zu verknupfen,
+        typischerweise benutzergeneriert oder per Crowdsourcing statt aus
+        kontrollierten Vokabularen.
+      fr: >-
+        Intention d'associer un tag ou mot-cle a la ressource cible,
+        generalement genere par l'utilisateur ou par crowdsourcing plutot que
+        provenant de vocabulaires controles.
+      es: >-
+        Intencion de asociar una etiqueta o palabra clave con el recurso objetivo,
+        tipicamente generada por el usuario o por crowdsourcing en lugar de
+        vocabularios controlados.
+      ar: >-
+        نية ربط علامة أو كلمة مفتاحية بالمورد المستهدف، عادة ما تكون منشأة
+        من قبل المستخدم أو من خلال التعهيد الجماعي بدلاً من المفردات الخاضعة للرقابة.
+      id: >-
+        Niat untuk mengaitkan tag atau kata kunci dengan sumber daya target,
+        biasanya dibuat oleh pengguna atau crowdsourcing daripada dari kosakata
+        terkontrol.
+      zh: >-
+        将标签或关键词与目标资源关联的意图，通常由用户生成或众包，
+        而非来自受控词汇表。
+    structured_aliases:
+    - literal_form: tagmotivatie
+      in_language: nl
+    - literal_form: Tagging-Motivation
+      in_language: de
+    - literal_form: motivation de balisage
+      in_language: fr
+    - literal_form: motivacion de etiquetado
+      in_language: es
+    - literal_form: دافع الوسم
+      in_language: ar
+    - literal_form: motivasi penandaan
+      in_language: id
+    - literal_form: 标记动机
+      in_language: zh
+    close_mappings:
+    - schema:keywords
+    - oa:tagging
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: tagging
+    slots:
+    - has_score
+    comments:
+    - W3C Web Annotation standard motivation
+    - User-generated content enrichment
+    - Complements formal classification with folksonomies
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/#motivation
+    examples:
+    - value:
+        has_label: tagging
+        has_score: 1.0
+      description: Standard tagging motivation instance
+    keywords:
+    - tagging
+    - keywords
+    - folksonomy
+    - social tagging
+    - crowdsourcing
+    - user-generated content
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: W3C standard motivation for tagging tasks
+      custodian_types: "['*']"
+  LinkingMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:LinkingMotivation
+    description: >-
+      Intent to create a link between the target and a related resource,
+      such as authority file links, collection cross-references, or IIIF connections.
+    alt_descriptions:
+      nl: >-
+        Intentie om een koppeling te maken tussen het doel en een gerelateerde
+        bron, zoals autoriteitsbestandslinks, collectie-kruisverwijzingen of
+        IIIF-verbindingen.
+      de: >-
+        Absicht, eine Verknupfung zwischen dem Ziel und einer verwandten Ressource
+        zu erstellen, wie Normdatei-Links, Sammlungsquerverweise oder IIIF-Verbindungen.
+      fr: >-
+        Intention de creer un lien entre la cible et une ressource connexe,
+        comme les liens de fichiers d'autorite, les references croisees de
+        collection ou les connexions IIIF.
+      es: >-
+        Intencion de crear un vinculo entre el objetivo y un recurso relacionado,
+        como enlaces de archivos de autoridad, referencias cruzadas de coleccion
+        o conexiones IIIF.
+      ar: >-
+        نية إنشاء رابط بين الهدف ومورد ذي صلة، مثل روابط ملفات الاستناد
+        أو الإشارات التبادلية للمجموعات أو اتصالات IIIF.
+      id: >-
+        Niat untuk membuat tautan antara target dan sumber daya terkait, seperti
+        tautan file otoritas, referensi silang koleksi, atau koneksi IIIF.
+      zh: >-
+        在目标和相关资源之间创建链接的意图，如权威文件链接、馆藏交叉引用或IIIF连接。
+    structured_aliases:
+    - literal_form: koppelmotivatie
+      in_language: nl
+    - literal_form: Verknupfungsmotivation
+      in_language: de
+    - literal_form: motivation de liaison
+      in_language: fr
+    - literal_form: motivacion de vinculacion
+      in_language: es
+    - literal_form: دافع الربط
+      in_language: ar
+    - literal_form: motivasi penautan
+      in_language: id
+    - literal_form: 链接动机
+      in_language: zh
+    close_mappings:
+    - dcterms:relation
+    - skos:related
+    - schema:relatedLink
+    - oa:linking
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: linking
+    slots:
+    - has_score
+    comments:
+    - W3C Web Annotation standard motivation
+    - Enables Linked Open Data connections
+    - Supports authority file linking (VIAF, ISNI, Wikidata)
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/#motivation
+    examples:
+    - value:
+        has_label: linking
+        has_score: 1.0
+      description: Standard linking motivation instance
+    keywords:
+    - linking
+    - related resources
+    - authority files
+    - VIAF
+    - ISNI
+    - Wikidata
+    - IIIF
+    - Linked Open Data
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: W3C standard motivation for linking tasks
+      custodian_types: "['*']"
+  CommentingMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:CommentingMotivation
+    description: >-
+      Intent to add a comment or opinion about the target resource, distinct
+      from descriptive annotations which provide factual information.
+    alt_descriptions:
+      nl: >-
+        Intentie om een opmerking of mening toe te voegen over de doelbron,
+        onderscheiden van beschrijvende annotaties die feitelijke informatie geven.
+      de: >-
+        Absicht, einen Kommentar oder eine Meinung zur Zielressource hinzuzufugen,
+        unterschieden von beschreibenden Annotationen, die sachliche Informationen liefern.
+      fr: >-
+        Intention d'ajouter un commentaire ou une opinion sur la ressource cible,
+        distincte des annotations descriptives qui fournissent des informations factuelles.
+      es: >-
+        Intencion de agregar un comentario u opinion sobre el recurso objetivo,
+        distinto de las anotaciones descriptivas que proporcionan informacion factual.
+      ar: >-
+        نية إضافة تعليق أو رأي حول المورد المستهدف، متميز عن التعليقات
+        التوضيحية الوصفية التي تقدم معلومات واقعية.
+      id: >-
+        Niat untuk menambahkan komentar atau pendapat tentang sumber daya target,
+        berbeda dari anotasi deskriptif yang memberikan informasi faktual.
+      zh: >-
+        对目标资源添加评论或意见的意图，区别于提供事实信息的描述性注释。
+    structured_aliases:
+    - literal_form: commentmotivatie
+      in_language: nl
+    - literal_form: Kommentarmotivation
+      in_language: de
+    - literal_form: motivation de commentaire
+      in_language: fr
+    - literal_form: motivacion de comentario
+      in_language: es
+    - literal_form: دافع التعليق
+      in_language: ar
+    - literal_form: motivasi komentar
+      in_language: id
+    - literal_form: 评论动机
+      in_language: zh
+    close_mappings:
+    - schema:Comment
+    - schema:UserComments
+    - oa:commenting
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: commenting
+    slots:
+    - has_score
+    comments:
+    - W3C Web Annotation standard motivation
+    - User and scholarly engagement
+    - Distinct from describing which is factual not opinionated
+    see_also:
+    - https://www.w3.org/TR/annotation-vocab/#motivation
+    examples:
+    - value:
+        has_label: commenting
+        has_score: 1.0
+      description: Standard commenting motivation instance
+    keywords:
+    - comment
+    - opinion
+    - scholarly notes
+    - curatorial notes
+    - editorial remarks
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: W3C standard motivation for commenting tasks
+      custodian_types: "['*']"
+  AccessibilityMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:accessibilityMotivation
+    description: >-
+      Heritage-specific motivation for creating annotations to make content
+      accessible to users with disabilities, such as alt-text, captions,
+      audio descriptions, or sign language interpretation.
+    alt_descriptions:
+      nl: >-
+        Erfgoed-specifieke motivatie voor het maken van annotaties om inhoud
+        toegankelijk te maken voor gebruikers met een beperking, zoals alt-tekst,
+        ondertitels, audiobeschrijvingen of gebarentaalinterpretatie.
+      de: >-
+        Heritage-spezifische Motivation zur Erstellung von Annotationen, um Inhalte
+        fur Benutzer mit Behinderungen zugaenglich zu machen, wie Alt-Text,
+        Untertitel, Audiobeschreibungen oder Gebaerdensprachdolmetschung.
+      fr: >-
+        Motivation specifique au patrimoine pour creer des annotations afin de
+        rendre le contenu accessible aux utilisateurs handicapes, comme les
+        textes alternatifs, les sous-titres, les descriptions audio ou
+        l'interpretation en langue des signes.
+      es: >-
+        Motivacion especifica del patrimonio para crear anotaciones para hacer
+        el contenido accesible a usuarios con discapacidades, como texto alternativo,
+        subtitulos, descripciones de audio o interpretacion en lenguaje de senas.
+      ar: >-
+        دافع خاص بالتراث لإنشاء تعليقات توضيحية لجعل المحتوى متاحًا للمستخدمين
+        ذوي الإعاقة، مثل النص البديل والترجمة والوصف الصوتي أو تفسير لغة الإشارة.
+      id: >-
+        Motivasi khusus warisan untuk membuat anotasi agar konten dapat diakses
+        oleh pengguna dengan disabilitas, seperti teks alt, takarir, deskripsi audio,
+        atau interpretasi bahasa isyarat.
+      zh: >-
+        遗产特定的动机，用于创建注释使残障用户能够访问内容，如替代文本、
+        字幕、音频描述或手语翻译。
+    structured_aliases:
+    - literal_form: toegankelijkheidsmotivatie
+      in_language: nl
+    - literal_form: Barrierefreiheitsmotivation
+      in_language: de
+    - literal_form: motivation d'accessibilite
+      in_language: fr
+    - literal_form: motivacion de accesibilidad
+      in_language: es
+    - literal_form: دافع إمكانية الوصول
+      in_language: ar
+    - literal_form: motivasi aksesibilitas
+      in_language: id
+    - literal_form: 无障碍动机
+      in_language: zh
+    close_mappings:
+    - schema:accessibilityFeature
+    - schema:accessibilityHazard
+    related_mappings:
+    - wcag:Guideline
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: accessibility
+    slots:
+    - has_score
+    comments:
+    - Heritage-specific extension beyond W3C standard motivations
+    - Critical for inclusive heritage access
+    - Supports WCAG compliance (Success Criteria 1.1.1, 1.2)
+    see_also:
+    - https://www.w3.org/WAI/WCAG21/
+    examples:
+    - value:
+        has_label: accessibility
+        has_score: 1.0
+      description: Accessibility motivation instance for alt-text creation
+    keywords:
+    - accessibility
+    - alt-text
+    - captions
+    - audio description
+    - sign language
+    - WCAG
+    - inclusive access
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Heritage-specific motivation for accessibility
+      custodian_types: "['*']"
+  DiscoveryMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:discoveryMotivation
+    description: >-
+      Heritage-specific motivation for creating annotations to improve
+      findability and discoverability of content through SEO, faceted search,
+      full-text indexing, or named entity extraction.
+    alt_descriptions:
+      nl: >-
+        Erfgoed-specifieke motivatie voor het maken van annotaties om de
+        vindbaarheid en ontdekbaarheid van inhoud te verbeteren via SEO,
+        gefacetteerd zoeken, full-text indexering of extractie van benoemde entiteiten.
+      de: >-
+        Heritage-spezifische Motivation zur Erstellung von Annotationen zur
+        Verbesserung der Auffindbarkeit und Entdeckbarkeit von Inhalten durch
+        SEO, Facettensuche, Volltextindizierung oder Named Entity Extraction.
+      fr: >-
+        Motivation specifique au patrimoine pour creer des annotations afin
+        d'ameliorer la trouvabilite et la decouvrabilite du contenu via le SEO,
+        la recherche a facettes, l'indexation en texte integral ou l'extraction
+        d'entites nommees.
+      es: >-
+        Motivacion especifica del patrimonio para crear anotaciones para mejorar
+        la encontrabilidad y descubribilidad del contenido a traves de SEO,
+        busqueda facetada, indexacion de texto completo o extraccion de entidades
+        con nombre.
+      ar: >-
+        دافع خاص بالتراث لإنشاء تعليقات توضيحية لتحسين قابلية العثور على
+        المحتوى واكتشافه من خلال تحسين محركات البحث والبحث الموجه وفهرسة
+        النص الكامل أو استخراج الكيانات المسماة.
+      id: >-
+        Motivasi khusus warisan untuk membuat anotasi untuk meningkatkan
+        kemudahan ditemukan dan penemuan konten melalui SEO, pencarian faset,
+        pengindeksan teks lengkap, atau ekstraksi entitas bernama.
+      zh: >-
+        遗产特定的动机，用于创建注释通过SEO、分面搜索、全文索引或命名实体
+        提取来提高内容的可查找性和可发现性。
+    structured_aliases:
+    - literal_form: ontdekkingsmotivatie
+      in_language: nl
+    - literal_form: Entdeckungsmotivation
+      in_language: de
+    - literal_form: motivation de decouverte
+      in_language: fr
+    - literal_form: motivacion de descubrimiento
+      in_language: es
+    - literal_form: دافع الاكتشاف
+      in_language: ar
+    - literal_form: motivasi penemuan
+      in_language: id
+    - literal_form: 发现动机
+      in_language: zh
+    close_mappings:
+    - schema:SearchAction
+    - dcat:Catalog
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: discovery
+    slots:
+    - has_score
+    comments:
+    - Heritage-specific extension beyond W3C standard motivations
+    - Enables collection discoverability
+    - Supports aggregator integration (Europeana, etc.)
+    see_also:
+    - https://schema.org/SearchAction
+    examples:
+    - value:
+        has_label: discovery
+        has_score: 1.0
+      description: Discovery motivation instance for SEO enhancement
+    keywords:
+    - discovery
+    - SEO
+    - faceted search
+    - full-text indexing
+    - named entity extraction
+    - findability
+    - aggregator metadata
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Heritage-specific motivation for discovery
+      custodian_types: "['*']"
+  PreservationMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:preservationMotivation
+    description: >-
+      Heritage-specific motivation for creating annotations to support
+      long-term digital preservation, such as format documentation,
+      checksum recording, migration notes, or rights documentation.
+    alt_descriptions:
+      nl: >-
+        Erfgoed-specifieke motivatie voor het maken van annotaties ter ondersteuning
+        van langetermijnbehoud van digitale inhoud, zoals formatdocumentatie,
+        checksum-registratie, migratienotities of rechtenocumentatie.
+      de: >-
+        Heritage-spezifische Motivation zur Erstellung von Annotationen zur
+        Unterstutzung der langfristigen digitalen Erhaltung, wie Formatdokumentation,
+        Prufsummenaufzeichnung, Migrationshinweise oder Rechte-Dokumentation.
+      fr: >-
+        Motivation specifique au patrimoine pour creer des annotations afin de
+        soutenir la preservation numerique a long terme, comme la documentation
+        de format, l'enregistrement des sommes de controle, les notes de migration
+        ou la documentation des droits.
+      es: >-
+        Motivacion especifica del patrimonio para crear anotaciones para apoyar
+        la preservacion digital a largo plazo, como documentacion de formato,
+        registro de sumas de verificacion, notas de migracion o documentacion de derechos.
+      ar: >-
+        دافع خاص بالتراث لإنشاء تعليقات توضيحية لدعم الحفظ الرقمي طويل الأجل،
+        مثل توثيق التنسيق وتسجيل المجاميع الاختبارية وملاحظات الترحيل أو توثيق الحقوق.
+      id: >-
+        Motivasi khusus warisan untuk membuat anotasi untuk mendukung pelestarian
+        digital jangka panjang, seperti dokumentasi format, pencatatan checksum,
+        catatan migrasi, atau dokumentasi hak.
+      zh: >-
+        遗产特定的动机，用于创建注释以支持长期数字保存，如格式文档、校验和记录、
+        迁移说明或权利文档。
+    structured_aliases:
+    - literal_form: behoudsmotivatie
+      in_language: nl
+    - literal_form: Erhaltungsmotivation
+      in_language: de
+    - literal_form: motivation de preservation
+      in_language: fr
+    - literal_form: motivacion de preservacion
+      in_language: es
+    - literal_form: دافع الحفظ
+      in_language: ar
+    - literal_form: motivasi pelestarian
+      in_language: id
+    - literal_form: 保存动机
+      in_language: zh
+    close_mappings:
+    - prov:Activity
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: preservation
+    slots:
+    - has_score
+    comments:
+    - Heritage-specific extension beyond W3C standard motivations
+    - Critical for digital preservation
+    - Supports OAIS and PREMIS compliance
+    see_also:
+    - https://www.oclc.org/research/activities/preservation-metadata.html
+    examples:
+    - value:
+        has_label: preservation
+        has_score: 1.0
+      description: Preservation motivation instance for checksum recording
+    keywords:
+    - preservation
+    - digital preservation
+    - PREMIS
+    - OAIS
+    - format documentation
+    - checksum
+    - migration
+    - fixity
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Heritage-specific motivation for preservation
+      custodian_types: "['*']"
+  ResearchMotivation:
+    is_a: AnnotationMotivationType
+    class_uri: hc:researchMotivation
+    description: >-
+      Heritage-specific motivation for creating annotations to support
+      scholarly research and analysis, such as citations, research notes,
+      hypothesis marking, or computational analysis results.
+    alt_descriptions:
+      nl: >-
+        Erfgoed-specifieke motivatie voor het maken van annotaties ter ondersteuning
+        van wetenschappelijk onderzoek en analyse, zoals citaten, onderzoeksnotities,
+        hypothese-markering of computationele analyseresultaten.
+      de: >-
+        Heritage-spezifische Motivation zur Erstellung von Annotationen zur
+        Unterstutzung wissenschaftlicher Forschung und Analyse, wie Zitate,
+        Forschungsnotizen, Hypothesen-Markierung oder rechnergestutzte Analyseergebnisse.
+      fr: >-
+        Motivation specifique au patrimoine pour creer des annotations afin de
+        soutenir la recherche et l'analyse scientifiques, comme les citations,
+        les notes de recherche, le marquage d'hypotheses ou les resultats d'analyse computationnelle.
+      es: >-
+        Motivacion especifica del patrimonio para crear anotaciones para apoyar
+        la investigacion y el analisis academico, como citas, notas de investigacion,
+        marcado de hipotesis o resultados de analisis computacional.
+      ar: >-
+        دافع خاص بالتراث لإنشاء تعليقات توضيحية لدعم البحث والتحليل العلمي،
+        مثل الاستشهادات وملاحظات البحث ووضع علامات الفرضيات أو نتائج التحليل الحسابي.
+      id: >-
+        Motivasi khusus warisan untuk membuat anotasi untuk mendukung penelitian
+        dan analisis ilmiah, seperti kutipan, catatan penelitian, penandaan hipotesis,
+        atau hasil analisis komputasional.
+      zh: >-
+        遗产特定的动机，用于创建注释以支持学术研究和分析，如引用、研究笔记、
+        假设标记或计算分析结果。
+    structured_aliases:
+    - literal_form: onderzoeksmotivatie
+      in_language: nl
+    - literal_form: Forschungsmotivation
+      in_language: de
+    - literal_form: motivation de recherche
+      in_language: fr
+    - literal_form: motivacion de investigacion
+      in_language: es
+    - literal_form: دافع البحث
+      in_language: ar
+    - literal_form: motivasi penelitian
+      in_language: id
+    - literal_form: 研究动机
+      in_language: zh
+    close_mappings:
+    - crm:E7_Activity
+    - schema:ScholarlyArticle
+    broad_mappings:
+    - skos:Concept
+    slot_usage:
+      has_label:
+        equals_string: research
+    slots:
+    - has_score
+    comments:
+    - Heritage-specific extension beyond W3C standard motivations
+    - Supports digital humanities and research
+    - Enables computational analysis documentation
+    see_also:
+    - https://www.cidoc-crm.org/
+    examples:
+    - value:
+        has_label: research
+        has_score: 1.0
+      description: Research motivation instance for scholarly citation
+    keywords:
+    - research
+    - scholarly
+    - citation
+    - analysis
+    - hypothesis
+    - digital humanities
+    - computational analysis
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Heritage-specific motivation for research
+      custodian_types: "['*']"

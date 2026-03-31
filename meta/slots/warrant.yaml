@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: warrant
+# ==============================================================================
+# Justifiable reason, ground, or authorization for an action, belief, or outcome.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                                                       |
+# |---------------|-----------------------|--------------------------|---------|-----------------------------------------------------------------------------|
+# | **PROV-O**    | `prov:wasDerivedFrom` | prov.ttl:1099-1115       | close   | "A derivation is a transformation of an entity into another, an update of   |
+# |               |                       |                          |         | an entity resulting in a new one, or the construction of a new entity based |
+# |               |                       |                          |         | on a pre-existing entity." Entity->Entity. General provenance derivation    |
+# |               |                       |                          |         | chain; not specifically about justification/warrant but related.            |
+# | **PROV-O**    | `prov:wasQuotedFrom`  | prov.ttl:1209-1225       | related | "An entity is derived from an original entity by copying, or 'quoting',    |
+# |               |                       |                          |         | some or all of it." Entity->Entity. Quoting is about copying/referencing   |
+# |               |                       |                          |         | content, not about providing justification or evidence.                     |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/warrant
+name: warrant
+title: Warrant
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  warrant:
+    slot_uri: hc:warrant
+    description: >-
+      Serves as a justifiable reason, ground, or authorization for an
+      action, belief, or outcome, necessitating a specific course of action.
+    alt_descriptions:
+      nl: >-
+        Dient als gerechtvaardigde reden, grond of autorisatie voor een
+        handeling, overtuiging of resultaat, die een specifieke handelswijze
+        noodzakelijk maakt.
+      de: >-
+        Dient als gerechtfertigter Grund, Grundlage oder Autorisierung fur
+        eine Handlung, Uberzeugung oder ein Ergebnis und erfordert eine
+        bestimmte Vorgehensweise.
+      fr: >-
+        Sert de raison justifiable, de fondement ou d'autorisation pour
+        une action, une croyance ou un resultat, necessitant un plan
+        d'action specifique.
+      ar: >-
+        يعمل كسبب مبرر أو أساس أو تفويض لإجراء أو اعتقاد أو نتيجة،
+        مما يستلزم مسار عمل محدد.
+      id: >-
+        Berfungsi sebagai alasan yang dapat dibenarkan, dasar, atau
+        otorisasi untuk suatu tindakan, keyakinan, atau hasil, yang
+        mengharuskan tindakan tertentu.
+      zh: >-
+        作为行动、信念或结果的正当理由、依据或授权，需要采取特定的行动方针。
+      es: >-
+        Sirve como razon justificable, fundamento o autorizacion para una
+        accion, creencia o resultado, que requiere un curso de accion
+        especifico.
+    structured_aliases:
+      - literal_form: Rechtvaardiging
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Rechtfertigung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Justification
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تبرير
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Pembenaran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 论证依据
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Justificacion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined_as_list: false
+    close_mappings:
+      - prov:wasDerivedFrom  # prov.ttl:1099-1115 - "A derivation is a transformation of an entity into another." General provenance derivation, not specifically justification.
+    related_mappings:
+      - prov:wasQuotedFrom  # prov.ttl:1209-1225 - "An entity is derived from an original entity by copying, or 'quoting', some or all of it." Quoting, not warranting.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - warrants_or_warranted
+    comments:
+      - "CREATED 2026-01-19: Replaces claim slot per Rule 53/56."
+      - Uses argumentation semantics from the Toulmin model.
+      - Range is base Claim class - subclasses narrow as needed.
+      - "Usage Patterns: WebEnrichment.warrants_or_warranted -> WebClaim instances; ResearchSource.warrants_or_warranted -> Claim instances; PersonProfile.warrants_or_warranted -> PersonWebClaim instances."
+      - "From argumentation theory (Toulmin model): Claims provide evidence that WARRANTS conclusions; a claim can be WARRANTED BY supporting evidence."
+      - "MIGRATION NOTE (2026-01-19): Replaces claim slot per slot_fixes.yaml (Rule 53/56). Uses RiC-O temporal naming convention."

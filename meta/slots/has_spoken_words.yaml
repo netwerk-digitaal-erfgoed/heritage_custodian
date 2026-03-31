@@ -1,0 +1,124 @@
+# ==============================================================================
+# LinkML Slot Definition: has_spoken_words
+# ==============================================================================
+# Whether a media file or segment contains audible speech, dialogue, or vocal
+# communication.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property              | File/Line                       | Mapping | Notes                                                              |
+# |------------|-----------------------|---------------------------------|---------|--------------------------------------------------------------------|
+# | **Schema** | `schema:utterances`   | schemaorg.owl:39293-39296       | close   | "Text of utterances (spoken words, lyrics etc.)"; value is text    |
+# |            |                       |                                 |         | of the speech, not a boolean/flag for presence.                    |
+# | **Schema** | `schema:transcript`   | schemaorg.owl:38621-38624       | related | "Transcript of AudioObject or VideoObject"; the textual            |
+# |            |                       |                                 |         | representation, not a flag for speech presence.                    |
+# | **CIDOC**  | `E33_Linguistic_Object` | CIDOC_CRM_v7.1.3.rdf:659-664 | broad   | "Identifiable expressions in natural language"; covers written,    |
+# |            |                       |                                 |         | recorded speech, sign language — much broader than speech flag.    |
+#
+# CREATED: 2026-02-12
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_spoken_words
+name: has_spoken_words
+title: Has Spoken Words
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_spoken_words:
+    slot_uri: hc:hasSpokenWords
+    description: >-
+      Indicates whether a media file, recording, or segment contains
+      audible speech, dialogue, or vocal communication. Used as a
+      high-level flag for the presence of spoken content, distinguishing
+      speech-bearing media from music-only, ambient, or silent recordings.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een mediabestand, opname of segment hoorbare spraak,
+        dialoog of vocale communicatie bevat. Wordt gebruikt als vlag op
+        hoog niveau voor de aanwezigheid van gesproken inhoud.
+      de: >-
+        Gibt an, ob eine Mediendatei, Aufnahme oder ein Segment hörbare
+        Sprache, Dialog oder stimmliche Kommunikation enthält. Dient als
+        übergeordnetes Kennzeichen für das Vorhandensein gesprochener
+        Inhalte.
+      fr: >-
+        Indique si un fichier média, un enregistrement ou un segment
+        contient de la parole audible, du dialogue ou de la communication
+        vocale. Utilisé comme indicateur de haut niveau de la présence
+        de contenu parlé.
+      ar: >-
+        يشير إلى ما إذا كان ملف وسائط أو تسجيل أو مقطع يحتوي على كلام
+        مسموع أو حوار أو تواصل صوتي. يُستخدم كعلامة عالية المستوى لوجود
+        محتوى منطوق.
+      id: >-
+        Menunjukkan apakah berkas media, rekaman, atau segmen mengandung
+        ucapan yang dapat didengar, dialog, atau komunikasi vokal.
+        Digunakan sebagai penanda tingkat tinggi untuk keberadaan konten
+        lisan.
+      zh: >-
+        表示媒体文件、录音或片段是否包含可听到的语音、对话或语音通信。用作
+        口语内容存在与否的高级标志。
+      es: >-
+        Indica si un archivo multimedia, grabación o segmento contiene
+        habla audible, diálogo o comunicación vocal. Se utiliza como
+        indicador de alto nivel de la presencia de contenido hablado.
+    structured_aliases:
+      - literal_form: gesproken woorden
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: gesprochene Worte
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: paroles prononcées
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: كلمات منطوقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: kata-kata lisan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 口语
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: palabras habladas
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - schema:utterances       # schemaorg.owl:39293-39296 - "Text of utterances (spoken words, lyrics etc.)"; value is the text, not a presence flag
+    related_mappings:
+      - schema:transcript       # schemaorg.owl:38621-38624 - "Transcript of AudioObject or VideoObject"; textual representation
+    broad_mappings:
+      - crm:E33_Linguistic_Object  # CIDOC_CRM_v7.1.3.rdf:659-664 - "Identifiable expressions in natural language"; covers all linguistic content
+    aliases:
+      - speech_detected
+      - speech_language
+      - speech_text
+    examples:
+      - value: "true"
+        description: >-
+          At least one speech segment was detected in the audio file by
+          an automatic speech detection pipeline.
+      - value: "false"
+        description: >-
+          No speech detected — the recording contains only music, ambient
+          sound, or silence.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Acts as a boolean-like flag (true / false) indicating whether any
+        speech is present. More detailed information such as the detected
+        language or transcribed text should be captured in sibling slots
+        (e.g. in_language, has_text).
+      - >-
+        Distinct from has_sound, which flags any audible content including
+        non-speech audio. has_spoken_words specifically identifies human
+        vocal communication.

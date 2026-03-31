@@ -1,0 +1,150 @@
+id: https://nde.nl/ontology/hc/class/Capacity
+name: Capacity
+title: Capacity Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/CapacityTypeEnum
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_measurement_unit
+  - ../slots/has_quantity
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/approximate
+  - ../slots/temporal_extent
+classes:
+  Capacity:
+    class_uri: qudt:Quantity
+    description: >-
+      Storage or holding capacity measurement for heritage facilities,
+      including volume, linear shelving, floor area, or item count metrics.
+    alt_descriptions:
+      nl: >-
+        Opslag- of houdcapaciteitsmeting voor erfgoedfaciliteiten, inclusief volume,
+        lineaire plankruimte, vloeroppervlak of artikel aantal metrieken.
+      de: >-
+        Speicher- oder Haltekapazitätsmessung für Kulturerbeeinrichtungen,
+        einschließlich Volumen, lineare Regale, Grundfläche oder Artikelanzahl Metriken.
+      fr: >-
+        Mesure de capacité de stockage ou de maintien pour les installations
+        patrimoniales, y compris le volume, les étagères linéaires, la surface
+        au sol ou le nombre d'articles.
+      es: >-
+        Medición de capacidad de almacenamiento o retención para instalaciones
+        patrimoniales, incluyendo volumen, estantería lineal, superficie o
+        recuento de artículos.
+      ar: >-
+        قياس سعة التخزين أو الاحتفاظ لمنشآت التراث، بما في ذلك الحجم
+        والرفوف الخطية ومساحة الأرضية أو عدد العناصر.
+      id: >-
+        Pengukuran kapasitas penyimpanan atau penahanan untuk fasilitas warisan,
+        termasuk volume, rak linier, area lantai, atau metrik jumlah item.
+      zh: >-
+        遗产设施的存储或容纳能力测量，包括体积、线性货架、地面面积或物品数量指标。
+    structured_aliases:
+    - literal_form: capaciteit
+      in_language: nl
+    - literal_form: Kapazität
+      in_language: de
+    - literal_form: capacité
+      in_language: fr
+    - literal_form: capacidad
+      in_language: es
+    - literal_form: السعة
+      in_language: ar
+    - literal_form: kapasitas
+      in_language: id
+    - literal_form: 容量
+      in_language: zh
+    exact_mappings:
+    - qudt:Quantity
+    close_mappings:
+    - schema:QuantitativeValue
+    related_mappings:
+    - schema:floorSize
+    - dcterms:extent
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_quantity
+    - has_type
+    - has_measurement_unit
+    - has_description
+    - temporal_extent
+    - approximate
+    - has_score
+    - has_label
+    slot_usage:
+      identified_by:
+        required: false
+      has_type:
+        required: false
+        examples:
+        - value: ShelfLengthCapacity
+        - value: VolumeCapacity
+        - value: ItemCountCapacity
+      has_measurement_unit:
+        range: MeasureUnit
+        required: false
+        inlined: true
+      has_quantity:
+        range: integer
+        required: true
+        inlined: false
+      has_description:
+        required: false
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        inlined: true
+      approximate:
+        range: boolean
+        required: false
+        ifabsent: "false"
+    comments:
+    - Storage capacity measurement for heritage facilities
+    - Supports volume, linear shelving, floor area, and item counts
+    - Based on QUDT Quantity pattern
+    see_also:
+    - http://qudt.org/schema/qudt/Quantity
+    - https://schema.org/QuantitativeValue
+    examples:
+    - value:
+        has_label: Archive Shelving Capacity
+        has_quantity: 8000
+        has_type: ShelfLengthCapacity
+        has_description: Total linear meters of shelving capacity
+      description: Archive shelving capacity
+    - value:
+        has_label: Cold Storage Volume
+        has_quantity: 2500
+        has_type: VolumeCapacity
+        has_description: Cubic meters of cold storage
+      description: Cold storage volume capacity
+    keywords:
+    - capacity
+    - storage capacity
+    - shelf length
+    - volume
+    - floor area
+    - item count
+    - depot
+    notes:
+      - |
+        Preserved from prior description (commit 51480891):
+
+        "Storage or holding capacity measurement for heritage facilities.\n**RULE 53 MIGRATION**:\nThis class consolidates the following bespoke capacity slots: - capacity_cubic_meters \u2192 capacity_value + VOLUME type + m\xB3 unit - capacity_linear_meters \u2192 capacity_value + SHELF_LENGTH type + m unit - capacity_item \u2192 capacity_value + ITEM_COUNT type + items unit - capacity_description \u2192 has_description\n**ONTOLOGY ALIGNMENT**:\n- Extends `qudt:Quantity` pattern for measured values - Uses MeasureUnit for structured unit representation - Supports temporal validity via TimeSpan\n**CAPACITY TYPES**:\n| Type | Description | Unit Examples | |------|-------------|---------------| | VOLUME | Cubic capacity | m\xB3, ft\xB3 | | SHELF_LENGTH | Linear shelf meters | m, ft | | FLOOR_AREA | Floor space | m\xB2, ft\xB2 | | ITEM_COUNT | Number of items | boxes, folders, objects | | WEIGHT | Weight capacity | kg, tons | | SEATING | Seating capacity | seats, persons |\n\
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Technical class for facility capacity
+      custodian_types: "['*']"

@@ -1,0 +1,81 @@
+id: https://nde.nl/ontology/hc/class/DigitalPlatformScore
+name: digital_platform_score_class
+title: Digital Platform Score Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_score
+classes:
+  DigitalPlatformScore:
+    class_uri: sosa:Result
+    description: >-
+      Quantitative evaluation outcome expressing platform relevance, confidence level, or classification specificity.
+    alt_descriptions:
+      nl: >-
+        Kwantitatief evaluatieresultaat dat platformrelevantie, betrouwbaarheidsniveau
+        of classificatiespecificiteit uitdrukt.
+      de: >-
+        Quantitatives Bewertungsergebnis, das Plattformrelevanz, Konfidenzniveau
+        oder Klassifikationsspezifität ausdrückt.
+      fr: >-
+        Résultat d'évaluation quantitative exprimant la pertinence de la plateforme,
+        le niveau de confiance ou la spécificité de classification.
+      es: >-
+        Resultado de evaluación cuantitativa que expresa la relevancia de la plataforma,
+        el nivel de confianza o la especificidad de clasificación.
+      ar: >-
+        نتيجة تقييم كمية تعبر عن صلة المنصة أو مستوى الثقة أو خصوصية التصنيف.
+      id: >-
+        Hasil evaluasi kuantitatif yang mengekspresikan relevansi platform,
+        tingkat kepercayaan, atau spesifisitas klasifikasi.
+      zh: >-
+        定量评估结果，表达平台相关性、置信度水平或分类特异性。
+    structured_aliases:
+    - literal_form: platformbeoordeling
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Plattformbewertung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: évaluation de plateforme
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: evaluación de plataforma
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: تقييم المنصة
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: penilaian platform
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 平台评估
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - sosa:Result
+    slots:
+    - has_score
+    slot_usage:
+      has_score:
+        range: float
+        required: true
+        minimum_value: 0.0
+        maximum_value: 1.0
+    comments:
+    - Normalized values between 0.0 and 1.0 enable cross-platform comparison.
+    - Used in platform ranking, confidence filtering, and specificity determination.
+    - 'Preserved from prior description: Quantitative scoring result for platform relevance, confidence, or specificity.'
+    keywords:
+    - quantitative evaluation
+    - relevance metric
+    - confidence measurement
+    - classification specificity
+    examples:
+    - value:
+        has_score: 0.85
+      description: High confidence score for primary platform classification

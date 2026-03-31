@@ -1,0 +1,97 @@
+id: https://nde.nl/ontology/hc/class/Bildstelle
+name: Bildstelle
+title: Bildstelle Type (German Visual Media Institution)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+classes:
+  Bildstelle:
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    description: >-
+      German educational institution providing visual media for teaching, research,
+      and educational purposes. Geographic restriction applies to Germany only.
+    alt_descriptions:
+      nl: >-
+        Duitse educatieve instelling die visuele media biedt voor onderwijs, onderzoek
+        en educatieve doeleinden. Geografische beperking geldt alleen voor Duitsland.
+      de: >-
+        Deutsche Bildungseinrichtung, die visuelle Medien für Unterricht, Forschung
+        und Bildungszwecke bereitstellt. Geografische Beschränkung gilt nur für Deutschland.
+      fr: >-
+        Institution éducative allemande fournissant des médias visuels pour l'enseignement,
+        la recherche et l'éducation. Restriction géographique applicable uniquement à l'Allemagne.
+      es: >-
+        Institución educativa alemana que proporciona medios visuales para enseñanza,
+        investigación y fines educativos. Restricción geográfica aplicable solo a Alemania.
+      ar: >-
+        مؤسسة تعليمية ألمانية توفر الوسائط البصرية للتدريس والبحث والأغراض التعليمية.
+        ينطبق التقييد الجغرافي على ألمانيا فقط.
+      id: >-
+        Lembaga pendidikan Jerman yang menyediakan media visual untuk pengajaran,
+        penelitian, dan tujuan pendidikan. Pembatasan geografis berlaku hanya untuk Jerman.
+      zh: >-
+        为教学、研究和教育目的提供视觉媒体的德国教育机构。地理限制仅适用于德国。
+    close_mappings:
+      - wd:Q861125
+    broad_mappings:
+      - skos:Concept
+      - schema:EducationalOrganization
+    slot_usage:
+      has_type:
+        any_of:
+          - equals_string: "hc:ArchiveOrganizationType"
+          - equals_string: "hc:Bildstelle"
+    slots:
+      - has_type
+      - has_score
+    comments:
+      - Geographic restriction to Germany only (applicable_countries MUST contain "DE")
+      - Custodian-only type without corresponding rico:RecordSetType
+      - Typically part of municipal or regional education administration
+      - Many have merged into Medienzentren (media centers)
+    see_also:
+      - https://www.wikidata.org/wiki/Q861125
+      - https://www.wikidata.org/wiki/Q1284615
+    examples:
+      - value:
+          has_type: hc:Bildstelle
+          has_score: 0.85
+        description: German visual media institution
+    keywords:
+      - visual media
+      - educational media
+      - germany
+      - media center
+    annotations:
+      specificity_score: 0.75
+      specificity_rationale: German-specific educational media institution type
+      custodian_types: "['*']"
+      geographic_restriction: DE
+      wikidata: Q861125
+    structured_aliases:
+      - literal_form: Bildstelle
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Bildstellen
+        predicate: PLURAL_FORM
+        in_language: de
+      - literal_form: beeldplaats
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: visual media center
+        predicate: EXACT_SYNONYM
+        in_language: en
+      - literal_form: centre de médias visuels
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: centro de medios visuales
+        predicate: EXACT_SYNONYM
+        in_language: es

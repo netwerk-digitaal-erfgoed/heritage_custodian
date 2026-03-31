@@ -1,0 +1,44 @@
+id: https://nde.nl/ontology/hc/parsimony/slot/functions_as
+name: functions_as
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  owl: http://www.w3.org/2002/07/owl#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  functions_as:
+    slot_uri: hc:functionsAs
+    description: >-
+      Relates a semantic entity to a reusable classification expressing its
+      role, function, position, rank, seniority, or qualification in context.
+
+      **Why this slot exists:** `functions_as` keeps contextual capacity such as
+      archivist, curator, manager, senior specialist, or MA-level qualification
+      separate from `typed_as`, which is better suited to more stable type
+      identity.
+    range: Classification
+    inverse: is_function_of
+    implements:
+      - owl:ObjectProperty
+    multivalued: true
+    comments:
+      - >-
+        Use this slot when the important semantic question is in what capacity an
+        entity acts, serves, or is described, rather than what permanent type of
+        thing it is.
+      - >-
+        Prefer functions_as over typed_as for contextual titles such as
+        archivist, curator, manager, intern, senior specialist, or MA-level
+        qualification.
+    examples:
+      - value: Activity:CareerEpisode functions_as Classification:Archivist
+        description: A work-experience activity is described as functioning in an archivist role.
+      - value: Observation:AffiliationRecord functions_as Classification:DigitalPreservationManager
+        description: A source-based affiliation observation records a current staff function or title.
+    narrow_mappings:
+      - hc:has_degree
+      - hc:has_level
+      - hc:has_position
+      - hc:has_role

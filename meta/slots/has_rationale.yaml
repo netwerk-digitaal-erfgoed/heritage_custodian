@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: has_rationale
+# ==============================================================================
+# The fundamental reason, logical basis, or justification for a decision.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property              | File/Line          | Mapping | Notes                                      |
+# |-----------|-----------------------|--------------------|---------|----------------------------------------------|
+# | **SKOS**  | `skos:note`           | skos.rdf:176-180   | broad   | "A general note, for any purpose." Broader.  |
+# | **PROV**  | `prov:wasInfluencedBy`| prov.ttl:1147-1172  | related | General influence relationship.              |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_rationale
+name: has_rationale
+title: Has Rationale
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_rationale:
+    slot_uri: hc:hasRationale
+    description: >-
+      To specify the fundamental reason, logical basis, or justification underlying a decision, belief, or course of action.
+    alt_descriptions:
+      nl: >-
+        Om de fundamentele reden, logische grondslag of rechtvaardiging te specificeren die ten grondslag ligt aan een beslissing, overtuiging of handelwijze.
+      de: >-
+        Um den grundlegenden Grund, die logische Basis oder die Rechtfertigung anzugeben, die einer Entscheidung, Überzeugung oder Vorgehensweise zugrunde liegt.
+      fr: >-
+        Pour spécifier la raison fondamentale, la base logique ou la justification sous-jacente à une décision, une croyance ou un plan d'action.
+      ar: >-
+        لتحديد السبب الجوهري أو الأساس المنطقي أو المبرر الكامن وراء قرار أو اعتقاد أو مسار عمل.
+      id: >-
+        Untuk menentukan alasan mendasar, dasar logis, atau justifikasi yang mendasari suatu keputusan, keyakinan, atau tindakan.
+      zh: >-
+        用于指定决策、信念或行动方针背后的根本原因、逻辑基础或理据。
+      es: >-
+        Para especificar la razón fundamental, la base lógica o la justificación subyacente a una decisión, creencia o curso de acción.
+    structured_aliases:
+      - literal_form: Rationale
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Begründung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Justification
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مبرر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Alasan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 理由
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Justificacion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_rationale
+      - has_or_had_annex_reason
+      - has_annex_reason
+      - link_rationale
+      - rationale
+      - reason_description
+      - specificity_rationale
+    broad_mappings:
+      - skos:note  # skos.rdf:176-180 - "A general note, for any purpose." Broader: any note, not specifically rationale/justification.
+    related_mappings:
+      - prov:wasInfluencedBy  # prov.ttl:1147-1172 - General influence relationship, different semantic intent.
+    examples:
+      - value:
+          has_label: Mapped to Q123456 based on exact name match
+        description: Wikidata mapping rationale
+    annotations:
+      custodian_types: '["*"]'

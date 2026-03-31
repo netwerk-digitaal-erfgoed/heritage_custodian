@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: in_country
+# ==============================================================================
+# The sovereign state or territory where an entity, location, or event is
+# physically situated or legally based.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                     | Mapping | Notes                                                                          |
+# |---------------|-----------------------------|-------------------------------|---------|--------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:addressCountry`     | schemaorg.owl:7260-7283       | close   | "The country." Recommended ISO 3166-1 alpha-2 format. Domain restricted to     |
+# |               |                             |                               |         |  DefinedRegion|GeoCoordinates|PostalAddress|GeoShape; our slot applies to any   |
+# |               |                             |                               |         |  entity/location/event. Range: Text|Country, compatible with our string.       |
+# | **GeoNames**  | `geonames:countryCode`      | geonames_ontology.rdf:190-195 | close   | "A two letters country code in the ISO 3166 list." Domain: Feature. Very close |
+# |               |                             |                               |         |  but restricted to GeoNames Features and ISO 2-letter codes specifically.       |
+# | **GeoNames**  | `geonames:parentCountry`    | geonames_ontology.rdf:367-377 | related | "parent country" of a Feature. ObjectProperty pointing to a Country feature    |
+# |               |                             |                               |         |  entity, while our slot is a string value. Different modality.                  |
+# | **DCTerms**   | `dcterms:spatial`           | dcterms.rdf:1944-1967         | broad   | "Spatial characteristics of the resource." Range: Location. Any spatial         |
+# |               |                             |                               |         |  characteristic is far broader than specifically identifying the country.       |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_country
+name: in_country
+title: In Country
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  geonames: http://www.geonames.org/ontology#
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  in_country:
+    slot_uri: hc:in_country
+    description: >-
+      Relates an entity, location, or event to the specific sovereign state or territory
+      where it is physically situated or legally based or where it would have been located
+      had it existed in current times.
+    alt_descriptions:
+      nl: >-
+        Relateert een entiteit, locatie of gebeurtenis aan de specifieke soevereine staat
+        of het grondgebied waar deze fysiek is gevestigd of juridisch is gebaseerd, of waar
+        deze zich zou hebben bevonden als deze in de huidige tijd had bestaan.
+      de: >-
+        Verknüpft eine Entität, einen Ort oder ein Ereignis mit dem spezifischen souveränen
+        Staat oder Gebiet, in dem es physisch angesiedelt oder rechtlich ansässig ist oder
+        in dem es sich befunden hätte, wenn es in der heutigen Zeit existiert hätte.
+      fr: >-
+        Relie une entité, un lieu ou un événement à l'État souverain ou au territoire
+        spécifique où il est physiquement situé ou juridiquement établi, ou où il aurait
+        été localisé s'il avait existé à l'époque actuelle.
+      ar: >-
+        يربط كيانًا أو موقعًا أو حدثًا بالدولة ذات السيادة أو الإقليم المحدد الذي يقع
+        فيه فعليًا أو يتخذه مقرًا قانونيًا، أو حيث كان سيتواجد لو كان موجودًا في
+        العصر الحالي.
+      id: >-
+        Menghubungkan entitas, lokasi, atau peristiwa dengan negara berdaulat atau wilayah
+        tertentu tempat entitas tersebut secara fisik berada atau secara hukum berbasis,
+        atau tempat entitas tersebut akan berada jika ada pada masa kini.
+      zh: >-
+        将实体、地点或事件与其实际所在或法律上所属的特定主权国家或领土相关联，或与其若存在于
+        当代将会所在的国家或领土相关联。
+      es: >-
+        Relaciona una entidad, ubicación o evento con el estado soberano o territorio
+        específico donde se encuentra físicamente o tiene su sede legal, o donde se habría
+        ubicado si hubiera existido en la época actual.
+    structured_aliases:
+      - literal_form: Land
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Land
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Pays
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: البلد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Negara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 国家
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: País
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+    close_mappings:
+      - schema:addressCountry  # schemaorg.owl:7260-7283 — "The country." ISO 3166-1 alpha-2 recommended. Domain restricted to address/geo contexts; our slot applies to any entity/location/event.
+      - geonames:countryCode  # geonames_ontology.rdf:190-195 — "A two letters country code in the ISO 3166 list." Domain: Feature. Restricted to GeoNames Features and ISO 2-letter codes.
+    related_mappings:
+      - geonames:parentCountry  # geonames_ontology.rdf:367-377 — "parent country" of a Feature. ObjectProperty pointing to Country entity; our slot is a string value.
+    broad_mappings:
+      - dcterms:spatial  # dcterms.rdf:1944-1967 — "Spatial characteristics of the resource." Range: Location. Any spatial characteristic is far broader than country identification.
+    aliases:
+      - country_code
+      - country_name
+      - country

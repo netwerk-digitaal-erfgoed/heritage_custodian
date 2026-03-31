@@ -1,0 +1,59 @@
+id: https://nde.nl/ontology/hc/class/Subregion
+name: subregion
+title: Subregion Class
+imports:
+- linkml:types
+- ../slots/in_country
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/identified_by
+prefixes:
+  linkml: https://w3id.org/linkml/
+  lcc_cr: http://www.iso.org/iso-3166-2#
+  gn: http://www.geonames.org/ontology#
+  schema: http://schema.org/
+  wikidata: http://www.wikidata.org/entity/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+classes:
+  Subregion:
+    class_uri: lcc_cr:GeographicRegion
+    description: >-
+      Geographic subdivision within a country, identified by ISO 3166-2 code.
+    alt_descriptions:
+      nl: Geografische onderverdeling binnen een land, geïdentificeerd door ISO 3166-2 code.
+      de: Geografische Unterteilung innerhalb eines Landes, identifiziert durch ISO 3166-2 Code.
+      fr: Subdivision géographique au sein d'un pays, identifiée par le code ISO 3166-2.
+    structured_aliases:
+    - literal_form: subregio
+      in_language: nl
+    - literal_form: Unterregion
+      in_language: de
+    - literal_form: sous-région
+      in_language: fr
+    comments:
+    - ISO 3166-2 defines codes for principal subdivisions of countries.
+    - Format is {country_alpha2}-{subdivision_code} (e.g., US-PA, NL-LI, DE-BY).
+    broad_mappings:
+    - schema:AdministrativeArea
+    close_mappings:
+    - wikidata:Q10864048
+    - crm:E53_Place
+    related_mappings:
+    - gn:A.ADM1
+    slots:
+    - in_country
+    - identified_by
+    - has_label
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      in_country:
+        required: true
+      has_label:
+        required: false
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

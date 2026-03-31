@@ -1,0 +1,67 @@
+id: https://nde.nl/ontology/hc/class/Index
+name: index_class
+title: Index Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_description
+- ../slots/has_type
+classes:
+  Index:
+    class_uri: hc:Index
+    description: >-
+      Structured navigational listing for document parts, subjects, names, or
+      other ordered access points.
+    alt_descriptions:
+      nl: Gestructureerde navigatielijst voor documentonderdelen onderwerpen namen of andere geordende toegangspunten.
+      de: Strukturierte Navigationsliste fuer Dokumentteile Themen Namen oder andere geordnete Zugriffspunkte.
+      fr: Liste de navigation structuree pour parties de document sujets noms ou autres points d acces ordonnes.
+      es: Listado de navegacion estructurado para partes de documento materias nombres u otros puntos de acceso ordenados.
+      ar: قائمة تنقل منظمة لأجزاء المستند أو الموضوعات أو الأسماء أو نقاط وصول مرتبة أخرى.
+      id: Daftar navigasi terstruktur untuk bagian dokumen subjek nama atau titik akses berurutan lainnya.
+      zh: 面向文档章节、主题、名称或其他有序访问点的结构化导航列表。
+    structured_aliases:
+    - {literal_form: registerstructuur, in_language: nl}
+    - {literal_form: Registerstruktur, in_language: de}
+    - {literal_form: structure d index, in_language: fr}
+    - {literal_form: estructura de indice, in_language: es}
+    - {literal_form: بنية فهرس, in_language: ar}
+    - {literal_form: struktur indeks, in_language: id}
+    - {literal_form: 索引结构, in_language: zh}
+    close_mappings:
+    - schema:ItemList
+    related_mappings:
+    - dcterms:tableOfContents
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_type
+    slot_usage:
+      has_label:
+        multivalued: true
+      has_type:
+        range: IndexType
+    annotations:
+      specificity_score: 0.55
+      specificity_rationale: Moderately specific navigation structure for documentary resources.
+      migration_source: table_of_content slot
+      migration_date: '2026-01-16'
+      migration_rule: Rule 53/56
+      custodian_types: "['*']"
+
+  IndexEntry:
+    class_uri: hc:IndexEntry
+    description: >-
+      Single navigational entry that can represent one heading, term, or
+      reference point within an index structure.
+    slots:
+    - has_label
+    - has_description

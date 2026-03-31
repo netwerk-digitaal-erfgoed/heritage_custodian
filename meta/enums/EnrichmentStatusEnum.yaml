@@ -1,0 +1,54 @@
+# Enrichment Status Enumeration - Processing status of enrichment pipeline
+# Extracted from custodian_source.yaml per Rule 38 (modular schema files)
+
+id: https://nde.nl/ontology/hc/enums/EnrichmentStatusEnum
+name: EnrichmentStatusEnum
+title: Enrichment Status Enumeration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+
+imports:
+  - linkml:types
+
+default_range: string
+
+enums:
+  EnrichmentStatusEnum:
+    description: Processing status of enrichment pipeline
+    permissible_values:
+      completed:
+        description: All enrichment stages completed successfully
+      success:
+        description: Enrichment completed successfully (alias for completed)
+      enriched:
+        description: Enrichment completed (general status)
+      enriched_via_website:
+        description: Enriched through website scraping
+      kien_extracted:
+        description: Extracted from KIEN database
+      fully_enriched:
+        description: All available enrichment sources applied
+      skipped:
+        description: Enrichment skipped (e.g., no Wikidata ID)
+      partial:
+        description: Some enrichment stages failed
+      pending:
+        description: Awaiting enrichment processing
+      failed:
+        description: Enrichment processing failed
+      museum_register_only:
+        description: Entry sourced only from museum register (no NDE CSV)
+      isil_kb_source:
+        description: Entry sourced from ISIL/KB registry
+      NO_MATCH:
+        description: No matching entry found during enrichment
+      google_maps_enriched:
+        description: Enriched via Google Maps API
+      needs_enrichment:
+        description: Entry requires further enrichment processing
+      new_entry:
+        description: Newly added entry not yet enriched
+      google_maps_searched:
+        description: Google Maps search attempted but not yet fully enriched

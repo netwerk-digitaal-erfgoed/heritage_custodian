@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/commercial-organization-type
+name: commercial_organization_type
+title: CommercialOrganizationType
+imports:
+- linkml:types
+- ../enums/CommercialCustodianTypeEnum
+- ../slots/collect
+- ../slots/integrate
+- ../slots/has_model
+- ../slots/has_rationale
+- ../slots/has_score
+- ../slots/has_service
+- ../slots/has_type
+- ../slots/include
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  foaf: http://xmlns.com/foaf/0.1/
+default_prefix: hc
+classes:
+  CommercialOrganizationType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: >-
+      Custodian-category concept for profit-driven institutions that preserve heritage as part of corporate strategy, branding, or compliance.
+    alt_descriptions:
+      nl: Categorieconcept voor beheerders met winstoogmerk die erfgoed behouden als onderdeel van bedrijfsstrategie, branding of compliance.
+      de: Kategoriekonzept für gewinnorientierte Verwahrer, die Kulturerbe als Teil von Unternehmensstrategie, Markenführung oder Compliance bewahren.
+      fr: Concept de catégorie pour des dépositaires à but lucratif qui préservent le patrimoine dans une logique de stratégie d'entreprise, d'image de marque ou de conformité.
+      es: Concepto de categoria para custodios con fines de lucro que preservan patrimonio como parte de estrategia corporativa, marca o cumplimiento.
+      ar: مفهوم فئة للجهات الحافظة الربحية التي تصون التراث ضمن الاستراتيجية المؤسسية أو الهوية العلامية أو الامتثال.
+      id: Konsep kategori kustodian berorientasi laba yang melestarikan warisan sebagai bagian dari strategi korporat, merek, atau kepatuhan.
+      zh: 面向营利机构的保管类别概念，指将遗产保护纳入企业战略、品牌或合规体系的机构。
+    structured_aliases:
+    - literal_form: commerciële erfgoedbeheerder
+      in_language: nl
+    - literal_form: kommerzieller Kulturerbe-Verwahrer
+      in_language: de
+    - literal_form: dépositaire patrimonial commercial
+      in_language: fr
+    - literal_form: custodio patrimonial comercial
+      in_language: es
+    - literal_form: جهة حفظ تراث تجارية
+      in_language: ar
+    - literal_form: kustodian warisan komersial
+      in_language: id
+    - literal_form: 商业遗产保管机构
+      in_language: zh
+    comments:
+    - |
+      Preserved from prior description (commit 2e1e6e5f):
+
+      "Specialized custodian type for for-profit commercial organizations that\nmaintain heritage collections (corporate archives, company museums, brand centers).\n\n**CRITICAL DISTINCTION - Commercial vs. Other Types**:\n\nCommercialOrganizationType is for FOR-PROFIT entities maintaining heritage collections:\n- **Corporate archives**: Business records, product development history\n- **Company museums**: Brand heritage, corporate history exhibitions\n- **Business libraries**: Industry collections, technical documentation\n- **Brand heritage centers**: Marketing-oriented heritage spaces\n\n**Do NOT use CommercialOrganizationType if**:\n- \u274C Non-profit museum about industry/commerce \u2192 Use MuseumType\n- \u274C University business archive \u2192 Use ArchiveOrganizationType + EducationProviderType\n- \u274C Brewery with heritage mission (not-for-profit) \u2192 Use TasteScentHeritageType\n- \u274C Professional association archive \u2192 Use NonProfitType\n\n**Use CommercialOrganizationType\
+    annotations:
+      skos:prefLabel: Commercial Organization
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    broad_mappings:
+    - schema:Organization
+    - skos:Concept
+    close_mappings:
+    - schema:Corporation
+    - crm:E74_Group
+    - foaf:Organization
+    related_mappings:
+    - schema:LocalBusiness
+    - schema:Museum
+    - schema:TouristAttraction
+    slots:
+    - has_model
+    - collect
+    - has_rationale
+    - has_service
+    - include
+    - integrate
+    - has_type
+    - has_score
+    slot_usage:
+      has_type:
+        equals_string: CommercialOrganizationType

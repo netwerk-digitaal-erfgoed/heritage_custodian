@@ -1,0 +1,109 @@
+# ==============================================================================
+# LinkML Slot Definition: has_living_specimen
+# ==============================================================================
+# Whether an institution maintains living organisms in a managed collection.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                          |
+# |---------------|-----------------------|----------------------|---------|-----------------------------------------------------------------|
+# | **DwC**       | `dwc:basisOfRecord`   | dwc.rdf:348-353      | related | Vocabulary includes LivingSpecimen as a value; operates at occurrence-record level, not institutional boolean. |
+# | **DwC**       | `dwc:vitality`        | dwc.rdf:1916-1921    | related | Captures alive/dead status of individual organisms; narrow scope overlap. |
+#
+# NOTE: dwc:LivingSpecimen (dwc.rdf:996-1001) is a CLASS, not a property — cannot be used as mapping.
+# NOTE: dwc.rdf is a lightweight namespace file without rdfs:comment — line refs point to dcterms:isPartOf triples.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_living_specimen
+name: has_living_specimen
+title: Has Living Specimen
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dwc: http://rs.tdwg.org/dwc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_living_specimen:
+    slot_uri: hc:hasLivingSpecimen
+    description: >-
+      Maintains a living example or individual organism of a specific taxon
+      within a managed collection, such as a zoo, botanical garden, or
+      laboratory.
+    comments:
+      - >-
+        TRUE when institution maintains: live animals in enclosures, exhibits, or
+        aquariums; living plants in gardens, greenhouses, or conservatories;
+        active growth, breeding, or cultivation programs; ongoing care, feeding,
+        and husbandry.
+      - >-
+        FALSE when institution has: only preserved specimens (taxidermy, dried
+        plants, pickled animals); no active husbandry or horticultural programs;
+        static displays without living organisms.
+      - >-
+        Mixed collections: when institutions maintain both living and preserved
+        collections, TRUE if living specimens are maintained (e.g., natural
+        history museum with live insect colonies, botanical garden with herbarium
+        collections, zoo with taxidermy educational displays).
+      - >-
+        This field helps distinguish BioCustodian (B) from Museum (M) and
+        Research Center (R) when dealing with biological specimens.
+    alt_descriptions:
+      nl: >-
+        Onderhoudt een levend exemplaar of individueel organisme van een
+        specifiek taxon binnen een beheerde collectie, zoals een dierentuin,
+        botanische tuin of laboratorium.
+      de: >-
+        Unterhält ein lebendes Exemplar oder einen individuellen Organismus
+        eines bestimmten Taxons innerhalb einer verwalteten Sammlung, wie einem
+        Zoo, botanischen Garten oder Labor.
+      fr: >-
+        Maintient un exemplaire vivant ou un organisme individuel d'un taxon
+        spécifique au sein d'une collection gérée, telle qu'un zoo, un jardin
+        botanique ou un laboratoire.
+      ar: >-
+        يحتفظ بعينة حية أو كائن حي فردي من تصنيف محدد ضمن مجموعة مُدارة، مثل
+        حديقة حيوان أو حديقة نباتية أو مختبر.
+      id: >-
+        Memelihara contoh hidup atau organisme individu dari takson tertentu
+        dalam koleksi yang dikelola, seperti kebun binatang, kebun raya, atau
+        laboratorium.
+      zh: >-
+        在动物园、植物园或实验室等受管理的收藏中，维护特定分类群的活体标本或个体生物。
+      es: >-
+        Mantiene un ejemplar vivo o un organismo individual de un taxón
+        específico dentro de una colección gestionada, como un zoológico, jardín
+        botánico o laboratorio.
+    structured_aliases:
+      - literal_form: Levend Specimen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Lebendes Exemplar
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Spécimen Vivant
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عينة حية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Spesimen Hidup
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 活体标本
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Espécimen Vivo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - living_collection
+    related_mappings:
+      - dwc:basisOfRecord  # dwc.rdf:348-353 - Vocabulary includes LivingSpecimen as a value; occurrence-record level.
+      - dwc:vitality  # dwc.rdf:1916-1921 - Captures alive/dead status of individual organisms.

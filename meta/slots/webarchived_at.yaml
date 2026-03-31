@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: webarchived_at
+# ==============================================================================
+# URL or archive service location where a web resource snapshot is preserved.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                                                       |
+# |---------------|-----------------------|--------------------------|---------|-----------------------------------------------------------------------------|
+# | **Schema.org**| `schema:archivedAt`   | schemaorg.owl:8358-8380  | close   | "Indicates a page or link involved in archival of a CreativeWork." Domain:  |
+# |               |                       |                          |         | CreativeWork, Range: URL|WebPage. Specifically about archival locations but |
+# |               |                       |                          |         | domain is CreativeWork-specific; this slot covers web resources generally.  |
+# | **PROV-O**    | `prov:alternateOf`    | prov.ttl:466-479         | related | "Two alternate entities present aspects of the same thing." Entity->Entity. |
+# |               |                       |                          |         | General alternate representation — an archived snapshot IS an alternate,    |
+# |               |                       |                          |         | but alternateOf does not specifically mean archival.                        |
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/webarchived_at
+name: webarchived_at
+title: Webarchived At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  webarchived_at:
+    slot_uri: hc:webarchivedAt
+    description: >-
+      Identifies the specific URL, repository, or archive service location
+      where a snapshot or historical version of a web resource has been
+      preserved for long-term access.
+    alt_descriptions:
+      nl: >-
+        Identificeert de specifieke URL, repository of archiefdienstlocatie
+        waar een momentopname of historische versie van een webbron is
+        bewaard voor langetermijntoegang.
+      de: >-
+        Identifiziert die spezifische URL, das Repository oder den
+        Archivdienststandort, an dem ein Snapshot oder eine historische
+        Version einer Webressource zur langfristigen Zugangssicherung
+        aufbewahrt wurde.
+      fr: >-
+        Identifie l'URL specifique, le depot ou l'emplacement du service
+        d'archivage ou un instantane ou une version historique d'une
+        ressource web a ete conserve pour un acces a long terme.
+      ar: >-
+        يحدد عنوان URL المحدد أو المستودع أو موقع خدمة الأرشيف حيث تم
+        حفظ لقطة أو نسخة تاريخية من مورد ويب للوصول طويل الأمد.
+      id: >-
+        Mengidentifikasi URL spesifik, repositori, atau lokasi layanan
+        arsip tempat salinan atau versi historis dari sumber daya web
+        telah dilestarikan untuk akses jangka panjang.
+      zh: >-
+        标识特定的URL、存储库或档案服务位置，在该位置保存了网络资源的快照或历史版本以供长期访问。
+      es: >-
+        Identifica la URL especifica, el repositorio o la ubicacion del
+        servicio de archivo donde se ha conservado una instantanea o
+        version historica de un recurso web para acceso a largo plazo.
+    structured_aliases:
+      - literal_form: Webarchieflocatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Webarchivstandort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Emplacement d'archivage web
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موقع أرشيف الويب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Lokasi arsip web
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 网络存档位置
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Ubicacion de archivo web
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    multivalued: true
+    inlined: false
+    inlined_as_list: false
+    aliases:
+      - is_or_was_webarchived_at
+    close_mappings:
+      - schema:archivedAt  # schemaorg.owl:8358-8380 - "Indicates a page or link involved in archival of a CreativeWork." Domain: CreativeWork, Range: URL|WebPage. Specifically about archival but domain is CreativeWork-specific.
+    related_mappings:
+      - prov:alternateOf  # prov.ttl:466-479 - "Two alternate entities present aspects of the same thing." General alternate representation, not specifically archival.
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Web archiving applies to all heritage types.
+      specificity_score: 0.3
+      specificity_rationale: Specialized for provenance/archival contexts.
+    comments:
+      - Links to web archive snapshots for long-term preservation.
+      - "Temporal Semantics (RiC-O Pattern): The 'isOrWas' naming follows RiC-O convention. Web archives capture content at a specific point in time."
+      - "Web Archive Services include: Internet Archive Wayback Machine (web.archive.org), Archive.today (archive.ph), UK Web Archive (webarchive.org.uk), national library web archives."
+      - Essential for data provenance verification - archived snapshots prove content existed at extraction time.
+      - Multivalued - content may be archived at multiple services/times.

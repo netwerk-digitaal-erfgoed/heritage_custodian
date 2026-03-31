@@ -1,0 +1,66 @@
+id: https://w3id.org/nde/ontology/SecurityArchives
+name: SecurityArchives
+title: Security Archives
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  SecurityArchives:
+    description: >-
+      Type of archives in Czechia related to security services, preserving records
+      of security and intelligence services, often from historical regimes.
+    alt_descriptions:
+      cs: Typ archivů v České republice související s bezpečnostními službami.
+      de: Archivtyp in Tschechien, der mit Sicherheitsdiensten verbunden ist.
+      fr: Type d'archives en Tchéquie lié aux services de sécurité.
+    structured_aliases:
+    - literal_form: bezpečnostní archivy
+      in_language: cs
+    - literal_form: Sicherheitsarchive
+      in_language: de
+    - literal_form: archives de sécurité
+      in_language: fr
+    comments:
+    - Czech-specific institution type.
+    - Includes archives documenting communist-era security services.
+    - Important for transitional justice and historical research.
+    - Access may be restricted for privacy/security.
+    is_a: CustodianType
+    class_uri: schema:ArchiveOrganization
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q101475797
+    broad_mappings:
+    - wd:Q166118
+    slot_usage:
+      identified_by:
+      has_type:
+        equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Security Archives
+      skos:altLabel: Security Service Archives, Intelligence Archives
+      subject_domain: security/intelligence
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - GovernmentArchive
+    - MilitaryArchive
+    - PoliticalArchive

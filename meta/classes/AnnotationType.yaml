@@ -1,0 +1,105 @@
+id: https://nde.nl/ontology/hc/class/AnnotationType
+name: AnnotationType
+title: Annotation Type Abstract Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  oa: http://www.w3.org/ns/oa#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_label
+classes:
+  AnnotationType:
+    class_uri: skos:Concept
+    description: >-
+      Abstract base class for categorizing different kinds of supplemental
+      information attached to resources, such as comments, tags, highlights,
+      or corrections.
+    alt_descriptions:
+      nl: >-
+        Abstracte basisklasse voor het categoriseren van verschillende soorten
+        aanvullende informatie toegevoegd aan bronnen, zoals opmerkingen, tags,
+        markeringen of correcties.
+      de: >-
+        Abstrakte Basisklasse zur Kategorisierung verschiedener Arten von
+        Zusatzinformationen, die Ressourcen angehangt werden, wie Kommentare,
+        Tags, Hervorhebungen oder Korrekturen.
+      fr: >-
+        Classe de base abstraite pour categoriser differents types d'informations
+        supplementaires jointes aux ressources, comme les commentaires, balises,
+        mises en evidence ou corrections.
+      es: >-
+        Clase base abstracta para categorizar diferentes tipos de informacion
+        adicional adjunta a los recursos, como comentarios, etiquetas,
+        resaltados o correcciones.
+      ar: >-
+        فئة أساسية مجردة لتصنيف أنواع مختلفة من المعلومات الإضافية المرفقة
+        بالموارد، مثل التعليقات والعلامات والإبرازات أو التصحيحات.
+      id: >-
+        Kelas dasar abstrak untuk mengkategorikan berbagai jenis informasi tambahan
+        yang dilampirkan ke sumber daya, seperti komentar, tag, sorotan, atau koreksi.
+      zh: >-
+        用于分类附加到资源的不同类型补充信息的抽象基类，如评论、标签、高亮或更正。
+    structured_aliases:
+    - literal_form: annotatietype
+      in_language: nl
+    - literal_form: Anmerkungstyp
+      in_language: de
+    - literal_form: type d'annotation
+      in_language: fr
+    - literal_form: tipo de anotacion
+      in_language: es
+    - literal_form: نوع التعليق التوضيحي
+      in_language: ar
+    - literal_form: tipe anotasi
+      in_language: id
+    - literal_form: 注释类型
+      in_language: zh
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    related_mappings:
+    - oa:Annotation
+    slots:
+    - has_label
+    - has_code
+    - has_description
+    slot_usage:
+      has_code:
+        required: true
+      has_label:
+        required: false
+    comments:
+    - Abstract base class - use specific subclasses (CommentAnnotation, TagAnnotation, etc.)
+    - Provides a taxonomy for annotation classification
+    - Part of W3C Web Annotation ecosystem
+    see_also:
+    - Annotation
+    - AnnotationTypes
+    examples:
+    - value:
+        has_code: comment
+        has_label: Comment
+        has_description: "A textual comment on a resource"
+      description: Comment annotation type
+    - value:
+        has_code: tag
+        has_label: Tag
+        has_description: "A keyword or tag associated with a resource"
+      description: Tag annotation type
+    keywords:
+    - annotation type
+    - comment
+    - tag
+    - highlight
+    - correction
+    - classification
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Abstract base class for annotation type taxonomy
+      custodian_types: "['*']"

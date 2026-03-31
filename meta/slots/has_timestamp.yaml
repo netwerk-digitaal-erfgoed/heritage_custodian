@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: has_timestamp
+# ==============================================================================
+# Precise point in time recorded for an event, creation, or state change.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line                | Mapping  | Notes                                                                              |
+# |----------------|-----------------------|--------------------------|----------|-------------------------------------------------------------------------------------|
+# | **DCTerms**    | `dcterms:date`        | dcterms.rdf:1122-1145    | broad    | "A point or period of time associated with an event in the lifecycle of the resource." Date is broader (any granularity, periods); timestamp is precise. |
+# | **Schema.org** | `schema:dateCreated`  | schemaorg.owl:14173-14191 | related | "The date on which the CreativeWork was created." Domain: CreativeWork/DataFeedItem — creation-specific, not general timestamp. |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_timestamp
+name: has_timestamp
+title: Has Timestamp
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_timestamp:
+    slot_uri: hc:hasTimestamp
+    description: >-
+      To specify the precise point in time recorded for an event, creation,
+      or state change, typically including both the date and time.
+    alt_descriptions:
+      nl: >-
+        Om het precieze tijdstip aan te geven dat is vastgelegd voor een
+        gebeurtenis, creatie of toestandsverandering, doorgaans inclusief
+        zowel de datum als het tijdstip.
+      de: >-
+        Zur Angabe des genauen Zeitpunkts, der für ein Ereignis, eine Erstellung
+        oder eine Zustandsänderung aufgezeichnet wurde, typischerweise
+        einschließlich Datum und Uhrzeit.
+      fr: >-
+        Pour spécifier le point précis dans le temps enregistré pour un
+        événement, une création ou un changement d'état, incluant généralement
+        la date et l'heure.
+      ar: >-
+        لتحديد النقطة الزمنية الدقيقة المسجلة لحدث أو إنشاء أو تغيير في
+        الحالة، وتشمل عادةً التاريخ والوقت معاً.
+      id: >-
+        Untuk menentukan titik waktu yang tepat yang dicatat untuk suatu
+        peristiwa, pembuatan, atau perubahan keadaan, biasanya mencakup
+        tanggal dan waktu.
+      zh: >-
+        用于指定为事件、创建或状态变更记录的精确时间点，通常包括日期和时间。
+      es: >-
+        Para especificar el punto preciso en el tiempo registrado para un
+        evento, creación o cambio de estado, que normalmente incluye tanto
+        la fecha como la hora.
+    structured_aliases:
+      - literal_form: Tijdstempel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zeitstempel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Horodatage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: طابع زمني
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Stempel Waktu
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 时间戳
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Marca de tiempo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    multivalued: false
+    broad_mappings:
+      - dcterms:date  # dcterms.rdf:1122-1145 — "A point or period of time associated with an event in the lifecycle of the resource." Broader than timestamp.
+    related_mappings:
+      - schema:dateCreated  # schemaorg.owl:14173-14191 — "The date on which the CreativeWork was created." Creation-specific, not general timestamp.
+    aliases:
+      - has_or_had_timestamp
+      - date_value
+      - note_date
+      - record_date 
+      - specificity_timestamp
+    annotations:
+      custodian_types: '["*"]'

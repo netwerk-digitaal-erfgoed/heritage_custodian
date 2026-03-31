@@ -1,0 +1,96 @@
+id: https://nde.nl/ontology/hc/class/ArchiveInfo
+name: ArchiveInfo
+title: Archive Info Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_name
+  - ../slots/identified_by
+classes:
+  ArchiveInfo:
+    class_uri: rico:Agent
+    description: >-
+      Basic reference information about an archival institution including
+      name, website, and ISIL identifier for discovery and identification
+      purposes.
+    alt_descriptions:
+      nl: >-
+        Basisreferentie-informatie over een archiefinstelling inclusief naam,
+        website en ISIL-identificatie voor ontdekking en identificatie.
+      de: >-
+        Grundlegende Referenzinformationen uber eine Archivinstitution einschließlich
+        Name, Website und ISIL-Kennung für Entdeckung und Identifizierung.
+      fr: >-
+        Informations de reference de base sur une institution d'archives,
+        y compris le nom, le site web et l'identifiant ISIL pour la decouverte
+        et l'identification.
+      es: >-
+        Informacion de referencia basica sobre una institucion de archivos,
+        incluyendo nombre, sitio web e identificador ISIL para propositos
+        de descubrimiento e identificacion.
+      ar: >-
+        معلومات مرجعية أساسية عن مؤسسة أرشيفية بما في ذلك الاسم والموقع
+        الإلكتروني ومعرف ISIL لأغراض الاكتشاف والتعريف.
+      id: >-
+        Informasi referensi dasar tentang lembaga arsip termasuk nama, situs web,
+        dan pengenal ISIL untuk tujuan penemuan dan identifikasi.
+      zh: >-
+        关于档案机构的基本参考信息，包括名称、网站和ISIL标识符，用于发现和识别。
+    structured_aliases:
+    - literal_form: archiefinfo
+      in_language: nl
+    - literal_form: Archivinformation
+      in_language: de
+    - literal_form: info archives
+      in_language: fr
+    - literal_form: info de archivo
+      in_language: es
+    - literal_form: معلومات الأرشيف
+      in_language: ar
+    - literal_form: info arsip
+      in_language: id
+    - literal_form: 档案信息
+      in_language: zh
+    close_mappings:
+    - schema:ArchiveOrganization
+    related_mappings:
+    - prov:Agent
+    broad_mappings:
+    - skos:Concept
+    - rico:Agent
+    slots:
+    - has_name
+    - identified_by
+    comments:
+    - Lightweight reference class for basic archive information
+    - Used for discovery and identification in aggregators
+    - Contains minimal metadata for archive lookup
+    - ISIL identifier provides unique international identification
+    see_also:
+    - ArchiveOrganizationType
+    examples:
+    - value:
+        has_name: "Nationaal Archief"
+        identified_by: "NL-HaNA"
+      description: Dutch National Archive basic info
+    - value:
+        has_name: "Bundesarchiv"
+        identified_by: "DE-BA"
+      description: German Federal Archive basic info
+    keywords:
+    - archive info
+    - archive reference
+    - ISIL
+    - institution identification
+    - basic metadata
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Lightweight reference class for archive discovery
+      custodian_types: "['*']"

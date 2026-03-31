@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: located_in
+# ==============================================================================
+# Spatial containment within a geographic area or administrative region.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line                  | Mapping | Notes                                     |
+# |---------------|----------------------------|----------------------------|---------|-------------------------------------------|
+# | **Schema.org**| `schema:location`          | schemaorg.owl:25018-25046  | slot_uri| "The location of..." General location.    |
+# | **GeoNames**  | `gn:locatedIn`             | geonames_ontology.rdf:277-280| close | "Subject resource is located in the       |
+# |               |                            |                            |         | object feature." GeoNames Feature domain. |
+# | **RiC-O**     | `rico:hasOrHadLocation`    | RiC-O_1-1.rdf:6852-6889   | close   | Thing→Place. Inverse of isOrWasLocationOf.|
+#
+# slot_uri uses schema:location as the primary URI.
+# LOCN (locn:location) removed — not available in data/ontology/ for verification.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-08 — Pass 2: synced alt_descriptions, removed locn:location,
+#   removed redundant exact_mapping, cleaned prefixes, added structured_aliases.
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/located_in
+name: located_in
+title: Located In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  gn: http://www.geonames.org/ontology#
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  located_in:
+    slot_uri: schema:location
+    description: >-
+      Describes the spatial relationship where an entity is contained within a larger geographic area, administrative region, or physical boundary.
+    alt_descriptions:
+      nl: >-
+        Beschrijft de ruimtelijke relatie waarbij een entiteit zich bevindt binnen een groter geografisch gebied, administratieve regio of fysieke begrenzing.
+      de: >-
+        Beschreibt die räumliche Beziehung, bei der eine Entität in einem größeren geografischen Gebiet, einer Verwaltungsregion oder einer physischen Grenze enthalten ist.
+      fr: >-
+        Décrit la relation spatiale dans laquelle une entité est contenue dans une zone géographique plus grande, une région administrative ou une limite physique.
+      ar: >-
+        يصف العلاقة المكانية حيث يكون كيان ما موجوداً ضمن منطقة جغرافية أكبر أو منطقة إدارية أو حدود مادية.
+      id: >-
+        Menjelaskan hubungan spasial di mana suatu entitas berada dalam wilayah geografis, daerah administratif, atau batas fisik yang lebih besar.
+      zh: >-
+        描述实体位于更大地理区域、行政区划或物理边界内的空间关系。
+      es: >-
+        Describe la relación espacial en la que una entidad está contenida dentro de un área geográfica más grande, una región administrativa o un límite físico.
+    structured_aliases:
+      - literal_form: Gelegen in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Gelegen in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Situé dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يقع في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Terletak di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 位于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Ubicado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    required: false
+    close_mappings:
+      - gn:locatedIn  # geonames_ontology.rdf:277-280 - GeoNames Feature containment
+      - rico:hasOrHadLocation  # RiC-O_1-1.rdf:6852-6889 - Thing→Place
+    aliases:
+      - is_or_was_located_in
+      - located_within
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.2
+    examples:
+      - value: Amsterdam
+        description: Entity located in Amsterdam.
+    comments:
+      - "Distinction from located_at: located_in describes containment within a geographic area (city/region level); located_at identifies a specific physical address or coordinate point."

@@ -1,0 +1,156 @@
+id: https://nde.nl/ontology/hc/class/VideoTranscript
+name: video_transcript_class
+title: Video Transcript Class
+imports:
+- linkml:types
+- ../enums/TranscriptFormatEnum
+- ../slots/contain
+- ../slots/has_format
+- ../slots/has_score
+- ../slots/has_segment
+- ../slots/has_speaker
+- ../slots/identified_by
+- ../slots/has_paragraph
+- ../slots/has_quantity
+- ../slots/has_language
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+classes:
+  VideoTranscript:
+    is_a: VideoTextContent
+    class_uri: crm:E33_Linguistic_Object
+    abstract: false
+    description: >-
+      Complete textual representation of spoken audio content in a video,
+      optionally segmented with speaker identification and timing information.
+    alt_descriptions:
+      nl: Volledige transcriptie van gesproken audio in een video.
+      de: Vollstaendige Transkription des gesprochenen Audioinhalts eines Videos.
+      fr: Transcription complete du contenu parle d une video.
+      es: Transcripcion completa del contenido hablado de un video.
+      ar: تفريغ نصي كامل لمحتوى الكلام في فيديو.
+      id: Transkrip lengkap dari konten ujaran dalam video.
+      zh: 视频语音内容的完整文字转录。
+    structured_aliases:
+    - {literal_form: videotranscript, in_language: nl}
+    - {literal_form: Videotranskript, in_language: de}
+    - {literal_form: transcription video, in_language: fr}
+    - {literal_form: transcripcion de video, in_language: es}
+    - {literal_form: تفريغ فيديو, in_language: ar}
+    - {literal_form: transkrip video, in_language: id}
+    - {literal_form: 视频转录, in_language: zh}
+    broad_mappings:
+    - crm:E33_Linguistic_Object
+    close_mappings:
+    - schema:transcript
+    related_mappings:
+    - dcterms:Text
+    slots:
+    - contain
+    - has_format
+    - has_segment
+    - has_speaker
+    - has_language
+    - has_paragraph
+    - has_quantity
+    - identified_by
+    - has_score
+    slot_usage:
+      contain:
+        range: string
+        required: true
+        examples:
+        - value: 'Welcome to the Rijksmuseum. Today we''ll explore the masterpieces of Dutch Golden Age painting.'
+        - value: '[Narrator] Welcome to the Rijksmuseum.'
+      has_format:
+        range: TranscriptFormatEnum
+        required: false
+        examples:
+        - value: STRUCTURED
+        - value: PLAIN_TEXT
+      has_segment:
+        range: VideoTimeSegment
+        required: false
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      has_speaker:
+        range: string
+        required: false
+        multivalued: true
+        examples:
+        - value: Narrator
+        - value: Curator
+      has_language:
+        range: Language
+        required: false
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+            has_code: nl
+            has_label: Dutch
+        - value:
+            has_code: en
+            has_label: English
+      has_paragraph:
+        range: integer
+        required: false
+        minimum_value: 0
+        examples:
+        - value: 15
+      has_quantity:
+        range: integer
+        required: false
+        minimum_value: 0
+        examples:
+        - value: 47
+      identified_by:
+        range: uriorcurie
+        required: false
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/video-transcript/example-001
+    comments:
+    - Full text transcription of video audio content
+    - Base class for VideoSubtitle (subtitles are transcripts plus time codes)
+    - Supports both plain text and segment-based transcripts
+    - Useful for accessibility, discovery, and preservation
+    see_also:
+    - https://schema.org/transcript
+    - http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "Full text transcription of video audio content.\n\n**DEFINITION**:\n\nA VideoTranscript is the complete textual representation of all spoken\ncontent in a video. It extends VideoTextContent with transcript-specific\nproperties and inherits all provenance tracking capabilities.\n\n**RELATIONSHIP TO VideoSubtitle**:\n\nVideoSubtitle is a subclass of VideoTranscript because:\n1. A subtitle file contains everything a transcript needs PLUS time codes\n2. You can derive a plain transcript from subtitles by stripping times\n3. This inheritance allows polymorphic handling of text content\n\n```\nVideoTranscript        VideoSubtitle (is_a VideoTranscript)\n\u251C\u2500\u2500 full_text          \u251C\u2500\u2500 full_text (inherited)\n\u251C\u2500\u2500 segments[]         \u251C\u2500\u2500 segments[] (required, with times)\n\u2514\u2500\u2500 (optional times)   \u2514\u2500\u2500 subtitle_format (SRT, VTT, etc.)\n```\n\n**SCHEMA.ORG ALIGNMENT**:\n\nMaps to `schema:transcript` property:\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        A VideoTranscript is the complete textual representation of spoken
+        content in a video.
+
+        VideoSubtitle is modeled as a subclass of VideoTranscript.
+        Subtitles add required time codes and a subtitle file format (e.g., VTT/SRT).
+
+        Alignment
+        - schema:transcript
+        - crm:E33_Linguistic_Object
+
+      legacy_description: |
+        Preserved from earlier, more verbose description.
+
+        It included:
+        - rationale for the VideoTranscript/VideoSubtitle relationship
+        - format comparisons (PLAIN_TEXT, PARAGRAPHED, STRUCTURED, TIMESTAMPED)
+        - extended heritage context and provenance guidance

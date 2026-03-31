@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: has_literal_form
+# ==============================================================================
+# The exact character sequence or surface representation of a term or value.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                        | File/Line                       | Mapping | Notes                                                                       |
+# |-------------|---------------------------------|---------------------------------|---------|-----------------------------------------------------------------------------|
+# | **SKOS-XL** | `skosxl:literalForm`            | (not in local files)            | close   | "The literal form of an skosxl:Label." Strongest semantic match.            |
+# | **CRM**     | `crm:P190_has_symbolic_content` | CIDOC_CRM_v7.1.3.rdf:5028-5038 | close   | "Complete identifying representation of content in string form."            |
+# | **FOAF**    | `foaf:name`                     | foaf.ttl:442-450                | close   | "A name for some thing." SubPropertyOf rdfs:label.                          |
+# | **Schema**  | `schema:name`                   | schemaorg.owl:26889-26910       | close   | "The name of the item." SubPropertyOf rdfs:label.                           |
+# | **RDFS**    | `rdfs:label`                    | (not in local files)            | close   | "A human-readable name for the subject." Well-known W3C standard.           |
+# | **PNV**     | `pnv:literalName`               | pnv.ttl:246-255                 | narrow  | "Full personal name." Domain restricted to PersonName.                      |
+# | **RiC-O**   | `rico:textualValue`             | RiC-O_1-1.rdf:23296-23311      | narrow  | "A textual expression of an Appellation or Date." Domain restricted.        |
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_literal_form
+name: has_literal_form
+title: Has Literal Form
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skosxl: http://www.w3.org/2008/05/skos-xl#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  foaf: http://xmlns.com/foaf/0.1/
+  schema: https://schema.org/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  pnv: https://w3id.org/pnv#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_literal_form:
+    slot_uri: hc:hasLiteralForm
+    description: >-
+      Captures the exact character sequence, written string, or surface representation
+      of a term, value, or data entry, distinct from its abstract meaning or internal
+      reference.
+    alt_descriptions:
+      nl: >-
+        Legt de exacte tekenreeks, geschreven string of oppervlakterepresentatie van een
+        term, waarde of gegevensinvoer vast, los van de abstracte betekenis of interne
+        verwijzing.
+      de: >-
+        Erfasst die exakte Zeichenfolge, geschriebene Zeichenkette oder
+        Oberflächendarstellung eines Begriffs, Werts oder Dateneintrags, unabhängig von
+        seiner abstrakten Bedeutung oder internen Referenz.
+      fr: >-
+        Capture la séquence exacte de caractères, la chaîne écrite ou la représentation
+        de surface d'un terme, d'une valeur ou d'une entrée de données, distincte de sa
+        signification abstraite ou de sa référence interne.
+      ar: >-
+        يلتقط التسلسل الدقيق للأحرف أو السلسلة المكتوبة أو التمثيل السطحي لمصطلح أو
+        قيمة أو إدخال بيانات، بشكل مستقل عن معناه المجرد أو مرجعه الداخلي.
+      id: >-
+        Menangkap urutan karakter yang tepat, string tertulis, atau representasi permukaan
+        dari suatu istilah, nilai, atau entri data, yang berbeda dari makna abstrak atau
+        referensi internalnya.
+      zh: >-
+        捕获术语、值或数据条目的精确字符序列、书写字符串或表面表示形式，区别于其抽象含义或内部引用。
+      es: >-
+        Captura la secuencia exacta de caracteres, la cadena escrita o la representación
+        superficial de un término, valor o entrada de datos, distinta de su significado
+        abstracto o referencia interna.
+    structured_aliases:
+      - literal_form: Letterlijke Vorm
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Literalform
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Forme Littérale
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الشكل الحرفي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Bentuk Literal
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 字面形式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Forma Literal
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - skosxl:literalForm  # (not in local ontology files) — "The literal form of an skosxl:Label."
+      - crm:P190_has_symbolic_content  # CIDOC_CRM_v7.1.3.rdf:5028-5038 — "Complete identifying representation of content in string form."
+      - foaf:name  # foaf.ttl:442-450 — "A name for some thing."
+      - schema:name  # schemaorg.owl:26889-26910 — "The name of the item."
+      - rdfs:label  # (not in local ontology files) — "A human-readable name for the subject."
+    narrow_mappings:
+      - pnv:literalName  # pnv.ttl:246-255 — "Full personal name." Domain: PersonName.
+      - rico:textualValue  # RiC-O_1-1.rdf:23296-23311 — "A textual expression of an Appellation or Date."
+    aliases:
+      - literal_name
+      - long_name

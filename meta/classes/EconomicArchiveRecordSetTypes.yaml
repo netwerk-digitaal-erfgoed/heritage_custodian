@@ -1,0 +1,180 @@
+id: https://nde.nl/ontology/hc/class/EconomicArchiveRecordSetTypes
+name: EconomicArchiveRecordSetTypes
+title: EconomicArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./EconomicArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  BusinessRecordsFonds:
+    is_a: EconomicArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation arranged as a fonds for enterprise governance,
+      operations, and business administration records.
+    alt_descriptions:
+      nl: >-
+        Documentaire aggregatie ingericht als fonds voor ondernemingsbestuur,
+        operationele processen en bedrijfsadministratie.
+      de: >-
+        Dokumentarische Aggregation als Fonds fuer Unternehmensleitung,
+        Betriebsablaeufe und kaufmaennische Verwaltung.
+      fr: >-
+        Agregation documentaire organisee en fonds pour la gouvernance
+        d'entreprise, les operations et l'administration economique.
+      es: >-
+        Agregacion documental dispuesta como fondo para gobierno empresarial,
+        operaciones y administracion economica.
+      ar: >-
+        تجميع وثائقي منظم على شكل رصيد لأعمال حوكمة المؤسسة
+        والعمليات والإدارة الاقتصادية.
+      id: >-
+        Agregasi dokumenter yang disusun sebagai fonds untuk tata kelola
+        perusahaan, operasi, dan administrasi bisnis.
+      zh: >-
+        以全宗方式组织的企业治理、运营与经营管理文献聚合体。
+    structured_aliases:
+      - literal_form: fonds bedrijfsbestuur
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Fonds der Unternehmensverwaltung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fonds de gouvernance d'entreprise
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de gestion empresarial
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: رصيد إدارة المؤسسة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds tata kelola perusahaan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 企业治理文献全宗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: The class is used for enterprise-provenance documentation at fonds level.
+    keywords:
+      - enterprise governance
+      - business administration
+      - operational records
+      - fonds provenance
+    examples:
+      - value:
+          has_type: hc:BusinessRecordsFonds
+          has_custodian: hc:EconomicArchive
+          has_note: Board minutes, annual accounts, and operational directives.
+        description: Enterprise-origin documentation grouped as a fonds-level aggregation.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:BusinessRecordsFonds
+      has_custodian:
+        equals_string: hc:EconomicArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by EconomicArchive custodians.
+
+  TradeDocumentationCollection:
+    is_a: EconomicArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Documentary aggregation grouped as a collection for market exchange,
+      commerce documentation, and trade relations evidence.
+    alt_descriptions:
+      nl: >-
+        Documentaire aggregatie gegroepeerd als collectie voor marktuitwisseling,
+        handelsdocumentatie en bewijs van handelsrelaties.
+      de: >-
+        Dokumentarische Aggregation als Sammlung fuer Markttransaktionen,
+        Handelsdokumentation und Nachweise von Wirtschaftsbeziehungen.
+      fr: >-
+        Agregation documentaire regroupee en collection pour les echanges,
+        la documentation commerciale et les preuves de relations marchandes.
+      es: >-
+        Agregacion documental agrupada como coleccion para intercambios,
+        documentacion comercial y evidencia de relaciones de comercio.
+      ar: >-
+        تجميع وثائقي مصنف كمجموعة لأدلة التبادل في السوق
+        والوثائق التجارية وعلاقات التجارة.
+      id: >-
+        Agregasi dokumenter yang dikelompokkan sebagai koleksi untuk
+        pertukaran pasar, dokumentasi niaga, dan bukti relasi perdagangan.
+      zh: >-
+        作为集合编组的市场交换、商业文档与贸易关系证据文献聚合体。
+    structured_aliases:
+      - literal_form: collectie handelsdocumentatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Sammlung von Handelsdokumentation
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: collection de documentation commerciale
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: coleccion de documentacion comercial
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مجموعة وثائق التجارة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: koleksi dokumentasi perdagangan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 贸易文献集合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    comments:
+      - Note preserved: The class captures market-relation evidence assembled from multiple commercial actors.
+    keywords:
+      - market exchange
+      - trade relation
+      - commerce evidence
+      - documentary collection
+    examples:
+      - value:
+          has_type: hc:TradeDocumentationCollection
+          has_custodian: hc:EconomicArchive
+          has_note: Trade correspondence, customs manifests, and partnership agreements.
+        description: Commercial-relationship documentation assembled as a collection.
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Collection
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:TradeDocumentationCollection
+      has_custodian:
+        equals_string: hc:EconomicArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by EconomicArchive custodians.

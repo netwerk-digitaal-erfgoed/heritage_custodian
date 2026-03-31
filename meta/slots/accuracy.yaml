@@ -1,0 +1,109 @@
+# ==============================================================================
+# LinkML Slot Definition: accuracy
+# ==============================================================================
+# A measure of correctness, precision, or conformity to fact.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                         | File/Line      | Mapping | Notes                          |
+# |----------------|----------------------------------|----------------|---------|--------------------------------|
+# | **GeoSPARQL**  | `geosparql:hasSpatialAccuracy`   | geo.ttl:446-53 | close   | "The positional accuracy of    |
+# |                |                                  |                |         | the coordinates of a Geometry" |
+# |                |                                  |                |         | - spatial-specific             |
+# | **GeoSPARQL**  | `geosparql:hasMetricSpatialAccuracy`| geo.ttl:883-92| close  | Spatial accuracy in meters     |
+# | **DQV**        | `dqv:precision`                  | dqv.ttl:184    | related | Precision dimension            |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed slot_uri (was incorrectly geosparql:hasGeometry), 
+#                       fixed duplicate aliases, added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/accuracy
+name: accuracy
+title: Accuracy
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  geosparql: http://www.opengis.net/ont/geosparql#
+  gn: http://www.geonames.org/ontology#
+  schema: http://schema.org/
+  dqv: http://www.w3.org/ns/dqv#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  accuracy:
+    slot_uri: hc:accuracy
+    description: >-
+      To have a defined measure of correctness, precision, or conformity 
+      to fact and reality.
+    alt_descriptions:
+      nl: >-
+        Een gedefinieerde maatstaf van correctheid, precisie of 
+        overeenstemming met feiten en werkelijkheid hebben.
+      de: >-
+        Ein definiertes Maß für Korrektheit, Präzision oder 
+        Übereinstimmung mit Fakten und Realität haben.
+      fr: >-
+        Avoir une mesure définie de l'exactitude, de la précision ou de 
+        la conformité aux faits et à la réalité.
+      ar: >-
+        أن يكون له مقياس محدد للصحة أو الدقة أو المطابقة للحقيقة والواقع.
+      id: >-
+        Memiliki ukuran yang ditentukan untuk kebenaran, presisi, atau 
+        kesesuaian dengan fakta dan kenyataan.
+      zh: >-
+        具有正确性、精确性或与事实和现实相符的定义度量。
+      es: >-
+        Tener una medida definida de corrección, precisión o conformidad 
+        con los hechos y la realidad.
+    structured_aliases:
+      - literal_form: nauwkeurigheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Genauigkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: précision
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: دقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: akurasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 精度
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: precisión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    close_mappings:
+      - geosparql:hasSpatialAccuracy  # geo.ttl:446-453 - spatial-specific
+      - geosparql:hasMetricSpatialAccuracy  # geo.ttl:883-892 - in meters
+    related_mappings:
+      - schema:geo
+      - gn:locationMap
+      - dqv:precision  # dqv.ttl:184 - precision dimension
+    aliases:
+      - has_or_had_accuracy_in_meters
+      - has_accuracy_in_meters
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: >-
+        Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.5
+      specificity_rationale: >-
+        Moderately specific slot.
+    comments:
+      - |
+        **USAGE**: Use this slot to indicate the accuracy of measurements, 
+        coordinates, or data values. For spatial accuracy in meters, use 
+        the `geosparql:hasMetricSpatialAccuracy` property directly when 
+        applicable.

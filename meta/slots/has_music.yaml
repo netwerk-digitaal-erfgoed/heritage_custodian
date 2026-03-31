@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: has_music
+# ==============================================================================
+# Indicates that a venue, event, or media file features musical content.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property               | File/Line                  | Mapping | Notes                                                            |
+# |----------------|------------------------|----------------------------|---------|------------------------------------------------------------------|
+# | **Schema.org** | `schema:audio`         | schemaorg.owl:9199-9222    | related | "embedded audio object" on CreativeWork — links AudioObject.     |
+# | **Schema.org** | `schema:amenityFeature`| schemaorg.owl:7869-7892    | broad   | "amenity feature of Place" — generic facility characteristic.    |
+# | **Schema.org** | `schema:musicBy`       | schemaorg.owl:26748-26771  | related | "composer of the soundtrack" — about who, not whether present.   |
+# | **BIBFRAME**   | `bf:musicMedium`       | bibframe.rdf:1519-1525     | related | "medium of performance for musical Work" — performance medium.   |
+#
+# No exact or close match found. This slot is a boolean indicator of music
+# presence — a domain-specific concept not directly modeled in standard ontologies.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_music
+name: has_music
+title: Has Music
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  bf: http://id.loc.gov/ontologies/bibframe/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_music:
+    slot_uri: hc:hasMusic
+    description: >-
+      Indicates that a venue, event, or media file features musical
+      performances, background audio, or a soundtrack.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een locatie, evenement of mediabestand muzikale
+        uitvoeringen, achtergrondgeluid of een soundtrack bevat.
+      de: >-
+        Gibt an, dass ein Veranstaltungsort, eine Veranstaltung oder eine
+        Mediendatei musikalische Darbietungen, Hintergrundmusik oder einen
+        Soundtrack enthält.
+      fr: >-
+        Indique qu'un lieu, un événement ou un fichier multimédia comporte
+        des performances musicales, un fond sonore ou une bande originale.
+      ar: >-
+        يشير إلى أن مكانًا أو حدثًا أو ملفًا وسائطيًا يتضمن عروضًا موسيقية
+        أو صوتًا خلفيًا أو موسيقى تصويرية.
+      id: >-
+        Menunjukkan bahwa suatu tempat, acara, atau berkas media menampilkan
+        pertunjukan musik, audio latar, atau trek suara.
+      zh: >-
+        表示某个场所、活动或媒体文件包含音乐表演、背景音频或配乐。
+      es: >-
+        Indica que un lugar, evento o archivo multimedia presenta actuaciones
+        musicales, audio de fondo o una banda sonora.
+    structured_aliases:
+      - literal_form: Muziek
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Musik
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Musique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موسيقى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Musik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 音乐
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Música
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    broad_mappings:
+      - schema:amenityFeature  # schemaorg.owl:7869-7892 - "amenity feature of Place/Accommodation" — generic facility characteristic
+    related_mappings:
+      - schema:audio  # schemaorg.owl:9199-9222 - "embedded audio object" on CreativeWork — links to AudioObject, not boolean
+      - schema:musicBy  # schemaorg.owl:26748-26771 - "composer of the soundtrack" — about who composed, not presence
+      - bf:musicMedium  # bibframe.rdf:1519-1525 - "medium of performance for musical Work" — performance medium, not presence
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - includes_music_description
+      - music_detected
+      - music_end_seconds
+      - music_genres_detected
+      - music_start_seconds
+      - music_type

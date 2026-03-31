@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: exhibit
+# ==============================================================================
+# To publicly display or present an object, artifact, or collection, typically
+# within a museum or gallery setting, for the purpose of education, appreciation,
+# or study.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line               | Mapping | Notes                                       |
+# |---------------|---------------------------|-------------------------|---------|---------------------------------------------|
+# | **Schema.org**| `schema:workFeatured`     | schemaorg.owl:40459-526 | exact   | "Work featured in some event."              |
+# | **Schema.org**| `schema:workPerformed`    | schemaorg.owl:40527-549 | narrow  | subPropertyOf workFeatured (play in event) |
+# | **Schema.org**| `schema:workPresented`    | schemaorg.owl:40550-570 | narrow  | subPropertyOf workFeatured (movie shown)   |
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-03 - Added narrow_mappings from Schema.org hierarchy
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/exhibit
+name: exhibit
+title: exhibit
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  exhibit:
+    name: exhibit
+    title: exhibit
+    description: >-
+      To publicly display or present an object, artifact, or collection,
+      typically within a museum or gallery setting, for the purpose of
+      education, appreciation, or study.
+    alt_descriptions:
+      nl: >-
+        Om een object, artefact of collectie publiekelijk tentoon te stellen
+        of te presenteren, meestal in een museum of galerie, met het doel van
+        educatie, waardering of studie.
+      de: >-
+        Ein Objekt, Artefakt oder eine Sammlung öffentlich auszustellen oder
+        zu präsentieren, typischerweise in einem Museum oder einer Galerie,
+        zum Zweck der Bildung, Wertschätzung oder des Studiums.
+      fr: >-
+        Pour exposer ou présenter publiquement un objet, un artefact ou une
+        collection, généralement dans un musée ou une galerie, à des fins
+        d'éducation, d'appréciation ou d'étude.
+      ar: >-
+        لعرض أو تقديم جسم أو قطعة أثرية أو مجموعة علنياً، عادةً في متحف أو
+        معرض، بغرض التعليم أو التقدير أو الدراسة.
+      id: >-
+        Untuk menampilkan atau mempresentasikan secara publik suatu objek,
+        artefak, atau koleksi, biasanya dalam museum atau galeri, untuk
+        tujuan pendidikan, apresiasi, atau studi.
+      zh: >-
+        公开展示或呈现物品、文物或收藏品，通常在博物馆或画廊环境中，以教育、欣赏或研究为目的。
+      es: >-
+        Para exhibir o presentar públicamente un objeto, artefacto o
+        colección, típicamente en un museo o galería, con fines de educación,
+        apreciación o estudio.
+    structured_aliases:
+      - literal_form: tentoonstellen
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_exhibit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ausstellen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: exposer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عرض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memamerkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 展览
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: exhibir
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: schema:workFeatured
+    range: string # uriorcurie
+    # range: FeaturedObject
+    multivalued: true
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+    narrow_mappings:
+    - schema:workPerformed  # schemaorg.owl:40527-549 - subPropertyOf workFeatured (play in event)
+    - schema:workPresented  # schemaorg.owl:40550-570 - subPropertyOf workFeatured (movie shown)
+    aliases:
+    - exhibits_or_exhibited
+    - is_or_was_exhibit
+    - has_exhibition
+    - has_or_had_exhibition
+    - current_exhibition

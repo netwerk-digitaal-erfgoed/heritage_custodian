@@ -1,0 +1,79 @@
+id: https://nde.nl/ontology/hc/parsimony/mappings/parsimony-engineering-bridge
+name: parsimony_engineering_bridge
+title: Semantic to Engineering Bridge
+description: >-
+  Mapping scaffold linking the semantic layer to the engineering ontology in
+  ../../../modules/.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../classes/CustodialEntity
+  - ../classes/Holding
+  - ../classes/Observation
+  - ../classes/PlaceContext
+  - ../classes/SourceResource
+  - ../classes/Designation
+  - ../classes/Classification
+  - ../classes/LegalStatus
+  - ../classes/EncompassingBody
+  - ../../../modules/classes/Custodian
+  - ../../../modules/classes/CustodianCollection
+  - ../../../modules/classes/CustodianObservation
+  - ../../../modules/classes/CustodianPlace
+  - ../slots/functions_as
+  - ../slots/has_spatial_scope
+  - ../slots/indicates
+  - ../slots/yields
+  - ../../../modules/slots/has_degree
+  - ../../../modules/slots/has_level
+  - ../../../modules/slots/has_position
+  - ../../../modules/slots/has_role
+  - ../../../modules/slots/cover_country
+  - ../../../modules/slots/cover_geographic_subdivision
+  - ../../../modules/slots/cover_place
+  - ../../../modules/slots/hold
+  - ../../../modules/slots/identified_by
+comments:
+  - >-
+    CustodialEntity is a hypernym over engineering classes such as Custodian,
+    CustodianArchive, MuseumArchive, MunicipalArchive, and related institutional
+    specializations.
+  - >-
+    Holding is a hypernym over engineering classes such as
+    CustodianCollection and multiple RecordSetType or archive holding classes.
+  - >-
+    Observation is a hypernym over engineering evidence classes such as
+    CustodianObservation and similar source-attributed statements. Observation
+    now directly indicates semantic targets (CustodialEntity, PlaceContext,
+    Holding, LegalStatus, SourceResource, EncompassingBody) via the indicates
+    predicate, absorbing the former Reconstruction bridge concept.
+  - >-
+    LegalStatus is the parsimony-layer class for formal legal standing and
+    statutory classification. It bridges to engineering CustodianLegalStatus.
+  - >-
+    EncompassingBody is the parsimony-layer class for external organizations
+    that frame, govern, or coordinate custodians. It bridges to engineering
+    EncompassingBody and its subtypes.
+  - >-
+    functions_as is introduced as a semantic bridge over engineering
+    distinctions such as has_position, has_role, has_degree, and selected
+    has_level patterns when these all function as contextual role or standing
+    classifications rather than separate semantic predicates.
+  - >-
+    has_spatial_scope is introduced as a semantic bridge over engineering
+    coverage and jurisdiction slots such as cover_country,
+    cover_geographic_subdivision, and cover_place, keeping territorial remit
+    distinct from physical address or current location.
+  - >-
+    indicates is the semantic bridge predicate connecting observations to what
+    they are evidence about. In the engineering layer this semantics is split
+    across observe, refer_to, derive_from, and generated_by patterns.
+  - >-
+    Semantic slots must be read together with engineering slots such as
+    identified_by, hold, has_role, and cover_place, using broadMatch and
+    narrowMatch semantics rather than assuming one-to-one equivalence.

@@ -1,0 +1,90 @@
+# ==============================================================================
+# LinkML Slot Definition: has_administration
+# ==============================================================================
+# A designated administrative body, system, or authority for management functions.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line              | Mapping | Notes                                    |
+# |---------------|-----------------------|------------------------|---------|------------------------------------------|
+# | **RiC-O**     | `rico:hasOrHadPart`   | RiC-O_1-1.rdf:7271-7288| close   | "Connects a Thing to a component part"   |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Corrected translations to match description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_administration
+name: has_administration
+title: Has Administration
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_administration:
+    slot_uri: hc:hasAdministration
+    description: >-
+      A designated administrative body, system, or authority responsible for management, 
+      operational execution, and record-keeping functions.
+    alt_descriptions:
+      nl: >-
+        Een aangewezen administratief orgaan, systeem of autoriteit verantwoordelijk voor 
+        beheer, operationele uitvoering en dossiervorming.
+      de: >-
+        Eine bestimmte Verwaltungsstelle, ein System oder eine Behörde, die für Verwaltung, 
+        operative Ausführung und Aktenführung verantwortlich ist.
+      fr: >-
+        Un organe administratif, système ou autorité désigné responsable de la gestion, 
+        de l'exécution opérationnelle et des fonctions de tenue de dossiers.
+      ar: >-
+        هيئة إدارية أو نظام أو سلطة معينة مسؤولة عن الإدارة والتنفيذ التشغيلي ووظائف حفظ السجلات.
+      id: >-
+        Badan administratif, sistem, atau otoritas yang ditunjuk yang bertanggung jawab 
+        atas manajemen, pelaksanaan operasional, dan fungsi pencatatan.
+      zh: >-
+        负责管理、运营执行和记录保存职能的指定行政机构、系统或权力机关。
+      es: >-
+        Un órgano administrativo, sistema o autoridad designado responsable de la gestión, 
+        ejecución operativa y funciones de mantenimiento de registros.
+    structured_aliases:
+      - literal_form: heeft administratie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Verwaltung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une administration
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه إدارة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki administrasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有行政管理
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene administración
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    aliases:
+      - has_or_had_administration
+    close_mappings:
+      - rico:hasOrHadPart  # RiC-O_1-1.rdf:7271-7288 - "Connects a Thing to a component part" (more general)
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Links to CustodianAdministration instances representing the various 
+        administrative systems (HR, finance, acquisitions, etc.) in use by the custodian.
+      - 'Mapping Note: rico:hasOrHadPart is a general part-whole relationship; this slot specializes it for administrative systems.'

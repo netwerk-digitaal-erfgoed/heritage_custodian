@@ -1,0 +1,62 @@
+id: https://nde.nl/ontology/hc/class/ConnectionSourceMetadata
+name: connection_source_metadata_class
+title: Connection Source Metadata Class
+version: 1.0.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/ScrapeMethodEnum
+- ../slots/document
+- ../slots/has_label
+- ../slots/has_profile
+- ../slots/has_score
+- ../slots/has_note
+- ../slots/has_method
+- ../slots/retrieved_at
+- ../slots/has_url
+classes:
+  ConnectionSourceMetadata:
+    class_uri: prov:Activity
+    description: >-
+      Provenance activity documenting extraction method, source endpoint, retrieval time, and volume for network capture.
+    alt_descriptions:
+      nl: Herkomstactiviteit die extractiemethode, bronendpoint, ophaaltijd en volume van netwerkcaptatie documenteert.
+      de: Provenienzaktivitaet zur Dokumentation von Extraktionsmethode, Quellendpunkt, Abrufzeitpunkt und Umfang der Netzwerkerfassung.
+      fr: Activite de provenance documentant la methode d'extraction, le point source, l'horodatage de collecte et le volume capture.
+      es: Actividad de procedencia que documenta metodo de extraccion, punto fuente, momento de recuperacion y volumen capturado.
+      ar: نشاط مصدرية يوثق طريقة الاستخراج ونقطة المصدر ووقت الجلب وحجم الالتقاط الشبكي.
+      id: Aktivitas provenans yang mendokumentasikan metode ekstraksi, endpoint sumber, waktu pengambilan, dan volume tangkapan jejaring.
+      zh: 记录抓取方法、来源端点、检索时间与采集规模的溯源活动。
+    broad_mappings:
+    - prov:Activity
+    slots:
+    - document
+    - has_note
+    - has_method
+    - retrieved_at
+    - has_url
+    - has_label
+    - has_profile
+    - has_score
+    slot_usage:
+      has_url:
+        range: uri
+        required: true
+      retrieved_at:
+        range: datetime
+        required: true
+      has_method:
+        range: ScrapeMethodEnum
+        required: true
+      has_profile:
+        range: SocialMediaProfile
+        inlined: true
+        required: true
+      document:
+        range: integer
+        required: true
+        minimum_value: 0

@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: caused_by
+# ==============================================================================
+# Links an effect to its cause.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line            | Mapping | Notes                              |
+# |---------------|------------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasInfluencedBy` | prov.ttl:1147-1165   | broad   | Broad influence relationship       |
+#
+# NOTE: prov:wasInfluencedBy is broader than causation - it covers any form
+# of influence, not just causal relationships. Hence broad_mapping.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, ontology alignment verification
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/caused_by
+name: caused_by
+title: Caused By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  caused_by:
+    slot_uri: hc:causedBy
+    description: >-
+      The agent, event, or condition that brought about, produced, or effected
+      the entity, acting as the origin or reason for its occurrence.
+    alt_descriptions:
+      nl: >-
+        De agent, gebeurtenis of toestand die de entiteit heeft veroorzaakt,
+        geproduceerd of teweeggebracht, optredend als de oorsprong of reden
+        voor het optreden ervan.
+      de: >-
+        Der Agent, das Ereignis oder die Bedingung, die die Entität hervorgebracht,
+        produziert oder bewirkt hat, als Ursprung oder Grund für ihr Auftreten.
+      fr: >-
+        L'agent, l'événement ou la condition qui a provoqué, produit ou effectué
+        l'entité, agissant comme l'origine ou la raison de son occurrence.
+      ar: >-
+        الوكيل أو الحدث أو الحالة التي تسببت في الكيان أو أنتجته أو أحدثته،
+        حيث تعمل كأصل أو سبب لحدوثه.
+      id: >-
+        Agen, peristiwa, atau kondisi yang menyebabkan, menghasilkan, atau
+        mengakibatkan entitas, bertindak sebagai asal atau alasan terjadinya.
+      zh: >-
+        导致、产生或引起实体的代理人、事件或条件，作为其发生的起源或原因。
+      es: >-
+        El agente, evento o condición que causó, produjo o efectuó la entidad,
+        actuando como el origen o la razón de su ocurrencia.
+    structured_aliases:
+      - literal_form: veroorzaakt door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verursacht durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: causé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ناتج عن
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disebabkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...引起
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: causado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    broad_mappings:
+      - prov:wasInfluencedBy  # prov.ttl:1147-1165 - Broad influence (includes causation)
+    aliases:
+      - is_or_was_caused_by
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **MAPPING NOTE**: prov:wasInfluencedBy is broader than causation - it covers
+        any form of influence, not just direct causal relationships. Hence broad_mapping
+        rather than exact_mapping.

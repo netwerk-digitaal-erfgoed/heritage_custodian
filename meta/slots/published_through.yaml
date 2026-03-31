@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: published_through
+# ==============================================================================
+# Medium, channel, platform, or mechanism through which an entity is issued,
+# distributed, or made public.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property              | File/Line                | Mapping | Notes                                                    |
+# |------------|-----------------------|--------------------------|---------|----------------------------------------------------------|
+# | Schema.org | `schema:publishedOn`  | schemaorg.owl:31688-31710| related | "A broadcast service associated with the publication     |
+# |            |                       |                          |         | event." Domain: PublicationEvent. Range: BroadcastService.|
+# |            |                       |                          |         | Broadcast-specific; this slot is broader (any medium).   |
+#
+# schema:publishedOn connects a PublicationEvent to a BroadcastService —
+# related but narrower than this slot which covers any medium/channel/platform.
+#
+# CREATED: 2026-02-04
+# UPDATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/published_through
+name: published_through
+title: Published Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  published_through:
+    slot_uri: hc:publishedThrough
+    description: >-
+      The medium, channel, platform, or mechanism through which an entity is issued, distributed, or made public.
+    alt_descriptions:
+      nl: >-
+        Het medium, kanaal, platform of mechanisme waardoor een entiteit wordt uitgegeven, gedistribueerd of openbaar gemaakt.
+      de: >-
+        Das Medium, der Kanal, die Plattform oder der Mechanismus, über den eine Entität herausgegeben, verteilt oder veröffentlicht wird.
+      fr: >-
+        Le média, le canal, la plateforme ou le mécanisme par lequel une entité est émise, distribuée ou rendue publique.
+      ar: >-
+        الوسيط أو القناة أو المنصة أو الآلية التي يتم من خلالها إصدار الكيان أو توزيعه أو نشره.
+      id: >-
+        Media, saluran, platform, atau mekanisme yang digunakan untuk menerbitkan, mendistribusikan, atau mempublikasikan entitas.
+      zh: >-
+        实体发行、分发或公开的媒介、渠道、平台或机制。
+      es: >-
+        El medio, canal, plataforma o mecanismo a través del cual se emite, distribuye o hace pública una entidad.
+    structured_aliases:
+      - literal_form: Publicatiekanaal
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Veröffentlichungskanal
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Canal de publication
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: قناة النشر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Saluran penerbitan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 发布渠道
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Canal de publicación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    aliases:
+      - is_or_was_published_at
+    comments:
+      - >-
+        STRUCTURED REPRESENTATION: Uses PublicationEvent class including temporal extent
+        (precise or fuzzy via TimeSpan), optional event label (e.g. "First Edition"),
+        and event identifier for tracking.
+      - >-
+        SIMPLE TIMESTAMPS: Create PublicationEvent with all four TimeSpan boundaries
+        set to the same instant.
+    examples:
+      - value: |
+          temporal_extent:
+            begin_of_the_begin: '2025-07-30T18:05:15Z'
+            end_of_the_begin: '2025-07-30T18:05:15Z'
+            begin_of_the_end: '2025-07-30T18:05:15Z'
+            end_of_the_end: '2025-07-30T18:05:15Z'
+        description: Social media post with precise timestamp
+      - value: |
+          temporal_extent:
+            begin_of_the_begin: '1892-01-01T00:00:00Z'
+            end_of_the_end: '1892-12-31T00:00:00Z'
+          has_label: Original Edition
+        description: Historical publication with uncertain date
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: L
+      specificity_score: 0.5
+      specificity_rationale: Publication channel/medium slot.
+    related_mappings:
+      - schema:publishedOn  # schemaorg.owl:31688-31710 - "A broadcast service associated with the publication event." Domain: PublicationEvent. Broadcast-specific.

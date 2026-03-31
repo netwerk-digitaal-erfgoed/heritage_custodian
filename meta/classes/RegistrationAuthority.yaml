@@ -1,0 +1,71 @@
+id: https://nde.nl/ontology/hc/class/RegistrationAuthority
+name: registration_authority
+title: Registration Authority Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  gleif_base: https://www.gleif.org/ontology/Base/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../enums/RegistrationAuthorityGovernanceEnum
+- ../metadata
+- ../slots/has_score
+- ../slots/equivalent_to
+- ../slots/has_name
+- ../slots/has_label
+- ../slots/in_country
+- ../slots/has_endpoint
+- ../slots/has_url
+classes:
+  RegistrationAuthority:
+    class_uri: gleif_base:RegistrationAuthority
+    description: >-
+      An organization that maintains the GLOBAL registry for an identifier standard.
+    alt_descriptions:
+      nl: Een organisatie die het wereldwijde register voor een identificatiestandaard beheert.
+      de: Eine Organisation, die das globale Register für einen Identifikationsstandard verwaltet.
+      fr: Une organisation qui maintient le registre mondial pour un standard d'identification.
+    structured_aliases:
+    - literal_form: registratieautoriteit
+      in_language: nl
+    - literal_form: Registrierungsstelle
+      in_language: de
+    - literal_form: autorité d'enregistrement
+      in_language: fr
+    comments:
+    - Ensures uniqueness across all identifiers.
+    - Publishes the authoritative dataset and defines governance and policies.
+    - Distinct from AllocationAgency which allocates identifiers locally within constraints.
+    - ISIL registry is maintained by Danish Agency for Culture and Palaces (since 2019).
+    exact_mappings:
+    - gleif_base:RegistrationAuthority
+    close_mappings:
+    - org:FormalOrganization
+    - schema:Organization
+    slots:
+    - has_score
+    - equivalent_to
+    - has_name
+    - has_label
+    - in_country
+    - has_endpoint
+    - has_url
+    slot_usage:
+      equivalent_to:
+        slot_uri: schema:sameAs
+        range: WikiDataIdentifier
+        inlined_as_list: true
+        examples:
+        - value:
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

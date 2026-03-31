@@ -1,0 +1,127 @@
+# ==============================================================================
+# LinkML Slot Definition: add
+# ==============================================================================
+# Records objects added to a collection during an accessioning activity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property / Class              | File/Line                    | Mapping | Notes                                                                                    |
+# |----------------|-------------------------------|------------------------------|---------|------------------------------------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P111_added`              | CIDOC_CRM_v7.1.3.rdf:3695   | close   | E79 Part Addition→E18 Physical Thing. "Identifies the Physical Thing that is added        |
+# |                |                               |                              |         | during a Part Addition activity." Same semantic intent (what was added/accessioned);      |
+# |                |                               |                              |         | differs in domain (E79 event) and range (entity ref, not string).                        |
+# | **CIDOC-CRM**  | `crm:P24_transferred_title_of`| CIDOC_CRM_v7.1.3.rdf:1738   | related | E8 Acquisition→E18 Physical Thing. "Identifies the Physical Thing involved in an         |
+# |                |                               |                              |         | Acquisition." Related: legal transfer aspect of accessioning.                            |
+# | **Schema.org** | `schema:object`               | schemaorg.owl:27871-27890    | broad   | Action→Thing. "The object upon which the action is carried out." Broader: object of      |
+# |                |                               |                              |         | any action, not specifically accessioning.                                               |
+#
+# CRM context: E79_Part_Addition (CIDOC_CRM_v7.1.3.rdf:1025-1036) explicitly covers
+# "the accessioning of an object into a curated instance of E78 Curated Holding."
+# P111_added identifies what was added; P110_augmented identifies what was augmented.
+#
+# CREATED: 2026-02-10
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/add
+name: add
+title: Add
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  la: https://linked.art/ns/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  add:
+    slot_uri: hc:add
+    description: >-
+      Records objects, items, or components added to a collection, holding, or
+      aggregate during an accessioning or part-addition activity. Each value
+      identifies a physical thing, artefact, or digital asset that was
+      incorporated into the custodian's holdings. In CIDOC-CRM terms this
+      corresponds to the target of a P111 added relationship within an
+      E79 Part Addition event, which explicitly covers accessioning objects
+      into an E78 Curated Holding.
+    alt_descriptions:
+      nl: >-
+        Registreert objecten die aan een collectie of bestand zijn toegevoegd
+        tijdens een aanwinst- of opname-activiteit.
+      de: >-
+        Erfasst Objekte, die während einer Erwerbungs- oder Zugangstätigkeit
+        einer Sammlung oder einem Bestand hinzugefügt wurden.
+      fr: >-
+        Enregistre les objets ajoutés à une collection ou un fonds lors d'une
+        activité d'acquisition ou d'enregistrement.
+      ar: >-
+        يسجل الكائنات المضافة إلى مجموعة أو مقتنيات أثناء نشاط الإضافة أو
+        الاستحواذ.
+      id: >-
+        Mencatat objek yang ditambahkan ke koleksi atau kepemilikan selama
+        kegiatan aksesi atau penambahan.
+      zh: >-
+        记录在入藏或添加活动中加入收藏或馆藏的对象。
+      es: >-
+        Registra los objetos añadidos a una colección o fondo durante una
+        actividad de adquisición o incorporación.
+    structured_aliases:
+      - literal_form: toevoegen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hinzufügen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: ajouter
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: إضافة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: menambahkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 添加
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: añadir
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - crm:P111_added  # CIDOC_CRM_v7.1.3.rdf:3695-3707 - "Identifies the E18 Physical Thing that is added during an E79 Part Addition activity." Same semantic intent; differs in domain (E79 event) and range (entity ref vs string).
+    broad_mappings:
+      - schema:object  # schemaorg.owl:27871-27890 - "The object upon which the action is carried out." Broader: object of any action, not specifically accessioning.
+    related_mappings:
+      - crm:P24_transferred_title_of  # CIDOC_CRM_v7.1.3.rdf:1738-1750 - "Identifies the E18 Physical Thing involved in an E8 Acquisition." Legal transfer aspect of accessioning.
+      - la:added_member  # Linked Art extensions: member added to a Set via an Addition activity
+    aliases:
+      - objects_added
+    examples:
+      - value: "Painting by Jan Steen, inv. SK-A-385"
+        description: >-
+          A painting accessioned into a museum's curated holding, identified by
+          its inventory number.
+      - value: "Bronze Age axe head, find nr. 2024-0042"
+        description: >-
+          An archaeological find added to an archive's collection.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Primarily intended for accessioning activities where objects enter a
+        curated holding. In CIDOC-CRM this is modelled as E79 Part Addition,
+        where P111 added identifies the object and P110 augmented identifies
+        the collection being enlarged.
+      - >-
+        Stores object identifiers or descriptions as plain strings. For
+        structured references to catalogued objects, classes may override the
+        range in slot_usage to use a typed entity reference instead.
+      - >-
+        The original description referenced RiC-O resultsIn for activity
+        outcomes; however, no such property was found in RiC-O 1.1. The
+        CRM E79/P111 path provides the standard ontological grounding for
+        this concept.

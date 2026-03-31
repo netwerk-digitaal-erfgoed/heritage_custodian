@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: has_carrier
+# ==============================================================================
+# The physical medium, support, or vehicle used to store, transmit, or
+# transport an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:medium`      | dcterms.rdf:1686-1710      | close   | "The material or physical carrier of the resource" — focuses on material/physical medium; slot also covers transmission/transport vehicles |
+#
+# NOTE: schema:carrier (schemaorg.owl:11229-11233) is NOT a match — it is an
+# outdated term for parcel delivery/flight provider, not physical carrier.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, added dcterms:medium as close mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_carrier
+name: has_carrier
+title: Has Carrier
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_carrier:
+    slot_uri: hc:hasCarrier
+    description: >-
+      To possess or utilize a specific physical medium, support, or vehicle used to store, transmit, or transport the entity.
+    alt_descriptions:
+      nl: >-
+        Een specifiek fysiek medium, drager of voertuig bezitten of gebruiken dat wordt ingezet om de entiteit op te slaan, over te dragen of te vervoeren.
+      de: >-
+        Ein spezifisches physisches Medium, einen Träger oder ein Transportmittel besitzen oder nutzen, das zur Speicherung, Übertragung oder zum Transport der Entität dient.
+      fr: >-
+        Posséder ou utiliser un support physique, un médium ou un véhicule spécifique servant à stocker, transmettre ou transporter l'entité.
+      ar: >-
+        امتلاك أو استخدام وسيط مادي أو حامل أو وسيلة نقل محددة تُستخدم لتخزين الكيان أو نقله أو حمله.
+      id: >-
+        Memiliki atau menggunakan media fisik, penunjang, atau kendaraan tertentu yang digunakan untuk menyimpan, mengirimkan, atau mengangkut entitas tersebut.
+      zh: >-
+        拥有或使用用于存储、传输或运输该实体的特定物理介质、载体或运输工具。
+      es: >-
+        Poseer o utilizar un medio físico, soporte o vehículo específico usado para almacenar, transmitir o transportar la entidad.
+    structured_aliases:
+      - literal_form: heeft drager
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Träger
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un support
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه حامل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki media pembawa
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有载体
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene soporte
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_carrier
+    close_mappings:
+      - dcterms:medium  # dcterms.rdf:1686-1710 - "The material or physical carrier of the resource"
+    annotations:
+      custodian_types: '["*"]'

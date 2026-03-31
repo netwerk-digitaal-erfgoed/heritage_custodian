@@ -1,0 +1,177 @@
+# ==============================================================================
+# LinkML Slot Definition: has_token
+# ==============================================================================
+# Generic slot for token-related data, specifically for LLM (Large Language Model)
+# token counts used in AI/ML processing contexts. Follows RiC-O temporal naming
+# convention.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line             | Mapping | Notes                              |
+# |---------------|-----------------------|-----------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:value`        | schemaorg.owl:39461-39492| close   | Value of QuantitativeValue/PropertyValue |
+# | **PROV-O**    | `prov:value`          | prov.ttl:1055-1064    | close   | Direct representation of entity value   |
+# | **SOSA**      | `sosa:hasSimpleResult`| sosa.ttl:377-379      | related | Simple value of observation/actuation   |
+# | **Schema.org**| `schema:propertyID`   | schemaorg.owl         | related | Identifier for the property being valued|
+#
+# NOTE: LLM tokens are a domain-specific concept not directly represented in
+# standard ontologies. schema:value and prov:value are the closest general-purpose
+# value representation properties.
+#
+# CREATED: 2026-01-17 - Migrated from cached_token, completion_token, prompt_token
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_token
+name: has_token
+title: has token
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  sosa: http://www.w3.org/ns/sosa/
+  owl: http://www.w3.org/2002/07/owl#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+description: |
+  To possess a discrete unit of data serving as a distinct element, such as a
+  cryptographic key for access control or a textual segment for linguistic processing.
+
+imports:
+  - linkml:types
+
+slots:
+  has_token:
+    slot_uri: hc:hasToken
+    description: |
+      To possess a discrete unit of data serving as a distinct element, such as a cryptographic key for access control or a textual segment for linguistic processing.
+    alt_descriptions:
+      nl: >-
+        Het bezitten van een discrete gegevenseenheid die dient als een
+        afzonderlijk element, zoals een cryptografische sleutel voor
+        toegangscontrole of een tekstsegment voor taalverwerking.
+      de: >-
+        Das Besitzen einer diskreten Dateneinheit, die als eigenständiges
+        Element dient, wie ein kryptografischer Schlüssel für die
+        Zugangskontrolle oder ein Textsegment für die Sprachverarbeitung.
+      fr: >-
+        Posséder une unité de données discrète servant d'élément distinct,
+        comme une clé cryptographique pour le contrôle d'accès ou un segment
+        textuel pour le traitement linguistique.
+      ar: >-
+        امتلاك وحدة بيانات منفصلة تعمل كعنصر مميز، مثل مفتاح تشفير للتحكم
+        في الوصول أو جزء نصي للمعالجة اللغوية.
+      id: >-
+        Memiliki unit data diskrit yang berfungsi sebagai elemen berbeda,
+        seperti kunci kriptografi untuk kontrol akses atau segmen tekstual
+        untuk pemrosesan linguistik.
+      zh: >-
+        拥有作为独立元素的离散数据单元，例如用于访问控制的加密密钥或用于语言处理的文本片段。
+      es: >-
+        Poseer una unidad de datos discreta que sirve como elemento distinto,
+        como una clave criptográfica para control de acceso o un segmento
+        textual para procesamiento lingüístico.
+    structured_aliases:
+      - literal_form: heeft token
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Token
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un jeton
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه رمز
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki token
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 具有令牌
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene token
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    inverse: is_token_of
+    implements:
+      - owl:ObjectProperty
+    required: false
+    multivalued: true
+    inlined: false
+    close_mappings:
+      # Schema.org value - Value of QuantitativeValue/PropertyValue
+      # Lines 39461-39492 in schemaorg.owl
+      # Close: general value representation for quantitative data
+      - schema:value
+      # PROV-O value - Direct representation of entity value
+      # Lines 1055-1064 in prov.ttl
+      # Close: provides a value that directly represents an entity
+      - prov:value
+    related_mappings:
+      # SOSA hasSimpleResult - Simple value of observation/actuation
+      # Lines 377-379 in sosa.ttl
+      # Related: observation result (different context)
+      - sosa:hasSimpleResult
+    aliases:
+      - has_or_had_token
+      - token_count
+      - llm_tokens
+      - is_or_was_prompt_token
+      - prompt_token
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Token counts may be relevant for any custodian using AI/ML processing.
+      specificity_score: 0.60
+      specificity_rationale: Moderately specific - applies to AI/ML processing contexts.
+      migrated_from: cached_token, completion_token, prompt_token
+      migration_date: '2026-01-17'
+      migration_rule: Rule 53/56
+    examples:
+      - value: "hc:TokenCount/completion-1500"
+        description: LLM completion used 1500 tokens
+      - value: "hc:TokenCount/prompt-500"
+        description: LLM prompt used 500 tokens
+      - value: "hc:TokenCount/cached-2000"
+        description: 2000 tokens were cached for reuse
+    comments:
+      - Updated 2026-02-03 with verified ontology mappings and translations
+      - |
+        **PURPOSE**:
+        Generic slot for token-related data following RiC-O temporal naming
+        convention. Primarily used for LLM (Large Language Model) token counts
+        in AI/ML processing contexts.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | Schema.org | schema:value | 39461-39492 | close | QuantitativeValue value |
+        | PROV-O | prov:value | 1055-1064 | close | Direct entity value |
+        | SOSA | sosa:hasSimpleResult | 377-379 | related | Observation result |
+      - |
+        **RiC-O NAMING** (Rule 39):
+        Uses "has_or_had_token" alias to indicate temporal relationship -
+        token counts are associated with specific processing events.
+      - |
+        **MIGRATION NOTES** (2026-01-17):
+        Consolidated from:
+        - `cached_token` → has_token
+        - `completion_token` → has_token
+        - `prompt_token` → has_token
+        Use slot_usage in classes to specialize range and semantics.
+      - |
+        **LLM TOKEN TYPES**:
+        - **Prompt tokens**: Input tokens sent to the model
+        - **Completion tokens**: Output tokens generated by the model
+        - **Cached tokens**: Tokens cached for reuse (efficiency optimization)
+        - **Total tokens**: Sum of prompt and completion tokens
+      - |
+        **RANGE NOTES**:
+        Range is `uriorcurie` (Rule 55) to allow references to Token class
+        instances that capture the count, type, and context. Classes may
+        narrow via slot_usage to specific Token enums or integer values.

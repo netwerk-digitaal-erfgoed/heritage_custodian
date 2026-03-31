@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/parsimony/class/CustodialEntity
+name: CustodialEntity
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/has_note_literal
+  - ../slots/has_uri_literal
+  - ../slots/available_via
+  - ../slots/contactable_through
+  - ../slots/addressed_at
+  - ../slots/accessed_under
+  - ../slots/has_spatial_scope
+  - ../slots/comes_into_existence_through
+  - ../slots/comes_to_an_end_through
+  - ../slots/holds
+  - ../slots/affiliated_with
+  - ../slots/has_affiliate
+  - ../slots/designated_by
+  - ../slots/located_in
+  - ../slots/included_in
+  - ../slots/marked_as
+  - ../slots/associated_with
+  - ../slots/equivalent_to
+  - ../slots/typed_as
+classes:
+  CustodialEntity:
+    class_uri: schema:Organization
+    description: >-
+      Semantic class for a heritage custodian or custodial body.
+
+      **Why this slot exists:** `has_spatial_scope` captures jurisdiction,
+      service area, or territorial remit such as municipality, region, or
+      country, while `addressed_at` and `located_in` remain available for postal
+      address and actual physical placement.
+    broad_mappings:
+      - crm:E39_Actor
+      - rico:Agent
+    narrow_mappings:
+      - hc:Custodian
+    examples:
+      - value:
+          has_label_literal:
+            - City Archive Example
+          typed_as:
+            - Classification:ArchiveOrganization
+          holds:
+            - Holding:MunicipalPhotoCollection
+        description: Semantic custodian node linked to a holding and a classification.
+      - value:
+          has_label_literal:
+            - Municipal Archive Example
+          has_spatial_scope:
+            - PlaceContext:Amsterdam
+          typed_as:
+            - Classification:MunicipalArchive
+        description: Semantic custodian node with an explicit municipal jurisdiction rather than only an address.
+    slots:
+      - has_label_literal
+      - has_note_literal
+      - has_uri_literal
+      - available_via
+      - contactable_through
+      - addressed_at
+      - accessed_under
+      - has_spatial_scope
+      - comes_into_existence_through
+      - comes_to_an_end_through
+      - holds
+      - affiliated_with
+      - has_affiliate
+      - designated_by
+      - located_in
+      - included_in
+      - marked_as
+      - associated_with
+      - equivalent_to
+      - typed_as

@@ -1,0 +1,103 @@
+id: https://nde.nl/ontology/hc/class/StateDistrictArchiveRecordSetTypes
+name: StateDistrictArchiveRecordSetTypes
+title: StateDistrictArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+default_prefix: hc
+imports:
+  - ./StateDistrictArchiveRecordSetType
+  - linkml:types
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_custodian
+  - ../slots/has_note
+classes:
+  StateDistrictFonds:
+    is_a: StateDistrictArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Fonds-level arrangement of administrative records from Czech state district archives.
+    alt_descriptions:
+      nl: >-
+        Fonds-niveau ordening van administratieve records uit Tsjechische staatsdistrictarchieven.
+      de: >-
+        Bestandsordnung auf Fonds-Ebene in tschechischen Staatsbezirksarchiven.
+      fr: >-
+        Organisation au niveau du fonds des documents administratifs des archives d'État de district tchèques.
+      es: >-
+        Organización a nivel de fondo de registros administrativos de archivos estatales de distrito checos.
+      ar: >-
+        ترتيب على مستوى الفوندس للسجلات الإدارية من أرشيفات المقاطعات الحكومية التشيكية.
+      id: >-
+        Pengaturan tingkat fonds rekaman administratif dari arsip distrik negara Ceko.
+      zh: >-
+        捷克国家州区档案馆行政记录的全宗级整理。
+    structured_aliases:
+      - literal_form: okresní archiv fonds
+        predicate: EXACT_SYNONYM
+        in_language: cs
+      - literal_form: staatsbezirksarchiv fonds
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: staatsdistrictarchief fonds
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: fonds d'archives d'etat de district
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fondo de archivo estatal de distrito
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: صندوق أرشيف دولة على مستوى المقاطعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fonds arsip distrik negara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 国家区级档案馆全宗
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    broad_mappings:
+      - rico:RecordSetType
+      - skos:Concept
+      - crm:E55_Type
+    related_mappings:
+      - rico-rst:Fonds
+    keywords:
+      - fonds
+      - state district archive
+      - Czech archives
+      - administrative records
+    see_also:
+      - StateDistrictArchiveRecordSetType
+      - rico:RecordSetType
+    slots:
+      - has_type
+      - has_score
+      - has_custodian
+      - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:StateDistrictFonds
+      has_custodian:
+        equals_string: hc:StateDistrictArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by StateDistrictArchive custodians. Inverse of rico:isOrWasHolderOf.
+    comments:
+      - Note preserved: Earlier modeling allowed ArchiveOrganizationType in has_type; the value remains constrained to the specific fonds class for consistency.
+      - District-level state provenance is maintained across Czech regional administrative units.
+    examples:
+      - value:
+          has_type: hc:StateDistrictFonds
+          has_custodian: hc:StateDistrictArchive
+          has_note: District authority registers, permits, and procedural files.
+        description: District-level Czech state-administration documentation grouped by institutional provenance.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

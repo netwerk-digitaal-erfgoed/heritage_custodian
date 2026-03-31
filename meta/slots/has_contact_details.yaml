@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: has_contact_details
+# ==============================================================================
+# Contact details for an entity, such as address, phone, email, or other
+# contact information.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:contactPoint` | schemaorg.owl:12577-12595  | exact   | "A contact point for a person or organization" — expects ContactPoint object, this slot is string-based general contact details |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, demoted schema:contactPoint from exact to close;
+#   rewrote alt_descriptions to faithfully translate English description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_contact_details
+name: has_contact_details
+title: Has Contact Details
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_contact_details:
+    slot_uri: hc:hasContactDetails
+    description: >-
+      To possess or be associated with specific information (such as phone numbers, email addresses, or physical addresses) used to reach or communicate with the entity.
+    alt_descriptions:
+      nl: >-
+        Specifieke informatie bezitten of daaraan gekoppeld zijn (zoals telefoonnummers, e-mailadressen of fysieke adressen) die wordt gebruikt om de entiteit te bereiken of ermee te communiceren.
+      de: >-
+        Spezifische Informationen besitzen oder damit verbunden sein (wie Telefonnummern, E-Mail-Adressen oder physische Adressen), die verwendet werden, um die Entität zu erreichen oder mit ihr zu kommunizieren.
+      fr: >-
+        Posséder ou être associé à des informations spécifiques (telles que des numéros de téléphone, des adresses électroniques ou des adresses physiques) utilisées pour joindre ou communiquer avec l'entité.
+      ar: >-
+        امتلاك أو الارتباط بمعلومات محددة (مثل أرقام الهواتف أو عناوين البريد الإلكتروني أو العناوين الفعلية) تُستخدم للتواصل مع الكيان أو الوصول إليه.
+      id: >-
+        Memiliki atau terkait dengan informasi tertentu (seperti nomor telepon, alamat email, atau alamat fisik) yang digunakan untuk menghubungi atau berkomunikasi dengan entitas tersebut.
+      zh: >-
+        拥有或关联用于联系或与实体进行沟通的特定信息（如电话号码、电子邮件地址或实际地址）。
+      es: >-
+        Poseer o estar asociado con información específica (como números de teléfono, direcciones de correo electrónico o direcciones físicas) utilizada para contactar o comunicarse con la entidad.
+    structured_aliases:
+      - literal_form: heeft contactgegevens
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Kontaktdaten
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a des coordonnées
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه بيانات اتصال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki rincian kontak
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有联系方式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene datos de contacto
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_contact_details
+      - has_or_had_contact_information
+      - has_contact_information
+      - contact
+    exact_mappings:
+      - schema:contactPoint  # schemaorg.owl:12577-12595 - "A contact point for a person or organization" — expects ContactPoint object
+    annotations:
+      custodian_types: '["*"]'

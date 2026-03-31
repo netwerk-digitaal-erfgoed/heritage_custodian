@@ -1,0 +1,138 @@
+id: https://nde.nl/ontology/hc/class/Organizer
+name: Organizer
+title: Organizer Class
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_role
+classes:
+  Organizer:
+    class_uri: schema:Organization
+    description: Organization participating as an organizer of an event, program, or activity.
+    alt_descriptions:
+      nl: Organisatie die optreedt als organisator van een evenement programma of activiteit.
+      de: Organisation die als Veranstalter einer Veranstaltung eines Programms oder einer Aktivitaet auftritt.
+      fr: Organisation intervenant comme organisateur d un evenement programme ou activite.
+      es: Organizacion que actua como organizadora de un evento programa o actividad.
+      ar: منظمة تشارك كجهة منظِّمة لحدث أو برنامج أو نشاط.
+      id: Organisasi yang berperan sebagai penyelenggara acara program atau aktivitas.
+      zh: 作为活动、项目或事件组织方参与的组织实体。
+    structured_aliases:
+    - {literal_form: organisatorische partij, in_language: nl}
+    - {literal_form: veranstaltende Organisation, in_language: de}
+    - {literal_form: organisation organisatrice, in_language: fr}
+    - {literal_form: entidad organizadora, in_language: es}
+    - {literal_form: جهة منظمة, in_language: ar}
+    - {literal_form: organisasi penyelenggara, in_language: id}
+    - {literal_form: 组织方机构, in_language: zh}
+    broad_mappings:
+    - schema:Organization
+
+    close_mappings:
+    - org:Organization
+
+    related_mappings:
+    - prov:Agent
+
+    slots:
+    - has_role
+    - organizer_entity
+    - organizer_contribution
+
+    slot_usage:
+      organizer_entity:
+        examples:
+        - value: "https://nde.nl/ontology/hc/custodian/nl/rijksmuseum"
+      has_role:
+        required: false
+        range: OrganizerRole
+        inlined: true
+        examples:
+        - value:
+      organizer_contribution:
+        examples:
+        - value: "Provided 15 works from permanent collection and curatorial expertise"
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      Preserved from prior description (commit 6e634651):
+
+      An entity that organizes or organized an event, exhibition, program, or activity.
+
+      **Purpose**:
+      Captures the organizing entity along with their role, replacing simple
+      uriorcurie references like `co_organized_by` or `organized_by`.
+
+      **Key Properties**:
+      - `organizer_entity`: Reference to the organizing institution (Custodian, Organization)
+      - `has_role`: Role of the organizer (PRIMARY, CO_ORGANIZER, etc.)
+      - `organizer_contribution`: Description of organizational contribution
+
+      **Pattern**:
+      Instead of separate `organized_by` and `co_organized_by` slots with plain URIs,
+      use a single `has_organizer` slot with Organizer instances that specify roles.
+
+      **Example Migration**:
+
+
+      **Ontological Alignment**:
+      - **Primary**: `schema:Organization` (organizer is an organization)
+      - **Close**: `org:Organization` (W3C Org vocabulary)
+      - **Related**: `prov:Agent` (PROV-O agent in activity)
+    annotations:
+      specificity_score: 0.55
+      specificity_rationale: "Moderately specific - applies to any event organization context"
+      custodian_types: '["*"]'
+      custodian_types_rationale: "Any institution type can organize events/exhibitions"
+    comments:
+    - "Created per slot_fixes.yaml revision for co_organized_by migration"
+    - "Replaces separate organized_by/co_organized_by with role-based discrimination"
+    - "RULE 53: Part of co_organized_by → has_organizer + Organizer migration"
+    examples:
+    - value:
+        organizer_entity: "https://nde.nl/ontology/hc/custodian/nl/rijksmuseum"
+        has_role:
+    - value:
+        organizer_entity: "https://nde.nl/ontology/hc/custodian/nl/mauritshuis"
+        has_role:
+    - value:
+        organizer_entity: "https://nde.nl/ontology/hc/custodian/us/national-gallery-washington"
+        has_role:
+    - value: |
+        # OLD (deprecated):
+        organized_by:
+        - https://nde.nl/ontology/hc/custodian/nl/rijksmuseum
+        co_organized_by:
+        - https://nde.nl/ontology/hc/custodian/nl/mauritshuis
+
+        # NEW (Rule 53):
+        has_organizer:
+        - organizer_entity: https://nde.nl/ontology/hc/custodian/nl/rijksmuseum
+          has_role:
+            role_type: PRIMARY
+        - organizer_entity: https://nde.nl/ontology/hc/custodian/nl/mauritshuis
+          has_role:
+            role_type: CO_ORGANIZER
+slots:
+  organizer_entity:
+    slot_uri: schema:organizer
+    description: Reference to the organizing institution
+#     range: string # uriorcurie
+    required: true
+
+  organizer_contribution:
+    slot_uri: schema:description
+    description: Description of organizational contribution
+#     range: string
+    required: false

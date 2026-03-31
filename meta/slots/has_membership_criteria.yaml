@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: has_membership_criteria
+# ==============================================================================
+# Criteria or eligibility requirements for custodians to become members of an
+# encompassing body such as an umbrella organization, network, or consortium.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                     | File/Line                  | Mapping  | Notes                                                   |
+# |---------------|------------------------------|----------------------------|----------|---------------------------------------------------------|
+# | **Schema.org**| `schema:eligibleRegion`       | schemaorg.owl:16357-16383  | narrow   | Geographic eligibility only — narrower scope.           |
+# | **W3C Org**   | `org:memberOf`               | org.rdf:743-758            | related  | The membership relationship itself, not the criteria.   |
+#
+# HIERARCHY:
+# - No standard ontology property for "membership eligibility criteria"
+# - schema:eligible* properties are all narrower (offer/job/region-specific)
+# - Domain-specific: hc:hasMembershipCriteria
+#
+# CREATED: 2026-02-08
+# UPDATED: 2026-02-10 - Full polish; ontology alignment, multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_membership_criteria
+name: has_membership_criteria
+title: Has Membership Criteria
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_membership_criteria:
+    slot_uri: hc:hasMembershipCriteria
+    description: >-
+      Criteria or eligibility requirements for custodians to become members of
+      an encompassing body. The nature of the criteria depends on the type of
+      encompassing organization: umbrella organizations define criteria by
+      law or statute (non-voluntary), network organizations define service
+      eligibility criteria (voluntary), and consortia define membership
+      agreement criteria (voluntary).
+    alt_descriptions:
+      nl: >-
+        Criteria of toelatingseisen voor erfgoedbeheerders om lid te worden
+        van een overkoepelend orgaan zoals een koepelorganisatie, netwerk
+        of consortium.
+      de: >-
+        Kriterien oder Zulassungsvoraussetzungen für Kulturerbe-Verwalter,
+        um Mitglied einer übergeordneten Organisation wie einem Dachverband,
+        Netzwerk oder Konsortium zu werden.
+      fr: >-
+        Critères ou conditions d'admissibilité pour que les gardiens du
+        patrimoine deviennent membres d'un organisme englobant tel qu'une
+        organisation faîtière, un réseau ou un consortium.
+      ar: >-
+        معايير أو متطلبات الأهلية لأمناء التراث ليصبحوا أعضاء في هيئة
+        شاملة مثل منظمة مظلة أو شبكة أو اتحاد.
+      id: >-
+        Kriteria atau persyaratan kelayakan bagi penjaga warisan budaya untuk
+        menjadi anggota badan induk seperti organisasi payung, jaringan,
+        atau konsorsium.
+      zh: >-
+        遗产保管人成为上级组织（如伞形组织、网络或联盟）成员的标准或资格要求。
+      es: >-
+        Criterios o requisitos de elegibilidad para que los custodios del
+        patrimonio se conviertan en miembros de un organismo que los englobe,
+        como una organización paraguas, red o consorcio.
+    structured_aliases:
+      - literal_form: lidmaatschapscriteria
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Mitgliedschaftskriterien
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: critères d'adhésion
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معايير العضوية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: kriteria keanggotaan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 会员资格标准
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: criterios de membresía
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - membership_criteria
+    narrow_mappings:
+      - schema:eligibleRegion  # schemaorg.owl:16357-16383 - Geographic eligibility for offers — narrower scope
+    related_mappings:
+      - org:memberOf  # org.rdf:743-758 - The membership relationship itself, not the criteria for joining
+    examples:
+      - value: "Registered as a museum with the Museum Register (Museumregister)"
+        description: Criteria for membership of a Dutch museum umbrella organization
+      - value: "Must be a publicly funded library in the Netherlands"
+        description: Criteria for a library network organization
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        UmbrellaOrganisation: criteria defined by law/statute (non-voluntary).
+        NetworkOrganisation: service eligibility criteria (voluntary).
+        Consortium: membership agreement criteria (voluntary).
+      - >-
+        No standard ontology has a property for "organizational membership
+        eligibility criteria"; hc:hasMembershipCriteria is domain-specific.

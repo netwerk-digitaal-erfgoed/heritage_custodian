@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_benchmark
+# ==============================================================================
+# Associates an entity with a benchmark value for evaluating performance.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property           | File/Line                  | Mapping | Notes                                                     |
+# |----------------|--------------------|----------------------------|---------|------------------------------------------------------------|
+# | **Schema.org** | `schema:maxValue`  | schemaorg.owl:25599-25620  | related | "Upper value of a characteristic"; numeric bound, not a    |
+# |                |                    |                            |         | standard reference point.                                  |
+# | **DQV**        | `dqv:value`        | dqv.ttl:128-132            | related | "Values computed by metric"; metric result, not benchmark. |
+#
+# No standard ontology defines a direct "benchmark" property. Retains hc:hasBenchmark.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_benchmark
+name: has_benchmark
+title: Has Benchmark
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dqv: http://www.w3.org/ns/dqv#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_benchmark:
+    slot_uri: hc:hasBenchmark
+    description: >-
+      Associates a model, system, or algorithm with a specific standard test,
+      dataset, or reference point used to evaluate and compare its performance.
+    alt_descriptions:
+      nl: >-
+        Koppelt een model, systeem of algoritme aan een specifieke standaardtest,
+        dataset of referentiepunt dat wordt gebruikt om de prestaties ervan te
+        evalueren en vergelijken.
+      de: >-
+        Verknüpft ein Modell, System oder einen Algorithmus mit einem bestimmten
+        Standardtest, Datensatz oder Referenzpunkt, der zur Bewertung und zum
+        Vergleich seiner Leistung verwendet wird.
+      fr: >-
+        Associe un modèle, système ou algorithme à un test standard, jeu de données
+        ou point de référence spécifique utilisé pour évaluer et comparer ses
+        performances.
+      ar: >-
+        يربط نموذجًا أو نظامًا أو خوارزمية باختبار معياري محدد أو مجموعة بيانات
+        أو نقطة مرجعية تُستخدم لتقييم ومقارنة أدائه.
+      id: >-
+        Mengaitkan model, sistem, atau algoritma dengan uji standar, kumpulan data,
+        atau titik referensi tertentu yang digunakan untuk mengevaluasi dan
+        membandingkan kinerjanya.
+      zh: >-
+        将模型、系统或算法与用于评估和比较其性能的特定标准测试、数据集或参考点相关联。
+      es: >-
+        Asocia un modelo, sistema o algoritmo con una prueba estándar, conjunto de
+        datos o punto de referencia específico utilizado para evaluar y comparar
+        su rendimiento.
+    structured_aliases:
+      - literal_form: Benchmark
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Benchmark
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Référence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معيار مرجعي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tolok Ukur
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 基准
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Punto de Referencia
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    related_mappings:
+      - schema:maxValue  # schemaorg.owl:25599-25620 - "Upper value of characteristic"; numeric bound not benchmark
+      - dqv:value        # dqv.ttl:128-132 - "Values computed by metric"; metric result not reference standard
+    examples:
+      - value: 0.4
+        description: 40% high benchmark for visitor-to-purchase conversion
+      - value: 0.08
+        description: 8% high benchmark for visitor-to-member conversion
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - Expressed as a decimal (e.g., 0.40 = 40%)
+      - Used with has_benchmark_low to define the typical performance range
+    aliases:
+      - industry_benchmark_high
+      - industry_benchmark_low

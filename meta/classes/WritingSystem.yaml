@@ -1,0 +1,70 @@
+id: https://nde.nl/ontology/hc/class/WritingSystem
+name: WritingSystem
+title: Writing System
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+classes:
+  WritingSystem:
+    class_uri: skos:Concept
+    description: >-
+      ISO 15924 script classification concept used to encode script family and
+      directional conventions.
+    alt_descriptions:
+      nl: Schrijfsysteem of script-identificatie volgens ISO 15924-standaard, die scripttypen codeert (Latijn, Cyrillisch, Arabisch, enz.) en schrijfrichting.
+      de: Identifikation des Schriftsystems oder Skripts nach ISO 15924-Standard, Kodierung von Schrifttypen (Latein, Kyrillisch, Arabisch usw.) und Schreibrichtung.
+      fr: Identification du système d'écriture ou du script selon la norme ISO 15924, codant les types de scripts (latin, cyrillique, arabe, etc.) et la direction d'écriture.
+      es: Identificación del sistema de escritura o guion según la norma ISO 15924, codificando tipos de guiones (latín, cirílico, árabe, etc.) y dirección de escritura.
+      ar: تحديد نظام الكتابة أو النص وفقًا لمعيار ISO 15924، وترميز أنواع النصوص (لاتيني، سيريلي، عربي، إلخ) واتجاه الكتابة.
+      id: Identifikasi sistem penulisan atau skrip mengikuti standar ISO 15924, mengodekan jenis skrip (Latin, Sirilik, Arab, dll.) dan arah penulisan.
+      zh: 遵循ISO 15924标准的书写系统或文字识别，编码文字类型 （拉丁文、西里尔文、阿拉伯文等）和书写方向。
+    slots:
+    - has_code
+    slot_usage:
+      has_code:
+        pattern: ^[A-Z][a-z]{3}$
+        examples:
+        - value: Latn
+        - value: Cyrl
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: schrijfsysteem
+      in_language: nl
+    - literal_form: Schriftsystem
+      in_language: de
+    - literal_form: système d'écriture
+      in_language: fr
+    - literal_form: sistema de escritura
+      in_language: es
+    - literal_form: نظام الكتابة
+      in_language: ar
+    - literal_form: sistem penulisan
+      in_language: id
+    - literal_form: 书写系统
+      in_language: zh
+    comments:
+    - ISO 15924 script codes (4-letter codes like Latn, Cyrl, Arab)
+    - Used for script identification and writing direction
+    keywords:
+    - writing system
+    - script
+    - ISO 15924
+    - writing direction
+    examples:
+    - value:
+        has_code: Latn
+      description: Latin script
+    - value:
+        has_code: Arab
+      description: Arabic script
+    annotations:
+      specificity_score: '0.40'
+      specificity_rationale: Moderately specific - writing systems relevant across domains.
+      custodian_types: "['*']"

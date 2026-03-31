@@ -1,0 +1,56 @@
+id: https://nde.nl/ontology/hc/class/LegalForm
+name: LegalForm
+title: Legal Form
+description: Jurisdiction-specific legal form classification for organizations.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rov: http://www.w3.org/ns/regorg#
+  gleif: https://www.gleif.org/ontology/Base/
+  gleif-elf: https://www.gleif.org/ontology/EntityLegalForm/
+  iso20275: https://www.gleif.org/en/about-lei/code-lists/iso-20275-entity-legal-forms-code-list
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_score
+- ../slots/has_hypernym
+classes:
+  LegalForm:
+    class_uri: gleif-elf:EntityLegalForm
+    description: >-
+      Legal-structure classification for organizations, reflecting recognized
+      statutory forms in a jurisdiction.
+    alt_descriptions:
+      nl: Classificatie van juridische structuur voor organisaties volgens erkende rechtsvormen binnen een jurisdictie.
+      de: Rechtsformklassifikation fuer Organisationen gemaess anerkannten gesetzlichen Formen innerhalb einer Jurisdiktion.
+      fr: Classification de structure juridique pour les organisations selon les formes statutaires reconnues dans une juridiction.
+      es: Clasificacion de estructura legal para organizaciones segun formas estatutarias reconocidas en una jurisdiccion.
+      ar: تصنيف للبنية القانونية للمنظمات وفق الأشكال النظامية المعترف بها داخل الولاية القضائية.
+      id: Klasifikasi bentuk hukum organisasi berdasarkan bentuk statutori yang diakui dalam suatu yurisdiksi.
+      zh: 用于组织法定结构的分类，反映某司法辖区认可的法律形态。
+    structured_aliases:
+    - {literal_form: rechtsvorm, in_language: nl}
+    - {literal_form: Rechtsform, in_language: de}
+    - {literal_form: forme juridique, in_language: fr}
+    - {literal_form: forma juridica, in_language: es}
+    - {literal_form: شكل قانوني, in_language: ar}
+    - {literal_form: bentuk hukum, in_language: id}
+    - {literal_form: 法律形式, in_language: zh}
+    exact_mappings:
+    - gleif-elf:EntityLegalForm
+    close_mappings:
+    - skos:Concept
+    related_mappings:
+    - rov:orgType
+    comments:
+    - ISO 20275 defines 1,600+ legal forms across 150+ jurisdictions (ELF code list).
+    - Use this class as the value for organization legal-form slots (see hc:has_legal_form).
+    - Legal forms constrain governance, reporting requirements, liability, and tax treatment.
+    slots:
+    - has_score
+    - has_hypernym
+    annotations:
+      specificity_score: 0.5
+      specificity_rationale: Controlled classification for jurisdictional legal forms (ISO 20275/GLEIF ELF).
+      custodian_types: "['*']"

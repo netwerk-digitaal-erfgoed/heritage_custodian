@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: archived_at
+# ==============================================================================
+# Physical location, institution, or digital repository where something is archived.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|---------------------- |----------------------|---------|----------------------------------------------------------|
+# | **Schema.org**| `schema:archivedAt`   | schemaorg.owl:8358-8379 | exact | "page or link involved in archival of a CreativeWork"    |
+#
+# SEMANTIC NOTES:
+# - schema:archivedAt is exact match for archive location
+# - Domain: CreativeWork, Range: URL/WebPage
+# - Our slot is broader (any entity, any location type)
+# - Using standard URI as slot_uri per established principle
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, updated slot_uri to schema:archivedAt
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/archived_at
+name: archived_at
+title: Archived At
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  archived_at:
+    slot_uri: schema:archivedAt
+    description: >-
+      To be preserved, stored, or held in custody at a specific physical location, 
+      institution, or digital repository.
+    alt_descriptions:
+      nl: >-
+        Bewaard, opgeslagen of in bewaring gehouden op een specifieke fysieke 
+        locatie, instelling of digitale repository.
+      de: >-
+        An einem bestimmten physischen Ort, einer Institution oder einem 
+        digitalen Repository aufbewahrt, gespeichert oder verwahrt.
+      fr: >-
+        Préservé, stocké ou détenu en garde à un emplacement physique spécifique, 
+        une institution ou un dépôt numérique.
+      ar: >-
+        أن يتم حفظه أو تخزينه أو الاحتفاظ به في موقع مادي محدد أو 
+        مؤسسة أو مستودع رقمي.
+      id: >-
+        Dilestarikan, disimpan, atau dipegang dalam penjagaan di lokasi fisik 
+        tertentu, institusi, atau repositori digital.
+      zh: >-
+        在特定物理位置、机构或数字存储库中保存、存储或保管。
+      es: >-
+        Preservado, almacenado o mantenido en custodia en una ubicación física 
+        específica, institución o repositorio digital.
+    structured_aliases:
+      - literal_form: gearchiveerd bij
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: archiviert bei
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: archivé à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مؤرشف في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diarsipkan di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 存档于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: archivado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uri
+    multivalued: false
+    exact_mappings:
+    aliases:
+      - is_or_was_archived_at
+      - is_or_was_webarchived_at
+    annotations:
+      custodian_types: '["*"]'

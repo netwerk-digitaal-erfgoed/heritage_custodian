@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_altitude
+# ==============================================================================
+# The altitude or elevation of a location.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property            | File/Line             | Mapping | Notes                                   |
+# |---------------|---------------------|-----------------------|---------|-----------------------------------------|
+# | **Schema.org**| `schema:elevation`  | schemaorg.owl:16243   | exact   | "The elevation of a location (WGS 84)" |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Updated slot_uri to standard, added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_altitude
+name: has_altitude
+title: Has Altitude
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_altitude:
+    slot_uri: schema:elevation
+    description: >-
+      The altitude or elevation of a location, typically measured in meters above sea level.
+    alt_descriptions:
+      nl: >-
+        De hoogte of elevatie van een locatie, doorgaans gemeten in meters boven zeeniveau.
+      de: >-
+        Die Höhe oder Elevation eines Standorts, typischerweise gemessen in Metern über 
+        dem Meeresspiegel.
+      fr: >-
+        L'altitude ou l'élévation d'un lieu, généralement mesurée en mètres au-dessus 
+        du niveau de la mer.
+      ar: >-
+        الارتفاع أو المنسوب لموقع ما، يُقاس عادةً بالأمتار فوق مستوى سطح البحر.
+      id: >-
+        Ketinggian atau elevasi suatu lokasi, biasanya diukur dalam meter di atas 
+        permukaan laut.
+      zh: >-
+        位置的海拔高度，通常以海拔米数测量。
+      es: >-
+        La altitud o elevación de una ubicación, típicamente medida en metros sobre 
+        el nivel del mar.
+    structured_aliases:
+      - literal_form: hoogte
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Höhe
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: altitude
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الارتفاع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: ketinggian
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 海拔
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: altitud
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    aliases:
+      - has_or_had_altitude
+    exact_mappings:
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - MIGRATED 2026-02-03 from has_or_had_altitude for conciseness.
+      - |
+        **USAGE**: Values should be in meters unless otherwise specified. Follows 
+        WGS 84 geodetic system conventions.

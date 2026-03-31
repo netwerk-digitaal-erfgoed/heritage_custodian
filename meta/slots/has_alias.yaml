@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: has_alias
+# ==============================================================================
+# An alternative name, pseudonym, or label for an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line             | Mapping | Notes                        |
+# |---------------|-------------------------|-----------------------|---------|------------------------------|
+# | **Schema.org**| `schema:alternateName`  | schemaorg.owl:7757    | exact   | "An alias for the item"      |
+# | **SKOS**      | `skos:altLabel`         | skos.ttl              | exact   | Alternative lexical label    |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed header, corrected translations to match description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_alias
+name: has_alias
+title: Has Alias
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_alias:
+    slot_uri: schema:alternateName
+    description: >-
+      An alternative name, pseudonym, or label by which the entity is known, distinct 
+      from its primary or official designation.
+    alt_descriptions:
+      nl: >-
+        Een alternatieve naam, pseudoniem of label waarmee de entiteit bekend staat, 
+        onderscheiden van de primaire of officiële benaming.
+      de: >-
+        Ein alternativer Name, Pseudonym oder Bezeichnung, unter der die Entität bekannt 
+        ist, unterschieden von der primären oder offiziellen Bezeichnung.
+      fr: >-
+        Un nom alternatif, pseudonyme ou étiquette par lequel l'entité est connue, distinct 
+        de sa désignation principale ou officielle.
+      ar: >-
+        اسم بديل أو اسم مستعار أو تسمية يُعرف بها الكيان، تختلف عن تسميته الأساسية أو الرسمية.
+      id: >-
+        Nama alternatif, nama samaran, atau label yang dikenal untuk entitas, berbeda 
+        dari sebutan utama atau resminya.
+      zh: >-
+        实体的别名、假名或标签，与其主要或官方名称不同。
+      es: >-
+        Un nombre alternativo, seudónimo o etiqueta por el cual se conoce a la entidad, 
+        distinto de su designación principal u oficial.
+    structured_aliases:
+      - literal_form: alias
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Alias
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: alias
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: اسم مستعار
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: alias
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 别名
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: alias
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_alias
+      - has_or_had_variant_name
+      - has_variant_name
+    exact_mappings:
+      - skos:altLabel
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Captures alternative names such as abbreviations, acronyms, nicknames, 
+        historical names, or informal designations by which an entity may be known.

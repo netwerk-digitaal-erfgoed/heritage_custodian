@@ -1,0 +1,83 @@
+# ==============================================================================
+# LinkML Slot Definition: has_date
+# ==============================================================================
+# A point or period of time associated with an event in the lifecycle of
+# the resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:date`        | dcterms.rdf:1122-1145      | exact   | "A point or period of time associated with an event in the lifecycle of the resource" — range Literal |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, changed slot_uri to dcterms:date (exact match),
+#   fixed malformed description (migration note was leaking into YAML key)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_date
+name: has_date
+title: Has Date
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_date:
+    slot_uri: dcterms:date
+    description: >-
+      To be associated with a specific calendar day, year, or point in time indicating when an event occurred, an object was created, or a resource became valid.
+    alt_descriptions:
+      nl: >-
+        Geassocieerd zijn met een specifieke kalenderdag, jaar of tijdstip dat aangeeft wanneer een gebeurtenis plaatsvond, een object werd gecreëerd of een bron geldig werd.
+      de: >-
+        Mit einem bestimmten Kalendertag, Jahr oder Zeitpunkt verbunden sein, der angibt, wann ein Ereignis stattfand, ein Objekt erstellt wurde oder eine Ressource gültig wurde.
+      fr: >-
+        Être associé à un jour calendaire, une année ou un moment spécifique indiquant quand un événement s'est produit, un objet a été créé ou une ressource est devenue valide.
+      ar: >-
+        الارتباط بيوم تقويمي أو سنة أو نقطة زمنية محددة تشير إلى وقت وقوع حدث أو إنشاء كائن أو صلاحية مورد.
+      id: >-
+        Dikaitkan dengan hari kalender, tahun, atau titik waktu tertentu yang menunjukkan kapan suatu peristiwa terjadi, objek dibuat, atau sumber daya menjadi valid.
+      zh: >-
+        与特定的日历日、年份或时间点相关联，指示事件发生、对象创建或资源生效的时间。
+      es: >-
+        Estar asociado con un día calendario, año o momento específico que indica cuándo ocurrió un evento, se creó un objeto o un recurso se hizo válido.
+    structured_aliases:
+      - literal_form: heeft datum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Datum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une date
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه تاريخ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki tanggal
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene fecha
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_date
+    exact_mappings:
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_date for conciseness.
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,98 @@
+id: https://nde.nl/ontology/hc/class/Locality
+name: Locality
+title: Locality Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  dwc: http://rs.tdwg.org/dwc/terms/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_label
+- ../slots/has_note
+- ../slots/has_provenance
+- ../slots/in_language
+classes:
+  Locality:
+    class_uri: dcterms:Location
+    description: >-
+      Structured place description preserving source wording and contextual interpretation for specimen and collection documentation.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde plaatsbeschrijving die de brontekst en contextuele interpretatie bewaart voor specimen- en collectiedocumentatie.
+      de: >-
+        Strukturierte Ortsbeschreibung, die den Quellwortlaut und die kontextuelle Interpretation für Specimen- und Sammlungsdokumentation bewahrt.
+      fr: >-
+        Description de lieu structurée préservant le libellé source et l'interprétation contextuelle pour la documentation des spécimens et des collections.
+      es: >-
+        Descripción de lugar estructurada que preserva el texto original y la interpretación contextual para documentación de especímenes y colecciones.
+      ar: >-
+        وصف مكان منظم يحافظ على صياغة المصدر والتفسير السياقي لتوثيق العينات والمجموعات.
+      id: >-
+        Deskripsi tempat terstruktur yang mempertahankan kata sumber dan interpretasi kontekstual untuk dokumentasi spesimen dan koleksi.
+      zh: >-
+        保留来源措辞和语境解释的地点结构化描述，用于标本和藏品文献记录。
+    structured_aliases:
+    - literal_form: localiteit
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Lokalität
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: localité
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: localidad
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: موضع
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: lokalitas
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 产地
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - dcterms:Location
+    close_mappings:
+    - dwc:Location
+    - schema:Place
+    related_mappings:
+    - crm:E53_Place
+    mixins:
+    - HasProvenance
+    slots:
+    - has_label
+    - has_note
+    - has_provenance
+    - in_language
+    slot_usage:
+      has_provenance:
+        range: ProvenanceBlock
+        inlined: true
+    comments:
+    - Preserves original field locality descriptions from specimen labels.
+    - Supports natural history and geological collection documentation.
+    - 'Preserved from prior description: Structured locality description preserving source wording and contextual interpretation.'
+    keywords:
+    - specimen location
+    - field locality
+    - collection provenance
+    - place description
+    examples:
+    - value:
+        has_label: "Krakatau, Sunda Strait"
+        has_note: "Type locality for species description"
+      description: Natural history specimen locality
+    annotations:
+      custodian_types: '["B", "M", "R"]'
+      custodian_types_rationale: Mainly used in specimen, field, and collection locality contexts.
+      custodian_types_primary: B
+      specificity_score: 0.65
+      specificity_rationale: Structured locality capture with provenance for specimen and collection data.

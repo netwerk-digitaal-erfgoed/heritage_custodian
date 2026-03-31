@@ -1,0 +1,91 @@
+id: https://nde.nl/ontology/hc/class/LibraryType
+name: LibraryType
+title: Library Type Classification
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../enums/LibraryTypeEnum
+- ../slots/comply_with
+- ../slots/has_hypernym
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_service
+- ../slots/has_policy
+- ../slots/has_hyponym
+- ../slots/require
+- ../slots/has_special_collection
+- ../slots/use
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  bf: http://id.loc.gov/ontologies/bibframe/
+default_prefix: hc
+classes:
+  LibraryType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: >-
+      Custodian type concept for organizations that curate, organize, and provide
+      access to published or reference resources for reading, study, and research.
+    alt_descriptions:
+      nl: Typeconcept voor instellingen die gepubliceerde of referentiebronnen beheren ordenen en toegankelijk maken voor lezen studie en onderzoek.
+      de: Typkonzept fuer Einrichtungen die veroeffentlichte oder referenzielle Ressourcen kuratieren organisieren und fuer Lesen Studium und Forschung bereitstellen.
+      fr: Concept de type pour les institutions qui organisent et donnent acces a des ressources publiees ou de reference pour lecture et recherche.
+      es: Concepto de tipo para instituciones que organizan y facilitan acceso a recursos publicados o de referencia para lectura estudio e investigacion.
+      ar: مفهوم نوع للمؤسسات التي تدير وتنظم وتتيح موارد منشورة أو مرجعية للقراءة والدراسة والبحث.
+      id: Konsep tipe untuk institusi yang mengkurasi mengorganisasi dan menyediakan akses ke sumber terbitan atau referensi untuk baca studi dan riset.
+      zh: 面向图书馆机构类型的概念，用于组织并提供出版物或参考资源以支持阅读、学习与研究。
+    structured_aliases:
+    - {literal_form: bibliotheektype, in_language: nl}
+    - {literal_form: Bibliothekstyp, in_language: de}
+    - {literal_form: type de bibliotheque, in_language: fr}
+    - {literal_form: tipo de biblioteca, in_language: es}
+    - {literal_form: نوع مكتبة, in_language: ar}
+    - {literal_form: tipe perpustakaan, in_language: id}
+    - {literal_form: 图书馆类型, in_language: zh}
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Specialized custodian type for libraries - institutions that collect, organize,\npreserve, and provide access to information resources (books, journals, digital\nmaterials) for reading, reference, research, and learning.\n\n**Wikidata Base Concept**: Q7075 (library)\n\n**Scope**:\nLibraries are distinguished by their focus on:\n- Published materials (books, journals, digital resources)\n- Systematic organization (catalogs, classification systems)\n- Information access and lending services\n- Reader services and information literacy programs\n- Mass-produced items (not unique artifacts)\n\n**Key Library Subtypes** (60+ extracted from Wikidata):\n\n**By Administrative Level**:\n- National libraries (Q22806) - Comprehensive national collections\n- State/regional libraries - Provincial or state-level libraries\n- Municipal libraries - City or town public libraries\n- Library branches (Q11396180) - Local branch of library organization\n\n**By Function & Audience**:\n- Research\
+    annotations:
+      skos:prefLabel: Library
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    - use
+    - comply_with
+    - has_type
+    - has_service
+    - has_policy
+    - has_hyponym
+    - require
+    - has_special_collection
+    - has_score
+    - identified_by
+    slot_usage:
+      use:
+        inlined: false
+        multivalued: true
+      identified_by:
+        pattern: ^Q[0-9]+$
+        required: true
+      has_hypernym:
+        range: LibraryType
+      has_type:
+        any_of:
+        - equals_string: hc:LibraryType
+      comply_with:
+        inlined: false
+        multivalued: true
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E55_Type
+    - bf:Organization
+    - schema:Library

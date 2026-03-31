@@ -1,0 +1,172 @@
+id: https://nde.nl/ontology/hc/class/BindingType
+name: binding_type_class
+title: Binding Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  aat: http://vocab.getty.edu/aat/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_hypernym
+  - ../slots/has_hyponym
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/equivalent_to
+  - ../slots/related_to
+classes:
+  BindingType:
+    class_uri: bf:Binding
+    description: >-
+      Classification for book covering methods based on material, style, and construction.
+      Supports SKOS-based hierarchical taxonomy for heritage library and archive collections.
+    alt_descriptions:
+      nl: >-
+        Classificatie voor boekbedekkingstechnieken op basis van materiaal, stijl en constructie.
+        Ondersteunt SKOS-gebaseerde hiërarchische taxonomie voor erfgoedbibliotheek- en archiefcollecties.
+      de: >-
+        Klassifizierung für Buchdeckel-Methoden basierend auf Material, Stil und Konstruktion.
+        Unterstützt SKOS-basierte hierarchische Taxonomie für Bibliotheks- und Archivsammlungen.
+      fr: >-
+        Classification pour les méthodes de couverture de livres basée sur le matériau, le style et la construction.
+        Prend en charge une taxonomie hiérarchique basée sur SKOS pour les collections de bibliothèques et d'archives.
+      es: >-
+        Clasificación para métodos de cubierta de libros basada en material, estilo y construcción.
+        Admite taxonomía jerárquica basada en SKOS para colecciones de bibliotecas y archivos patrimoniales.
+      ar: >-
+        تصنيف طرق تغطية الكتب بناءً على المادة والأسلوب والبناء.
+        يدعم تصنيفًا هرميًا قائمًا على SKOS لمجموعات المكتبات والأرشيفات التراثية.
+      id: >-
+        Klasifikasi untuk metode penutup buku berdasarkan bahan, gaya, dan konstruksi.
+        Mendukung taksonomi hierarkis berbasis SKOS untuk koleksi perpustakaan dan arsip warisan.
+      zh: >-
+        基于材料、风格和构造的书籍封面方法分类。
+        支持基于SKOS的遗产图书馆和档案馆藏的分层分类法。
+    exact_mappings:
+      - bf:Binding
+    close_mappings:
+      - aat:300211468
+    broad_mappings:
+      - skos:Concept
+      - crm:E55_Type
+    slots:
+      - identified_by
+      - has_code
+      - has_label
+      - has_description
+      - has_hypernym
+      - has_hyponym
+      - related_to
+      - equivalent_to
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        pattern: "^https://nde\\.nl/ontology/hc/binding-type/[a-z0-9-]+$"
+        examples:
+          - value: https://nde.nl/ontology/hc/binding-type/full-leather
+      has_code:
+        required: true
+        pattern: "^[A-Z][A-Z0-9_]*$"
+        examples:
+          - value: FULL_LEATHER
+          - value: HALF_LEATHER
+          - value: CLOTH
+      has_label:
+        required: true
+        multivalued: true
+        examples:
+          - value:
+              - Full leather@en
+              - Volledige leren band@nl
+          - value:
+              - Half leather@en
+              - Halfleren band@nl
+      has_description:
+        examples:
+          - value: Entire cover in leather, typically calfskin, goatskin, or morocco.
+      has_hypernym:
+        range: BindingType
+      has_hyponym:
+        range: BindingType
+        multivalued: true
+        inlined_as_list: true
+      equivalent_to:
+        range: WikiDataIdentifier
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+          - value:
+              - qid: Q188960
+    comments:
+      - Provides SKOS-based classification for bound volumes
+      - Aligned with BIBFRAME bf:Binding and AAT hierarchy
+      - Supports hierarchical type relationships
+      - 'MIGRATED 2026-01-13: Now uses shared slots (Rule 38)'
+    see_also:
+      - http://id.loc.gov/ontologies/bibframe/Binding
+      - http://vocab.getty.edu/aat/300211468
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/binding-type/full-leather
+          has_code: FULL_LEATHER
+          has_label:
+            - Full leather@en
+            - Volledige leren band@nl
+          has_description: Entire cover in leather, typically calfskin, goatskin, or morocco.
+    keywords:
+      - bookbinding
+      - leather binding
+      - cloth binding
+      - bibliography
+    notes:
+      - |
+        Preserved from prior description (commit 51480891):
+
+        "Classification type for book binding methods in heritage custodian contexts.\n\n**DEFINITION**:\n\nBindingType provides a SKOS-based classification hierarchy for categorizing\ndifferent types of book bindings based on method, material, and style.\n\n**ONTOLOGY ALIGNMENT**:\n\n| Ontology | Class/Property | Notes |\n|----------|----------------|-------|\n| **BIBFRAME** | `bf:Binding` | Primary - binding method for published resources |\n| **AAT** | `aat:300211468` | Getty bindings concept hierarchy |\n| **CIDOC-CRM** | `crm:E55_Type` | General type classification |\n| **SKOS** | `skos:Concept` | Controlled vocabulary concept |\n\n**BINDING TYPES** (from slot definition):\n\n| Type | Description |\n|------|-------------|\n| `FULL_LEATHER` | Entire cover in leather |\n| `HALF_LEATHER` | Spine and corners in leather |\n| `QUARTER_LEATHER` | Spine only in leather |\n| `CLOTH` | Cloth binding covers |\n| `PAPER_BOARDS` | Paper-covered boards |\n| `LIMP_VELLUM` | Flexible vellum\
+    annotations:
+      specificity_score: '0.70'
+      specificity_rationale: Specific to bound volumes in libraries and archives.
+      slot_migration: "2026-01-13: Migrated from binding_type string slot to BindingType class"
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: bindwijze
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: inbindwijze
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: boekband
+        predicate: RELATED_SYNONYM
+        in_language: nl
+      - literal_form: Einband
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Bucheinband
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: reliure
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: type de reliure
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: encuadernación
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: tipo de encuadernación
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: bookbinding
+        predicate: EXACT_SYNONYM
+        in_language: en
+      - literal_form: binding type
+        predicate: EXACT_SYNONYM
+        in_language: en

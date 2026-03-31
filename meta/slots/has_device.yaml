@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: has_device
+# ==============================================================================
+# To possess or be associated with a distinct physical apparatus or hardware
+# unit designed to perform a specific function or task.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **CIDOC-CRM** | `crm:P16_used_specific_object` | CIDOC_CRM:1543-1560 | close | Activity used specific object    |
+# | **SOSA**      | `sosa:madeBySensor`   | sosa.ttl             | narrow  | Sensor (specific device type)      |
+# | **Schema.org**| `schema:device`       | schemaorg.owl        | related | Device used in medical procedure   |
+#
+# HIERARCHY: No direct subPropertyOf - domain-specific property for device possession
+#
+# CREATED: 2026-01-20
+# UPDATED: 2026-02-03 - Fixed mapping: sosa:madeBySensor is narrow (sensor is a type of device), not exact
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_device
+name: has_device
+title: has_device
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_device:
+    name: has_device
+    title: has_device
+    description: >-
+      To possess or be associated with a distinct physical apparatus or
+      hardware unit designed to perform a specific function or task.
+    alt_descriptions:
+      nl: >-
+        Om een onderscheidend fysiek apparaat of hardware-eenheid te bezitten
+        of ermee geassocieerd te zijn dat is ontworpen om een specifieke
+        functie of taak uit te voeren.
+      de: >-
+        Ein bestimmtes physisches Gerät oder eine Hardware-Einheit zu
+        besitzen oder damit verbunden zu sein, die für die Ausführung einer
+        bestimmten Funktion oder Aufgabe konzipiert ist.
+      fr: >-
+        Posséder ou être associé à un appareil physique distinct ou une unité
+        matérielle conçue pour effectuer une fonction ou une tâche spécifique.
+      ar: >-
+        امتلاك أو الارتباط بجهاز مادي مميز أو وحدة أجهزة مصممة لأداء وظيفة
+        أو مهمة محددة.
+      id: >-
+        Memiliki atau terkait dengan peralatan fisik atau unit perangkat keras
+        yang berbeda yang dirancang untuk melakukan fungsi atau tugas tertentu.
+      zh: >-
+        拥有或与旨在执行特定功能或任务的独特物理设备或硬件单元相关联。
+      es: >-
+        Poseer o estar asociado con un aparato físico distinto o unidad de
+        hardware diseñada para realizar una función o tarea específica.
+    structured_aliases:
+      - literal_form: apparaat
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Gerät
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: appareil
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: جهاز
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: perangkat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 设备
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: dispositivo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasDevice
+    range: string # uriorcurie
+    # range: IoTDevice
+    multivalued: true
+    aliases:
+      - has_or_had_device
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - crm:P16_used_specific_object  # CIDOC_CRM:1543-1560 - Activity used specific object
+    narrow_mappings:
+      - sosa:madeBySensor  # sosa.ttl - Sensor is a specific type of device
+    related_mappings:
+      - schema:device  # schemaorg.owl - Device used in medical procedure

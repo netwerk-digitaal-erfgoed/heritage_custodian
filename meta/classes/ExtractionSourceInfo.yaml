@@ -1,0 +1,92 @@
+id: https://nde.nl/ontology/hc/classes/ExtractionSourceInfo
+name: ExtractionSourceInfo
+title: Extraction Source Info Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_field
+- ../slots/has_text
+- ../slots/has_method
+classes:
+  ExtractionSourceInfo:
+    class_uri: prov:Entity
+    description: >-
+      Provenance trace recording the field name, extracted content,
+      and methodology used for a data extraction operation.
+    alt_descriptions:
+      nl: >-
+        Herkomstspoor dat de veldnaam, geëxtraheerde inhoud
+        en methodologie voor een gegevensextractiebewerking vastlegt.
+      de: >-
+        Herkunftsnachweis, der Feldnamen, extrahierte Inhalte
+        und Methodik eines Datenextraktionsvorgangs aufzeichnet.
+      fr: >-
+        Trace de provenance enregistrant le nom du champ, le contenu extrait
+        et la méthodologie utilisée pour une opération d'extraction de données.
+      es: >-
+        Rastro de procedencia que registra el nombre del campo, el contenido extraído
+        y la metodología utilizada para una operación de extracción de datos.
+      ar: >-
+        تتبع المصدر الذي يسجل اسم الحقل والمحتوى المستخرج
+        والمنهجية المستخدمة لعملية استخراج البيانات.
+      id: >-
+        Jejak asal-usul yang mencatat nama bidang, konten yang diekstraksi,
+        dan metodologi yang digunakan untuk operasi ekstraksi data.
+      zh: >-
+        记录字段名称、提取内容和数据提取操作所用方法论的来源追踪。
+    close_mappings:
+    - schema:PropertyValue
+    related_mappings:
+    - prov:Derivation
+    slots:
+    - has_field
+    - has_text
+    - has_method
+    structured_aliases:
+    - literal_form: extractiebroninformatie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Extraktionsquelleninfo
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: info source extraction
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: info fuente extracción
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: معلومات مصدر الاستخراج
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: info sumber ekstraksi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 提取源信息
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - Documents extraction method (pattern matching, LLM, regex, etc.)
+    - Used for audit trail and reproducibility of data extraction
+    - 'Preserved from prior description: Source-level extraction trace containing extracted field, text, and method.'
+    keywords:
+    - extraction
+    - provenance
+    - trace
+    - data lineage
+    examples:
+    - value:
+        has_field: organization_name
+        has_text: Rijksmuseum
+        has_method: pattern_matching
+      description: Extraction trace for organization name field
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Low-level extraction trace entity used for audit and debugging.
+      custodian_types: '["*"]'
+    broad_mappings:
+    - prov:Entity

@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/classes/ProvenanceBlock
+name: ProvenanceBlock
+title: ProvenanceBlock
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  pav: http://purl.org/pav/
+imports:
+  - linkml:types
+  - ../enums/DataTierEnum
+  - ../classes/GenerationEvent
+  - ../slots/generated_by
+  - ../slots/has_note
+  - ../slots/has_type
+  - ../slots/has_url
+  - ../slots/has_standard
+# default_range: string
+classes:
+  ProvenanceBlock:
+    description: >-
+      Container bundling multiple provenance statements together, documenting
+      data sources, extraction methods, timestamps, confidence scores, and verification status.
+    alt_descriptions:
+      nl: >-
+        Container die meerdere herkomstverklaringen bundelt, waarbij gegevensbronnen,
+        extractiemethoden, tijdstempels, betrouwbaarheidsscores en verificatiestatus worden gedocumenteerd.
+      de: >-
+        Container, der mehrere Provenienzaussagen bündelt und Datenquellen,
+        Extraktionsmethoden, Zeitstempel, Konfidenzwerte und Verifikationsstatus dokumentiert.
+      fr: >-
+        Conteneur regroupant plusieurs déclarations de provenance, documentant
+        les sources de données, les méthodes d'extraction, les horodatages, les scores de confiance et le statut de vérification.
+      es: >-
+        Contenedor que agrupa múltiples declaraciones de procedencia, documentando
+        fuentes de datos, métodos de extracción, marcas de tiempo, puntuaciones de confianza y estado de verificación.
+      ar: >-
+        حاوية تجمع عبارات المنشأ المتعددة، توثق مصادر البيانات
+        وطرق الاستخراج والطوابع الزمنية ودرجات الثقة وحالة التحقق.
+      id: >-
+        Kontainer yang mengelompokkan beberapa pernyataan provenance, mendokumentasikan
+        sumber data, metode ekstraksi, timestamp, skor kepercayaan, dan status verifikasi.
+      zh: >-
+        将多个来源声明捆绑在一起的容器，记录数据源、提取方法、时间戳、置信度分数和验证状态。
+    class_uri: prov:Bundle
+    close_mappings:
+      - pav:Provenance
+    related_mappings:
+      - prov:Entity
+      - prov:Activity
+    broad_mappings:
+      - prov:Entity
+    keywords:
+      - provenance block
+      - data lineage
+      - source tracking
+      - confidence score
+    structured_aliases:
+      - literal_form: herkomstblok
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Provenienzblock
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: bloc de provenance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    comments:
+      - MIGRATED 2026-01-19: confidence_score → generated_by + GenerationEvent + ConfidenceScore (Rule 53)
+      - Distinguished from Provenance which represents a SINGLE statement
+    slots:
+      - generated_by
+      - has_note
+      - has_url
+      - has_type
+      - has_standard
+    slot_usage:
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+        description: >-
+          Generation event containing confidence score for the provenance block.
+          MIGRATED 2026-01-19: Replaces confidence_score slot with structured pattern.
+        examples:
+          - value:
+              has_score:
+                has_score: 0.95
+                has_method: automated_extraction
+          - value:
+              has_score:
+                has_score: 0.65
+                has_method: manual_review
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '["*"]'

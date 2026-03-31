@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: has_activity
+# ==============================================================================
+# Links an entity to an activity it performs or is associated with.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property          | File/Line        | Mapping | Notes                              |
+# |------------|-------------------|------------------|---------|-------------------------------------|
+# | **PROV-O** | `prov:hadActivity`| prov.ttl:605-623 | close   | Optional activity of an influence   |
+#
+# No exact standard property mapping exists for "has activity".
+# This is a domain-specific property for activity associations.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_activity
+name: has_activity
+title: Has Activity
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_activity:
+    slot_uri: hc:hasActivity
+    description: >-
+      To perform, engage in, or be characterized by a specific action, task, 
+      process, or operation.
+    alt_descriptions:
+      nl: >-
+        Uitvoeren, deelnemen aan of gekenmerkt worden door een specifieke 
+        actie, taak, proces of operatie.
+      de: >-
+        Eine bestimmte Aktion, Aufgabe, einen Prozess oder eine Operation 
+        durchführen, daran teilnehmen oder dadurch gekennzeichnet sein.
+      fr: >-
+        Effectuer, participer à ou être caractérisé par une action, une 
+        tâche, un processus ou une opération spécifique.
+      ar: >-
+        أداء أو المشاركة في أو التميز بإجراء أو مهمة أو عملية أو 
+        تشغيل محدد.
+      id: >-
+        Melakukan, terlibat dalam, atau dicirikan oleh tindakan, tugas, 
+        proses, atau operasi tertentu.
+      zh: >-
+        执行、参与或以特定行动、任务、过程或操作为特征。
+      es: >-
+        Realizar, participar en o caracterizarse por una acción, tarea, 
+        proceso u operación específica.
+    structured_aliases:
+      - literal_form: heeft activiteit
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Aktivität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une activité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له نشاط
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki aktivitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有活动
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene actividad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - prov:hadActivity  # prov.ttl:605-623 - optional activity of an influence
+    aliases:
+      - has_or_had_activity
+      - preceding_activity
+      - sales_activity
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to link entities (organizations, agents, or 
+        processes) to activities they perform or are associated with.

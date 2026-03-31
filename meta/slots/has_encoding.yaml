@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: has_encoding
+# ==============================================================================
+# The encoding format of a resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                | File/Line                | Mapping | Notes                                                   |
+# |----------------|-------------------------|--------------------------|---------|----------------------------------------------------------|
+# | **Schema.org** | `schema:encodingFormat`  | schemaorg.owl:16697-16721| close   | Domain MediaObject/CreativeWork; MIME format strings.    |
+# | **DCTerms**    | `dcterms:format`        | dcterms.rdf:1296-1322    | broad   | File format, physical medium, OR dimensions — broader.   |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, added encodingFormat as close, format as broad
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_encoding
+name: has_encoding
+title: Has Encoding
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_encoding:
+    name: has_encoding
+    slot_uri: hc:hasEncoding
+    description: >-
+      To specify the particular set of rules, scheme, or format used to represent data, characters, or signals in a digital form (e.g., character sets like UTF-8 or media formats).
+    alt_descriptions:
+      nl: >-
+        Het specifieke stelsel van regels, schema of formaat dat wordt gebruikt om
+        gegevens, tekens of signalen in digitale vorm weer te geven (bijv.
+        tekensets zoals UTF-8 of mediaformaten).
+      de: >-
+        Das bestimmte Regelwerk, Schema oder Format, das zur Darstellung von Daten,
+        Zeichen oder Signalen in digitaler Form verwendet wird (z. B. Zeichensätze
+        wie UTF-8 oder Medienformate).
+      fr: >-
+        L'ensemble particulier de règles, le schéma ou le format utilisé pour
+        représenter des données, des caractères ou des signaux sous forme numérique
+        (par ex. des jeux de caractères comme UTF-8 ou des formats de média).
+      ar: >-
+        مجموعة القواعد أو النظام أو التنسيق المحدد المستخدم لتمثيل البيانات أو
+        الأحرف أو الإشارات في شكل رقمي (مثل مجموعات الأحرف كـ UTF-8 أو تنسيقات
+        الوسائط).
+      id: >-
+        Seperangkat aturan, skema, atau format tertentu yang digunakan untuk
+        merepresentasikan data, karakter, atau sinyal dalam bentuk digital (misalnya
+        set karakter seperti UTF-8 atau format media).
+      zh: >-
+        用于以数字形式表示数据、字符或信号的特定规则集、方案或格式（例如UTF-8等字符集或
+        媒体格式）。
+      es: >-
+        El conjunto particular de reglas, esquema o formato utilizado para representar
+        datos, caracteres o señales en forma digital (p. ej., conjuntos de caracteres
+        como UTF-8 o formatos de medios).
+    structured_aliases:
+      - literal_form: codering
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Kodierung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: encodage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ترميز
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pengodean
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 编码
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: codificación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_encoding
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:encodingFormat  # schemaorg.owl:16697-16721 — MIME format for MediaObject/CreativeWork
+    broad_mappings:
+      - dcterms:format  # dcterms.rdf:1296-1322 — file format, physical medium, or dimensions (broader)
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_encoding for conciseness (2026-02-03).

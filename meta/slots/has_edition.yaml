@@ -1,0 +1,91 @@
+# ==============================================================================
+# LinkML Slot Definition: has_edition
+# ==============================================================================
+# The particular version, issue, or iteration of a work, publication, or product.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                                                       |
+# |---------------|-----------------------|----------------------------|---------|-------------------------------------------------------------|
+# | **Schema.org**| `schema:bookEdition`  | schemaorg.owl:10316-10336  | narrow  | Domain Book only — narrower than this general slot.         |
+# | **Schema.org**| `schema:version`      | schemaorg.owl:40000-40021  | close   | Domain CreativeWork; version ≈ edition but not identical.   |
+# | **BIBFRAME**  | `bf:edition`          | bibframe.rdf:1896-1902     | —       | NOT used — domain Classification (scheme editions only).    |
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, demoted bookEdition exact→narrow, added version as close
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_edition
+name: has_edition
+title: Has Edition
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_edition:
+    name: has_edition
+    slot_uri: hc:hasEdition
+    description: >-
+      The particular version, issue, or iteration of a work, publication, or product,
+      distinguishing between different releases such as a first and second edition.
+    alt_descriptions:
+      nl: >-
+        De specifieke versie, uitgave of iteratie van een werk, publicatie of product,
+        waarmee onderscheid wordt gemaakt tussen verschillende releases zoals een eerste
+        en tweede editie.
+      de: >-
+        Die bestimmte Version, Ausgabe oder Iteration eines Werkes, einer Publikation
+        oder eines Produkts, die verschiedene Veröffentlichungen wie eine erste und
+        zweite Auflage unterscheidet.
+      fr: >-
+        La version, le numéro ou l'itération particulière d'une œuvre, d'une publication
+        ou d'un produit, distinguant les différentes parutions comme une première et
+        une deuxième édition.
+      ar: >-
+        النسخة أو الإصدار أو التكرار المحدد لعمل أو منشور أو منتج، مع التمييز بين
+        الإصدارات المختلفة مثل الطبعة الأولى والثانية.
+      id: >-
+        Versi, terbitan, atau iterasi tertentu dari suatu karya, publikasi, atau produk,
+        yang membedakan antara rilis yang berbeda seperti edisi pertama dan kedua.
+      zh: >-
+        作品、出版物或产品的特定版本、期号或迭代，用于区分不同的发行版，如第一版和第二版。
+      es: >-
+        La versión, número o iteración particular de una obra, publicación o producto,
+        que distingue entre diferentes lanzamientos como una primera y segunda edición.
+    structured_aliases:
+      - literal_form: editie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ausgabe
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: édition
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: طبعة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: edisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 版本
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: edición
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_edition
+      - copy_number
+    annotations:
+      custodian_types: '["*"]'
+    narrow_mappings:
+      - schema:bookEdition  # schemaorg.owl:10316-10336 — domain Book only, narrower than this general slot
+    close_mappings:
+      - schema:version  # schemaorg.owl:40000-40021 — domain CreativeWork; "version" ≈ "edition" but not identical

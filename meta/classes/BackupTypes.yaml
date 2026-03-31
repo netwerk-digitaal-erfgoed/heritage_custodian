@@ -1,0 +1,509 @@
+id: https://nde.nl/ontology/hc/class/BackupTypes
+name: backup_types_classes
+title: Backup Types Concrete Classes
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- ./BackupType
+- linkml:types
+classes:
+  DailyAutomatedBackup:
+    is_a: BackupType
+    class_uri: hc:DailyAutomatedBackup
+    description: >-
+      Automated daily backup process copying data to an off-site location,
+      standard practice for heritage institutions with active digital collections.
+    alt_descriptions:
+      nl: Geautomatiseerd dagelijks back-upproces dat gegevens kopieert naar een externe locatie, standaardpraktijk voor erfgoedinstellingen met actieve digitale collecties.
+      de: Automatisierter täglicher Backup-Prozess, der Daten an einen externen Standort kopiert, Standardpraxis für Heritage-Institutionen mit aktiven digitalen Sammlungen.
+      fr: Processus de sauvegarde quotidien automatisé copiant les données vers un site externe, pratique standard pour les institutions patrimoniales avec des collections numériques actives.
+      es: Proceso de respaldo diario automatizado que copia datos a una ubicación externa, práctica estándar para instituciones patrimoniales con colecciones digitales activas.
+      ar: عملية نسخ احتياطي يومية آلية تنسخ البيانات إلى موقع خارجي، ممارسة قياسية للمؤسسات التراثية ذات المجموعات الرقمية النشطة.
+      id: Proses cadangan harian otomatis yang menyalin data ke lokasi luar situs, praktik standar untuk lembaga warisan dengan koleksi digital aktif.
+      zh: 自动每日备份流程，将数据复制到外部位置，是拥有活跃数字藏品的 遗产机构的标准做法。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: dagelijkse geautomatiseerde back-up
+      in_language: nl
+    - literal_form: tägliche automatisierte Sicherung
+      in_language: de
+    - literal_form: sauvegarde quotidienne automatisée
+      in_language: fr
+    - literal_form: respaldo diario automatizado
+      in_language: es
+    - literal_form: نسخ احتياطي يومي آلي
+      in_language: ar
+    - literal_form: cadangan harian otomatis
+      in_language: id
+    - literal_form: 每日自动备份
+      in_language: zh
+    annotations:
+      short_code: DAILY_AUTOMATED
+      specificity_score: '0.65'
+      custodian_types: "['*']"
+    examples:
+    - value:
+        has_code: DAILY_AUTOMATED
+        has_label:
+        - Daily automated backup@en
+        - Dagelijkse geautomatiseerde backup@nl
+      description: Standard daily backup configuration
+  WeeklyFullDailyIncremental:
+    is_a: BackupType
+    class_uri: hc:WeeklyFullDailyIncremental
+    description: >-
+      Combines weekly full backups with daily incremental backups for efficient
+      storage use while maintaining recovery capability, common in large heritage
+      institutions.
+    alt_descriptions:
+      nl: Combineert wekelijkse volledige back-ups met dagelijkse incrementele back-ups voor efficiënt opslaggebruik bij behoud van herstelmogelijkheden, gebruikelijk bij grote erfgoedinstellingen.
+      de: Kombiniert wöchentliche Vollbackups mit täglichen inkrementellen Backups für effiziente Speichernutzung bei Aufrechterhaltung der Wiederherstellungsfähigkeit, üblich in großen Heritage-Institutionen.
+      fr: Combine des sauvegardes complètes hebdomadaires avec des sauvegardes incrémentielles quotidiennes pour une utilisation efficace du stockage tout en maintenant la capacité de récupération.
+      es: Combina respaldos completos semanales con respaldos incrementales diarios para un uso eficiente del almacenamiento manteniendo la capacidad de recuperación.
+      ar: يجمع بين النسخ الاحتياطية الكاملة الأسبوعية مع النسخ الاحتياطية التزايدية اليومية للاستخدام الفعال للتخزين مع الحفاظ على قدرة الاسترداد.
+      id: Menggabungkan cadangan penuh mingguan dengan cadangan inkremental harian untuk penggunaan penyimpanan yang efisien sambil mempertahankan kemampuan pemulihan.
+      zh: 结合每周完整备份和每日增量备份，在保持恢复能力的同时实现高效存储使用， 常见于大型遗产机构。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: wekelijks volledig dagelijks incrementeel
+      in_language: nl
+    - literal_form: wöchentlich voll, täglich inkrementell
+      in_language: de
+    - literal_form: hebdomadaire complet, quotidien incrémentiel
+      in_language: fr
+    - literal_form: semanal completo, diario incremental
+      in_language: es
+    - literal_form: أسبوعي كامل ويومي تزايدي
+      in_language: ar
+    - literal_form: mingguan penuh harian inkremental
+      in_language: id
+    - literal_form: 每周完整每日增量
+      in_language: zh
+    annotations:
+      short_code: WEEKLY_FULL_DAILY_INCR
+      specificity_score: '0.65'
+    examples:
+    - value:
+        has_code: WEEKLY_FULL_DAILY_INCR
+        has_label:
+        - Weekly full, daily incremental@en
+        - Wekelijks volledig, dagelijks incrementeel@nl
+      description: Enterprise backup strategy
+  ContinuousReplication:
+    is_a: BackupType
+    class_uri: hc:ContinuousReplication
+    description: >-
+      Real-time continuous data replication to a secondary data center or cloud,
+      providing near-zero data loss (RPO) and rapid recovery (RTO), used by
+      institutions with critical digital assets.
+    alt_descriptions:
+      nl: Real-time continue gegevensreplicatie naar een secundair datacenter of cloud, met bijna-nul gegevensverlies (RPO) en snelle herstel (RTO), gebruikt door instellingen met kritieke digitale activa.
+      de: Echtzeit-Kontinuierliche Datenreplikation zu einem sekundären Rechenzentrum oder in die Cloud, bietet nahezu null Datenverlust (RPO) und schnelle Wiederherstellung (RTO).
+      fr: Réplication de données continue en temps réel vers un centre de données secondaire ou le cloud, offrant une perte de données quasi nulle (RPO) et une récupération rapide (RTO).
+      es: Replicación de datos continua en tiempo real a un centro de datos secundario o a la nube, proporcionando pérdida de datos casi nula (RPO) y recuperación rápida (RTO).
+      ar: نسخ متماثل للبيانات المستمرة في الوقت الفعلي إلى مركز بيانات ثانوي أو سحابة، مما يوفر فقدان بيانات شبه صفري (RPO) واسترداد سريع (RTO).
+      id: Replikasi data berkelanjutan real-time ke pusat data sekunder atau cloud, memberikan kehilangan data mendekati nol (RPO) dan pemulihan cepat (RTO).
+      zh: 实时持续数据复制到辅助数据中心或云端，提供近乎零的数据丢失(RPO) 和快速恢复(RTO)，用于拥有关键数字资产的机构。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: continue replicatie
+      in_language: nl
+    - literal_form: kontinuierliche Replikation
+      in_language: de
+    - literal_form: réplication continue
+      in_language: fr
+    - literal_form: replicación continua
+      in_language: es
+    - literal_form: نسخ متماثل مستمر
+      in_language: ar
+    - literal_form: replikasi berkelanjutan
+      in_language: id
+    - literal_form: 持续复制
+      in_language: zh
+    annotations:
+      short_code: CONTINUOUS_REPLICATION
+      specificity_score: '0.70'
+    examples:
+    - value:
+        has_code: CONTINUOUS_REPLICATION
+        has_label:
+        - Continuous replication@en
+        - Continue replicatie@nl
+      description: Real-time data protection
+  SecondarySiteReplication:
+    is_a: BackupType
+    class_uri: hc:SecondarySiteReplication
+    description: >-
+      Data replicated to a geographically separate secondary site, providing
+      disaster recovery capability for major incidents.
+    alt_descriptions:
+      nl: Gegevens gerepliceerd naar een geografisch gescheiden secundaire locatie, wat disaster recovery-mogelijkheden biedt voor grote incidenten.
+      de: Daten werden an einen geografisch getrennten sekundären Standort repliziert, was Disaster-Recovery-Funktionen für größere Zwischenfälle bietet.
+      fr: Données répliquées vers un site secondaire géographiquement distinct, fournissant une capacité de reprise après sinistre pour les incidents majeurs.
+      es: Datos replicados a un sitio secundario geográficamente separado, proporcionando capacidad de recuperación ante desastres para incidentes mayores.
+      ar: بيانات منسوخة إلى موقع ثانوي منفصل جغرافيًا، مما يوفر قدرة استعادة البيانات للحوادث الكبرى.
+      id: Data direplikasi ke situs sekunder yang terpisah secara geografis, menyediakan kemampuan pemulihan bencana untuk insiden besar.
+      zh: 数据复制到地理上分离的辅助站点，为重大事件提供灾难恢复能力。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: secundaire locatie replicatie
+      in_language: nl
+    - literal_form: Sekundärstandort-Replikation
+      in_language: de
+    - literal_form: réplication de site secondaire
+      in_language: fr
+    - literal_form: replicación de sitio secundario
+      in_language: es
+    - literal_form: نسخ موقع ثانوي
+      in_language: ar
+    - literal_form: replikasi situs sekunder
+      in_language: id
+    - literal_form: 辅助站点复制
+      in_language: zh
+    annotations:
+      short_code: SECONDARY_SITE
+      specificity_score: '0.70'
+    examples:
+    - value:
+        has_code: SECONDARY_SITE
+        has_label:
+        - Secondary site replication@en
+        - Replicatie naar secundaire locatie@nl
+      description: Geographic redundancy
+  CloudBackupAzure:
+    is_a: BackupType
+    class_uri: hc:CloudBackupAzure
+    description: >-
+      Backup stored in Microsoft Azure cloud storage, common for Dutch heritage
+      institutions due to EU data residency options.
+    alt_descriptions:
+      nl: Back-up opgeslagen in Microsoft Azure cloud-opslag, gebruikelijk voor Nederlandse erfgoedinstellingen vanwege EU-dataresidu-opties.
+      de: In Microsoft Azure-Cloud-Speicher gespeichertes Backup, häufig bei niederländischen Heritage-Institutionen aufgrund EU-Datenaufbewahrungsoptionen.
+      fr: Sauvegarde stockée dans le cloud Microsoft Azure, courant pour les institutions patrimoniales néerlandaises en raison des options de résidence des données dans l'UE.
+      es: Respaldo almacenado en almacenamiento en la nube de Microsoft Azure, común para instituciones patrimoniales holandesas debido a las opciones de residencia de datos de la UE.
+      ar: نسخ احتياطي مخزن في تخزين سحابة Microsoft Azure، شائع للمؤسسات التراثية الهولندية بسبب خيارات إقامة البيانات في الاتحاد الأوروبي.
+      id: Cadangan disimpan di penyimpanan cloud Microsoft Azure, umum untuk lembaga warisan Belanda karena opsi residensi data UE.
+      zh: 存储在Microsoft Azure云存储中的备份，由于欧盟数据驻留选项， 在荷兰遗产机构中很常见。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: Azure cloud back-up
+      in_language: nl
+    - literal_form: Azure-Cloud-Backup
+      in_language: de
+    - literal_form: sauvegarde cloud Azure
+      in_language: fr
+    - literal_form: respaldo en nube Azure
+      in_language: es
+    - literal_form: نسخ احتياطي سحابة Azure
+      in_language: ar
+    - literal_form: cadangan cloud Azure
+      in_language: id
+    - literal_form: Azure云备份
+      in_language: zh
+    annotations:
+      short_code: CLOUD_AZURE
+      specificity_score: '0.65'
+    examples:
+    - value:
+        has_code: CLOUD_AZURE
+        has_label:
+        - Cloud backup (Azure)@en
+        - Cloud backup (Azure)@nl
+      description: Azure cloud backup
+  CloudBackupAWS:
+    is_a: BackupType
+    class_uri: hc:CloudBackupAWS
+    description: >-
+      Backup stored in Amazon Web Services cloud storage (S3, Glacier) with
+      options for various storage tiers based on access needs.
+    alt_descriptions:
+      nl: Back-up opgeslagen in Amazon Web Services cloud-opslag (S3, Glacier) met opties voor verschillende opslaglagen op basis van toegangsbehoeften.
+      de: In Amazon Web Services-Cloud-Speicher (S3, Glacier) gespeichertes Backup mit Optionen für verschiedene Speicherebenen basierend auf Zugriffsanforderungen.
+      fr: Sauvegarde stockée dans le cloud Amazon Web Services (S3, Glacier) avec des options pour différents niveaux de stockage selon les besoins d'accès.
+      es: Respaldo almacenado en almacenamiento en la nube de Amazon Web Services (S3, Glacier) con opciones para varios niveles de almacenamiento según las necesidades de acceso.
+      ar: نسخ احتياطي مخزن في تخزين سحابة Amazon Web Services (S3، Glacier) مع خيارات لمستويات تخزين مختلفة بناءً على احتياجات الوصول.
+      id: Cadangan disimpan di penyimpanan cloud Amazon Web Services (S3, Glacier) dengan opsi untuk berbagai tingkat penyimpanan berdasarkan kebutuhan akses.
+      zh: 存储在Amazon Web Services云存储(S3、Glacier)中的备份，根据访问需求 提供各种存储层级选项。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: AWS cloud back-up
+      in_language: nl
+    - literal_form: AWS-Cloud-Backup
+      in_language: de
+    - literal_form: sauvegarde cloud AWS
+      in_language: fr
+    - literal_form: respaldo en nube AWS
+      in_language: es
+    - literal_form: نسخ احتياطي سحابة AWS
+      in_language: ar
+    - literal_form: cadangan cloud AWS
+      in_language: id
+    - literal_form: AWS云备份
+      in_language: zh
+    annotations:
+      short_code: CLOUD_AWS
+      specificity_score: '0.65'
+    examples:
+    - value:
+        has_code: CLOUD_AWS
+        has_label:
+        - Cloud backup (AWS)@en
+        - Cloud backup (AWS)@nl
+      description: AWS cloud backup
+  OnPremiseBackup:
+    is_a: BackupType
+    class_uri: hc:OnPremiseBackup
+    description: >-
+      Backup stored only on local premises, representing higher risk for disaster
+      scenarios, may be combined with off-site backup.
+    alt_descriptions:
+      nl: Back-up alleen lokaal opgeslagen, met hoger risico voor disasterscenario's, kan worden gecombineerd met externe back-up.
+      de: Nur lokal vor Ort gespeichertes Backup, stellt ein höheres Risiko für Katastrophenszenarien dar, kann mit externem Backup kombiniert werden.
+      fr: Sauvegarde stockée uniquement sur site local, représentant un risque plus élevé pour les scénarios de catastrophe, peut être combinée avec une sauvegarde hors site.
+      es: Respaldo almacenado solo en instalaciones locales, representa mayor riesgo para escenarios de desastre, puede combinarse con respaldo externo.
+      ar: نسخ احتياطي مخزن محليًا فقط، يمثل خطرًا أعلى لسيناريوهات الكوارث، يمكن دمجه مع نسخ احتياطي خارجي.
+      id: Cadangan hanya disimpan di tempat lokal, mewakili risiko lebih tinggi untuk skenario bencana, dapat dikombinasikan dengan cadangan di luar situs.
+      zh: 仅存储在本地的备份，对灾难场景风险较高，可与异地备份结合使用。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: lokale back-up
+      in_language: nl
+    - literal_form: On-Premise-Backup
+      in_language: de
+    - literal_form: sauvegarde sur site
+      in_language: fr
+    - literal_form: respaldo local
+      in_language: es
+    - literal_form: نسخ احتياطي محلي
+      in_language: ar
+    - literal_form: cadangan lokal
+      in_language: id
+    - literal_form: 本地备份
+      in_language: zh
+    annotations:
+      short_code: ON_PREMISE
+      specificity_score: '0.60'
+    examples:
+    - value:
+        has_code: ON_PREMISE
+        has_label:
+        - On-premise backup@en
+        - Lokale backup@nl
+      description: Local-only backup
+  NotBackedUp:
+    is_a: BackupType
+    class_uri: hc:NotBackedUp
+    description: >-
+      Digital assets are not currently backed up, representing a high-risk status
+      requiring immediate attention and remediation planning.
+    alt_descriptions:
+      nl: Digitale activa worden momenteel niet geback-upt, wat een hoogrisicostatus vertegenwoordigt die onmiddellijke aandacht en herstelplanning vereist.
+      de: Digitale Assets werden derzeit nicht gesichert, was einen Hochrisikostatus darstellt, der sofortige Aufmerksamkeit und Sanierungsplanung erfordert.
+      fr: Les actifs numériques ne sont pas actuellement sauvegardés, représentant un statut à haut risque nécessitant une attention immédiate et une planification de remédiation.
+      es: Los activos digitales no están respaldados actualmente, representando un estado de alto riesgo que requiere atención inmediata y planificación de remediación.
+      ar: الأصول الرقمية لا يتم نسخها احتياطيًا حاليًا، مما يمثل حالة عالية الخطورة تتطلب اهتمامًا فوريًا وتخطيطًا للعلاج.
+      id: Aset digital saat ini tidak dicadangkan, mewakili status berisiko tinggi yang memerlukan perhatian segera dan perencanaan perbaikan.
+      zh: 数字资产当前未备份，代表需要立即关注和补救规划的高风险状态。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: niet geback-upt
+      in_language: nl
+    - literal_form: nicht gesichert
+      in_language: de
+    - literal_form: non sauvegardé
+      in_language: fr
+    - literal_form: sin respaldo
+      in_language: es
+    - literal_form: بدون نسخ احتياطي
+      in_language: ar
+    - literal_form: tidak dicadangkan
+      in_language: id
+    - literal_form: 未备份
+      in_language: zh
+    annotations:
+      short_code: NOT_BACKED_UP
+      specificity_score: '0.50'
+      alert_level: CRITICAL
+    examples:
+    - value:
+        has_code: NOT_BACKED_UP
+        has_label:
+        - NOT BACKED UP@en
+        - NIET GEBACK-UPT@nl
+      description: Critical - no backup in place
+  PaperOnlyNoDigital:
+    is_a: BackupType
+    class_uri: hc:PaperOnlyNoDigital
+    description: >-
+      Records exist only in paper form with no digital copies, common for
+      historical archives that haven't been digitized, may indicate digitization
+      priority.
+    alt_descriptions:
+      nl: Archieven bestaan alleen in papieren vorm zonder digitale kopieën, gebruikelijk voor historische archieven die niet gedigitaliseerd zijn, kan digitaliseringsprioriteit aangeven.
+      de: Akten existieren nur in Papierform ohne digitale Kopien, üblich für historische Archive, die nicht digitalisiert wurden, kann Digitalisierungspriorität anzeigen.
+      fr: Les documents n'existent que sous forme papier sans copies numériques, courant pour les archives historiques non numérisées, peut indiquer une priorité de numérisation.
+      es: Los registros existen solo en forma impresa sin copias digitales, común para archivos históricos que no han sido digitalizados, puede indicar prioridad de digitalización.
+      ar: السجلات موجودة فقط في شكل ورقي بدون نسخ رقمية، شائع للأرشيفات التاريخية التي لم يتم رقمنتها، قد يشير إلى أولوية الرقمنة.
+      id: Catatan hanya ada dalam bentuk kertas tanpa salinan digital, umum untuk arsip bersejarah yang belum didigitalisasi, mungkin menunjukkan prioritas digitalisasi.
+      zh: 记录仅以纸质形式存在，没有数字副本，对于尚未数字化的历史档案 很常见，可能表明数字化优先级。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: alleen papier
+      in_language: nl
+    - literal_form: nur Papier
+      in_language: de
+    - literal_form: papier uniquement
+      in_language: fr
+    - literal_form: solo papel
+      in_language: es
+    - literal_form: ورق فقط
+      in_language: ar
+    - literal_form: hanya kertas
+      in_language: id
+    - literal_form: 仅纸质
+      in_language: zh
+    annotations:
+      short_code: PAPER_ONLY
+      specificity_score: '0.55'
+    examples:
+    - value:
+        has_code: PAPER_ONLY
+        has_label:
+        - Paper only - no digital backup@en
+        - Alleen papier - geen digitale backup@nl
+      description: Non-digitized physical records
+  TapeBackup:
+    is_a: BackupType
+    class_uri: hc:TapeBackup
+    description: >-
+      Traditional tape backup (LTO, etc.), cost-effective for large volumes and
+      long-term archival storage.
+    alt_descriptions:
+      nl: Traditionele tape back-up (LTO, enz.), kosteneffectief voor grote volumes en langetermijnarchiefopslag.
+      de: Traditionelle Band-Sicherung (LTO, etc.), kostengünstig für große Mengen und langfristige Archivspeicherung.
+      fr: Sauvegarde sur bande traditionnelle (LTO, etc.), rentable pour les grands volumes et le stockage d'archivage à long terme.
+      es: Respaldo en cinta tradicional (LTO, etc.), rentable para grandes volúmenes y almacenamiento de archivo a largo plazo.
+      ar: نسخ احتياطي على شريط تقليدي (LTO، إلخ)، فعال من حيث التكلفة للأحجام الكبيرة والتخزين الأرشيفي طويل المدى.
+      id: Cadangan pita tradisional (LTO, dll.), hemat biaya untuk volume besar dan penyimpanan arsip jangka panjang.
+      zh: 传统磁带备份(LTO等)，对于大容量和长期归档存储具有成本效益。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: tape back-up
+      in_language: nl
+    - literal_form: Band-Sicherung
+      in_language: de
+    - literal_form: sauvegarde sur bande
+      in_language: fr
+    - literal_form: respaldo en cinta
+      in_language: es
+    - literal_form: نسخ احتياطي على شريط
+      in_language: ar
+    - literal_form: cadangan pita
+      in_language: id
+    - literal_form: 磁带备份
+      in_language: zh
+    annotations:
+      short_code: TAPE_BACKUP
+      specificity_score: '0.65'
+    examples:
+    - value:
+        has_code: TAPE_BACKUP
+        has_label:
+        - Tape backup@en
+        - Tape backup@nl
+      description: Magnetic tape storage
+  DiskBasedBackup:
+    is_a: BackupType
+    class_uri: hc:DiskBasedBackup
+    description: >-
+      Backup stored on disk arrays (SAN, NAS), offering faster recovery than tape
+      but higher cost per terabyte.
+    alt_descriptions:
+      nl: Back-up opgeslagen op schijfarrays (SAN, NAS), met snellere herstel dan tape maar hogere kosten per terabyte.
+      de: Auf Festplatten-Arrays (SAN, NAS) gespeichertes Backup, bietet schnellere Wiederherstellung als Band, aber höhere Kosten pro Terabyte.
+      fr: Sauvegarde stockée sur des réseaux de disques (SAN, NAS), offrant une récupération plus rapide que la bande mais un coût plus élevé par téraoctet.
+      es: Respaldo almacenado en matrices de discos (SAN, NAS), ofreciendo recuperación más rápida que la cinta pero mayor costo por terabyte.
+      ar: نسخ احتياطي مخزن على صفائح أقراص (SAN، NAS)، يوفر استردادًا أسرع من الشريط ولكن بتكلفة أعلى لكل تيرابايت.
+      id: Cadangan disimpan pada array disk (SAN, NAS), menawarkan pemulihan lebih cepat dari pita tetapi biaya lebih tinggi per terabyte.
+      zh: 存储在磁盘阵列(SAN、NAS)上的备份，比磁带恢复更快，但每TB成本更高。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: schijfgebaseerde back-up
+      in_language: nl
+    - literal_form: Festplatten-Backup
+      in_language: de
+    - literal_form: sauvegarde sur disque
+      in_language: fr
+    - literal_form: respaldo en disco
+      in_language: es
+    - literal_form: نسخ احتياطي على القرص
+      in_language: ar
+    - literal_form: cadangan berbasis disk
+      in_language: id
+    - literal_form: 磁盘备份
+      in_language: zh
+    annotations:
+      short_code: DISK_BACKUP
+      specificity_score: '0.60'
+    examples:
+    - value:
+        has_code: DISK_BACKUP
+        has_label:
+        - Disk-based backup@en
+        - Schijf-gebaseerde backup@nl
+      description: Disk array storage
+  HybridBackup:
+    is_a: BackupType
+    class_uri: hc:HybridBackup
+    description: >-
+      Combination of multiple backup methods (e.g., disk + cloud, tape + replication),
+      providing multiple layers of protection.
+    alt_descriptions:
+      nl: Combinatie van meerdere back-upmethoden (bijv. schijf + cloud, tape + replicatie), die meerdere beschermingslagen biedt.
+      de: Kombination mehrerer Backup-Methoden (z.B. Festplatte + Cloud, Band + Replikation), bietet mehrere Schutzebenen.
+      fr: 'Combinaison de plusieurs méthodes de sauvegarde (ex: disque + cloud, bande + réplication), fournissant plusieurs couches de protection.'
+      es: 'Combinación de múltiples métodos de respaldo (ej: disco + nube, cinta + replicación), proporcionando múltiples capas de protección.'
+      ar: مزيج من طرق النسخ الاحتياطي المتعددة (مثل القرص + السحابة، الشريط + النسخ المتماثل)، توفر طبقات متعددة من الحماية.
+      id: 'Kombinasi beberapa metode cadangan (mis: disk + cloud, pita + replikasi), menyediakan beberapa lapisan perlindungan.'
+      zh: 多种备份方法的组合（如磁盘+云、磁带+复制），提供多层保护。
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: hybride back-up
+      in_language: nl
+    - literal_form: Hybrid-Backup
+      in_language: de
+    - literal_form: sauvegarde hybride
+      in_language: fr
+    - literal_form: respaldo híbrido
+      in_language: es
+    - literal_form: نسخ احتياطي هجين
+      in_language: ar
+    - literal_form: cadangan hibrida
+      in_language: id
+    - literal_form: 混合备份
+      in_language: zh
+    annotations:
+      short_code: HYBRID
+      specificity_score: '0.70'
+    examples:
+    - value:
+        has_code: HYBRID
+        has_label:
+        - Hybrid backup@en
+        - Hybride backup@nl
+      description: Multi-method backup strategy

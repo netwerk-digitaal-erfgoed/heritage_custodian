@@ -1,0 +1,76 @@
+id: https://nde.nl/ontology/hc/class/RoomUnit
+name: RoomUnit
+title: Room Unit
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ./Unit
+  - ../enums/RoomUnitTypeEnum
+classes:
+  RoomUnit:
+    is_a: Unit
+    class_uri: hc:RoomUnit
+    description: >-
+      Standardized unit of measurement for quantifying rooms, spaces, or functional areas
+      within a facility, such as classrooms, reading rooms, or workshop spaces.
+    alt_descriptions:
+      nl: >-
+        Gestandaardiseerde maateenheid voor het kwantificeren van kamers, ruimtes of functionele gebieden
+        binnen een faciliteit, zoals klaslokalen, leeszalen of werkplekken.
+      de: >-
+        Standardisierte Maßeinheit zur Quantifizierung von Räumen, Bereichen oder Funktionsflächen
+        innerhalb einer Einrichtung, wie Klassenzimmer, Lesesäle oder Werkstätten.
+      fr: >-
+        Unité de mesure standardisée pour quantifier les pièces, espaces ou zones fonctionnelles
+        au sein d'une installation, comme les salles de classe, les salles de lecture ou les ateliers.
+      es: >-
+        Unidad de medida estandarizada para cuantificar habitaciones, espacios o áreas funcionales
+        dentro de una instalación, como aulas, salas de lectura o talleres.
+      ar: >-
+        وحدة قياس موحدة لقياس الغرف أو المساحات أو المناطق الوظيفية
+        داخل مرفق، مثل الفصول الدراسية أو قاعات القراءة أو ورش العمل.
+      id: >-
+        Satuan pengukuran terstandarisasi untuk mengukur ruangan, ruang, atau area fungsional
+        dalam fasilitas, seperti ruang kelas, ruang baca, atau ruang kerja.
+      zh: >-
+        用于量化设施内房间、空间或功能区域（如教室、阅览室或车间）的标准化测量单位。
+    broad_mappings:
+      - qudt:Unit
+    related_mappings:
+      - schema:Room
+    keywords:
+      - room unit
+      - space counting
+      - facility measurement
+    structured_aliases:
+      - literal_form: ruimte-eenheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Raumeinheit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: unité de pièce
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    comments:
+      - Specialized Unit for room/space counting
+      - Room types are controlled by RoomUnitTypeEnum
+      - Migration replaces legacy integer count slots with typed unit representation
+    examples:
+      - value: |
+          unit_type: CLASSROOM
+        description: Unit for counting classroom spaces
+      - value: |
+          unit_type: READING_ROOM
+        description: Unit for counting reading rooms
+    annotations:
+      custodian_types: '["E", "L", "A", "M", "R"]'
+      custodian_types_rationale: Room counting most relevant for education providers (E), libraries (L), archives (A), museums (M), and research centers (R).
+      custodian_types_primary: E
+      specificity_score: '0.45'
+      specificity_rationale: Moderately specific - room counting common in education/facility contexts.

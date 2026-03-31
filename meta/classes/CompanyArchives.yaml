@@ -1,0 +1,86 @@
+id: https://nde.nl/ontology/hc/class/CompanyArchives
+name: CompanyArchives
+title: Company Archives Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+imports:
+- linkml:types
+- ../slots/has_branch
+- ../slots/identified_by
+- ../slots/hold_record_set
+- ../slots/department_of
+- ../slots/part_of
+classes:
+  CompanyArchives:
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    description: >-
+      Repository institution within or affiliated to a business entity,
+      responsible for governance memory, operational evidence, and corporate
+      heritage stewardship.
+    alt_descriptions:
+      nl: Archiefinstelling binnen of verbonden aan een bedrijf verantwoordelijk voor bestuursgeheugen operationeel bewijs en beheer van bedrijfsheritage.
+      de: Archivinstitution innerhalb oder in Verbindung mit einem Unternehmen zustaendig fuer Governance-Gedaechtnis Betriebsnachweise und Unternehmensheritage.
+      fr: Institution archivistique au sein d une entreprise ou affiliee chargee de la memoire de gouvernance des preuves operationnelles et du patrimoine corporate.
+      es: Institucion archivistica dentro de una empresa o afiliada responsable de memoria de gobernanza evidencia operativa y patrimonio corporativo.
+      ar: مؤسسة أرشيفية داخل شركة أو مرتبطة بها تتولى ذاكرة الحوكمة والأدلة التشغيلية وحفظ تراث الشركة.
+      id: Lembaga arsip di dalam atau berafiliasi dengan entitas bisnis yang bertanggung jawab atas memori tata kelola bukti operasional dan pelestarian warisan korporat.
+      zh: 位于企业内部或与之关联、负责治理记忆、运营证据与企业遗产保管的档案机构。
+    structured_aliases:
+    - {literal_form: bedrijfsarchief, in_language: nl}
+    - {literal_form: Unternehmensarchiv, in_language: de}
+    - {literal_form: archives d entreprise, in_language: fr}
+    - {literal_form: archivo empresarial, in_language: es}
+    - {literal_form: أرشيف شركة, in_language: ar}
+    - {literal_form: arsip perusahaan, in_language: id}
+    - {literal_form: 企业档案机构, in_language: zh}
+    close_mappings:
+    - wd:Q10605195
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    related_mappings:
+    - org:OrganizationalUnit
+    - wd:Q52718263
+    - wd:Q27032167
+    keywords:
+    - corporate governance records
+    - legal compliance evidence
+    - brand heritage
+    - business memory
+    comments:
+    - Archive-as-organization type emphasizing institutional role and governance context
+    - Record-set taxonomy is defined in CompanyArchiveRecordSetType and CompanyArchiveRecordSetTypes
+    slots:
+    - part_of
+    - department_of
+    - has_branch
+    - identified_by
+    - hold_record_set
+    slot_usage:
+      hold_record_set:
+        any_of:
+        - equals_string: hc:CorporateGovernanceFonds
+        - equals_string: hc:ProductDevelopmentCollection
+        - equals_string: hc:MarketingArchiveCollection
+        - equals_string: hc:PersonnelRecordsSeries
+        - equals_string: hc:CorporatePublicationsSeries
+    see_also:
+    - BankArchive
+    - EconomicArchive
+    - InstitutionalArchive
+    - CompanyArchiveRecordSetType
+    notes:
+    - |
+      Preserved from prior description (commit 2e1e6e5f):
+
+      "Organizational entity that keeps or archives fonds of a company,\npreserving corporate records and business heritage.\n\n**Wikidata**: Q10605195\n\n**Scope**:\nCompany archives (Unternehmensarchive) preserve:\n- Corporate governance records (board, shareholders)\n- Financial and accounting records\n- Product development and design documentation\n- Marketing and advertising materials\n- Personnel records (historical)\n- Correspondence and contracts\n- Photographs and audiovisual materials\n- Technical drawings and blueprints\n- Corporate publications\n\n**Organizational Context**:\nCompany archives are typically organized as:\n\n1. **Departments within corporations** (`org:OrganizationalUnit`):\n   - Archive department under Records Management division\n   - Historical archives team within Communications/PR\n   - Technical archives under Engineering department\n   \n2. **Branches at corporate facilities** (`org:OrganizationalUnit`):\n   - Central archive at headquarters\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

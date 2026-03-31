@@ -1,0 +1,97 @@
+id: https://nde.nl/ontology/hc/class/AuditOpinion
+name: AuditOpinion
+title: Audit Opinion
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  AuditOpinion:
+    class_uri: hc:AuditOpinion
+    description: >-
+      Opinion or conclusion drawn from an audit.
+    alt_descriptions:
+      nl: "Mening of conclusie getrokken uit een audit."
+      de: "Meinung oder Schlussfolgerung aus einer Prüfung."
+      fr: "Opinion ou conclusion tirée d'un audit."
+      es: "Opinión o conclusión extraída de una auditoría."
+      ar: "رأي أو استنتاج مستخلص من التدقيق."
+      id: "Pendapat atau kesimpulan dari audit."
+      zh: "从审计中得出的意见或结论。"
+    examples:
+    - value:
+        has_label: Unqualified Opinion
+        has_description: Financial statements present fairly in all material respects
+      description: Clean audit opinion
+    - value:
+        has_label: Qualified Opinion
+        has_description: Except for certain matters, financial statements are fairly presented
+      description: Qualified audit opinion
+    - value:
+        has_label: Adverse Opinion
+        has_description: Financial statements do not present fairly due to material misstatements
+      description: Negative audit opinion
+    broad_mappings:
+    - skos:Concept
+    - crm:E55_Type
+    structured_aliases:
+    - literal_form: auditoordeel
+      in_language: nl
+    - literal_form: controleoordeel
+      in_language: nl
+    - literal_form: Prüfungsvermerk
+      in_language: de
+    - literal_form: Bestätigungsvermerk
+      in_language: de
+    - literal_form: opinion d'audit
+      in_language: fr
+    - literal_form: opinión de auditoría
+      in_language: es
+    - literal_form: رأي التدقيق
+      in_language: ar
+    - literal_form: opini audit
+      in_language: id
+    - literal_form: 审计意见
+      in_language: zh
+    keywords:
+    - audit opinion
+    - unqualified
+    - qualified
+    - adverse
+    - disclaimer
+    - auditor judgment
+    slots:
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Unqualified Opinion
+        - value: Qualified Opinion
+        - value: Adverse Opinion
+        - value: Disclaimer of Opinion
+      has_description:
+        required: false
+        examples:
+        - value: Financial statements present fairly in all material respects
+    annotations:
+      specificity_score: "0.40"
+      specificity_rationale: "AuditOpinion is specific to professional audit standards."
+      custodian_types: "['*']"
+      standard_opinions: "Unqualified, Qualified, Adverse, Disclaimer"
+    comments:
+    - Professional conclusion from audit
+    - Standard types: Unqualified, Qualified, Adverse, Disclaimer
+    - Unqualified (clean) = records are accurate and compliant
+    - Adverse = material misstatements found
+    - 'Preserved from prior description: Opinion or conclusion drawn from an audit. Professional judgment expressed by auditors regarding the accuracy, completeness, and compliance of audited records. Standard opinions include Unqualified (clean), Qualified, Adverse, and Disclaimer.'
+    see_also:
+    - Audit
+    - Auditor

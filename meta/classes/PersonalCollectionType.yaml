@@ -1,0 +1,74 @@
+id: https://nde.nl/ontology/hc/class/personal-collection-type
+name: personal_collection_type
+title: PersonalCollectionType
+description: 'Specialized CustodianType for individual private collectors and their personal heritage collections (art, rare books, historical objects, natural specimens). Coverage: Corresponds to ''P'' (PERSONAL_COLLECTION) in GLAMORCUBESFIXPHDNT taxonomy. '
+imports:
+- ../classes/AgentType
+- linkml:types
+- ../slots/categorized_as
+- ../slots/has_quantity
+- ../slots/has_type
+- ../slots/acquired_through
+- ../slots/plan
+- ../slots/has_hyponym
+- ../slots/has_method
+- ../slots/has_score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+classes:
+  PersonalCollectionType:
+    is_a: CustodianType
+    class_uri: skos:Concept
+    description: Custodian type concept for private individuals who curate personal heritage collections.
+    alt_descriptions:
+      nl: Typeconcept voor particulieren die persoonlijke erfgoedcollecties beheren.
+      de: Typkonzept fuer Privatpersonen die persoenliche Kulturerbe-Sammlungen kuratieren.
+      fr: Concept de type pour des particuliers qui conservent des collections patrimoniales personnelles.
+      es: Concepto de tipo para particulares que curan colecciones patrimoniales personales.
+      ar: مفهوم نوع للأفراد الذين يديرون مجموعات تراثية شخصية.
+      id: Konsep tipe untuk individu yang mengkurasi koleksi warisan pribadi.
+      zh: 面向私人个人策展/管理个人遗产收藏的类型概念。
+    structured_aliases:
+    - {literal_form: type persoonlijke collectie, in_language: nl}
+    - {literal_form: Typ Privatsammlung, in_language: de}
+    - {literal_form: type de collection personnelle, in_language: fr}
+    - {literal_form: tipo de coleccion personal, in_language: es}
+    - {literal_form: نوع مجموعة شخصية, in_language: ar}
+    - {literal_form: tipe koleksi pribadi, in_language: id}
+    - {literal_form: 个人收藏类型, in_language: zh}
+    annotations:
+      skos:prefLabel: Personal Collection
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    slots:
+    # REMOVED 2026-01-19: collection_focus - migrated to categorized_as + Category (Rule 53)
+    - has_type
+    # REMOVED 2026-01-19: collection_size - migrated to has_quantity + Quantity (Rule 53)
+    - has_quantity
+    - plan
+    - has_hyponym
+    - has_method
+    - has_score  # was: template_specificity - migrated per Rule 53 (2026-01-17)
+    - acquired_through
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:PersonalCollectionType
+      has_quantity:  # was: collection_size - migrated per Rule 53 (2026-01-19)
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        multivalued: true
+        required: false
+      acquired_through:
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        required: false
+      has_method:
+        required: false
+      plan:
+        required: false
+      has_score:

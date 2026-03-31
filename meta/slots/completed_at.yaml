@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: completed_at
+# ==============================================================================
+# Records the date when a task, process, or event was finished.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                | File/Line                    | Mapping | Notes                                                              |
+# |------------|-------------------------|------------------------------|---------|--------------------------------------------------------------------|
+# | **PROV**   | `prov:endedAtTime`      | prov.ttl:555-565             | close   | "Time at which activity ended." Domain: Activity; range: dateTime. |
+# | **Schema** | `schema:endDate`        | schemaorg.owl:16767-16786    | close   | "End date and time of item." Domain: Event/Role/etc.               |
+# | **RiC-O**  | `rico:endDate`          | RiC-O_1-1.rdf:21363-21389   | close   | "Date at which something ended." Domain: Thing; range: Literal.    |
+# | **DCAT**   | `dcat:endDate`          | dcat3.ttl:939-958            | related | "End of the period." Domain: PeriodOfTime only.                    |
+#
+# Multiple external properties cover "end date" but each constrains domain
+# or range differently. Our slot is broader (any entity, range: date);
+# slot_uri remains hc:completedAt.
+#
+# CREATED: 2026-01-19
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/completed_at
+name: completed_at
+title: Completed At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcat: http://www.w3.org/ns/dcat#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  completed_at:
+    slot_uri: hc:completedAt
+    description: >-
+      Records the date when a task, process, transaction, or event was
+      finished or brought to a conclusion. In heritage custodian contexts
+      this captures when archival processing was completed, when a
+      conservation treatment concluded, when a digitisation batch finished,
+      or when an exhibition was de-installed. The difference between
+      completed_at and the corresponding accession or start date yields
+      the processing lag, which is often measured in years or decades for
+      large archival backlogs.
+    alt_descriptions:
+      nl: >-
+        Registreert de datum waarop een taak, proces, transactie of
+        gebeurtenis is afgerond of tot een conclusie is gebracht.
+      de: >-
+        Erfasst das Datum, an dem eine Aufgabe, ein Prozess, eine Transaktion
+        oder ein Ereignis abgeschlossen oder zum Abschluss gebracht wurde.
+      fr: >-
+        Enregistre la date à laquelle une tâche, un processus, une
+        transaction ou un événement a été achevé ou mené à terme.
+      ar: >-
+        يسجل التاريخ الذي اكتملت فيه مهمة أو عملية أو معاملة أو حدث أو
+        وصلت إلى نهايتها.
+      id: >-
+        Mencatat tanggal ketika suatu tugas, proses, transaksi, atau
+        peristiwa selesai atau diselesaikan.
+      zh: >-
+        记录任务、流程、交易或事件完成或结束的日期。
+      es: >-
+        Registra la fecha en que una tarea, proceso, transacción o evento
+        fue finalizado o llevado a su conclusión.
+    structured_aliases:
+      - literal_form: voltooid op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: abgeschlossen am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: achevé le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أُنجز في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diselesaikan pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 完成于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: completado el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    multivalued: false
+    close_mappings:
+      - prov:endedAtTime  # prov.ttl:555-565 - "Time at which activity ended." Domain: Activity; range: dateTime
+      - schema:endDate  # schemaorg.owl:16767-16786 - "End date and time of item." Domain: Event/Role/etc.
+      - rico:endDate  # RiC-O_1-1.rdf:21363-21389 - "Date at which something ended." Domain: Thing; range: Literal
+    related_mappings:
+      - dcat:endDate  # dcat3.ttl:939-958 - "End of the period." Domain: PeriodOfTime only
+    aliases:
+      - processing_completed_date
+    examples:
+      - value: "2024-03-15"
+        description: >-
+          Archival processing of a 200-box donation was completed on
+          15 March 2024, fourteen years after the accession date.
+      - value: "2025-11-30"
+        description: >-
+          A digitisation project covering 50,000 glass plate negatives
+          was completed at the end of November 2025.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Typically set when a workflow status transitions to a terminal
+        state such as PROCESSED_PENDING_TRANSFER or COMPLETED.
+      - >-
+        The metric (completed_at minus accession_date) yields the processing
+        lag, which is a key performance indicator for archival institutions.

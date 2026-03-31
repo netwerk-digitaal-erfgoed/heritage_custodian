@@ -1,0 +1,75 @@
+id: https://nde.nl/ontology/hc/parsimony/class/EncompassingBody
+name: EncompassingBody_parsimony
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/has_note_literal
+  - ../slots/has_uri_literal
+  - ../slots/affiliated_with
+  - ../slots/has_affiliate
+  - ../slots/attested_in
+  - ../slots/designated_by
+  - ../slots/has_spatial_scope
+  - ../slots/situated_in_time
+  - ../slots/equivalent_to
+  - ../slots/typed_as
+classes:
+  EncompassingBody:
+    class_uri: org:Organization
+    description: >-
+      Semantic class for an external organization that frames, governs, funds,
+      or coordinates one or more heritage custodians beyond their internal
+      legal or operational structure. Encompasses umbrella organizations,
+      networks, consortia, and regulatory bodies.
+
+      **Key predicates:** `affiliated_with` connects this body to the custodial
+      entities it encompasses. `has_affiliate` links in the reverse direction
+      to member agents. `attested_in` anchors evidence to source resources.
+      `designated_by` links to formal identifiers. `has_spatial_scope` captures
+      the jurisdictional or territorial reach of the body.
+    narrow_mappings:
+      - hc:EncompassingBody
+    broad_mappings:
+      - org:Organization
+      - schema:Organization
+    examples:
+      - value:
+          has_label_literal:
+            - Digital Heritage Network
+          typed_as:
+            - Classification:Network
+          has_spatial_scope:
+            - PlaceContext:Netherlands
+          has_affiliate:
+            - Agent:NationalArchives
+        description: >-
+          Encompassing body representing a national network that coordinates
+          heritage custodians across the Netherlands.
+      - value:
+          has_label_literal:
+            - Ministry of Education, Culture and Science
+          typed_as:
+            - Classification:UmbrellaOrganisation
+          attested_in:
+            - SourceResource:government_registry
+        description: >-
+          Encompassing body representing a government ministry that oversees
+          heritage institutions, attested in an official registry.
+    slots:
+      - has_label_literal
+      - has_note_literal
+      - has_uri_literal
+      - affiliated_with
+      - has_affiliate
+      - attested_in
+      - designated_by
+      - has_spatial_scope
+      - situated_in_time
+      - equivalent_to
+      - typed_as

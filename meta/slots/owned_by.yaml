@@ -1,0 +1,144 @@
+# ==============================================================================
+# LinkML Slot Definition: owned_by
+# ==============================================================================
+# To be held in legal possession or custody by a specific agent or entity
+# responsible for its control or maintenance.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                     | File/Line         | Mapping  | Notes                                    |
+# |----------------|------------------------------|-------------------|----------|------------------------------------------|
+# | **RiC-O**      | `rico:hasOrHadHolder`        | RiC-O L6437       | slot_uri | Holder relationship.                     |
+# |                |                              |                   | exact    |                                          |
+# | **RiC-O**      | `rico:hasOrHadManager`       | RiC-O L6926       | broad    | Parent (hasOrHadHolder subPropertyOf).   |
+# | **CIDOC-CRM**  | `crm:P51_has_former_or_current_owner`| CIDOC_CRM | close    | Ownership history.                       |
+# | **Schema.org** | `schema:owns`                | schemaorg.owl     | related  | Ownership (inverse direction).           |
+#
+# CREATED: 2026-01-15
+# UPDATED: 2026-02-03 - Added header, broad_mappings, moved comments from description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/owned_by
+name: owned_by
+title: Owned By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  owned_by:
+    slot_uri: rico:hasOrHadHolder
+    description: >-
+      To be held in legal possession or custody by a specific agent or entity
+      responsible for its control or maintenance.
+    alt_descriptions:
+      nl: >-
+        Om in wettelijk bezit of bewaring te worden gehouden door een specifieke
+        agent of entiteit die verantwoordelijk is voor de controle of het
+        onderhoud ervan.
+      de: >-
+        Im rechtlichen Besitz oder in der Obhut eines bestimmten Akteurs oder
+        einer Entität gehalten zu werden, die für die Kontrolle oder Wartung
+        verantwortlich ist.
+      fr: >-
+        Être détenu en possession légale ou en garde par un agent ou une
+        entité spécifique responsable de son contrôle ou de son entretien.
+      ar: >-
+        أن يكون في حيازة قانونية أو عهدة وكيل أو كيان محدد مسؤول عن
+        التحكم فيه أو صيانته.
+      id: >-
+        Dimiliki secara sah atau dalam pengawasan oleh agen atau entitas
+        tertentu yang bertanggung jawab atas kontrol atau pemeliharaannya.
+      zh: >-
+        由负责其控制或维护的特定代理人或实体合法持有或保管。
+      es: >-
+        Estar en posesión legal o custodia de un agente o entidad específico
+        responsable de su control o mantenimiento.
+    structured_aliases:
+      - literal_form: eigendom van
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_owned_by
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: im Besitz von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: propriété de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ملك لـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dimiliki oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 所有者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: propiedad de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    required: false
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+    - crm:P51_has_former_or_current_owner
+    broad_mappings:
+    - rico:hasOrHadManager        # RiC-O: Parent property (hasOrHadHolder rdfs:subPropertyOf hasOrHadManager, line 6438)
+    - rico:isOrWasUnderAuthorityOf # RiC-O: Grandparent (hasOrHadManager rdfs:subPropertyOf isOrWasUnderAuthorityOf, line 6927)
+    related_mappings:
+    - schema:owns
+    aliases:
+    - has_or_had_owner
+    - is_or_was_owned_by
+    - has_or_had_owner
+    - has_owner
+    annotations:
+      migration_date: '2026-01-15'
+      custodian_types: '["*"]'
+    examples:
+    - value: Johann Wolfgang von Goethe
+      description: Personal owner (historical)
+    - value: Royal Library of Prussia
+      description: Institutional owner
+    - value: Rijksmuseum Amsterdam
+      description: Current institutional owner
+    comments:
+    - Ownership relationship for provenance tracking.
+    - Multivalued for ownership chains.
+    - |
+      **TEMPORAL SEMANTICS**:
+      This relationship may be historical - ownership changes over time through 
+      sales, gifts, inheritance, or institutional transfers.
+    - |
+      **PROVENANCE SIGNIFICANCE**:
+      Ownership is crucial for provenance research:
+      - Document historical ownership chains
+      - Connect items to notable collectors
+      - Evidence for restitution claims
+      - Institutional vs. personal ownership
+    - |
+      **USAGE**:
+      For bookplates, ownership marks, provenance records, and collection histories.
+    - |
+      **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+      | Ontology | Property | Line | Mapping | Notes |
+      |----------|----------|------|---------|-------|
+      | **RiC-O** | `rico:hasOrHadHolder` | 6437 | slot_uri, exact | Holder relationship |
+      | **RiC-O** | `rico:hasOrHadManager` | 6926 | broad | Parent property |
+      | **RiC-O** | `rico:isOrWasUnderAuthorityOf` | 6927 | broad | Grandparent property |
+      | **CIDOC-CRM** | `crm:P51_has_former_or_current_owner` | - | close | Ownership history |
+      | **Schema.org** | `schema:owns` | - | related | Ownership (inverse) |

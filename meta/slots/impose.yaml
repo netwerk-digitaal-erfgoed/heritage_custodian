@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: impose
+# ==============================================================================
+# Officially force a rule, condition, or requirement to be accepted or obeyed
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property            | File/Line          | Mapping | Notes                                                          |
+# |-----------|---------------------|--------------------|---------|----------------------------------------------------------------|
+# | **ODRL**  | `odrl:obligation`   | odrl.ttl:778-785   | close   | "Duty that must be fulfilled" within a Policy; ODRL-specific.  |
+# | **ODRL**  | `odrl:constraint`   | odrl.ttl:739-752   | related | "Constraint applied to a Rule"; about rule activation, not imposing. |
+#
+# schema:constraint does NOT exist in Schema.org (verified).
+# No standard exact match for the general concept of imposing/enforcing conditions.
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/impose
+name: impose
+title: Impose
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  odrl: http://www.w3.org/ns/odrl/2/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  impose:
+    slot_uri: hc:impose
+    description: >-
+      To officially force a rule, tax, punishment, or unwelcome condition to be
+      accepted or obeyed.
+    alt_descriptions:
+      nl: >-
+        Het officieel opleggen van een regel, belasting, straf of ongewenste voorwaarde
+        die moet worden aanvaard of nageleefd.
+      de: >-
+        Das offizielle Auferlegen einer Regel, Steuer, Strafe oder unerwuenschten Bedingung,
+        die akzeptiert oder befolgt werden muss.
+      fr: >-
+        Imposer officiellement une regle, un impot, une punition ou une condition indesirable
+        qui doit etre acceptee ou respectee.
+      ar: >-
+        فرض قاعدة أو ضريبة أو عقوبة أو شرط غير مرغوب فيه رسميًا يجب قبوله أو الامتثال له.
+      id: >-
+        Secara resmi memaksakan aturan, pajak, hukuman, atau kondisi yang tidak diinginkan
+        untuk diterima atau dipatuhi.
+      zh: >-
+        正式强制实施必须接受或遵守的规则、税收、惩罚或不受欢迎的条件。
+      es: >-
+        Imponer oficialmente una regla, impuesto, castigo o condicion no deseada que debe
+        ser aceptada u obedecida.
+    structured_aliases:
+      - literal_form: Opleggen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Auferlegung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Imposition
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: Fard
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Penerapan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: Qiangzhi shishi
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Imposicion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    comments:
+      - "schema:constraint does not exist in Schema.org."
+      - >-
+        Migration (2026-01-22): MIGRATED from eligible_country (via ApplicantRequirement)
+        and embargo_* slots.
+      - "Original range was considered as uriorcurie; currently set to string."
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - odrl:obligation  # odrl.ttl:778-785 - "Relates an individual Duty to a Policy. The Duty is a requirement which must be fulfilled." Domain: Policy, Range: Duty
+    related_mappings:
+      - odrl:constraint  # odrl.ttl:739-752 - "Constraint applied to a Rule." Domain: Policy|Rule, Range: Constraint|LogicalConstraint; about rule activation conditions, not imposing
+    aliases:
+      - imposes_or_imposed

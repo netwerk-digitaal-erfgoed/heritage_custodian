@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: certified_for
+# ==============================================================================
+# The type of activity, function, or standard a heritage custodian facility or
+# organisation is officially certified, authorised, or approved to perform.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                    | File/Line                        | Mapping        | Notes                                                        |
+# |----------------|-----------------------------|----------------------------------|----------------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:hasCertification`   | schemaorg.owl:19877-19904        | close_mappings | "Certification information about a product, organization,    |
+# |                |                             |                                  |                | service, place, or person." Org/Place->Certification.        |
+# |                |                             |                                  |                | Our slot captures what is certified *for* (the purpose),     |
+# |                |                             |                                  |                | not the certification object itself.                         |
+# | **Schema.org** | `schema:hasCredential`      | schemaorg.owl:19949-19971        | broad_mappings | "A credential awarded to the Person or Organization."        |
+# |                |                             |                                  |                | Credentials are a superset (degrees, badges, certifications).|
+# | **DCTerms**    | `dcterms:conformsTo`        | dcterms.rdf:987-1010             | related        | "An established standard to which the described resource     |
+# |                |                             |                                  |                | conforms." Related: certification implies conformance.       |
+# | **Schema.org** | `schema:qualifications`     | schemaorg.owl:31846-31868        | related        | "Specific qualifications required for this role."            |
+# |                |                             |                                  |                | Occupation/JobPosting domain; tangential to facility certs.  |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/certified_for
+name: certified_for
+title: Certified For
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  certified_for:
+    slot_uri: hc:certifiedFor
+    description: >-
+      The type of activity, function, or standard a heritage custodian facility
+      or organisation is officially certified, authorised, or approved to
+      perform. Covers regulatory and safety certifications relevant to the
+      operation of heritage sites, storage facilities, and conservation
+      workshops.
+    alt_descriptions:
+      nl: >-
+        Het type activiteit, functie of norm waarvoor een erfgoedinstelling
+        of -faciliteit officieel gecertificeerd, geautoriseerd of goedgekeurd is.
+      de: >-
+        Die Art der Tätigkeit, Funktion oder Norm, für die eine
+        Kulturerbeeinrichtung oder -anlage offiziell zertifiziert, autorisiert
+        oder zugelassen ist.
+      fr: >-
+        Le type d'activité, de fonction ou de norme pour lequel un établissement
+        ou une installation patrimoniale est officiellement certifié, autorisé
+        ou agréé.
+      ar: >-
+        نوع النشاط أو الوظيفة أو المعيار الذي تم اعتماد أو ترخيص أو الموافقة
+        على مؤسسة أو منشأة التراث الثقافي لأدائه رسمياً.
+      id: >-
+        Jenis kegiatan, fungsi, atau standar yang secara resmi disertifikasi,
+        diotorisasi, atau disetujui untuk dilaksanakan oleh fasilitas atau
+        organisasi pemangku warisan budaya.
+      zh: >-
+        遗产保管机构或设施被正式认证、授权或批准执行的活动类型、职能或标准。
+      es: >-
+        El tipo de actividad, función o norma para la cual una institución o
+        instalación patrimonial está oficialmente certificada, autorizada o
+        aprobada.
+    structured_aliases:
+      - literal_form: gecertificeerd voor
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: zertifiziert für
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: certifié pour
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: معتمد لـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disertifikasi untuk
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 认证用于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: certificado para
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - schema:hasCertification  # schemaorg.owl:19877-19904 - "Certification information about a product, organization, service, place, or person." Links to Certification object; our slot captures the purpose/domain of certification.
+    broad_mappings:
+      - schema:hasCredential  # schemaorg.owl:19949-19971 - "A credential awarded to the Person or Organization." Credentials are a superset including degrees, badges, certifications.
+    related_mappings:
+      - dcterms:conformsTo  # dcterms.rdf:987-1010 - "An established standard to which the described resource conforms."
+      - schema:qualifications  # schemaorg.owl:31846-31868 - "Specific qualifications required for this role or Occupation."
+    aliases:
+      - safety_certification
+    examples:
+      - value: "Fire safety certification"
+        description: "Facility certified for fire safety compliance per local regulations."
+      - value: "Hazardous materials handling"
+        description: "Certified to handle and store hazardous conservation chemicals."
+      - value: "Occupational health and safety"
+        description: "Workplace certified under occupational health and safety standards."
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        May include fire safety certification, hazardous materials handling,
+        occupational health and safety, climate-controlled storage approval,
+        or other regulatory and safety certifications relevant to heritage
+        custodian operations.

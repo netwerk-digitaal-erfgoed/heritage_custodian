@@ -1,0 +1,91 @@
+# ==============================================================================
+# LinkML Slot Definition: leased_by
+# ==============================================================================
+# Identifies the entity that holds the temporary right to use an asset under
+# a lease agreement.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property               | File/Line                  | Mapping | Notes                                                       |
+# |---------------|------------------------|----------------------------|---------|-------------------------------------------------------------|
+# | **Schema**    | `schema:landlord`      | schemaorg.owl:23968-23988  | related | "The owner of the real estate property." Inverse (lessor).  |
+# | **Schema**    | `schema:owns`          | schemaorg.owl:28732-28751  | related | "Things owned by the organization or person." Complement.   |
+# | **Schema**    | `schema:permittedUsage`| schemaorg.owl:29758-29777  | related | "Permitted usage of the accommodation." Usage, not lessee.  |
+#
+# No standard ontology defines an exact "leased by" property identifying the
+# lessee of an asset. Retains hc:leasedBy.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/leased_by
+name: leased_by
+title: Leased By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  leased_by:
+    slot_uri: hc:leasedBy
+    description: >-
+      Identifies the individual, organization, or entity that holds the temporary right to use an asset, property, or equipment under a contractual lease agreement.
+    alt_descriptions:
+      nl: >-
+        Identificeert het individu, de organisatie of de entiteit die het tijdelijke recht heeft om een bezitting, eigendom of uitrusting te gebruiken op grond van een contractuele huurovereenkomst.
+      de: >-
+        Identifiziert die Person, Organisation oder Einrichtung, die das vorübergehende Recht hat, einen Vermögenswert, ein Grundstück oder eine Ausrüstung im Rahmen eines vertraglichen Mietvertrags zu nutzen.
+      fr: >-
+        Identifie l'individu, l'organisation ou l'entité qui détient le droit temporaire d'utiliser un bien, une propriété ou un équipement en vertu d'un contrat de bail.
+      ar: >-
+        يحدد الفرد أو المنظمة أو الكيان الذي يمتلك الحق المؤقت في استخدام أصل أو ملكية أو معدات بموجب اتفاقية إيجار تعاقدية.
+      id: >-
+        Mengidentifikasi individu, organisasi, atau entitas yang memegang hak sementara untuk menggunakan aset, properti, atau peralatan berdasarkan perjanjian sewa kontraktual.
+      zh: >-
+        标识根据合同租赁协议持有资产、财产或设备临时使用权的个人、组织或实体。
+      es: >-
+        Identifica al individuo, organización o entidad que posee el derecho temporal de usar un activo, propiedad o equipo en virtud de un contrato de arrendamiento.
+    structured_aliases:
+      - literal_form: Gehuurd Door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Gemietet Von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Loué Par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستأجر من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Disewa Oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 租赁方
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Arrendado Por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        HC Ontology: Custom property for space tenure status.
+      - >-
+        Administrative offices are often leased in commercial buildings rather than owned
+        by the heritage organization. Can indicate tenure type (leased from a third party
+        vs. owned by the heritage custodian organization).
+      - >-
+        Note: No standard ontology property exists for identifying the lessee.
+        Schema.org 'owns' expects an object, not a boolean value.
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_leased
+    related_mappings:
+      - schema:landlord  # schemaorg.owl:23968-23988 - "The owner of the real estate property." Inverse perspective (lessor).
+      - schema:owns  # schemaorg.owl:28732-28751 - "Things owned by the organization or person." Ownership complement.
+      - schema:permittedUsage  # schemaorg.owl:29758-29777 - "Permitted usage of accommodation." Usage, not lessee identity.

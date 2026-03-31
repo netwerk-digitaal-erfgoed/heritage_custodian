@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/ApprovalTimeType
+name: ApprovalTimeType
+title: Approval Time Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+classes:
+  ApprovalTimeType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Abstract base class for categorizing expected processing durations for
+      approval workflows, such as immediate, fast, standard, extended, or
+      long approval timeframes.
+    alt_descriptions:
+      nl: >-
+        Abstracte basisklasse voor het categoriseren van verwachte verwerkingstijden
+        voor goedkeuringsworkflows, zoals onmiddellijk, snel, standaard, uitgebreid
+        of lange goedkeuringstermijnen.
+      de: >-
+        Abstrakte Basisklasse zur Kategorisierung erwarteter Verarbeitungszeiten
+        fur Genehmigungsworkflows, wie sofortige, schnelle, standardmassige,
+        erweiterte oder lange Genehmigungszeiträume.
+      fr: >-
+        Classe de base abstraite pour categoriser les delais de traitement attendus
+        pour les flux d'approbation, tels que immediat, rapide, standard, etendu
+        ou longs delais d'approbation.
+      es: >-
+        Clase base abstracta para categorizar las duraciones de procesamiento
+        esperadas para flujos de trabajo de aprobacion, como inmediato, rapido,
+        estandar, extendido o largos plazos de aprobacion.
+      ar: >-
+        فئة أساسية مجردة لتصنيف مدد المعالجة المتوقعة لعمليات الموافقة،
+        مثل الفورية أو السريعة أو القياسية أو الممتدة أو الطويلة.
+      id: >-
+        Kelas dasar abstrak untuk mengkategorikan durasi pemrosesan yang diharapkan
+        untuk alur kerja persetujuan, seperti segera, cepat, standar, diperpanjang,
+        atau waktu persetujuan yang lama.
+      zh: >-
+        用于分类审批流程预期处理持续时间的抽象基类，如即时、快速、标准、
+        延长或长时间审批。
+    structured_aliases:
+    - literal_form: goedkeuringstijdtype
+      in_language: nl
+    - literal_form: Genehmigungszeittyp
+      in_language: de
+    - literal_form: type de delai d'approbation
+      in_language: fr
+    - literal_form: tipo de tiempo de aprobacion
+      in_language: es
+    - literal_form: نوع وقت الموافقة
+      in_language: ar
+    - literal_form: tipe waktu persetujuan
+      in_language: id
+    - literal_form: 审批时间类型
+      in_language: zh
+    broad_mappings:
+    - crm:E52_Time-Span
+    - schema:Duration
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+      identified_by:
+        required: true
+    comments:
+    - Abstract base class - use specific subclasses (ImmediateApproval, FastApproval, etc.)
+    - Used to set expectations for application processing times
+    - Supports service level agreements and user communication
+    see_also:
+    - ApprovalTimeTypes
+    examples:
+    - value:
+        has_label: "Standard Approval"
+        has_description: "1-2 weeks processing time"
+      description: Standard approval timeframe
+    keywords:
+    - approval time
+    - processing duration
+    - turnaround
+    - service level
+    - workflow
+    annotations:
+      specificity_score: "0.3"
+      specificity_rationale: Abstract type classification for approval durations
+      custodian_types: "['*']"

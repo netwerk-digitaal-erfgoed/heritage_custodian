@@ -1,0 +1,124 @@
+id: https://nde.nl/ontology/hc/class/CustodianName
+name: CustodianName
+title: Custodian Name Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_name
+- ../slots/in_language
+- ../slots/temporal_extent
+- ../slots/refer_to
+- ../slots/supersede
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/has_score
+classes:
+  CustodianName:
+    is_a: ReconstructedEntity
+    class_uri: skos:Concept
+    description: >-
+      Reconstructed canonical designation representing the standardized emic naming
+      form used by an institution for public identification.
+    alt_descriptions:
+      nl: >-
+        Gereconstrueerde canonieke aanduiding die de gestandaardiseerde emische naamvorm
+        vertegenwoordigt die door een instelling wordt gebruikt voor openbare identificatie.
+      de: >-
+        Rekonstruierte kanonische Bezeichnung, die die standardisierte emische Namensform
+        repräsentiert, die von einer Institution für die öffentliche Identifikation verwendet wird.
+      fr: >-
+        Désignation canonique reconstituée représentant la forme de dénomination emique standardisée
+        utilisée par une institution pour l'identification publique.
+      es: >-
+        Designación canónica reconstruida que representa la forma de denominación émica estandarizada
+        utilizada por una institución para identificación pública.
+      ar: >-
+        تسمية معيارية معاد بناؤها تمثل شكل التسمية الداخلية الموحدة
+        الذي تستخدمه المؤسسة للتعريف العام.
+      id: >-
+        Penunjukan kanonik yang direkonstruksi yang mewakili bentuk penamaan emik terstandarisasi
+        yang digunakan oleh lembaga untuk identifikasi publik.
+      zh: >-
+        表示机构用于公众识别的标准化内部命名形式的重构规范名称。
+    structured_aliases:
+    - literal_form: beheerdersnaam
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Kustodian-Name
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: nom de dépositaire
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: nombre de depositario
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: اسم القيم
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: nama kustodian
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 保管人名称
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - skos:prefLabel
+    - schema:name
+    - foaf:name
+    related_mappings:
+    - skos:altLabel
+    - schema:alternateName
+    slots:
+    - has_label
+    - has_name
+    - in_language
+    - temporal_extent
+    - refer_to
+    - supersede
+    - has_score
+    - derive_from
+    - generated_by
+    slot_usage:
+      has_name:
+        required: true
+      refer_to:
+        range: Custodian
+        required: true
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: true
+    comments:
+    - Standardized emic name derived from CustodianObservation evidence.
+    - Represents canonical label accepted by the custodian for public identification.
+    - Distinct from legal name which is stored in CustodianLegalStatus.
+    - 'Preserved from prior description: Reconstructed canonical denomination representing the emic naming form used for public identification.'
+    keywords:
+    - canonical name
+    - emic designation
+    - public identification
+    - standardized label
+    notes:
+    - |
+      CRITICAL: CustodianName is NOT a subclass of CustodianObservation!
+      - CustodianObservation = Evidence seen in sources (input)
+      - CustodianName = Standardized interpretation (output)
+      - Relationship: CustodianName prov:wasDerivedFrom CustodianObservation
+
+      IMPORTANT: CustodianName ≠ Legal Name
+      - CustodianName = How custodian presents itself (emic, operational)
+      - Legal Name = Formal registered name (in CustodianLegalStatus)
+      - Example: "Rijksmuseum" (emic) vs "Stichting Rijksmuseum" (legal)
+
+      MANDATORY RULE: Legal Form Terms MUST Be Filtered
+      Legal form designations (Stichting, Foundation, Inc., Ltd., GmbH, etc.) must be removed from CustodianName values.\

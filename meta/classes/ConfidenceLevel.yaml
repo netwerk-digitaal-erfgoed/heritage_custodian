@@ -1,0 +1,67 @@
+id: https://nde.nl/ontology/hc/class/ConfidenceLevel
+name: ConfidenceLevel
+title: Confidence Level
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dqv: http://www.w3.org/ns/dqv#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_score
+classes:
+  ConfidenceLevel:
+    class_uri: hc:ConfidenceLevel
+    description: >-
+      Ordinal or numeric qualification indicating how strongly available evidence
+      supports a statement.
+    alt_descriptions:
+      nl: Ordinale of numerieke kwalificatie die aangeeft hoe sterk beschikbaar bewijs een uitspraak ondersteunt.
+      de: Ordinale oder numerische Qualifizierung, die angibt, wie stark verfuegbare Evidenz eine Aussage stuetzt.
+      fr: Qualification ordinale ou numerique indiquant dans quelle mesure les preuves disponibles soutiennent une assertion.
+      es: Cualificacion ordinal o numerica que indica que tan fuertemente la evidencia disponible respalda una afirmacion.
+      ar: توصيف رتبي أو رقمي يبين مدى قوة الأدلة المتاحة في دعم عبارة ما.
+      id: Kualifikasi ordinal atau numerik yang menunjukkan seberapa kuat bukti yang tersedia mendukung suatu pernyataan.
+      zh: 表示现有证据对某项陈述支持强度的等级或数值限定。
+    structured_aliases:
+      - literal_form: zekerheidsniveau
+        in_language: nl
+      - literal_form: Sicherheitsstufe
+        in_language: de
+      - literal_form: niveau de certitude
+        in_language: fr
+      - literal_form: nivel de certeza
+        in_language: es
+      - literal_form: مستوى اليقين
+        in_language: ar
+      - literal_form: tingkat kepastian
+        in_language: id
+      - literal_form: 置信等级
+        in_language: zh
+    slots:
+      - has_score
+      - has_description
+    slot_usage:
+      has_score:
+        range: float
+        required: true
+    examples:
+      - value:
+          has_score: 0.85
+          has_description:
+            description_text: Evidence from two independent authoritative sources.
+        description: Strong support from corroborating evidence
+      - value:
+          has_score: 0.35
+          has_description:
+            description_text: Single-source claim with unresolved ambiguity.
+        description: Weak support pending verification
+    broad_mappings:
+      - dqv:QualityMeasurement
+    comments:
+      - Represents assessment strength, not provenance of calculation.
+    annotations:
+      specificity_score: "0.2"
+      specificity_rationale: Generic scoring construct used in evidence assessment.
+      custodian_types: "['*']"

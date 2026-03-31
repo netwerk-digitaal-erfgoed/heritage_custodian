@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: has_specificity_score
+# ==============================================================================
+# A computed score (0.0–1.0) indicating how specific a data model element is
+# relative to a competency question or prompt template.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                | File/Line                  | Mapping | Notes                                                                  |
+# |------------|-------------------------|----------------------------|---------|------------------------------------------------------------------------|
+# | **SOSA**   | `sosa:hasSimpleResult`  | sosa.ttl:375-383           | close   | "has simple result" Observation→literal. Computed observation result.   |
+# | **PROV**   | `prov:value`            | prov.ttl:1056-1064         | broad   | "value" Entity→literal. Direct representation of an entity.            |
+# | **Schema** | `schema:ratingValue`    | schemaorg.owl:32043-32072  | related | "ratingValue" Rating→Number/Text. User ratings, not computed scores.   |
+#
+# CREATED: 2026-02-12
+# UPDATED: 2026-02-12
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_specificity_score
+name: has_specificity_score
+title: Has Specificity Score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_specificity_score:
+    slot_uri: hc:hasSpecificityScore
+    description: >-
+      A computed score between 0.0 and 1.0 indicating the relevance of a
+      data model element (class or slot) in relation to a specific
+      competency question or prompt template. Used in interactive RAG
+      systems to filter or route queries. Lower scores indicate broadly
+      relevant elements; higher scores indicate more specific ones.
+    alt_descriptions:
+      nl: >-
+        Een berekende score tussen 0,0 en 1,0 die de relevantie aangeeft
+        van een datamodelelement (klasse of slot) ten opzichte van een
+        specifieke competentievraag of promptsjabloon.
+      de: >-
+        Ein berechneter Wert zwischen 0,0 und 1,0, der die Relevanz eines
+        Datenmodellelements (Klasse oder Slot) in Bezug auf eine bestimmte
+        Kompetenzfrage oder Prompt-Vorlage angibt.
+      fr: >-
+        Un score calculé entre 0,0 et 1,0 indiquant la pertinence d'un
+        élément de modèle de données (classe ou slot) par rapport à une
+        question de compétence ou un modèle de prompt spécifique.
+      ar: >-
+        درجة محسوبة بين 0.0 و1.0 تشير إلى مدى صلة عنصر نموذج البيانات
+        (فئة أو فتحة) بسؤال كفاءة أو قالب موجه محدد.
+      id: >-
+        Skor terhitung antara 0,0 dan 1,0 yang menunjukkan relevansi
+        elemen model data (kelas atau slot) terhadap pertanyaan kompetensi
+        atau templat prompt tertentu.
+      zh: >-
+        一个介于0.0和1.0之间的计算分数，表示数据模型元素（类或槽）与特定能力
+        问题或提示模板的相关程度。
+      es: >-
+        Una puntuación calculada entre 0,0 y 1,0 que indica la relevancia
+        de un elemento del modelo de datos (clase o slot) en relación con
+        una pregunta de competencia o plantilla de prompt específica.
+    structured_aliases:
+      - literal_form: specificiteitsscore
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Spezifitätswert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: score de spécificité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: درجة التخصص
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: skor spesifisitas
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 特异性分数
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: puntuación de especificidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: float
+    minimum_value: 0.0
+    maximum_value: 1.0
+    close_mappings:
+      - sosa:hasSimpleResult  # sosa.ttl:375-383 - "has simple result" Observation→literal; computed observation value
+    broad_mappings:
+      - prov:value  # prov.ttl:1056-1064 - "value" Entity→literal; direct representation of an entity
+    related_mappings:
+      - schema:ratingValue  # schemaorg.owl:32043-32072 - "ratingValue" Rating→Number/Text; user ratings not computed scores
+    aliases:
+      - specificity_score
+    examples:
+      - value: "0.15"
+        description: >-
+          Universal element such as HeritageCustodian or Location, relevant
+          to nearly all queries.
+      - value: "0.50"
+        description: >-
+          Moderately specific element such as ChangeEvent or PersonProfile.
+      - value: "0.85"
+        description: >-
+          Highly specific element such as LinkedInConnectionExtraction,
+          relevant only to narrow queries.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Score ranges: 0.00-0.20 universal, 0.20-0.40 broadly useful,
+        0.40-0.60 moderately specific, 0.60-0.80 fairly specific,
+        0.80-1.00 highly specific. Used by RAG relevance algorithms to
+        filter or route queries to the most appropriate model elements.

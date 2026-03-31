@@ -1,0 +1,272 @@
+id: https://nde.nl/ontology/hc/class/StorageCondition
+name: storage_condition_class
+title: Storage Condition Observation Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  pico: https://personsincontext.org/model#
+default_prefix: hc
+imports:
+- linkml:types
+- ../enums/StorageConditionStatusEnum
+- ../enums/StorageObserverTypeEnum
+- ../slots/categorized_as
+- ../slots/identified_by
+- ../slots/measured_through
+- ../slots/has_measurement_type
+- ../slots/has_note
+- ../slots/has_provenance
+- ../slots/has_score
+- ../slots/has_status
+- ../slots/include
+- ../slots/indicate
+- ../slots/based_on
+- ../slots/generated_by
+- ../slots/analyze
+- ../slots/temporal_extent
+- ../slots/observed_by
+- ../slots/refer_to
+- ../slots/remedy
+- ../slots/require
+- ../slots/supersede
+- ../slots/measure
+classes:
+  StorageCondition:
+    class_uri: hc:StorageConditionAssessment
+    description: >-
+      Observation-based assessment of actual storage conditions at a point in time,
+      recorded from a specific observer and source context.
+    alt_descriptions:
+      nl: Bron- en waarnemergebonden beoordeling van feitelijke bewaaromstandigheden op een moment in de tijd.
+      de: Quellen- und beobachtergebundene Bewertung tatsaechlicher Lagerbedingungen zu einem Zeitpunkt.
+      fr: Evaluation basee sur une observation des conditions de stockage reelles a un moment donne.
+      es: Evaluacion basada en observacion de las condiciones reales de almacenamiento en un momento dado.
+      ar: تقييم قائم على الملاحظة لظروف التخزين الفعلية في وقت محدد.
+      id: Penilaian berbasis observasi atas kondisi penyimpanan aktual pada suatu waktu tertentu.
+      zh: 对某一时点实际存储条件的基于观察的评估记录。
+    structured_aliases:
+    - {literal_form: bewaarconditie-observatie, in_language: nl}
+    - {literal_form: Lagerzustandsbeobachtung, in_language: de}
+    - {literal_form: observation des conditions de stockage, in_language: fr}
+    - {literal_form: observacion de condiciones de almacenamiento, in_language: es}
+    - {literal_form: ملاحظة ظروف التخزين, in_language: ar}
+    - {literal_form: observasi kondisi penyimpanan, in_language: id}
+    - {literal_form: 存储条件观察, in_language: zh}
+    close_mappings:
+    - crm:E7_Activity
+    - premis:Event
+    - pico:Observation
+    - hc:StorageEnvironmentObservation
+    - crm:E14_Condition_Assessment
+    slots:
+    - identified_by
+    - refer_to
+    - temporal_extent
+    - observed_by
+    - has_status
+    - categorized_as
+    - include
+    - has_note
+    - has_provenance
+    - analyze
+    - require
+    - remedy
+    - indicate
+    - generated_by
+    - supersede
+    - has_score
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/condition/rijksmuseum-depot-2024-q2
+      refer_to:
+        range: Storage
+        required: true
+        examples:
+        - value: https://nde.nl/ontology/hc/storage/rijksmuseum-depot-amersfoort
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: true
+        examples:
+        - value:
+            begin_of_the_begin: '2024-09-15'
+      observed_by:
+        range: string
+        required: false
+        multivalued: true
+        examples:
+        - value: JOURNALIST
+        - value: Maria van der Berg
+        - value: De Volkskrant
+      has_status:
+        range: StorageConditionStatusEnum
+        required: true
+        examples:
+        - value: CRITICAL
+        - value: GOOD
+      categorized_as:
+        range: AssessmentCategory
+        required: false
+        multivalued: true
+        inlined: true
+        examples:
+        - value:
+            has_type: PEST_CONTROL
+        - value:
+            has_type: HUMIDITY
+      include:
+        range: StorageConditionCategoryAssessment
+        multivalued: true
+        required: false
+        inlined: true
+        inlined_as_list: true
+      has_note:
+        range: string
+        multivalued: true
+        required: false
+        examples:
+        - value: White ants discovered in main depot area
+      has_provenance:
+        range: Provenance
+        multivalued: true
+        required: false
+        inlined: true
+      analyze:
+        range: string
+        required: false
+        examples:
+        - value: '{"temperature_celsius": 23.5, "humidity_percent": 58, "threshold_exceeded": true}'
+      require:
+        range: string
+        multivalued: true
+        required: false
+        examples:
+        - value: remediation_required
+      remedy:
+        range: string
+        required: false
+        examples:
+        - value: Engage licensed pest control; quarantine affected materials; install monitoring traps.
+      indicate:
+        range: ConservationReview
+        inlined: true
+        required: false
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+      supersede:
+        range: StorageCondition
+        required: false
+        multivalued: true
+    comments:
+    - Observations are reports from specific observers/sources (not assertions of truth)
+    - Multiple observations may exist for the same storage facility
+    - Compare observed conditions to StorageConditionPolicy to identify gaps
+    see_also:
+    - http://www.w3.org/ns/prov#Activity
+    - https://www.loc.gov/premis/rdf/v3/Event
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/condition/depot-pest-investigation-2024
+        refer_to: https://nde.nl/ontology/hc/storage/national-archive-depot-b
+        temporal_extent:
+          begin_of_the_begin: '2024-09-15'
+        observed_by:
+        - JOURNALIST
+        - Jan de Vries
+        - De Volkskrant
+        has_status: CRITICAL
+        categorized_as:
+        - has_type: PEST_CONTROL
+        has_note:
+        - Photographs show termite damage in the south wall
+        require:
+        - remediation_required
+        remedy: Engage licensed pest control immediately and quarantine affected materials.
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Critical distinction
+
+        - StorageCondition: what IS (observed state)
+        - StorageConditionPolicy: what SHOULD be (intended targets)
+
+        PiCo observation pattern
+
+        Treat observations as source-grounded reports. Conflicting observations
+        can coexist without reconciliation.
+
+        Observer modeling
+
+        The observed_by slot supports multiple alias uses:
+        - observer_type (e.g., JOURNALIST, INTERNAL_STAFF)
+        - observer_name (e.g., person or team name)
+        - observer_affiliation (e.g., newspaper or agency)
+
+      legacy_description: |
+        Preserved from earlier, more verbose description.
+        It included extended PROV-O and PiCo rationale, use-case narratives,
+        and detailed example payloads.
+
+    broad_mappings:
+    - prov:Activity
+  StorageConditionCategoryAssessment:
+    class_uri: hc:StorageConditionCategoryAssessment
+    description: >-
+      Category-level assessment within a storage condition observation.
+    alt_descriptions:
+      nl: Categorieniveau-beoordeling binnen een bewaarconditie-observatie.
+      de: Kategorienbewertung innerhalb einer Lagerzustandsbeobachtung.
+      fr: Evaluation par categorie au sein d une observation des conditions de stockage.
+      es: Evaluacion por categoria dentro de una observacion de condiciones de almacenamiento.
+      ar: تقييم على مستوى الفئة ضمن ملاحظة ظروف التخزين.
+      id: Penilaian tingkat kategori dalam observasi kondisi penyimpanan.
+      zh: 存储条件观察中的分类级评估条目。
+    structured_aliases:
+    - {literal_form: categoriebeoordeling, in_language: nl}
+    - {literal_form: Kategorienbewertung, in_language: de}
+    - {literal_form: evaluation par categorie, in_language: fr}
+    - {literal_form: evaluacion por categoria, in_language: es}
+    - {literal_form: تقييم فئة, in_language: ar}
+    - {literal_form: penilaian kategori, in_language: id}
+    - {literal_form: 分类评估, in_language: zh}
+    slots:
+    - categorized_as
+    - measure
+    - has_note
+    - has_status
+    - has_score
+    slot_usage:
+      categorized_as:
+        range: AssessmentCategory
+        required: true
+        inlined: true
+      has_status:
+        range: CategoryStatus
+        required: true
+        inlined: true
+      measure:
+        range: Measurement
+        inlined: true
+        multivalued: true
+      has_note:
+        range: string
+        multivalued: true
+        required: false
+        examples:
+        - value: White ants discovered in main depot area
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

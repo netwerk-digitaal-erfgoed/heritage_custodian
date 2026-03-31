@@ -1,0 +1,108 @@
+id: https://nde.nl/ontology/hc/class/RequirementStatus
+name: requirement_status_class
+title: Requirement Status Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/begin_of_the_begin
+- ../slots/end_of_the_end
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_note
+- ../slots/has_type
+- ../slots/required
+classes:
+  RequirementStatus:
+    class_uri: prov:Entity
+    description: >-
+      Represents the status of a requirement (e.g., booking, registration, appointment).
+    alt_descriptions:
+      nl: >-
+        Vertegenwoordigt de status van een vereiste (bijv. boeking, registratie, afspraak).
+      de: >-
+        Repräsentiert den Status einer Anforderung (z.B. Buchung, Registrierung, Termin).
+      fr: >-
+        Représente le statut d'une exigence (par ex. réservation, inscription, rendez-vous).
+    structured_aliases:
+    - literal_form: vereistenstatus
+      in_language: nl
+    - literal_form: Anforderungsstatus
+      in_language: de
+    - literal_form: statut d'exigence
+      in_language: fr
+    comments:
+    - |
+      Preserved from prior description (commit 6251b84d):
+
+      "Represents the status of a requirement (e.g., booking, registration, appointment).\n\n**DEFINITION**:\n\nRequirementStatus captures structured requirement information including:\n- Whether the requirement is active (required boolean)\n- The type(s) of requirement (via has_type \u2192 RequirementType)\n- Status description (free text details)\n- Temporal validity (when this requirement was in effect)\n\n**ONTOLOGY ALIGNMENT**:\n\n| Ontology | Class/Property | Notes |\n|----------|----------------|-------|\n| **PROV-O** | `prov:Entity` | Primary - entity with provenance |\n| **Schema.org** | `schema:isRequired` | Boolean requirement |\n| **SKOS** | `skos:Concept` | For type classification |\n\n**RELATIONSHIP TO OTHER CLASSES**:\n\n```\nEducationCenter / ReadingRoom / etc.\n  \u2502\n  \u2514\u2500\u2500 has_status \u2192 RequirementStatus (THIS CLASS)\n        \u2502\n        \u251C\u2500\u2500 required (boolean - is booking required?)\n\
+    - Captures structured requirement information including whether required, type, and temporal validity.
+    - Replaces domain-specific boolean slots (booking_required, appointment_required, registration_required).
+    - Linked to RequirementType for type classification.
+    broad_mappings:
+    - prov:Entity
+    close_mappings:
+    - schema:Action
+    slots:
+    - identified_by
+    - required
+    - has_type
+    - has_label
+    - has_description
+    - has_note
+    - begin_of_the_begin
+    - end_of_the_end
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        pattern: ^https://nde\.nl/ontology/hc/requirement-status/[a-z0-9-]+$
+      required:
+        range: boolean
+        required: true
+        examples:
+        - value: true
+        - value: false
+      has_type:
+        range: RequirementType
+        description: Type(s) of requirement in effect (e.g., advance booking, registration).
+        multivalued: true
+        inlined_as_list: false
+        examples:
+        - value:
+          - has_code: ADVANCE_BOOKING
+      has_description:
+        examples:
+        - value: Advance booking required for groups of 10 or more. Individual visitors welcome without booking.
+      has_note:
+        multivalued: true
+        examples:
+        - value: Online booking available at www.museum.nl/book
+        - value: 'Phone bookings: +31 20 123 4567'
+      begin_of_the_begin:
+      end_of_the_end:
+    annotations:
+      specificity_score: '0.55'
+      specificity_rationale: Requirement status applicable to many heritage contexts (education, reading rooms, visits).
+      has_score:
+      slot_migration: "2026-01-15: Created to replace domain-specific requirement boolean slots\n- booking_required (boolean) → has_status (RequirementStatus)\n- appointment_required (boolean) → has_status (RequirementStatus)\n"
+      custodian_types: "['*']"
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/requirement-status/rijksmuseum-edu-booking
+        required: true
+        has_type:
+        - has_code: ADVANCE_BOOKING
+        has_label:
+        - Booking required for education programs@en
+        - Reservering verplicht voor educatieprogramma's@nl
+        has_description: 'Advance booking required for all school groups and educational programs. Minimum 2 weeks advance booking for groups of 20+. '
+        has_note:
+        - 'Online booking: educatie@rijksmuseum.nl'
+        begin_of_the_begin: '2020-01-01T00:00:00Z'

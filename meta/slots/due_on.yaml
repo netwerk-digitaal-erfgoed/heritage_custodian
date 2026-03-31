@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: due_on
+# ==============================================================================
+# Date by which something is expected, scheduled, or required.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line           | Mapping | Notes                                        |
+# |---------------|---------------------------|---------------------|---------|----------------------------------------------|
+# | **Schema.org**| `schema:paymentDueDate`   | schemaorg:29368-29388| close  | "The date that payment is due." (Invoice/Order domain) |
+#
+# NOTE: schema:paymentDueDate is specific to payments (domain Invoice/Order).
+# Our slot is more general - applies to any deadline (loans, submissions, tasks).
+# No exact standard mapping found for general "due date" concept.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/due_on
+name: due_on
+title: Due On
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  due_on:
+    slot_uri: hc:dueOn
+    description: >-
+      To be expected, scheduled, or required to be finished, paid, or returned 
+      by a specific date or point in time.
+    alt_descriptions:
+      nl: >-
+        Verwacht, gepland of vereist om te worden afgerond, betaald of geretourneerd 
+        op een specifieke datum of tijdstip.
+      de: >-
+        Erwartet, geplant oder erforderlich, bis zu einem bestimmten Datum oder 
+        Zeitpunkt abgeschlossen, bezahlt oder zurückgegeben zu werden.
+      fr: >-
+        Être attendu, prévu ou requis pour être terminé, payé ou retourné à une 
+        date ou un moment spécifique.
+      ar: >-
+        أن يكون متوقعًا أو مجدولًا أو مطلوبًا للانتهاء أو الدفع أو الإرجاع 
+        في تاريخ أو وقت محدد.
+      id: >-
+        Diharapkan, dijadwalkan, atau diharuskan untuk diselesaikan, dibayar, 
+        atau dikembalikan pada tanggal atau titik waktu tertentu.
+      zh: >-
+        预计、计划或要求在特定日期或时间点完成、支付或归还。
+      es: >-
+        Ser esperado, programado o requerido para ser terminado, pagado o devuelto 
+        en una fecha o momento específico.
+    structured_aliases:
+      - literal_form: vervaldatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: fällig am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dû le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستحق في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: jatuh tempo pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 到期日
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: vence el
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    aliases:
+      - is_or_was_due_on
+    close_mappings:
+      - schema:paymentDueDate  # schemaorg:29368-29388 - "The date that payment is due" (specific to payments)
+    comments:
+      - |
+        **USAGE**: Use for any deadline - loan return dates, submission deadlines, 
+        task completion dates, or payment due dates.
+      - |
+        **CONTEXT**: In heritage institutions, commonly used for loan agreements, 
+        conservation treatment deadlines, or exhibition scheduling.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "2024-06-30"
+        description: "Loan item due to be returned by June 30, 2024"

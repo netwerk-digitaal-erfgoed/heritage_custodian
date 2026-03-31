@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: archived_in
+# ==============================================================================
+# Record set, collection, series, or repository structure containing the archived item.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **DCTerms**   | `dcterms:isPartOf`    | dcterms.rdf:1464     | close   | Part-of relationship - similar for containment           |
+# | **RiC-O**     | `rico:isPartOfTransitive`| RiC-O_1-1.rdf:15856| close | Archival hierarchy relationship                          |
+#
+# SEMANTIC NOTES:
+# - "Archived in" captures containment within archival structure
+# - dcterms:isPartOf is close but more generic
+# - RiC-O has specific archival hierarchy properties
+# - Custom hc: URI appropriate for this archival context
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, close_mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/archived_in
+name: archived_in
+title: Archived In
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  archived_in:
+    slot_uri: hc:archivedIn
+    description: >-
+      To be contained, filed, or preserved within a specific record set, collection, 
+      series, or repository structure.
+    alt_descriptions:
+      nl: >-
+        Opgenomen, gearchiveerd of bewaard binnen een specifieke verzameling 
+        dossiers, collectie, serie of repositorystructuur.
+      de: >-
+        In einem bestimmten Aktenbestand, einer Sammlung, Serie oder 
+        Repository-Struktur enthalten, abgelegt oder aufbewahrt.
+      fr: >-
+        Contenu, classé ou préservé dans un ensemble de documents, une collection, 
+        une série ou une structure de dépôt spécifique.
+      ar: >-
+        أن يكون محتوى أو مودعاً أو محفوظاً ضمن مجموعة سجلات أو 
+        مجموعة أو سلسلة أو هيكل مستودع معين.
+      id: >-
+        Terkandung, diarsipkan, atau dilestarikan dalam kumpulan rekaman, 
+        koleksi, seri, atau struktur repositori tertentu.
+      zh: >-
+        包含、归档或保存在特定的记录集、收藏、系列或存储库结构中。
+      es: >-
+        Contenido, archivado o preservado dentro de un conjunto de registros, 
+        colección, serie o estructura de repositorio específica.
+    structured_aliases:
+      - literal_form: gearchiveerd in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: archiviert in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: archivé dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مؤرشف ضمن
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diarsipkan dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 存档在
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: archivado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - dcterms:isPartOf  # dcterms.rdf:1464 - part-of relationship
+      - rico:isPartOfTransitive  # RiC-O_1-1.rdf:15856 - archival hierarchy
+    aliases:
+      - is_or_was_archived_in
+    comments:
+      - |
+        **SEMANTIC NOTE**: This slot captures containment within archival structure 
+        (e.g., "in the Smith Family Papers collection"). For physical/digital location, 
+        use `archived_at`. For classification/designation, use `archived_as`.
+    annotations:
+      custodian_types: '["*"]'

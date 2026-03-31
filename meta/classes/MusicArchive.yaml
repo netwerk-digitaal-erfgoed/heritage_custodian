@@ -1,0 +1,61 @@
+id: https://w3id.org/nde/ontology/MusicArchive
+name: MusicArchive
+title: Music Archive
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/hold_record_set
+classes:
+  MusicArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    description: Archive organization specializing in stewardship of music-related records and documentary collections.
+    alt_descriptions:
+      nl: Archieforganisatie gespecialiseerd in het beheer van muziekgerelateerde records en documentatiecollecties.
+      de: Archivorganisation mit Spezialisierung auf Verwaltung musikbezogener Unterlagen und Dokumentationssammlungen.
+      fr: Organisation archivistique specialisee dans la conservation de documents et archives lies a la musique.
+      es: Organizacion archivistica especializada en la custodia de registros y colecciones documentales relacionadas con la musica.
+      ar: جهة أرشيفية متخصصة في حفظ السجلات والمواد الوثائقية المرتبطة بالموسيقى.
+      id: Organisasi arsip yang berspesialisasi pada kustodi rekaman dan koleksi dokumenter terkait musik.
+      zh: 专注保管音乐相关记录与文献馆藏的档案机构。
+    structured_aliases:
+    - {literal_form: muziekarchief, in_language: nl}
+    - {literal_form: Musikarchiv, in_language: de}
+    - {literal_form: archive musicale, in_language: fr}
+    - {literal_form: archivo musical, in_language: es}
+    - {literal_form: أرشيف موسيقي, in_language: ar}
+    - {literal_form: arsip musik, in_language: id}
+    - {literal_form: 音乐档案馆, in_language: zh}
+    close_mappings:
+    - rico:CorporateBody
+    - skos:Concept
+    - wd:Q53759838
+    broad_mappings:
+    - wd:Q166118
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    annotations:
+      skos:prefLabel: Music Archive
+      skos:altLabel: Musikarchiv, archivo musical, archive musicale
+      subject_domain: music
+      media_type: mixed (audio, scores, documents)
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

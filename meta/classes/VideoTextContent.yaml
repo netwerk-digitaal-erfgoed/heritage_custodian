@@ -1,0 +1,178 @@
+id: https://nde.nl/ontology/hc/class/VideoTextContent
+name: video_text_content_class
+title: Video Text Content Class
+imports:
+- linkml:types
+- ../enums/GenerationMethodEnum
+- ../slots/has_title
+- ../slots/has_language
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/generated_by
+- ../slots/verified_by
+- ../slots/provided_by
+- ../slots/has_confidence_measure
+- ../slots/has_time_interval
+- ../slots/has_source
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  oa: http://www.w3.org/ns/oa#
+default_prefix: hc
+classes:
+  VideoTextContent:
+    class_uri: crm:E73_Information_Object
+    abstract: true
+    description: >-
+      Abstract base class for textual content derived from video, including
+      transcripts, subtitles, and annotations with provenance tracking.
+    alt_descriptions:
+      nl: Abstracte basisklasse voor uit video afgeleide tekstuele inhoud (transcripties
+      de: Abstrakte Basisklasse für aus Videos abgeleitete textuelle Inhalte (Transkripte
+      fr: Classe de base abstraite pour le contenu textuel dérivé de la vidéo (transcriptions
+      es: Clase base abstracta para contenido textual derivado de video (transcripciones
+      ar: فئة أساس مجردة للمحتوى النصي المشتق من الفيديو (تفريغ، ترجمات، تعليقات).
+      id: Kelas dasar abstrak untuk konten teks turunan video (transkrip
+      zh: 视频衍生文本内容（转录、字幕、注释）的抽象基类。
+    structured_aliases:
+    - literal_form: videotekstinhoud
+      in_language: nl
+    - literal_form: Video-Textinhalt
+      in_language: de
+    - literal_form: contenu texte vidéo
+      in_language: fr
+    - literal_form: contenido textual de video
+      in_language: es
+    - literal_form: محتوى نص الفيديو
+      in_language: ar
+    - literal_form: konten teks video
+      in_language: id
+    - literal_form: 视频文本内容
+      in_language: zh
+    broad_mappings:
+    - crm:E73_Information_Object
+    - prov:Entity
+    related_mappings:
+    - schema:CreativeWork
+    - dcterms:Text
+    slots:
+    - has_language
+    - has_title
+    - generated_by
+    - temporal_extent
+    - verified_by
+    - provided_by
+    - has_confidence_measure
+    - has_time_interval
+    - has_source
+    - has_score
+    - has_quantity
+    slot_usage:
+      has_source:
+        range: string
+        required: false
+        examples:
+        - value: FbIoC-Owy-M
+        - value: https://www.youtube.com/watch?v=FbIoC-Owy-M
+      has_language:
+#         range: string
+        required: true
+        inlined: false # Fixed invalid inline for primitive type
+        multivalued: true
+        examples:
+        - value:
+            language_name: "Dutch"
+        - value:
+            language_name: "English"
+      has_title:
+#         range: string
+        required: false
+        examples:
+        - value: De Vrijheidsroute Ep.3 - Dutch Transcript
+        - value: YouTube Auto-captions
+        - value: manual:curator@rijksmuseum.nl
+      generated_by:
+        range: GenerationEvent
+        required: true
+        inlined: true
+        examples:
+        - value:
+            has_methodology:
+              methodology_type: ASR_AUTOMATIC
+              has_label: Automatic Speech Recognition
+        - value:
+            has_methodology:
+              methodology_type: MANUAL_TRANSCRIPTION
+              has_label: Manual Transcription
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: false
+        examples:
+        - value:
+            begin_of_the_begin: '2025-12-02T15:00:00Z'
+      provided_by:
+#         range: string
+        required: false
+        examples:
+        - value: OpenAI
+        - value: Google Cloud
+      has_confidence_measure:
+        range: float
+        required: false
+        minimum_value: 0.0
+        maximum_value: 1.0
+        examples:
+        - value: 0.92
+      verified_by:
+        range: Verifier
+        required: false
+        inlined: true
+        examples:
+        - value:
+            has_name: curator@rijksmuseum.nl
+      has_time_interval:
+        range: float
+        required: false
+        minimum_value: 0.0
+        examples:
+        - value: 45.3
+      has_quantity:
+        range: integer
+        required: false
+        multivalued: true
+        inlined: false # Fixed invalid inline for primitive type
+        inlined_as_list: false # Fixed invalid inline for primitive type
+        examples:
+        - value: 1523
+        - value: 8742
+    comments:
+    - Abstract base for all video-derived text content
+    - Comprehensive PROV-O provenance tracking
+    - Confidence scoring for AI-generated content
+    - Verification workflow support
+    - Critical for heritage accessibility and discovery
+    see_also:
+    - https://www.w3.org/TR/prov-o/
+    - http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Typical subclasses
+
+        - VideoTranscript (audio-derived text)
+        - VideoSubtitle (time-coded caption tracks)
+        - VideoAnnotation (visual/multimodal derived descriptions)
+
+        Provenance expectations
+
+        Derived text should record source, generation method/agent, timestamp,
+        and confidence when available.

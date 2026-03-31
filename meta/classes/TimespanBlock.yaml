@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/classes/TimespanBlock
+name: TimespanBlock
+title: TimespanBlock
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  time: http://www.w3.org/2006/time#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+  - ../slots/begin_of_the_begin
+  - ../slots/begin_of_the_end
+  - ../slots/end_of_the_begin
+  - ../slots/end_of_the_end
+# default_range: string
+classes:
+  TimespanBlock:
+    alt_descriptions:
+      nl: CIDOC-CRM E52 tijdsblok met vierpunts-interval voor onzekere of benaderde tijdgrenzen.
+      de: CIDOC-CRM E52 Zeitblock mit Vierpunkt-Intervall fuer unsichere/ungefaehre Zeitgrenzen.
+      fr: Bloc temporel CIDOC-CRM E52 a quatre bornes pour limites temporelles incertaines ou approximatives.
+      es: Bloque temporal CIDOC-CRM E52 con intervalo de cuatro puntos para limites temporales inciertos/aproximados.
+      ar: كتلة زمنية وفق CIDOC-CRM E52 بحدود رباعية للتعامل مع الغموض أو التقريب الزمني.
+      id: Blok waktu CIDOC-CRM E52 dengan interval empat titik untuk batas waktu yang tidak pasti/perkiraan.
+      zh: 采用四点模糊边界的 CIDOC-CRM E52 时间块，用于表达不确定/近似时间范围。
+    structured_aliases:
+    - literal_form: tijdsblok
+      in_language: nl
+    - literal_form: Zeitblock
+      in_language: de
+    - literal_form: bloc temporel
+      in_language: fr
+    - literal_form: bloque temporal
+      in_language: es
+    - literal_form: كتلة زمنية
+      in_language: ar
+    - literal_form: blok waktu
+      in_language: id
+    - literal_form: 时间块
+      in_language: zh
+    description: >-
+      Bounded temporal period with four-point fuzzy boundary pattern for uncertain or approximate start/end limits following CIDOC-CRM E52.
+    class_uri: crm:E52_Time-Span
+    close_mappings:
+    - time:ProperInterval
+    broad_mappings:
+    - crm:E52_Time-Span
+    slots:
+    - begin_of_the_begin
+    - end_of_the_begin
+    - begin_of_the_end
+    - end_of_the_end
+    - has_note
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+      modeling_notes: |
+        Mapping rationale
+
+        - class_uri: crm:E52_Time-Span
+        - close_mappings: time:ProperInterval
+        - related_mappings: schema:Schedule
+
+        Four-point bounds
+
+        - begin_of_the_begin
+        - end_of_the_begin
+        - begin_of_the_end
+        - end_of_the_end

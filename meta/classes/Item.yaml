@@ -1,0 +1,115 @@
+id: https://nde.nl/ontology/hc/class/Item
+name: Item
+title: Item Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_description
+classes:
+  Item:
+    class_uri: crm:E22_Human-Made_Object
+    description: >-
+      Discrete physical object created through human activity that may be subject to
+      lending, custody transfer, or conservation treatment.
+    alt_descriptions:
+      nl: >-
+        Discreet fysiek object gemaakt door menselijke activiteit dat onderhevig kan zijn aan
+        uitlening, bewaringsoverdracht of conserveringsbehandeling.
+      de: >-
+        Diskret physisches Objekt, das durch menschliche Tätigkeit geschaffen wurde und
+        verliehen, in die Obhut übertragen oder konservatorisch behandelt werden kann.
+      fr: >-
+        Objet physique discret créé par l'activité humaine pouvant faire l'objet d'un prêt,
+        d'un transfert de garde ou d'un traitement de conservation.
+      es: >-
+        Objeto físico discreto creado por actividad humana que puede estar sujeto a
+        préstamo, transferencia de custodia o tratamiento de conservación.
+      ar: >-
+        كائن مادي منفصل أنشئ بالنشاط البشري وقد يخضع
+        للإعارة أو نقل الحيازة أو المعالجة التصالحية.
+      id: >-
+        Objek fisik diskrit yang dibuat melalui aktivitas manusia yang dapat mengalami
+        peminjaman, transfer kustodi, atau perawatan konservasi.
+      zh: >-
+        可被借出、移交保管或进行保护处理的人为创造的离散物理物品。
+    structured_aliases:
+    - literal_form: erfgoedobject
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Kulturgut
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: objet patrimonial
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: objeto patrimonial
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: قطعة تراثية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: benda warisan
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 遗产物品
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - crm:E22_Human-Made_Object
+    close_mappings:
+    - schema:Thing
+    - schema:Product
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    slot_usage:
+      identified_by:
+        multivalued: true
+    comments:
+    - Individual heritage item for loan tracking, custody changes, and conservation.
+    - Distinguished from Collection by representing a single discrete object.
+    - 'Preserved from prior description: Individual heritage object that may be managed in loans, returns, or custody transitions.'
+    keywords:
+    - individual object
+    - loan tracking
+    - custody transfer
+    - conservation item
+    examples:
+    - value:
+        has_label: Rembrandt - The Night Watch
+        has_description: Oil on canvas painting, 1642.
+      description: Individual museum object record
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      A heritage item that can be subject to loans, returns, or custody transfers.
+
+      Maps to CIDOC-CRM E22 Human-Made Object, the base class for physical
+      heritage objects created by human activity.
+
+      **USE CASES**:
+      1. **Loan Records**: Items loaned out and returned
+      2. **Custody Transfers**: Items changing custodianship
+      3. **Conservation**: Items undergoing treatment
+
+      **RELATIONSHIP TO OTHER CLASSES**:
+      - More specific than Collection (individual vs. aggregate)
+      - Used by ReturnEvent.item_returned
+      - Used by Loan.loaned_items
+
+      **Migration (2026-01-22)**:
+      Created as part of condition_on_return migration per slot_fixes.yaml (Rule 53)
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: All heritage custodians may hold individual items.
+      specificity_score: 0.35
+      specificity_rationale: Generic but useful object-level anchor for transactional and conservation contexts.

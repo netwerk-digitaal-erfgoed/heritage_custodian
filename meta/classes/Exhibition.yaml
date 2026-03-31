@@ -1,0 +1,125 @@
+id: https://nde.nl/ontology/hc/class/Exhibition
+name: Exhibition
+title: Exhibition Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/EventStatusEnum
+  - ../enums/ExhibitionTypeEnum
+  - ../metadata
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_description
+  - ../slots/has_type
+  - ../slots/has_status
+  - ../slots/organized_by
+  - ../slots/curated_by
+  - ../slots/temporal_extent
+  - ../slots/located_in
+  - ../slots/exhibit
+  - ../slots/cataloged_in
+  - ../slots/has_venue
+  - ../slots/has_quantity
+  - ../slots/has_url
+  - ../slots/has_documentation
+  - ../slots/has_score
+classes:
+  Exhibition:
+    class_uri: schema:ExhibitionEvent
+    description: >-
+      Curated display event organized by heritage institutions to present objects, artworks, or cultural materials to the public.
+    alt_descriptions:
+      nl: >-
+        Gecureerde tentoonstellingsevenement georganiseerd door erfgoedinstities om objecten, kunstwerken of culturele materialen aan het publiek te presenteren.
+      de: >-
+        Kuratierte Ausstellungsveranstaltung, die von Heritage-Institutionen organisiert wird, um Objekte, Kunstwerke oder kulturelle Materialien der Öffentlichkeit zu präsentieren.
+      fr: >-
+        Événement d'exposition curatoriale organisé par des institutions patrimoniales pour présenter des objets, des œuvres d'art ou des matériaux culturels au public.
+      es: >-
+        Evento de exposición curada organizado por instituciones patrimoniales para presentar objetos, obras de arte o materiales culturales al público.
+      ar: >-
+        حدث عرض منسق تنظمه مؤسسات التراث لتقديم الأشياء أو الأعمال الفنية أو المواد الثقافية للجمهور.
+      id: >-
+        Acara pameran terkurasi yang diselenggarakan oleh institusi warisan untuk menyajikan benda, karya seni, atau bahan budaya kepada publik.
+      zh: >-
+        由遗产机构组织的策展展示活动，向公众展示物品、艺术品或文化材料。
+    structured_aliases:
+      - literal_form: tentoonstelling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ausstellung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: exposition
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: exposición
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: معرض
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pameran
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 展览
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    broad_mappings:
+      - schema:ExhibitionEvent
+    close_mappings:
+      - crm:E7_Activity
+      - crm:E5_Event
+    related_mappings:
+      - schema:Event
+    slots:
+      - identified_by
+      - has_label
+      - has_description
+      - has_type
+      - has_status
+      - organized_by
+      - curated_by
+      - temporal_extent
+      - located_in
+      - exhibit
+      - cataloged_in
+      - has_venue
+      - has_quantity
+      - has_url
+      - has_documentation
+      - has_score
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+      has_label:
+        required: true
+      has_type:
+        range: ExhibitionTypeEnum
+      has_status:
+        range: EventStatusEnum
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+      has_url:
+        range: uri
+      has_documentation:
+        range: uri
+        multivalued: true
+    notes:
+      - |
+        Preserved from prior description (commit ee5e8e5a):
+
+        Preserved from prior description (commit ee5e8e5a):
+
+        "A curated display of objects, artworks, documents, or cultural materials\norganized by a heritage custodian institution.\n\nModels the EXHIBITION (organized event), linking organizing institutions\nto temporal extents, featured objects, and published catalogs.\n\n**Key Distinction**:\n\n| Concept | Class | Example |\n|---------|-------|---------|\n| Heritage institution | Custodian | \"Rijksmuseum\" |\n| **Curated display** | **Exhibition** | **\"Vermeer\" exhibition** |\n| Individual object | ExhibitedObject | \"Girl with a Pearl Earring\" |\n| Publication | ExhibitionCatalog | \"Vermeer (2023) exhibition catalog\" |\n| Event occurrence | IntangibleHeritageEvent | \"Pride Amsterdam 2024\" |\n\n**When to Use Exhibition**:\n\nUse for curated displays organized by heritage institutions:\n- Museum exhibitions (permanent, temporary, traveling)\n- Archive exhibitions (document displays, historical materials)\n- Library special collections exhibitions\n- Gallery shows (solo,\
+    annotations:
+      specificity_score: 0.55
+      specificity_rationale: Event-level model connecting organization, temporal extent, and exhibited content.
+      custodian_types: '["*"]'

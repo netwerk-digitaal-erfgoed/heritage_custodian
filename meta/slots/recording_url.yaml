@@ -1,0 +1,99 @@
+# ==============================================================================
+# LinkML Slot Definition: recording_url
+# ==============================================================================
+# URL linking to a recording of a performance, event, or presentation in audio
+# or video format.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                  | File/Line                        | Mapping  | Notes                                                        |
+# |----------------|---------------------------|----------------------------------|----------|--------------------------------------------------------------|
+# | **Schema.org** | `schema:contentUrl`       | schemaorg.owl:12864-12884        | close    | MediaObject→URL; "actual bytes of the media object".         |
+# | **Schema.org** | `schema:url`              | schemaorg.owl:39120-39140        | broad    | Thing→URL; "URL of the item" — too general.                  |
+# | **BIBFRAME**   | `bf:electronicLocator`    | bibframe.rdf:2357-2363           | related  | "Electronic location from which the resource is available".  |
+# | **DCAT**       | `dcat:accessURL`          | dcat3.ttl:562-595                | related  | Distribution access URL — different domain (datasets).       |
+#
+# No external ontology defines a "recording URL" property specifically;
+# hc:recordingUrl is appropriate as slot_uri.
+#
+# CREATED: 2025-11-21
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/recording_url
+name: recording_url
+title: Recording URL
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  bf: http://id.loc.gov/ontologies/bibframe/
+  dcat: http://www.w3.org/ns/dcat#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  recording_url:
+    slot_uri: hc:recordingUrl
+    description: >-
+      URL linking to a recording of a performance, event, or presentation in audio
+      or video format.
+    alt_descriptions:
+      nl: >-
+        URL die verwijst naar een opname van een uitvoering, evenement of presentatie
+        in audio- of videoformaat.
+      de: >-
+        URL, die auf eine Aufnahme einer Aufführung, Veranstaltung oder Präsentation
+        in Audio- oder Videoformat verweist.
+      fr: >-
+        URL renvoyant à un enregistrement d'une performance, d'un événement ou d'une
+        présentation au format audio ou vidéo.
+      ar: >-
+        رابط URL يشير إلى تسجيل لأداء أو حدث أو عرض بتنسيق صوتي أو مرئي.
+      id: >-
+        URL yang menautkan ke rekaman pertunjukan, acara, atau presentasi dalam format
+        audio atau video.
+      zh: >-
+        链接到演出、活动或演示的音频或视频格式录制内容的URL。
+      es: >-
+        URL que enlaza a una grabación de una actuación, evento o presentación en
+        formato de audio o video.
+    structured_aliases:
+      - literal_form: opname-URL
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Aufnahme-URL
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: URL d'enregistrement
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: رابط التسجيل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: URL rekaman
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 录制URL
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: URL de grabación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uri
+    multivalued: true
+    close_mappings:
+      - schema:contentUrl  # schemaorg.owl:12864-12884 - MediaObject→URL; "actual bytes of the media object"
+    broad_mappings:
+      - schema:url  # schemaorg.owl:39120-39140 - Thing→URL; "URL of the item"
+    related_mappings:
+      - bf:electronicLocator  # bibframe.rdf:2357-2363 - "Electronic location from which the resource is available"
+      - dcat:accessURL  # dcat3.ttl:562-595 - Distribution access URL
+    aliases: []
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        The slot_uri was changed from schema:url to hc:recordingUrl because schema:url
+        is too generic (it applies to any Thing) and is already used by the has_url
+        canonical slot. The close_mapping to schema:contentUrl is more semantically
+        appropriate for media content URLs.

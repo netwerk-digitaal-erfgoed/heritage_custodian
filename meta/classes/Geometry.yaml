@@ -1,0 +1,97 @@
+id: https://nde.nl/ontology/hc/class/Geometry
+name: Geometry
+title: Geometry Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  geosparql: http://www.opengis.net/ont/geosparql#
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_description
+- ../slots/has_type
+- ../slots/has_format
+classes:
+  Geometry:
+    class_uri: geosparql:Geometry
+    description: >-
+      Quantitative spatial representation encoding geographic coordinates as points,
+      lines, polygons, or multi-part shapes.
+    alt_descriptions:
+      nl: >-
+        Kwantitatieve ruimtelijke representatie die geografische coördinaten codeert als punten,
+        lijnen, polygonen of meerdelige vormen.
+      de: >-
+        Quantitative räumliche Repräsentation, die geografische Koordinaten als Punkte,
+        Linien, Polygone oder mehrteilige Formen kodiert.
+      fr: >-
+        Représentation spatiale quantitative codant les coordonnées géographiques sous forme de points,
+        lignes, polygones ou formes multipartites.
+      es: >-
+        Representación espacial cuantitativa que codifica coordenadas geográficas como puntos,
+        líneas, polígonos o formas multiparte.
+      ar: >-
+        تمثيل مكاني كمي يشفر الإحداثيات الجغرافية كنقاط
+        أو خطوط أو مضلعات أو أشكال متعددة الأجزاء.
+      id: >-
+        Representasi spasial kuantitatif yang mengkodekan koordinat geografis sebagai titik,
+        garis, poligon, atau bentuk multi-bagian.
+      zh: >-
+        将地理坐标编码为点、线、多边形或多部分形状的量化空间表示。
+    structured_aliases:
+    - literal_form: geometrie-object
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Geometrieobjekt
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: objet géométrique
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: objeto geométrico
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: كائن هندسي
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: objek geometri
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 几何对象
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - geosparql:Geometry
+    close_mappings:
+    - schema:GeoShape
+    slots:
+    - has_label
+    - has_description
+    - has_type
+    - has_format
+    slot_usage:
+      has_type:
+        required: true
+      has_format:
+        required: true
+    comments:
+    - Supports WKT, GeoJSON, GML, and other geospatial encoding formats.
+    - Used for mapping heritage sites, buildings, and geographic features.
+    - 'Preserved from prior description: Spatial geometry representation, such as point, line, or polygon.'
+    keywords:
+    - spatial representation
+    - geographic coordinates
+    - geospatial data
+    - geometric encoding
+    examples:
+    - value:
+        has_type: Polygon
+        has_format: application/geo+json
+        has_label: Museum Perimeter
+      description: GeoJSON polygon encoding museum site boundary
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Core geometric encoding object for geospatial data.
+      custodian_types: '["*"]'

@@ -1,0 +1,278 @@
+id: https://nde.nl/ontology/hc/class/AccessPolicy
+name: access_policy_class
+title: AccessPolicy Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  premis: http://www.loc.gov/premis/rdf/v3/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/require
+- ../slots/has_protocol
+- ../slots/has_description
+- ../slots/embargo
+- ../slots/restricted_by
+- ../slots/has_level
+- ../slots/has_score
+- ../slots/impose
+- ../slots/has_legal_basis
+- ../slots/has_deadline
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/pose_condition
+- ../slots/has_roadmap
+- ../slots/has_statement
+- ../slots/has_url
+- ../slots/temporal_extent
+classes:
+  AccessPolicy:
+    class_uri: premis:RightsStatus
+    alt_descriptions:
+      nl: Beleid dat voorwaarden vastlegt waaronder collecties of onderdelen daarvan toegankelijk zijn.
+      de: Richtlinie die Bedingungen fuer den Zugang zu Sammlungen oder deren Teilen festlegt.
+      fr: Politique definissant les conditions d acces aux collections ou a leurs elements.
+      es: Politica que define las condiciones de acceso a colecciones o a sus partes.
+      ar: سياسة تحدد شروط الوصول إلى المجموعات أو عناصرها.
+      id: Kebijakan yang menetapkan ketentuan akses ke koleksi atau bagiannya.
+      zh: 规定对馆藏或其组成部分的访问条件的政策。
+    structured_aliases:
+    - {literal_form: toegangsbeleid, predicate: EXACT_SYNONYM, in_language: nl}
+    - {literal_form: Zugangsrichtlinie, predicate: EXACT_SYNONYM, in_language: de}
+    - {literal_form: politique d acces, predicate: EXACT_SYNONYM, in_language: fr}
+    - {literal_form: politica de acceso, predicate: EXACT_SYNONYM, in_language: es}
+    - {literal_form: سياسة وصول, predicate: EXACT_SYNONYM, in_language: ar}
+    - {literal_form: kebijakan akses, predicate: EXACT_SYNONYM, in_language: id}
+    - {literal_form: 访问政策, predicate: EXACT_SYNONYM, in_language: zh}
+    description: >-
+      Conditions under which a collection (or its members) may be accessed,
+      including restrictions, requirements, and temporal validity.
+    exact_mappings:
+    - premis:RightsStatus
+    close_mappings:
+    - dcterms:accessRights
+    - rico:Rule
+    - schema:ActionAccessSpecification
+    related_mappings:
+    - rico:hasOrHadAllMembersWithAccessConditions
+    slots:
+    - has_description
+    - has_level
+    - require
+    - pose_condition
+    - has_protocol
+    - has_deadline
+    - restricted_by
+    - impose
+    - has_legal_basis
+    - identified_by
+    - has_label
+    - has_roadmap
+    - has_statement
+    - has_score
+    - temporal_extent
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/access-policy/open-access
+      has_label:
+#         range: string
+        required: true
+        examples:
+        - value: Open Access
+        - value: Researchers Only
+        - value: Embargoed until 2050
+      has_level:
+        range: AccessLevel
+        required: true
+        inlined: true
+        examples:
+        - value:
+            has_label: PUBLIC_OPEN
+        - value:
+            has_label: RESEARCHERS_ONLY
+        - value:
+            has_label: EMBARGOED
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Open to all visitors during reading room hours (Mon-Fri 9-17)
+        - value:
+            description_text: Access restricted to academic researchers with institutional has_affiliation
+      pose_condition:
+        range: Condition
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - has_type: AccessCondition
+            has_description:
+              description_text: Valid government-issued ID required
+          - has_type: AccessCondition
+            has_description:
+              description_text: Registration form must be completed
+      has_statement:
+        examples:
+        - value: In Copyright
+        - value: No Copyright - United States
+        - value: http://rightsstatements.org/vocab/InC/1.0/
+        - value: http://rightsstatements.org/vocab/NoC-US/1.0/
+      require:
+        range: string
+        multivalued: true
+        examples:
+        - value: registration_required
+        - value: appointment_required
+        - value: institutional_affiliation_required
+      impose:
+#         range: string # Fee
+        inlined: false # Fixed invalid inline for primitive type
+        multivalued: true
+        examples:
+        - value:
+            has_quantity:
+            has_measurement_unit:
+            has_description: Daily reading room fee
+        - value:
+            has_quantity:
+            has_description: Free for researchers
+        - value:
+            has_quantity:
+            has_measurement_unit:
+            has_description: General public fee
+      has_deadline:
+        range: date
+        examples:
+        - value: '2050-01-01'
+      restricted_by:
+#         range: string
+        examples:
+        - value: Donor privacy restrictions per deed of gift
+        - value: Contains personal data protected under GDPR
+      has_protocol:
+        range: uri
+        examples:
+        - value: https://localcontexts.org/tk-labels/
+      has_legal_basis:
+        examples:
+        - value: General Data Protection Regulation (GDPR)
+        - value: Freedom of Information Act exemption 6
+      has_roadmap:
+        examples:
+        - value: 'policy_review_date: 2025-12-31'
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: true
+        examples:
+        - value:
+            begin_of_the_begin: '2024-01-01'
+            end_of_the_end: '2050-12-31'
+    comments:
+    - AccessPolicy defines access conditions for Collection instances
+    - Used by Collection.access_policy_ref to link policies to holdings
+    - Supports RightsStatements.org and Local Contexts protocols
+    - Temporal validity enables policy versioning and embargo expiration
+    - DimArchive (dark archive) uses AccessPolicy to express preservation-only access
+    - Extended notes and legacy examples are stored in annotations
+    see_also:
+    - http://www.loc.gov/premis/rdf/v3/RightsStatus
+    - https://rightsstatements.org/
+    - https://localcontexts.org/
+    - https://www.ica.org/standards/RiC/ontology#Rule
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/access-policy/nationaal-archief-open
+        has_label: Nationaal Archief Public Access
+        has_level:
+          has_label: PUBLIC_OPEN
+        has_description:
+          description_text: Open to all visitors during reading room hours
+        pose_condition:
+        - has_type: AccessCondition
+          has_description:
+            description_text: Valid government-issued ID required
+        - has_type: AccessCondition
+          has_description:
+            description_text: Registration form must be completed
+        temporal_extent:
+          begin_of_the_begin: '2024-01-01'
+    - value:
+        identified_by: https://nde.nl/ontology/hc/access-policy/donor-embargo-2050
+        has_label: Embargoed until 2050
+        has_level:
+          has_label: EMBARGOED
+        has_description:
+          description_text: Collection closed until 2050 per donor agreement
+        has_deadline: '2050-01-01'
+        restricted_by: Donor privacy restrictions per deed of gift
+        legal_basis: Deed of Gift clause 4.2
+        review_date: '2049-06-01'
+        temporal_extent:
+          begin_of_the_begin: '2024-01-01'
+          end_of_the_end: '2050-12-31'
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      "Access policy defining conditions under which heritage collections can be accessed.\n\n**PURPOSE**:\n\nAccessPolicy captures the access conditions governing a Collection:\n- WHO can access (public, researchers, staff only)\n- HOW access is granted (open, by appointment, with credentials)\n- WHEN access is available (opening hours, embargo periods)\n- WHAT restrictions apply (fragile materials, privacy, cultural sensitivity)\n\n1. **PREMIS**:\n   - `premis:RightsStatus` - \"Information about the rights status of an object.\"\n   - Links to Collection via premis:rightsStatus\n\n2. **Dublin Core**:\n   - `dcterms:accessRights` - \"Information about who may access the resource\n     or an indication of its security status.\"\n\n3. **RiC-O**:\n   - `rico:hasOrHadAllMembersWithAccessConditions` - Links RecordSet to access\n     conditions applying to all members\n\n4. **RightsStatements.org**:\n   - Standardized rights statements for cultural heritage\n   - E.g., \"In Copyright\"\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Purpose
+
+        AccessPolicy captures access conditions governing a collection or a set of records:
+        - who can access (public, researchers, staff)
+        - how access is granted (open, appointment, credentials)
+        - when access applies (opening hours, embargo periods)
+        - what restrictions apply (fragile handling, privacy, cultural sensitivity)
+
+        Alignment notes
+
+        - PREMIS: premis:RightsStatus ("Information about the rights status of an object")
+        - DCTerms: dcterms:accessRights (who may access / security status)
+        - RiC-O: rico:hasOrHadAllMembersWithAccessConditions (conditions applying to all members)
+        - RightsStatements.org: standardized rights statements (e.g., "In Copyright")
+
+        Access level taxonomy (illustrative)
+
+        - Open access: PUBLIC_OPEN, PUBLIC_REGISTRATION, PUBLIC_ONLINE
+        - Restricted access: RESEARCHERS_ONLY, BY_APPOINTMENT, STAFF_ONLY, PERMISSION_REQUIRED
+        - Closed access: TEMPORARILY_CLOSED, EMBARGOED, PERMANENTLY_CLOSED, REPATRIATED
+        - Conditional access: CULTURALLY_SENSITIVE, PRIVACY_RESTRICTED, FRAGILE_HANDLING, LEGAL_RESTRICTION
+
+        DimArchive (dark archive)
+
+        A preservation-only storage context can use AccessPolicy to express:
+        - materials are stored for preservation, not current access
+        - access is restricted until triggering conditions (time or event)
+        - backlogs awaiting processing
+
+      legacy_examples: |
+        Preserved from earlier migration examples; may include fields not currently modeled
+        as slots on this class.
+
+        - policy_id: https://nde.nl/ontology/hc/access-policy/nationaal-archief-open
+          policy_name: Nationaal Archief Public Access
+          has_level: {has_label: PUBLIC_OPEN}
+          has_description: {description_text: Open to all visitors during reading room hours}
+          registration_required: true
+
+        - policy_id: https://nde.nl/ontology/hc/access-policy/dim-archive-preservation
+          policy_name: DIM Archive - Preservation Only
+          has_level: {has_label: TEMPORARILY_CLOSED}
+          has_description: {description_text: Materials in preservation storage, not currently accessible}
+          credentials_required: PROFESSIONAL

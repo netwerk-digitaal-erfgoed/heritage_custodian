@@ -1,0 +1,197 @@
+id: https://nde.nl/ontology/hc/class/Quantity
+name: Quantity
+title: Quantity Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  qudt: http://qudt.org/schema/qudt/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+  - ../enums/QuantityTypeEnum
+  - ../slots/has_description
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_measurement_unit
+  - ../slots/has_methodology
+  - ../slots/has_provenance
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/has_value
+  - ../slots/approximate
+  - ../slots/based_on
+  - ../slots/temporal_extent
+default_prefix: hc
+classes:
+  Quantity:
+    class_uri: qudt:Quantity
+    description: >-
+      Measured or counted value with an associated unit of measurement,
+      capturing quantifiable aspects such as counts, dimensions, or metrics.
+    alt_descriptions:
+      nl: >-
+        Gemeten of getelde waarde met een bijbehorende maateenheid,
+        die kwantificeerbare aspecten vastlegt zoals aantallen, afmetingen of statistieken.
+      de: >-
+        Gemessener oder gezählter Wert mit einer zugehörigen Maßeinheit,
+        der quantifizierbare Aspekte wie Anzahlen, Abmessungen oder Metriken erfasst.
+      fr: >-
+        Valeur mesurée ou dénombrée avec une unité de mesure associée,
+        capturant des aspects quantifiables tels que des décomptes, des dimensions ou des métriques.
+      es: >-
+        Valor medido o contado con una unidad de medida asociada,
+        capturando aspectos cuantificables como recuentos, dimensiones o métricas.
+      ar: >-
+        قيمة مقاسة أو معدودة مع وحدة قياس مرتبطة،
+        تسجل الجوانب القابلة للقياس مثل الأعداد أو الأبعاد أو المقاييس.
+      id: >-
+        Nilai yang diukur atau dihitung dengan satuan pengukuran terkait,
+        menangkap aspek yang dapat dikuantifikasi seperti hitungan, dimensi, atau metrik.
+      zh: >-
+        具有关联测量单位的测量或计数值，
+        记录可量化的方面，如计数、尺寸或度量。
+    exact_mappings:
+      - qudt:Quantity
+    close_mappings:
+      - schema:QuantitativeValue
+    broad_mappings:
+      - schema:StructuredValue
+    keywords:
+      - quantity
+      - measurement
+      - metric
+      - quantified value
+    structured_aliases:
+      - literal_form: hoeveelheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Quantität
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: quantité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    comments:
+      - QUDT alignment - quantitative value expressed as a number and unit
+      - Types include STAFF_COUNT, COLLECTION_SIZE, VISITOR_COUNT, BUDGET_AMOUNT
+      - Migration updated per slot_fixes.yaml (Rule 53) to use structured slots
+    slots:
+      - identified_by
+      - has_value
+      - has_type
+      - has_measurement_unit
+      - has_methodology
+      - based_on
+      - has_provenance
+      - temporal_extent
+      - has_description
+      - approximate
+      - has_score
+    slot_usage:
+      identified_by:
+        required: false
+        examples:
+          - value: https://nde.nl/ontology/hc/quantity/nha-zaanstreek-staff-2025
+      has_value:
+        required: true
+        multivalued: false
+        examples:
+          - value: "3"
+          - value: "1200000"
+          - value: "2500000"
+      has_type:
+        range: QuantityTypeEnum
+        required: false
+        multivalued: false
+        examples:
+          - value: STAFF_COUNT
+          - value: COLLECTION_SIZE
+          - value: VISITOR_COUNT
+      has_measurement_unit:
+        range: MeasureUnit
+        required: false
+        inlined: true
+        description: >-
+          The structured unit of measurement for this quantity. Provides richer semantics
+          than the deprecated quantity_unit string. RULE 53: Branch 1 slot from visitor_count migration.
+        examples:
+          - value:
+              has_type: VISITOR
+              has_symbol: visitors
+          - value:
+              has_type: SQUARE_METER
+              has_symbol: "m²"
+      temporal_extent:
+        range: TimeSpan
+        required: false
+        inlined: true
+        description: >-
+          The time period over which this quantity was measured. CIDOC-CRM temporal
+          modeling with fuzzy boundaries. RULE 53: Branch 2 slot from visitor_count migration.
+        examples:
+          - value:
+              begin_of_the_begin: '2024-01-01T00:00:00Z'
+              end_of_the_end: '2024-12-31T23:59:59Z'
+      has_methodology:
+        range: Methodology
+        required: false
+        inlined: true
+        description: >-
+          The methodology used to derive this quantity. Essential for unique counts
+          derived via entity resolution. RULE 53: Branch 2 slot from unique count migration.
+        examples:
+          - value:
+              methodology_type: ENTITY_RESOLUTION
+              has_label: ArcFace clustering
+              confidence_threshold: 0.6
+          - value:
+              methodology_type: OBJECT_TRACKING
+              has_label: DeepSORT
+      has_description:
+        required: false
+        examples:
+          - value: Staff assigned to Zaanstreek-Waterland branch
+          - value: Annual visitor count for 2024
+          - value: '2025-01-01'
+      approximate:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+          - value: false
+          - value: true
+    see_also:
+      - http://qudt.org/schema/qudt/Quantity
+      - https://schema.org/QuantitativeValue
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/quantity/nha-zaanstreek-staff-2025
+          has_value: "3"
+          has_type: STAFF_COUNT
+          has_measurement_unit:
+            has_type: FTE
+            has_symbol: FTE
+            has_label: full-time equivalent
+          has_description: Staff assigned to Zaanstreek-Waterland branch
+          approximate: false
+      - value:
+          has_value: "2500000"
+          has_type: VISITOR_COUNT
+          has_measurement_unit:
+            has_type: VISITOR
+            has_symbol: visitors
+          temporal_extent:
+            begin_of_the_begin: '2023-02-10T00:00:00Z'
+            end_of_the_end: '2023-06-04T23:59:59Z'
+          has_description: Vermeer exhibition attendance
+          approximate: false
+    notes:
+      - |
+        Preserved from prior description (commit 6251b84d):
+
+        "A quantified value with an optional unit of measurement and type.\n**QUDT ALIGNMENT**:\nMaps to `qudt:Quantity` - \"A quantitative value expressed as a number and a unit of measurement.\"\n**TYPES OF QUANTITIES**:\n| Type | Description | Example | |------|-------------|---------| | STAFF_COUNT | Number of employees | 42 employees | | COLLECTION_SIZE | Number of items | 1.2 million objects | | VISITOR_COUNT | Annual visitors | 2.5 million/year | | BUDGET_AMOUNT | Financial value | \u20AC15 million | | AREA | Physical space | 10,000 m\xB2 | | DURATION | Time period | 6 months |\n**USE CASES**:\n1. **Staff Metrics**: Branch staff count, department size, FTE equivalents 2. **Collection Metrics**: Object counts, archive linear meters, digital items 3. **Visitor Metrics**: Annual attendance, daily capacity, peak visitors 4. **Financial Metrics**: Budget, revenue, acquisition costs 5. **Physical Metrics**: Floor area, gallery space, storage capacity\n**WHY NOT JUST USE INTEGER?**\n\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

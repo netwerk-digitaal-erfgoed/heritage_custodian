@@ -1,0 +1,31 @@
+id: https://nde.nl/ontology/hc/parsimony/slot/associated_with
+name: associated_with
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: https://schema.org/
+  owl: http://www.w3.org/2002/07/owl#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  associated_with:
+    slot_uri: dcterms:relation
+    description: Relates a semantic entity to another entity through a non-hierarchical, non-identity association.
+    range: uriorcurie
+    implements:
+      - owl:ObjectProperty
+    multivalued: true
+    comments:
+      - >-
+        DESIGN DECISION: associated_with is a symmetric property — if X is associated with Y then
+        Y is associated with X. No distinct inverse property is needed or meaningful. OOPS P13
+        (missing inverse) is accepted for this slot; declaring owl:SymmetricProperty triggers
+        OOPS P28 (wrong symmetric), so symmetry is documented here instead.
+    close_mappings:
+      - skos:related
+      - schema:relatedLink
+    narrow_mappings:
+      - hc:related_to

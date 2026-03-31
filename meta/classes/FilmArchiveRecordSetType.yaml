@@ -1,0 +1,63 @@
+id: https://nde.nl/ontology/hc/class/FilmArchiveRecordSetType
+name: FilmArchiveRecordSetType
+title: Film Archive Record Set Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+imports:
+- linkml:types
+- ../slots/has_scope
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/related_to
+classes:
+  FilmArchiveRecordSetType:
+    abstract: true
+    class_uri: rico:RecordSetType
+    description: >-
+      Abstract classifier for film-archive record set categories, covering both
+      moving-image materials and associated production or publicity records.
+    alt_descriptions:
+      nl: Abstracte classificatie voor recordsetcategorieen in filmarchieven voor bewegend beeld en bijbehorende productie- of promotieregistraties.
+      de: Abstrakter Klassifikator fuer Recordset-Kategorien in Filmarchiven mit Bewegtbildmaterial und zugehoerigen Produktions- oder Werbeunterlagen.
+      fr: Classificateur abstrait pour les categories de lots documentaires d archives du film incluant images en mouvement et dossiers associes.
+      es: Clasificador abstracto para categorias de conjuntos documentales en archivos filmicos incluyendo imagen en movimiento y expedientes asociados.
+      ar: مصنف تجريدي لفئات مجموعات السجلات في أرشيفات الأفلام يشمل المواد السمعية البصرية وسجلات الإنتاج أو الترويج المرتبطة.
+      id: Pengklasifikasi abstrak untuk kategori himpunan rekaman arsip film mencakup materi gambar bergerak dan catatan produksi atau promosi terkait.
+      zh: 电影档案记录集类别的抽象分类器，涵盖活动影像材料及相关制作或宣传记录。
+    structured_aliases:
+    - {literal_form: type filmarchiefrecordset, in_language: nl}
+    - {literal_form: Filmarchiv-Recordsettyp, in_language: de}
+    - {literal_form: type de lot d archives filmiques, in_language: fr}
+    - {literal_form: tipo de conjunto de archivo filmico, in_language: es}
+    - {literal_form: نوع مجموعة سجلات أرشيف الفيلم, in_language: ar}
+    - {literal_form: tipe record set arsip film, in_language: id}
+    - {literal_form: 电影档案记录集类型, in_language: zh}
+    broad_mappings:
+    - rico:RecordSetType
+    see_also:
+    - FilmArchive
+    - FeatureFilmCollection
+    - DocumentaryFilmCollection
+    - NewsreelSeries
+    - ProductionRecordsFonds
+    - FilmPromoCollection
+    slots:
+    - has_type
+    - has_score
+    slot_usage:
+      has_type:
+        any_of:
+        - equals_string: hc:FilmArchiveRecordSetType
+    notes:
+    - |
+      Preserved from prior description (commit ee5e8e5a):
+
+      "Abstract base class for all film archive record set types.\n\n**Definition**:\nA rico:RecordSetType that classifies collections held by film archives.\nFilm archives preserve moving image materials and related documentation,\nincluding feature films, documentaries, newsreels, production records,\nand promotional materials.\n\n**Subclasses**:\n- FeatureFilmCollection (theatrical films, art films, fiction)\n- DocumentaryFilmCollection (non-fiction, educational, industrial films)\n- NewsreelSeries (news films, screen magazines, actualities)\n- ProductionRecordsFonds (scripts, shooting schedules, production files)\n- FilmPromoCollection (posters, stills, press kits, trailers)\n\n**RiC-O Alignment**:\nThis is an abstract type classifier. Subclasses specify both the domain \n(type of film materials) and organizational principle (fonds, series, collection).\n\n**Dual-Class Pattern**:\nFilmArchive (ArchiveOrganizationType) = the custodian institution.\nFilmArchiveRecordSetType\
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,156 @@
+id: https://nde.nl/ontology/hc/class/TransitionType
+name: TransitionType
+title: Video Transition Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  ebucore: http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_hypernym
+  - ../slots/has_hyponym
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+classes:
+  TransitionType:
+    class_uri: skos:Concept
+    alt_descriptions:
+      nl: Abstracte basisclassificatie van video-overgangstypen in annotaties.
+      de: Abstrakte Basisklassifikation von Video-Uebergangstypen in Annotationen.
+      fr: Classification de base abstraite des types de transitions video dans les annotations.
+      es: Clasificacion base abstracta de tipos de transicion de video en anotaciones.
+      ar: تصنيف أساسي مجرد لأنواع انتقالات الفيديو في سياق التعليقات التوضيحية.
+      id: Klasifikasi dasar abstrak untuk tipe transisi video dalam anotasi.
+      zh: 用于视频注释中转场类型的抽象基础分类。
+    structured_aliases:
+    - literal_form: overgangstype
+      in_language: nl
+    - literal_form: Uebergangstyp
+      in_language: de
+    - literal_form: type de transition
+      in_language: fr
+    - literal_form: tipo de transicion
+      in_language: es
+    - literal_form: نوع الانتقال
+      in_language: ar
+    - literal_form: tipe transisi
+      in_language: id
+    - literal_form: 转场类型
+      in_language: zh
+    description: >-
+      Abstract category for shot-boundary change patterns detected in moving-image
+      annotations.
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E55_Type
+    - ebucore:EditorialObject
+    related_mappings:
+    - schema:VideoObject
+    - schema:MediaObject
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/transition-type/[a-z-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/transition-type/cut
+        - value: https://nde.nl/ontology/hc/transition-type/dissolve
+      has_code:
+#         range: string
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+        examples:
+        - value: CUT
+        - value: FADE_IN
+        - value: DISSOLVE
+        - value: WIPE
+        - value: MORPH
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Cut@en
+          - snede@nl
+          - Schnitt@de
+        - value:
+          - Dissolve@en
+          - overgang@nl
+          - "\xDCberblendung@de"
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: Instantaneous transition between shots with no visual effect
+        - value: Gradual cross-fade transition where two shots overlap
+      has_hypernym:
+        range: TransitionType
+        required: false
+      has_hyponym:
+        range: TransitionType
+        multivalued: true
+        required: false
+    annotations:
+      specificity_score: '0.85'
+      specificity_rationale: Highly specific - transition types only relevant for video annotation domain.
+      has_score: null
+      replaces_enum: TransitionTypeEnum
+      migration_date: '2026-01-13'
+      custodian_types: "['*']"
+      modeling_notes: |
+        Type vs instance
+
+        - TransitionType models categories (CUT, DISSOLVE, etc.).
+        - Detection instances carry timestamps, confidence, and frame context.
+
+        Typical groupings
+
+        - instantaneous: CUT
+        - gradual opacity: FADE_IN, FADE_OUT, DISSOLVE
+        - geometric/other effects: WIPE and related variants
+    comments:
+    - Abstract base class - use specific subclasses (CutTransition, etc.)
+    - Represents TRANSITION TYPES, not detection instances
+    - DetectedEntity.has_type references these type classes
+    - Follows Type/Types naming convention (Rule 0b)
+    - Uses shared slots per Rule 38 (slot centralization)
+    - Part of video annotation pipeline with DetectedEntity pattern
+    see_also:
+    - https://www.w3.org/2004/02/skos/
+    - https://www.ebu.ch/metadata/ontologies/ebucore/
+    - https://en.wikipedia.org/wiki/Film_transition
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/transition-type/cut
+        has_code: CUT
+        has_label:
+        - Cut@en
+        - snede@nl
+        has_description: Instantaneous transition between shots with no visual effect
+    - value:
+        identified_by: https://nde.nl/ontology/hc/transition-type/dissolve
+        has_code: DISSOLVE
+        has_label:
+        - Dissolve@en
+        - overgang@nl
+        has_description: Cross-fade transition where one shot gradually blends into the next
+        has_hypernym: https://nde.nl/ontology/hc/transition-type/gradual

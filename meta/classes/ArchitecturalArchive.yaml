@@ -1,0 +1,123 @@
+id: https://nde.nl/ontology/hc/class/ArchitecturalArchive
+name: ArchitecturalArchive
+title: Architectural Archive Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_type
+  - ../slots/hold_record_set
+  - ../slots/related_to
+classes:
+  ArchitecturalArchive:
+    is_a: ArchiveOrganizationType
+    class_uri: schema:ArchiveOrganization
+    description: >-
+      Institution dedicated to preserving architectural heritage through
+      the custody of drawings, plans, models, specifications, and related
+      documentation created by architects and architectural firms.
+    alt_descriptions:
+      nl: >-
+        Instelling die zich wijdt aan het behoud van architectonisch erfgoed
+        door de bewaring van tekeningen, plannen, modellen, specificaties en
+        gerelateerde documentatie gemaakt door architecten en architectenbureaus.
+      de: >-
+        Einrichtung, die sich der Bewahrung des architektonischen Erbes widmet
+        durch die Verwahrung von Zeichnungen, Plänen, Modellen, Spezifikationen
+        und verwandter Dokumentation, die von Architekten und Architekturburos
+        erstellt wurden.
+      fr: >-
+        Institution dediee a la preservation du patrimoine architectural par
+        la garde de dessins, plans, maquettes, specifications et documentation
+        connexe crees par des architectes et cabinets d'architectes.
+      es: >-
+        Institucion dedicada a preservar el patrimonio arquitectonico a traves
+        de la custodia de dibujos, planos, maquetas, especificaciones y
+        documentacion relacionada creada por arquitectos y firmas de arquitectura.
+      ar: >-
+        مؤسسة مكرسة للحفاظ على التراث المعماري من خلال حيازة الرسومات والخطط
+        والنماذج والمواصفات والوثائق ذات الصلة التي أنشأها المعماريون
+        والشركات المعمارية.
+      id: >-
+        Lembaga yang berdedikasi untuk melestarikan warisan arsitektur melalui
+        pengawasan gambar, denah, model, spesifikasi, dan dokumentasi terkait
+        yang dibuat oleh arsitek dan firma arsitektur.
+      zh: >-
+        专门通过保管建筑师和建筑公司创建的图纸、平面图、模型、规格和
+        相关文档来保护建筑遗产的机构。
+    structured_aliases:
+    - literal_form: architectonisch archief
+      in_language: nl
+    - literal_form: Architekturarchiv
+      in_language: de
+    - literal_form: archives architecturales
+      in_language: fr
+    - literal_form: archivo arquitectonico
+      in_language: es
+    - literal_form: أرشيف معماري
+      in_language: ar
+    - literal_form: arsip arsitektur
+      in_language: id
+    - literal_form: 建筑档案馆
+      in_language: zh
+    close_mappings:
+    - rico:CorporateBody
+    broad_mappings:
+    - skos:Concept
+    - schema:ArchiveOrganization
+    related_mappings:
+    - wd:Q121409581
+    slots:
+    - has_type
+    - hold_record_set
+    - has_score
+    - identified_by
+    - related_to
+    slot_usage:
+      identified_by:
+        pattern: ^Q[0-9]+$
+      has_type:
+        equals_string: "hc:ArchiveOrganizationType"
+    comments:
+    - Specialized archive for architectural documentation and heritage
+    - Often associated with architecture schools, museums, or professional bodies
+    - Part of dual-class pattern with ArchitecturalArchiveRecordSetType
+    - Preserves drawings, blueprints, models, photographs, and architects' papers
+    see_also:
+    - ArchitecturalArchiveRecordSetType
+    - Architect
+    - ArchitecturalStyle
+    examples:
+    - value:
+        has_type: hc:ArchiveOrganizationType
+        identified_by: Q121409581
+        has_score: 1.0
+        hold_record_set:
+        - hc:ArchitecturalDrawingCollection
+        - hc:ArchitectPapersCollection
+      description: Architectural archive with drawings and papers collections
+    keywords:
+    - architectural archive
+    - architectural drawings
+    - blueprints
+    - building plans
+    - architects' papers
+    - scale models
+    - maquettes
+    notes:
+      - |
+        Preserved from prior description (commit 1fe1d1ad):
+
+        "Archive that safeguards architectural heritage through preservation of \narchitectural drawings, plans, models, and related documentation.\n\n**Wikidata**: Q121409581\n\n**Scope**:\nArchitectural archives preserve:\n- Architectural drawings and blueprints\n- Building plans and specifications\n- Scale models and maquettes\n- Photographs of buildings and construction\n- Correspondence and contracts\n- Architects' personal papers (Nachlass)\n- Design competitions documentation\n\n**Related Types**:\n- ArchivesForBuildingRecords (Q136027937) - Public building permits/records\n- ArtArchive (Q27032254) - Broader art documentation\n\n**Notable Examples**:\n- Canadian Centre for Architecture (CCA)\n- Deutsches Architekturmuseum archives\n- RIBA Architecture Library and Collections\n- Het Nieuwe Instituut (Netherlands)\n\n**Dual-Class Pattern**:\nThis class represents the CUSTODIAN type (the archive organization).\nFor the collection type, see `ArchitecturalRecordSetType` (rico:RecordSetType).\n\
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Specific to architectural heritage archives
+      custodian_types: "['ArchitecturalArchive']"

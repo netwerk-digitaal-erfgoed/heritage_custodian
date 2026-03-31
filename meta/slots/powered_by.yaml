@@ -1,0 +1,130 @@
+# ==============================================================================
+# LinkML Slot Definition: powered_by
+# ==============================================================================
+# Identifies the software engine, database, framework, or platform that powers
+# a heritage institution's digital service, website, or application.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                 | File/Line              | Mapping | Notes                                                           |
+# |------------|--------------------------|------------------------|---------|-----------------------------------------------------------------|
+# | **DOAP**   | `doap:platform`          | doap.rdf:880-889       | close   | "Software platform (non-OS specific), e.g. Java, Firefox."      |
+# | **Schema** | `schema:runtimePlatform` | schemaorg.owl:34020-35  | related | SoftwareSourceCode/App→RuntimePlatform. Dependencies focus.     |
+# | **Schema** | `schema:softwareVersion` | schemaorg.owl:35770-73  | related | SoftwareApplication→Text. Version string, not platform name.    |
+# | **Schema** | `schema:isBasedOn`       | schemaorg.owl:22729-50  | related | CreativeWork→Product/URL. "Derived from or modification of."    |
+# | **DOAP**   | `doap:programming-language` | doap.rdf:804-812    | related | Project→Literal. Language, not the platform/engine itself.      |
+#
+# No external property exactly captures "the software platform powering a
+# digital service." doap:platform is closest but scoped to DOAP Project
+# descriptions. Using hc:poweredBy as the slot_uri.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/powered_by
+name: powered_by
+title: Powered By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  doap: http://usefulinc.com/ns/doap#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  powered_by:
+    slot_uri: hc:poweredBy
+    description: >-
+      Identifies the underlying software engine, database, framework, or
+      platform that enables a heritage institution's digital service, website,
+      or application to function. Records the name and optionally the version
+      of the technology stack powering the service.
+    alt_descriptions:
+      nl: >-
+        Identificeert de onderliggende software, database of het platform dat
+        de digitale dienst, website of applicatie van een erfgoedinstelling
+        aandrijft.
+      de: >-
+        Identifiziert die zugrunde liegende Software, Datenbank oder Plattform,
+        die den digitalen Dienst, die Website oder die Anwendung einer
+        Kulturerbe-Einrichtung betreibt.
+      fr: >-
+        Identifie le logiciel, la base de données ou la plateforme sous-jacente
+        qui fait fonctionner le service numérique, le site web ou l'application
+        d'une institution patrimoniale.
+      ar: >-
+        يحدد البرنامج أو قاعدة البيانات أو المنصة الأساسية التي تشغّل الخدمة
+        الرقمية أو الموقع الإلكتروني أو التطبيق الخاص بمؤسسة التراث.
+      id: >-
+        Mengidentifikasi perangkat lunak, basis data, atau platform yang
+        mendasari layanan digital, situs web, atau aplikasi lembaga warisan
+        budaya.
+      zh: >-
+        标识驱动文化遗产机构数字服务、网站或应用程序的底层软件引擎、数据库或平台。
+      es: >-
+        Identifica el software, la base de datos o la plataforma subyacente que
+        impulsa el servicio digital, el sitio web o la aplicación de una
+        institución patrimonial.
+    structured_aliases:
+      - literal_form: aangedreven door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: betrieben mit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: propulsé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مدعوم بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didukung oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...驱动
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: impulsado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - doap:platform  # doap.rdf:880-889 - "Software platform (non-OS specific), e.g. Java, Firefox"
+    related_mappings:
+      - schema:runtimePlatform  # schemaorg.owl:34020-34035 - SoftwareSourceCode→RuntimePlatform
+      - schema:softwareVersion  # schemaorg.owl:35770-35773 - SoftwareApplication→Text
+      - schema:isBasedOn  # schemaorg.owl:22729-22750 - "Derived from or modification of"
+      - doap:programming-language  # doap.rdf:804-812 - Project→Literal
+    aliases:
+      - repository_software
+    examples:
+      - value: "DSpace 7.x"
+        description: >-
+          An institutional repository for a university library running DSpace.
+      - value: "Omeka S"
+        description: >-
+          A museum's online exhibition platform built on Omeka S.
+      - value: "CollectiveAccess"
+        description: >-
+          A heritage collection management system powered by CollectiveAccess.
+      - value: "Custom-built"
+        description: >-
+          A bespoke digital service developed in-house by the institution.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Values should identify the primary software product or framework, with
+        optional version information. Common heritage sector platforms include
+        DSpace, Fedora Commons, CollectiveAccess, ResourceSpace, Omeka S,
+        ArchivesSpace, and Islandora.
+      - >-
+        DOAP (Description of a Project) provides doap:platform for software
+        platform indicators, but is scoped to software project descriptions
+        rather than the services those projects power. The W3C DOAP vocabulary
+        may be referenced for richer software project metadata.
+      - >-
+        This slot is distinct from infrastructure-level details (hosting
+        provider, operating system). It captures the application-layer software
+        that directly enables the digital service.

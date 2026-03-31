@@ -1,0 +1,98 @@
+# ==============================================================================
+# LinkML Slot Definition: allocated_by
+# ==============================================================================
+# Authority, organization, or system that assigned or distributed resources.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo`| prov.ttl:428-437     | close   | Attribution to responsible agent                         |
+# | **DCTerms**   | `dcterms:publisher`   | dcterms.rdf          | related | Publisher as responsible party - different semantic      |
+#
+# SEMANTIC NOTES:
+# - Allocation implies authority-based assignment of resources
+# - prov:wasAttributedTo is close but more about provenance attribution
+# - Custom hc: URI is appropriate for resource allocation context
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, close_mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/allocated_by
+name: allocated_by
+title: Allocated By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  allocated_by:
+    slot_uri: hc:allocatedBy
+    description: >-
+      To be assigned, distributed, or designated by a specific authority, organization, 
+      or system responsible for the apportionment of resources or tasks.
+    alt_descriptions:
+      nl: >-
+        Toegewezen, verdeeld of aangewezen door een specifieke autoriteit, organisatie 
+        of systeem dat verantwoordelijk is voor de verdeling van middelen of taken.
+      de: >-
+        Zugewiesen, verteilt oder bestimmt durch eine bestimmte Behörde, Organisation 
+        oder ein System, das für die Verteilung von Ressourcen oder Aufgaben 
+        verantwortlich ist.
+      fr: >-
+        Attribué, distribué ou désigné par une autorité, organisation ou système 
+        spécifique responsable de la répartition des ressources ou des tâches.
+      ar: >-
+        أن يتم تخصيصه أو توزيعه أو تعيينه من قبل سلطة أو منظمة أو نظام معين 
+        مسؤول عن توزيع الموارد أو المهام.
+      id: >-
+        Ditugaskan, didistribusikan, atau ditentukan oleh otoritas, organisasi, atau 
+        sistem tertentu yang bertanggung jawab atas pembagian sumber daya atau tugas.
+      zh: >-
+        由负责资源或任务分配的特定权威机构、组织或系统分配、分发或指定。
+      es: >-
+        Asignado, distribuido o designado por una autoridad, organización o sistema 
+        específico responsable de la distribución de recursos o tareas.
+    structured_aliases:
+      - literal_form: toegewezen door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: zugewiesen von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: alloué par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مخصص من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dialokasikan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...分配
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: asignado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - prov:wasAttributedTo  # prov.ttl:428-437 - attribution to responsible agent
+    aliases:
+      - is_or_was_allocated_by
+    annotations:
+      custodian_types: '["*"]'

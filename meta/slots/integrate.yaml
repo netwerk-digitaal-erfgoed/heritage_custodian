@@ -1,0 +1,119 @@
+# ==============================================================================
+# LinkML Slot Definition: integrate
+# ==============================================================================
+# How a heritage entity is organizationally placed within a parent structure,
+# covering ownership, reporting, staffing, budget, governance, and autonomy.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line              | Mapping | Notes                                                                            |
+# |---------------|--------------------------------|------------------------|---------|----------------------------------------------------------------------------------|
+# | **Schema.org**| `schema:parentOrganization`    | schemaorg.owl:28877-   | related | "The larger organization that this organization is a subOrganization of."         |
+# |               |                                | 28895                  |         |  Identifies WHO the parent is, not HOW integration is arranged (ownership,        |
+# |               |                                |                        |         |  reporting, budget, governance). Our slot describes the arrangement narratively.   |
+# | **Org**       | `org:subOrganizationOf`        | org.rdf:663-681        | related | "Represents hierarchical containment of Organizations or OrganizationalUnits."    |
+# |               |                                |                        |         |  Captures structural hierarchy, one aspect of integration; doesn't cover budget,  |
+# |               |                                |                        |         |  governance, autonomy level, or staffing arrangements.                            |
+# | **Org**       | `org:linkedTo`                 | org.rdf:319-333        | broad   | "Indicates an arbitrary relationship between two organizations." Very generic     |
+# |               |                                |                        |         |  inter-organizational link. Integration is a specific kind of organizational      |
+# |               |                                |                        |         |  linkage with structural, financial, and governance dimensions.                   |
+# |               |                                |                        |         |                                                                                  |
+# | NOTE: No standard ontology property captures the full concept of organizational integration                                                               |
+# |   (ownership + reporting + staffing + budget + governance + autonomy). The standard properties                                                            |
+# |   are object properties pointing to organizations, while this slot describes the integration                                                              |
+# |   arrangement as free text (range: string).                                                                                                               |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/integrate
+name: integrate
+title: Integrate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  integrate:
+    slot_uri: hc:integrate
+    description: >-
+      Combines separate elements, processes, or systems into a unified whole to ensure
+      they function together seamlessly and efficiently.
+    comments:
+      - >-
+        Describes organizational placement: ownership structure (subsidiary, division,
+        department, separate foundation), reporting lines (CEO, marketing, legal,
+        facilities, separate board), staffing (full-time heritage staff, marketing staff,
+        volunteer curators), budget (separate budget, marketing budget, corporate overhead,
+        endowment), governance (corporate management, independent board, advisory
+        committee), strategic alignment (brand strategy, legal compliance, community
+        relations), and autonomy level (fully integrated vs. operationally independent).
+      - >-
+        Corporate integration indicates heritage collection stability and priorities.
+    alt_descriptions:
+      nl: >-
+        Combineert afzonderlijke elementen, processen of systemen tot een samenhangend
+        geheel om te waarborgen dat ze naadloos en efficiënt samenwerken.
+      de: >-
+        Verbindet separate Elemente, Prozesse oder Systeme zu einem einheitlichen Ganzen,
+        um sicherzustellen, dass sie nahtlos und effizient zusammenwirken.
+      fr: >-
+        Combine des éléments, processus ou systèmes distincts en un tout unifié afin de
+        garantir qu'ils fonctionnent ensemble de manière fluide et efficace.
+      ar: >-
+        يجمع عناصر أو عمليات أو أنظمة منفصلة في كيان موحد لضمان عملها معًا بسلاسة
+        وكفاءة.
+      id: >-
+        Menggabungkan elemen, proses, atau sistem yang terpisah menjadi satu kesatuan
+        yang utuh untuk memastikan semuanya berfungsi bersama secara mulus dan efisien.
+      zh: >-
+        将各独立元素、流程或系统整合为统一整体，以确保它们无缝且高效地协同运作。
+      es: >-
+        Combina elementos, procesos o sistemas separados en un todo unificado para
+        garantizar que funcionen juntos de manera fluida y eficiente.
+    structured_aliases:
+      - literal_form: Integratie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Integration
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Intégration
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تكامل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Integrasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 整合
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Integración
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    examples:
+    - value: "Fully owned by Heineken N.V., Marketing department, Brand management"
+      description: Heritage entity fully integrated into corporate marketing structure
+    - value: "Separate 501(c)(3) foundation, Independent board, Endowment funded"
+      description: Heritage entity operating as independent foundation
+    - value: "Corporate records department, Legal division, Compliance mandate"
+      description: Heritage entity embedded within corporate legal/compliance
+    - value: "Subsidiary of parent company, Independent management, Profit-sharing"
+      description: Heritage entity as semi-autonomous subsidiary
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - schema:parentOrganization  # schemaorg.owl:28877-28895 — "The larger organization that this organization is a subOrganization of." Identifies WHO the parent is, not HOW integration is arranged.
+      - org:subOrganizationOf  # org.rdf:663-681 — "Represents hierarchical containment of Organizations." Captures structural hierarchy, one aspect of integration.
+    broad_mappings:
+      - org:linkedTo  # org.rdf:319-333 — "Indicates an arbitrary relationship between two organizations." Very generic inter-organizational link; integration is a specific kind.
+    aliases:
+      - corporate_integration
+      - integrates_or_integrated

@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: nested_in
+# ==============================================================================
+# Integer depth level indicating how deeply an item is nested within a
+# hierarchical structure such as chapters, sections, or categories.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology  | Property          | File/Line                    | Mapping         | Notes                                                              |
+# |-----------|-------------------|------------------------------|-----------------|--------------------------------------------------------------------|
+# | **SDO**   | `schema:position` | schemaorg.owl:30066-30083    | related_mapping | "Position of an item in a series or sequence." Integer-valued.     |
+#
+# No standard ontology defines an integer property for hierarchical nesting
+# depth. schema:position is about ordinal sequence position, not tree depth.
+# SKOS broader/narrower and dcterms:isPartOf model structural containment
+# as relationships, not numeric levels. Keeping hc: namespace.
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/nested_in
+name: nested_in
+title: Nested In
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  nested_in:
+    slot_uri: hc:nestedIn
+    description: >-
+      Integer depth level indicating how deeply an item, data structure, or
+      category is nested within a larger enclosing hierarchy. A value of 0
+      denotes a top-level element, 1 a first-level sub-element, 2 a
+      second-level sub-element, and so on. Used primarily for chapter or
+      section hierarchies in structured content.
+    alt_descriptions:
+      nl: >-
+        Geheel getal dat de diepte aangeeft van een item binnen een hiërarchische
+        structuur. 0 is het hoogste niveau, 1 het eerste subniveau, enzovoort.
+      de: >-
+        Ganzzahliger Tiefenwert, der angibt, wie tief ein Element innerhalb
+        einer hierarchischen Struktur verschachtelt ist.
+      fr: >-
+        Niveau de profondeur entier indiquant le degré d'imbrication d'un
+        élément au sein d'une structure hiérarchique.
+      ar: >-
+        مستوى عمق صحيح يشير إلى مدى تداخل عنصر ما ضمن هيكل هرمي. القيمة 0
+        تعني المستوى الأعلى.
+      id: >-
+        Tingkat kedalaman bilangan bulat yang menunjukkan seberapa dalam suatu
+        item bersarang dalam struktur hierarkis.
+      zh: >-
+        整数深度级别，指示项目在层次结构中的嵌套深度。0表示顶层，1表示
+        第一子层，依此类推。
+      es: >-
+        Nivel de profundidad entero que indica cuán profundamente está anidado
+        un elemento dentro de una estructura jerárquica.
+    structured_aliases:
+      - literal_form: genest in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: verschachtelt in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: imbriqué dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: متداخل في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: bersarang dalam
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 嵌套于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: anidado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: integer
+    multivalued: false
+    related_mappings:
+      - schema:position  # schemaorg.owl:30066-30083 - "The position of an item in a series or sequence of items." Integer-valued but about sequence order, not tree depth.
+    aliases:
+      - nesting_level
+    examples:
+      - value: "0"
+        description: >-
+          Top-level chapter or root-level category with no parent container.
+      - value: "1"
+        description: >-
+          First-level sub-chapter nested directly under a top-level chapter.
+      - value: "2"
+        description: >-
+          Second-level sub-chapter nested within a first-level sub-chapter.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Most platforms only support level 0 (flat chapters). Deeper nesting
+        is available for systems that support hierarchical chapter or section
+        structures.
+      - >-
+        Values should be non-negative integers. The hierarchy is implied by
+        the nesting level alone; parent-child relationships must be inferred
+        from ordering and level values in context.

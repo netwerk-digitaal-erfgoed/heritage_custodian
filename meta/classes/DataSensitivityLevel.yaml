@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/DataSensitivityLevel
+name: data_sensitivity_level_class
+title: DataSensitivityLevel Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+default_prefix: hc
+classes:
+  DataSensitivityLevel:
+    class_uri: hc:DataSensitivityLevel
+    description: >-
+      Confidentiality-classification tier used to model disclosure risk,
+      handling controls, and access constraints for information assets.
+    alt_descriptions:
+      nl: Vertrouwelijkheidsclassificatieniveau voor modellering van openbaarmakingsrisico verwerkingscontroles en toegangsbeperkingen.
+      de: Vertraulichkeitsklassifikationsstufe zur Modellierung von Offenlegungsrisiko Handhabungskontrollen und Zugangsbeschraenkungen.
+      fr: Niveau de classification de confidentialite pour modeliser le risque de divulgation les controles de traitement et les restrictions d acces.
+      es: Nivel de clasificacion de confidencialidad para modelar riesgo de divulgacion controles de manejo y restricciones de acceso.
+      ar: مستوى تصنيف للسرية لنمذجة مخاطر الإفصاح وضوابط المعالجة وقيود الوصول.
+      id: Tingkat klasifikasi kerahasiaan untuk memodelkan risiko pengungkapan kontrol penanganan dan pembatasan akses.
+      zh: 用于建模披露风险、处理控制与访问限制的保密等级。
+    structured_aliases:
+    - {literal_form: gevoeligheidsniveau, in_language: nl}
+    - {literal_form: Sensitivitaetsstufe, in_language: de}
+    - {literal_form: niveau de sensibilite, in_language: fr}
+    - {literal_form: nivel de sensibilidad, in_language: es}
+    - {literal_form: مستوى الحساسية, in_language: ar}
+    - {literal_form: tingkat sensitivitas, in_language: id}
+    - {literal_form: 敏感级别, in_language: zh}
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:DefinedTerm
+    related_mappings:
+    - dcterms:accessRights
+    slots:
+    - has_label
+    - has_code
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+      has_code:
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+      has_description:
+        required: false
+    notes:
+    - |
+      Preserved from prior description (commit 5e94e52b):
+
+      Data sensitivity classification level.
+
+      **Standard Classification Levels**:
+
+      | Level | Short Code | Description | Access |
+      |-------|------------|-------------|--------|
+      | Public | PUBLIC | No restrictions on disclosure | Anyone |
+      | Internal | INTERNAL | For internal use only | Staff only |
+      | Confidential | CONFIDENTIAL | Need-to-know basis | Authorized staff |
+      | Strictly Confidential | STRICTLY_CONFIDENTIAL | Highly restricted | Named individuals |
+      | Personal Data | PERSONAL_DATA | Contains PII (GDPR Article 6) | Data subjects + authorized |
+      | Special Category | SPECIAL_CATEGORY | Sensitive personal data (GDPR Article 9) | Strictly controlled |
+
+      **GDPR Alignment**:
+      - PERSONAL_DATA: Covers GDPR Article 6 personal data
+      - SPECIAL_CATEGORY: Covers GDPR Article 9 special categories (health, religion, 
+        ethnicity, political opinions, trade union membership, genetic/biometric data,
+        sexual orientation)
+
+      **Dublin Core**: Maps to dcterms:accessRights for access classification.
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Moderately specific to information-governance and records-control contexts
+      custodian_types: '["A", "O", "R"]'
+      custodian_types_rationale: Highest use in archives, official bodies, and research environments

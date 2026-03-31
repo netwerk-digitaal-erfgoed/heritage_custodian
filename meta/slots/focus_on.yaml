@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: focus_on
+# ==============================================================================
+# To direct attention, effort, or resources toward a particular subject, area,
+# or objective.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property           | File/Line               | Mapping | Notes                                      |
+# |----------------|--------------------|-------------------------|---------|--------------------------------------------|
+# | **DCTerms**    | `dcterms:subject`  | dcterms.rdf:1968-1988   | broad   | "A topic of the resource."                 |
+# | **Schema.org** | `schema:about`     | schemaorg.owl:6247-6274 | broad   | "The subject matter of an object."         |
+#
+# Both dcterms:subject and schema:about are broader: they describe what a
+# resource is about (topic/subject matter), while focus_on implies directed
+# attention, effort, or prioritization toward a particular area.
+#
+# REMOVED: skos:scopeNote — this is an annotation property for clarifying the
+# meaning/use of a concept, NOT a property about directing attention/effort.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, removed wrong skos:scopeNote exact
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/focus_on
+name: focus_on
+title: focus on
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  focus_on:
+    name: focus_on
+    title: focus on
+    description: >-
+      To direct attention, effort, or resources toward a particular subject,
+      area, or objective.
+    alt_descriptions:
+      nl: >-
+        Aandacht, inspanning of middelen richten op een bepaald onderwerp,
+        gebied of doelstelling.
+      de: >-
+        Aufmerksamkeit, Anstrengung oder Ressourcen auf ein bestimmtes Thema,
+        einen bestimmten Bereich oder ein bestimmtes Ziel richten.
+      fr: >-
+        Diriger l'attention, les efforts ou les ressources vers un sujet,
+        un domaine ou un objectif particulier.
+      ar: >-
+        توجيه الاهتمام أو الجهد أو الموارد نحو موضوع أو مجال أو هدف معين.
+      id: >-
+        Mengarahkan perhatian, upaya, atau sumber daya ke subjek, area, atau
+        tujuan tertentu.
+      zh: >-
+        将注意力、精力或资源集中在特定主题、领域或目标上。
+      es: >-
+        Dirigir la atención, el esfuerzo o los recursos hacia un tema, área
+        u objetivo particular.
+    structured_aliases:
+      - literal_form: focussen op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: sich konzentrieren auf
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: se concentrer sur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: التركيز على
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: fokus pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 专注于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: enfocarse en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: hc:hasFocus
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_focus
+      - cultural_focus_area
+      - research_focus_area
+      - research_focus
+      - society_focus
+      - has_focus
+    annotations:
+      custodian_types: '["*"]'
+    broad_mappings:
+      - dcterms:subject  # dcterms.rdf:1968-1988 - "A topic of the resource."
+      - schema:about  # schemaorg.owl:6247-6274 - "The subject matter of an object."
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_focus for conciseness (2026-02-03).

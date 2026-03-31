@@ -1,0 +1,119 @@
+# ==============================================================================
+# LinkML Slot Definition: regulated_by
+# ==============================================================================
+# The authority, law, mechanism, or entity responsible for controlling or
+# overseeing a process, system, or organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property               | File/Line            | Mapping  | Notes                                                       |
+# |-------------|------------------------|----------------------|----------|-------------------------------------------------------------|
+# | **HC**      | `hc:regulatedBy`       | —                    | slot_uri | No external "regulated by" property in standard ontologies. |
+# | **DCTerms** | `dcterms:conformsTo`   | dcterms.rdf:987-1008 | close    | "Standard to which the resource conforms" — close fit.      |
+# | **PROV**    | `prov:wasInfluencedBy` | prov.ttl:1147-1165   | broad    | Very broad influence relation; regulation is a subtype.     |
+# | **Org**     | `org:classification`   | org.rdf:371-383      | related  | "Classification within a scheme" — categorization, not reg. |
+#
+# CREATED: 2025-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/regulated_by
+name: regulated_by
+title: Regulated By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  org: http://www.w3.org/ns/org#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  regulated_by:
+    slot_uri: hc:regulatedBy
+    description: >-
+      Identifies the authority, law, mechanism, or entity responsible for
+      controlling, overseeing, or adjusting a process, system, or
+      organization. Connects entities such as donation schemes, custodians,
+      or collections to the formal regulatory frameworks that govern them.
+    alt_descriptions:
+      nl: >-
+        Identificeert de autoriteit, wet, het mechanisme of de entiteit die
+        verantwoordelijk is voor het beheersen, toezicht houden op of aanpassen
+        van een proces, systeem of organisatie.
+      de: >-
+        Identifiziert die Behörde, das Gesetz, den Mechanismus oder die
+        Entität, die für die Kontrolle, Aufsicht oder Anpassung eines
+        Prozesses, Systems oder einer Organisation verantwortlich ist.
+      fr: >-
+        Identifie l'autorité, la loi, le mécanisme ou l'entité responsable
+        du contrôle, de la supervision ou de l'ajustement d'un processus,
+        d'un système ou d'une organisation.
+      ar: >-
+        يحدد السلطة أو القانون أو الآلية أو الكيان المسؤول عن التحكم في
+        عملية أو نظام أو منظمة أو الإشراف عليها أو تعديلها.
+      id: >-
+        Mengidentifikasi otoritas, hukum, mekanisme, atau entitas yang
+        bertanggung jawab untuk mengendalikan, mengawasi, atau menyesuaikan
+        proses, sistem, atau organisasi.
+      zh: >-
+        标识负责控制、监督或调整流程、系统或组织的权力机构、法律、机制或实体。
+      es: >-
+        Identifica la autoridad, ley, mecanismo o entidad responsable de
+        controlar, supervisar o ajustar un proceso, sistema u organización.
+    structured_aliases:
+      - literal_form: gereguleerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: reguliert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: réglementé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منظم من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diatur oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 受监管于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: regulado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - dcterms:conformsTo  # dcterms.rdf:987-1008 - "An established standard to which the described resource conforms"
+    broad_mappings:
+      - prov:wasInfluencedBy  # prov.ttl:1147-1165 - "Broad relation from influenced to influencing entity/activity/agent"
+    related_mappings:
+      - org:classification  # org.rdf:371-383 - "Classification for an Organization within some classification scheme"
+    aliases:
+      - regulated_by_scheme
+      - regulatory_authority
+      - regulatory_body
+    examples:
+      - value: "Belastingdienst"
+        description: The Dutch tax authority regulating ANBI and Cultural ANBI status.
+      - value: "Charity Commission"
+        description: The UK regulator overseeing charitable organizations in England and Wales.
+      - value: "Heritage Act 2024"
+        description: Legislation regulating heritage custodian obligations.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Heritage institutions operate under various regulatory frameworks
+        including tax regimes (e.g., ANBI in the Netherlands, Gift Aid in
+        the UK, 501(c)(3) in the USA), heritage protection laws, and
+        professional standards bodies.
+      - >-
+        For structured tax scheme information, use the TaxScheme class which
+        provides typed classification, jurisdictional metadata, tax benefit
+        percentages, and regulatory body references. This slot replaces the
+        former tax_scheme slot.
+      - >-
+        For the forward relationship (what a policy regulates), see regulate.

@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: has_sound
+# ==============================================================================
+# Whether a media file or object contains or emits audible content.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                       | File/Line                 | Mapping | Notes                                                |
+# |----------------|--------------------------------|---------------------------|---------|------------------------------------------------------|
+# | **Schema.org** | `schema:accessibilityFeature`  | schemaorg.owl:6543-6565   | broad   | "Content features for accessibility"; any feature,   |
+# |                |                                |                           |         | not just sound presence.                             |
+# | **Schema.org** | `schema:accessMode`            | schemaorg.owl:6458-6478   | related | "Sensory perceptual system for perceiving info";     |
+# |                |                                |                           |         | auditory mode, not sound descriptions.               |
+# | **Schema.org** | `schema:audio`                 | schemaorg.owl:9199-9222   | related | "An embedded audio object"; links to AudioObject,    |
+# |                |                                |                           |         | not whether sound is present/described.              |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_sound
+name: has_sound
+title: Has Sound
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_sound:
+    slot_uri: hc:hasSound
+    description: >-
+      Indicates that a media file, physical location, or object contains or
+      emits audible content, audio tracks, or noise.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een mediabestand, fysieke locatie of object hoorbare
+        inhoud, audiotracks of geluid bevat of uitzendt.
+      de: >-
+        Gibt an, dass eine Mediendatei, ein physischer Standort oder ein Objekt
+        hörbaren Inhalt, Audiospuren oder Geräusche enthält oder abgibt.
+      fr: >-
+        Indique qu'un fichier média, un lieu physique ou un objet contient ou
+        émet du contenu audible, des pistes audio ou du bruit.
+      ar: >-
+        يشير إلى أن ملف وسائط أو موقع مادي أو كائن يحتوي على أو يصدر محتوى
+        مسموعًا أو مسارات صوتية أو ضوضاء.
+      id: >-
+        Menunjukkan bahwa berkas media, lokasi fisik, atau objek mengandung atau
+        memancarkan konten yang dapat didengar, trek audio, atau kebisingan.
+      zh: >-
+        表示媒体文件、物理位置或对象包含或发出可听内容、音频轨道或噪音。
+      es: >-
+        Indica que un archivo multimedia, ubicación física u objeto contiene o
+        emite contenido audible, pistas de audio o ruido.
+    structured_aliases:
+      - literal_form: Geluid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ton
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Son
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: صوت
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Suara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 声音
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Sonido
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    broad_mappings:
+      - schema:accessibilityFeature  # schemaorg.owl:6543-6565 - "Content features for accessibility"; any feature
+    related_mappings:
+      - schema:accessMode            # schemaorg.owl:6458-6478 - "Sensory perceptual system"; auditory mode
+      - schema:audio                 # schemaorg.owl:9199-9222 - "Embedded audio object"; links to AudioObject
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - 'Examples of sound descriptions in CC/SDH tracks: [door slams], [phone ringing], [thunder], [footsteps approaching].'
+      - Characteristic of Closed Captions (CC) and Subtitles for the Deaf and Hard of Hearing (SDH) tracks.
+      - 'Original file had range: boolean — changed to string per user correction.'
+    aliases:
+      - includes_sound_description
+      - noise_floor_db
+      - sound_events_detected

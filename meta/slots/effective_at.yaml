@@ -1,0 +1,103 @@
+# ==============================================================================
+# LinkML Slot Definition: effective_at
+# ==============================================================================
+# Date/time when something becomes valid, operational, or enforceable.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                                           |
+# |---------------|-----------------------|-------------------------|---------|-------------------------------------------------|
+# | **Schema.org**| `schema:validFrom`    | schemaorg:39363-39388   | close   | "The date when the item becomes valid."         |
+#
+# NOTE: schema:validFrom (line 39363-39388) means "The date when the item becomes 
+# valid" - semantically very close to "effective at". Domain includes Permit, 
+# Offer, Certification, etc. Our slot is broader (any effective date).
+#
+# dcterms:date was removed as it's too generic ("A point or period of time 
+# associated with an event in the lifecycle of the resource").
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, full multilingual, refined ontology alignment
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/effective_at
+name: effective_at
+title: Effective At
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  effective_at:
+    slot_uri: hc:effectiveAt
+    description: >-
+      To become valid, operational, active, or enforceable starting from a 
+      specific date or point in time.
+    alt_descriptions:
+      nl: >-
+        Geldig, operationeel, actief of afdwingbaar worden vanaf een specifieke 
+        datum of tijdstip.
+      de: >-
+        Gültig, betriebsbereit, aktiv oder durchsetzbar werden ab einem bestimmten 
+        Datum oder Zeitpunkt.
+      fr: >-
+        Devenir valide, opérationnel, actif ou exécutoire à partir d'une date 
+        ou d'un moment spécifique.
+      ar: >-
+        أن يصبح صالحًا أو عملياً أو نشطًا أو قابلاً للتنفيذ اعتبارًا 
+        من تاريخ أو وقت محدد.
+      id: >-
+        Menjadi valid, operasional, aktif, atau dapat diberlakukan mulai dari 
+        tanggal atau titik waktu tertentu.
+      zh: >-
+        从特定日期或时间点开始生效、运行、激活或可执行。
+      es: >-
+        Volverse válido, operativo, activo o ejecutable a partir de una fecha 
+        o momento específico.
+    structured_aliases:
+      - literal_form: effectief op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: wirksam ab
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: effectif à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ساري المفعول في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berlaku pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 生效日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: efectivo a partir de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: datetime
+    multivalued: false
+    aliases:
+      - is_or_was_effective_at
+    close_mappings:
+      - schema:validFrom  # schemaorg:39363-39388 - "The date when the item becomes valid"
+    comments:
+      - |
+        **USAGE**: Use for the date/time when a policy, agreement, regulation, 
+        or status becomes effective or enforceable.
+      - |
+        **DISTINCTION**: Use schema:validFrom for permits, offers, or certifications 
+        specifically. Use effective_at for broader institutional effective dates.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "2024-01-01T00:00:00"
+        description: "Policy becomes effective on January 1, 2024"

@@ -1,0 +1,68 @@
+id: https://nde.nl/ontology/hc/parsimony/class/Holding
+name: Holding
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label_literal
+  - ../slots/has_note_literal
+  - ../slots/available_via
+  - ../slots/attested_in
+  - ../slots/accessed_under
+  - ../slots/has_spatial_scope
+  - ../slots/comes_into_existence_through
+  - ../slots/comes_to_an_end_through
+  - ../slots/included_in
+  - ../slots/situated_in_time
+  - ../slots/marked_as
+  - ../slots/associated_with
+  - ../slots/equivalent_to
+  - ../slots/typed_as
+classes:
+  Holding:
+    class_uri: rico:RecordSet
+    description: >-
+      Semantic class for a holding, record set, collection, or curated body of
+      material.
+
+      **Why this slot exists:** `has_spatial_scope` captures the geography a
+      holding documents or covers, which is different from the repository or
+      address where the holding is kept.
+    broad_mappings:
+      - crm:E78_Curated_Holding
+    narrow_mappings:
+      - hc:CustodianCollection
+    examples:
+      - value:
+          has_label_literal:
+            - Municipal photo collection
+          included_in:
+            - Holding:RegionalVisualCollections
+          accessed_under:
+            - Public reading room access
+        description: Semantic holding node with containment and access conditions.
+      - value:
+          has_label_literal:
+            - Regional photo collection
+          has_spatial_scope:
+            - PlaceContext:Friesland
+        description: Semantic holding node with an explicit regional coverage scope.
+    slots:
+      - has_label_literal
+      - has_note_literal
+      - available_via
+      - attested_in
+      - accessed_under
+      - has_spatial_scope
+      - comes_into_existence_through
+      - comes_to_an_end_through
+      - included_in
+      - situated_in_time
+      - marked_as
+      - associated_with
+      - equivalent_to
+      - typed_as

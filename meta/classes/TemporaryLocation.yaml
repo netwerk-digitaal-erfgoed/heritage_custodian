@@ -1,0 +1,237 @@
+id: https://nde.nl/ontology/hc/class/temporary-location
+name: temporary_location_class
+title: TemporaryLocation Class
+imports:
+- linkml:types
+- ../enums/TemporaryLocationReasonEnum
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_rationale
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/current
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/has_roadmap
+- ../slots/replace
+- ../slots/has_service
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+classes:
+  TemporaryLocation:
+    is_a: ReconstructedEntity
+    class_uri: org:Site
+    alt_descriptions:
+      nl: Tijdelijke fysieke locatie van een erfgoedinstelling met begrensde duur.
+      de: Zeitlich begrenzter physischer Standort einer Kultureinrichtung.
+      fr: Localisation physique temporaire d une institution patrimoniale
+      es: Ubicacion fisica temporal de una institucion patrimonial
+      ar: موقع مادي مؤقت لمؤسسة تراثية لمدة زمنية محددة.
+      id: Lokasi fisik sementara untuk lembaga warisan dengan durasi terbatas.
+      zh: 具有明确时限的文化遗产机构临时实体地点。
+    structured_aliases:
+    - literal_form: tijdelijke locatie
+      in_language: nl
+    - literal_form: temporaerer Standort
+      in_language: de
+    - literal_form: lieu temporaire
+      in_language: fr
+    - literal_form: ubicacion temporal
+      in_language: es
+    - literal_form: موقع مؤقت
+      in_language: ar
+    - literal_form: lokasi sementara
+      in_language: id
+    - literal_form: 临时地点
+      in_language: zh
+    description: >-
+      Time-limited physical used by a heritage custodian for transitional or operations.
+    broad_mappings:
+    - org:Site
+    close_mappings:
+    - schema:Place
+    - crm:E27_Site
+    - schema:Event
+    related_mappings:
+    - crm:E7_Activity
+    - schema:TemporaryLocation
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_rationale
+    - has_type
+    - current
+    - has_roadmap
+    - replace
+    - has_service
+    - has_score
+    - temporal_extent
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        examples:
+        - value: https://nde.nl/ontology/hc/aux/stedelijk-temp-2020
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        examples:
+        - value: Stedelijk Museum Temporary Entrance
+        - value: Rijksmuseum Pop-up Groningen
+        - value: Emergency Collection Storage - Watersnood 2024
+      has_description:
+#         range: string
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            description_text: Temporary entrance during main entrance renovation. Access collections via garden entrance, Paulus Potterstraat side.
+            description_type: location
+            language: en
+      has_type:
+        range: TemporaryLocationReasonEnum
+        required: true
+        multivalued: false
+        examples:
+        - value: RENOVATION
+        - value: POP_UP_PROGRAM
+        - value: EMERGENCY
+      has_rationale:
+#         range: string
+        examples:
+        - value: Main entrance renovation including new accessibility features. Expected completion Q4 2021.
+        - value: Emergency relocation due to flooding at main depot on 2024-01-14. Extent of damage being assessed.
+      has_roadmap:
+        range: date
+        examples:
+        - value: '2020-06-01'
+      temporal_extent:
+        range: TimeSpan
+        examples:
+        - value:
+            begin_of_the_begin: '2020-06-15'
+            end_of_the_begin: '2020-06-15'
+            begin_of_the_end: '2022-03-15'
+            end_of_the_end: '2022-03-15'
+        - value:
+            begin_of_the_begin: '2024-06-01'
+            end_of_the_begin: '2024-07-15'
+            begin_of_the_end: '2024-09-15'
+            end_of_the_end: '2024-10-31'
+        - value:
+            begin_of_the_begin: '2024-01-15'
+            end_of_the_begin: '2024-01-15'
+      current:
+        range: boolean
+        examples:
+        - value: true
+      replace:
+        range: boolean
+        examples:
+        - value: true
+        - value: false
+      has_service:
+#         range: string
+        multivalued: true
+        examples:
+        - value: Public entrance
+        - value: Collection storage
+      derive_from:
+        range: CustodianObservation
+        multivalued: true
+        required: false
+      generated_by:
+        range: ReconstructionActivity
+        required: false
+    comments:
+    - TemporaryLocation models time-limited auxiliary locations
+    - Distinguished from permanent auxiliary places by explicit end date
+    - Reasons include renovation, emergency, pop-up programs, pilot projects
+    - Track both planned and actual start/end dates
+    - Important for visitor communication during transitions
+    see_also:
+    - https://www.w3.org/TR/vocab-org/#org:Site
+    - https://schema.org/Event
+    - http://www.cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E7
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/stedelijk-temp-2020
+        has_label:
+        - Stedelijk Museum Temporary Entrance
+        has_description:
+        - description_text: Temporary entrance during main entrance renovation. Access via garden entrance.
+          description_type: location
+          language: en
+        has_type: RENOVATION
+        has_rationale: Main entrance renovation including new accessibility features.
+        planned_start: '2020-06-01'
+        planned_end: '2021-12-31'
+        temporal_extent:
+          begin_of_the_begin: '2020-06-15'
+          end_of_the_begin: '2020-06-15'
+          begin_of_the_end: '2022-03-15'
+          end_of_the_end: '2022-03-15'
+        is_active: false
+        replaces_primary_location: true
+        serves_function_of:
+        - Public entrance
+        - Ticket sales
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/rijksmuseum-popup-groningen
+        has_label:
+        - Rijksmuseum Pop-up Groningen
+        has_description:
+        - description_text: Summer pop-up exhibition in Groninger Forum featuring highlights from the Golden Age collection.
+          description_type: location
+          language: en
+        has_type: POP_UP_PROGRAM
+        has_rationale: Outreach program bringing collection highlights to northern Netherlands.
+        planned_start: '2024-07-01'
+        planned_end: '2024-09-30'
+        temporal_extent:
+          begin_of_the_begin: '2024-07-01'
+          end_of_the_begin: '2024-07-01'
+        is_active: true
+        replaces_primary_location: false
+        serves_function_of:
+        - Exhibition space
+    - value:
+        identified_by: https://nde.nl/ontology/hc/aux/emergency-storage-2024
+        has_label:
+        - Emergency Collection Storage - Watersnood 2024
+        has_description:
+        - description_text: Emergency relocation of collection materials following flooding at main depot.
+          description_type: location
+          language: en
+        has_type: EMERGENCY
+        has_rationale: Flooding on 2024-01-14 damaged main storage facility. Collections evacuated to temporary climate-controlled space.
+        temporal_extent:
+          begin_of_the_begin: '2024-01-15'
+          end_of_the_begin: '2024-01-15'
+        planned_end:
+        is_active: true
+        replaces_primary_location: true
+        serves_function_of:
+        - Collection storage
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        Temporary locations are distinct from permanent branch/storage sites and
+        should be modeled with temporal boundaries.
+
+        Common reasons include renovation, emergency relocation, and pop-up programs.

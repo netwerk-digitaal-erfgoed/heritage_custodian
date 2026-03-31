@@ -1,0 +1,86 @@
+# ==============================================================================
+# LinkML Slot Definition: has_contributor
+# ==============================================================================
+# An entity responsible for making contributions to a resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **DCTerms**   | `dcterms:contributor` | dcterms.rdf:1011-1034      | exact   | "An entity responsible for making contributions to the resource" — range Agent |
+# | **Schema.org**| `schema:contributor`  | schemaorg.owl:12908-12911  | exact   | "A secondary contributor to the CreativeWork or Event" — implies secondary role, narrower |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, changed slot_uri to dcterms:contributor (exact match),
+#   cleaned description, moved migration notes to comments; rewrote alt_descriptions for faithful translation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_contributor
+name: has_contributor
+title: Has Contributor
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_contributor:
+    slot_uri: dcterms:contributor
+    description: >-
+      To include or be assisted by a specific agent, person, or organization that plays a secondary role in the creation or development of the resource.
+    alt_descriptions:
+      nl: >-
+        Een specifieke agent, persoon of organisatie opnemen of door deze worden bijgestaan die een secundaire rol speelt bij de creatie of ontwikkeling van de bron.
+      de: >-
+        Einen bestimmten Akteur, eine Person oder Organisation einbeziehen oder von diesen unterstützt werden, der/die eine sekundäre Rolle bei der Erstellung oder Entwicklung der Ressource spielt.
+      fr: >-
+        Inclure ou être assisté par un agent, une personne ou une organisation spécifique qui joue un rôle secondaire dans la création ou le développement de la ressource.
+      ar: >-
+        تضمين أو الاستعانة بوكيل أو شخص أو منظمة محددة تلعب دورًا ثانويًا في إنشاء المورد أو تطويره.
+      id: >-
+        Menyertakan atau dibantu oleh agen, orang, atau organisasi tertentu yang memainkan peran sekunder dalam pembuatan atau pengembangan sumber daya.
+      zh: >-
+        包含或由在资源的创建或开发中扮演次要角色的特定代理人、个人或组织提供协助。
+      es: >-
+        Incluir o contar con la asistencia de un agente, persona u organización específica que desempeña un papel secundario en la creación o el desarrollo del recurso.
+    structured_aliases:
+      - literal_form: heeft bijdrager
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Beitragende/r
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un contributeur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه مساهم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki kontributor
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有贡献者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene contribuidor
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_contributor
+    exact_mappings:
+      - schema:contributor  # schemaorg.owl:12908-12911 - "A secondary contributor to the CreativeWork or Event"
+    comments:
+      - |
+        MIGRATED from contributor (2026-01-26). MIGRATED 2026-02-03 from has_or_had_contributor for conciseness.
+    annotations:
+      custodian_types: '["*"]'

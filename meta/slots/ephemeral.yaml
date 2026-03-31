@@ -1,0 +1,125 @@
+# ==============================================================================
+# LinkML Slot Definition: ephemeral
+# ==============================================================================
+# Boolean flag indicating whether content is inherently short-lived, transitory,
+# or auto-expiring, such as social media stories or temporary posts.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property                   | File/Line                | Mapping | Notes                                                              |
+# |-------------|----------------------------|--------------------------|---------|--------------------------------------------------------------------|
+# | **Schema**  | `schema:expires`           | schemaorg.owl:17832-17846| related | "expires" Certification∪CreativeWork→Date∪DateTime. Date-based.    |
+# | **PROV**    | `prov:invalidatedAtTime`   | prov.ttl:743-753         | related | "invalidatedAtTime" Entity→xsd:dateTime. Lifecycle end timestamp.  |
+#
+# No exact match found. The concept of a boolean flag marking content as
+# inherently ephemeral (auto-expiring by nature) is distinct from date-based
+# expiry (schema:expires) or lifecycle invalidation timestamps
+# (prov:invalidatedAtTime). This slot captures the categorical nature of
+# content — whether it was designed to be short-lived — rather than when
+# it expires. Common in social media contexts (stories, disappearing posts).
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/ephemeral
+name: ephemeral
+title: Ephemeral
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  ephemeral:
+    slot_uri: hc:ephemeral
+    description: >-
+      Boolean flag indicating whether content is inherently short-lived,
+      transitory, or auto-expiring. Marks items such as social media
+      stories, disappearing posts, or temporary announcements that are
+      designed to exist only briefly before becoming unavailable. When
+      true, the content is ephemeral by nature; when false or absent,
+      the content is considered persistent.
+    alt_descriptions:
+      nl: >-
+        Booleaanse vlag die aangeeft of inhoud inherent kortstondig,
+        tijdelijk of automatisch verlopend is, zoals sociale-mediastories
+        of verdwijnende berichten.
+      de: >-
+        Boolesches Kennzeichen, das angibt, ob Inhalte von Natur aus
+        kurzlebig, vorübergehend oder automatisch ablaufend sind, wie
+        Social-Media-Stories oder verschwindende Beiträge.
+      fr: >-
+        Indicateur booléen précisant si un contenu est intrinsèquement
+        éphémère, transitoire ou à expiration automatique, comme les
+        stories sur les réseaux sociaux ou les publications éphémères.
+      ar: >-
+        علامة منطقية تشير إلى ما إذا كان المحتوى قصير العمر بطبيعته
+        أو مؤقتاً أو ينتهي تلقائياً، مثل قصص وسائل التواصل الاجتماعي
+        أو المنشورات المختفية.
+      id: >-
+        Tanda boolean yang menunjukkan apakah konten bersifat sementara,
+        sementara, atau kedaluwarsa otomatis, seperti cerita media
+        sosial atau postingan yang menghilang.
+      zh: >-
+        布尔标志，指示内容是否本质上是短暂的、临时的或自动过期的，
+        例如社交媒体快拍或消失的帖子。
+      es: >-
+        Indicador booleano que señala si un contenido es inherentemente
+        efímero, transitorio o de expiración automática, como las
+        historias en redes sociales o publicaciones que desaparecen.
+    structured_aliases:
+      - literal_form: kortstondig
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: kurzlebig
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: éphémère
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: سريع الزوال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: sementara
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 短暂的
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: efímero
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    related_mappings:
+      - schema:expires  # schemaorg.owl:17832-17846 - "expires" date content is no longer available
+      - prov:invalidatedAtTime  # prov.ttl:743-753 - "invalidatedAtTime" Entity→xsd:dateTime
+    aliases:
+      - post_type_ephemeral
+    examples:
+      - value: "true"
+        description: >-
+          An Instagram Story or Snapchat post that auto-deletes after
+          24 hours. The content is ephemeral by design.
+      - value: "false"
+        description: >-
+          A permanent museum blog post or archival record that remains
+          available indefinitely.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        This slot captures the inherent nature of the content (designed to be
+        short-lived) rather than a specific expiry date. For date-based expiry,
+        use a date/time slot referencing schema:expires instead.
+      - >-
+        Common in social media monitoring: platforms like Instagram Stories,
+        Snapchat, and WhatsApp Status produce ephemeral content that
+        heritage institutions may post as part of outreach. Tracking whether
+        posts are ephemeral helps distinguish engagement analytics for
+        permanent versus temporary content.
+      - >-
+        The alias post_type_ephemeral reflects the original context where this
+        flag was used to classify social media post types.

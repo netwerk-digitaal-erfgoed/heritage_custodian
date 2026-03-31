@@ -1,0 +1,121 @@
+id: https://nde.nl/ontology/hc/class/ConfidenceScore
+name: ConfidenceScore
+title: Confidence Score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  dqv: http://www.w3.org/ns/dqv#
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_method
+  - ../slots/has_score
+classes:
+  ConfidenceScore:
+    class_uri: hc:ConfidenceScore
+    description: >-
+      Normalized numeric estimate expressing support strength for an extracted or
+      inferred statement.
+    alt_descriptions:
+      nl: Genormaliseerde numerieke schatting die de sterkte van ondersteuning voor een afgeleide uitspraak uitdrukt.
+      de: Normalisierte numerische Schaetzung zur Angabe der Unterstuetzungsstaerke fuer eine extrahierte oder abgeleitete Aussage.
+      fr: Estimation numerique normalisee exprimant la force de soutien d'une assertion extraite ou inferee.
+      es: Estimacion numerica normalizada que expresa la fuerza de respaldo de una afirmacion extraida o inferida.
+      ar: تقدير رقمي معياري يعبّر عن قوة دعم عبارة مستخرجة أو مستنتجة.
+      id: Estimasi numerik ternormalisasi yang menyatakan kekuatan dukungan untuk pernyataan yang diekstraksi atau diinferensikan.
+      zh: 表示对抽取或推断陈述支持强度的归一化数值估计。
+    structured_aliases:
+      - literal_form: zekerheidscore
+        in_language: nl
+      - literal_form: Sicherheitswert
+        in_language: de
+      - literal_form: score de certitude
+        in_language: fr
+      - literal_form: puntuacion de certeza
+        in_language: es
+      - literal_form: درجة اليقين
+        in_language: ar
+      - literal_form: skor kepastian
+        in_language: id
+      - literal_form: 置信分值
+        in_language: zh
+    slots:
+      - has_score
+      - has_method
+      - has_description
+    slot_usage:
+      has_score:
+        range: float
+        minimum_value: 0.0
+        maximum_value: 1.0
+        required: true
+        close_mappings:
+          - sosa:hasSimpleResult
+          - prov:value
+        examples:
+          - value: 0.95
+          - value: 0.5
+          - value: 0.1
+      has_method:
+        examples:
+          - value: fuzzy_string_matching
+          - value: xpath_extraction_validation
+      has_description:
+        examples:
+          - value: Strong lexical and identifier match across independent sources.
+    examples:
+      - value:
+          has_score: 0.93
+          has_method: xpath_extraction
+          has_description: Exact match at canonical XPath location.
+        description: High support estimate for deterministic extraction
+      - value:
+          has_score: 0.62
+          has_method: fuzzy_string_matching
+          has_description: Partial overlap with disambiguation warning.
+        description: Medium support estimate for ambiguous matching
+    keywords:
+      - normalized estimate
+      - support strength
+      - extraction quality
+      - inference reliability
+    broad_mappings:
+      - sosa:Result
+      - dqv:QualityMeasurement
+    close_mappings:
+      - schema:Rating
+    comments:
+      - Replaces unstructured scalar values with a reusable object pattern.
+      - Method metadata is captured via has_method for auditability.
+    notes:
+      - |
+        Preserved from prior description (commit 5e94e52b):
+
+        A structured confidence score representing quality/certainty measurements.
+
+        **MIGRATION**:
+        Replaces simple `confidence_score` float slot with structured class:
+        - `has_score`: The numeric value (0.0-1.0)
+        - `has_method`: How confidence was calculated
+        - `has_description`: Explanation of confidence assessment
+
+        **USAGE**:
+        - Process quality assessment (methodology confidence)
+        - Match/similarity confidence (entity resolution)
+        - Extraction confidence (NLP/XPath extraction)
+        - Prediction confidence (ML model outputs)
+
+        **RANGE**: 0.0 (low confidence) to 1.0 (high confidence)
+
+        **ONTOLOGY MAPPING**:
+        - sosa:hasSimpleResult for the score value
+        - prov:value as close mapping
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Scoring is reusable across all curation and extraction workflows.
+      specificity_score: "0.2"
+      specificity_rationale: Generic but essential structure for quality assessment.

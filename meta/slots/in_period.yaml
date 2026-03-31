@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: in_period
+# ==============================================================================
+# The defined timeframe, duration, or era within which an event occurs, an
+# entity exists, or a validity constraint applies.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology | Property           | File/Line             | Mapping | Notes                                              |
+# |----------|--------------------|-----------------------|---------|----------------------------------------------------|
+# | DCTerms  | `dcterms:temporal` | dcterms.rdf:2010-2033 | close   | "Temporal characteristics of the resource."        |
+# |          |                    |                       |         | Range: PeriodOfTime. Broader than named periods.   |
+#
+# dcterms:temporal is close: it covers all temporal characteristics of a resource.
+# This slot is narrower: specifically a defined timeframe or era.
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-08 — Synced alt_descriptions to current English description;
+#   capitalized structured_aliases; updated header one-liner.
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/in_period
+name: in_period
+title: In Period
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  in_period:
+    slot_uri: hc:inPeriod
+    description: >-
+      The defined timeframe, duration, or era within which an event occurs,
+      an entity exists, or a validity constraint applies.
+    alt_descriptions:
+      nl: >-
+        Het vastgestelde tijdsbestek, de duur of het tijdperk waarbinnen een
+        gebeurtenis plaatsvindt, een entiteit bestaat of een
+        geldigheidsbeperking van toepassing is.
+      de: >-
+        Der festgelegte Zeitrahmen, die Dauer oder die Ära, innerhalb derer
+        ein Ereignis stattfindet, eine Entität existiert oder eine
+        Gültigkeitsbeschränkung gilt.
+      fr: >-
+        La période définie, la durée ou l'ère au cours de laquelle un
+        événement se produit, une entité existe ou une contrainte de
+        validité s'applique.
+      ar: >-
+        الإطار الزمني المحدد أو المدة أو الحقبة التي يقع فيها حدث أو يوجد
+        فيها كيان أو ينطبق فيها قيد صلاحية.
+      id: >-
+        Jangka waktu, durasi, atau era yang ditentukan di mana suatu peristiwa
+        terjadi, suatu entitas ada, atau batasan validitas berlaku.
+      zh: >-
+        事件发生、实体存在或有效性约束适用的指定时间范围、持续时间或时代。
+      es: >-
+        El marco temporal definido, la duración o la era dentro de la cual
+        ocurre un evento, existe una entidad o se aplica una restricción
+        de validez.
+    structured_aliases:
+      - literal_form: Periode
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zeitraum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Période
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: فترة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Periode
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 时期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Período
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - has_or_had_period
+      - has_period
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:temporal  # dcterms.rdf:2010-2033 — "Temporal characteristics of the resource." Broader than a specific defined timeframe.
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_period for conciseness."

@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: detect
+# ==============================================================================
+# To discover or identify the presence, existence, or fact of an entity,
+# signal, or condition, often through investigation or specific instruments.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping  | Notes                              |
+# |---------------|-----------------------|----------------------------|----------|------------------------------------|
+# | **PROV-O**    | `prov:generated`      | prov.ttl:580-591           | related  | "Activity generated Entity" — generation ≠ detection; inverse of wasGeneratedBy |
+# | **Schema.org**| `schema:result`       | schemaorg.owl:33466-33485  | related  | "The result produced in the action" — domain Action, output-oriented |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, demoted prov:generated from exact to
+#   related (generation ≠ detection), moved usage notes and pattern to comments, cleaned description
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/detect
+name: detect
+title: Detect
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  detect:
+    slot_uri: hc:detect
+    description: >-
+      To discover or identify the presence, existence, or fact of an entity, signal, or condition, often through investigation or the use of specific instruments.
+    alt_descriptions:
+      nl: >-
+        De aanwezigheid, het bestaan of het feit van een entiteit, signaal of toestand ontdekken of identificeren, vaak door onderzoek of het gebruik van specifieke instrumenten.
+      de: >-
+        Das Vorhandensein, die Existenz oder die Tatsache einer Entität, eines Signals oder eines Zustands entdecken oder identifizieren, oft durch Untersuchung oder den Einsatz spezifischer Instrumente.
+      fr: >-
+        Découvrir ou identifier la présence, l'existence ou le fait d'une entité, d'un signal ou d'une condition, souvent par investigation ou l'utilisation d'instruments spécifiques.
+      ar: >-
+        اكتشاف أو تحديد وجود أو حقيقة كيان أو إشارة أو حالة، غالبًا من خلال التحقيق أو استخدام أدوات محددة.
+      id: >-
+        Menemukan atau mengidentifikasi keberadaan, eksistensi, atau fakta suatu entitas, sinyal, atau kondisi, sering kali melalui investigasi atau penggunaan instrumen tertentu.
+      zh: >-
+        发现或识别实体、信号或条件的存在、事实，通常通过调查或使用特定仪器。
+      es: >-
+        Descubrir o identificar la presencia, existencia o hecho de una entidad, señal o condición, a menudo mediante investigación o el uso de instrumentos específicos.
+    structured_aliases:
+      - literal_form: detecteren
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erkennen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: détecter
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: كشف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mendeteksi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 检测
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: detectar
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: false
+    multivalued: true
+    aliases:
+      - has_or_had_detected
+      - scene_types_detected
+    related_mappings:
+      - prov:generated  # prov.ttl:580-591 - "Activity generated Entity" — generation is not the same as detection
+      - schema:result  # schemaorg.owl:33466-33485 - "The result produced in the action" — output-oriented
+    comments:
+      - |
+        MIGRATED 2026-02-03: Renamed from has_or_had_detected for conciseness.
+      - |
+        **USAGE**: For analysis classes (like VideoAnnotation, TextOCR, AudioAnalysis),
+        this links the analysis to DetectedEntity instances, which in turn have their
+        type specified via has_type.
+        Pattern: VideoAnalysis → has_detected → DetectedEntity → has_type → TransitionType, TextType, etc.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "DetectedEntity:transition_001"
+        description: A detected scene transition
+      - value: "DetectedEntity:text_region_005"
+        description: A detected text region in video

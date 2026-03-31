@@ -1,0 +1,146 @@
+# ==============================================================================
+# LinkML Slot Definition: allow
+# ==============================================================================
+# Permission granting for activities, things, or behaviors. Used for documenting
+# policies in reading rooms, public spaces, and access control.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology     | Property               | File/Line         | Mapping | Notes                                    |
+# |--------------|------------------------|-------------------|---------|------------------------------------------|
+# | **ODRL**     | `odrl:permission`      | odrl.ttl:547-553  | exact   | "Relates individual Permission to        |
+# |              |                        |                   |         | Policy." Permission concept.             |
+# | **ODRL**     | `odrl:Permission`      | odrl.ttl          | close   | Class representing permission rule.      |
+# | **ODRL**     | `odrl:action`          | odrl.ttl          | related | Action permitted/prohibited.             |
+# | **Schema.org**| `schema:Permit`       | schemaorg.owl     | related | Permit class.                            |
+# | **RiC-O**    | `rico:hasOrHadMandateType`| RiC-O_1-1.rdf  | related | Mandate type for agent.                  |
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Changed slot_uri from hc:allow to odrl:permission (exact mapping)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/allow
+name: allow
+title: allow
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  odrl: http://www.w3.org/ns/odrl/2/
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  allow:
+    slot_uri: odrl:permission
+    description: >-
+      To grant permission for activities, things, or behaviors.
+    alt_descriptions:
+      nl: >-
+        Toestemming verlenen voor activiteiten, zaken of handelingen.
+      de: >-
+        Erlaubnis für Aktivitäten, Dinge oder Verhaltensweisen erteilen.
+      fr: >-
+        Accorder la permission pour des activités, des choses ou des comportements.
+      ar: >-
+        منح الإذن للأنشطة أو الأشياء أو السلوكيات.
+      id: >-
+        Memberikan izin untuk kegiatan, hal-hal, atau perilaku.
+      zh: >-
+        授予活动、事物或行为的许可。
+      es: >-
+        Otorgar permiso para actividades, cosas o comportamientos.
+    range: uriorcurie
+    multivalued: true
+    inlined: false
+    exact_mappings:
+    close_mappings:
+      - odrl:Permission
+      - odrl:grantUse
+    related_mappings:
+      - odrl:action
+      - odrl:use
+      - odrl:Rule
+      - schema:Permit
+      - schema:GovernmentPermit
+      - schema:permittedUsage
+      - schema:amenityFeature
+      - rico:hasOrHadMandateType
+    narrow_mappings:
+      - odrl:play
+      - odrl:display
+      - odrl:reproduce
+    aliases:
+      - allows_or_allowed
+      - permits
+      - grants_permission
+      - is_or_was_allow
+    structured_aliases:
+      - literal_form: staat toe
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_allow
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erlaubt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: permet
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يسمح
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mengizinkan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 允许
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: permite
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: "hc:LaptopUse"
+        description: Permission for laptop use in reading room
+      - value: "hc:Photography"
+        description: Permission for photography
+      - value: "hc:FoodAndBeverages"
+        description: Permission for food and beverages in designated areas
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+      specificity_rationale: Generic permission slot applicable to reading rooms and public spaces.
+    comments:
+      - |
+        **USAGE**:
+        Used for documenting permitted activities:
+        - Reading room policies (laptops, photography)
+        - Public space rules
+        - Access permissions
+        - Usage rights
+      - |
+        **SEMANTICS**:
+        Uses RiC-O temporal pattern (is_or_was / has_or_had / allows_or_allowed)
+        to capture policies that may change over time.
+        A reading room that "allowed photography" in 2020 may have changed policy by 2025.
+      - |
+        **ODRL (Open Digital Rights Language)**:
+        ODRL provides a comprehensive model for permissions:
+        - `odrl:permission` - Permission to perform action
+        - `odrl:Permission` - Class for permission rules
+        - `odrl:action` - The permitted action
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **ODRL** | `odrl:permission` | 547-553 | exact | Permission relation to Policy |
+        | **ODRL** | `odrl:Permission` | - | close | Permission rule class |
+        | **ODRL** | `odrl:action` | - | related | Action permitted |
+        | **Schema.org** | `schema:Permit` | - | related | Permit class |
+        | **RiC-O** | `rico:hasOrHadMandateType` | - | related | Mandate type |

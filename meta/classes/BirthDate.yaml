@@ -1,0 +1,216 @@
+id: https://nde.nl/ontology/hc/class/BirthDate
+name: birth_date_class
+title: Birth Date Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  time: http://www.w3.org/2006/time#
+  pico: https://personsincontext.org/model#
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_reference
+  - ../slots/has_score
+  - ../slots/has_provenance
+  - ../slots/inferred_by
+  - ../slots/generated_by
+  - ../slots/temporal_extent
+default_prefix: hc
+classes:
+  BirthDate:
+    class_uri: schema:Date
+    description: >-
+      Structured representation of when a person was born with support for uncertainty,
+      incomplete dates, EDTF notation, and provenance tracking.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde weergave van wanneer een persoon geboren is met ondersteuning voor onzekerheid,
+        onvolledige data, EDTF-notatie en herkomsttracking.
+      de: >-
+        Strukturierte Darstellung der Geburtszeit einer Person mit Unterstützung für Unsicherheit,
+        unvollständige Daten, EDTF-Notation und Provenienz-Tracking.
+      fr: >-
+        Représentation structurée de la date de naissance d'une personne avec support pour l'incertitude,
+        dates incomplètes, notation EDTF et suivi de provenance.
+      es: >-
+        Representación estructurada de cuándo nació una persona con soporte para incertidumbre,
+        fechas incompletas, notación EDTF y seguimiento de procedencia.
+      ar: >-
+        تمثيل منظم لموعد ميلاد الشخص مع دعم عدم اليقين
+        والتواريخ غير المكتاملة وترميز EDTF وتتبع المصدر.
+      id: >-
+        Representasi terstruktur kapan seseorang lahir dengan dukungan ketidakpastian,
+        tanggal tidak lengkap, notasi EDTF, dan pelacakan asal-usul.
+      zh: >-
+        人员出生时间的结构化表示，支持不确定性、不完整日期、EDTF表示法和来源跟踪。
+    exact_mappings:
+      - schema:Date
+    close_mappings:
+      - crm:E52_Time-Span
+      - time:Instant
+    related_mappings:
+      - pico:PersonObservation
+    slots:
+      - has_reference
+      - inferred_by
+      - has_provenance
+      - generated_by
+      - has_score
+      - temporal_extent
+    slot_usage:
+      has_reference:
+        range: Reference
+        required: false
+        inlined: true
+        multivalued: true
+        description: >-
+          Source reference for the information. MIGRATED 2026-01-22: Replaces birth_source_text
+          with structured Reference. Reference.citation_text preserves original verbatim source text.
+        examples:
+          - value:
+              source_type: parish_register
+          - value:
+              source_type: biography
+      inferred_by:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+      has_provenance:
+        required: false
+        examples:
+          - value: '{"method": "earliest_education_heuristic", "inference_chain": [...]}'
+      generated_by:
+        range: GenerationEvent
+        required: false
+        inlined: true
+        description: >-
+          Generation event containing confidence score. MIGRATED 2026-01-19: Replaces confidence slot
+          with structured pattern.
+        examples:
+          - value:
+              has_score:
+                has_score: 0.95
+                has_method: document_extraction
+          - value:
+              has_score:
+                has_score: 0.5
+                has_method: education_inference
+                has_description: Inferred from education start year
+      temporal_extent:
+        range: TimeSpan
+        required: true
+        inlined: true
+        description: >-
+          CIDOC-CRM TimeSpan representation with EDTF notation preservation.
+          MIGRATED 2026-01-22: Replaces birth_edtf and birth_iso_date per slot_fixes.yaml feedback.
+        examples:
+          - value:
+              has_notation: '1970-08-15'
+              begin_of_the_begin: '1970-08-15T00:00:00Z'
+              end_of_the_end: '1970-08-15T23:59:59Z'
+          - value:
+              has_notation: 197X
+              begin_of_the_begin: '1970-01-01T00:00:00Z'
+              end_of_the_end: '1979-12-31T23:59:59Z'
+          - value:
+              has_notation: 1970~
+              begin_of_the_begin: '1968-01-01T00:00:00Z'
+              end_of_the_end: '1972-12-31T23:59:59Z'
+    comments:
+      - "MIGRATED 2026-01-22: birth_edtf, birth_iso_date → temporal_extent.has_notation"
+      - TimeSpan provides CIDOC-CRM E52 temporal bounds with EDTF notation preservation
+      - Inference provenance required when is_inferred=true (Rule 45)
+      - "Source text preserved via has_reference → Reference"
+    see_also:
+      - https://www.loc.gov/standards/datetime/
+      - https://schema.org/birthDate
+    examples:
+      - value:
+          temporal_extent:
+            has_notation: '1970-08-15'
+            begin_of_the_begin: '1970-08-15T00:00:00Z'
+            end_of_the_end: '1970-08-15T23:59:59Z'
+          is_inferred: false
+          generated_by:
+            has_score:
+              has_score: 0.95
+              has_method: birth_certificate_extraction
+        description: Known complete date
+      - value:
+          temporal_extent:
+            has_notation: 197X
+            begin_of_the_begin: '1970-01-01T00:00:00Z'
+            end_of_the_end: '1979-12-31T23:59:59Z'
+          is_inferred: true
+          inference_provenance: '{"method": "earliest_education_heuristic", "source_field": "education[0].start_year"}'
+          generated_by:
+            has_score:
+              has_score: 0.4
+              has_method: education_inference
+        description: Inferred decade
+      - value:
+          temporal_extent:
+            has_notation: '1823'
+            begin_of_the_begin: '1823-01-01T00:00:00Z'
+            end_of_the_end: '1823-12-31T23:59:59Z'
+          has_reference:
+            - citation_text: born in the year of our Lord 1823
+              source_type: parish_register
+          is_inferred: false
+          generated_by:
+            has_score:
+              has_score: 0.75
+              has_method: document_extraction
+        description: Historical source with year only
+    keywords:
+      - birth
+      - date
+      - EDTF
+      - temporal
+      - provenance
+    notes:
+      - |
+        Preserved from prior description (commit bd8368df):
+
+        "Structured representation of a person's birth date with support for uncertainty, incomplete dates, and provenance tracking.\n**PURPOSE**:\nBirthDate replaces simple string birth_date slots to provide: - EDTF (Extended Date/Time Format) support for uncertain/incomplete dates - Provenance tracking for inferred dates (Rule 45) - Confidence scoring - Source preservation (original format from documents)\n**EDTF NOTATION** (Rule 44):\n| Pattern | Meaning | Example | |---------|---------|---------| | `YYYY` | Year only | `1970` | | `YYYY-MM` | Year and month | `1970-08` | | `YYYY-MM-DD` | Full date | `1970-08-15` | | `YYYX` | Decade | `197X` (1970s) | | `YYXX` | Century | `19XX` (1900s) | | `YYYY~` | Approximate | `1985~` (circa 1985) | | `YYYY?` | Uncertain | `1985?` (possibly 1985) | | `XXXX` | Unknown | Must have search provenance |\n**INFERRED DATA** (Rule 45):\nWhen birth date is inferred (e.g., from earliest education date): - Store in `inferred_birth_date` with full inference\
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Relevant for person research across all heritage sectors.
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: geboortedatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geboren op
+        predicate: RELATED_SYNONYM
+        in_language: nl
+      - literal_form: Geburtsdatum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: date de naissance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: fecha de nacimiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: تاريخ الميلاد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: tanggal lahir
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 出生日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+enums:
+  BirthDateConfidenceEnum:
+    description: Confidence levels for birth date values.
+    permissible_values:
+      HIGH:
+      MEDIUM:
+      LOW:
+      VERY_LOW:

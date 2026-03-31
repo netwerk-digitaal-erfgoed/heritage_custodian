@@ -1,0 +1,53 @@
+id: https://nde.nl/ontology/hc/class/EBook
+name: EBook
+title: EBook Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  bf: http://id.loc.gov/ontologies/bibframe/
+
+default_prefix: hc
+
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_url
+classes:
+  EBook:
+    class_uri: schema:EBook
+    description: >-
+      Electronic manifestation of a textual publication intended for digital
+      reading and distribution.
+    alt_descriptions:
+      nl: Elektronische verschijningsvorm van een tekstuele publicatie voor digitaal lezen en distributie.
+      de: Elektronische Erscheinungsform einer textuellen Publikation fuer digitales Lesen und Verbreitung.
+      fr: Manifestation electronique d une publication textuelle destinee a la lecture et diffusion numeriques.
+      es: Manifestacion electronica de una publicacion textual destinada a lectura y distribucion digital.
+      ar: تجلٍّ إلكتروني لمنشور نصي مخصص للقراءة والتوزيع الرقمي.
+      id: Manifestasi elektronik publikasi tekstual untuk pembacaan dan distribusi digital.
+      zh: 供数字阅读与传播的文本出版物电子形态。
+    structured_aliases:
+    - {literal_form: e-boek, in_language: nl}
+    - {literal_form: E-Book, in_language: de}
+    - {literal_form: livre numerique, in_language: fr}
+    - {literal_form: libro electronico, in_language: es}
+    - {literal_form: كتاب إلكتروني, in_language: ar}
+    - {literal_form: buku elektronik, in_language: id}
+    - {literal_form: 电子书, in_language: zh}
+    exact_mappings:
+    - schema:EBook
+    close_mappings:
+    - bf:Electronic
+
+    slots:
+    - has_url
+
+    slot_usage:
+      has_url:
+        range: uri
+        required: true
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.3
+      specificity_rationale: Specific manifestation class for digital publications.

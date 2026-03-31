@@ -1,0 +1,101 @@
+# ==============================================================================
+# LinkML Slot Definition: represented_by
+# ==============================================================================
+# The agent, representative, or proxy authorized to act on behalf of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line            | Mapping | Notes                              |
+# |---------------|----------------------------|----------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:actedOnBehalfOf`     | prov.ttl:426-439     | close   | "An object property to express the |
+# |               |                            |                      |         | accountability of an agent towards |
+# |               |                            |                      |         | another agent."                    |
+# | **FOAF**      | `foaf:Agent`               | foaf.ttl:23-27       | related | Agent class (domain context)       |
+#
+# prov:actedOnBehalfOf is inverse direction (agent -> principal), while
+# represented_by is principal -> agent direction. Hence close, not exact.
+#
+# CREATED: 2026-02-04
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/represented_by
+name: represented_by
+title: Represented By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+slots:
+  represented_by:
+    slot_uri: hc:representedBy
+    description: >-
+      The agent, representative, or proxy authorized to act on behalf of
+      the entity.
+    alt_descriptions:
+      nl: >-
+        De agent, vertegenwoordiger of gemachtigde die bevoegd is om namens
+        de entiteit te handelen.
+      de: >-
+        Der Agent, Vertreter oder Bevollmächtigte, der befugt ist, im Namen
+        der Entität zu handeln.
+      fr: >-
+        L'agent, le représentant ou le mandataire autorisé à agir au nom
+        de l'entité.
+      ar: >-
+        الوكيل أو الممثل أو المفوض المخول بالتصرف نيابة عن الكيان.
+      id: >-
+        Agen, perwakilan, atau kuasa yang diberi wewenang untuk bertindak
+        atas nama entitas.
+      zh: >-
+        被授权代表实体行事的代理人、代表或代理。
+      es: >-
+        El agente, representante o apoderado autorizado para actuar en
+        nombre de la entidad.
+    structured_aliases:
+      - literal_form: vertegenwoordigd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: vertreten durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: représenté par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ممثَّل بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diwakili oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...代表
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: representado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - prov:actedOnBehalfOf  # prov.ttl:426-439 - inverse direction
+    aliases:
+      - is_or_was_represented_by
+      - is_or_was_governance_representative
+      - governance_representative
+    comments:
+      - |
+        **DIRECTION NOTE**: prov:actedOnBehalfOf has inverse direction
+        (agent -> principal). This slot is principal -> agent direction.
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Applicable to all heritage custodian types.
+      custodian_types_primary: M
+      specificity_score: 0.6
+      specificity_rationale: Governance-specific slot for representation relationships.

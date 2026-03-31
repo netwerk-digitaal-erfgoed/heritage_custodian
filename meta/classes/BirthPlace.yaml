@@ -1,0 +1,174 @@
+id: https://nde.nl/ontology/hc/class/BirthPlace
+name: birth_place_class
+title: Birth Place Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  gn: http://www.geonames.org/ontology#
+  wdt: http://www.wikidata.org/prop/direct/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+  - ../metadata
+  - ../slots/has_coordinates
+  - ../slots/in_country
+  - ../slots/identified_by
+  - ../slots/has_score
+  - ../slots/has_name
+  - ../slots/has_label
+  - ../slots/has_source
+  - ../slots/has_code
+default_prefix: hc
+classes:
+  BirthPlace:
+    class_uri: schema:Place
+    description: >-
+      Structured representation of where a person was born with support for historical
+      place names, modern equivalents, and geographic identifiers.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde weergave van waar een persoon geboren is met ondersteuning voor historische
+        plaatsnamen, moderne equivalenten en geografische identificaties.
+      de: >-
+        Strukturierte Darstellung des Geburtsorts einer Person mit Unterstützung für historische
+        Ortsnamen, moderne Entsprechungen und geografische Kennungen.
+      fr: >-
+        Représentation structurée du lieu de naissance d'une personne avec support pour les noms
+        historiques, équivalents modernes et identifiants géographiques.
+      es: >-
+        Representación estructurada de dónde nació una persona con soporte para nombres
+        históricos de lugares, equivalentes modernos e identificadores geográficos.
+      ar: >-
+        تمثيل منظم لمكان ميلاد الشخص مع دعم الأسماء التاريخية
+        للأماكن والمعادلات الحديثة والمعرفات الجغرافية.
+      id: >-
+        Representasi terstruktur tempat seseorang lahir dengan dukungan nama tempat
+        historis, padanan modern, dan pengidentifikasi geografis.
+      zh: >-
+        人员出生地点的结构化表示，支持历史地名、现代等价物和地理标识符。
+    broad_mappings:
+      - schema:Place
+    close_mappings:
+      - crm:E53_Place
+      - gn:Feature
+    slots:
+      - has_label
+      - has_name
+      - in_country
+      - has_code
+      - identified_by
+      - has_coordinates
+      - has_source
+      - has_score
+    slot_usage:
+      has_label:
+        required: true
+        description: Primary place name as recorded in the source.
+        examples:
+          - value: Amsterdam
+          - value: Batavia
+      has_name:
+        required: false
+        description: Modern equivalent name for historical places.
+        examples:
+          - value: Jakarta
+      in_country:
+        required: false
+        pattern: "^[A-Z]{2}$"
+        examples:
+          - value: NL
+          - value: ID
+      has_code:
+        required: false
+        description: Regional or administrative code (province, state, GeoNames ID).
+        examples:
+          - value: NH
+          - value: 2759794
+      identified_by:
+        range: WikiDataIdentifier
+        required: false
+        examples:
+          - value:
+      has_coordinates:
+        required: false
+        examples:
+          - value: 52.3676,4.9041
+      has_source:
+        required: false
+        description: Reference to the source document or record.
+        examples:
+          - value: Parish register St. Bavokerk, Haarlem
+          - value: Civil registration birth certificate
+    comments:
+      - Replaces simple birth_place string slot (Rule 53)
+      - Preserves historical place names while linking to modern identifiers
+      - GeoNames ID is authoritative per AGENTS.md
+    see_also:
+      - https://schema.org/birthPlace
+      - https://www.geonames.org/
+    examples:
+      - value:
+          has_label: Amsterdam
+          in_country: NL
+          has_code: NH
+          identified_by:
+          has_coordinates: 52.3676,4.9041
+        description: Dutch city with modern name
+      - value:
+          has_label: Batavia
+          has_name: Jakarta
+          in_country: ID
+          identified_by:
+        description: Historical colonial name with modern equivalent
+      - value:
+          has_label: rural Gelderland
+          in_country: NL
+          has_code: GE
+          has_source: Parish register Arnhem 1843
+        description: Imprecise location from historical record
+    keywords:
+      - birth
+      - place
+      - location
+      - geographic
+      - historical
+    notes:
+      - |
+        Preserve source-era place names and optionally link modern labels,
+        coordinates, and external identifiers for reconciliation.
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Relevant for person research across heritage sectors.
+      custodian_types: "['*']"
+    structured_aliases:
+      - literal_form: geboorteplaats
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: geboren te
+        predicate: RELATED_SYNONYM
+        in_language: nl
+      - literal_form: Geburtsort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: lieu de naissance
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: lugar de nacimiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مكان الميلاد
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: tempat lahir
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 出生地
+        predicate: EXACT_SYNONYM
+        in_language: zh

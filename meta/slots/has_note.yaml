@@ -1,0 +1,161 @@
+# ==============================================================================
+# LinkML Slot Definition: has_note
+# ==============================================================================
+# Attaches annotations, comments, or supplementary remarks to entities for
+# additional context, explanation, or observation.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line               | Mapping | Notes                                            |
+# |---------------|-------------------------|-------------------------|---------|--------------------------------------------------|
+# | **SKOS**      | `skos:note`             | skos.rdf:176-185        | exact   | "A general note, for any purpose."               |
+# | **CIDOC-CRM** | `crm:P3_has_note`       | CIDOC_CRM:1227-1241     | exact   | Container for informal descriptions.             |
+# | **RDFS**      | `rdfs:comment`          | (RDF Schema)            | close   | Human-readable description of resource.          |
+# | **DCTerms**   | `dcterms:description`   | dcterms.rdf:1227-1245   | broad   | "An account of the resource."                    |
+# | **SKOS**      | `skos:changeNote`       | skos.rdf:186-196        | narrow  | Note about modification to a concept.            |
+# | **SKOS**      | `skos:definition`       | skos.rdf:197-207        | narrow  | Statement or formal explanation of meaning.      |
+# | **SKOS**      | `skos:editorialNote`    | skos.rdf:208-218        | narrow  | Note for editor, translator, maintainer.         |
+# | **SKOS**      | `skos:example`          | skos.rdf:219-229        | narrow  | Example of the use of a concept.                 |
+# | **SKOS**      | `skos:historyNote`      | skos.rdf:230-240        | narrow  | Note about past state/use/meaning.               |
+# | **SKOS**      | `skos:scopeNote`        | skos.rdf:241-248        | narrow  | Note that helps clarify meaning/use.             |
+#
+# SKOS NOTE HIERARCHY (narrow_mappings - all subPropertyOf skos:note):
+# - skos:changeNote (186-196): "A note about a modification to a concept."
+# - skos:definition (197-207): "A statement or formal explanation of meaning."
+# - skos:editorialNote (208-218): "A note for an editor, translator, maintainer."
+# - skos:example (219-229): "An example of the use of a concept."
+# - skos:historyNote (230-240): "A note about the past state/use/meaning."
+# - skos:scopeNote (241-248): "A note that helps clarify meaning/use."
+#
+# CREATED: 2026-01-18
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_note
+name: has_note
+title: Has Note
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+default_prefix: hc
+description: |
+  To possess an appended annotation, comment, or supplementary remark that provides additional context, explanation, or observation regarding an entity.
+slots:
+  has_note:
+    slot_uri: skos:note
+    description: |
+      To possess an appended annotation, comment, or supplementary remark that provides additional context, explanation, or observation regarding an entity.
+    alt_descriptions:
+      nl: Een bijgevoegde aantekening, opmerking of aanvullende toelichting bezitten die aanvullende context, uitleg of observatie biedt over een entiteit.
+      de: Eine angehängte Anmerkung, einen Kommentar oder eine ergänzende Bemerkung besitzen, die zusätzlichen Kontext, Erklärung oder Beobachtung zu einer Entität bietet.
+      fr: Posséder une annotation, un commentaire ou une remarque supplémentaire annexée qui fournit un contexte, une explication ou une observation supplémentaire concernant une entité.
+      ar: امتلاك ملاحظة أو تعليق أو ملاحظة تكميلية مرفقة توفر سياقًا إضافيًا أو شرحًا أو ملاحظة بشأن كيان.
+      id: Memiliki anotasi, komentar, atau catatan tambahan yang dilampirkan yang memberikan konteks, penjelasan, atau pengamatan tambahan mengenai suatu entitas.
+      zh: 拥有附加的注释、评论或补充说明，为实体提供额外的上下文、解释或观察。
+      es: Poseer una anotación, comentario o nota suplementaria adjunta que proporciona contexto, explicación u observación adicional sobre una entidad.
+    structured_aliases:
+      - literal_form: heeft notitie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Anmerkung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a pour note
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه ملاحظة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki catatan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有注释
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene nota
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined: false
+    inlined_as_list: false
+    exact_mappings:
+      - crm:P3_has_note  # CIDOC_CRM:1227-1241 - container for informal descriptions
+    close_mappings:
+      - rdfs:comment  # RDF Schema - human-readable description of resource
+    broad_mappings:
+      - dcterms:description  # dcterms.rdf:1227-1245 - "An account of the resource"
+    narrow_mappings:
+      - skos:changeNote  # skos.rdf:186-196 - note about modification to concept
+      - skos:definition  # skos.rdf:197-207 - statement of meaning
+      - skos:editorialNote  # skos.rdf:208-218 - note for editors/maintainers
+      - skos:example  # skos.rdf:219-229 - example of concept use
+      - skos:historyNote  # skos.rdf:230-240 - note about past state/use
+      - skos:scopeNote  # skos.rdf:241-248 - note clarifying meaning/use
+    aliases:
+      - has_or_had_note
+      - has_or_had_appraisal_note
+      - has_appraisal_note
+      - has_or_had_arrangement_note
+      - privacy_note
+      - record_note
+      - note
+      - conservation_note
+      - copy_note
+      - example_note
+      - legal_note
+      - loan_note
+      - name_specification
+      - observation_note
+      - performance_note
+      - place_note
+      - preservation_note
+      - has_custodian_observation
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.60
+    examples:
+      - value: "Additional verification required for this claim."
+        description: Claim note about verification status.
+      - value: "Data migrated from legacy system on 2024-01-15."
+        description: Extraction/migration note.
+      - value: "Object requires conservation assessment before display."
+        description: Conservation note for a museum object.
+      - value: "Attribution based on stylistic analysis, not documentary evidence."
+        description: Certainty note about provenance.
+    comments:
+      - |
+        **Replaces** (per slot_fixes.yaml):
+        - `claim_note` (string-valued) → Note with note_type: claim
+        - `category_note` (string-valued) → Note with note_type: category
+        - `certainty_note` (string-valued) → Note with note_type: certainty
+        - `conservation_note` (string-valued) → Note with note_type: conservation
+        - Other *_note slots per slot_fixes.yaml
+      - |
+        **PURPOSE**: Generic slot for attaching typed notes (claim, category, 
+        certainty, conservation, extraction, etc.) with optional language and 
+        date metadata. Use narrow_mappings (skos:changeNote, skos:scopeNote, etc.)
+        when a more specific note type is appropriate.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | SKOS | skos:note | 176-185 | exact | General note for any purpose |
+        | CIDOC-CRM | crm:P3_has_note | 1227-1241 | exact | Informal descriptions |
+        | RDFS | rdfs:comment | - | close | Human-readable description |
+        | DCTerms | dcterms:description | 1227-1245 | broad | Account of resource |
+      - |
+        **SKOS NOTE HIERARCHY** (narrow_mappings):
+        All of skos:changeNote, skos:definition, skos:editorialNote, skos:example,
+        skos:historyNote, and skos:scopeNote are subPropertyOf skos:note.
+      - Updated 2026-02-03 with verified ontology mappings and translations.

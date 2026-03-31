@@ -1,0 +1,87 @@
+# ==============================================================================
+# LinkML Slot Definition: has_digital_presence
+# ==============================================================================
+# An existence, representation, or footprint in the digital realm, such as a
+# website, social media profile, or online database entry.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping  | Notes                              |
+# |---------------|-----------------------|----------------------------|----------|------------------------------------|
+# | **FOAF**      | `foaf:homepage`       | foaf.ttl:291-301           | related  | "A homepage for some thing" — only homepage URL, not general digital presence |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, cleaned description (moved migration note
+#   to comments), added foaf:homepage as related
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_digital_presence
+name: has_digital_presence
+title: Has Digital Presence
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  foaf: http://xmlns.com/foaf/0.1/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_digital_presence:
+    slot_uri: hc:hasDigitalPresence
+    description: >-
+      To possess or maintain an existence, representation, or footprint in the digital realm, such as a website, social media profile, or online database entry.
+    alt_descriptions:
+      nl: >-
+        Een aanwezigheid, vertegenwoordiging of voetafdruk in het digitale domein bezitten of onderhouden, zoals een website, socialemediaprofiel of online database-vermelding.
+      de: >-
+        Eine Existenz, Repräsentation oder Präsenz im digitalen Bereich besitzen oder pflegen, wie eine Website, ein Social-Media-Profil oder einen Online-Datenbankeintrag.
+      fr: >-
+        Posséder ou maintenir une existence, une représentation ou une empreinte dans le domaine numérique, comme un site web, un profil de réseau social ou une entrée de base de données en ligne.
+      ar: >-
+        امتلاك أو الحفاظ على وجود أو تمثيل أو بصمة في المجال الرقمي، مثل موقع إلكتروني أو ملف تعريف على وسائل التواصل الاجتماعي أو إدخال في قاعدة بيانات عبر الإنترنت.
+      id: >-
+        Memiliki atau memelihara keberadaan, representasi, atau jejak di ranah digital, seperti situs web, profil media sosial, atau entri basis data daring.
+      zh: >-
+        拥有或维护在数字领域中的存在、表现或足迹，如网站、社交媒体档案或在线数据库条目。
+      es: >-
+        Poseer o mantener una existencia, representación o huella en el ámbito digital, como un sitio web, perfil de redes sociales o entrada de base de datos en línea.
+    structured_aliases:
+      - literal_form: heeft digitale aanwezigheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat digitale Präsenz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une présence numérique
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه حضور رقمي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki kehadiran digital
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有数字存在
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene presencia digital
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_digital_presence
+      - is_or_was_about_digital_presence
+      - about_digital_presence
+      - digital_presence
+    related_mappings:
+      - foaf:homepage  # foaf.ttl:291-301 - "A homepage for some thing" — only homepage, not general digital presence
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_digital_presence for conciseness.
+    annotations:
+      custodian_types: '["*"]'

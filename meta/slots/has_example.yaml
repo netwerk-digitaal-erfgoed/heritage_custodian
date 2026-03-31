@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: has_example
+# ==============================================================================
+# Links a concept, type, or entity to an illustrative example that helps 
+# clarify its meaning, usage, or application.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line               | Mapping | Notes                                          |
+# |---------------|----------------------------|-------------------------|---------|------------------------------------------------|
+# | **SKOS**      | `skos:example`             | skos.rdf:219-229        | exact   | "An example of the use of a concept."          |
+# | **SKOS**      | `skos:note`                | skos.rdf:176-185        | broad   | General note; skos:example is subPropertyOf.   |
+# | **CIDOC-CRM** | `crm:P3_has_note`          | CIDOC_CRM:1227-1241     | related | Container for informal descriptions.           |
+# | **Schema.org**| `schema:workExample`       | schemaorg.owl:40436-55  | related | Instance/realization of a creative work.       |
+# | **Schema.org**| `schema:exampleOfWork`     | schemaorg.owl:17481-503 | related | Inverse; the work this is an example of.       |
+#
+# SKOS NOTE HIERARCHY (siblings of skos:example - all subPropertyOf skos:note):
+# - skos:changeNote (line 193), skos:definition (204), skos:editorialNote (215)
+# - skos:example (226), skos:historyNote (237), skos:scopeNote (248)
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_example
+name: has_example
+title: Has Example
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+description: |
+  To possess or reference a specific instance or representative case that serves to illustrate a concept, category, or pattern.
+imports:
+- linkml:types
+slots:
+  has_example:
+    slot_uri: skos:example
+    description: |
+      To possess or reference a specific instance or representative case that serves to illustrate a concept, category, or pattern.
+    alt_descriptions:
+      nl: Het bezitten van of verwijzen naar een specifiek geval of representatief voorbeeld dat dient om een concept, categorie of patroon te illustreren.
+      de: Besitzen oder Verweisen auf einen spezifischen Fall oder repräsentativen Beispielfall, der dazu dient, ein Konzept, eine Kategorie oder ein Muster zu veranschaulichen.
+      fr: Posséder ou référencer un cas spécifique ou représentatif qui sert à illustrer un concept, une catégorie ou un modèle.
+      ar: امتلاك أو الإشارة إلى حالة محددة أو حالة تمثيلية تعمل على توضيح مفهوم أو فئة أو نمط.
+      id: Memiliki atau merujuk pada contoh atau kasus representatif yang berfungsi untuk mengilustrasikan suatu konsep, kategori, atau pola.
+      zh: 拥有或引用一个用于说明概念、类别或模式的具体实例或代表性案例。
+      es: Poseer o referenciar un caso específico o representativo que sirve para ilustrar un concepto, categoría o patrón.
+    structured_aliases:
+      - literal_form: heeft voorbeeld
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Beispiel
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a pour exemple
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه مثال
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki contoh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有示例
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene ejemplo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined: false
+    exact_mappings:
+    broad_mappings:
+      - skos:note  # skos.rdf:176-185 - skos:example is subPropertyOf skos:note
+    related_mappings:
+      - crm:P3_has_note  # CIDOC_CRM:1227-1241 - container for informal descriptions (different axis)
+      - schema:workExample  # schemaorg.owl:40436-40455 - instance/realization of creative work
+      - schema:exampleOfWork  # schemaorg.owl:17481-17503 - inverse of workExample
+    aliases:
+      - has_or_had_example
+      - notable_examples
+      - social_media_example_profile
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.75
+    examples:
+      - value: "The term 'baroque' is exemplified by the works of Caravaggio and Rubens."
+        description: Illustrating a concept from art history with specific artists.
+      - value: "https://example.org/collection/rijksmuseum-collection-baroque"
+        description: URI reference to an example collection illustrating a concept.
+      - value: "The 'active collection management' approach is demonstrated by the Rijksmuseum's digitization project."
+        description: Illustrating a heritage management concept with a specific institutional example.
+    comments:
+      - Relates a concept or type to an illustrative example.
+      - MIGRATED from example_* slots per slot_fixes.yaml (Rule 53).
+      - |
+        **PURPOSE**: Enables linking concepts, categories, or types to concrete examples 
+        that help clarify their meaning, usage patterns, or application in practice. 
+        Essential for documentation, training materials, and knowledge organization systems.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | SKOS | skos:example | 219-229 | exact | "An example of the use of a concept" |
+        | SKOS | skos:note | 176-185 | broad | Parent property; general notes |
+        | CIDOC-CRM | crm:P3_has_note | 1227-1241 | related | Informal descriptions container |
+        | Schema.org | schema:workExample | 40436-55 | related | Instance of creative work |
+      - Updated 2026-02-03 with verified ontology mappings and translations.

@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: lease
+# ==============================================================================
+# The temporary right to use an asset or property in exchange for payments.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                        | File/Line                 | Mapping  | Notes                                                       |
+# |---------------|---------------------------------|---------------------------|----------|-------------------------------------------------------------|
+# | **Schema.org**| `schema:leaseLength`            | schemaorg.owl:24106-24128 | related  | "Length of the lease for some Accommodation." Captures duration, not the lease arrangement itself. |
+# | **Schema.org**| `schema:validThrough`           | schemaorg.owl:39415-39437 | related  | "The date after when the item is not valid." Generic temporal validity, not lease-specific. |
+# | **CIDOC-CRM** | `crm:P30_transferred_custody_of`| CIDOC_CRM_v7.1.3.rdf:1904-1916 | related | "Identifies Physical Thing in Transfer of Custody." Custody transfer ≠ lease (temporary use rights). |
+#
+# NOTE: schema:RentAction ("giving money for temporary use, not ownership") is
+#       semantically closest but is a CLASS, not a property — cannot be used as mapping.
+#
+# CREATED: 2026-02-10
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/lease
+name: lease
+title: Lease
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  lease:
+    slot_uri: hc:lease
+    description: >-
+      Signifies the action of obtaining the temporary right to use an asset, property,
+      or service in exchange for periodic payments.
+    alt_descriptions:
+      nl: >-
+        Duidt op de handeling van het verkrijgen van het tijdelijke recht om een
+        bezitting, eigendom of dienst te gebruiken in ruil voor periodieke betalingen.
+      de: >-
+        Bezeichnet die Handlung des Erwerbs des vorübergehenden Rechts zur Nutzung
+        eines Vermögenswerts, einer Immobilie oder einer Dienstleistung im Austausch
+        gegen regelmäßige Zahlungen.
+      fr: >-
+        Désigne l'action d'obtenir le droit temporaire d'utiliser un bien, une
+        propriété ou un service en échange de paiements périodiques.
+      ar: >-
+        يشير إلى فعل الحصول على الحق المؤقت لاستخدام أصل أو عقار أو خدمة مقابل
+        مدفوعات دورية.
+      id: >-
+        Menandakan tindakan memperoleh hak sementara untuk menggunakan aset, properti,
+        atau layanan sebagai imbalan atas pembayaran berkala.
+      zh: >-
+        表示通过定期付款获得暂时使用资产、财产或服务的权利的行为。
+      es: >-
+        Indica la acción de obtener el derecho temporal de usar un activo, propiedad
+        o servicio a cambio de pagos periódicos.
+    structured_aliases:
+      - literal_form: Huurovereenkomst
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Mietvertrag
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Bail
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: عقد إيجار
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Sewa
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 租赁
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Arrendamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - 'Schema.org: schema:validThrough can express temporal validity of a lease.'
+      - Only relevant if is_leased is TRUE.
+    related_mappings:
+      - schema:leaseLength  # schemaorg.owl:24106-24128 — "Length of the lease for some Accommodation." Captures duration, not the lease arrangement.
+      - schema:validThrough  # schemaorg.owl:39415-39437 — "The date after when the item is not valid." Generic temporal validity.
+      - crm:P30_transferred_custody_of  # CIDOC_CRM_v7.1.3.rdf:1904-1916 — "Identifies Physical Thing in Transfer of Custody." Custody transfer ≠ lease.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - lease_expiry

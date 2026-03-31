@@ -1,0 +1,129 @@
+id: https://nde.nl/ontology/hc/class/Methodology
+name: Methodology
+title: Methodology
+description: Structured description of the procedure used to derive measurements or analytical outcomes.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../enums/MethodologyTypeEnum
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_score
+- ../slots/has_threshold
+- ../slots/has_version
+- ../slots/has_type
+default_prefix: hc
+classes:
+  Methodology:
+    class_uri: prov:Plan
+    description: >-
+      Structured plan describing the technique, algorithm, or procedural
+      approach used to derive a measurement or analytical result.
+    alt_descriptions:
+      nl: Gestructureerd plan dat de techniek
+      de: Strukturierter Plan
+      fr: Plan structure decrivant la technique
+      es: Plan estructurado que describe la tecnica
+      ar: خطة منظمة تصف التقنية أو الخوارزمية أو النهج الإجرائي المستخدم لاشتقاق قياس أو نتيجة تحليلية.
+      id: Rencana terstruktur yang menjelaskan teknik
+      zh: 用于说明推导测量或分析结果所采用技术、算法或程序方法的结构化方案。
+    structured_aliases:
+    - literal_form: afleidingsmethodologie
+      in_language: nl
+    - literal_form: Ableitungsmethodik
+      in_language: de
+    - literal_form: methodologie de derivation
+      in_language: fr
+    - literal_form: metodologia de derivacion
+      in_language: es
+    - literal_form: منهجية اشتقاق
+      in_language: ar
+    - literal_form: metodologi penurunan
+      in_language: id
+    - literal_form: 推导方法学方案
+      in_language: zh
+    broad_mappings:
+    - prov:Plan
+    close_mappings:
+    - schema:HowToStep
+    related_mappings:
+    - dcterms:methodology
+    slots:
+    - identified_by
+    - has_type
+    - has_label
+    - has_description
+    - has_version
+    - has_threshold
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: false
+        examples:
+        - value: https://nde.nl/ontology/hc/methodology/retinaface-arcface-v1
+      has_type:
+        range: MethodologyTypeEnum
+        required: false
+        examples:
+        - value: ENTITY_RESOLUTION
+        - value: OBJECT_TRACKING
+      has_label:
+#         range: string
+        required: false
+        description: 'Human-readable name for the methodology or algorithm. MIGRATED: Now serves both methodology name AND algorithm_name (Rule 53/56).'
+        examples:
+        - value: RetinaFace + ArcFace clustering
+        - value: YOLOv8
+        - value: ArcFace
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: Faces detected using RetinaFace, clustered using ArcFace embeddings
+      has_version:
+#         range: string
+        required: false
+        examples:
+        - value: 1.0.0
+        - value: v8n
+      has_threshold:
+        range: ConfidenceThreshold
+        required: false
+        examples:
+        - value:
+    comments:
+    - Describes how a measurement or analytic output was derived.
+    - Essential for comparing results produced by different methods.
+    - Aligned with PROV-O plan semantics for reproducible provenance.
+    - Supports migration from legacy unique object and face count fields.
+    see_also:
+    - https://www.w3.org/TR/prov-o/#Plan
+    examples:
+    - value:
+        methodology_type: ENTITY_RESOLUTION
+        has_label: RetinaFace + ArcFace clustering
+        has_description: Faces detected using RetinaFace model, then clustered using ArcFace embeddings with cosine similarity threshold 0.6.
+        has_version: '1.0'
+        has_threshold:
+        - threshold_value: 0.6
+    - value:
+        methodology_type: OBJECT_TRACKING
+        has_label: DeepSORT multi-object tracking
+        has_description: Objects tracked across video frames using DeepSORT algorithm with Kalman filtering and appearance features.
+        has_version: '1.0'
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

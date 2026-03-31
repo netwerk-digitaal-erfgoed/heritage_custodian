@@ -1,0 +1,183 @@
+id: https://nde.nl/ontology/hc/class/Publisher
+name: Publisher
+title: Publisher Class
+description: 'Represents a publisher entity for publications and documents.
+
+
+  CREATED 2026-01-17 per Rule 53/56: Class for structured publisher representation.
+
+  Replaces string-valued publisher slot with structured data including:
+
+  - Publisher name (required)
+
+  - Publisher type (institutional, commercial, academic, self-published)
+
+  - Location/city
+
+  - Identifiers (ISNI, Wikidata)
+
+  - URL
+
+
+  **Ontology Alignment**:
+
+
+  - **Schema.org**: schema:Organization (primary - web discoverability)
+
+  - **Dublin Core**: dcterms:Agent (abstract agent entity)
+
+  - **FOAF**: foaf:Organization (friend-of-a-friend vocabulary)
+
+
+  **Publisher Types**:
+
+
+  | Type | Description | Example |
+
+  |------|-------------|---------|
+
+  | institutional | Museum, archive, or library publishing | Rijksmuseum, British Museum Press |
+
+  | commercial | Trade and commercial publishers | Thames & Hudson, Phaidon |
+
+  | academic | University and academic presses | Yale University Press, MIT Press |
+
+  | self-published | Self-publishing by individuals | Artist monographs |
+
+  | government | Government publishing offices | GPO, HMSO |
+
+  '
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+- linkml:types
+- ../metadata
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_location
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_url
+default_prefix: hc
+classes:
+  Publisher:
+    class_uri: schema:Organization
+    description: >-
+      Organization or entity responsible for producing and distributing publications,
+      catalogs, finding aids, or other documents to the public.
+    alt_descriptions:
+      nl: >-
+        Organisatie of entiteit verantwoordelijk voor het produceren en distribueren van publicaties,
+        catalogi, finders aids of andere documenten aan het publiek.
+      de: >-
+        Organisation oder Entität, die für die Produktion und Verbreitung von Publikationen,
+        Katalogen, Findbüchern oder anderen Dokumenten an die Öffentlichkeit verantwortlich ist.
+      fr: >-
+        Organisation ou entité responsable de la production et de la distribution de publications,
+        de catalogues, d'instruments de recherche ou d'autres documents au public.
+      es: >-
+        Organización o entidad responsable de producir y distribuir publicaciones,
+        catálogos, guías de búsqueda u otros documentos al público.
+      ar: >-
+        منظمة أو كيان مسؤول عن إنتاج وتوزيع المنشورات
+        والفهاتس وأدلة البحث أو وثائق أخرى للجمهور.
+      id: >-
+        Organisasi atau entitas yang bertanggung jawab untuk memproduksi dan mendistribusikan publikasi,
+        katalog, finding aid, atau dokumen lain kepada publik.
+      zh: >-
+        负责向公众制作和分发出版物、目录、检索工具或其他文档的组织或实体。
+    close_mappings:
+    - dcterms:Agent
+    broad_mappings:
+    - foaf:Organization
+    - schema:Thing
+    - schema:Organization
+    keywords:
+    - publisher
+    - publishing organization
+    - document producer
+    structured_aliases:
+    - literal_form: uitgever
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Verlag
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: éditeur
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    comments:
+    - CREATED 2026-01-17 per Rule 53/56: Replaces string-valued publisher slot
+    - Supports structured representation with name, type, location, and identifiers
+    slots:
+    - has_label
+    - identified_by
+    - has_location
+    - has_url
+    - has_type
+    - has_score
+    slot_usage:
+      has_label:
+        required: true
+        examples:
+        - value: Rijksmuseum
+        - value: Yale University Press
+        - value: Thames & Hudson
+        - value: The British Museum Press
+      has_type:
+        required: false
+        examples:
+        - value: institutional
+        - value: commercial
+        - value: academic
+        - value: government
+      has_location:
+        required: false
+        examples:
+        - value: Amsterdam
+        - value: New York
+        - value: London
+        - value: New Haven
+      identified_by:
+        required: false
+        multivalued: true
+        examples:
+        - value: Q190804
+        - value: 0000000121671840
+      has_url:
+        required: false
+        range: uri
+        examples:
+        - value: https://www.rijksmuseum.nl
+        - value: https://yalebooks.yale.edu
+    examples:
+    - value:
+        has_label: Rijksmuseum
+        has_type: institutional
+        has_location: Amsterdam
+        has_url: https://www.rijksmuseum.nl
+    - value:
+        has_label: Yale University Press
+        has_type: academic
+        has_location: New Haven
+        has_url: https://yalebooks.yale.edu
+    - value:
+        has_label: Thames & Hudson
+        has_type: commercial
+        has_location: London
+    - value:
+        has_label: The British Museum Press
+        has_type: institutional
+        has_location: London
+    - value:
+        has_label: Hannibal Publishing
+        has_type: commercial
+        has_location: Veurne
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

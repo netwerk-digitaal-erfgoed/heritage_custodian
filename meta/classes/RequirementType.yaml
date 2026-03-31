@@ -1,0 +1,109 @@
+id: https://nde.nl/ontology/hc/class/RequirementType
+name: requirement_type_class
+title: Requirement Type Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  org: http://www.w3.org/ns/org#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_hypernym
+- ../slots/has_hyponym
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/equivalent_to
+- ../slots/related_to
+classes:
+  RequirementType:
+    class_uri: skos:Concept
+    description: >-
+      Classification type for funding call requirements in heritage contexts.
+    alt_descriptions:
+      nl: Classificatietype voor subsidie-eisen in erfgoedcontexten.
+      de: Klassifizierungstyp für Förderanforderungen im Heritage-Kontext.
+      fr: Type de classification pour les exigences de financement dans le contexte patrimonial.
+    structured_aliases:
+    - literal_form: vereistentype
+      in_language: nl
+    - literal_form: Anforderungstyp
+      in_language: de
+    - literal_form: type d'exigence
+      in_language: fr
+    comments:
+    - Provides SKOS-based classification hierarchy for funding call requirements.
+    - Includes eligibility criteria, financial conditions, partnership requirements, thematic focus, technical deliverables, and administrative requirements.
+    - Categories include ELIGIBILITY, FINANCIAL, PARTNERSHIP, THEMATIC, TECHNICAL, ADMINISTRATIVE.
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - schema:Thing
+    - dcterms:subject
+    related_mappings:
+    - schema:eligibleRegion
+    - org:Organization
+    slots:
+    - identified_by
+    - has_code
+    - has_label
+    - has_description
+    - has_hypernym
+    - has_hyponym
+    - related_to
+    - equivalent_to
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/requirement-type/[a-z0-9-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/requirement-type/eligibility-geographic
+      has_code:
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+        examples:
+        - value: ELIGIBILITY_GEOGRAPHIC
+        - value: FINANCIAL_COFUNDING
+        - value: PARTNERSHIP_MINIMUM_PARTNERS
+      has_label:
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Geographic eligibility@en
+          - Geografische geschiktheid@nl
+        - value:
+          - Co-funding requirement@en
+          - Cofinancieringseis@nl
+      has_description:
+        examples:
+        - value: Geographic eligibility constraint on applicant location (e.g., EU Member States only).
+      has_hypernym:
+        range: RequirementType
+      has_hyponym:
+        range: RequirementType
+        multivalued: true
+        inlined_as_list: true
+      equivalent_to:
+        range: WikiDataIdentifier
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    notes:
+    - |
+      Preserved from prior description (commit 6251b84d):
+
+      Preserved from prior description (commit 6251b84d):
+
+      "Classification type for funding call requirements in heritage contexts.\n\n**DEFINITION**:\n\nRequirementType provides a SKOS-based classification hierarchy for categorizing\ndifferent types of requirements that funding calls may impose on applicants.\nThis includes eligibility criteria, financial conditions, partnership requirements,\nthematic focus areas, technical deliverables, and administrative requirements.\n\n**ONTOLOGY ALIGNMENT**:\n\n| Ontology | Class/Property | Notes |\n|----------|----------------|-------|\n| **SKOS** | `skos:Concept` | Primary - controlled vocabulary concept |\n| **Schema.org** | `schema:eligibleRegion` | Geographic eligibility |\n| **W3C Org** | `org:Organization` | Organizational eligibility |\n| **Dublin Core** | `dcterms:subject` | Thematic requirements |\n\n**REQUIREMENT CATEGORIES**:\n\n| Category | Prefix | Description |\n|----------|--------|-------------|\n| **Eligibility** | `ELIGIBILITY_` | Who can apply |\n| **Financial** | `FINANCIAL_`\
+    annotations:
+      specificity_score: '0.65'
+      specificity_rationale: Requirement types specific to funding call contexts but applicable across heritage sectors.
+      has_score:
+      enum_migration: "2026-01-13: Promoted FundingRequirementTypeEnum to RequirementType class hierarchy\n- Original enum archived to archive/enums/FundingRequirementTypeEnum.yaml\n- 27 enum values → 27 concrete subclasses in RequirementTypes.yaml\n"
+      custodian_types: "['*']"

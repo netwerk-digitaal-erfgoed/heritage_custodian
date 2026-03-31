@@ -1,0 +1,74 @@
+id: https://nde.nl/ontology/hc/class/IdentifierType
+name: IdentifierType
+title: Identifier Type Class (Abstract Base)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  adms: http://www.w3.org/ns/adms#
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_code
+- ../slots/has_description
+- ../slots/has_label
+classes:
+  IdentifierType:
+    class_uri: adms:Identifier
+    abstract: true
+    description: >-
+      Abstract taxonomy class for categorizing identifier kinds used across
+      authority control, registration, bibliographic, archival, and local systems.
+    alt_descriptions:
+      nl: Abstracte taxonomieklasse voor typering van identificatorsoorten in autoriteits- registratie- bibliografische archief- en lokale systemen.
+      de: Abstrakte Taxonomieklasse zur Kategorisierung von Identifikatortypen in Normdaten- Register- bibliografischen Archiv- und Lokalsystemen.
+      fr: Classe taxonomique abstraite pour categoriser les types d identifiants utilises dans les systemes d autorite registre bibliographie et archives.
+      es: Clase taxonomica abstracta para categorizar tipos de identificadores usados en sistemas de autoridad registro bibliografia y archivo.
+      ar: فئة تصنيفية مجردة لتصنيف أنواع المعرّفات المستخدمة في أنظمة الضبط الاستنادي والتسجيل والببليوغرافيا والأرشفة والأنظمة المحلية.
+      id: Kelas taksonomi abstrak untuk mengategorikan jenis pengenal pada sistem kendali otoritas registrasi bibliografi kearsipan dan lokal.
+      zh: 用于分类各类标识类型的抽象分类类，涵盖规范控制、注册、书目、档案与本地系统。
+    structured_aliases:
+    - {literal_form: type identificator, in_language: nl}
+    - {literal_form: Identifikatortyp, in_language: de}
+    - {literal_form: type d identifiant, in_language: fr}
+    - {literal_form: tipo de identificador, in_language: es}
+    - {literal_form: نوع معرّف, in_language: ar}
+    - {literal_form: tipe pengenal, in_language: id}
+    - {literal_form: 标识类型, in_language: zh}
+    broad_mappings:
+    - adms:Identifier
+    close_mappings:
+    - dcterms:identifier
+    - skos:Concept
+    slots:
+    - has_code
+    - has_label
+    - has_description
+    slot_usage:
+      has_code:
+#         range: string
+        required: true
+        identifier: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+      has_label:
+#         range: string
+        required: true
+      has_description:
+#         range: string
+        required: false
+    comments:
+    - Abstract base class - use concrete subclasses from IdentifierTypes.yaml
+    see_also:
+    - https://www.w3.org/ns/adms
+    - https://www.iso.org/standard/77849.html
+    notes:
+    - |
+      Preserved from prior description (commit 6e634651):
+
+      "Abstract base class for identifier type taxonomy.\n**Rule 0b Compliance**: This is the abstract TYPE file. Concrete identifier types are defined in IdentifierTypes.yaml (plural).\nCategories of identifiers: - **Authority identifiers**: ISIL, VIAF, ISNI, ROR, ORCID - **Cultural heritage identifiers**: Wikidata, GND, ULAN - **Registration identifiers**: KvK, EU VAT, Legal Entity - **Bibliographic identifiers**: ISBN, ISSN, DOI - **Art/Museum identifiers**: Catalog Raisonn\xE9, Inventory Number - **Archival identifiers**: Finding Aid ID, Fonds Number - **Internal identifiers**: Local codes, System IDs\nThis taxonomy replaces string-based identifier_scheme with structured class-based typing per Rule 53."
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

@@ -1,0 +1,70 @@
+id: https://nde.nl/ontology/hc/class/DataServiceEndpointType
+name: data_service_endpoint_type
+title: DataServiceEndpointType Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../slots/has_format
+- ../slots/has_method
+- ../slots/has_score
+- ../slots/used_in
+- ../slots/has_specification
+classes:
+  DataServiceEndpointType:
+    abstract: true
+    class_uri: skos:Concept
+    description: >-
+      Abstract taxonomy node used to classify callable service interfaces by
+      protocol family and interaction profile.
+    alt_descriptions:
+      nl: Abstract taxonomieknooppunt om aanroepbare service-interfaces te classificeren op protocolfamilie en interactieprofiel.
+      de: Abstrakter Taxonomieknoten zur Klassifikation aufrufbarer Service-Schnittstellen nach Protokollfamilie und Interaktionsprofil.
+      fr: Noeud taxonomique abstrait pour classer les interfaces de service appelables selon la famille de protocole et le profil d interaction.
+      es: Nodo taxonomico abstracto para clasificar interfaces de servicio invocables por familia de protocolo y perfil de interaccion.
+      ar: عقدة تصنيفية مجردة لتصنيف واجهات الخدمة القابلة للاستدعاء حسب عائلة البروتوكول ونمط التفاعل.
+      id: Simpul taksonomi abstrak untuk mengklasifikasikan antarmuka layanan yang dapat dipanggil berdasarkan keluarga protokol dan profil interaksi.
+      zh: 用于按协议族与交互特征分类可调用服务接口的抽象分类节点。
+    structured_aliases:
+    - {literal_form: endpointtype, in_language: nl}
+    - {literal_form: Endpunkttyp, in_language: de}
+    - {literal_form: type de point d acces, in_language: fr}
+    - {literal_form: tipo de endpoint, in_language: es}
+    - {literal_form: نوع نقطة النهاية, in_language: ar}
+    - {literal_form: tipe endpoint layanan, in_language: id}
+    - {literal_form: 端点类型, in_language: zh}
+    broad_mappings:
+    - dcat:DataService
+    - skos:Concept
+    close_mappings:
+    - dcterms:type
+    slots:
+    - has_score
+    - has_specification
+    - has_format
+    - has_method
+    - used_in
+    - identified_by
+    - has_description
+    - has_label
+    - has_version
+    - related_to
+    - has_hyponym
+    slot_usage:
+      used_in:
+        range: HeritageSector
+      has_format:
+        slot_uri: dcterms:format
+        multivalued: true
+      has_method:
+        slot_uri: schema:httpMethod
+        multivalued: true
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

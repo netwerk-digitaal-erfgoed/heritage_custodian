@@ -1,0 +1,138 @@
+# ==============================================================================
+# LinkML Slot Definition: created_by
+# ==============================================================================
+# Links an entity to its creator, manufacturer, or producer. Uses RiC-O temporal
+# naming convention (alias: is_or_was_created_by) indicating the relationship 
+# may be historical.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                   | File/Line               | Mapping | Notes                                            |
+# |---------------|----------------------------|-------------------------|---------|--------------------------------------------------|
+# | **PROV-O**    | `prov:wasAttributedTo`     | prov.ttl:1082-1097      | exact   | "Attribution is the ascribing of an entity to    |
+# |               |                            |                         |         | an agent."                                       |
+# | **Schema.org**| `schema:creator`           | schemaorg.owl:13479-500 | close   | "Creator/author of this CreativeWork."           |
+# | **Schema.org**| `schema:manufacturer`      | schemaorg.owl:25377-381 | close   | "The manufacturer of the product."               |
+# | **CIDOC-CRM** | `crm:P94i_was_created_by`  | CIDOC_CRM:3238-3248     | close   | "Was created by" (inverse of P94_has_created).   |
+# | **CIDOC-CRM** | `crm:P108i_was_produced_by`| CIDOC_CRM:3625      | close   | Production relationship for physical things.     |
+# | **DCTerms**   | `dcterms:creator`          | dcterms.rdf:1092-1119   | close   | "An entity responsible for making the resource." |
+# | **PROV-O**    | `prov:wasInfluencedBy`     | prov.ttl:1147-1157      | broad   | Parent property; general influence relationship. |
+#
+# CREATED: 2026-01-25
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/created_by
+name: created_by
+title: Created By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+description: |
+  To be brought into existence or authored by a specific agent or entity responsible for its origination.
+imports:
+- linkml:types
+slots:
+  created_by:
+    slot_uri: prov:wasAttributedTo
+    description: |
+      To be brought into existence or authored by a specific agent or entity responsible for its origination.
+    alt_descriptions:
+      nl: Tot stand gebracht of geschreven door een specifieke agent of entiteit die verantwoordelijk is voor het ontstaan ervan.
+      de: In Existenz gebracht oder verfasst von einem spezifischen Akteur oder einer Entität, die für ihre Entstehung verantwortlich ist.
+      fr: Être créé ou rédigé par un agent ou une entité spécifique responsable de son origine.
+      ar: أن يتم إنشاؤه أو تأليفه بواسطة وكيل أو كيان محدد مسؤول عن نشأته.
+      id: Diciptakan atau ditulis oleh agen atau entitas tertentu yang bertanggung jawab atas asal-usulnya.
+      zh: 由负责其创建的特定代理或实体创建或撰写。
+      es: Ser creado o escrito por un agente o entidad específica responsable de su origen.
+    structured_aliases:
+      - literal_form: gemaakt door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erstellt von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: créé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أنشئ بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dibuat oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...创建
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: creado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    required: false
+    multivalued: false
+    exact_mappings:
+    close_mappings:
+      - schema:creator  # schemaorg.owl:13479-13500 - creator/author of CreativeWork
+      - schema:manufacturer  # schemaorg.owl:25377-25381 - manufacturer of the product
+      - crm:P94i_was_created_by  # CIDOC_CRM:3238-3248 - was created by (conceptual objects)
+      - crm:P108i_was_produced_by  # CIDOC_CRM:3625 - production relationship for physical things (inverse form)
+      - dcterms:creator  # dcterms.rdf:1092-1119 - entity responsible for making the resource
+    broad_mappings:
+      - prov:wasInfluencedBy  # prov.ttl:1147-1157 - parent property; general influence relationship
+      - dcterms:contributor  # dcterms:creator is subPropertyOf dcterms:contributor
+    aliases:
+      - is_or_was_created_by
+      - manufactured_by
+      - produced_by
+      - has_or_had_creator  
+      - has_creator
+      - created_by_project
+      - creating_agency
+      - creating_organization
+      - creator_role
+      - creator
+      - source_creator
+    annotations:
+      rico_naming_convention: |
+        Follows RiC-O "isOrWas" pattern for temporal predicates via alias.
+        See Rule 39: Slot Naming Convention (RiC-O Style)
+      replaces_slots: device_manufacturer
+      migration_date: '2026-01-25'
+      custodian_types: '["*"]'
+      specificity_score: 0.80
+    examples:
+      - value: https://nde.nl/ontology/hc/manufacturer/estimote
+        description: Reference to Estimote as device manufacturer.
+      - value: https://nde.nl/ontology/hc/manufacturer/sensirion
+        description: Reference to Sensirion as sensor manufacturer.
+      - value: https://www.wikidata.org/wiki/Q42
+        description: Wikidata reference to a creator (Douglas Adams).
+    comments:
+      - Links products/devices to their manufacturer.
+      - Use Manufacturer class for structured manufacturer data.
+      - 'RiC-O naming: isOrWas indicates potentially historical relationship.'
+      - PROV-O wasAttributedTo for provenance chain tracking.
+      - |
+        **PURPOSE**: Establishes provenance by linking entities to their creators,
+        manufacturers, or producers. Essential for tracking the origin of physical
+        objects, digital assets, and conceptual works within GLAM collections.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | PROV-O | prov:wasAttributedTo | 1082-1097 | exact | Agent attribution |
+        | Schema.org | schema:creator | 13479-500 | close | Creator of work |
+        | Schema.org | schema:manufacturer | 25377-381 | close | Product manufacturer |
+        | CIDOC-CRM | crm:P94i_was_created_by | 3238-3248 | close | Conceptual creation |
+        | DCTerms | dcterms:creator | 1092-1119 | close | Responsible entity |
+        | PROV-O | prov:wasInfluencedBy | 1147-1157 | broad | General influence |
+      - Updated 2026-02-03 with verified ontology mappings and translations.

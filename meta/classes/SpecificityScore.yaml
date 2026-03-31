@@ -1,0 +1,73 @@
+id: https://nde.nl/ontology/hc/class/SpecificityScore
+name: SpecificityScore
+title: Specificity Score
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_agent
+  - ../slots/has_rationale
+  - ../slots/has_specificity_score
+  - ../slots/has_timestamp
+classes:
+  SpecificityScore:
+    class_uri: hc:SpecificityScore
+    description: >-
+      Quantitative measure indicating how specific or general a class is
+      for retrieval-augmented generation across different search templates.
+    alt_descriptions:
+      nl: >-
+        Kwantitatieve maat die aangeeft hoe specifiek of algemeen een klasse is
+        voor ophaling-verrijkte generatie over verschillende zoektemplates.
+      de: >-
+        Quantitatives Maß, das angibt, wie spezifisch oder allgemein eine Klasse
+        für abrufgestützte Generierung über verschiedene Suchvorlagen ist.
+      fr: >-
+        Mesure quantitative indiquant le degré de spécificité ou de généralité d'une classe
+        pour la génération augmentée par récupération sur différents modèles de recherche.
+      es: >-
+        Medida cuantitativa que indica qué tan específica o general es una clase
+        para la generación aumentada por recuperación en diferentes plantillas de búsqueda.
+      ar: >-
+        مقياس كمي يشير إلى مدى خصوصية أو عمومية فئة ما
+        للجيل المعزز بالاسترجاع عبر قوالب بحث مختلفة.
+      id: >-
+        Ukuran kuantitatif yang menunjukkan seberapa spesifik atau umum suatu kelas
+        untuk generasi yang ditingkatkan pengambilan di berbagai template pencarian.
+      zh: >-
+        定量指标，表示一个类在不同搜索模板的检索增强生成中的特异性或通用性程度。
+    broad_mappings:
+      - prov:Entity
+      - schema:Thing
+    keywords:
+      - specificity score
+      - RAG scoring
+      - retrieval ranking
+      - template matching
+    structured_aliases:
+      - literal_form: specificiteitscore
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Spezifitätswert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: score de spécificité
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    comments:
+      - Scoring semantics - LOWER values indicate more broadly relevant classes
+      - 0.00-0.20 Universal, 0.20-0.40 Broadly useful, 0.40-0.60 Moderately specific
+      - 0.60-0.80 Fairly specific, 0.80-1.00 Highly specific
+    slots:
+      - has_specificity_score
+      - has_rationale
+      - has_timestamp
+      - has_agent
+    annotations:
+      specificity_score: 0.2
+      specificity_rationale: Meta-class for specificity annotations
+      custodian_types: "['*']"

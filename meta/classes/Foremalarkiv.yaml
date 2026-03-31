@@ -1,0 +1,64 @@
+id: https://w3id.org/nde/ontology/Foremalarkiv
+name: Foremalarkiv
+title: "Föremålsarkiv (Swedish Object Archive)"
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/identified_by
+- ../slots/has_score
+- ../slots/has_type
+classes:
+  Foremalarkiv:
+    description: >-
+      Swedish archive organization type focused on three-dimensional object
+      holdings and specimen records, combining archival governance with object
+      stewardship practices.
+    alt_descriptions:
+      nl: Zweeds type archieforganisatie gericht op driedimensionale objectcollecties en specimenregistraties met archiefmatige governance.
+      de: Schwedischer Archivorganisationstyp mit Fokus auf dreidimensionale Objektbestaende und Specimenunterlagen in archivischer Governance.
+      fr: Type d organisation archivistique suedoise axe sur des ensembles d objets tridimensionnels et des dossiers de specimens.
+      es: Tipo de organizacion archivistica sueca centrada en fondos de objetos tridimensionales y registros de especimenes.
+      ar: نمط منظمة أرشيفية سويدية يركز على مقتنيات الأشياء ثلاثية الأبعاد وسجلات العينات ضمن حوكمة أرشيفية.
+      id: Tipe organisasi arsip Swedia yang berfokus pada koleksi objek tiga dimensi dan catatan spesimen dalam tata kelola kearsipan.
+      zh: 瑞典档案机构类型，重点管理三维实物藏品与标本记录，并采用档案治理方式。
+    structured_aliases:
+    - {literal_form: Zweeds objectarchief, in_language: nl}
+    - {literal_form: Schwedisches Objektarchiv, in_language: de}
+    - {literal_form: archive suedoise d objets, in_language: fr}
+    - {literal_form: archivo sueco de objetos, in_language: es}
+    - {literal_form: أرشيف الأشياء السويدي, in_language: ar}
+    - {literal_form: arsip objek Swedia, in_language: id}
+    - {literal_form: 瑞典实物档案, in_language: zh}
+    is_a: ArchiveOrganizationType
+    class_uri: skos:Concept
+    slots:
+    - has_type
+    - has_score
+    - identified_by
+    slot_usage:
+      identified_by:
+      has_type:
+        any_of:
+        - equals_string: hc:ArchiveOrganizationType
+    broad_mappings:
+    - skos:Concept
+    annotations:
+      skos:prefLabel: "Föremålsarkiv"
+      skos:altLabel: Foremalarkiv, Object Archive, Swedish Object Archive
+      collection_type: three-dimensional objects
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+    see_also:
+    - ObjectCollection
+    - MuseumArchive
+    - SpecimenArchive
+    comments:
+    - "Swedish term: Föremålsarkiv (föremål = object, arkiv = archive)"
+    - Filename uses ASCII transliteration for filesystem compatibility
+    - Applies archival methodology to physical object collections
+    - Distinct from traditional document-based archives

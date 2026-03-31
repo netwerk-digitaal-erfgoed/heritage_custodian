@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: has_staff
+# ==============================================================================
+# Personnel, employees, or workforce associated with an organization.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line                | Mapping | Notes                                               |
+# |---------------|--------------------|--------------------------|---------|-----------------------------------------------------|
+# | **Schema.org**| `schema:employee`  | schemaorg.owl:16519-16540| exact   | "Someone working for this organization." Employee is narrower than staff (excludes volunteers, contractors).|
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_staff
+name: has_staff
+title: Has Staff
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_staff:
+    slot_uri: hc:hasStaff
+    description: >-
+      To specify the personnel, employees, or workforce that are employed by or associated
+      with an organization or entity.
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_staff for conciseness."
+    alt_descriptions:
+      nl: >-
+        Om het personeel, de werknemers of het personeelsbestand aan te geven dat in dienst
+        is van of verbonden is met een organisatie of entiteit.
+      de: >-
+        Um das Personal, die Mitarbeiter oder die Belegschaft anzugeben, die bei einer
+        Organisation oder Entität beschäftigt sind oder mit ihr verbunden sind.
+      fr: >-
+        Pour spécifier le personnel, les employés ou la main-d'œuvre employés par ou
+        associés à une organisation ou une entité.
+      ar: >-
+        لتحديد الموظفين أو العمال أو القوى العاملة الموظفة لدى أو المرتبطة بمنظمة أو كيان.
+      id: >-
+        Untuk menentukan personel, karyawan, atau tenaga kerja yang dipekerjakan oleh atau
+        terkait dengan organisasi atau entitas.
+      zh: >-
+        用于指定受雇于或与组织或实体相关的人员、员工或劳动力。
+      es: >-
+        Para especificar el personal, los empleados o la fuerza laboral que están empleados
+        por o asociados con una organización o entidad.
+    structured_aliases:
+      - literal_form: Personeel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Personal
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Personnel
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: موظفون
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Staf
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 工作人员
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Personal
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+    - has_or_had_staff
+    - has_or_had_staff_member
+    - has_staff_member
+    - has_admin_staff_count
+    - staff_count
+    - staff_id
+    - staff_impact
+    - staff_role
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+    - schema:employee  # schemaorg.owl:16519-16540 - "Someone working for this organization." Employee is narrower than staff.

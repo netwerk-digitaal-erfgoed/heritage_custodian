@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: has_repository
+# ==============================================================================
+# Relates an agent, organization, or project to a code or data storage
+# repository that they own, maintain, or manage.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                | File/Line                    | Mapping | Notes                                                         |
+# |---------------|-------------------------|------------------------------|---------|---------------------------------------------------------------|
+# | **DOAP**      | `doap:repository`       | doap.rdf:457-474             | close   | "Source code repository." Domain: doap:Project;                |
+# |               |                         |                              |         | Range: doap:Repository. Close: specifically about software     |
+# |               |                         |                              |         | source code repos; our slot also covers data repositories.     |
+# | **Schema.org** | `schema:codeRepository` | schemaorg.owl:12025-12045    | narrow  | "Link to the repository where un-compiled code is located."    |
+# |               |                         |                              |         | Domain: SoftwareSourceCode. Narrower: only code repos;         |
+# |               |                         |                              |         | our slot also covers data repos and institutional repos.       |
+# | **DCAT**      | `dcat:accessService`    | dcat3.ttl:536-561            | related | "A site or end-point that gives access to the distribution."   |
+# |               |                         |                              |         | About data access endpoints, not repo ownership/management.    |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_repository
+name: has_repository
+title: Has Repository
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  doap: http://usefulinc.com/ns/doap#
+  schema: https://schema.org/
+  dcat: http://www.w3.org/ns/dcat#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_repository:
+    slot_uri: hc:hasRepository
+    description: >-
+      Relates an agent, organization, or project to the specific code or data
+      storage repository that they own, maintain, or manage.
+    alt_descriptions:
+      nl: >-
+        Relateert een agent, organisatie of project aan de specifieke code- of
+        dataopslagrepository die zij bezitten, onderhouden of beheren.
+      de: >-
+        Setzt einen Akteur, eine Organisation oder ein Projekt in Beziehung zu
+        dem spezifischen Code- oder Datenspeicher-Repository, das sie besitzen,
+        pflegen oder verwalten.
+      fr: >-
+        Relie un agent, une organisation ou un projet au dépôt spécifique de
+        code ou de données qu'ils possèdent, maintiennent ou gèrent.
+      ar: >-
+        يربط وكيلاً أو منظمة أو مشروعاً بمستودع تخزين الشفرة أو البيانات
+        المحدد الذي يمتلكونه أو يحافظون عليه أو يديرونه.
+      id: >-
+        Menghubungkan agen, organisasi, atau proyek dengan repositori
+        penyimpanan kode atau data tertentu yang mereka miliki, pelihara, atau
+        kelola.
+      zh: >-
+        将代理、组织或项目与其拥有、维护或管理的特定代码或数据存储库关联起来。
+      es: >-
+        Relaciona un agente, organización o proyecto con el repositorio
+        específico de código o almacenamiento de datos que poseen, mantienen
+        o gestionan.
+    structured_aliases:
+      - literal_form: Repository
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Repository
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Dépôt
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستودع
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Repositori
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 存储库
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Repositorio
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        schema:DataCatalog is a class, not a predicate — use hc namespace
+        for slot_uri.
+      - >-
+        Examples include institutional repositories, data archives, and open
+        science platforms.
+    range: uri
+    required: false
+    examples:
+      - value: https://data.cultureelerfgoed.nl
+        description: Dutch Cultural Heritage Data Repository
+      - value: https://zenodo.org/communities/archaeology
+        description: Zenodo archaeological data community
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - doap:repository  # doap.rdf:457-474 — "Source code repository." Domain: doap:Project
+    narrow_mappings:
+      - schema:codeRepository  # schemaorg.owl:12025-12045 — code repos only; our slot also covers data repos
+    related_mappings:
+      - dcat:accessService  # dcat3.ttl:536-561 — data access endpoints, not repo ownership/management
+    aliases:
+      - data_repository

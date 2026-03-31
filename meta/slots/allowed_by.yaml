@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: allowed_by
+# ==============================================================================
+# Whether a specific action, access level, or behavior is permitted by a rule.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property              | File/Line            | Mapping | Notes                                                        |
+# |------------|-----------------------|----------------------|---------|--------------------------------------------------------------|
+# | **ODRL**   | `odrl:permission`     | odrl.ttl:547-553     | related | "Has Permission" Policy→Permission; structural, not boolean. |
+# | **RiC-O**  | `rico:isOrWasRegulatedBy` | RiC-O_1-1.rdf:15054-15065 | related | Thing→Rule; about regulatory relationship, not permission flag. |
+#
+# No external ontology defines a simple boolean "is allowed" predicate.
+# ODRL models permissions as structured objects within policies, not as boolean
+# flags. The slot captures a simpler boolean assertion about permissibility.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/allowed_by
+name: allowed_by
+title: Allowed By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  odrl: http://www.w3.org/ns/odrl/2/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  allowed_by:
+    slot_uri: hc:allowedBy
+    description: >-
+      States or confirms that a specific action, access level, or behavior is
+      permitted, authorized, or valid according to a governing rule, policy, or
+      authority. Used as a boolean flag to indicate whether something is allowed
+      within the context of heritage custodian operations or policies.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of een specifieke actie, toegangsniveau of gedrag is
+        toegestaan, geautoriseerd of geldig volgens een geldende regel, beleid
+        of autoriteit.
+      de: >-
+        Gibt an, ob eine bestimmte Aktion, Zugangsstufe oder ein Verhalten
+        gemäß einer geltenden Regel, Richtlinie oder Behörde erlaubt,
+        autorisiert oder gültig ist.
+      fr: >-
+        Indique si une action, un niveau d'accès ou un comportement spécifique
+        est autorisé, permis ou valide selon une règle, une politique ou une
+        autorité en vigueur.
+      ar: >-
+        يحدد ما إذا كان إجراء أو مستوى وصول أو سلوك معين مسموحًا به أو مصرحًا
+        به أو صالحًا وفقًا لقاعدة أو سياسة أو سلطة حاكمة.
+      id: >-
+        Menyatakan apakah tindakan, tingkat akses, atau perilaku tertentu
+        diizinkan, disahkan, atau valid menurut aturan, kebijakan, atau otoritas
+        yang mengatur.
+      zh: >-
+        说明特定操作、访问级别或行为是否根据管理规则、政策或权威机构被允许、授权或有效。
+      es: >-
+        Indica si una acción, nivel de acceso o comportamiento específico está
+        permitido, autorizado o es válido según una regla, política o autoridad
+        vigente.
+    structured_aliases:
+      - literal_form: toegestaan door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: erlaubt durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: autorisé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مسموح به من قبل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diizinkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被允许
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: permitido por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: boolean
+    multivalued: false
+    related_mappings:
+      - odrl:permission  # odrl.ttl:547-553 - "Has Permission" Policy→Permission; structural object, not boolean
+      - rico:isOrWasRegulatedBy  # RiC-O_1-1.rdf:15054-15065 - Thing→Rule; regulatory relationship
+    aliases:
+      - is_permitted
+    examples:
+      - value: "true"
+        description: >-
+          A specific type of public access is permitted by the institution's
+          access policy.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Boolean flag indicating permission status. For structured access
+        policies with conditions and obligations, consider using ODRL-based
+        modeling instead.

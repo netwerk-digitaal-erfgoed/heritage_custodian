@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/conservation-lab
+name: conservation_lab_class
+title: ConservationLab Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  aat: http://vocab.getty.edu/aat/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/accept
+- ../slots/expertise_in
+- ../slots/has_description
+- ../slots/has_equipment
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_quantity
+- ../slots/has_score
+- ../slots/accredited_with
+- ../slots/derive_from
+- ../slots/generated_by
+- ../slots/certified_for
+classes:
+  ConservationLab:
+    is_a: ReconstructedEntity
+    class_uri: org:Site
+    description: >-
+      Specialized preservation facility where trained staff assess, stabilize, and treat collection materials.
+    alt_descriptions:
+      nl: Gespecialiseerde conserveringsfaciliteit waar vakmensen collectie-objecten beoordelen, stabiliseren en behandelen.
+      de: Spezialisierte Erhaltungswerkstatt, in der Fachpersonal Sammlungsmaterialien begutachtet, stabilisiert und behandelt.
+      fr: Installation specialisee de conservation ou du personnel qualifie evalue, stabilise et traite des materiaux de collection.
+      es: Instalacion especializada de conservacion donde personal cualificado evalua, estabiliza y trata materiales de coleccion.
+      ar: مرفق حفظ متخصص يقوم فيه موظفون مؤهلون بتقييم مواد المجموعات وتثبيتها ومعالجتها.
+      id: Fasilitas pelestarian khusus tempat staf terlatih menilai, menstabilkan, dan merawat material koleksi.
+      zh: 由专业人员对馆藏材料进行评估、稳定与处理的专门保护设施。
+    close_mappings:
+    - aat:300263557
+    - schema:Place
+    - crm:E27_Site
+    broad_mappings:
+    - org:Site
+    related_mappings:
+    - crm:E11_Modification
+    - crm:E14_Condition_Assessment
+    slots:
+    - accept
+    - expertise_in
+    - has_equipment
+    - accredited_with
+    - identified_by
+    - has_label
+    - has_description
+    - certified_for
+    - has_quantity
+    - has_score
+    - derive_from
+    - generated_by
+    slot_usage:
+      identified_by:
+        required: true
+        identifier: true
+      has_label:
+        required: true
+      expertise_in:
+        multivalued: true
+      has_equipment:
+        range: EquipmentType
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      has_quantity:
+        range: integer
+
+    notes:
+    - |
+      Preserved from prior description (commit 2e1e6e5f):
+
+      Preserved from prior description (commit 2e1e6e5f):
+
+      "Conservation or restoration laboratory of a heritage custodian.\n\n**DEFINITION**:\n\nA ConservationLab is a specialized facility where conservation professionals\nperform preventive conservation, remedial treatment, and restoration of\nheritage materials. These labs require specialized equipment, climate control,\nand safety features for working with collection objects.\n\n**GETTY AAT ALIGNMENT**:\n\n`aat:300263557` (conservation laboratories) - \"Laboratories where objects,\ndocuments, works of art, or specimens are examined, tested, and treated\nfor preservation or restoration.\"\n\n**DISTINCTION FROM OTHER AUXILIARY PLACE TYPES**:\n\n| Type | Primary Function | Staff |\n|------|------------------|-------|\n| **ConservationLab** | Object treatment/preservation | Conservators |\n| ResearchCenter | Academic research | Researchers |\n| Storage | Collection housing | Collections staff |\n| AdministrativeOffice | Back-office operations | Admin staff |\n\n**TYPICAL CHARACTERISTICS**:\n\

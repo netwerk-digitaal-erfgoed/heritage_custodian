@@ -1,0 +1,66 @@
+id: https://nde.nl/ontology/hc/class/WorldCatIdentifier
+name: WorldCatIdentifier
+title: WorldCat Identifier
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_code
+classes:
+  WorldCatIdentifier:
+    class_uri: hc:WorldCatIdentifier
+    description: >-
+      OCLC control-number value used to reference bibliographic records in
+      shared catalog infrastructure.
+    alt_descriptions:
+      nl: OCLC WorldCat-controlenummer identificatie voor bibliografische records, die unieke identificaties biedt voor bibliotheekcatalogus-items wereldwijd.
+      de: OCLC WorldCat-Kontrollnummer-Identifikator für bibliografische Datensätze, der eindeutige Kennungen für Bibliothekskatalogeinträge weltweit bereitstellt.
+      fr: Identifiant de numéro de contrôle OCLC WorldCat pour les notices bibliographiques, fournissant des identifiants uniques pour les entrées de catalogues de bibliothèques du monde entier.
+      es: Identificador de número de control OCLC WorldCat para registros bibliográficos, que proporciona identificadores únicos para entradas de catálogos de bibliotecas en todo el mundo.
+      ar: معرف رقم تحكم OCLC WorldCat للسجلات الببليوغرافية، يوفر معرفات فريدة لإدخالات فهارس المكتبات في جميع أنحاء العالم.
+      id: Pengidentifikasi nomor kontrol OCLC WorldCat untuk catatan bibliografi, menyediakan pengenal unik untuk entri katalog perpustakaan di seluruh dunia.
+      zh: 书目记录的OCLC WorldCat控制号标识符，为全球图书馆目录条目 提供唯一标识符。
+    slots:
+    - has_code
+    slot_usage:
+      has_code:
+        pattern: ^[0-9]+$
+    broad_mappings:
+    - dcterms:Identifier
+    related_mappings:
+    - schema:identifier
+    structured_aliases:
+    - literal_form: WorldCat-identificatie
+      in_language: nl
+    - literal_form: WorldCat-Identifikator
+      in_language: de
+    - literal_form: identifiant WorldCat
+      in_language: fr
+    - literal_form: identificador WorldCat
+      in_language: es
+    - literal_form: معرف WorldCat
+      in_language: ar
+    - literal_form: pengidentitas WorldCat
+      in_language: id
+    - literal_form: WorldCat标识符
+      in_language: zh
+    comments:
+    - Used for OCLC control numbers and WorldCat record identifiers
+    - Numeric pattern matching OCLC standards
+    keywords:
+    - WorldCat
+    - OCLC
+    - bibliographic identifier
+    - library catalog
+    examples:
+    - value:
+        has_code: '123456789'
+      description: WorldCat OCLC control number
+    annotations:
+      specificity_score: '0.55'
+      specificity_rationale: More specific - WorldCat identifiers library-domain.
+      custodian_types: "['*']"

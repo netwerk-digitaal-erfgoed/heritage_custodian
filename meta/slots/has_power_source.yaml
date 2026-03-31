@@ -1,0 +1,137 @@
+# ==============================================================================
+# LinkML Slot Definition: has_power_source
+# ==============================================================================
+# The type of energy source powering a device, sensor, or system, such as
+# battery, mains electricity, solar, USB, or Power over Ethernet.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property          | File/Line                | Mapping | Notes                                                                |
+# |------------|-------------------|--------------------------|---------|----------------------------------------------------------------------|
+# | **Schema** | `schema:fuelType` | schemaorg.owl:18647-18669| related | "fuelType" Vehicle∪EngineSpecification→QualitativeValue∪Text. Fuel.  |
+#
+# No exact match found. schema:fuelType is the closest external property but
+# is scoped to vehicles and engine specifications. has_power_source is broader,
+# covering any device or system (environmental sensors, IoT equipment, security
+# cameras, monitoring stations) and includes non-fuel energy sources like
+# battery, solar, USB, and Power over Ethernet (PoE). This is a
+# heritage-infrastructure-specific concept for tracking how monitoring and
+# facility equipment is powered.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_power_source
+name: has_power_source
+title: Has Power Source
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_power_source:
+    slot_uri: hc:hasPowerSource
+    description: >-
+      The type of energy source powering a device, sensor, machine, or
+      system. Identifies how equipment receives the electricity or fuel
+      it requires to operate. Common values include battery, mains
+      electricity, solar, USB, and Power over Ethernet (PoE). Relevant
+      for heritage facility management, environmental monitoring
+      equipment, and IoT sensor deployments.
+    alt_descriptions:
+      nl: >-
+        Het type energiebron dat een apparaat, sensor, machine of
+        systeem van stroom voorziet, zoals batterij, netspanning,
+        zonne-energie, USB of Power over Ethernet.
+      de: >-
+        Die Art der Energiequelle, die ein Gerät, einen Sensor, eine
+        Maschine oder ein System mit Strom versorgt, wie Batterie,
+        Netzstrom, Solarenergie, USB oder Power over Ethernet.
+      fr: >-
+        Le type de source d'énergie alimentant un appareil, un capteur,
+        une machine ou un système, comme une batterie, le courant
+        secteur, l'énergie solaire, l'USB ou l'alimentation par
+        Ethernet (PoE).
+      ar: >-
+        نوع مصدر الطاقة الذي يغذي جهازاً أو مستشعراً أو آلة أو
+        نظاماً، مثل البطارية أو التيار الكهربائي أو الطاقة الشمسية
+        أو USB أو الطاقة عبر الإيثرنت.
+      id: >-
+        Jenis sumber energi yang menyuplai daya ke perangkat, sensor,
+        mesin, atau sistem, seperti baterai, listrik utama, tenaga
+        surya, USB, atau Power over Ethernet.
+      zh: >-
+        为设备、传感器、机器或系统供电的能源类型，例如电池、市电、
+        太阳能、USB或以太网供电（PoE）。
+      es: >-
+        El tipo de fuente de energía que alimenta un dispositivo,
+        sensor, máquina o sistema, como batería, corriente eléctrica,
+        energía solar, USB o alimentación por Ethernet (PoE).
+    structured_aliases:
+      - literal_form: energiebron
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Energiequelle
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: source d'énergie
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مصدر الطاقة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: sumber daya
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 电源类型
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: fuente de energía
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    related_mappings:
+      - schema:fuelType  # schemaorg.owl:18647-18669 - "fuelType" Vehicle∪EngineSpecification→QualitativeValue∪Text
+    aliases:
+      - power_source
+    examples:
+      - value: "BATTERY"
+        description: >-
+          A wireless environmental sensor powered by replaceable or
+          rechargeable batteries.
+      - value: "MAINS"
+        description: >-
+          A climate control system connected to mains electricity
+          (wall outlet / building power grid).
+      - value: "POE"
+        description: >-
+          A network-connected security camera powered via Power over
+          Ethernet, receiving data and power through a single cable.
+      - value: "SOLAR"
+        description: >-
+          An outdoor weather station at an archaeological site powered
+          by a solar panel with battery backup.
+      - value: "USB"
+        description: >-
+          A small humidity sensor powered via USB connection to a
+          nearby computer or power adapter.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Common power source values: BATTERY (battery-powered), MAINS (mains
+        electricity / wall power), POE (Power over Ethernet), SOLAR
+        (solar-powered), USB (USB-powered). Institutions may extend this
+        with additional values as needed (e.g. GENERATOR, HYBRID).
+      - >-
+        Important for heritage facility management: knowing the power source
+        of monitoring equipment affects maintenance schedules (battery
+        replacement), deployment constraints (solar needs daylight exposure),
+        and infrastructure requirements (PoE needs network switches with
+        PoE capability).
+      - >-
+        The alias power_source reflects the commonly used flat field name
+        in sensor and equipment inventory datasets.

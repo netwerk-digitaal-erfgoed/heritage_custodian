@@ -1,0 +1,101 @@
+id: https://nde.nl/ontology/hc/class/Auditor
+name: Auditor
+title: Auditor
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  prov: http://www.w3.org/ns/prov#
+imports:
+- linkml:types
+- ../slots/has_name
+- ../slots/has_description
+default_prefix: hc
+classes:
+  Auditor:
+    class_uri: hc:Auditor
+    description: >-
+      Person or organization authorized to review and verify financial records.
+    alt_descriptions:
+      nl: "Persoon of organisatie gemachtigd om financiële administratie te  beoordelen en te verifiëren."
+      de: "Person oder Organisation, die berechtigt ist, Finanzunterlagen zu  überprüfen und zu verifizieren."
+      fr: "Personne ou organisation autorisée à examiner et vérifier les documents financiers."
+      es: "Persona u organización autorizada para revisar y verificar registros financieros."
+      ar: "شخص أو منظمة مخولة لمراجعة والتحقق من السجلات المالية."
+      id: "Orang atau organisasi yang berwenang untuk meninjau dan memverifikasi catatan keuangan."
+      zh: "被授权审查和核实财务记录的人员或组织。"
+    examples:
+    - value:
+        has_name: PwC
+        has_description: Big Four accounting firm providing audit services
+      description: External audit firm
+    - value:
+        has_name: Deloitte
+        has_description: International professional services network
+      description: International auditor
+    - value:
+        has_name: Internal Audit Department
+        has_description: In-house audit function
+      description: Internal auditor
+    close_mappings:
+    - schema:Organization
+    - prov:Agent
+    broad_mappings:
+    - skos:Concept
+    structured_aliases:
+    - literal_form: accountant
+      in_language: nl
+    - literal_form: auditor
+      in_language: nl
+    - literal_form: Wirtschaftsprüfer
+      in_language: de
+    - literal_form: Prüfer
+      in_language: de
+    - literal_form: auditeur
+      in_language: fr
+    - literal_form: auditor
+      in_language: es
+    - literal_form: مدقق حسابات
+      in_language: ar
+    - literal_form: auditor
+      in_language: id
+    - literal_form: 审计师
+      in_language: zh
+    keywords:
+    - auditor
+    - accountant
+    - financial review
+    - compliance
+    - verification
+    - independent examiner
+    slots:
+    - has_name
+    - has_description
+    slot_usage:
+      has_name:
+        required: true
+        examples:
+        - value: PwC
+        - value: Deloitte
+        - value: KPMG
+        - value: Internal Audit Department
+      has_description:
+        required: false
+        examples:
+        - value: Big Four accounting firm providing audit services
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: "Auditor is moderately specific to financial oversight and compliance."
+      custodian_types: "['*']"
+      auditor_types: "External auditor, Internal auditor, Government auditor"
+      big_four: "PwC, Deloitte, KPMG, EY"
+    comments:
+    - Person or organization conducting audits
+    - May be external firm or internal department
+    - Must be independent and qualified
+    - Big Four firms: PwC, Deloitte, KPMG, EY
+    - 'Preserved from prior description: Person or organization authorized to review and verify financial records. Independent professional or firm qualified to examine organizational accounts, assess compliance, and express audit opinions on financial statements or operational procedures.'
+    see_also:
+    - Audit
+    - AuditOpinion

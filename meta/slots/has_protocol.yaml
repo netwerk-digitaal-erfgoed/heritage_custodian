@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: has_protocol
+# ==============================================================================
+# An official procedure, system of rules, or standard method governing interactions.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                              |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------|
+# | **DCTerms**   | `dcterms:conformsTo`  | dcterms.rdf:987-1008 | close   | "An established standard to which the described     |
+# |               |                       |                      |         | resource conforms." Broader: any standard           |
+# |               |                       |                      |         | conformance, not specifically protocols.            |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_protocol
+name: has_protocol
+title: Has Protocol
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_protocol:
+    slot_uri: hc:hasProtocol
+    description: >-
+      To specify the official procedure, system of rules, or standard method used to govern interactions, experiments, or operations.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van de officiële procedure, het stelsel van regels of de
+        standaardmethode die wordt gebruikt om interacties, experimenten of operaties
+        te reguleren.
+      de: >-
+        Zur Angabe des offiziellen Verfahrens, Regelwerks oder der Standardmethode,
+        die zur Steuerung von Interaktionen, Experimenten oder Abläufen verwendet wird.
+      fr: >-
+        Spécifier la procédure officielle, le système de règles ou la méthode standard
+        utilisée pour régir les interactions, les expériences ou les opérations.
+      ar: >-
+        لتحديد الإجراء الرسمي أو نظام القواعد أو الطريقة المعيارية المستخدمة لتنظيم
+        التفاعلات أو التجارب أو العمليات.
+      id: >-
+        Untuk menentukan prosedur resmi, sistem aturan, atau metode standar yang
+        digunakan untuk mengatur interaksi, eksperimen, atau operasi.
+      zh: >-
+        指定用于管理交互、实验或操作的官方程序、规则体系或标准方法。
+      es: >-
+        Especificar el procedimiento oficial, sistema de reglas o método estándar
+        utilizado para gobernar interacciones, experimentos u operaciones.
+    structured_aliases:
+      - literal_form: Protocol
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Protokoll
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Protocole
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: بروتوكول
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Protokol
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 协议
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Protocolo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    required: true
+    aliases:
+      - is_or_was_protocol
+      - cultural_protocol_url
+      - protocol_name
+      - sampling_protocol
+      - spectrum_procedure
+    close_mappings:
+      - dcterms:conformsTo  # dcterms.rdf:987-1008 - "An established standard to which the described resource conforms." Broader: any standard conformance, not specifically communication protocol.
+    comments:
+      - |
+        **ENUM VALUES** (from DataServiceProtocolEnum):
+        OAI_PMH, REST, SOAP, GRAPHQL, SPARQL, IIIF_IMAGE, IIIF_PRESENTATION,
+        IIP, ZOOMIFY, SRU.
+    annotations:
+      custodian_types: '["*"]'

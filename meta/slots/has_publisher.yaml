@@ -1,0 +1,97 @@
+# ==============================================================================
+# LinkML Slot Definition: has_publisher
+# ==============================================================================
+# Publisher of the entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                              |
+# |---------------|-----------------------|--------------------------|---------|----------------------------------------------------|
+# | **DCTerms**   | `dcterms:publisher`   | dcterms.rdf:1761-1779    | exact   | "Entity responsible for making the resource available." Range: Agent. |
+# | **Schema.org**| `schema:publisher`    | schemaorg.owl:31710-31735| exact   | Domain: CreativeWork/FinancialIncentive only.       |
+#
+# NOTE: The separate `published_by` slot uses `dcterms:publisher` as its slot_uri
+# for the standard publishing relationship. This slot is a more general
+# publisher association.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_publisher
+name: has_publisher
+title: Has Publisher
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_publisher:
+    slot_uri: hc:hasPublisher
+    description: >-
+      The entity responsible for publishing or making a resource available, such
+      as the organization or person that issued a report, dataset, catalogue, or
+      digital publication associated with a heritage institution.
+    alt_descriptions:
+      nl: >-
+        De entiteit die verantwoordelijk is voor het publiceren of beschikbaar stellen
+        van een bron, zoals de organisatie of persoon die een rapport, dataset,
+        catalogus of digitale publicatie heeft uitgegeven die is geassocieerd met
+        een erfgoedinstelling.
+      de: >-
+        Die Entität, die für die Veröffentlichung oder Bereitstellung einer Ressource
+        verantwortlich ist, wie die Organisation oder Person, die einen Bericht,
+        Datensatz, Katalog oder eine digitale Publikation einer Kulturerbeeinrichtung
+        herausgegeben hat.
+      fr: >-
+        L'entité responsable de la publication ou de la mise à disposition d'une
+        ressource, telle que l'organisation ou la personne qui a publié un rapport,
+        un jeu de données, un catalogue ou une publication numérique associée à une
+        institution patrimoniale.
+      ar: >-
+        الكيان المسؤول عن نشر أو إتاحة مورد، مثل المنظمة أو الشخص الذي أصدر
+        تقريراً أو مجموعة بيانات أو فهرساً أو منشوراً رقمياً مرتبطاً بمؤسسة تراثية.
+      id: >-
+        Entitas yang bertanggung jawab untuk menerbitkan atau menyediakan sumber
+        daya, seperti organisasi atau orang yang menerbitkan laporan, dataset,
+        katalog, atau publikasi digital yang terkait dengan institusi warisan budaya.
+      zh: >-
+        负责发布或提供资源的实体，如发布与遗产机构相关的报告、数据集、目录或数字
+        出版物的组织或个人。
+      es: >-
+        La entidad responsable de publicar o poner a disposición un recurso, como
+        la organización o persona que emitió un informe, conjunto de datos, catálogo
+        o publicación digital asociada con una institución patrimonial.
+    structured_aliases:
+      - literal_form: heeft uitgever
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Herausgeber
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un éditeur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه ناشر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki penerbit
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 拥有出版者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene editor
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_publisher
+    exact_mappings:
+      - dcterms:publisher  # dcterms.rdf:1761-1779 - "An entity responsible for making the resource available." Range: Agent.
+      - schema:publisher  # schemaorg.owl:31710-31735 - "The publisher of the article in question." Domain: CreativeWork/FinancialIncentive.
+    annotations:
+      custodian_types: '["*"]'

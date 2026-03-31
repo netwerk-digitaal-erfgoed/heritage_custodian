@@ -1,0 +1,93 @@
+id: https://nde.nl/ontology/hc/class/Reference
+name: Reference
+title: Reference Class
+description: Bibliographic or documentary reference used for citation and provenance.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  bibo: http://purl.org/ontology/bibo/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_label
+  - ../slots/has_type
+  - ../slots/temporal_extent
+  - ../slots/has_description
+classes:
+  Reference:
+    class_uri: dcterms:BibliographicResource
+    description: >-
+      Citations or documentary sources providing evidence, attribution, or scholarly
+      authority for statements, claims, or data elements.
+    alt_descriptions:
+      nl: >-
+        Citaties of documentaire bronnen die bewijs, toeschrijving of wetenschappelijke
+        autoriteit leveren voor uitspraken, beweringen of gegevenselementen.
+      de: >-
+        Zitate oder dokumentarische Quellen, die Belege, Zuschreibungen oder wissenschaftliche
+        Autorität für Aussagen, Behauptungen oder Datenelemente liefern.
+      fr: >-
+        Citations ou sources documentaires fournissant des preuves, des attributions ou une autorité
+        savante pour des déclarations, des affirmations ou des éléments de données.
+      es: >-
+        Citas o fuentes documentales que proporcionan evidencia, atribución o autoridad
+        académica para declaraciones, afirmaciones o elementos de datos.
+      ar: >-
+        استشهادات أو مصادر وثائقية توفر دليلاً أو نسبة أو سلطة
+        علمية للبيانات أو الادعاءات أو عناصر البيانات.
+      id: >-
+        Kutipan atau sumber dokumenter yang memberikan bukti, atribusi, atau otoritas
+        ilmiah untuk pernyataan, klaim, atau elemen data.
+      zh: >-
+        为陈述、主张或数据元素提供证据、归属或学术权威的引用或文献来源。
+    exact_mappings:
+      - dcterms:BibliographicResource
+    close_mappings:
+      - schema:CreativeWork
+      - bibo:Document
+    broad_mappings:
+      - schema:Thing
+    keywords:
+      - reference
+      - citation
+      - bibliographic source
+      - documentary evidence
+    structured_aliases:
+      - literal_form: referentie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Referenz
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: référence
+        predicate: EXACT_SYNONYM
+        in_language: fr
+    comments:
+      - Use cases include citations for extracted claims, documentary evidence, catalog entries
+    slots:
+      - has_label
+      - has_type
+      - temporal_extent
+      - has_description
+    slot_usage:
+      has_label:
+        inlined: false
+        examples:
+          - value:
+              label_value: Parish register entry for Johannes van Berg
+    examples:
+      - value:
+          has_label: "born in the year of our Lord 1823"
+          has_type: parish_register
+          has_description: Amsterdam Stadsarchief, DTB 123
+          temporal_extent:
+            begin_of_the_begin: '1823-03-15T00:00:00Z'
+            end_of_the_end: '1823-03-15T23:59:59Z'
+      - value:
+          has_type: biography
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.4
+      specificity_rationale: Moderately specific - bibliographic references used across heritage research.

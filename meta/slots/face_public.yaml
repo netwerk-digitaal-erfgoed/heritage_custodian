@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: face_public
+# ==============================================================================
+# Connects a service or operational unit to the external audience it serves.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                | Mapping | Notes                                              |
+# |---------------|-----------------------|--------------------------|---------|----------------------------------------------------|
+# | **Schema.org**| `schema:audience`     | schemaorg.owl:9151-9177  | broad   | "An intended audience, i.e. a group for whom        |
+# |               |                       |                          |         | something was created." Any audience for any thing;  |
+# |               |                       |                          |         | broader than public-facing audience specifically.    |
+# | **Schema.org**| `schema:publicAccess` | schemaorg.owl:31581-31599| related | "A flag to signal that the Place is open to public   |
+# |               |                       |                          |         | visitors." Boolean flag on Place — different         |
+# |               |                       |                          |         | structure (flag vs connection) and restricted domain. |
+#
+# No exact match — retains hc:facePublic.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/face_public
+name: face_public
+title: Face Public
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  face_public:
+    slot_uri: hc:facePublic
+    description: >-
+      Connects a specific service, interface, or operational unit to the particular external
+      audience, customer segment, or user base it directly serves or interacts with.
+    alt_descriptions:
+      nl: >-
+        Verbindt een specifieke dienst, interface of operationele eenheid met het specifieke externe
+        publiek, klantsegment of gebruikersgroep die het rechtstreeks bedient of waarmee het interactie heeft.
+      de: >-
+        Verbindet einen bestimmten Dienst, eine Schnittstelle oder eine operative Einheit mit dem
+        bestimmten externen Publikum, Kundensegment oder der Nutzerbasis, die er direkt bedient
+        oder mit der er interagiert.
+      fr: >-
+        Relie un service, une interface ou une unité opérationnelle spécifique au public externe,
+        segment de clientèle ou base d'utilisateurs particulier qu'il dessert ou avec lequel il
+        interagit directement.
+      ar: >-
+        يربط خدمة أو واجهة أو وحدة تشغيلية محددة بالجمهور الخارجي أو شريحة العملاء أو
+        قاعدة المستخدمين المعينة التي يخدمها أو يتفاعل معها مباشرة.
+      id: >-
+        Menghubungkan layanan, antarmuka, atau unit operasional tertentu dengan audiens eksternal,
+        segmen pelanggan, atau basis pengguna tertentu yang dilayani atau berinteraksi secara langsung.
+      zh: >-
+        将特定服务、界面或运营单元与其直接服务或交互的特定外部受众、客户群体或用户群联系起来。
+      es: >-
+        Conecta un servicio, interfaz o unidad operativa específica con la audiencia externa,
+        segmento de clientes o base de usuarios particular a la que sirve o con la que interactúa
+        directamente.
+    structured_aliases:
+      - literal_form: Publieksgericht
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Öffentlichkeitszugang
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Accès public
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مواجهة الجمهور
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Layanan Publik
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 面向公众
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Cara al público
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - "TRUE: Public visitors, researchers, patrons can access. FALSE: Staff-only administrative location."
+      - "Use AdministrativeOffice class for staff-only locations."
+    broad_mappings:
+      - schema:audience  # schemaorg.owl:9151-9177 — "An intended audience, i.e. a group for whom something was created." Any audience; broader than public-facing specifically.
+    related_mappings:
+      - schema:publicAccess  # schemaorg.owl:31581-31599 — "A flag to signal that the Place is open to public visitors." Boolean flag on Place; different structure and restricted domain.
+    annotations:
+      custodian_types: '["*"]'
+    aliases:
+      - is_public_facing

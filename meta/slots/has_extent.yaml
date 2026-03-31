@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_extent
+# ==============================================================================
+# To specify the physical or digital size, quantity, or volume of the material
+# or resource.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property         | File/Line            | Mapping | Notes                                  |
+# |-------------|------------------|----------------------|---------|-----------------------------------------|
+# | **DCTerms** | `dcterms:extent` | dcterms.rdf:1269-295 | exact   | "The size or duration of the resource." |
+#
+# dcterms:extent is an exact match: both describe the size/duration/quantity of
+# a resource. Range: SizeOrDuration. SubProperty of dcterms:format.
+# Using dcterms:extent as the slot_uri per the standard URI principle.
+#
+# CREATED: 2026-01-14
+# UPDATED: 2026-02-07 - Added header, multilingual, slot_uri=dcterms:extent
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_extent
+name: has_extent
+title: has_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_extent:
+    name: has_extent
+    title: has_extent
+    description: >-
+      To specify the physical or digital size, quantity, or volume of the
+      material or resource (e.g., number of pages, file size, linear meters,
+      or duration).
+    alt_descriptions:
+      nl: >-
+        De fysieke of digitale omvang, hoeveelheid of het volume van het
+        materiaal of de bron specificeren (bijv. aantal pagina's, bestandsgrootte,
+        strekkende meters of duur).
+      de: >-
+        Die physische oder digitale Größe, Menge oder das Volumen des Materials
+        oder der Ressource angeben (z. B. Seitenzahl, Dateigröße, laufende
+        Meter oder Dauer).
+      fr: >-
+        Spécifier la taille physique ou numérique, la quantité ou le volume du
+        matériel ou de la ressource (par ex., nombre de pages, taille de
+        fichier, mètres linéaires ou durée).
+      ar: >-
+        تحديد الحجم المادي أو الرقمي أو الكمية أو الحجم للمادة أو المورد
+        (مثل عدد الصفحات أو حجم الملف أو الأمتار الطولية أو المدة).
+      id: >-
+        Menentukan ukuran fisik atau digital, kuantitas, atau volume materi
+        atau sumber daya (misalnya, jumlah halaman, ukuran file, meter linier,
+        atau durasi).
+      zh: >-
+        指定材料或资源的物理或数字大小、数量或体积（例如页数、文件大小、线性米数或持续时间）。
+      es: >-
+        Especificar el tamaño físico o digital, la cantidad o el volumen del
+        material o recurso (por ej., número de páginas, tamaño de archivo,
+        metros lineales o duración).
+    structured_aliases:
+      - literal_form: omvang
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Umfang
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: étendue
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نطاق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: cakupan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 范围
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: extensión
+        predicate: EXACT_SYNONYM
+        in_language: es
+    slot_uri: dcterms:extent
+    range: string
+    aliases:
+      - has_or_had_extent_text
+      - has_extent_text
+    annotations:
+      custodian_types: '["*"]'
+    exact_mappings:
+    comments:
+      - |
+        **USAGE**: Use for recording the physical or digital extent of
+        collection materials, archival holdings, or digital resources.
+        Examples: "500 pages", "2.5 linear meters", "1.2 GB", "PT2H30M".

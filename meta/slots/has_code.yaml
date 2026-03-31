@@ -1,0 +1,147 @@
+# ==============================================================================
+# LinkML Slot Definition: has_code
+# ==============================================================================
+# Assigns systematic alphanumeric codes to entities for identification,
+# classification, or reference purposes (ISO codes, classification codes, etc.).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                      | File/Line               | Mapping | Notes                                            |
+# |---------------|-------------------------------|-------------------------|---------|--------------------------------------------------|
+# | **SKOS**      | `skos:notation`               | skos.rdf:166-175        | exact   | "A notation, also known as classification code,  |
+# |               |                               |                         |         | is a string of characters."                      |
+# | **DCTerms**   | `dcterms:identifier`          | dcterms.rdf:1395-1418   | close   | "An unambiguous reference to the resource."      |
+# | **Schema.org**| `schema:identifier`           | schemaorg.owl:21325-346 | close   | "Any kind of identifier for any kind of Thing."  |
+# | **CIDOC-CRM** | `crm:P1_is_identified_by`     | CIDOC_CRM:1172-1187     | broad   | General identification relationship.             |
+# | **CIDOC-CRM** | `crm:P48_has_preferred_id`    | CIDOC_CRM:2353-2369     | narrow  | Preferred identifier (subPropertyOf P1).         |
+#
+# USAGE: Standardized codes such as ISO country/language codes, classification
+# codes, GeoNames feature codes, etc. Use dcterms:identifier for general IDs.
+#
+# CREATED: 2026-01-26
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_code
+name: has_code
+title: Has Code
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+description: |
+  To possess a systematic alphanumeric sequence or symbol assigned to an entity for the purpose of identification, classification, or reference.
+imports:
+- linkml:types
+slots:
+  has_code:
+    slot_uri: skos:notation
+    description: |
+      To possess a systematic alphanumeric sequence or symbol assigned to an entity for the purpose of identification, classification, or reference.
+    alt_descriptions:
+      nl: Het bezitten van een systematische alfanumerieke reeks of symbool toegekend aan een entiteit voor identificatie, classificatie of referentiedoeleinden.
+      de: Besitzen einer systematischen alphanumerischen Zeichenfolge oder eines Symbols, das einer Entität zum Zweck der Identifikation, Klassifikation oder Referenz zugewiesen wurde.
+      fr: Posséder une séquence alphanumérique ou un symbole systématique attribué à une entité à des fins d'identification, de classification ou de référence.
+      ar: امتلاك تسلسل أبجدي رقمي منهجي أو رمز مخصص لكيان لغرض التعريف أو التصنيف أو المرجع.
+      id: Memiliki urutan alfanumerik atau simbol sistematis yang ditetapkan ke entitas untuk tujuan identifikasi, klasifikasi, atau referensi.
+      zh: 拥有分配给实体的系统性字母数字序列或符号，用于识别、分类或参考目的。
+      es: Poseer una secuencia alfanumérica o símbolo sistemático asignado a una entidad con fines de identificación, clasificación o referencia.
+    structured_aliases:
+      - literal_form: heeft code
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Code
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a pour code
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه رمز
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki kode
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有代码
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene código
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    exact_mappings:
+    close_mappings:
+      - dcterms:identifier  # dcterms.rdf:1395-1418 - "An unambiguous reference to the resource"
+      - schema:identifier  # schemaorg.owl:21325-21346 - "Any kind of identifier for any kind of Thing"
+    broad_mappings:
+      - crm:P1_is_identified_by  # CIDOC_CRM:1172-1187 - general identification relationship
+    narrow_mappings:
+      - crm:P48_has_preferred_identifier  # CIDOC_CRM:2353-2369 - preferred identifier (subPropertyOf P1)
+    aliases:
+      - has_or_had_code
+      - notation
+      - classification_code
+      - is_or_was_halc_adm1_code
+      - halc_adm1_code
+      - has_or_had_type_code
+      - has_type_code
+      - has_or_had_city_code
+      - has_city_code
+      - has_or_had_iso_
+      - has_or_had_iso_code
+      - has_iso_code
+      - contributor_code
+      - currency_code
+      - language_code
+      - nomenclatural_code
+      - region_code
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Codes applicable to all custodian types.
+      specificity_score: 0.70
+    examples:
+      - value: NL
+        description: ISO 3166-1 alpha-2 code for Netherlands.
+      - value: NLD
+        description: ISO 3166-1 alpha-3 code for Netherlands.
+      - value: nld
+        description: ISO 639-3 language code for Dutch.
+      - value: P.PPL
+        description: GeoNames feature code for populated place.
+      - value: "303.4833"
+        description: Dewey Decimal Classification code.
+      - value: "T58.5"
+        description: Library of Congress Classification notation.
+    comments:
+      - |
+        **USAGE**:
+        Used for standardized codes such as:
+        - ISO 3166-1 alpha-2 country codes (e.g., "NL", "BE")
+        - ISO 3166-1 alpha-3 country codes (e.g., "NLD", "BEL")
+        - ISO 639-1/3 language codes
+        - Classification codes (e.g., GeoNames feature codes P.PPL)
+        - Library classification notations (DDC, LCC)
+      - |
+        **DISTINCTION FROM dcterms:identifier**:
+        Use `has_code` (skos:notation) for classification codes and notations
+        within a known scheme. Use dcterms:identifier for general unique identifiers
+        like ISBNs, DOIs, URNs, and persistent URIs.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | SKOS | skos:notation | 166-175 | exact | Classification code notation |
+        | DCTerms | dcterms:identifier | 1395-1418 | close | Unambiguous reference |
+        | Schema.org | schema:identifier | 21325-346 | close | Any identifier for Thing |
+        | CIDOC-CRM | crm:P1_is_identified_by | 1172-1187 | broad | General identification |
+        | CIDOC-CRM | crm:P48_has_preferred_identifier | 2353-2369 | narrow | Preferred identifier |
+      - Updated 2026-02-03 with verified ontology mappings and translations.

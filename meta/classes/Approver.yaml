@@ -1,0 +1,114 @@
+id: https://nde.nl/ontology/hc/class/Approver
+name: approver_class
+title: Approver Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_label
+classes:
+  Approver:
+    class_uri: hc:Approver
+    description: >-
+      Agent responsible for authorizing or approving decisions, policies,
+      budgets, or other organizational actions in heritage institution workflows.
+    alt_descriptions:
+      nl: >-
+        Agent die verantwoordelijk is voor het autoriseren of goedkeuren van
+        beslissingen, beleid, budgetten of andere organisatorische acties in
+        erfgoedinstellingsworkflows.
+      de: >-
+        Agent, der fur die Autorisierung oder Genehmigung von Entscheidungen,
+        Richtlinien, Budgets oder anderen organisatorischen Massnahmen in
+        Kulturerbe-Institutionsworkflows verantwortlich ist.
+      fr: >-
+        Agent responsable de l'autorisation ou de l'approbation des decisions,
+        politiques, budgets ou autres actions organisationnelles dans les flux
+        de travail des institutions patrimoniales.
+      es: >-
+        Agente responsable de autorizar o aprobar decisiones, politicas,
+        presupuestos u otras acciones organizativas en los flujos de trabajo
+        de las instituciones patrimoniales.
+      ar: >-
+        الوكيل المسؤول عن ترخيص أو الموافقة على القرارات أو السياسات أو
+        الميزانيات أو الإجراءات التنظيمية الأخرى في سير عمل مؤسسات التراث.
+      id: >-
+        Agen yang bertanggung jawab untuk mengesahkan atau menyetujui keputusan,
+        kebijakan, anggaran, atau tindakan organisasi lainnya dalam alur kerja
+        lembaga warisan budaya.
+      zh: >-
+        在遗产机构工作流程中负责授权或批准决策、政策、预算或其他组织行动的代理。
+    structured_aliases:
+    - literal_form: goedkeurder
+      in_language: nl
+    - literal_form: Genehmigender
+      in_language: de
+    - literal_form: approbateur
+      in_language: fr
+    - literal_form: aprobador
+      in_language: es
+    - literal_form: موافق
+      in_language: ar
+    - literal_form: penyetuju
+      in_language: id
+    - literal_form: 审批者
+      in_language: zh
+    broad_mappings:
+    - prov:Agent
+    - foaf:Agent
+    - schema:Person
+    - schema:Organization
+    slots:
+    - has_label
+    - identified_by
+    slot_usage:
+      has_label:
+        examples:
+        - value: Board of Directors
+        - value: Museum Director
+        - value: Department Head
+        - value: Collections Committee
+      identified_by:
+        examples:
+        - value: https://nde.nl/ontology/hc/person/jan-de-vries
+        - value: https://ror.org/054hq1305
+    comments:
+    - Generic approver class for approval provenance tracking
+    - Can represent individuals or organizational bodies
+    - Aligns with PROV-O Agent for provenance
+    - Used to document approval chains and decision authority
+    see_also:
+    - https://www.w3.org/TR/prov-o/#Agent
+    - Applicant
+    examples:
+    - value:
+        has_label: Museum Director
+        identified_by: https://nde.nl/ontology/hc/person/example-director
+      description: Individual approver (museum director)
+    - value:
+        has_label: Board of Directors
+        identified_by: https://ror.org/054hq1305
+      description: Organizational approver (board)
+    keywords:
+    - approver
+    - authorizer
+    - decision maker
+    - approval chain
+    - provenance
+    - authorization
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Role class for approval authorization
+      custodian_types: "['*']"

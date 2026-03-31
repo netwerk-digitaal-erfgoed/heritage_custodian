@@ -1,0 +1,81 @@
+# ==============================================================================
+# LinkML Slot Definition: stored_at
+# ==============================================================================
+# Kept, maintained, or physically located within a specific facility,
+# repository, or storage medium.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property           | File/Line                | Mapping | Notes                                                  |
+# |------------|--------------------|--------------------------|---------|-------------------------------------------------       |
+# | Schema.org | `schema:location`  | schemaorg.owl:25018-25046| close   | "The location of, for example, where an event is       |
+# |            |                    |                          |         | happening, where an organization is situated, ..."     |
+# |            |                    |                          |         | General location, not specifically storage location.   |
+#
+# schema:location is close but too general — it's the location of any entity,
+# not specifically the storage/repository location.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/stored_at
+name: stored_at
+title: Stored At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  stored_at:
+    slot_uri: hc:storedAt
+    description: >-
+      To be kept, maintained, or physically located within a specific facility, repository, or storage medium.
+    alt_descriptions:
+      nl: >-
+        Bewaard, onderhouden of fysiek geplaatst in een specifieke faciliteit, opslagplaats of opslagmedium.
+      de: >-
+        Aufbewahrt, gepflegt oder physisch in einer bestimmten Einrichtung, einem Repositorium oder Speichermedium befindlich.
+      fr: >-
+        Conservé, entretenu ou physiquement situé dans une installation, un dépôt ou un support de stockage spécifique.
+      ar: >-
+        محفوظ أو مصان أو موجود فعلياً ضمن منشأة أو مستودع أو وسيط تخزين محدد.
+      id: >-
+        Disimpan, dipelihara, atau secara fisik berada dalam fasilitas, repositori, atau media penyimpanan tertentu.
+      zh: >-
+        保存、维护或物理存放在特定设施、存储库或存储介质中。
+      es: >-
+        Guardado, mantenido o ubicado físicamente en una instalación, repositorio o medio de almacenamiento específico.
+    structured_aliases:
+      - literal_form: Opslaglocatie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Lagerort
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Lieu de stockage
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكان التخزين
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Lokasi penyimpanan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 存储位置
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Lugar de almacenamiento
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - is_or_was_stored_at
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - schema:location  # schemaorg.owl:25018-25046 - General location property. Not specifically storage location.

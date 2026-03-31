@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: estimate
+# ==============================================================================
+# Approximate calculation or judgment of value, quantity, or extent based on
+# incomplete data, linking entities to confidence/quality assessments.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                     | File/Line                     | Mapping | Notes                                           |
+# |---------------|------------------------------|-------------------------------|---------|-------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P140i_was_attributed_by`| CIDOC_CRM_v7.1.3.rdf:4220-30 | close   | "was attributed by" E13 Attribute Assignment.   |
+# | **DQV**       | `dqv:hasQualityMeasurement`  | dqv.ttl:157-161               | related | "Refers to performed quality measurements."     |
+# | **PROV-O**    | `prov:wasDerivedFrom`        | prov.ttl:1099-1114            | broad   | General derivation; estimation is one form.     |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/estimate
+name: estimate
+title: estimate
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  dqv: http://www.w3.org/ns/dqv#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  estimate:
+    slot_uri: hc:estimate
+    description: >-
+      To calculate or judge the value, number, quantity, or extent of something
+      approximately, often based on incomplete data.
+    alt_descriptions:
+      nl: >-
+        Het bij benadering berekenen of beoordelen van de waarde, het aantal,
+        de hoeveelheid of de omvang van iets, vaak op basis van onvolledige
+        gegevens.
+      de: >-
+        Die annähernde Berechnung oder Beurteilung des Wertes, der Anzahl,
+        der Menge oder des Umfangs von etwas, häufig auf der Grundlage
+        unvollständiger Daten.
+      fr: >-
+        Calculer ou évaluer approximativement la valeur, le nombre, la
+        quantité ou l'étendue de quelque chose, souvent à partir de données
+        incomplètes.
+      ar: >-
+        حساب أو تقدير القيمة أو العدد أو الكمية أو النطاق لشيء ما بشكل
+        تقريبي، وغالبًا بناءً على بيانات غير مكتملة.
+      id: >-
+        Menghitung atau menilai secara perkiraan nilai, jumlah, kuantitas,
+        atau cakupan sesuatu, sering kali berdasarkan data yang tidak lengkap.
+      zh: >-
+        基于不完整的数据，对某事物的价值、数量或范围进行近似计算或判断。
+      es: >-
+        Calcular o juzgar aproximadamente el valor, número, cantidad o
+        extensión de algo, a menudo basándose en datos incompletos.
+    structured_aliases:
+      - literal_form: Schatting
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Schätzung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Estimation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تقدير
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Estimasi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 估计
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Estimación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - crm:P140i_was_attributed_by  # CIDOC_CRM_v7.1.3.rdf:4220-4230 - "was attributed by" links entity to E13 Attribute Assignment (covers estimation, assessment, classification)
+    broad_mappings:
+      - prov:wasDerivedFrom  # prov.ttl:1099-1114 - "transformation of an entity into another"; general derivation subsumes estimation
+    related_mappings:
+      - dqv:hasQualityMeasurement  # dqv.ttl:157-161 - "refers to performed quality measurements"; estimation relates to quality assessment
+    annotations:
+      rico_naming_convention: >-
+        Follows RiC-O "estimatesOrEstimated" pattern for active/passive
+        predicates. See Rule 39: Slot Naming Convention (RiC-O Style)
+      replaces_slots: digital_confidence
+      migration_date: '2026-01-25'
+      custodian_types: '["*"]'
+    aliases:
+      - estimates_or_estimated
+    comments:
+      - Generic estimation slot for linking to confidence/quality assessments.
+      - Links entity to DigitalConfidence or similar assessment classes.
+      - Replaces specific confidence slots like digital_confidence.
+      - 'RiC-O naming: estimatesOrEstimated indicates estimation relationship.'
+      - >-
+        This relationship may be historical — estimations may be updated over
+        time. Used to link profiles or entities to confidence assessments about
+        specific attributes (e.g., digital proficiency confidence).
+      - >-
+        Pattern: LinkedInProfile └── estimates_or_estimated → DigitalConfidence
+        ├── has_or_had_score: 0.8 └── has_or_had_type: PROFICIENCY_LEVEL
+      - >-
+        Migrated from digital_confidence → estimates_or_estimated +
+        DigitalConfidence (per slot_fixes.yaml).
+    examples:
+      - value:
+          has_or_had_score: 0.85
+          has_or_had_label: High Digital Proficiency
+        description: Estimation of digital proficiency

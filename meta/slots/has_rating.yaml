@@ -1,0 +1,75 @@
+# ==============================================================================
+# LinkML Slot Definition: has_rating
+# ==============================================================================
+# A score, classification, or evaluation on a comparative scale.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                | Mapping  | Notes                                       |
+# |---------------|-----------------------------|--------------------------|----------|---------------------------------------------|
+# | **Schema.org**| `schema:aggregateRating`    | schemaorg.owl:7531-7560  | related  | Overall rating based on review collection.  |
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_rating
+name: has_rating
+title: Has Rating
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_rating:
+    slot_uri: hc:hasRating
+    description: >-
+      To specify a score, classification, or evaluation assigned to an entity based on a comparative scale or specific criteria.
+    alt_descriptions:
+      nl: >-
+        Om een score, classificatie of beoordeling te specificeren die aan een entiteit is toegekend op basis van een vergelijkende schaal of specifieke criteria.
+      de: >-
+        Um eine Punktzahl, Klassifizierung oder Bewertung anzugeben, die einer Entität auf der Grundlage einer Vergleichsskala oder bestimmter Kriterien zugewiesen wird.
+      fr: >-
+        Pour spécifier un score, une classification ou une évaluation attribuée à une entité sur la base d'une échelle comparative ou de critères spécifiques.
+      ar: >-
+        لتحديد درجة أو تصنيف أو تقييم مخصص لكيان بناءً على مقياس مقارن أو معايير محددة.
+      id: >-
+        Untuk menentukan skor, klasifikasi, atau evaluasi yang diberikan kepada suatu entitas berdasarkan skala komparatif atau kriteria tertentu.
+      zh: >-
+        用于指定根据比较尺度或特定标准分配给实体的分数、分类或评价。
+      es: >-
+        Para especificar una puntuación, clasificación o evaluación asignada a una entidad basada en una escala comparativa o criterios específicos.
+    structured_aliases:
+      - literal_form: Beoordeling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bewertung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Note
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تقييم
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Peringkat
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 评级
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Calificacion
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_rating
+    related_mappings:
+      - schema:aggregateRating  # schemaorg.owl:7531-7560 - "The overall rating, based on a collection of reviews or ratings, of the item." Domain: Product/Event/CreativeWork/Organization/Service/Place/Brand/Offer. Range: AggregateRating (structured object, not simple value).
+    comments:
+      - "MIGRATED 2026-02-03 from has_or_had_rating for conciseness."
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,87 @@
+id: https://nde.nl/ontology/hc/class/WebExtractionProfile
+name: web_extraction_profile
+title: WebExtractionProfile Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcat: http://www.w3.org/ns/dcat#
+  rml: http://semweb.mmlab.be/ns/rml#
+  oa: http://www.w3.org/ns/oa#
+imports:
+- linkml:types
+- ./DataServiceEndpoint
+- ../slots/has_url
+- ../slots/has_format
+- ../slots/has_selector
+- ../slots/has_protocol
+- ../slots/has_access_frequency
+- ../slots/updated_at
+- ../slots/has_extraction_rules
+- ../slots/has_pagination_strategy
+- ../slots/has_change_detection
+- ../enums/DataServiceProtocolEnum
+- ../enums/PaginationStrategyEnum
+- ../enums/ChangeDetectionMethodEnum
+classes:
+  WebExtractionProfile:
+    is_a: DataServiceEndpoint
+    class_uri: hc:WebExtractionProfile
+    description: >-
+      Machine-actionable profile describing how to extract structured data
+      from a web resource. Combines endpoint access (URL, protocol, format)
+      with extraction rules (XPath/CSS selectors per field), pagination
+      strategy, and change detection configuration. Drives
+      HeadlessBrowserService for HTML scraping, ExternalApiService for API
+      fetching, and DeltaService for update detection.
+
+      Aligns with RML (RDF Mapping Language) for extraction rule semantics:
+      has_selector maps to rml:iterator, has_extraction_rules aligns with
+      rml:reference, has_format maps to rml:referenceFormulation.
+
+      See docs/plan/fetch_kos_regs/digital-resource-profiles.md for full
+      architecture.
+    alt_descriptions:
+      nl: Machineleesbaar profiel dat beschrijft hoe gestructureerde gegevens uit een webresource worden geextraheerd.
+      de: Maschinenlesbares Profil das beschreibt wie strukturierte Daten aus einer Webressource extrahiert werden.
+    slots:
+      - has_url
+      - has_format
+      - has_selector
+      - has_protocol
+      - has_access_frequency
+      - updated_at
+      - has_extraction_rules
+      - has_pagination_strategy
+      - has_change_detection
+    slot_usage:
+      has_url:
+        description: "Base URL for the web resource to fetch."
+        required: true
+      has_protocol:
+        description: "Access protocol: REST, SPARQL, SRU, WEB_SCRAPE, etc."
+        required: true
+      has_selector:
+        description: >-
+          Primary XPath or CSS selector for iterating over records in the
+          page. Aligns with rml:iterator. For API sources, this may be a
+          JSONPath expression like '$.member[*]'.
+      has_extraction_rules:
+        description: >-
+          Per-field extraction rules. Each rule specifies a source_path
+          (XPath/JSONPath/CSS within a record), target_field name, and
+          optional transform. Aligns with rml:reference.
+      has_pagination_strategy:
+        description: "How to navigate multi-page results."
+      has_change_detection:
+        description: "How to detect upstream data changes for automated sync."
+    comments:
+      - "GAC rules: KOS-001 (ISIL profiles), KOS-003 (RML alignment)"
+      - "Profiles stored as YAML in isil/service/profiles/ by tier"
+      - "Can be exported as RML Turtle for interoperability"
+    exact_mappings:
+      - rml:LogicalSource
+    close_mappings:
+      - dcat:DataService
+    see_also:
+      - "https://rml.io/specs/rml/"
+      - "https://www.w3.org/TR/vocab-dcat-3/"

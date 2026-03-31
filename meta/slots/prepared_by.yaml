@@ -1,0 +1,113 @@
+# ==============================================================================
+# LinkML Slot Definition: prepared_by
+# ==============================================================================
+# Identifies the person or organization responsible for preparing an item,
+# specimen, or document.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                       | File/Line                          | Mapping  | Notes                                                        |
+# |----------------|--------------------------------|------------------------------------|----------|--------------------------------------------------------------|
+# | **CIDOC-CRM**  | `crm:P14_carried_out_by`       | CIDOC_CRM_v7.1.3.rdf:1489-1503    | broad    | "Active participation of E39 Actor in E7 Activity."          |
+# |                |                                |                                    |          | General activity→actor; preparation is a specific activity.  |
+# | **PROV-O**     | `prov:wasAttributedTo`         | prov.ttl:1082-1097                 | related  | "Attribution is the ascribing of an entity to an agent."     |
+# |                |                                |                                    |          | Entity→Agent attribution; broader than preparation.          |
+# | **Schema.org** | `schema:creator`               | schemaorg.owl:13479-13482          | related  | "The creator/author of this CreativeWork."                   |
+# |                |                                |                                    |          | Creation ≠ preparation; scoped to CreativeWork.              |
+# | **FOAF**       | `foaf:maker`                   | foaf.ttl:382-390                   | related  | "An agent that made this thing." General making relation.    |
+#
+# No external property specifically models "prepared by" as the agent who
+# readied a specimen or sample. Using hc: namespace.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/prepared_by
+name: prepared_by
+title: Prepared By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  prepared_by:
+    slot_uri: hc:preparedBy
+    description: >-
+      Identifies the specific individual, author, chef, or organization responsible
+      for making ready, drafting, cooking, or processing an item, meal, specimen, or
+      record. Captures the agent who performed the preparation activity, as distinct
+      from the creator or collector.
+    alt_descriptions:
+      nl: >-
+        Identificeert de persoon of organisatie die verantwoordelijk is voor het bereiden,
+        opstellen of verwerken van een item, monster of document.
+      de: >-
+        Identifiziert die Person oder Organisation, die für die Vorbereitung, Erstellung
+        oder Verarbeitung eines Gegenstands, einer Probe oder eines Dokuments verantwortlich ist.
+      fr: >-
+        Identifie la personne ou l'organisation responsable de la préparation, de la
+        rédaction ou du traitement d'un élément, d'un spécimen ou d'un document.
+      ar: >-
+        يحدد الشخص أو المنظمة المسؤولة عن إعداد أو تحضير أو معالجة عنصر أو عينة أو مستند.
+      id: >-
+        Mengidentifikasi individu atau organisasi yang bertanggung jawab atas penyiapan,
+        penyusunan, atau pemrosesan suatu item, spesimen, atau dokumen.
+      zh: >-
+        标识负责准备、起草或处理某一物品、标本或文件的个人或组织。
+      es: >-
+        Identifica a la persona u organización responsable de preparar, redactar o procesar
+        un elemento, espécimen o documento.
+    structured_aliases:
+      - literal_form: bereid door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: vorbereitet von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: préparé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: أعدّه
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disiapkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 准备者
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: preparado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    broad_mappings:
+      - crm:P14_carried_out_by  # CIDOC_CRM_v7.1.3.rdf:1489-1503 - "Active participation of E39 Actor in E7 Activity."
+    related_mappings:
+      - prov:wasAttributedTo  # prov.ttl:1082-1097 - "Attribution is the ascribing of an entity to an agent."
+      - schema:creator  # schemaorg.owl:13479-13482 - "The creator/author of this CreativeWork."
+      - foaf:maker  # foaf.ttl:382-390 - "An agent that made this thing."
+    aliases: []
+    examples:
+      - value: "Dr. Maria van den Berg"
+        description: >-
+          Conservation scientist who prepared a paint cross-section for analysis.
+      - value: "Naturalis Biodiversity Center"
+        description: >-
+          Institution that prepared a zoological specimen for the collection.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Complements the prepared_on slot, which captures the date of preparation
+        rather than the responsible agent.
+      - >-
+        The original file used crm:P14_carried_out_by as both slot_uri and
+        close_mapping (self-referential). Changed slot_uri to hc:preparedBy since
+        P14 is a general activity-to-actor relation, not specific to preparation.

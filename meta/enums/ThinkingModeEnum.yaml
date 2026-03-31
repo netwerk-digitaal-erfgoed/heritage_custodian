@@ -1,0 +1,54 @@
+id: https://nde.nl/ontology/hc/enum/ThinkingModeEnum
+name: thinking_mode_enum
+title: Thinking Mode Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+
+enums:
+  ThinkingModeEnum:
+    description: |
+      GLM 4.7 thinking mode configuration.
+      Controls how the model reasons during inference.
+
+      **Reference**: https://docs.z.ai/guides/capabilities/thinking-mode
+
+      GLM 4.7 introduces three distinct thinking modes that can be combined:
+      1. Interleaved Thinking (between tool calls)
+      2. Preserved Thinking (across conversation turns)
+      3. Turn-level Thinking (enable/disable per request)
+    permissible_values:
+      enabled:
+        description: |
+          Thinking enabled (turn-level setting).
+          Model reasons before responding, returns reasoning_content.
+          Set via: `"thinking": {"type": "enabled"}`
+        meaning: schema:ActivateAction
+      disabled:
+        description: |
+          Thinking disabled (turn-level setting).
+          Faster responses, no reasoning_content returned.
+          Useful for simple queries where speed matters more than accuracy.
+          Set via: `"thinking": {"type": "disabled"}`
+        meaning: schema:DeactivateAction
+      interleaved:
+        description: |
+          Interleaved thinking mode (default since GLM-4.5).
+          Model thinks between tool calls and after receiving tool results.
+          Enables complex, step-by-step reasoning with tool chaining.
+          No special configuration needed - this is the default behavior.
+        meaning: schema:Action
+      preserved:
+        description: |
+          Preserved thinking mode (new in GLM-4.7).
+          Retains reasoning_content from previous assistant turns in context.
+          Improves model performance and increases cache hit rates.
+          **Enabled by default on Z.AI Coding Plan endpoint**.
+          Set via: `"clear_thinking": false`
+
+          CRITICAL: Must return EXACT, UNMODIFIED reasoning_content back to API.
+        meaning: schema:Action

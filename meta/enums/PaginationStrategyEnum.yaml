@@ -1,0 +1,50 @@
+id: https://nde.nl/ontology/hc/enum/PaginationStrategyEnum
+name: pagination_strategy_enum
+title: Pagination Strategy Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  PaginationStrategyEnum:
+    description: |
+      Strategies for navigating multi-page web resources during automated
+      data extraction. Used by WebExtractionProfile to specify how the
+      HeadlessBrowserService traverses paginated result sets.
+    permissible_values:
+      NONE:
+        description: |
+          Single page, no pagination needed.
+
+          The entire dataset is available on a single page.
+      NEXT_LINK:
+        description: |
+          Follow next-page link via CSS/XPath selector.
+
+          Click or navigate to the element matching the next-page selector
+          until no more pages remain.
+      ALPHABET:
+        description: |
+          Iterate alphabet as query parameter.
+
+          Navigate to ?letter=A, ?letter=B, ... ?letter=Z to enumerate
+          all entries. Common for national library directories.
+      OFFSET:
+        description: |
+          Increment offset or page number parameter.
+
+          Append ?offset=N or ?page=N to the URL, incrementing until
+          the result set is empty.
+      CURSOR:
+        description: |
+          API cursor-based pagination.
+
+          Use a continuation token from the API response to fetch the
+          next page. Common for REST APIs (lobid.org, OCLC).
+      LOAD_MORE:
+        description: |
+          Click load-more button and wait for DOM update.
+
+          For JavaScript-rendered pages that load additional content
+          dynamically. Requires HeadlessBrowserService with
+          wait_for_selector.

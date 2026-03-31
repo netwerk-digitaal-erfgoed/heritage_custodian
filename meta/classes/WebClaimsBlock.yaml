@@ -1,0 +1,66 @@
+id: https://nde.nl/ontology/hc/classes/WebClaimsBlock
+name: WebClaimsBlock
+title: WebClaimsBlock
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+- linkml:types
+- ../slots/has_quantity
+- ../slots/warrant
+# default_range: string
+classes:
+  WebClaimsBlock:
+    description: >-
+      Container aggregating assertions extracted from archived online sources,
+      including valid entries, removed invalid items, and validation metadata.
+    alt_descriptions:
+      nl: Container voor claims geëxtraheerd uit gearchiveerde websites.
+      de: Container für aus archivierten Websites extrahierte Claims.
+      fr: Conteneur pour les affirmations extraites de sites web archivés.
+      es: Contenedor para afirmaciones extraídas de sitios web archivados.
+      ar: حاوية للادعاءات المستخرجة من مواقع الويب المؤرشفة.
+      id: Wadah untuk klaim yang diekstrak dari situs web yang diarsipkan.
+      zh: 从归档网站提取的声明的容器。
+    structured_aliases:
+    - literal_form: webclaims-blok
+      in_language: nl
+    - literal_form: Web-Claims-Block
+      in_language: de
+    - literal_form: bloc d'affirmations web
+      in_language: fr
+    - literal_form: bloque de afirmaciones web
+      in_language: es
+    - literal_form: كتلة ادعاءات الويب
+      in_language: ar
+    - literal_form: blok klaim web
+      in_language: id
+    - literal_form: 网页声明块
+      in_language: zh
+    comments:
+    - Aggregates WebClaim entities with full provenance tracking.
+    - 'Preserved from prior description: Container aggregating assertions extracted from archived websites, including valid entries, removed invalid items, and validation metadata.'
+    class_uri: prov:Collection
+    broad_mappings:
+    - prov:Collection
+    close_mappings:
+    - schema:Collection
+    related_mappings:
+    - prov:Entity
+    slots:
+    - has_quantity
+    - warrant
+    slot_usage:
+      has_quantity:
+        range: integer
+        inlined: false # Fixed invalid inline for primitive type
+        examples:
+        - value:
+            has_description: Web claims extracted from archived website
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'

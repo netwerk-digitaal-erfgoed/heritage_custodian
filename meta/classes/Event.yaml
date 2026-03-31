@@ -1,0 +1,116 @@
+id: https://nde.nl/ontology/hc/class/Event
+name: Event
+title: Event
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_description
+  - ../slots/has_documentation
+  - ../slots/has_hypernym
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/involved_in
+  - ../slots/generated_by
+  - ../slots/temporal_extent
+classes:
+  Event:
+    class_uri: hc:Event
+    description: >-
+      Delimited temporal occurrence linking participants, place context, and
+      timespan for historical and operational provenance.
+    alt_descriptions:
+      nl: Afgebakende temporele gebeurtenis die deelnemers, plaatscontext en tijdspanne verbindt voor historische en operationele provenance.
+      de: Abgrenzbares zeitliches Geschehen, das Beteiligte, Ortskontext und Zeitspanne fuer historische und operative Provenienz verknuepft.
+      fr: Occurrence temporelle delimitee reliant participants, contexte spatial et intervalle temporel pour la provenance historique et operationnelle.
+      es: Ocurrencia temporal delimitada que vincula participantes, contexto espacial y periodo para procedencia historica y operativa.
+      ar: وقوع زمني محدد يربط المشاركين وسياق المكان والفترة الزمنية لأغراض المنشأ التاريخي والتشغيلي.
+      id: Kejadian temporal terbatasi yang menghubungkan peserta, konteks tempat, dan rentang waktu untuk provenance historis dan operasional.
+      zh: 将参与方、地点语境与时间跨度相联结、用于历史与运营溯源的界定性时间发生。
+    structured_aliases:
+      - literal_form: gebeurtenis
+        in_language: nl
+      - literal_form: Ereignis
+        in_language: de
+      - literal_form: evenement
+        in_language: fr
+      - literal_form: evento
+        in_language: es
+      - literal_form: حدث
+        in_language: ar
+      - literal_form: peristiwa
+        in_language: id
+      - literal_form: 事件
+        in_language: zh
+    slots:
+      - has_documentation
+      - has_description
+      - identified_by
+      - has_label
+      - has_hypernym
+      - temporal_extent
+      - involved_in
+      - has_score
+      - generated_by
+    slot_usage:
+      identified_by:
+        description: Persistent identifier for the Event hub.
+        required: true
+        identifier: true
+      has_hypernym:
+        description: High-level event category (hypernym) for cross-domain querying.
+        required: true
+      has_label:
+        required: true
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+    examples:
+      - value:
+          identified_by: https://nde.nl/ontology/hc/event/nha-merger-2001
+          has_label: Noord-Hollands Archief Merger
+          has_hypernym: TRANSFORMATION
+          temporal_extent:
+            begin_of_the_begin: '2001-01-01'
+            end_of_the_end: '2001-01-01'
+          has_description: Merger of two archival institutions into one regional archive.
+        description: Organizational transformation occurrence
+      - value:
+          identified_by: https://nde.nl/ontology/hc/event/library-reopening-2025
+          has_label: Regional Library Reopening
+          has_hypernym: REOPENING
+          has_description: Public service resumed after restoration and systems revalidation.
+        description: Operational milestone occurrence
+    keywords:
+      - temporal occurrence
+      - provenance context
+      - participant involvement
+      - timespan modeling
+      - historical change
+    broad_mappings:
+      - crm:E5_Event
+      - prov:Activity
+      - rico:Event
+      - schema:Event
+    close_mappings:
+      - crm:E7_Activity
+    narrow_mappings:
+      - crm:E63_Beginning_of_Existence
+    comments:
+      - Hub class for time-bounded change descriptions across domains.
+    notes:
+      - |
+        Preserved from prior description (commit ee5e8e5a):
+
+        "An abstract hub class representing temporal phenomena - things that happen\nand involve actors, places, and temporal extents.\n\n**HUB ARCHITECTURE**:\n\nThe Event class follows the hub pattern established by Custodian:\n- Minimal hub with persistent identifier (event_id)\n- Links to temporal extent (TimeSpan) via temporal_extent\n- Links to actors (Custodian, Person) via involved_actors\n- Links to place via took_place_at\n- Categorized by hypernym_event_type (generic) and domain-specific type\n\n**INHERITANCE HIERARCHY**:\n\n```\nEvent (this class - abstract)\n\u251C\u2500\u2500 OrganizationalChangeEvent (existing - organizational changes)\n\u251C\u2500\u2500 IntangibleHeritageEvent (future - ICH-related events)\n\u251C\u2500\u2500 CollectionEvent (future - accession, deaccession, loan)\n\u2514\u2500\u2500 PersonEvent (future - birth, death, career milestones)\n```\n\n**CIDOC-CRM ALIGNMENT**:\n\nMaps to crm:E5_Event which is defined as:\n\"This class comprises distinct,\
+    annotations:
+      specificity_score: "0.35"
+      specificity_rationale: Cross-domain temporal hub with linked provenance details.
+      custodian_types: "['*']"

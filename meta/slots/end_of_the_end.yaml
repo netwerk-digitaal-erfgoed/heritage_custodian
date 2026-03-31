@@ -1,0 +1,164 @@
+# ==============================================================================
+# LinkML Slot Definition: end_of_the_end
+# ==============================================================================
+# Latest possible end time of a temporal extent (CIDOC-CRM E52_Time-Span pattern).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                   | File/Line           | Mapping  | Notes                                    |
+# |----------------|----------------------------|---------------------|----------|------------------------------------------|
+# | **OWL Time**   | `time:hasEnd`              | time.ttl:768-776    | slot_uri | "End of a temporal entity."              |
+# |                |                            |                     |          | Domain: TemporalEntity, Range: Instant   |
+# | **CIDOC-CRM**  | `crm:P82b_end_of_the_end`  | CIDOC_CRM:3053-3063 | close    | "end of the end" - latest possible       |
+# |                |                            |                     |          | end time. Domain: E52_Time-Span          |
+# |                |                            |                     |          | Range: rdfs:Literal (DatatypeProperty)   |
+# | **CIDOC-CRM**  | `crm:P82_at_some_time_within`| CIDOC_CRM:3030    | broad    | Parent of P82b (P82b subPropertyOf P82). |
+# | **PROV-O**     | `prov:endedAtTime`         | prov.ttl:555-565    | related  | "The time at which an activity ended."   |
+# |                |                            |                     |          | Range: xsd:dateTime                      |
+# | **Schema.org** | `schema:endDate`           | schemaorg.owl       | narrow   | End date of an event/period              |
+#
+# CIDOC-CRM FUZZY DATE PATTERN:
+# P82b defines the latest possible time the time span could have ended.
+# Used with P81b (begin_of_the_end) to express uncertainty about end time.
+#
+# Example: "Closed between 1950-1955"
+#   - begin_of_the_end: 1950-01-01 (earliest possible closure)
+#   - end_of_the_end: 1955-12-31 (latest possible closure)
+#
+# SLOT_URI NOTE:
+# Uses time:hasEnd (ObjectProperty) to align with OWL Time ontology
+# while supporting Timestamp class range for structured temporal data.
+#
+# CREATED: 2026-01-15
+# UPDATED: 2026-02-03 - Added broad: crm:P82_at_some_time_within (parent of P82b)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/end_of_the_end
+name: end_of_the_end
+title: end of the end
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  time: http://www.w3.org/2006/time#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  end_of_the_end:
+    slot_uri: time:hasEnd
+    description: >-
+      To indicate the latest possible end time of temporal extent (CIDOC-CRM E52_Time-Span).
+    alt_descriptions:
+      nl: >-
+        Het aangeven van de laatst mogelijke eindtijd van een temporele omvang (CIDOC-CRM E52_Time-Span).
+      de: >-
+        Angabe der spätestmöglichen Endzeit einer zeitlichen Ausdehnung (CIDOC-CRM E52_Time-Span).
+      fr: >-
+        Indiquer le moment de fin le plus tardif possible d'une étendue temporelle (CIDOC-CRM E52_Time-Span).
+      ar: >-
+        للإشارة إلى أحدث وقت انتهاء ممكن للنطاق الزمني (CIDOC-CRM E52_Time-Span).
+      id: >-
+        Untuk menunjukkan waktu akhir terbaru yang mungkin dari rentang temporal (CIDOC-CRM E52_Time-Span).
+      zh: >-
+        指示时间范围的最晚可能结束时间（CIDOC-CRM E52_Time-Span）。
+      es: >-
+        Indicar el momento de finalización más tardío posible de una extensión temporal (CIDOC-CRM E52_Time-Span).
+    range: string
+    any_of:
+      - range: Timestamp
+      - range: string
+      - range: datetime
+    inlined: false
+    required: false
+    multivalued: false
+    close_mappings:
+      - crm:P82b_end_of_the_end
+    broad_mappings:
+      - crm:P82_at_some_time_within # CIDOC-CRM: Parent property (P82b rdfs:subPropertyOf P82, line 3062)
+    related_mappings:
+      - prov:endedAtTime
+    narrow_mappings:
+      - schema:endDate
+    aliases:
+      - latest_end
+      - end_of_end
+      - is_or_was_end_of_the_end
+      - end_time
+      - is_or_was_end_time
+      - chapter_end_time
+      - is_or_was_end
+      - end_seconds
+      - end_time
+      - has_accumulation_end_date
+      - loan_end_date
+      - period_end
+      - reporting_period_end
+      - segment_end_seconds
+    structured_aliases:
+      - literal_form: einde van het einde
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: is_or_was_end_of_the_end
+        predicate: EXACT_SYNONYM
+      - literal_form: Ende vom Ende
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: fin de la fin
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: نهاية النهاية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: akhir dari akhir
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 结束的结束
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: fin del fin
+        predicate: EXACT_SYNONYM
+        in_language: es
+    examples:
+      - value: |
+          timestamp_value: "1955-12-31"
+          timestamp_precision: day
+        description: Latest possible closure date
+      - value: "2020-03-31"
+        description: Latest possible end as ISO 8601 string
+    annotations:
+      slot_fixes_compliance: Range changed from datetime to Timestamp class per slot_fixes.yaml
+      migration_date: '2026-01-15'
+      replaces_slots: valid_to, valid_to_geo
+      owl_note: Uses time:hasEnd (ObjectProperty) instead of crm:P82b (DatatypeProperty) to match Timestamp class range
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **CIDOC-CRM Pattern**:
+        P82b defines the latest possible time the time span could have ended.
+        Used with P81b (begin_of_the_end) to express uncertainty about end time.
+      - |
+        **Example**: "Closed between 1950-1955"
+        - begin_of_the_end: 1950-01-01 (earliest possible closure)
+        - end_of_the_end: 1955-12-31 (latest possible closure)
+      - |
+        **Range**: Supports Timestamp class, ISO 8601 strings, and datetime values.
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **OWL Time** | `time:hasEnd` | 768-776 | slot_uri | End of a temporal entity |
+        | **CIDOC-CRM** | `crm:P82b_end_of_the_end` | 3053-3063 | close | Latest possible end time |
+        | **CIDOC-CRM** | `crm:P82_at_some_time_within` | 3030 | broad | Parent (P82b subPropertyOf P82) |
+        | **PROV-O** | `prov:endedAtTime` | 555-565 | related | Activity end time |
+        | **Schema.org** | `schema:endDate` | - | narrow | End date of event/period | 
+      - |  
+          Can also be epxressed  in ISO 8601 duration format (e.g. PT5M).
+          Generic slot for media/temporal segments.

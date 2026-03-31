@@ -1,0 +1,160 @@
+id: https://nde.nl/ontology/hc/class/TreatmentType
+name: TreatmentType
+title: Treatment Type Classification
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  aat: http://vocab.getty.edu/aat/
+  premis: http://www.loc.gov/premis/rdf/v3/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_code
+  - ../slots/has_description
+  - ../slots/has_hypernym
+  - ../slots/has_hyponym
+  - ../slots/identified_by
+  - ../slots/has_label
+  - ../slots/has_score
+  - ../slots/equivalent_to
+classes:
+  TreatmentType:
+    class_uri: skos:Concept
+    alt_descriptions:
+      nl: Abstracte basisclassificatie van typen conserveringsbehandelingen.
+      de: Abstrakte Basisklassifikation von Konservierungsbehandlungstypen.
+      fr: Classification de base abstraite des types de traitements de conservation.
+      es: Clasificacion base abstracta de tipos de tratamientos de conservacion.
+      ar: تصنيف أساسي مجرد لأنواع معالجات الحفظ والصون.
+      id: Klasifikasi dasar abstrak untuk tipe perlakuan konservasi.
+      zh: 用于文物保护处理类型的抽象基础分类。
+    structured_aliases:
+    - literal_form: behandelingstype
+      in_language: nl
+    - literal_form: Behandlungstyp
+      in_language: de
+    - literal_form: type de traitement
+      in_language: fr
+    - literal_form: tipo de tratamiento
+      in_language: es
+    - literal_form: نوع المعالجة
+      in_language: ar
+    - literal_form: tipe perlakuan
+      in_language: id
+    - literal_form: 处理类型
+      in_language: zh
+    description: >-
+      Abstract category for conservation intervention kinds used to classify
+      object-care actions.
+    abstract: true
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - crm:E55_Type
+    - aat:300404522
+    related_mappings:
+    - crm:E11_Modification
+    - premis:PreservationEvent
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_code
+    - has_hypernym
+    - has_hyponym
+    - equivalent_to
+    - has_score
+    slot_usage:
+      identified_by:
+#         range: string # uriorcurie
+        required: true
+        identifier: true
+        pattern: ^https://nde\.nl/ontology/hc/treatment-type/[a-z-]+$
+        examples:
+        - value: https://nde.nl/ontology/hc/treatment-type/cleaning
+        - value: https://nde.nl/ontology/hc/treatment-type/stabilization
+      has_code:
+#         range: string
+        required: true
+        pattern: ^[A-Z][A-Z0-9_]*$
+        examples:
+        - value: CLEANING
+        - value: STABILIZATION
+        - value: RESTORATION
+        - value: PREVENTIVE
+        - value: DEACIDIFICATION
+      has_label:
+#         range: string
+        required: true
+        multivalued: true
+        examples:
+        - value:
+          - Cleaning@en
+          - reiniging@nl
+          - Reinigung@de
+        - value:
+          - Stabilization@en
+          - stabilisatie@nl
+      has_description:
+#         range: string
+        required: false
+        examples:
+        - value: Surface cleaning treatment to remove dirt, grime, and surface accretions
+      equivalent_to:
+        range: WikiDataIdentifier
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        examples:
+        - value:
+          - qid: Q753445
+      has_hypernym:
+        range: TreatmentType
+        required: false
+      has_hyponym:
+        range: TreatmentType
+        multivalued: true
+        required: false
+    annotations:
+      specificity_score: '0.60'
+      specificity_rationale: Fairly specific - conservation treatments are domain-specific to heritage preservation.
+      has_score: null
+      replaces_slot: treatment_type
+      migration_date: '2026-01-13'
+      custodian_types: "['*']"
+      modeling_notes: |
+        Type vs instance
+
+        - TreatmentType models categories (e.g., CLEANING, STABILIZATION).
+        - Treatment records model concrete interventions with dates, actors,
+          methods, materials, and outcomes.
+
+        Typical functional groupings
+
+        - preventive
+        - cleaning
+        - stabilization
+        - restoration
+        - material-specific specialized treatments
+    comments:
+    - Abstract base class - use specific subclasses (CleaningTreatment, etc.)
+    - Represents TREATMENT TYPES, not treatment records
+    - ConservationRecord.has_type references these type classes
+    - Follows Type/Types naming convention (Rule 0b)
+    - Aligned with AAT conservation terminology
+    see_also:
+    - https://www.getty.edu/research/tools/vocabularies/aat/
+    - https://www.loc.gov/standards/premis/
+    - http://www.cidoc-crm.org/cidoc-crm/E11_Modification
+    examples:
+    - value:
+        identified_by: https://nde.nl/ontology/hc/treatment-type/cleaning
+        has_code: CLEANING
+        has_label:
+        - Cleaning@en
+        - reiniging@nl
+        has_description: Surface cleaning treatment to remove dirt and accretions
+        equivalent_to:
+        - qid: Q2608948

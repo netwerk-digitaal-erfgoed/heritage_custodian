@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: affiliated_with
+# ==============================================================================
+# Links an entity to an organization it is affiliated with.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **W3C Org**   | `org:memberOf`        | org.rdf              | exact   | Membership in organization         |
+# | **Schema.org**| `schema:affiliation`  | schemaorg.owl        | exact   | Affiliation relationship           |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, verified ontology mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/affiliated_with
+name: affiliated_with
+title: Affiliated With
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  org: http://www.w3.org/ns/org#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  affiliated_with:
+    slot_uri: org:memberOf
+    description: >-
+      The organization, institution, or group with which the entity has a
+      formal membership, association, or working relationship.
+    alt_descriptions:
+      nl: >-
+        De organisatie, instelling of groep waarmee de entiteit een formeel
+        lidmaatschap, associatie of werkrelatie heeft.
+      de: >-
+        Die Organisation, Institution oder Gruppe, mit der die Entität eine
+        formelle Mitgliedschaft, Zugehörigkeit oder Arbeitsbeziehung hat.
+      fr: >-
+        L'organisation, l'institution ou le groupe avec lequel l'entité a une
+        adhésion formelle, une association ou une relation de travail.
+      ar: >-
+        المنظمة أو المؤسسة أو المجموعة التي لدى الكيان عضوية رسمية أو ارتباط
+        أو علاقة عمل معها.
+      id: >-
+        Organisasi, institusi, atau kelompok yang memiliki hubungan keanggotaan
+        formal, asosiasi, atau hubungan kerja dengan entitas.
+      zh: >-
+        实体与之具有正式成员资格、关联或工作关系的组织、机构或团体。
+      es: >-
+        La organización, institución o grupo con el cual la entidad tiene una
+        membresía formal, asociación o relación de trabajo.
+    structured_aliases:
+      - literal_form: geaffilieerd met
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: angeschlossen an
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: affilié à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: منتسب إلى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: berafiliasi dengan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 隶属于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: afiliado a
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+      - schema:affiliation  # schemaorg.owl - Affiliation relationship
+    aliases:
+      - is_or_was_affiliated_with
+      - conservator_affiliation
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: https://nde.nl/org/rijksmuseum
+        description: Affiliated with Rijksmuseum
+    comments:
+      - |
+        **USAGE**:
+        Used for:
+        - Unit affiliations
+        - Organizational memberships
+        - Departmental relationships

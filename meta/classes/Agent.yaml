@@ -1,0 +1,149 @@
+id: https://nde.nl/ontology/hc/class/Agent
+name: Agent
+title: Agent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/identified_by
+  - ../slots/has_name
+  - ../slots/has_type
+classes:
+  Agent:
+    class_uri: prov:Agent
+    description: >-
+      Entity that bears responsibility for an activity or action, encompassing
+      persons, organizations, groups, or software systems that can act with
+      intent or perform operations within heritage contexts.
+    alt_descriptions:
+      nl: >-
+        Entiteit die verantwoordelijk is voor een activiteit of handeling,
+        omvattende personen, organisaties, groepen of softwaresystemen die met
+        opzet kunnen handelen of bewerkingen kunnen uitvoeren binnen
+        erfgoedcontexten.
+      de: >-
+        Entitaet, die Verantwortung fuer eine Aktivitaet oder Handlung traegt,
+        einschliesslich Personen, Organisationen, Gruppen oder Softwaresysteme,
+        die absichtlich handeln oder Operationen in Heritage-Kontexten
+        durchfuehren koennen.
+      fr: >-
+        Entite responsable d'une activite ou d'une action, englobant les
+        personnes, organisations, groupes ou systemes logiciels capables d'agir
+        avec intention ou d'effectuer des operations dans les contextes
+        patrimoniaux.
+      es: >-
+        Entidad responsable de una actividad o accion, que abarca personas,
+        organizaciones, grupos o sistemas de software que pueden actuar con
+        intencion o realizar operaciones en contextos patrimoniales.
+      ar: >-
+        كيان يتحمل مسؤولية نشاط أو إجراء، يشمل الأشخاص والمنظمات والمجموعات
+        أو أنظمة البرمجيات التي يمكنها التصرف بقصد أو تنفيذ عمليات في
+        السياقات التراثية.
+      id: >-
+        Entitas yang bertanggung jawab atas aktivitas atau tindakan, mencakup
+        orang, organisasi, kelompok, atau sistem perangkat lunak yang dapat
+        bertindak dengan sengaja atau melakukan operasi dalam konteks warisan.
+      zh: >-
+        承担活动或行动责任的实体，包括在遗产背景下可以有目的地行动或执行操作
+        的人员、组织、团体或软件系统。
+    examples:
+    - value:
+        has_name: Dr. Jane Smith
+        has_type: hc:PersonAgent
+        identified_by:
+        - identifier_scheme: ORCID
+          identifier_value: "0000-0001-2345-6789"
+      description: A researcher agent with ORCID identifier
+    - value:
+        has_name: Koninklijke Bibliotheek
+        has_type: hc:OrganizationAgent
+        identified_by:
+        - identifier_scheme: ISIL
+          identifier_value: "NL-LeKB"
+      description: An organization agent with ISIL identifier
+    structured_aliases:
+    - literal_form: agent
+      in_language: nl
+    - literal_form: Akteur
+      in_language: de
+    - literal_form: agent
+      in_language: fr
+    - literal_form: agente
+      in_language: es
+    - literal_form: وكيل
+      in_language: ar
+    - literal_form: agen
+      in_language: id
+    - literal_form: 代理者
+      in_language: zh
+    keywords:
+    - actor
+    - person
+    - organization
+    - software
+    - responsibility
+    - provenance
+    broad_mappings:
+    - prov:Agent
+    close_mappings:
+    - foaf:Agent
+    - dcterms:Agent
+    related_mappings:
+    - schema:Person
+    - schema:Organization
+    slots:
+    - has_name
+    - has_type
+    - identified_by
+    slot_usage:
+      has_name:
+        required: false
+      has_type:
+        required: false
+      identified_by:
+        multivalued: true
+        required: false
+    comments:
+    - Replaces simple string slots with structured agent model
+    - Supports typed agents (person, organization, software, group)
+    - Fundamental class for provenance tracking in heritage contexts
+    - |
+        Preserved from prior description:
+        
+        **RULE 53 MIGRATION**:
+        Replaces simple string slots with a structured agent model:
+        - `acquired_by` → Agent (this class)
+        - Supports typed agents (person, organization, software)
+        
+        **USAGE**:
+        ```yaml
+        acquired_by:
+          - agent_name: "Dr. Jane Smith"
+            agent_type: person
+            identified_by:
+              - identifier_scheme: ORCID
+                identifier_value: "0000-0001-2345-6789"
+        ```
+        
+        **Ontological Alignment**:
+        - **Primary** (`class_uri`): `prov:Agent` - PROV-O agent
+        - **Close**: `foaf:Agent` - FOAF agent
+        - **Close**: `schema:Person` / `schema:Organization` - Schema.org agents
+        - **Close**: `dcterms:Agent` - Dublin Core agent
+        
+        **Use Cases**:
+        - Specimen collectors (field biologists)
+        - Artwork donors/sellers
+        - Archive depositors
+        - Record creators
+    annotations:
+      specificity_score: "0.25"
+      specificity_rationale: Broadly applicable - agents appear across all heritage contexts
+      template_specificity: '{"archive_search": 0.30, "museum_search": 0.30, "library_search": 0.30, "collection_discovery": 0.40, "person_research": 0.60, "location_browse": 0.15, "identifier_lookup": 0.35, "organizational_change": 0.25, "digital_platform": 0.20, "general_heritage": 0.25}'
+      custodian_types: "['*']"

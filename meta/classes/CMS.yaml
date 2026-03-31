@@ -1,0 +1,170 @@
+id: https://nde.nl/ontology/hc/class/CMS
+name: cms_class
+title: CMS Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  doap: http://usefulinc.com/ns/doap#
+imports:
+- linkml:types
+- ../slots/has_label
+- ../slots/has_type
+- ../slots/has_version
+default_prefix: hc
+classes:
+  CMS:
+    class_uri: schema:SoftwareApplication
+    description: >-
+      Content Management System detected on a digital platform through automated discovery or manual identification.
+    alt_descriptions:
+      nl: Contentmanagementsysteem gedetecteerd op een digitaal platform via geautomatiseerde ontdekking of handmatige identificatie.
+      de: Content-Management-System, das auf einer digitalen Plattform durch automatisierte Erkennung oder manuelle Identifizierung erkannt wurde.
+      fr: Système de gestion de contenu détecté sur une plateforme numérique par découverte automatisée ou identification manuelle.
+      es: Sistema de gestión de contenidos detectado en una plataforma digital mediante descubrimiento automatizado o identificación manual.
+      ar: نظام إدارة المحتوى المكتشف على منصة رقمية من خلال الاكتشاف الآلي أو التعريف اليدوي.
+      id: Sistem Manajemen Konten yang terdeteksi pada platform digital melalui penemuan otomatis atau identifikasi manual.
+      zh: 通过自动发现或手动识别在数字平台上检测到的内容管理系统。
+    structured_aliases:
+    - literal_form: cms
+      in_language: nl
+    - literal_form: contentbeheersysteem
+      in_language: nl
+    - literal_form: CMS
+      in_language: de
+    - literal_form: Content-Management-System
+      in_language: de
+    - literal_form: CMS
+      in_language: fr
+    - literal_form: système de gestion de contenu
+      in_language: fr
+    - literal_form: CMS
+      in_language: es
+    - literal_form: sistema de gestión de contenidos
+      in_language: es
+    - literal_form: نظام إدارة المحتوى
+      in_language: ar
+    - literal_form: CMS
+      in_language: id
+    - literal_form: 内容管理系统
+      in_language: zh
+    broad_mappings:
+    - schema:SoftwareApplication
+    close_mappings:
+    - doap:Project
+    keywords:
+    - content management system
+    - CMS
+    - digital platform
+    - website platform
+    - detection
+    examples:
+    - value: |
+        AuxiliaryDigitalPlatform:
+        platform_name: Heritage Blog
+        based_on:
+          - cms_name: WordPress
+            cms_version: "6.4.2"
+            cms_type: CustomCMS
+            detected_at: "2026-01-19T12:00:00Z"
+            detection_method: HTTP_HEADER
+    - value:
+        cms_name: WordPress
+        has_version: "6.4.2"
+        has_type: MuseumCMS
+        detected_at: "2026-01-19T12:00:00Z"
+        detection_method: HTTP_HEADER
+    - value:
+        cms_name: Omeka S
+        has_version: "4.0.1"
+        detection_method: URL_PATTERN
+    comments:
+    - Lightweight detection record distinct from CollectionManagementSystem
+    - Detection via HTTP headers, meta tags, URL patterns, or manual inspection
+    slots:
+    - cms_name
+    - has_version
+    - has_type
+    - detected_at
+    - detection_method
+    slot_usage:
+      cms_name:
+        required: true
+        examples:
+        - value: WordPress
+        - value: Omeka S
+        - value: CollectiveAccess
+      has_version:
+        required: false
+        examples:
+        - value: "6.4.2"
+        - value: "4.0.1"
+      has_type:
+        range: CMSType
+        required: false
+        examples:
+        - value: MuseumCMS
+        - value: ArchiveCMS
+      detected_at:
+        range: datetime
+        required: false
+        examples:
+        - value: "2026-01-19T12:00:00Z"
+      detection_method:
+        required: false
+        examples:
+        - value: HTTP_HEADER
+        - value: META_TAG
+        - value: URL_PATTERN
+        - value: MANUAL
+    notes:
+    - |
+      Preserved from prior description (commit bd8368df):
+
+      Preserved from prior description (commit bd8368df):
+
+      A detected Content Management System (CMS) on a digital platform.
+      **Purpose**: Represents a CMS instance detected through automated discovery
+      or manual identification. Used when a platform based_on a CMS.
+      **Distinction from CollectionManagementSystem**:
+      - **CMS**: Lightweight detection record (what CMS was found)
+      - **CollectionManagementSystem**: Full institutional CMS deployment profile
+        (configuration, collections managed, custodian relationships)
+      **Detection Methods** (from original cms_detected documentation):
+      - HTTP response headers (X-Powered-By, Server)
+      - HTML meta tags (generator)
+      - URL patterns (e.g., /providence/, /omeka/)
+      - JavaScript libraries or framework signatures
+      - Admin panel detection
+      **Use Cases**:
+      1. "What CMS powers this auxiliary platform?" → Check based_on
+      2. Technical survey: Identify platforms by CMS type
+      3. Migration planning: Prioritize platforms by CMS technology
+      **Example**:
+
+      **Migration Note**: Created 2026-01-19 per slot_fixes.yaml (Rule 53).
+      Supports migration from boolean cms_detected to structured CMS reference.
+    annotations:
+      custodian_types: '["D"]'
+      custodian_types_rationale: Digital platforms (D) are the primary users of CMS detection
+      specificity_score: 0.70
+      specificity_rationale: Specific to digital platform CMS detection context
+slots:
+  cms_name:
+    slot_uri: schema:name
+    description: Name of the Content Management System
+#     range: string
+    close_mappings:
+    - schema:name
+    - doap:name
+  detected_at:
+    slot_uri: prov:generatedAtTime
+    description: Timestamp when the CMS was detected
+    range: datetime
+    close_mappings:
+    - prov:generatedAtTime
+  detection_method:
+    slot_uri: prov:wasGeneratedBy
+    description: Method used to detect the CMS (HTTP_HEADER, META_TAG, URL_PATTERN, MANUAL)
+#     range: string

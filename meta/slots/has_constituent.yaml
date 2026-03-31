@@ -1,0 +1,114 @@
+# ==============================================================================
+# LinkML Slot Definition: has_constituent
+# ==============================================================================
+# Component element or functional part that makes up a larger complex entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                       | File/Line                  | Mapping | Notes                                                                    |
+# |---------------|--------------------------------|----------------------------|---------|--------------------------------------------------------------------------|
+# | **RiC-O**     | `rico:hasOrHadConstituent`      | RiC-O_1-1.rdf:6005-6063   | close   | "Connects a Record to a constituent Record/RecordPart." Domain: Record.  |
+# | **DCTerms**   | `dcterms:hasPart`               | dcterms.rdf:1347-1370      | broad   | "A related resource included physically or logically." Any resource.     |
+# | **RiC-O**     | `rico:hasOrHadPart`             | RiC-O_1-1.rdf:7271-7309   | broad   | "Connects a Thing to a constitutive or component part." Domain: Thing.   |
+# | **ORG**       | `org:hasSubOrganization`        | org.rdf:645-662            | related | "An organization which is a sub-part or child." Hierarchical containment.|
+# | **Schema.org**| `schema:hasPart`                | schemaorg.owl:20403-20425  | related | "An item or CreativeWork that is part of this item." Domain: CreativeWork.|
+#
+# No exact match — slot describes functional constituent types of a heritage
+# institution (e.g. Archive function, Museum function within a complex entity).
+# dcterms:type was incorrectly mapped as exact (classifies WHAT something is,
+# not what PARTS it has). slot_uri stays hc:hasConstituent.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_constituent
+name: has_constituent
+title: Has Constituent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  org: http://www.w3.org/ns/org#
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_constituent:
+    slot_uri: hc:hasConstituent
+    description: >-
+      Identifies a component, element, or part that makes up a larger complex
+      entity or substance.
+    comments:
+      - >-
+        Used to list component institutional functions of a complex heritage
+        institution. Primary types are core functions (e.g. Archive, Museum);
+        secondary types are significant additional functions (e.g. Library,
+        Gallery). Record relative weighting (dominant vs. equal partnership)
+        and historical development (started mixed or became mixed).
+      - >-
+        Constituent types should reflect actual operational reality, not
+        aspirational mission.
+    examples:
+      - value: "Archive (primary), Museum (significant exhibition program)"
+      - value: "Museum (primary), Library (substantial research collections)"
+      - value: "Library (primary), Archive (manuscript collections), Gallery (rotating exhibitions)"
+      - value: "Museum + Research Center (equal partnership)"
+    alt_descriptions:
+      nl: >-
+        Identificeert een component, element of deel dat een groter complex
+        geheel of substantie vormt.
+      de: >-
+        Bezeichnet einen Bestandteil, ein Element oder einen Teil, der eine
+        groessere komplexe Einheit oder Substanz bildet.
+      fr: >-
+        Identifie un composant, un element ou une partie qui constitue une
+        entite ou une substance complexe plus grande.
+      ar: >-
+        يحدد مكونا او عنصرا او جزءا يشكل كيانا او مادة معقدة اكبر.
+      id: >-
+        Mengidentifikasi komponen, elemen, atau bagian yang membentuk entitas
+        atau substansi kompleks yang lebih besar.
+      zh: >-
+        标识构成更大复合实体或物质的组成部分、元素或部件。
+      es: >-
+        Identifica un componente, elemento o parte que constituye una entidad
+        o sustancia compleja mas grande.
+    structured_aliases:
+      - literal_form: Bestanddeel
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bestandteil
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Constituant
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مكون
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Konstituen
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 组成部分
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Constituyente
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    aliases:
+      - constituent_type
+      - item
+    close_mappings:
+      - rico:hasOrHadConstituent  # RiC-O_1-1.rdf:6005-6063 - "Connects a Record to a constituent Record/RecordPart." Same constituent concept but domain restricted to Records.
+    broad_mappings:
+      - dcterms:hasPart  # dcterms.rdf:1347-1370 - "A related resource that is included either physically or logically in the described resource."
+      - rico:hasOrHadPart  # RiC-O_1-1.rdf:7271-7309 - "Connects a Thing to a constitutive or component part of that Thing."
+    related_mappings:
+      - org:hasSubOrganization  # org.rdf:645-662 - "An organization which is a sub-part or child of this organization." Hierarchical containment.
+      - schema:hasPart  # schemaorg.owl:20403-20425 - "An item or CreativeWork that is part of this item." Domain: CreativeWork.
+    annotations:
+      custodian_types: '["*"]'

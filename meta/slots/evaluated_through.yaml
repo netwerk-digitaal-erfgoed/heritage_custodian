@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: evaluated_through
+# ==============================================================================
+# Describes the evaluation or review methodology, status, and priorities for
+# reassessing a classification, attribution, or data quality determination.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property                 | File/Line                | Mapping | Notes                                                              |
+# |------------|--------------------------|--------------------------|---------|--------------------------------------------------------------------|
+# | **PROV-O** | `prov:qualifiedRevision` | prov.ttl:955-961         | close   | "Qualify how it was revised"; describes revision methodology.      |
+# | **Schema** | `schema:lastReviewed`    | schemaorg.owl:24017-24018| related | "Date on which content was last reviewed"; temporal aspect only.   |
+# | **Schema** | `schema:assesses`        | schemaorg.owl:8873-8875  | broad   | "Intended to assess competency"; educational context, broader.      |
+#
+# CREATED: 2026-02-12
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/evaluated_through
+name: evaluated_through
+title: Evaluated Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  evaluated_through:
+    slot_uri: prov:qualifiedRevision
+    description: >-
+      Describes the evaluation methodology, review status, and priority
+      for reassessing a classification, type attribution, or data quality
+      determination. Captures the framework guiding when and how a record
+      should be re-examined.
+    alt_descriptions:
+      nl: >-
+        Beschrijft de evaluatiemethodologie, beoordelingsstatus en prioriteit
+        voor herbeoordeling van een classificatie, type-attributie of
+        gegevenskwaliteitsbepaling.
+      de: >-
+        Beschreibt die Bewertungsmethodik, den Überprüfungsstatus und die
+        Priorität für die Neubewertung einer Klassifizierung, Typzuweisung
+        oder Datenqualitätsbestimmung.
+      fr: >-
+        Décrit la méthodologie d'évaluation, le statut de révision et la
+        priorité de réévaluation d'une classification, d'une attribution
+        de type ou d'une détermination de qualité des données.
+      ar: >-
+        يصف منهجية التقييم وحالة المراجعة والأولوية لإعادة تقييم التصنيف
+        أو نسبة النوع أو تحديد جودة البيانات.
+      id: >-
+        Menggambarkan metodologi evaluasi, status tinjauan, dan prioritas
+        untuk menilai ulang klasifikasi, atribusi tipe, atau penentuan
+        kualitas data.
+      zh: >-
+        描述评估方法、审查状态以及重新评估分类、类型归属或数据质量确定的优先级。
+      es: >-
+        Describe la metodología de evaluación, el estado de revisión y la
+        prioridad para reevaluar una clasificación, atribución de tipo o
+        determinación de calidad de datos.
+    structured_aliases:
+      - literal_form: geëvalueerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: evaluiert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: évalué par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم تقييمه عبر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dievaluasi melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 通过...评估
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: evaluado a través de
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - prov:qualifiedRevision    # prov.ttl:955-961 - "Qualify how it was revised"; describes revision methodology
+    related_mappings:
+      - schema:lastReviewed       # schemaorg.owl:24017-24018 - "Date on which content was last reviewed"
+    broad_mappings:
+      - schema:assesses           # schemaorg.owl:8873-8875 - "Intended to assess competency"; educational context, broader
+    aliases:
+      - review_status
+    examples:
+      - value: Requires specialist research, Low priority, Consider removing if no evidence emerges
+        description: >-
+          A low-priority record with unclear classification awaiting
+          specialist investigation.
+      - value: High priority - institution recently mentioned in journal, Re-investigate within 3 months
+        description: >-
+          A high-priority record triggered by new external evidence.
+      - value: Medium priority - waiting for archival collection to be cataloged, Review in 2026
+        description: >-
+          A medium-priority record dependent on pending archival work.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - 'Guides data curation decisions: priority level (high/medium/low) for re-investigation.'
+      - 'May include review triggers, resource requirements, timeline, outcome scenarios, and escalation paths.'
+      - 'Ensures records with uncertain or provisional classifications do not stagnate.'

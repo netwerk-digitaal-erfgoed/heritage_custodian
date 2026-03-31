@@ -1,0 +1,88 @@
+# ==============================================================================
+# LinkML Slot Definition: contain_covers_settlement
+# ==============================================================================
+# Specific settlements (cities, towns, villages) covered by a service area.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:containsPlace`| schemaorg.owl:12711-12733  | exact   | "The basic containment relation between a place and another that it contains" — Place→Place |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, moved usage notes to comments
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/contain_covers_settlement
+name: contain_covers_settlement_slot
+title: Covers Settlements
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  contain_covers_settlement:
+    slot_uri: schema:containsPlace
+    description: >-
+      Specific settlements (cities, towns, villages) covered by this service area.
+    alt_descriptions:
+      nl: >-
+        Specifieke nederzettingen (steden, dorpen) die door dit verzorgingsgebied worden bestreken.
+      de: >-
+        Spezifische Siedlungen (Städte, Dörfer, Gemeinden), die von diesem Versorgungsgebiet abgedeckt werden.
+      fr: >-
+        Localités spécifiques (villes, bourgs, villages) couvertes par cette zone de desserte.
+      ar: >-
+        مستوطنات محددة (مدن، بلدات، قرى) يغطيها منطقة الخدمة هذه.
+      id: >-
+        Permukiman tertentu (kota, kota kecil, desa) yang dicakup oleh wilayah layanan ini.
+      zh: >-
+        该服务区域所覆盖的特定聚居地（城市、城镇、村庄）。
+      es: >-
+        Asentamientos específicos (ciudades, pueblos, aldeas) cubiertos por esta área de servicio.
+    structured_aliases:
+      - literal_form: bestrijkt nederzettingen
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: umfasst Siedlungen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: couvre des localités
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يغطي مستوطنات
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mencakup permukiman
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 覆盖聚居地
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cubre asentamientos
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined_as_list: false
+    aliases:
+      - contains_or_contained_covers_settlement
+    exact_mappings:
+    comments:
+      - |
+        **USAGE**: Use when service area covers specific municipalities (not entire province),
+        e.g. municipal archive serving one or more cities, or regional archive with defined
+        list of served settlements.
+      - |
+        Links to Settlement class with GeoNames identifiers. GeoNames IDs disambiguate
+        settlements with the same name.
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,273 @@
+# EventTypeEnum - Generic Event Type Hypernyms
+# =============================================================================
+# Provides high-level event type categories aligned with CIDOC-CRM event classes.
+# These are hypernym (parent) types that domain-specific enums can extend.
+#
+# DESIGN RATIONALE:
+# - OrganizationalChangeEventTypeEnum provides domain-specific types (MERGER, SPLIT, etc.)
+# - EventTypeEnum provides generic hypernym types that organize domain-specific types
+# - Enables cross-domain event queries (find all CREATION events, regardless of domain)
+#
+# CIDOC-CRM ALIGNMENT:
+# - CREATION → crm:E63_Beginning_of_Existence
+# - DESTRUCTION → crm:E64_End_of_Existence
+# - TRANSFORMATION → crm:E81_Transformation
+# - TRANSFER → crm:E10_Transfer_of_Custody
+# - MOVEMENT → crm:E9_Move
+# - ACTIVITY → crm:E7_Activity (generic action)
+# - MODIFICATION → crm:E11_Modification
+# - JOINING → crm:E85_Joining
+# - LEAVING → crm:E86_Leaving
+# =============================================================================
+
+id: https://nde.nl/ontology/hc/enum/EventTypeEnum
+name: EventTypeEnum
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  rico: https://www.ica.org/standards/RiC/ontology#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+enums:
+  EventTypeEnum:
+    description: |
+      Generic event type hypernyms aligned with CIDOC-CRM event hierarchy.
+      
+      These are high-level categories that organize domain-specific event types.
+      Use these for cross-domain queries and generic event classification.
+      
+      **HYPERNYM STRUCTURE**:
+      
+      ```
+      E5_Event (root)
+      ├── E7_Activity
+      │   ├── E11_Modification
+      │   ├── E65_Creation
+      │   ├── E81_Transformation
+      │   └── E9_Move
+      │       └── E10_Transfer_of_Custody
+      ├── E63_Beginning_of_Existence
+      ├── E64_End_of_Existence
+      ├── E85_Joining
+      └── E86_Leaving
+      ```
+      
+      **RELATIONSHIP TO DOMAIN-SPECIFIC ENUMS**:
+      
+      | EventTypeEnum | OrganizationalChangeEventTypeEnum Hyponyms |
+      |---------------|---------------------------------------------|
+      | CREATION      | FOUNDING, EXPANSION                         |
+      | DESTRUCTION   | DISSOLUTION, REDUCTION                      |
+      | TRANSFORMATION| MERGER, SPLIT, SPIN_OFF, REORGANIZATION     |
+      | TRANSFER      | TRANSFER                                    |
+      | MODIFICATION  | RENAMING                                    |
+      
+    permissible_values:
+      CREATION:
+        description: |
+          Beginning of existence - an entity coming into being.
+          
+          **CIDOC-CRM**: crm:E63_Beginning_of_Existence
+          **Definition**: "This class comprises events that bring into existence any instance 
+          of E77 Persistent Item."
+          
+          **Domain-Specific Examples**:
+          - Organizational: FOUNDING (new organization created)
+          - Intangible Heritage: Recognition/inscription of tradition
+          - Collection: Accession of new item
+          
+          **Inverse Event Type**: DESTRUCTION
+        meaning: crm:E63_Beginning_of_Existence
+        exact_mappings:
+          - crm:E63_Beginning_of_Existence
+          - prov:Start
+          - rico:BeginningOfExistence
+        close_mappings:
+          - schema:CreateAction
+          - crm:E65_Creation
+      
+      DESTRUCTION:
+        description: |
+          End of existence - an entity ceasing to exist.
+          
+          **CIDOC-CRM**: crm:E64_End_of_Existence
+          **Definition**: "This class comprises events that end the existence of any instance 
+          of E77 Persistent Item."
+          
+          **Domain-Specific Examples**:
+          - Organizational: DISSOLUTION (organization closed)
+          - Physical: Building demolished, artifact destroyed
+          - Intangible Heritage: Tradition dying out
+          
+          **Inverse Event Type**: CREATION
+        meaning: crm:E64_End_of_Existence
+        exact_mappings:
+          - crm:E64_End_of_Existence
+          - prov:End
+          - rico:EndOfExistence
+        close_mappings:
+          - schema:DeleteAction
+      
+      TRANSFORMATION:
+        description: |
+          Change in nature or form while maintaining continuity.
+          
+          **CIDOC-CRM**: crm:E81_Transformation
+          **Definition**: "This class comprises events that result in the simultaneous 
+          destruction of one or more than one E18 Physical Thing and the creation of 
+          one or more than one E18 Physical Thing that preserves recognizable substance 
+          and structure from the first one(s) but has fundamentally new nature or identity."
+          
+          **Domain-Specific Examples**:
+          - Organizational: MERGER, SPLIT, SPIN_OFF, REORGANIZATION
+          - Physical: Artifact restoration, building conversion
+          
+          **Distinguishing Characteristic**: 
+          Both ends something AND creates something new.
+        meaning: crm:E81_Transformation
+        exact_mappings:
+          - crm:E81_Transformation
+          - prov:Derivation
+        close_mappings:
+          - schema:ReplaceAction
+      
+      TRANSFER:
+        description: |
+          Change in custody, ownership, or responsibility.
+          
+          **CIDOC-CRM**: crm:E10_Transfer_of_Custody
+          **Definition**: "This class comprises transfers of physical custody of objects 
+          between instances of E39 Actor."
+          
+          **Domain-Specific Examples**:
+          - Organizational: TRANSFER (unit moved to different parent)
+          - Collection: Loan, acquisition, deaccession
+          - Records: Transfer to archive
+          
+          **Key Property**: 
+          Entity continues to exist, only its relationships change.
+        meaning: crm:E10_Transfer_of_Custody
+        exact_mappings:
+          - crm:E10_Transfer_of_Custody
+          - rico:Transfer
+        close_mappings:
+          - schema:TransferAction
+          - prov:Attribution
+      
+      MOVEMENT:
+        description: |
+          Physical relocation from one place to another.
+          
+          **CIDOC-CRM**: crm:E9_Move
+          **Definition**: "This class comprises changes of the physical location of 
+          instances of E19 Physical Object."
+          
+          **Domain-Specific Examples**:
+          - Organizational: Headquarters relocation
+          - Collection: Object movement between storage/display
+          - Person: Staff relocation to new office
+          
+          **Distinction from TRANSFER**:
+          - MOVEMENT: Physical location changes
+          - TRANSFER: Custody/responsibility changes
+        meaning: crm:E9_Move
+        exact_mappings:
+          - crm:E9_Move
+          - rico:Move
+        close_mappings:
+          - schema:MoveAction
+      
+      MODIFICATION:
+        description: |
+          Change to properties without change of identity.
+          
+          **CIDOC-CRM**: crm:E11_Modification
+          **Definition**: "This class comprises instances of E7 Activity that are 
+          undertaken to enhance, improve or undertake the necessary changes in order 
+          to preserve the objects."
+          
+          **Domain-Specific Examples**:
+          - Organizational: RENAMING (name change only)
+          - Physical: Conservation treatment
+          - Digital: Metadata update
+          
+          **Key Property**: 
+          Identity preserved, only attributes change.
+        meaning: crm:E11_Modification
+        exact_mappings:
+          - crm:E11_Modification
+        close_mappings:
+          - schema:UpdateAction
+          - prov:Revision
+      
+      ACTIVITY:
+        description: |
+          General purposeful action by an agent.
+          
+          **CIDOC-CRM**: crm:E7_Activity
+          **Definition**: "This class comprises actions intentionally carried out by 
+          instances of E39 Actor that result in changes of state in the cultural, 
+          social, or physical systems documented."
+          
+          **Use When**: 
+          No more specific event type applies.
+          
+          **Domain-Specific Examples**:
+          - Exhibition opening
+          - Conference hosting
+          - Publication release
+        meaning: crm:E7_Activity
+        exact_mappings:
+          - crm:E7_Activity
+          - prov:Activity
+        close_mappings:
+          - schema:Action
+      
+      JOINING:
+        description: |
+          An actor becoming member of a group.
+          
+          **CIDOC-CRM**: crm:E85_Joining
+          **Definition**: "This class comprises events by which an instance of E39 Actor 
+          becomes member of an instance of E74 Group."
+          
+          **Domain-Specific Examples**:
+          - Person: Staff hired
+          - Organization: Joining consortium/network
+          - Collection: Item accessioned to collection
+          
+          **Inverse Event Type**: LEAVING
+        meaning: crm:E85_Joining
+        exact_mappings:
+          - crm:E85_Joining
+        close_mappings:
+          - org:memberDuring
+          - schema:JoinAction
+      
+      LEAVING:
+        description: |
+          An actor ceasing to be member of a group.
+          
+          **CIDOC-CRM**: crm:E86_Leaving
+          **Definition**: "This class comprises events by which an instance of E39 Actor 
+          ceases to be member of an instance of E74 Group."
+          
+          **Domain-Specific Examples**:
+          - Person: Staff departure, retirement
+          - Organization: Leaving consortium/network
+          - Collection: Item deaccessioned
+          
+          **Inverse Event Type**: JOINING
+        meaning: crm:E86_Leaving
+        exact_mappings:
+          - crm:E86_Leaving
+        close_mappings:
+          - schema:LeaveAction

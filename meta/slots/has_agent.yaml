@@ -1,0 +1,102 @@
+# ==============================================================================
+# LinkML Slot Definition: has_agent
+# ==============================================================================
+# An active entity (person, organization, system) that performs actions or holds roles.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line             | Mapping | Notes                                        |
+# |---------------|---------------------------|-----------------------|---------|----------------------------------------------|
+# | **PROV-O**    | `prov:wasAssociatedWith`  | prov.ttl:1066-1080    | close   | Links Activity to Agent with responsibility  |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support, verified mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_agent
+name: has_agent
+title: Has Agent
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_agent:
+    slot_uri: hc:hasAgent
+    description: >-
+      An active entity, such as a person, organization, or system, that performs an action, 
+      bears responsibility, or holds a specific role regarding the subject.
+    alt_descriptions:
+      nl: >-
+        Een actieve entiteit, zoals een persoon, organisatie of systeem, die een actie 
+        uitvoert, verantwoordelijkheid draagt, of een specifieke rol vervult met betrekking 
+        tot het onderwerp.
+      de: >-
+        Eine aktive Entität, wie eine Person, Organisation oder ein System, die eine Aktion 
+        ausführt, Verantwortung trägt oder eine bestimmte Rolle in Bezug auf das Subjekt innehat.
+      fr: >-
+        Une entité active, telle qu'une personne, une organisation ou un système, qui 
+        effectue une action, assume une responsabilité ou détient un rôle spécifique 
+        concernant le sujet.
+      ar: >-
+        كيان نشط مثل شخص أو منظمة أو نظام يقوم بإجراء أو يتحمل مسؤولية أو يحمل دوراً 
+        محدداً فيما يتعلق بالموضوع.
+      id: >-
+        Entitas aktif, seperti orang, organisasi, atau sistem, yang melakukan tindakan, 
+        menanggung tanggung jawab, atau memiliki peran tertentu terkait subjek.
+      zh: >-
+        一个活动实体，如个人、组织或系统，执行某项行动、承担责任或在与主题相关的方面担任特定角色。
+      es: >-
+        Una entidad activa, como una persona, organización o sistema, que realiza una 
+        acción, asume responsabilidad o desempeña un rol específico respecto al sujeto.
+    structured_aliases:
+      - literal_form: heeft agent
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Akteur
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a un agent
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: لديه وكيل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki agen
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有代理
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene agente
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - has_or_had_agent
+      - specificity_agent
+    close_mappings:
+      - prov:wasAssociatedWith  # prov.ttl:1066-1080 - "An Agent that had responsibility for the occurrence of this Activity"
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.5
+    comments:
+      - |
+        **USAGE**: General agent relationship for linking entities to actors responsible 
+        for activities, decisions, or roles. For more specific relationships, use 
+        specialized slots like created_by, managed_by, etc.
+      - 'Mapping Note: prov:wasAssociatedWith links Activity→Agent; this slot is more general.'

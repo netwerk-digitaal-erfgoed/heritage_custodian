@@ -1,0 +1,105 @@
+# ==============================================================================
+# LinkML Slot Definition: used_for
+# ==============================================================================
+# Relates a building, object, tool, or resource to its purpose or function.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                      | File/Line                       | Mapping | Notes                                                           |
+# |---------------|-------------------------------|---------------------------------|---------|-----------------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P101_had_as_general_use` | CIDOC_CRM_v7.1.3.rdf:3420-3434 | close   | "Type of use that it was actually employed for."                 |
+# |               |                               |                                 |         | Domain: E70_Thing; Range: E55_Type. Close: past tense ("had"),   |
+# |               |                               |                                 |         | specifically documented actual use; our slot also covers         |
+# |               |                               |                                 |         | intended function.                                               |
+# | **CIDOC-CRM** | `crm:P103_was_intended_for`   | CIDOC_CRM_v7.1.3.rdf:3476-3489 | close   | "Links E71 Human-Made Thing to E55 Type of usage or audience."   |
+# |               |                               |                                 |         | Domain: E71_Human-Made_Thing only. Close: specifically about     |
+# |               |                               |                                 |         | original intended use; our slot captures current use too.        |
+# | **CIDOC-CRM** | `crm:P16i_was_used_for`       | CIDOC_CRM_v7.1.3.rdf:1560-1573 | related | "Inverse of P16_used_specific_object."                           |
+# |               |                               |                                 |         | Domain: E70_Thing; Range: E7_Activity. Links to specific         |
+# |               |                               |                                 |         | activity instances, not to purpose/function types.               |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/used_for
+name: used_for
+title: Used For
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  used_for:
+    slot_uri: hc:usedFor
+    description: >-
+      Relates a building, object, tool, or resource to the specific purpose,
+      task, or function it is intended to perform or facilitate.
+    alt_descriptions:
+      nl: >-
+        Relateert een gebouw, object, instrument of bron aan het specifieke
+        doel, de taak of functie die het bedoeld is uit te voeren of te
+        vergemakkelijken.
+      de: >-
+        Setzt ein Gebäude, Objekt, Werkzeug oder eine Ressource in Beziehung
+        zu dem spezifischen Zweck, der Aufgabe oder Funktion, die es erfüllen
+        oder ermöglichen soll.
+      fr: >-
+        Relie un bâtiment, un objet, un outil ou une ressource à l'objectif,
+        la tâche ou la fonction spécifique qu'il est destiné à accomplir ou
+        à faciliter.
+      ar: >-
+        يربط مبنى أو كائنًا أو أداة أو موردًا بالغرض أو المهمة أو الوظيفة
+        المحددة التي يُقصد منه أداؤها أو تسهيلها.
+      id: >-
+        Menghubungkan bangunan, objek, alat, atau sumber daya dengan tujuan,
+        tugas, atau fungsi tertentu yang dimaksudkan untuk dilakukan atau
+        difasilitasi.
+      zh: >-
+        将建筑物、物体、工具或资源与其旨在执行或促进的特定目的、任务或功能关联起来。
+      es: >-
+        Relaciona un edificio, objeto, herramienta o recurso con el propósito,
+        tarea o función específica que está destinado a realizar o facilitar.
+    structured_aliases:
+      - literal_form: Gebruikt voor
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Verwendet für
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Utilisé pour
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مستخدم لـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Digunakan untuk
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 用途
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Usado para
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - >-
+        Current use may differ from original intended use. Typical values
+        include: Museum/exhibition, Offices, Events/rentals, Residential,
+        Mixed use.
+      - >-
+        CIDOC-CRM distinguishes P101_had_as_general_use (actual documented use)
+        from P103_was_intended_for (original intended purpose). This slot
+        captures both aspects.
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - crm:P101_had_as_general_use  # CIDOC_CRM_v7.1.3.rdf:3420-3434 — actual general use of E70 Thing
+      - crm:P103_was_intended_for  # CIDOC_CRM_v7.1.3.rdf:3476-3489 — intended use of E71 Human-Made Thing
+    related_mappings:
+      - crm:P16i_was_used_for  # CIDOC_CRM_v7.1.3.rdf:1560-1573 — links Thing to specific Activity, not purpose type
+    aliases:
+      - current_use

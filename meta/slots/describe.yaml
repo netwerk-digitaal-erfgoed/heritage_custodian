@@ -1,0 +1,111 @@
+# ==============================================================================
+# LinkML Slot Definition: describe
+# ==============================================================================
+# Provide a detailed account or representation of features and characteristics.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line               | Mapping | Notes                                           |
+# |---------------|-----------------------|-------------------------|---------|-------------------------------------------------|
+# | **Schema.org**| `schema:description`  | schemaorg.owl:14844-14865| related | "A description of the item" - the text itself.  |
+# | **DC Terms**  | `dcterms:description` | dcterms.rdf:1234        | related | Description text property.                      |
+# | **CIDOC-CRM** | `crm:P67_refers_to`   | CIDOC:2706-2718         | related | "Makes a statement about an entity."            |
+#
+# NOTE: schema:description and dcterms:description are about the DESCRIPTION TEXT 
+# itself, not the ACT of describing. Our slot is a verb/action linking a describer 
+# to what they describe. crm:P67_refers_to is about reference/statement.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, FIXED mapping (was exact, now related)
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/describe
+name: describe
+title: Describe
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  describe:
+    slot_uri: hc:describe
+    description: >-
+      To provide a detailed account or representation of the features, characteristics, 
+      or qualities of an entity, often serving to identify or explain it.
+    alt_descriptions:
+      nl: >-
+        Het geven van een gedetailleerde beschrijving of weergave van de kenmerken, 
+        eigenschappen of kwaliteiten van een entiteit, vaak bedoeld om deze te 
+        identificeren of uit te leggen.
+      de: >-
+        Eine detaillierte Darstellung oder Beschreibung der Merkmale, Eigenschaften 
+        oder Qualitäten einer Entität zu geben, die oft dazu dient, sie zu 
+        identifizieren oder zu erklären.
+      fr: >-
+        Fournir un compte rendu détaillé ou une représentation des caractéristiques, 
+        des traits ou des qualités d'une entité, servant souvent à l'identifier 
+        ou à l'expliquer.
+      ar: >-
+        تقديم وصف أو تمثيل مفصل للسمات أو الخصائص أو الصفات لكيان ما، 
+        وغالبًا ما يخدم لتحديده أو شرحه.
+      id: >-
+        Untuk memberikan penjelasan atau representasi terperinci tentang fitur, 
+        karakteristik, atau kualitas suatu entitas, sering kali berfungsi untuk 
+        mengidentifikasi atau menjelaskannya.
+      zh: >-
+        提供对实体的特征、特性或品质的详细说明或表述，通常用于识别或解释它。
+      es: >-
+        Proporcionar una descripción detallada o representación de las características, 
+        rasgos o cualidades de una entidad, a menudo sirviendo para identificarla 
+        o explicarla.
+    structured_aliases:
+      - literal_form: beschrijft
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: beschreibt
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: décrit
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يصف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mendeskripsikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 描述
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: describe
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - describes_or_described
+      - is_or_was_describe
+    related_mappings:
+      - schema:description  # schemaorg.owl:14844-14865 - description text (noun), not the action
+      - dcterms:description  # dcterms.rdf:1234 - description text (noun)
+      - crm:P67_refers_to  # CIDOC:2706-2718 - "makes a statement about"
+    comments:
+      - |
+        **USAGE**: Use to link a describing entity (e.g., finding aid, catalog record) 
+        to what it describes (e.g., a collection, an object).
+      - |
+        **SEMANTICS**: This is an action/verb relationship, not the description text 
+        itself. For the text content, use schema:description or dcterms:description.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Collection/ABC123"
+        description: "A finding aid describes this collection"

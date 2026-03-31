@@ -1,0 +1,128 @@
+# ==============================================================================
+# LinkML Slot Definition: symbolized_by
+# ==============================================================================
+# To be represented or denoted by a specific sign, mark, or object that stands
+# for the entity or concept.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------|---------|------------------------------------|
+# | **QUDT**      | `qudt:symbol`         | qudt-all:2768        | exact   | Symbol for units/quantities        |
+# | **Schema.org**| `schema:unitText`     | schemaorg.owl        | close   | Text representation of unit        |
+# | **SKOS**      | `skos:notation`       | skos.rdf:108-116     | close   | Notation/code for concept          |
+#
+# HIERARCHY: qudt:symbol has no rdfs:subPropertyOf declaration
+#
+# CREATED: 2026-01-20
+# UPDATED: 2026-02-03 - Added header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/symbolized_by
+name: symbolized_by
+title: Symbolized By
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: https://schema.org/
+  qudt: http://qudt.org/schema/qudt/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  symbolized_by:
+    slot_uri: qudt:symbol
+    description: >-
+      To be represented or denoted by a specific sign, mark, or object that
+      stands for the entity or concept.
+    alt_descriptions:
+      nl: >-
+        Om vertegenwoordigd of aangeduid te worden door een specifiek teken,
+        merk of object dat staat voor de entiteit of het concept.
+      de: >-
+        Durch ein bestimmtes Zeichen, eine Markierung oder ein Objekt
+        repräsentiert oder bezeichnet zu werden, das für die Entität oder
+        das Konzept steht.
+      fr: >-
+        Être représenté ou désigné par un signe, une marque ou un objet
+        spécifique qui symbolise l'entité ou le concept.
+      ar: >-
+        أن يُمثَّل أو يُشار إليه بعلامة أو رمز أو كائن محدد يمثل الكيان
+        أو المفهوم.
+      id: >-
+        Diwakili atau dilambangkan oleh tanda, simbol, atau objek tertentu
+        yang mewakili entitas atau konsep.
+      zh: >-
+        由代表实体或概念的特定符号、标记或物体来表示或标示。
+      es: >-
+        Ser representado o denotado por un signo, marca u objeto específico
+        que representa la entidad o el concepto.
+    structured_aliases:
+      - literal_form: gesymboliseerd door
+        predicate: EXACT_SYNONYM
+      - literal_form: is_or_was_symbolized_by
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: symbolisiert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: symbolisé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يُرمز له بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dilambangkan oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由...象征
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: simbolizado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    exact_mappings:
+    close_mappings:
+    - schema:unitText
+    - skos:notation
+    aliases:
+    - has_or_had_symbol
+    - is_or_was_symbolized_by
+    - has_or_had_symbol
+    - has_symbol
+    - currency_symbol
+    examples:
+    - value: ha
+      description: Symbol for hectare
+    - value: "m²"
+      description: Symbol for square meter
+    - value: "€"
+      description: Euro currency symbol
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Symbols applicable to all custodian types.
+    comments:
+      - Updated 2026-02-03 with header documentation
+      - |
+        **USAGE**:
+        Used for standardized symbols such as:
+        - Unit symbols (e.g., "ha" for hectare, "m²" for square meter)
+        - Currency symbols (e.g., "€", "$")
+        - Chemical symbols
+        - Mathematical notation symbols
+      - |
+        **ONTOLOGY ALIGNMENT** (verified against data/ontology/):
+
+        | Ontology | Property | Line | Mapping | Notes |
+        |----------|----------|------|---------|-------|
+        | **QUDT** | `qudt:symbol` | qudt-all:2768 | exact | Symbol for units |
+        | **Schema.org** | `schema:unitText` | N/A | close | Text representation |
+        | **SKOS** | `skos:notation` | 108-116 | close | Notation/code |

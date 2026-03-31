@@ -1,0 +1,84 @@
+id: https://nde.nl/ontology/hc/class/Restriction
+name: Restriction
+title: Restriction
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dct: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../slots/has_access_policy
+  - ../slots/temporal_extent
+classes:
+  Restriction:
+    class_uri: dct:RightsStatement
+    description: >-
+      Limitation or constraint on accessing, using, reproducing, or distributing
+      a resource, often applied for privacy, legal, or preservation reasons.
+    alt_descriptions:
+      nl: >-
+        Beperking of belemmering op toegang tot, gebruik, reproductie of distributie
+        van een bron, vaak toegepast om privacy-, juridische of behoudredenen.
+      de: >-
+        Einschränkung oder Beschränkung beim Zugriff, der Nutzung, der Reproduktion oder Verbreitung
+        einer Ressource, oft aus Gründen des Datenschutzes, der Rechtslage oder der Erhaltung angewendet.
+      fr: >-
+        Limitation ou contrainte sur l'accès, l'utilisation, la reproduction ou la distribution
+        d'une ressource, souvent appliquée pour des raisons de confidentialité, juridiques ou de préservation.
+      es: >-
+        Limitación o restricción sobre el acceso, uso, reproducción o distribución
+        de un recurso, a menudo aplicada por razones de privacidad, legales o de preservación.
+      ar: >-
+        قيد أو تقييد على الوصول إلى مورد أو استخدامه أو إعادة إنتاجه أو توزيعه،
+        يُطبق غالباً لأسباب تتعلق بالخصوصية أو القانون أو الحفظ.
+      id: >-
+        Pembatasan atau kendala pada akses, penggunaan, reproduksi, atau distribusi
+        sumber daya, sering diterapkan karena alasan privasi, hukum, atau pelestarian.
+      zh: >-
+        对资源访问、使用、复制或分发的限制或约束，
+        通常出于隐私、法律或保存原因而应用。
+    exact_mappings:
+      - dct:RightsStatement
+    broad_mappings:
+      - schema:Thing
+    keywords:
+      - restriction
+      - access limitation
+      - embargo
+      - rights statement
+    structured_aliases:
+      - literal_form: beperking
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Beschränkung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: restriction
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: restricción
+        predicate: EXACT_SYNONYM
+        in_language: es
+    comments:
+      - Used for embargo periods (years restricted) with temporal extent
+      - Used for access restrictions and use limitations
+    slots:
+      - temporal_extent
+      - has_access_policy
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+    annotations:
+      specificity_score: '0.45'
+      specificity_rationale: Moderately specific - restrictions are common in heritage domain.
+      custodian_types: "['*']"
+    examples:
+      - value:
+          restriction_type: EMBARGO
+          restriction_reason: Privacy protection
+          temporal_extent:
+            begin_of_the_begin: '2025-01-01T00:00:00Z'
+            end_of_the_end: '2050-01-01T00:00:00Z'

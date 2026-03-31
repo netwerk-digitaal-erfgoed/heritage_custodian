@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: cataloged_in
+# ==============================================================================
+# Catalog or database where this entity is listed.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property           | File/Line            | Mapping | Notes                              |
+# |---------------|-------------------|----------------------|---------|------------------------------------|
+# | **DC Terms**  | `dcterms:isPartOf`| dcterms.rdf          | close   | Part of collection (broader)       |
+# | **DCAT**      | `dcat:inCatalog`  | dcat.rdf             | close   | Dataset in catalog                 |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/cataloged_in
+name: cataloged_in
+title: Cataloged In
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  dcat: http://www.w3.org/ns/dcat#
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  cataloged_in:
+    slot_uri: hc:catalogedIn
+    description: >-
+      The catalog, database, or systematic inventory in which the entity is
+      listed, recorded, or described.
+    alt_descriptions:
+      nl: >-
+        De catalogus, database of systematische inventaris waarin de entiteit
+        is opgenomen, geregistreerd of beschreven.
+      de: >-
+        Der Katalog, die Datenbank oder das systematische Verzeichnis, in dem
+        die Entität aufgelistet, erfasst oder beschrieben ist.
+      fr: >-
+        Le catalogue, la base de données ou l'inventaire systématique dans
+        lequel l'entité est répertoriée, enregistrée ou décrite.
+      ar: >-
+        الفهرس أو قاعدة البيانات أو الجرد المنهجي الذي تم فيه إدراج الكيان
+        أو تسجيله أو وصفه.
+      id: >-
+        Katalog, basis data, atau inventaris sistematis di mana entitas
+        terdaftar, tercatat, atau dijelaskan.
+      zh: >-
+        实体被列出、记录或描述的目录、数据库或系统清单。
+      es: >-
+        El catálogo, base de datos o inventario sistemático en el que la
+        entidad está listada, registrada o descrita.
+    structured_aliases:
+      - literal_form: gecatalogiseerd in
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: katalogisiert in
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: catalogué dans
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مفهرس في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dikatalogkan di
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 编入目录于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: catalogado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    close_mappings:
+      - dcterms:isPartOf  # Part of a collection
+      - dcat:inCatalog  # Dataset in catalog
+    aliases:
+      - is_or_was_cataloged_in
+    annotations:
+      custodian_types: '["*"]'

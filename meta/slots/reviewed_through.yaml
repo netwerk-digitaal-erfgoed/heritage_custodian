@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: reviewed_through
+# ==============================================================================
+# Formal assessment or examination to evaluate quality, validity, or compliance
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                     | File/Line              | Mapping | Notes                                                          |
+# |----------------|------------------------------|------------------------|---------|----------------------------------------------------------------|
+# | **PROV-O**     | `prov:qualifiedRevision`     | prov.ttl:955-967       | related | Qualifies a revision (entity derivation), not assessment.      |
+# | **Schema.org** | `schema:review`              | schemaorg.owl:33693-33721 | related | Connects item to Review content; not about review process.  |
+# | **DQV**        | `dqv:hasQualityAnnotation`   | dqv.ttl:168-172        | related | Quality annotations on resources; broader concept.             |
+#
+# No standard exact match for "subjected to formal assessment via a mechanism."
+#
+# CREATED: 2026-02-08
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/reviewed_through
+name: reviewed_through
+title: Reviewed Through
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+  dqv: http://www.w3.org/ns/dqv#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  reviewed_through:
+    slot_uri: hc:reviewedThrough
+    description: >-
+      Indicates that an entity, document, or process has been subjected to a formal
+      assessment, examination, or critique to evaluate its quality, validity, or
+      compliance.
+    alt_descriptions:
+      nl: >-
+        Geeft aan dat een entiteit, document of proces is onderworpen aan een formele
+        beoordeling, onderzoek of kritiek om de kwaliteit, geldigheid of naleving ervan
+        te evalueren.
+      de: >-
+        Gibt an, dass eine Entitaet, ein Dokument oder ein Prozess einer formalen Bewertung,
+        Pruefung oder Kritik unterzogen wurde, um deren Qualitaet, Gueltigkeit oder
+        Konformitaet zu beurteilen.
+      fr: >-
+        Indique qu'une entite, un document ou un processus a ete soumis a une evaluation
+        formelle, un examen ou une critique pour evaluer sa qualite, sa validite ou sa
+        conformite.
+      ar: >-
+        يشير إلى أن كيانًا أو وثيقة أو عملية قد خضعت لتقييم أو فحص أو نقد رسمي لتقييم
+        جودتها أو صلاحيتها أو امتثالها.
+      id: >-
+        Menunjukkan bahwa suatu entitas, dokumen, atau proses telah menjalani penilaian,
+        pemeriksaan, atau kritik formal untuk mengevaluasi kualitas, validitas, atau
+        kepatuhannya.
+      zh: >-
+        表明某个实体、文档或流程已经过正式的评估、审查或评议，以评价其质量、有效性或合规性。
+      es: >-
+        Indica que una entidad, documento o proceso ha sido sometido a una evaluacion formal,
+        examen o critica para evaluar su calidad, validez o cumplimiento.
+    structured_aliases:
+      - literal_form: Beoordeling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Bewertung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Evaluation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: Muraja'a
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tinjauan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: Shencha
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Revision
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    comments:
+      - >-
+        Guides data curation: priority level (high/medium/low for re-investigation),
+        review triggers (what would prompt re-classification attempt), resource requirements
+        (specialist knowledge, funding, access needed), timeline (when next review is scheduled),
+        outcome scenarios (keep record, remove if no progress, upgrade confidence),
+        escalation path (when to involve external experts).
+      - "Review status ensures unspecified records do not stagnate."
+    examples:
+      - value: "Requires specialist research, Low priority, Consider removing if no evidence emerges"
+        description: Low-priority review for record lacking evidence
+      - value: "High priority - institution recently mentioned in journal, Re-investigate within 3 months"
+        description: High-priority review triggered by new publication
+      - value: "Medium priority - waiting for archival collection to be cataloged, Review in 2026"
+        description: Medium-priority review pending external cataloging
+      - value: "Low priority - defunct since 1920s, minimal heritage significance"
+        description: Low-priority review for defunct institution
+    annotations:
+      custodian_types: '["*"]'
+    related_mappings:
+      - prov:qualifiedRevision  # prov.ttl:955-967 - "Qualifies how an Entity was revised." Domain: Entity, Range: Revision; about entity revision derivation, not formal assessment
+      - schema:review  # schemaorg.owl:33693-33721 - "A review of the item." Domain: Product|Event|Organization|etc. Range: Review; connects to review content, not the review mechanism
+      - dqv:hasQualityAnnotation  # dqv.ttl:168-172 - "Refers to a quality annotation." Range: QualityAnnotation; about quality assessments on resources

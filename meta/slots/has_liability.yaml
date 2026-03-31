@@ -1,0 +1,86 @@
+# ==============================================================================
+# LinkML Slot Definition: has_liability
+# ==============================================================================
+# Legal responsibility, duty, obligation, or financial debt of an entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property        | File/Line                  | Mapping  | Notes                                                  |
+# |---------------|-----------------|----------------------------|----------|--------------------------------------------------------|
+# | **Schema.org**| `schema:amount` | schemaorg.owl:7894-7924    | related  | "The amount of money." Domain: InvestmentOrDeposit,    |
+# |               |                 |                            |          | LoanOrCredit, MoneyTransfer. Financial transaction ctx.|
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_liability
+name: has_liability
+title: has_liability
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: hc
+imports:
+- linkml:types
+slots:
+  has_liability:
+    name: has_liability
+    slot_uri: hc:hasLiability
+    description: >-
+      To specify a legal responsibility, duty, obligation, or financial debt that an entity is subject to or accountable for.
+    alt_descriptions:
+      nl: >-
+        Het specificeren van een wettelijke verantwoordelijkheid, plicht, verplichting of financiele schuld waarvoor een entiteit onderworpen is of verantwoording voor draagt.
+      de: >-
+        Angabe einer rechtlichen Verantwortung, Pflicht, Verpflichtung oder finanziellen Schuld, der eine Entitaet unterliegt oder fuer die sie rechenschaftspflichtig ist.
+      fr: >-
+        Specifier une responsabilite legale, un devoir, une obligation ou une dette financiere a laquelle une entite est soumise ou dont elle est redevable.
+      ar: >-
+        تحديد مسؤولية قانونية أو واجب أو التزام أو دين مالي يخضع له كيان ما أو يكون مسؤولاً عنه.
+      id: >-
+        Menentukan tanggung jawab hukum, kewajiban, atau utang keuangan yang menjadi beban atau pertanggungjawaban suatu entitas.
+      zh: >-
+        指定实体所承担或负责的法律责任、义务或财务债务。
+      es: >-
+        Especificar una responsabilidad legal, deber, obligacion o deuda financiera a la que una entidad esta sujeta o de la cual es responsable.
+    structured_aliases:
+      - literal_form: aansprakelijkheid
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Haftung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: responsabilite
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مسؤولية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: kewajiban
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 责任
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: responsabilidad
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_liability
+    related_mappings:
+      - schema:amount  # schemaorg.owl:7894-7924 - "The amount of money." Domain: InvestmentOrDeposit/LoanOrCredit/MoneyTransfer. Different financial context.
+    examples:
+    - value:
+        value: 500000
+        unit: EUR
+      description: Total liabilities of 500,000 EUR
+    comments:
+      - |
+        **USAGE**: Used for total liabilities, debt obligations, financial commitments.
+      - |
+        **MIGRATION**: Renamed from has_or_had_liability for conciseness (2026-02-03).
+    annotations:
+      custodian_types: '["*"]'

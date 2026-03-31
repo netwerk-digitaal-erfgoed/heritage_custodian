@@ -1,0 +1,116 @@
+# ==============================================================================
+# LinkML Slot Definition: aligned_at
+# ==============================================================================
+# Spatial coordinates or temporal point where an element is positioned.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                                    |
+# |---------------|-----------------------|----------------------|---------|----------------------------------------------------------|
+# | **W3C OA**    | `oa:hasSelector`      | (web annotation)     | related | Selects portion of resource - more specific              |
+# | **Schema.org**| `schema:position`     | schemaorg.owl        | related | Position within ordered group                            |
+#
+# SEMANTIC NOTES:
+# - This slot captures positioning/alignment for media content
+# - No exact standard property exists for this layout concept
+# - Custom hc: URI is appropriate
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (removed embedded notes), added multilingual support
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/aligned_at
+name: aligned_at
+title: Aligned At
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  aligned_at:
+    slot_uri: hc:alignedAt
+    description: >-
+      To specify the precise spatial coordinates or temporal point where an element 
+      is positioned or synchronized relative to a specific reference object or media content.
+    alt_descriptions:
+      nl: >-
+        De precieze ruimtelijke coördinaten of het temporele punt specificeren waar een 
+        element is gepositioneerd of gesynchroniseerd ten opzichte van een specifiek 
+        referentieobject of media-inhoud.
+      de: >-
+        Die genauen räumlichen Koordinaten oder den zeitlichen Punkt angeben, an dem ein 
+        Element relativ zu einem bestimmten Referenzobjekt oder Medieninhalt positioniert 
+        oder synchronisiert ist.
+      fr: >-
+        Spécifier les coordonnées spatiales précises ou le point temporel où un élément 
+        est positionné ou synchronisé par rapport à un objet de référence ou un contenu 
+        média spécifique.
+      ar: >-
+        تحديد الإحداثيات المكانية الدقيقة أو النقطة الزمنية حيث يتم وضع عنصر أو 
+        مزامنته بالنسبة لكائن مرجعي أو محتوى وسائط معين.
+      id: >-
+        Menentukan koordinat spasial yang tepat atau titik temporal di mana elemen 
+        diposisikan atau disinkronkan relatif terhadap objek referensi atau konten 
+        media tertentu.
+      zh: >-
+        指定元素相对于特定参考对象或媒体内容定位或同步的精确空间坐标或时间点。
+      es: >-
+        Especificar las coordenadas espaciales precisas o el punto temporal donde un 
+        elemento está posicionado o sincronizado en relación con un objeto de referencia 
+        o contenido multimedia específico.
+    structured_aliases:
+      - literal_form: uitgelijnd op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ausgerichtet bei
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: aligné à
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: محاذى عند
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: disejajarkan pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 对齐于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: alineado en
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: false
+    related_mappings:
+      - schema:position  # Position within ordered group
+    aliases:
+      - has_or_had_alignment
+      - is_or_was_aligned_at
+    comments:
+      - |
+        **USE CASES**: Caption/subtitle positioning (top, bottom, center), text alignment 
+        (left, right, center, justify), visual element positioning in layouts.
+      - |
+        **MODELING**: May use Alignment class for structured representation including 
+        horizontal alignment (left, center, right), vertical alignment (top, middle, bottom), 
+        and custom positioning coordinates.
+    annotations:
+      specificity_score: '0.55'
+      specificity_rationale: Applies to various content types requiring positioning information
+      custodian_types: '["*"]'
+      custodian_types_rationale: Content alignment applies across all heritage institution types

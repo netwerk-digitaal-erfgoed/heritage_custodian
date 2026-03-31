@@ -1,0 +1,88 @@
+id: https://nde.nl/ontology/hc/class/Thumbnail
+name: Thumbnail
+title: Thumbnail Media Reference
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/derive_from
+- ../slots/has_time_interval
+- ../slots/has_url
+classes:
+  Thumbnail:
+    class_uri: schema:ImageObject
+    description: >-
+      Reduced-size preview image, optionally extracted from a source video at a specific timestamp.
+    alt_descriptions:
+      nl: Verkleinde voorbeeldafbeelding, optioneel geëxtraheerd uit een bronvideo op een specifiek tijdstip.
+      de: Verkleinertes Vorschaubild, optional aus einem Quellvideo zu einem bestimmten Zeitpunkt extrahiert.
+      fr: Image d'aperçu réduite, éventuellement extraite d'une vidéo source à un horodatage spécifique.
+      es: Imagen de vista previa reducida, opcionalmente extraída de un video fuente en una marca de tiempo específica.
+      ar: صورة معاينة مصغرة، مستخرجة اختياريًا من فيديو مصدر في وقت محدد.
+      id: Gambar pratinjau ukuran kecil, opsional diekstrak dari video sumber pada cap waktu tertentu.
+      zh: 缩略预览图，可选择从源视频的特定时间戳提取。
+    structured_aliases:
+    - literal_form: miniatuur
+      in_language: nl
+    - literal_form: Vorschaubild
+      in_language: de
+    - literal_form: vignette
+      in_language: fr
+    - literal_form: miniatura
+      in_language: es
+    - literal_form: صورة مصغرة
+      in_language: ar
+    - literal_form: thumbnail
+      in_language: id
+    - literal_form: 缩略图
+      in_language: zh
+    broad_mappings:
+    - foaf:Image
+    - schema:ImageObject
+    slots:
+    - has_url
+    - derive_from
+    - has_time_interval
+    slot_usage:
+      has_url:
+        required: true
+        examples:
+        - value: https://i.ytimg.com/vi/ABC123/hq1.jpg
+      derive_from:
+        range: Video
+        inlined: true
+        required: false
+        examples:
+        - value:
+            has_url: https://www.youtube.com/watch?v=ABC123
+      has_time_interval:
+        description: Timestamp interval in the source video used for thumbnail extraction.
+        range: TimeInterval
+        inlined: true
+        required: false
+        examples:
+        - value:
+            duration_description: Thumbnail from 2:02.5 in video
+    comments:
+    - When a thumbnail is extracted from video, capture derive_from (source video) and has_time_interval (extraction timestamp)
+    annotations:
+      specificity_score: '0.40'
+      specificity_rationale: Medium specificity - thumbnails used broadly for media preview.
+      migration_date: '2026-01-16'
+      migration_updated: '2026-01-19'
+      migration_rule: Rule 53 (no bespoke slots), Rule 56 (semantic consistency)
+      custodian_types: "['*']"
+    examples:
+    - value:
+        has_url: https://example.org/thumbnails/rijksmuseum-night-watch-thumb.jpg
+    - value:
+        has_url: https://i.ytimg.com/vi/ABC123/hq1.jpg
+        derive_from:
+          has_url: https://www.youtube.com/watch?v=ABC123
+        has_time_interval:
+          duration_description: Frame at 2:02.5

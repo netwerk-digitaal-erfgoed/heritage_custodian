@@ -1,0 +1,109 @@
+# ==============================================================================
+# LinkML Slot Definition: accessioned_through
+# ==============================================================================
+# Event or method through which something was accessioned into a collection.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                        | File/Line                    | Mapping | Notes                                                    |
+# |---------------|---------------------------------|------------------------------|---------|----------------------------------------------------------|
+# | **CIDOC-CRM** | `crm:P22i_acquired_title_through` | CIDOC_CRM_v7.1.3.rdf:1697-1708 | close   | "acquired title through" - focuses on legal title transfer |
+# | **PROV-O**    | `prov:wasGeneratedBy`           | prov.ttl:1104-1113           | related | Generation by activity - more generic                    |
+#
+# SEMANTIC NOTES:
+# - crm:P22i links an Actor to an E8_Acquisition event that transferred title TO them
+# - Our slot links an Object/Collection item to the method/event of accessioning
+# - Accessioning is broader than acquisition: includes registration, cataloguing, formal acceptance
+# - No exact mapping exists; custom hc: URI is appropriate
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added multilingual support, ontology mappings, header documentation
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/accessioned_through
+name: accessioned_through
+title: Accessioned Through
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+slots:
+  accessioned_through:
+    slot_uri: hc:accessionedThrough
+    description: >-
+      To be formally accepted and recorded into a permanent collection via a specific 
+      acquisition method, legal transfer, or administrative process.
+    alt_descriptions:
+      nl: >-
+        Formeel geaccepteerd en geregistreerd in een permanente collectie via een specifieke 
+        verwervingsmethode, juridische overdracht of administratief proces.
+      de: >-
+        Formell in eine permanente Sammlung aufgenommen und registriert durch eine spezifische 
+        Erwerbsmethode, rechtliche Übertragung oder einen Verwaltungsprozess.
+      fr: >-
+        Formellement accepté et enregistré dans une collection permanente par le biais d'une 
+        méthode d'acquisition spécifique, d'un transfert juridique ou d'un processus administratif.
+      ar: >-
+        أن يتم قبوله وتسجيله رسمياً في مجموعة دائمة عبر طريقة اقتناء محددة أو نقل قانوني أو عملية إدارية.
+      id: >-
+        Diterima secara resmi dan dicatat ke dalam koleksi permanen melalui metode akuisisi 
+        tertentu, pengalihan hukum, atau proses administratif.
+      zh: >-
+        通过特定的收购方式、法律转让或行政程序正式接收并记录到永久收藏中。
+      es: >-
+        Ser aceptado formalmente y registrado en una colección permanente a través de un 
+        método de adquisición específico, transferencia legal o proceso administrativo.
+    structured_aliases:
+      - literal_form: geaccessioneerd via
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: inventarisiert durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: inventorié par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم ضمه عبر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: diaksesi melalui
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 入藏方式
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: inventariado mediante
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    close_mappings:
+      - crm:P22i_acquired_title_through  # CIDOC_CRM_v7.1.3.rdf:1697-1708 - "acquired title through" (focuses on legal title)
+    related_mappings:
+      - prov:wasGeneratedBy  # prov.ttl:1104 - entity generation by activity (more generic)
+    aliases:
+      - is_or_was_accessioned_through
+    comments:
+      - |
+        **USAGE**: Use this slot to link an item to the acquisition event, method, or process 
+        through which it was formally accessioned into the collection. Values may include 
+        donation events, purchase transactions, bequest processes, or transfer agreements.
+      - |
+        **SEMANTIC DISTINCTION**: Accessioning is broader than acquisition; it includes the 
+        formal registration and acceptance into the collection's permanent holdings, not just 
+        the transfer of ownership.
+    annotations:
+      custodian_types: '["*"]'

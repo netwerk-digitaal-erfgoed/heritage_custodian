@@ -1,0 +1,286 @@
+id: https://nde.nl/ontology/hc/class/VideoAudioAnnotation
+name: video_audio_annotation_class
+title: Video Audio Annotation Class
+imports:
+- linkml:types
+- ../enums/AudioEventTypeEnum
+- ../enums/MusicTypeEnum
+- ../enums/SoundEventTypeEnum
+- ../slots/contain
+- ../slots/end_of_the_end
+- ../slots/has_score
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_provenance
+- ../slots/has_segment
+- ../slots/has_type
+- ../slots/in_background
+- ../slots/diarized
+- ../slots/overlap_with
+- ../slots/has_language
+- ../slots/has_confidence_measure
+- ../slots/has_music
+- ../slots/has_genre
+- ../slots/has_sound
+- ../slots/in_language
+- ../slots/begin_of_the_begin
+- ../slots/has_silence
+- ../slots/has_ratio
+- ../slots/has_speaker
+- ../slots/has_spoken_words
+- ../slots/temporal_extent
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  oa: http://www.w3.org/ns/oa#
+  ma: http://www.w3.org/ns/ma-ont#
+  wd: http://www.wikidata.org/entity/
+default_prefix: hc
+classes:
+  VideoAudioAnnotation:
+    is_a: VideoAnnotation
+    class_uri: hc:VideoAudioAnnotation
+    abstract: false
+    description: >-
+      Annotation capturing audio-structure features detected in a video (speech,
+      speakers, music, sound events, silence, and related metrics).
+    alt_descriptions:
+      nl: Annotatie die audio-structuur in video vastlegt (spraak sprekers muziek geluid stilte).
+      de: Annotation zur Erfassung der Audiostruktur in Videos (Sprache Sprecher Musik Geraeusche Stille).
+      fr: Annotation capturant la structure audio d une video (parole locuteurs musique sons silence).
+      es: Anotacion que captura la estructura de audio en un video (habla hablantes musica sonidos silencio).
+      ar: حاشية تلتقط بنية الصوت في الفيديو (كلام، متحدثون، موسيقى، أصوات، صمت).
+      id: Anotasi yang menangkap struktur audio dalam video (ucapan pembicara musik suara hening).
+      zh: 记录视频音频结构特征的注释（语音、说话人、音乐、声音事件、静音等）。
+    structured_aliases:
+    - {literal_form: audio-annotatie, in_language: nl}
+    - {literal_form: Audio-Annotation, in_language: de}
+    - {literal_form: annotation audio, in_language: fr}
+    - {literal_form: anotacion de audio, in_language: es}
+    - {literal_form: وسم صوتي, in_language: ar}
+    - {literal_form: anotasi audio, in_language: id}
+    - {literal_form: 音频注释, in_language: zh}
+    close_mappings:
+    - ma:AudioTrack
+    - crm:E13_Attribute_Assignment
+    related_mappings:
+    - wd:Q11028
+    - wd:Q638
+    slots:
+    - has_segment
+    - contain
+    - diarized
+    - has_language
+    - has_music
+    - has_genre
+    - has_sound
+    - has_type
+    - has_silence
+    - has_ratio
+    - has_speaker
+    - has_spoken_words
+    - has_confidence_measure
+    - has_provenance
+    - temporal_extent
+    - identified_by
+    - has_label
+    - has_score
+    slot_usage:
+      has_segment:
+        range: AudioEventSegment
+        multivalued: true
+        required: false
+        inlined_as_list: true
+        examples:
+        - value: '[{has_type: SPEECH, start_seconds: 0.0, end_seconds: 15.0, segment_text: "Speech detected", confidence: 0.95}]'
+        - value: '[{has_type: MUSIC, start_seconds: 30.0, end_seconds: 60.0, segment_text: "Background music", confidence: 0.88}]'
+      contain:
+        range: DiarizationSegment
+        multivalued: true
+        required: false
+        inlined: true
+        inlined_as_list: true
+      diarized:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+        - value: true
+      has_music:
+        range: boolean
+        required: false
+        ifabsent: 'false'
+        examples:
+        - value: true
+      has_genre:
+        range: string
+        multivalued: true
+        required: false
+        examples:
+        - value: classical
+        - value: baroque
+      has_sound:
+        range: float
+        required: false
+        examples:
+        - value: -45.0
+      has_silence:
+        range: float
+        required: false
+        minimum_value: 0.0
+        examples:
+        - value: 15.5
+      has_ratio:
+        range: float
+        required: false
+        examples:
+        - value: 25.0
+      has_speaker:
+        range: integer
+        required: false
+        minimum_value: 0
+        examples:
+        - value: 3
+      has_language:
+        range: Language
+        required: false
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      has_confidence_measure:
+        range: float
+        required: false
+        minimum_value: 0.0
+        maximum_value: 1.0
+        examples:
+        - value: 0.88
+    comments:
+    - Audio event detection for video content
+    - Supports speech, music, silence, and sound event detection
+    - Speaker diarization for interview navigation
+    - Language detection for multilingual heritage content
+    - Audio quality metrics for preservation assessment
+    see_also:
+    - https://www.w3.org/TR/annotation-model/
+    - https://arxiv.org/abs/2111.08085
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+      modeling_notes: |
+        VideoAudioAnnotation complements VideoTranscript:
+        - VideoAudioAnnotation: audio structure (who spoke when; music and sound events)
+        - VideoTranscript: the text content of speech
+
+        Typical use cases
+        - diarization for interviews
+        - music and sound-event detection for content classification
+        - audio quality metrics for preservation assessment
+
+      legacy_description: |
+        Preserved from earlier, more verbose description.
+        It contained detailed tables and examples for diarization, music detection,
+        sound events, language detection, and audio quality analysis.
+
+  SpeechSegment:
+    class_uri: hc:SpeechSegment
+    description: >-
+      Speech segment with speaker and language information.
+    slots:
+    - begin_of_the_begin
+    - end_of_the_end
+    - has_speaker
+    - in_language
+    - has_spoken_words
+    - has_confidence_measure
+    - has_score
+    slot_usage:
+      begin_of_the_begin:
+        range: float
+        required: true
+        minimum_value: 0.0
+      end_of_the_end:
+        range: float
+        required: true
+        minimum_value: 0.0
+      has_speaker:
+        range: string
+        required: false
+      in_language:
+        range: string
+        required: false
+      has_confidence_measure:
+        range: float
+        required: false
+        minimum_value: 0.0
+        maximum_value: 1.0
+      has_spoken_words:
+        range: string
+        required: false
+
+  DiarizationSegment:
+    class_uri: hc:DiarizationSegment
+    description: >-
+      Diarization segment identifying the speaker and time boundaries.
+    slots:
+    - has_provenance
+    - temporal_extent
+    - contain
+    - overlap_with
+    - has_score
+    slot_usage:
+      temporal_extent:
+        range: TimeSpan
+        inlined: true
+        required: true
+      contain:
+        range: Speaker
+        inlined: true
+        required: true
+      has_provenance:
+        range: Provenance
+        inlined: true
+        required: false
+      overlap_with:
+        range: boolean
+        required: false
+
+  MusicSegment:
+    class_uri: hc:MusicSegment
+    description: >-
+      Segment of detected music with optional classification and confidence.
+    slots:
+    - begin_of_the_begin
+    - end_of_the_end
+    - has_type
+    - has_genre
+    - in_background
+    - has_confidence_measure
+    - has_score
+    slot_usage:
+      begin_of_the_begin:
+        range: float
+        required: true
+        minimum_value: 0.0
+      end_of_the_end:
+        range: float
+        required: true
+        minimum_value: 0.0
+      has_type:
+        range: MusicTypeEnum
+        required: false
+      has_genre:
+        range: string
+        required: false
+      in_background:
+        range: boolean
+        required: false
+      has_confidence_measure:
+        range: float
+        required: false
+        minimum_value: 0.0
+        maximum_value: 1.0

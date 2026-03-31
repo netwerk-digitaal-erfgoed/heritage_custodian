@@ -1,0 +1,54 @@
+id: https://nde.nl/ontology/hc/classes/PersonProfile
+name: PersonProfile
+title: PersonProfile
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  foaf: http://xmlns.com/foaf/0.1/
+  pico: https://personsincontext.org/model#
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+imports:
+- linkml:types
+# default_range: string
+classes:
+  PersonProfile:
+    description: >-
+      Complete profile data for a heritage professional, representing a structured
+      document about a person extracted from LinkedIn profiles, staff pages, and
+      other web sources.
+    alt_descriptions:
+      nl: Volledige profielgegevens voor een erfgoedprofessional.
+      de: Vollständige Profildaten für einen Kulturerbe-Fachmann.
+      fr: Données de profil complètes pour un professionnel du patrimoine.
+    structured_aliases:
+    - literal_form: personenprofiel
+      in_language: nl
+    - literal_form: Personenprofil
+      in_language: de
+    comments:
+    - A document containing profile information ABOUT a person, not the person entity.
+    - Related to pico:PersonObservation which captures person data from sources.
+    class_uri: foaf:PersonalProfileDocument
+    exact_mappings:
+    - foaf:PersonalProfileDocument
+    close_mappings:
+    - pico:PersonObservation
+    - schema:ProfilePage
+    related_mappings:
+    - foaf:Person
+    - schema:Person
+    - prov:Entity
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: '[''*'']'
+    slots:
+    - has_profile
+    - has_content

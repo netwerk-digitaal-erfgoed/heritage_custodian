@@ -1,0 +1,82 @@
+id: https://nde.nl/ontology/hc/enum/MethodologyTypeEnum
+name: methodology_type_enum
+title: Methodology Type Enum
+description: >-
+  Enumeration of methodology types for measurement derivation.
+  
+  **RULE 53 COMPLIANT**: Created for unique_object_count and unique_face_count
+  migration per slot_fixes.yaml revision (lines 1951-1994).
+  
+  **SLOT_FIXES.YAML REFERENCE**:
+  
+  The revision specifies `value: entity_resolution` for both unique_object_count
+  and unique_face_count, indicating these counts are derived via entity resolution
+  (deduplication) methodologies.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+
+imports:
+  - linkml:types
+
+default_prefix: hc
+
+enums:
+  MethodologyTypeEnum:
+    description: >-
+      Types of methodologies used to derive measurements or observations.
+      
+      **PRIMARY USE CASE**: Video annotation unique counts
+      
+      When counting unique objects or faces in video, different methodologies
+      produce different results. This enum captures the approach used.
+    permissible_values:
+      ENTITY_RESOLUTION:
+        description: >-
+          Deduplication via feature matching and clustering.
+          Used to count unique entities across multiple observations.
+          Example: Counting unique faces by clustering face embeddings.
+        annotations:
+          slot_fixes_value: entity_resolution
+          typical_use: unique_object_count, unique_face_count
+      
+      OBJECT_TRACKING:
+        description: >-
+          Multi-object tracking across video frames.
+          Maintains identity of objects as they move through scenes.
+          Example: DeepSORT, ByteTrack tracking algorithms.
+        annotations:
+          typical_use: video_object_annotation
+      
+      MANUAL_COUNT:
+        description: >-
+          Human manual counting or annotation.
+          May involve multiple reviewers for accuracy.
+        annotations:
+          typical_use: ground_truth_annotation
+      
+      STATISTICAL_SAMPLING:
+        description: >-
+          Count derived from statistical sampling methodology.
+          Extrapolated from sample to estimate total population.
+        annotations:
+          typical_use: visitor_estimates, large_collection_counts
+      
+      AUTOMATED_DETECTION:
+        description: >-
+          Automated detection without deduplication.
+          Raw detection counts that may include duplicates.
+        annotations:
+          typical_use: raw_detection_counts
+      
+      HYBRID:
+        description: >-
+          Combination of automated and manual methodologies.
+          Automated detection with manual verification/correction.
+        annotations:
+          typical_use: quality_assured_annotation
+      
+      UNKNOWN:
+        description: >-
+          Methodology not specified or unknown.

@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: define
+# ==============================================================================
+# States or sets forth the precise meaning, nature, scope, or boundaries.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line            | Mapping | Notes                                      |
+# |---------------|-----------------------|----------------------|---------|--------------------------------------------|
+# | **SKOS**      | `skos:definition`     | -                    | related | Definition text, not definitional relation |
+# | **RDFS**      | `rdfs:isDefinedBy`    | -                    | related | Points to defining resource.               |
+#
+# NOTE: Previous exact_mapping to org:hasUnit was INCORRECT. org:hasUnit means 
+# "organization has organizational unit" - semantically unrelated to "define".
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, REMOVED incorrect org:hasUnit mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/define
+name: define
+title: Define
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  define:
+    slot_uri: hc:define
+    description: >-
+      To state or set forth the precise meaning, nature, scope, or boundaries 
+      of a concept, term, or entity.
+    alt_descriptions:
+      nl: >-
+        Het vaststellen of uiteenzetten van de precieze betekenis, aard, reikwijdte 
+        of grenzen van een concept, term of entiteit.
+      de: >-
+        Die genaue Bedeutung, Natur, den Umfang oder die Grenzen eines Konzepts, 
+        Begriffs oder einer Entität festlegen oder darlegen.
+      fr: >-
+        Énoncer ou définir le sens précis, la nature, la portée ou les limites 
+        d'un concept, d'un terme ou d'une entité.
+      ar: >-
+        ذكر أو تحديد المعنى الدقيق أو الطبيعة أو النطاق أو الحدود لمفهوم 
+        أو مصطلح أو كيان.
+      id: >-
+        Untuk menyatakan atau menetapkan makna, sifat, ruang lingkup, atau batasan 
+        yang tepat dari suatu konsep, istilah, atau entitas.
+      zh: >-
+        陈述或阐明概念、术语或实体的精确含义、性质、范围或边界。
+      es: >-
+        Declarar o establecer el significado preciso, la naturaleza, el alcance 
+        o los límites de un concepto, término o entidad.
+    structured_aliases:
+      - literal_form: definieert
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: definiert
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: définit
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: يعرّف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mendefinisikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 定义
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: define
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    multivalued: true
+    aliases:
+      - defines_or_defined
+      - is_or_was_define
+    related_mappings:
+      - skos:definition  # definition text/annotation
+      - rdfs:isDefinedBy  # points to defining resource
+    comments:
+      - |
+        **USAGE**: Use to link an entity to what it formally defines, such as 
+        governance structures, policies, or conceptual frameworks.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/GovernanceStructure/123"
+        description: "Links to a governance structure definition"

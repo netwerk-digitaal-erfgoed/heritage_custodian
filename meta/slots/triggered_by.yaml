@@ -1,0 +1,89 @@
+# ==============================================================================
+# LinkML Slot Definition: triggered_by
+# ==============================================================================
+# Indicates the antecedent event, condition, or action that initiated or caused
+# something to start.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **PROV-O**    | `prov:wasStartedBy`   | prov.ttl:1241-1246         | close   | "trigger that initiated activity"  |
+# | **OASIS**     | `oasis:triggeredBy`   | oasis.owl:2942-2946        | close   | Links agents to triggered events   |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-04 - Added header, multilingual, prov:wasStartedBy as close mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/triggered_by
+name: triggered_by
+title: Triggered By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  prov: http://www.w3.org/ns/prov#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  triggered_by:
+    slot_uri: hc:triggeredBy
+    description: >-
+      To be initiated, activated, or caused to start by a specific antecedent
+      event, condition, signal, or action.
+    alt_descriptions:
+      nl: >-
+        Geïnitieerd, geactiveerd of gestart worden door een specifieke voorafgaande
+        gebeurtenis, conditie, signaal of actie.
+      de: >-
+        Durch ein bestimmtes vorhergehendes Ereignis, eine Bedingung, ein Signal
+        oder eine Handlung initiiert, aktiviert oder gestartet zu werden.
+      fr: >-
+        Être initié, activé ou déclenché par un événement, une condition, un
+        signal ou une action antérieure spécifique.
+      ar: >-
+        أن يتم البدء به أو تنشيطه أو التسبب في بدئه بواسطة حدث أو شرط أو إشارة
+        أو إجراء سابق محدد.
+      id: >-
+        Diinisiasi, diaktifkan, atau dimulai oleh peristiwa, kondisi, sinyal,
+        atau tindakan pendahulu tertentu.
+      zh: >-
+        由特定的前置事件、条件、信号或动作引发、激活或启动。
+      es: >-
+        Ser iniciado, activado o causado a comenzar por un evento, condición,
+        señal o acción antecedente específico.
+    structured_aliases:
+      - literal_form: getriggerd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ausgelöst durch
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: déclenché par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تم تشغيله بواسطة
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dipicu oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被触发
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: activado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - is_or_was_triggered_by
+    close_mappings:
+      - prov:wasStartedBy  # prov.ttl:1241-1246 - "trigger that initiated the activity"
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,75 @@
+id: https://nde.nl/ontology/hc/class/TechnologicalInfrastructureType
+name: TechnologicalInfrastructureType
+title: Technological Infrastructure Type
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  doap: http://usefulinc.com/ns/doap#
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+default_prefix: hc
+classes:
+  TechnologicalInfrastructureType:
+    class_uri: skos:Concept
+    abstract: true
+    description: >-
+      Category for software, hardware, and platform components supporting digital heritage systems.
+    alt_descriptions:
+      nl: Abstracte basisklasse voor het classificeren van typen technologische infrastructuurcomponenten die in digitale erfgoedplatforms worden gebruikt.
+      de: Abstrakte Basisklasse zur Klassifizierung von technologischen Infrastrukturkomponenten in digitalen Kulturerbe-Plattformen.
+      fr: Classe de base abstraite pour classer les types de composants d'infrastructure technologique utilisés dans les plateformes de patrimoine numérique.
+      es: 'Concepto para: Category for software, hardware, and platform components supporting digital heritage systems.'
+      ar: 'مفهوم لـ: Category for software, hardware, and platform components supporting digital heritage systems.'
+      id: 'Konsep untuk: Category for software, hardware, and platform components supporting digital heritage systems.'
+      zh: 用于以下内容的概念：Category for software, hardware, and platform components supporting digital heritage systems.
+    structured_aliases:
+    - literal_form: technologische infrastructuurtype
+      in_language: nl
+    - literal_form: Technologie-Infrastruktur-Typ
+      in_language: de
+    - literal_form: type d'infrastructure technologique
+      in_language: fr
+    - literal_form: technological infrastructure type
+      in_language: es
+    - literal_form: technological infrastructure type
+      in_language: ar
+    - literal_form: technological infrastructure type
+      in_language: id
+    - literal_form: technological infrastructure type
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    close_mappings:
+    - doap:Project
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    slot_usage:
+      identified_by:
+        identifier: true
+        required: true
+        examples:
+        - value: hc:TechnologicalInfrastructureType/Framework
+      has_label:
+        required: true
+        examples:
+        - value: Framework
+        - value: Database
+      has_description:
+        examples:
+        - value: Frontend or backend web application framework
+    comments:
+    - Abstract base class - concrete types in TechnologicalInfrastructureTypes.yaml
+    - Follows Rule 0b: Type (singular) = abstract, Types (plural) = subclasses
+    - DOAP-aligned for software project descriptions
+    - Created for technology_stack migration per slot_fixes.yaml (2026-01-16)
+    - Subclass categories include Framework, Language, Database, APIProtocol, Service, CMS, SearchEngine, Repository
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"

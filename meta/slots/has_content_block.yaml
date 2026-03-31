@@ -1,0 +1,112 @@
+# ==============================================================================
+# LinkML Slot Definition: has_content_block
+# ==============================================================================
+# A discrete structural unit of information forming part of a larger document.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                      | Mapping  | Notes                                                             |
+# |---------------|-----------------------------|--------------------------------|----------|-------------------------------------------------------------------|
+# | **Schema.org** | `schema:text`              | schemaorg.owl:37718-37738      | related  | "The textual content of this CreativeWork." Flat text content,    |
+# |               |                             |                                |          | not a structural block/section. Domain: CreativeWork.             |
+# | **Schema.org** | `schema:mainContentOfPage` | schemaorg.owl:25261-25279      | related  | "Indicates if this web page element is the main subject of the   |
+# |               |                             |                                |          | page." Only the MAIN content, web-page-only. Domain: WebPage.    |
+# | **RiC-O**     | `rico:hasOrHadComponent`    | RiC-O_1-1.rdf:5968-6004       | related  | "Connects an Instantiation to a component instantiation."        |
+# |               |                             |                                |          | Archival domain. Domain/Range: Instantiation.                    |
+# | **Schema.org** | `schema:hasPart`           | schemaorg.owl:20403-20425      | broad    | "Indicates an item or CreativeWork that is part of this item."   |
+# |               |                             |                                |          | Generic part-whole. Domain: CreativeWork.                        |
+# | **DCTerms**   | `dcterms:hasPart`           | dcterms.rdf:1347-1370          | broad    | "A related resource that is included physically or logically."   |
+# |               |                             |                                |          | Generic part-whole for any resource.                             |
+#
+# NO EXACT MATCH: "Content block" is a CMS/structured-content concept — a
+# discrete module of information (text, media, code) within a larger layout.
+# Standard ontologies lack a property for this specific structural unit.
+# schema:text (previously mapped as exact) is about flat textual content,
+# not a structural section/module.
+#
+# REMOVED from exact: schema:text — "The textual content of this CreativeWork."
+# About the text itself, not a structural block that may contain text, media, or code.
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_content_block
+name: has_content_block
+title: Has Content Block
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rico: https://www.ica.org/standards/RiC/ontology#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_content_block:
+    slot_uri: hc:hasContentBlock
+    description: >-
+      Identifies a discrete unit, section, or module of information (such as
+      text, media, or code) that forms a specific part of a larger document,
+      web page, or layout.
+    alt_descriptions:
+      nl: >-
+        Identificeert een afzonderlijke eenheid, sectie of module van informatie
+        (zoals tekst, media of code) die een specifiek onderdeel vormt van een
+        groter document, webpagina of lay-out.
+      de: >-
+        Identifiziert eine eigenständige Einheit, einen Abschnitt oder ein Modul
+        von Informationen (wie Text, Medien oder Code), das einen bestimmten
+        Teil eines größeren Dokuments, einer Webseite oder eines Layouts bildet.
+      fr: >-
+        Identifie une unité, section ou module d'information distinct (tel que
+        du texte, des médias ou du code) qui constitue une partie spécifique
+        d'un document, d'une page web ou d'une mise en page plus large.
+      ar: >-
+        يحدد وحدة أو قسماً أو نموذجاً منفصلاً من المعلومات (مثل النص أو
+        الوسائط أو الشفرة) يشكل جزءاً محدداً من مستند أو صفحة ويب أو
+        تخطيط أكبر.
+      id: >-
+        Mengidentifikasi unit, bagian, atau modul informasi yang terpisah (seperti
+        teks, media, atau kode) yang membentuk bagian tertentu dari dokumen,
+        halaman web, atau tata letak yang lebih besar.
+      zh: >-
+        标识一个独立的信息单元、章节或模块（如文本、媒体或代码），它构成更大文档、
+        网页或布局的特定组成部分。
+      es: >-
+        Identifica una unidad, sección o módulo de información discreto (como
+        texto, medios o código) que forma una parte específica de un documento,
+        página web o diseño más grande.
+    structured_aliases:
+      - literal_form: Inhoudsblok
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Inhaltsblock
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Bloc de contenu
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: كتلة المحتوى
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Blok Konten
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 内容块
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Bloque de contenido
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    related_mappings:
+      - schema:text               # schemaorg.owl:37718-37738 - "The textual content of this CreativeWork."
+      - schema:mainContentOfPage   # schemaorg.owl:25261-25279 - "Main web page element."
+      - rico:hasOrHadComponent     # RiC-O_1-1.rdf:5968-6004 - "Connects an Instantiation to a component."
+    broad_mappings:
+      - schema:hasPart             # schemaorg.owl:20403-20425 - "An item or CreativeWork that is part of this item."
+      - dcterms:hasPart            # dcterms.rdf:1347-1370 - "A related resource included in the described resource."
+    annotations:
+      custodian_types: '["*"]'

@@ -1,0 +1,79 @@
+# UNESCO ICH List Status Enumeration
+# Status on UNESCO intangible cultural heritage lists
+
+id: https://nde.nl/ontology/hc/enum/UNESCOListStatusEnum
+name: unesco_list_status_enum
+title: UNESCO ICH List Status Enumeration
+
+imports:
+  - linkml:types
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  ich: https://ich.unesco.org/
+
+enums:
+  UNESCOListStatusEnum:
+    description: |
+      Status on UNESCO intangible cultural heritage lists.
+      
+      UNESCO maintains three lists under the 2003 Convention:
+      1. Representative List of ICH of Humanity
+      2. List of ICH in Need of Urgent Safeguarding
+      3. Register of Good Safeguarding Practices
+      
+      NULL value = Not inscribed (may be on national inventory only)
+    enum_uri: ich:ListStatus
+    permissible_values:
+      REPRESENTATIVE_LIST:
+        description: |
+          Inscribed on the Representative List of the Intangible Cultural 
+          Heritage of Humanity.
+          
+          Purpose: Ensure visibility and awareness of ICH importance.
+          Criteria: Community involvement, safeguarding plan, inclusive access.
+          
+          Examples (Netherlands): Craft of the miller, Falconry.
+        meaning: ich:List/Representative
+      
+      URGENT_SAFEGUARDING:
+        description: |
+          Inscribed on the List of Intangible Cultural Heritage in Need 
+          of Urgent Safeguarding.
+          
+          Purpose: Mobilize international cooperation for endangered ICH.
+          Criteria: Extreme urgency, viable safeguarding plan, state commitment.
+        meaning: ich:List/UrgentSafeguarding
+      
+      GOOD_SAFEGUARDING_PRACTICES:
+        description: |
+          Selected for the Register of Good Safeguarding Practices.
+          
+          Purpose: Share successful safeguarding methodologies.
+          Criteria: Proven effectiveness, transferability, best practices.
+        meaning: ich:List/GoodPractices
+      
+      NATIONAL_INVENTORY_ONLY:
+        description: |
+          Listed on national inventory but not inscribed on any UNESCO list.
+          
+          Most heritage forms registered with KIEN are in this category.
+          National recognition is prerequisite for UNESCO nomination.
+        meaning: ich:List/NationalOnly
+      
+      NOMINATED:
+        description: |
+          Currently nominated for inscription on a UNESCO list.
+          
+          Nomination process takes 1-2 years. Heritage form is under 
+          evaluation by UNESCO Intergovernmental Committee.
+        meaning: ich:List/Nominated
+      
+      WITHDRAWN:
+        description: |
+          Previously inscribed but later withdrawn from UNESCO list.
+          
+          Rare case - may happen due to policy changes, lack of safeguarding,
+          or community request.
+        meaning: ich:List/Withdrawn

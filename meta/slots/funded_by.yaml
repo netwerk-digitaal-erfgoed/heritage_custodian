@@ -1,0 +1,85 @@
+# ==============================================================================
+# LinkML Slot Definition: funded_by
+# ==============================================================================
+# Identifies the agent, organization, or entity that financially supports or
+# sponsors a given entity.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property              | File/Line                  | Mapping | Notes                              |
+# |---------------|-----------------------|----------------------------|---------|------------------------------------|
+# | **Schema.org**| `schema:funder`       | schemaorg.owl:18743-18747  | exact   | "A person or organization that supports (sponsors) something through some kind of financial contribution" |
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-06 - Added header, multilingual, changed slot_uri to schema:funder (exact match),
+#   moved migration note from description to comments
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/funded_by
+name: funded_by
+title: Funded By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  funded_by:
+    slot_uri: schema:funder
+    description: >-
+      To be financially supported, sponsored, or provided with resources by a specific agent, organization, or entity.
+    alt_descriptions:
+      nl: >-
+        Financieel ondersteund, gesponsord of van middelen voorzien worden door een specifieke actor, organisatie of entiteit.
+      de: >-
+        Finanziell unterstützt, gesponsert oder mit Mitteln versorgt werden durch einen bestimmten Akteur, eine Organisation oder eine Entität.
+      fr: >-
+        Être financièrement soutenu, parrainé ou doté de ressources par un agent, une organisation ou une entité spécifique.
+      ar: >-
+        أن يكون مدعومًا ماليًا أو ممولًا أو مزودًا بالموارد من قبل جهة فاعلة أو منظمة أو كيان محدد.
+      id: >-
+        Didukung secara finansial, disponsori, atau disediakan sumber daya oleh agen, organisasi, atau entitas tertentu.
+      zh: >-
+        由特定的代理人、组织或实体提供资金支持、赞助或提供资源。
+      es: >-
+        Ser apoyado financieramente, patrocinado o provisto de recursos por un agente, organización o entidad específica.
+    structured_aliases:
+      - literal_form: gefinancierd door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: finanziert von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: financé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: ممول من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: didanai oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 由…资助
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: financiado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_cofunding
+      - internal_funding
+    exact_mappings:
+    comments:
+      - |
+        MIGRATED 2026-02-03 from has_or_had_cofunding for conciseness.
+    annotations:
+      custodian_types: '["*"]'

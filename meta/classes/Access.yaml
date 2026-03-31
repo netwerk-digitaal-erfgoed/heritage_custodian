@@ -1,0 +1,194 @@
+id: https://nde.nl/ontology/hc/class/Access
+name: Access
+title: Access
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+  - linkml:types
+  - ../enums/AccessTypeEnum
+  - ../metadata
+  - ../slots/has_description
+  - ../slots/has_frequency
+  - ../slots/has_type
+  - ../slots/has_user_category
+  - ../slots/temporal_extent
+classes:
+  Access:
+    description: >-
+      Information describing how heritage collections, services, or facilities
+      may be used or consulted. Captures access types, eligible user categories,
+      conditions, and temporal availability.
+    alt_descriptions:
+      nl: >-
+        Gestructureerde informatie over hoe erfgoedcollecties, diensten of faciliteiten
+        kunnen worden gebruikt of geraadpleegd. Legt toegangstypen, in aanmerking komende
+        gebruikerscategorieen, voorwaarden en tijdelijke beschikbaarheid vast.
+      de: >-
+        Strukturierte Informationen darueber, wie Erbesammlungen, Dienstleistungen oder
+        Einrichtungen genutzt oder konsultiert werden koennen. Erfasst Zugangsarten,
+        berechtigte Benutzerkategorien, Bedingungen und zeitliche Verfuegbarkeit.
+      fr: >-
+        Informations structurees decrivant comment les collections patrimoniales,
+        les services ou les installations peuvent etre utilises ou consultes. Capture
+        les types d'acces, les categories d'utilisateurs eligibles, les conditions
+        et la disponibilite temporelle.
+      es: >-
+        Informacion estructurada que describe como se pueden utilizar o consultar
+        las colecciones patrimoniales, servicios o instalaciones. Captura los tipos
+        de acceso, las categorias de usuarios elegibles, las condiciones y la
+        disponibilidad temporal.
+      ar: >-
+        معلومات منظمة تصف كيف يمكن استخدام أو استشارة مجموعات التراث أو الخدمات
+        أو المرافق. تسجل أنواع الوصول وفئات المستخدمين المؤهلين والشروط
+        والتوفر الزمني.
+      id: >-
+        Informasi terstruktur yang menjelaskan bagaimana koleksi warisan, layanan,
+        atau fasilitas dapat digunakan atau dikonsultasikan. Merekam jenis akses,
+        kategori pengguna yang memenuhi syarat, kondisi, dan ketersediaan temporal.
+      zh: >-
+        描述如何使用或查阅遗产馆藏、服务或设施的结构化信息。记录访问类型、
+        符合条件的用户类别、条件和时间可用性。
+    examples:
+    - value:
+        has_type: PUBLIC
+        has_description: Open to general public during gallery hours
+        has_user_category:
+        - general public
+      description: Museum gallery with unrestricted public access
+    - value:
+        has_type: BY_APPOINTMENT
+        has_user_category:
+        - credentialed researchers
+        - graduate students with faculty sponsor
+      description: Special collections reading room requiring advance booking
+    - value:
+        has_type: ACADEMIC
+        has_description: Open to enrolled students and faculty; public by appointment
+        has_user_category:
+        - enrolled students
+        - faculty
+        - research staff
+      description: University library with priority for academic community
+    - value:
+        has_type: DIGITAL_ONLY
+        has_description: Collection accessible only through online database
+        has_user_category:
+        - anyone with internet access
+      description: Digitized collection available remotely
+    - value:
+        has_type: RESTRICTED
+        has_description: Fragile materials require staff supervision
+        has_user_category:
+        - senior researchers with institutional affiliation
+      description: Conservation-restricted materials with supervised access
+    class_uri: dcterms:RightsStatement
+    slots:
+    - has_type
+    - has_user_category
+    - has_description
+    - temporal_extent
+    - has_frequency
+    structured_aliases:
+    - literal_form: toegang
+      in_language: nl
+    - literal_form: Zugang
+      in_language: de
+    - literal_form: acces
+      in_language: fr
+    - literal_form: acceso
+      in_language: es
+    - literal_form: وصول
+      in_language: ar
+    - literal_form: akses
+      in_language: id
+    - literal_form: 访问
+      in_language: zh
+    keywords:
+    - access policy
+    - access rights
+    - opening hours
+    - appointment required
+    - restricted materials
+    - public access
+    - research access
+    - reading room
+    - digital access
+    - physical access
+    - user eligibility
+    slot_usage:
+      has_type:
+        range: AccessTypeEnum
+        required: true
+      has_user_category:
+        required: false
+        examples:
+        - value: enrolled students
+        - value: faculty and staff
+        - value: visiting researchers with credentials
+      temporal_extent:
+        required: false
+        range: TimeSpan
+        inlined: true
+      has_frequency:
+        required: false
+        range: Frequency
+        inlined: true
+        examples:
+        - value:
+            has_label: Daily
+    broad_mappings:
+    - dcterms:RightsStatement
+    - skos:Concept
+    close_mappings:
+    - schema:publicAccess
+    related_mappings:
+    - crm:E30_Right
+    comments:
+    - Replaces simple string descriptions of access conditions with structured data
+    - Key slots include has_type (access type), has_user_category (eligible users), has_description (conditions), and temporal_extent (when policy applies)
+    - Common access types include PUBLIC, BY_APPOINTMENT, ACADEMIC, RESEARCHER, MEMBER, RESTRICTED, CLOSED, and DIGITAL_ONLY
+    - Created per slot_fixes.yaml revision for collection_access migration
+    - RULE 53: Part of collection_access to offers_or_offered_access plus Access migration
+    see_also:
+    - AccessTypeEnum
+    - dcterms:accessRights
+    notes:
+      - |
+        Preserved from prior description (commit ae09ff81):
+
+        Preserved from prior description (commit ae09ff81):
+
+        Structured access information for heritage collections, services, or facilities.
+        **Purpose**:
+        Replaces simple string descriptions of access conditions with structured
+        data capturing access types, eligible users, conditions, and restrictions.
+        **Key Properties**:
+        - `has_type`: Type of access (PUBLIC, BY_APPOINTMENT, RESTRICTED, etc.)
+        - `has_user_category`: Who can access (public, students, faculty, researchers)
+        - `condition_of_access`: Conditions or requirements for access
+        - `has_description`: Free-text description
+        - `temporal_extent`: When this access policy applies
+        **Access Types**:
+        - PUBLIC: Open to general public
+        - BY_APPOINTMENT: Requires advance appointment
+        - ACADEMIC: Restricted to academic community
+        - RESEARCHER: Restricted to credentialed researchers
+        - MEMBER: Requires membership
+        - RESTRICTED: Limited access with specific conditions
+        - CLOSED: Not currently accessible
+        - DIGITAL_ONLY: Available only in digital form
+        **Ontological Alignment**:
+        - **Primary**: `dcterms:RightsStatement` - Dublin Core rights statement
+        - **Close**: `schema:publicAccess` - Schema.org access indicator
+        - **Related**: `crm:E30_Right` - CIDOC-CRM rights
+    annotations:
+      specificity_score: "0.5"
+      specificity_rationale: Moderately specific - applies to collection and service access contexts
+      custodian_types: "['*']"
+      custodian_types_rationale: All institution types offer some form of access

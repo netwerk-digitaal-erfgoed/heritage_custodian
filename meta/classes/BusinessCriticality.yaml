@@ -1,0 +1,99 @@
+id: https://nde.nl/ontology/hc/class/BusinessCriticality
+name: business_criticality_class
+title: Business Criticality Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+classes:
+  BusinessCriticality:
+    class_uri: hc:BusinessCriticality
+    description: >-
+      Classification level indicating operational impact for continuity planning,
+      ranging from critical (immediate impact) to low (minimal impact).
+    alt_descriptions:
+      nl: >-
+        Classificatieniveau dat de operationele impact aangeeft voor
+        continuïteitsplanning, variërend van kritiek (directe impact) tot laag (minimale impact).
+      de: >-
+        Klassifizierungsstufe, die die operative Auswirkung für die
+        Kontinuitätsplanung angibt, von kritisch (unmittelbare Auswirkung) bis niedrig (minimale Auswirkung).
+      fr: >-
+        Niveau de classification indiquant l'impact opérationnel pour la planification
+        de la continuité, allant de critique (impact immédiat) à faible (impact minimal).
+      es: >-
+        Nivel de clasificación que indica el impacto operativo para la planificación
+        de continuidad, desde crítico (impacto inmediato) hasta bajo (impacto mínimo).
+      ar: >-
+        مستوى التصنيف الذي يشير إلى التأثير التشغيلي لتخطيط الاستمرارية،
+        من حرج (تأثير فوري) إلى منخفض (تأثير ضئيل).
+      id: >-
+        Tingkat klasifikasi yang menunjukkan dampak operasional untuk perencanaan
+        keberlanjutan, dari kritis (dampak langsung) hingga rendah (dampak minimal).
+      zh: >-
+        表示连续性规划运营影响的分类级别，从关键（立即影响）到低（最小影响）。
+    structured_aliases:
+    - literal_form: bedrijfskritiek
+      in_language: nl
+    - literal_form: Geschäftskritikalität
+      in_language: de
+    - literal_form: criticité métier
+      in_language: fr
+    - literal_form: criticidad empresarial
+      in_language: es
+    - literal_form: الأهمية الحرجة للأعمال
+      in_language: ar
+    - literal_form: kritikalitas bisnis
+      in_language: id
+    - literal_form: 业务关键性
+      in_language: zh
+    broad_mappings:
+    - skos:Concept
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    slot_usage:
+      has_label:
+        required: true
+        equals_string_in:
+        - "CRITICAL"
+        - "HIGH"
+        - "MEDIUM"
+        - "LOW"
+      has_description:
+        required: false
+    comments:
+    - Business criticality for continuity and disaster recovery planning
+    - CRITICAL: Institution cannot function (hours)
+    - HIGH: Significant impact if unavailable (days)
+    - MEDIUM: Important but workarounds exist (weeks)
+    - LOW: Minimal operational impact
+    examples:
+    - value:
+        has_label: CRITICAL
+        has_description: Financial system required for daily operations
+      description: Critical business function
+    - value:
+        has_label: LOW
+        has_description: Promotional materials archive - minimal impact on operations
+      description: Low criticality function
+    keywords:
+    - business criticality
+    - continuity planning
+    - disaster recovery
+    - CRITICAL
+    - HIGH
+    - MEDIUM
+    - LOW
+    annotations:
+      specificity_score: "0.4"
+      specificity_rationale: Classification for operational impact levels
+      custodian_types: "['*']"

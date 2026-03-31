@@ -1,0 +1,104 @@
+# ==============================================================================
+# LinkML Slot Definition: has_access_frequency
+# ==============================================================================
+# Indicates how often a resource is accessed or utilized.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                    | File/Line            | Mapping | Notes                          |
+# |----------------|-----------------------------|----------------------|---------|--------------------------------|
+# | **DC Terms**   | `dcterms:accrualPeriodicity`| dcterms.ttl:2815-83  | close   | "The frequency with which      |
+# |                |                             |                      |         | items are added to a           |
+# |                |                             |                      |         | collection" - accrual, not     |
+# |                |                             |                      |         | access                         |
+#
+# No exact standard mapping exists for access frequency.
+# This is a domain-specific property for usage metrics.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Fixed description (removed migration note), added multilingual
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_access_frequency
+name: has_access_frequency
+title: Has Access Frequency
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  has_access_frequency:
+    slot_uri: hc:hasAccessFrequency
+    description: >-
+      To have a designated rate or periodicity indicating how often a 
+      resource, data set, or system is accessed or utilized.
+    alt_descriptions:
+      nl: >-
+        Een aangewezen frequentie of periodiciteit hebben die aangeeft 
+        hoe vaak een bron, dataset of systeem wordt geraadpleegd of 
+        gebruikt.
+      de: >-
+        Eine festgelegte Rate oder Periodizität haben, die angibt, wie 
+        oft auf eine Ressource, einen Datensatz oder ein System 
+        zugegriffen oder dieses genutzt wird.
+      fr: >-
+        Avoir un taux ou une périodicité désignée indiquant à quelle 
+        fréquence une ressource, un ensemble de données ou un système 
+        est consulté ou utilisé.
+      ar: >-
+        أن يكون له معدل أو دورية محددة تشير إلى مدى تكرار الوصول 
+        إلى مورد أو مجموعة بيانات أو نظام أو استخدامه.
+      id: >-
+        Memiliki tingkat atau periodisitas yang ditetapkan yang 
+        menunjukkan seberapa sering sumber daya, kumpulan data, atau 
+        sistem diakses atau digunakan.
+      zh: >-
+        具有指定的频率或周期性，表明资源、数据集或系统被访问或使用的频率。
+      es: >-
+        Tener una tasa o periodicidad designada que indica con qué 
+        frecuencia se accede o utiliza un recurso, conjunto de datos 
+        o sistema.
+    structured_aliases:
+      - literal_form: heeft toegangsfrequentie
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: hat Zugriffshäufigkeit
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: a une fréquence d'accès
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: له تردد الوصول
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: memiliki frekuensi akses
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 有访问频率
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: tiene frecuencia de acceso
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    close_mappings:
+      - dcterms:accrualPeriodicity  # dcterms.ttl:2815-2883 - frequency of additions, not access
+    aliases:
+      - has_or_had_access_frequency
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - |
+        **USAGE**: Use this slot to indicate how frequently a resource is 
+        accessed, such as "daily", "weekly", "monthly", or specific metrics 
+        like "1000 requests/day".
+      - |
+        **MIGRATION NOTE (2026-02-03)**: Renamed from `has_or_had_access_frequency` 
+        for conciseness.

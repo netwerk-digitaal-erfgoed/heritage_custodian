@@ -1,0 +1,106 @@
+id: https://nde.nl/ontology/hc/class/Significance
+name: significance_class
+title: Significance Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/has_label
+- ../slots/has_type
+default_prefix: hc
+classes:
+  Significance:
+    class_uri: crm:E55_Type
+    description: >-
+      Structured representation of significance or importance.
+    alt_descriptions:
+      nl: Gestructureerde weergave van betekenis of belang.
+      de: Strukturierte Darstellung von Bedeutung oder Wichtigkeit.
+      fr: Représentation structurée de l'importance ou de la signification.
+    structured_aliases:
+    - literal_form: betekenis
+      in_language: nl
+    - literal_form: Bedeutung
+      in_language: de
+    - literal_form: importance
+      in_language: fr
+    comments:
+    - Created per slot_fixes.yaml migration from community_significance string (2026-01-22).
+    - Provides structured representation including type classification, description, and evidence.
+    - Use cases include cultural heritage significance, community importance, economic impact.
+    broad_mappings:
+    - crm:E55_Type
+    close_mappings:
+    - dcterms:description
+    slots:
+    - has_type
+    - has_description
+    - has_label
+    slot_usage:
+      has_type:
+        range: SignificanceType
+        required: false
+        examples:
+        - value: CommunitySignificance
+        - value: EconomicSignificance
+      has_description:
+        required: true
+        examples:
+        - value: "UNESCO-recognized Trappist tradition, Belgian cultural identity"
+        - value: "Economic importance for regional tourism"
+      has_label:
+        required: false
+        examples:
+        - value: "UNESCO Intangible Heritage"
+        - value: "Regional Economic Driver"
+    examples:
+    - value: |
+        has_significance:
+          - has_type: CommunitySignificance
+            has_description: "Belgian cultural identity, Trappist beer heritage"
+          - has_type: EconomicSignificance
+            has_description: "Tourism revenue, heritage economy"
+    notes:
+    - |
+      Preserved from prior description (commit 37852a46):
+
+      Structured representation of significance or importance.
+
+      **MIGRATION NOTE** (2026-01-22):
+      Created per slot_fixes.yaml migration from `community_significance` string
+      to structured Significance class per Rule 53.
+
+      **Purpose**:
+      Provides structured representation for significance including:
+      - Type classification (e.g., cultural, economic, historical)
+      - Description of the significance
+      - Supporting evidence or justification
+
+      **Ontological Alignment**:
+      - **Primary** (`class_uri`): `crm:E55_Type` - CIDOC-CRM type (significance as typed concept)
+      - **Close**: `dcterms:description` - Dublin Core description
+
+      **Use Cases**:
+      - Cultural heritage significance (UNESCO recognition)
+      - Community importance (identity, social cohesion)
+      - Economic impact (tourism, heritage economy)
+      - Historical continuity (ancestral links)
+
+      **Pattern**:
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Significance applicable to all heritage custodian types.
+      custodian_types_primary: T
+      specificity_score: 0.35
+      specificity_rationale: >-
+        Broadly applicable - significance is fundamental to heritage justification
+        across all domains.
+      migration_source_slot: community_significance
+      migration_date: "2026-01-22"
+      migration_rule: "Rule 53"

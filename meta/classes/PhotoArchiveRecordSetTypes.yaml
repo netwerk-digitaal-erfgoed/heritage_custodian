@@ -1,0 +1,276 @@
+id: https://nde.nl/ontology/hc/class/PhotoArchiveRecordSetTypes
+name: PhotoArchiveRecordSetTypes
+title: PhotoArchive Record Set Type Subclasses
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rico: https://www.ica.org/standards/RiC/ontology#
+  rico-rst: https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- ./PhotoArchiveRecordSetType
+- linkml:types
+- ../slots/has_score
+- ../slots/has_type
+- ../slots/has_custodian
+- ../slots/has_note
+classes:
+  PhotographerPapersCollection:
+    is_a: PhotoArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of personal and professional manuscripts,
+      correspondence, and working files created by image makers.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van persoonlijke en professionele
+        manuscripten, correspondentie en werkdossiers van beeldmakers.
+      de: >-
+        Zusammengestellter Dokumentkoerper aus persoenlichen und beruflichen
+        Manuskripten, Korrespondenz und Arbeitsunterlagen von Bildschaffenden.
+      fr: >-
+        Ensemble documentaire reuni de manuscrits personnels et professionnels,
+        de correspondances et de dossiers de travail de createurs d'images.
+      es: >-
+        Cuerpo documental reunido de manuscritos personales y profesionales,
+        correspondencia y expedientes de trabajo de creadores de imagen.
+      ar: >-
+        جسم وثائقي مُجمع يضم مخطوطات شخصية ومهنية ومراسلات وملفات عمل
+        أنشأها صانعو الصور.
+      id: >-
+        Kumpulan dokumenter terhimpun berisi manuskrip pribadi dan profesional,
+        korespondensi, serta berkas kerja yang dibuat pembuat citra.
+      zh: >-
+        汇集影像创作者形成的个人与职业手稿、往来函件及工作档案的文献整体。
+    structured_aliases:
+    - literal_form: fotograafarchiefcollectie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fotografenarchiv-Sammlung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection de papiers de createurs d'images
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: coleccion de papeles de creadores de imagen
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: مجموعة أوراق صانعي الصور
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi dokumen pribadi pembuat citra
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 影像创作者文书汇编
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - RiC-O specialized RecordSetType for photographer personal papers.
+    - Note preserved: Personal provenance may include studio, correspondence, and publication activity traces.
+    - 'Preserved from prior description: RecordSetType for personal papers of photographers.'
+    keywords:
+    - creator papers
+    - studio correspondence
+    - working files
+    - visual authorship
+    examples:
+    - value:
+        has_type: hc:PhotographerPapersCollection
+        has_custodian: hc:PhotoArchive
+        has_note: Personal letters, commission files, and publication drafts.
+      description: Personal-professional documentation assembled around an individual image maker.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - PhotoArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:PhotographerPapersCollection
+      has_custodian:
+        equals_string: hc:PhotoArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by PhotoArchive custodians. Inverse of rico:isOrWasHolderOf.
+    annotations:
+      specificity_score: "0.1"
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+  PhotographicPrintSeries:
+    is_a: PhotoArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Ordered documentary sequence of analog image outputs,
+      including positive prints, negatives, and related process artifacts.
+    alt_descriptions:
+      nl: >-
+        Geordende documentaire reeks van analoge beeldresultaten,
+        waaronder positieve afdrukken, negatieven en procesartefacten.
+      de: >-
+        Geordnete Dokumentationsfolge analoger Bildausgaben,
+        einschliesslich Positivabzuegen, Negativen und Prozessartefakten.
+      fr: >-
+        Sequence documentaire ordonnee de sorties analogiques,
+        comprenant tirages positifs, negatifs et artefacts de processus.
+      es: >-
+        Secuencia documental ordenada de salidas analogicas,
+        con positivos, negativos y artefactos de proceso fotografico.
+      ar: >-
+        تسلسل وثائقي منظم لمخرجات الصور التناظرية، ويشمل النسخ الموجبة
+        والسلبيات ومواد مرتبطة بعملية التحميض والطباعة.
+      id: >-
+        Urutan dokumenter teratur dari keluaran citra analog,
+        termasuk cetak positif, negatif, dan artefak proses.
+      zh: >-
+        由模拟影像输出构成的有序文献序列，包含正片、底片及相关工艺痕迹。
+    structured_aliases:
+    - literal_form: fotoafdrukserie
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Fotoabzug-Serie
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: sequence de tirages et negatifs
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: secuencia de positivos y negativos
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سلسلة مطبوعات وسلبيات فوتوغرافية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: urutan cetak dan negatif fotografi
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 正负片文献序列
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - RiC-O specialized RecordSetType for photographic prints and negatives.
+    - Note preserved: Sequence ordering may follow shoot session, assignment, or publication workflow.
+    keywords:
+    - analog output
+    - positive print
+    - negative strip
+    - process trace
+    examples:
+    - value:
+        has_type: hc:PhotographicPrintSeries
+        has_custodian: hc:PhotoArchive
+        has_note: Contact sheets, developed negatives, and exhibition prints.
+      description: Analog image outputs arranged as a recurring production sequence.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Series
+    see_also:
+    - PhotoArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:PhotographicPrintSeries
+      has_custodian:
+        equals_string: hc:PhotoArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by PhotoArchive custodians. Inverse of rico:isOrWasHolderOf.
+  DigitalImageCollection:
+    is_a: PhotoArchiveRecordSetType
+    class_uri: rico:RecordSetType
+    description: >-
+      Assembled documentary body of image files created in digital-native
+      workflows, including capture metadata and processing derivatives.
+    alt_descriptions:
+      nl: >-
+        Samengesteld documentaire geheel van digitaal geboren beeldbestanden,
+        inclusief opname-metadata en afgeleide verwerkingsbestanden.
+      de: >-
+        Zusammengestellter Dokumentkoerper digital entstandener Bilddateien,
+        einschliesslich Aufnahmemetadaten und Bearbeitungsderivaten.
+      fr: >-
+        Ensemble documentaire reuni de fichiers nativement numeriques,
+        incluant metadonnees de prise de vue et derives de traitement.
+      es: >-
+        Cuerpo documental reunido de archivos de imagen nativos digitales,
+        con metadatos de captura y derivados de procesamiento.
+      ar: >-
+        جسم وثائقي مُجمع من ملفات صور مولودة رقمياً، يشمل بيانات الالتقاط
+        الوصفية والمشتقات الناتجة عن المعالجة.
+      id: >-
+        Kumpulan dokumenter terhimpun dari berkas citra lahir-digital,
+        termasuk metadata perekaman dan turunan pemrosesan.
+      zh: >-
+        汇集数字原生影像文件及其拍摄元数据与处理衍生物的文献整体。
+    structured_aliases:
+    - literal_form: digitalebeeldecollection
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Digitalbild-Sammlung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: collection d'images numeriques natives
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: coleccion de imagenes nativas digitales
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: تجميعة صور رقمية أصلية
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: koleksi citra lahir-digital
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 数字原生影像汇编
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    comments:
+    - RiC-O specialized RecordSetType for born-digital photography.
+    - Note preserved: Digital workflows may include edited derivatives alongside source captures.
+    keywords:
+    - digital-native capture
+    - image metadata
+    - processing derivative
+    - file workflow
+    examples:
+    - value:
+        has_type: hc:DigitalImageCollection
+        has_custodian: hc:PhotoArchive
+        has_note: RAW captures with edited JPEG derivatives and embedded metadata.
+      description: Digital-native image documentation assembled from capture and processing workflows.
+    broad_mappings:
+    - rico:RecordSetType
+    - skos:Concept
+    - crm:E55_Type
+    related_mappings:
+    - rico-rst:Collection
+    see_also:
+    - PhotoArchiveRecordSetType
+    - rico:RecordSetType
+    slots:
+    - has_type
+    - has_score
+    - has_custodian
+    - has_note
+    slot_usage:
+      has_type:
+        equals_string: hc:DigitalImageCollection
+      has_custodian:
+        equals_string: hc:PhotoArchive
+      has_note:
+        equals_string: This RecordSetType is typically held by PhotoArchive custodians. Inverse of rico:isOrWasHolderOf.

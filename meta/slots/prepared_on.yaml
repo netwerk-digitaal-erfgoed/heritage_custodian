@@ -1,0 +1,118 @@
+# ==============================================================================
+# LinkML Slot Definition: prepared_on
+# ==============================================================================
+# Date when a sample, specimen, mixture, or document was prepared or made
+# ready for use or analysis.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property                    | File/Line                          | Mapping  | Notes                                                        |
+# |----------------|-----------------------------|------------------------------------|-----------|------------------------------------------------------------|
+# | **DC Terms**   | `dcterms:created`           | dcterms.rdf:1065-1087              | broad    | "Date of creation of the resource." Creation is broader     |
+# |                |                             |                                    |          | than preparation; not all created resources are prepared.   |
+# | **Schema.org** | `schema:dateCreated`        | schemaorg.owl:14173-14176          | broad    | "The date on which the CreativeWork was created."           |
+# |                |                             |                                    |          | General creation date; preparation is a specific act.       |
+# | **PROV-O**     | `prov:generatedAtTime`      | prov.ttl:593-603                   | related  | "The time at which an entity was completely created and is  |
+# |                |                             |                                    |          | available for use." Generation ≠ preparation.               |
+# | **Schema.org** | `schema:productionDate`     | schemaorg.owl:31196-31199          | related  | "The date of production of the item, e.g. vehicle."        |
+# |                |                             |                                    |          | Production ≠ preparation of a sample/specimen.              |
+# | **SSN/SOSA**   | `sosa:resultTime`           | sosa.ttl:406-414                   | related  | "The instant when the Sampling activity was completed."     |
+# |                |                             |                                    |          | Sampling completion time; related for specimen contexts.    |
+#
+# No external property specifically models "prepared on" as a date of specimen
+# or sample preparation. Using hc: namespace.
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/prepared_on
+name: prepared_on
+title: Prepared On
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dcterms: http://purl.org/dc/terms/
+  schema: https://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  sosa: http://www.w3.org/ns/sosa/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  prepared_on:
+    slot_uri: hc:preparedOn
+    description: >-
+      Specifies the date or time when a sample, specimen, mixture, or document was
+      created, processed, or made ready for use or analysis. May differ from the
+      collection date, which records when material was originally gathered.
+    alt_descriptions:
+      nl: >-
+        Geeft de datum aan waarop een monster, specimen, mengsel of document is bereid
+        of gereedgemaakt voor gebruik of analyse.
+      de: >-
+        Gibt das Datum an, an dem eine Probe, ein Exemplar, eine Mischung oder ein Dokument
+        vorbereitet oder für die Verwendung oder Analyse bereitgestellt wurde.
+      fr: >-
+        Indique la date à laquelle un échantillon, un spécimen, un mélange ou un document
+        a été préparé ou rendu prêt pour utilisation ou analyse.
+      ar: >-
+        يحدد التاريخ الذي تم فيه تحضير عينة أو نموذج أو خليط أو مستند أو إعداده
+        للاستخدام أو التحليل.
+      id: >-
+        Menentukan tanggal ketika sampel, spesimen, campuran, atau dokumen disiapkan
+        atau dibuat siap untuk digunakan atau dianalisis.
+      zh: >-
+        指定样品、标本、混合物或文件被准备或备妥以供使用或分析的日期。
+      es: >-
+        Especifica la fecha en que una muestra, espécimen, mezcla o documento fue preparado
+        o dispuesto para su uso o análisis.
+    structured_aliases:
+      - literal_form: bereidingsdatum
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Vorbereitungsdatum
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: date de préparation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: تاريخ التحضير
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: tanggal persiapan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 准备日期
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: fecha de preparación
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: date
+    multivalued: false
+    broad_mappings:
+      - dcterms:created  # dcterms.rdf:1065-1087 - "Date of creation of the resource."
+      - schema:dateCreated  # schemaorg.owl:14173-14176 - "The date on which the CreativeWork was created."
+    related_mappings:
+      - prov:generatedAtTime  # prov.ttl:593-603 - "The time at which an entity was completely created and is available for use."
+      - schema:productionDate  # schemaorg.owl:31196-31199 - "The date of production of the item, e.g. vehicle."
+      - sosa:resultTime  # sosa.ttl:406-414 - "The instant when the Sampling activity was completed."
+    aliases:
+      - preparation_date
+    examples:
+      - value: "2024-03-15"
+        description: >-
+          Date a soil sample was prepared for laboratory analysis.
+      - value: "2023-11-02"
+        description: >-
+          Date a conservation treatment mixture was prepared for application.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        The preparation date may differ from the collection date. For example, a specimen
+        collected in the field on one date may be processed and prepared for storage or
+        analysis on a later date.
+      - >-
+        A related new/ file exists for prepared_by (new/prepared_by.yaml), which captures
+        the agent who performed the preparation rather than the date.

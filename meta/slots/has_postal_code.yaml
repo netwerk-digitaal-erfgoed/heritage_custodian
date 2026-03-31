@@ -1,0 +1,127 @@
+# ==============================================================================
+# LinkML Slot Definition: has_postal_code
+# ==============================================================================
+# The postal code (zip code, postcode) associated with a physical address
+# or geographic location used by postal services for mail sorting.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology    | Property            | File/Line                | Mapping       | Notes                                                                 |
+# |-------------|---------------------|--------------------------|---------------|-----------------------------------------------------------------------|
+# | **Schema**  | `schema:postalCode` | schemaorg.owl:30207-30230| slot_uri      | "postalCode" PostalAddress∪GeoShape∪etc.→Text. Most widely adopted.   |
+# | **LOCN**    | `locn:postCode`     | locn.ttl:195-202         | exact_mapping | "post code" Address→Literal. W3C ISA Core Location vocabulary.        |
+# | **vCard**   | `vcard:postal-code` | vcard.ttl:916-920        | exact_mapping | "postal code" →xsd:string. RFC 6350 vCard standard.                   |
+# | **DCTerms** | `dcterms:identifier`| dcterms.rdf:1395-1414    | broad_mapping | "Identifier" →Literal. Generic identifier; postal code is one type.   |
+#
+# CREATED: 2026-02-02
+# UPDATED: 2026-02-10
+# ==============================================================================
+id: https://nde.nl/ontology/hc/slot/has_postal_code
+name: has_postal_code
+title: Has Postal Code
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  locn: http://www.w3.org/ns/locn#
+  vcard: http://www.w3.org/2006/vcard/ns#
+  dcterms: http://purl.org/dc/terms/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_postal_code:
+    slot_uri: schema:postalCode
+    description: >-
+      The postal code (zip code, postcode) associated with a physical
+      address, building, or geographic region. An alphanumeric string
+      used by postal services to sort mail and identify delivery
+      locations. Format varies by country and should be stored as a
+      string to preserve leading zeros (e.g. UK, NL) and special
+      characters (e.g. Canadian alphanumeric codes).
+    alt_descriptions:
+      nl: >-
+        De postcode die hoort bij een fysiek adres, gebouw of
+        geografisch gebied, gebruikt door postdiensten voor het
+        sorteren en bezorgen van post.
+      de: >-
+        Die Postleitzahl eines physischen Standorts, Gebäudes oder
+        geografischen Gebiets, die von Postdiensten zur Sortierung
+        und Zustellung verwendet wird.
+      fr: >-
+        Le code postal associé à une adresse physique, un bâtiment
+        ou une région géographique, utilisé par les services postaux
+        pour le tri et la distribution du courrier.
+      ar: >-
+        الرمز البريدي المرتبط بعنوان فعلي أو مبنى أو منطقة
+        جغرافية، يُستخدم من قبل الخدمات البريدية لفرز البريد
+        وتحديد مواقع التسليم.
+      id: >-
+        Kode pos yang terkait dengan alamat fisik, bangunan, atau
+        wilayah geografis, digunakan oleh layanan pos untuk menyortir
+        surat dan mengidentifikasi lokasi pengiriman.
+      zh: >-
+        与物理地址、建筑物或地理区域相关联的邮政编码，由邮政服务用于
+        分拣邮件和识别投递地点。
+      es: >-
+        El código postal asociado a una dirección física, edificio o
+        región geográfica, utilizado por los servicios postales para
+        clasificar el correo e identificar las ubicaciones de entrega.
+    structured_aliases:
+      - literal_form: postcode
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Postleitzahl
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: code postal
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: الرمز البريدي
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: kode pos
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 邮政编码
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: código postal
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    exact_mappings:
+      - locn:postCode  # locn.ttl:195-202 - "post code" Address→Literal
+      - vcard:postal-code  # vcard.ttl:916-920 - "postal code" →xsd:string
+    broad_mappings:
+      - dcterms:identifier  # dcterms.rdf:1395-1414 - "Identifier" generic identifier
+    aliases:
+      - postal_code
+    examples:
+      - value: "1071 DJ"
+        description: >-
+          Postcode for the Rijksmuseum, Amsterdam, Netherlands.
+      - value: "WC2N 5DN"
+        description: >-
+          Postcode for the National Gallery, London, United Kingdom.
+      - value: "75001"
+        description: >-
+          Code postal for the Musée du Louvre area, Paris, France.
+      - value: "20560"
+        description: >-
+          ZIP code for the Smithsonian Institution, Washington, DC, USA.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Format varies significantly by country: Netherlands uses "1234 AB"
+        (4 digits + space + 2 letters), UK uses alphanumeric with space
+        ("SW1A 1AA"), USA uses 5-digit or ZIP+4 ("20560-0001"), Canada
+        uses alternating letter-digit ("K1A 0A9"), Germany uses 5 digits.
+      - >-
+        Always store as string to preserve leading zeros (e.g. "01234"
+        postcodes in some countries) and special characters like spaces
+        or hyphens. Do not cast to integer.
+      - >-
+        The alias postal_code reflects the commonly used flat field name
+        in heritage institution datasets.

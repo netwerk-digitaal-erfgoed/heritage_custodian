@@ -1,0 +1,100 @@
+# ==============================================================================
+# LinkML Slot Definition: has_drawer
+# ==============================================================================
+# A sliding, box-shaped compartment within furniture or a storage unit.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                        | File/Line                  | Mapping  | Notes                                                        |
+# |---------------|---------------------------------|----------------------------|----------|--------------------------------------------------------------|
+# | **RiC-O**     | `rico:hasOrHadPhysicalLocation` | RiC-O_1-1.rdf:7368-7410   | REMOVED  | Domain Place→PhysicalLocation; not about furniture drawers.  |
+#
+# No standard ontology property matches the concept of a furniture drawer.
+#
+# CREATED: 2026-02-07
+# UPDATED: 2026-02-07 - Added header, multilingual, removed wrong RiC-O mapping
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_drawer
+name: has_drawer
+title: Has Drawer
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  skos: http://www.w3.org/2004/02/skos/core#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  org: http://www.w3.org/ns/org#
+  xsd: http://www.w3.org/2001/XMLSchema#
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_drawer:
+    name: has_drawer
+    slot_uri: hc:hasDrawer
+    description: >-
+      A sliding, box-shaped compartment within a piece of furniture or storage unit,
+      used for holding items.
+    alt_descriptions:
+      nl: >-
+        Een schuifbaar, doosachtig compartiment in een meubelstuk of opslageenheid,
+        gebruikt voor het bewaren van voorwerpen.
+      de: >-
+        Ein verschiebbares, kastenförmiges Fach innerhalb eines Möbelstücks oder
+        einer Aufbewahrungseinheit, das zum Aufbewahren von Gegenständen dient.
+      fr: >-
+        Un compartiment coulissant en forme de boîte à l'intérieur d'un meuble ou
+        d'une unité de rangement, utilisé pour contenir des objets.
+      ar: >-
+        حجرة منزلقة على شكل صندوق داخل قطعة أثاث أو وحدة تخزين، تُستخدم لحفظ
+        الأغراض.
+      id: >-
+        Kompartemen geser berbentuk kotak di dalam perabot atau unit penyimpanan,
+        digunakan untuk menyimpan barang.
+      zh: >-
+        家具或存储单元内的滑动式箱形隔间，用于存放物品。
+      es: >-
+        Un compartimento deslizante con forma de caja dentro de un mueble o unidad
+        de almacenamiento, utilizado para guardar objetos.
+    structured_aliases:
+      - literal_form: lade
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Schublade
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: tiroir
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: درج
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: laci
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 抽屉
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: cajón
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    multivalued: true
+    inlined: false
+    aliases:
+      - has_or_had_drawer
+    annotations:
+      custodian_types: '["*"]'
+      specificity_score: 0.8
+    comments:
+      - |
+        **MIGRATION**: Renamed from has_or_had_drawer for conciseness (2026-02-03).
+      - |
+        **MAPPING NOTE**: The previously assigned `rico:hasOrHadPhysicalLocation`
+        (RiC-O_1-1.rdf:7368-7410) was removed because it connects a Place to its
+        Physical Location — a completely different concept from a furniture drawer.

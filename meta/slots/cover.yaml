@@ -1,0 +1,110 @@
+# ==============================================================================
+# LinkML Slot Definition: cover
+# ==============================================================================
+# Whether a resource extends over a specific geographic area, time period, data
+# range, or subject matter, or includes a particular topic or requirement.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                    | File/Line                     | Mapping | Notes                                                                          |
+# |---------------|-----------------------------|-------------------------------|---------|--------------------------------------------------------------------------------|
+# | **DCTerms**   | `dcterms:coverage`          | dcterms.rdf:1035-1063         | close   | "The spatial or temporal topic of the resource, spatial applicability of the    |
+# |               |                             |                               |         |  resource, or jurisdiction under which the resource is relevant." Range:        |
+# |               |                             |                               |         |  Location|Period|Jurisdiction. Very close, but our slot also includes data      |
+# |               |                             |                               |         |  range, subject matter, and a completeness dimension.                          |
+# | **Schema.org**| `schema:spatialCoverage`    | schemaorg.owl:35880-35903     | narrow  | "Place(s) which are the focus of the content." Only the spatial dimension of   |
+# |               |                             |                               |         |  our broader slot. Domain restricted to CreativeWork.                          |
+# | **Schema.org**| `schema:temporalCoverage`   | schemaorg.owl:37609-37634     | narrow  | "The period that the content applies to." Only the temporal dimension of our   |
+# |               |                             |                               |         |  broader slot. Domain restricted to CreativeWork.                              |
+# | **DCTerms**   | `dcterms:spatial`           | dcterms.rdf:1944-1967         | narrow  | "Spatial characteristics of the resource." SubPropertyOf coverage. Only        |
+# |               |                             |                               |         |  spatial aspect of our broader slot.                                           |
+# | **Schema.org**| `schema:about`              | schemaorg.owl:6247-6270       | related | "The subject matter of an object." Covers one aspect (subject matter) but      |
+# |               |                             |                               |         |  through a different semantic lens (aboutness vs. coverage/extension).         |
+#
+# CREATED: 2026-02-09
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/cover
+name: cover
+title: Cover
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+imports:
+- linkml:types
+default_prefix: hc
+slots:
+  cover:
+    slot_uri: hc:cover
+    description: >-
+      To extend over a specific geographic area, time period, data range or subject
+      matter; or to include and deal with a particular topic or requirement within
+      a resource.
+    comments:
+      - >-
+        When used in a video chapter context, indicates completeness of coverage:
+        true means no gaps (first chapter at 0:00, last ends at video end);
+        false means partial coverage (gaps between chapters).
+    alt_descriptions:
+      nl: >-
+        Zich uitstrekken over een specifiek geografisch gebied, tijdsperiode,
+        gegevensbereik of onderwerp; of een bepaald thema of vereiste binnen een
+        bron omvatten en behandelen.
+      de: >-
+        Sich über ein bestimmtes geografisches Gebiet, einen Zeitraum, einen
+        Datenbereich oder ein Thema erstrecken; oder ein bestimmtes Thema oder
+        eine Anforderung innerhalb einer Ressource einschließen und behandeln.
+      fr: >-
+        S'étendre sur une zone géographique spécifique, une période temporelle,
+        une plage de données ou un sujet ; ou inclure et traiter un thème ou une
+        exigence particulière au sein d'une ressource.
+      ar: >-
+        الامتداد عبر منطقة جغرافية محددة أو فترة زمنية أو نطاق بيانات أو موضوع؛
+        أو تضمين ومعالجة موضوع أو متطلب معين ضمن مورد.
+      id: >-
+        Mencakup wilayah geografis tertentu, periode waktu, rentang data, atau
+        pokok bahasan; atau menyertakan dan menangani topik atau persyaratan
+        tertentu dalam suatu sumber daya.
+      zh: >-
+        覆盖特定的地理区域、时间段、数据范围或主题；或在资源中包含和处理特定的
+        话题或要求。
+      es: >-
+        Extenderse sobre un área geográfica específica, período de tiempo, rango
+        de datos o materia; o incluir y tratar un tema o requisito particular
+        dentro de un recurso.
+    structured_aliases:
+      - literal_form: Dekking
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Abdeckung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Couverture
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: التغطية
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Cakupan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 覆盖范围
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Cobertura
+        predicate: EXACT_SYNONYM
+        in_language: es
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - dcterms:coverage  # dcterms.rdf:1035-1063 — "Spatial or temporal topic, applicability, or jurisdiction." Very close but our slot also includes data range, subject matter, and completeness dimension.
+    narrow_mappings:
+      - schema:spatialCoverage  # schemaorg.owl:35880-35903 — "Place(s) which are the focus of the content." Only spatial dimension. Domain: CreativeWork.
+      - schema:temporalCoverage  # schemaorg.owl:37609-37634 — "The period that the content applies to." Only temporal dimension. Domain: CreativeWork.
+      - dcterms:spatial  # dcterms.rdf:1944-1967 — "Spatial characteristics of the resource." Only spatial aspect. SubPropertyOf coverage.
+    related_mappings:
+      - schema:about  # schemaorg.owl:6247-6270 — "The subject matter of an object." Aboutness lens vs. coverage/extension lens.
+    aliases:
+      - covers_full_video

@@ -1,0 +1,68 @@
+id: https://nde.nl/ontology/hc/class/Title
+name: title_class
+title: Title
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  dct: http://purl.org/dc/terms/
+  schema: http://schema.org/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_language
+classes:
+  Title:
+    class_uri: hc:Title
+    description: >-
+      Designation or naming expression applied to a resource, with optional language tag and variant type classification.
+    alt_descriptions:
+      nl: Naam of aanduiding toegepast op een bron, met optionele taalcode en varianttypeclassificatie.
+      de: Bezeichnung oder Namensausdruck für eine Ressource mit optionalem Sprach-Tag und Variantentyp-Klassifizierung.
+      fr: Désignation ou expression de nom appliquée à une ressource, avec étiquette de langue et classification de type de variante facultatives.
+      es: Designación o expresión de nombre aplicada a un recurso, con etiqueta de idioma y clasificación de tipo de variante opcionales.
+      ar: تسمية أو تعبير اسمي يُطبق على مورد، مع علامة لغية وتصنيف نوعي اختياري.
+      id: Penunjukan atau ekspresi penamaan yang diterapkan pada sumber daya, dengan tag bahasa dan klasifikasi tipe varian opsional.
+      zh: 应用于资源的名称或命名表达，带有可选语言标签和变体类型分类。
+    structured_aliases:
+    - literal_form: titel
+      in_language: nl
+    - literal_form: Titel
+      in_language: de
+    - literal_form: titre
+      in_language: fr
+    - literal_form: título
+      in_language: es
+    - literal_form: عنوان
+      in_language: ar
+    - literal_form: judul
+      in_language: id
+    - literal_form: 标题
+      in_language: zh
+    close_mappings:
+    - dct:title
+    - schema:name
+    broad_mappings:
+    - schema:Text
+    slots:
+    - has_language
+    slot_usage:
+      has_language:
+        examples:
+        - value:
+            language_code: nl
+    comments:
+    - Titles can have language tags for multilingual support and different types (main, alternative, translated, abbreviated)
+    - Created 2026-01-22 per slot_fixes.yaml dataset_title migration
+    - Used with has_title slot
+    annotations:
+      custodian_types: '["*"]'
+      custodian_types_rationale: Titles applicable to all heritage resources.
+      specificity_score: 0.35
+      specificity_rationale: Generic class for title representation.
+    examples:
+    - value:
+        has_language:
+          language_code: nl
+    - value:
+        has_language:
+          language_code: en

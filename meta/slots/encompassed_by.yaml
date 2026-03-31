@@ -1,0 +1,108 @@
+# ==============================================================================
+# LinkML Slot Definition: encompassed_by
+# ==============================================================================
+# Surrounded, enclosed, or included within a larger entity or concept.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property                  | File/Line           | Mapping | Notes                                        |
+# |---------------|---------------------------|---------------------|---------|----------------------------------------------|
+# | **Schema.org**| `schema:containedInPlace` | schemaorg:12688-12710| close  | "Containment relation between places."       |
+# | **CIDOC-CRM** | `crm:P89_falls_within`    | CIDOC:3090-3104     | close   | "Place that falls wholly within another."    |
+#
+# NOTE: schema:containedInPlace (line 12688-12710) is "The basic containment 
+# relation between a place and one that contains it" - domain/range is Place.
+# crm:P89_falls_within (line 3090-3104) is "instance of E53 Place that falls 
+# wholly within the extent of another instance of E53 Place".
+# 
+# Our slot is MORE ABSTRACT - applies to concepts, scopes, bounds - not just 
+# physical places. No exact standard mapping exists for this broader concept.
+#
+# CREATED: 2026-02-03
+# UPDATED: 2026-02-03 - Added header, multilingual, verified ontology mappings
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/encompassed_by
+name: encompassed_by
+title: Encompassed By
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+
+default_prefix: hc
+
+imports:
+  - linkml:types
+
+slots:
+  encompassed_by:
+    slot_uri: hc:encompassedBy
+    description: >-
+      To be surrounded, enclosed, or comprehensively included within the scope, 
+      bounds, or limits of a larger entity or concept.
+    alt_descriptions:
+      nl: >-
+        Omgeven, ingesloten of volledig opgenomen binnen het bereik, de grenzen 
+        of de limieten van een grotere entiteit of concept.
+      de: >-
+        Umgeben, eingeschlossen oder umfassend innerhalb des Geltungsbereichs, 
+        der Grenzen oder Limits einer größeren Entität oder eines Konzepts 
+        eingeschlossen sein.
+      fr: >-
+        Être entouré, enfermé ou inclus de manière complète dans la portée, 
+        les limites ou les bornes d'une entité ou d'un concept plus grand.
+      ar: >-
+        أن يكون محاطًا أو مغلقًا أو مشمولاً بشكل شامل ضمن نطاق 
+        أو حدود كيان أو مفهوم أكبر.
+      id: >-
+        Dikelilingi, tertutup, atau tercakup secara komprehensif dalam ruang 
+        lingkup, batas, atau batasan entitas atau konsep yang lebih besar.
+      zh: >-
+        被包围、封闭或全面包含在更大实体或概念的范围、界限或限制之内。
+      es: >-
+        Estar rodeado, encerrado o incluido de manera integral dentro del 
+        alcance, límites o fronteras de una entidad o concepto más grande.
+    structured_aliases:
+      - literal_form: omvat door
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: umfasst von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: englobé par
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: محاط بـ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dicakup oleh
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 被包含于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: abarcado por
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: uriorcurie
+    aliases:
+      - is_or_was_encompassed_by
+    close_mappings:
+      - schema:containedInPlace  # schemaorg:12688-12710 - "containment relation between a place and one that contains it" (spatial only)
+      - crm:P89_falls_within  # CIDOC:3090-3104 - "E53 Place that falls wholly within another" (places only)
+    comments:
+      - |
+        **USAGE**: Use for abstract containment relationships - concepts within 
+        broader concepts, jurisdictions within larger jurisdictions, or scopes 
+        within broader scopes.
+      - |
+        **DISTINCTION**: For purely spatial/geographic containment of places, 
+        prefer schema:containedInPlace or crm:P89_falls_within.
+    annotations:
+      custodian_types: '["*"]'
+    examples:
+      - value: "https://nde.nl/ontology/hc/Concept/DutchHeritage"
+        description: "This collection scope is encompassed by the broader Dutch heritage domain"

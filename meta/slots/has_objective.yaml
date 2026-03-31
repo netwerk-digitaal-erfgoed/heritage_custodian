@@ -1,0 +1,82 @@
+# ==============================================================================
+# LinkML Slot Definition: has_objective
+# ==============================================================================
+# The goal, aim, or desired outcome an entity intends to achieve.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology   | Property        | File/Line               | Mapping | Notes                                                  |
+# |------------|-----------------|-------------------------|---------|--------------------------------------------------------|
+# | Schema.org | `schema:target` | schemaorg.owl:37297-300 | related | "Indicates a target EntryPoint, or url, for an Action" |
+# |            |                 |                         |         | (Action entry points, NOT goals/objectives).           |
+#
+# schema:target refers to technical Action EntryPoints (URLs), not goals or objectives.
+# No standard ontology property for a generic "objective" or "goal" concept.
+#
+# CREATED: 2026-02-07
+# ==============================================================================
+
+id: https://nde.nl/ontology/hc/slot/has_objective
+name: has_objective
+title: Has Objective
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: https://schema.org/
+imports:
+  - linkml:types
+default_prefix: hc
+slots:
+  has_objective:
+    slot_uri: hc:hasObjective
+    description: >-
+      To specify the goal, aim, target, or desired outcome that an entity (such as a project, strategy, or organization) intends to achieve.
+    alt_descriptions:
+      nl: >-
+        Om het doel, de doelstelling, het streefdoel of het gewenste resultaat te specificeren dat een entiteit (zoals een project, strategie of organisatie) beoogt te bereiken.
+      de: >-
+        Um das Ziel, die Zielsetzung, das Strebeziel oder das gewünschte Ergebnis anzugeben, das eine Entität (wie ein Projekt, eine Strategie oder eine Organisation) zu erreichen beabsichtigt.
+      fr: >-
+        Pour spécifier le but, l'objectif, la cible ou le résultat souhaité qu'une entité (telle qu'un projet, une stratégie ou une organisation) cherche à atteindre.
+      ar: >-
+        لتحديد الهدف أو الغاية أو المقصد أو النتيجة المرغوبة التي يعتزم كيان (مثل مشروع أو استراتيجية أو منظمة) تحقيقها.
+      id: >-
+        Untuk menentukan tujuan, sasaran, target, atau hasil yang diinginkan yang ingin dicapai oleh suatu entitas (seperti proyek, strategi, atau organisasi).
+      zh: >-
+        用于指定实体（如项目、战略或组织）打算实现的目标、目的、靶标或期望成果。
+      es: >-
+        Para especificar la meta, el objetivo, el blanco o el resultado deseado que una entidad (como un proyecto, estrategia u organización) pretende alcanzar.
+    structured_aliases:
+      - literal_form: Doelstelling
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Zielsetzung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: Objectif
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: هدف
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: Tujuan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 目标
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: Objetivo
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: string
+    aliases:
+      - has_or_had_objective
+      - loan_purpose
+      - model_task
+      - objective
+      - platform_purpose
+      - preservation_purpose
+    related_mappings:
+      - schema:target  # schemaorg.owl:37297-37300 - Action EntryPoint/URL, not goal/objective
+    annotations:
+      custodian_types: '["*"]'

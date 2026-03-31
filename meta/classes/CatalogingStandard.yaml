@@ -1,0 +1,122 @@
+id: https://nde.nl/ontology/hc/class/CatalogingStandard
+name: CatalogingStandard
+title: Cataloging Standard Class
+description: Represents a metadata or cataloging standard used by heritage custodians.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+imports:
+- linkml:types
+- ../metadata
+- ../slots/has_description
+- ../slots/identified_by
+- ../slots/has_label
+- ../slots/has_url
+default_prefix: hc
+classes:
+  CatalogingStandard:
+    class_uri: dcterms:Standard
+    description: >-
+      Metadata or cataloging standard used for describing heritage collections,
+      providing structured representation with identifier, label, description,
+      URL, and domain applicability.
+    alt_descriptions:
+      nl: Metadata- of catalogisatiestandaard die wordt gebruikt voor het beschrijven van erfgoedcollecties, met gestructureerde weergave met identificatie, label, beschrijving, URL en domeintoepasbaarheid.
+      de: Metadaten- oder Katalogisierungsstandard zur Beschreibung von Heritage-Sammlungen, mit strukturierter Darstellung durch Kennung, Bezeichnung, Beschreibung, URL und Anwendbarkeit auf verschiedene Bereiche.
+      fr: Norme de métadonnées ou de catalogage utilisée pour décrire les collections patrimoniales, fournissant une représentation structurée avec identifiant, étiquette, description, URL et domaine d'applicabilité.
+      es: Norma de metadatos o catalogación utilizada para describir colecciones patrimoniales, proporcionando representación estructurada con identificador, etiqueta, descripción, URL y aplicabilidad de dominio.
+      ar: معيار بيانات وصفية أو فهرسة يُستخدم لوصف مجموعات التراث، يوفر تمثيلًا هيكليًا مع المعرف والتسمية والوصف وعنوان URL وقابلية التطبيق على المجال.
+      id: Standar metadata atau katalogisasi yang digunakan untuk menggambarkan koleksi warisan, menyediakan representasi terstruktur dengan pengenal, label, deskripsi, URL, dan penerapan domain.
+      zh: 用于描述遗产藏品的元数据或编目标准，提供包含标识符、标签、描述、 URL和领域适用性的结构化表示。
+    broad_mappings:
+    - dcterms:Standard
+    close_mappings:
+    - schema:CreativeWork
+    slots:
+    - identified_by
+    - has_label
+    - has_description
+    - has_url
+    slot_usage:
+      identified_by:
+        required: true
+        examples:
+        - value: LIDO
+        - value: MARC21
+        - value: Darwin Core
+      has_label:
+        required: false
+        examples:
+        - value: Lightweight Information Describing Objects
+        - value: Machine-Readable Cataloging 21
+        - value: Resource Description and Access
+      has_description:
+        required: false
+        examples:
+        - value: XML schema for museum object metadata harvesting
+      has_url:
+        required: false
+        range: uri
+        examples:
+        - value: https://lido-schema.org/
+        - value: https://www.loc.gov/marc/
+    structured_aliases:
+    - literal_form: catalogisatiestandaard
+      in_language: nl
+    - literal_form: Katalogisierungsstandard
+      in_language: de
+    - literal_form: norme de catalogage
+      in_language: fr
+    - literal_form: norma de catalogación
+      in_language: es
+    - literal_form: معيار الفهرسة
+      in_language: ar
+    - literal_form: standar katalogisasi
+      in_language: id
+    - literal_form: 编目标准
+      in_language: zh
+    comments:
+    - Created per Rule 53/56 for structured cataloging standard representation
+    - Common domains: museums (LIDO, SPECTRUM), libraries (MARC21, RDA), archives (EAD, ISAD(G))
+    keywords:
+    - cataloging standard
+    - metadata standard
+    - LIDO
+    - MARC21
+    - EAD
+    - Dublin Core
+    see_also:
+    - https://lido-schema.org/
+    - https://www.loc.gov/marc/
+    - https://www.loc.gov/ead/
+    examples:
+    - value:
+        identified_by: LIDO
+        has_label: Lightweight Information Describing Objects
+        has_description: XML schema for museum object metadata harvesting and exchange
+        has_url: https://lido-schema.org/
+      description: Museum cataloging standard
+    - value:
+        identified_by: MARC21
+        has_label: Machine-Readable Cataloging 21
+        has_description: Library cataloging format for bibliographic data
+        has_url: https://www.loc.gov/marc/
+      description: Library cataloging standard
+    - value:
+        identified_by: Darwin Core
+        has_label: Darwin Core
+        has_description: Data standard for biodiversity specimen information
+        has_url: https://dwc.tdwg.org/
+      description: Natural history cataloging standard
+    annotations:
+      specificity_score: 0.1
+      specificity_rationale: Generic utility class/slot created during migration
+      custodian_types: "['*']"
+slots:
+  standard_domain:
+    slot_uri: hc:standardDomain
+    description: Domain(s) where this standard is primarily used.
+    multivalued: true

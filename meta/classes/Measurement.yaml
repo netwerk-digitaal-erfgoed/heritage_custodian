@@ -1,0 +1,96 @@
+id: https://nde.nl/ontology/hc/class/Measurement
+name: Measurement
+title: Measurement Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  hc: https://nde.nl/ontology/hc/
+  sosa: http://www.w3.org/ns/sosa/
+  qudt: http://qudt.org/schema/qudt/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+default_prefix: hc
+imports:
+- linkml:types
+- ../slots/has_value
+- ../slots/has_measurement_type
+- ../slots/has_measurement_unit
+classes:
+  Measurement:
+    class_uri: sosa:Observation
+    description: >-
+      Quantitative observation capturing a numeric value with associated measurement kind and standardized unit.
+    alt_descriptions:
+      nl: >-
+        Kwantitatieve observatie die een numerieke waarde vastlegt met bijbehorende meetsoort en gestandaardiseerde eenheid.
+      de: >-
+        Quantitative Beobachtung, die einen numerischen Wert mit zugehöriger Messart und standardisierter Einheit erfasst.
+      fr: >-
+        Observation quantitative capturant une valeur numérique avec le type de mesure et l'unité normalisée associés.
+      es: >-
+        Observación cuantitativa que captura un valor numérico con el tipo de medición y unidad estandarizada asociados.
+      ar: >-
+        مراقبة كمية تسجل قيمة رقمية مع نوع القياس والوحدة الموحدة المرتبطة.
+      id: >-
+        Observasi kuantitatif yang menangkap nilai numerik dengan jenis pengukuran dan satuan terstandarisasi yang terkait.
+      zh: >-
+        捕获数值以及相关测量类型和标准化单位的定量观察。
+    structured_aliases:
+    - literal_form: meting
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Messung
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: mesure
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: medición
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: قياس
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: pengukuran
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 测量
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    broad_mappings:
+    - sosa:Observation
+    close_mappings:
+    - qudt:QuantityValue
+    - crm:E16_Measurement
+    slots:
+    - has_value
+    - has_measurement_type
+    - has_measurement_unit
+    slot_usage:
+      has_value:
+        required: true
+      has_measurement_type:
+        range: MeasurementType
+        inlined: true
+      has_measurement_unit:
+        range: MeasureUnit
+        inlined: true
+    comments:
+    - Core class for environmental monitoring and conservation measurements.
+    - Follows SOSA/SSN observation pattern for semantic sensor data.
+    - 'Preserved from prior description: Measurement observation capturing a numeric value, measurement kind, and unit.'
+    keywords:
+    - quantitative observation
+    - environmental monitoring
+    - sensor reading
+    - conservation measurement
+    examples:
+    - value:
+        has_value: 21.5
+        has_measurement_type:
+          has_name: Temperature
+        has_measurement_unit:
+          has_label: Celsius
+      description: Temperature measurement observation
+    annotations:
+      specificity_score: 0.5
+      specificity_rationale: Core observation class for environmental and conservation monitoring.
+      custodian_types: '["*"]'
