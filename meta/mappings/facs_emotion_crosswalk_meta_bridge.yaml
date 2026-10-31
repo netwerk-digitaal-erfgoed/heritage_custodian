@@ -1,0 +1,169 @@
+# Meta Bridge Mapping: multi-source FACS→emotion crosswalk → canonical deliverable
+#
+# Reconciles the per-source, context-qualified facial-action → emotion Observations
+# from MULTIPLE custodian source bundles into the canonical RootReal crosswalk
+# deliverable (an SSSOM MappingSet projected to the TypeDB hypergraph).
+#
+# THIS is where multi-source reconciliation happens — at the meta/parsimony layer,
+# NOT in schemata/source/ (each source bundle is single-custodian). See GAC
+# KOS-MAP-CONTEXT-001 and reuse-centralize.md.
+#
+# Reconciled sources:
+#   - us_ca_sfo_c_peg/emfacs                    (Western / EMFACS, Friesen & Ekman 1983)
+#   - gb_sct_gla_e_uog/cultural_expression_models (East-Asian, Jack et al. 2012)
+#
+# Each reconciled row keeps its culture context, source authority, and confidence;
+# rows from different contexts are NEVER merged into a single context-free claim.
+#
+# Version: 1.0.0
+# Last Updated: 2026-06-08
+
+id: https://rootreal.ai/schema/meta_bridge/facs_emotion_crosswalk
+name: facs_emotion_crosswalk_meta_bridge
+title: FACS→Emotion Crosswalk Meta Bridge Mapping
+description: |
+  Bridges context-qualified facial-action → emotion Observations from multiple
+  custodian source bundles to canonical SSSOM mapping rows and the parsimony/meta
+  Observation pattern for TypeDB projection. Facial-expression → emotion inference
+  is culture-specific (Jack et al. 2012 refutes universality), so culture_context,
+  source authority, and attested_in provenance are mandatory and preserved per row.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  sssom: https://w3id.org/sssom/
+  mfoem: http://purl.obolibrary.org/obo/MFOEM_
+  rr: https://textpast.com/ontology/rr/
+  rootreal: https://rootreal.ai/ontology/
+
+imports:
+  - linkml:types
+  - ../enums/FacialExpressionCultureContextEnum
+
+classes:
+  FacsEmotionCrosswalkMapping:
+    description: |
+      One reconciled crosswalk row: a FACS Action Unit associated with an MFOEM
+      emotion class within a named cultural context, attested by a specific source
+      custodian. Projects to a parsimony Observation (indicates → emotion;
+      attested_in → source; situated_in_time → period; typed_as → culture context).
+    attributes:
+      subject_au:
+        description: FACS Action Unit CURIE (e.g. facs:AU6).
+        range: string
+        required: true
+        pattern: "^facs:AU[0-9]+$"
+      object_emotion:
+        description: MFOEM emotion class CURIE.
+        range: string
+        required: true
+        pattern: "^MFOEM:[0-9]+$"
+      mapping_predicate:
+        description: SKOS predicate (associative; an AU is movement, not an emotion).
+        range: CrosswalkPredicateEnum
+        required: true
+      culture_context:
+        description: Cultural frame under which the association holds (mandatory).
+        range: FacialExpressionCultureContextEnum
+        required: true
+      source_ghcid:
+        description: GHCID of the attesting custodian source bundle.
+        range: string
+        required: true
+      attested_in:
+        description: Source/study citation(s) (provenance — mandatory).
+        range: string
+        multivalued: true
+        required: true
+      temporal_scope:
+        description: Temporal frame (publication period / study date).
+        range: string
+      societal_context:
+        description: Population/society framing and stance.
+        range: string
+      confidence:
+        description: Calibrated confidence in (0, 1].
+        range: float
+        required: true
+
+# Slot → canonical predicate mappings (SSSOM + parsimony Observation projection)
+slot_mappings:
+  subject_au:
+    target_predicate: "@subject"
+    transform: identity
+  object_emotion:
+    target_predicate: "@object"
+    transform: identity
+    parsimony_slot: indicates
+  mapping_predicate:
+    target_predicate: "@predicate"
+    transform: identity
+  culture_context:
+    target_predicate: "rootreal:cultureContext"
+    parsimony_slot: typed_as
+    transform: identity
+  attested_in:
+    target_predicate: "dcterms:source"
+    parsimony_slot: attested_in
+    transform: identity
+  temporal_scope:
+    target_predicate: "dcterms:temporal"
+    parsimony_slot: situated_in_time
+    transform: identity
+  societal_context:
+    target_predicate: "rootreal:societalContext"
+    parsimony_slot: typed_as
+    transform: identity
+  source_ghcid:
+    target_predicate: "prov:wasAttributedTo"
+    transform: identity
+  confidence:
+    target_predicate: "sssom:confidence"
+    transform: identity
+
+# Reconciliation policy: contexts are kept distinct, never merged.
+reconciliation:
+  key: [subject_au, object_emotion, culture_context]
+  merge_across_contexts: false
+  note: >-
+    Rows that agree on (subject_au, object_emotion) but differ in culture_context
+    are retained as separate, independently-attested claims — never collapsed into a
+    single context-free universal.
+
+# SSSOM evidence requirements
+sssom_requirements:
+  minimum_confidence: 0.30
+  required_predicate_ids:
+    - "skos:relatedMatch"
+    - "skos:closeMatch"
+  mapping_justification: "semapv:ManualMappingCuration"
+  extension_slots:
+    - ext_spatial_scope
+    - ext_temporal_scope
+    - ext_societal_context
+
+# TypeDB projection shape (Observation pattern)
+typedb_projection:
+  entity_type: "facs-emotion-observation"
+  relations:
+    - type: "indicates"
+      role_source: "observation"
+      role_target: "emotion-class"
+      attribute: "confidence"
+    - type: "attested-by"
+      role_source: "observation"
+      role_target: "source-custodian"
+      attribute: "culture-context"
+
+enums:
+  CrosswalkPredicateEnum:
+    description: SKOS mapping predicates permitted for AU→emotion crosswalk rows.
+    permissible_values:
+      relatedMatch:
+        description: Associative match (default; an AU participates in, not equals, the emotion).
+        meaning: skos:relatedMatch
+      closeMatch:
+        description: Close match.
+        meaning: skos:closeMatch

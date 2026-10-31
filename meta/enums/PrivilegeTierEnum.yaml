@@ -1,0 +1,44 @@
+id: https://textpast.com/ontology/rr/enum/PrivilegeTierEnum
+name: PrivilegeTierEnum
+title: Privilege Tier Enum
+description: >-
+  The privilege tier a script requires to run (E7 of the structured
+  session-conclusion plan). Encodes the agent-vs-operator boundary that
+  AGENT-TEMP-SCRIPT-STORAGE-001 scripts declare in their headers (one quorum vs
+  no-root vs GitOps-only). A ScriptMetadata.privilege_tier makes that boundary a
+  machine-checkable field in the session summary so the operator can see at a
+  glance which scripts need their hands (quorum) vs are agent-runnable.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  PrivilegeTierEnum:
+    description: >-
+      The privilege tier required to run a scripts/temp/*.sh artifact
+      (ScriptMetadata.privilege_tier). Composes with VAULT-REINIT-OPS-001 rule 7
+      (agent MUST NOT assemble the recovery-key quorum) and the operator-gated
+      ceremony pattern.
+    permissible_values:
+      QUORUM:
+        description: >-
+          Operator-gated on the recovery-key quorum — the script mints a
+          transient root via generate-root (3-of-5 PGP-escrowed recovery keys),
+          so a human key-holder must drive the gpg decrypts (VAULT-REINIT-OPS-001
+          rule 7). The B2 ceremony + the chains audience flips are QUORUM.
+      OPERATOR:
+        description: >-
+          Operator-run but NO quorum — a destructive or workstation-local action
+          that needs the operator's hands but not root (e.g. shred local DR
+          files, the Task A custody-and-shred script).
+      AGENT:
+        description: >-
+          Agent-runnable — no Vault root, no operator-destructive action. A
+          read-only diagnostic or a verify/watch script the agent can execute
+          directly.
+      GITOPS:
+        description: >-
+          No runtime privilege — the "script" is a declarative apply whose effect
+          lands through Flux reconcile (e.g. drop a manifest in releases/secrets/
+          and Flux applies it; no kubectl, no root).

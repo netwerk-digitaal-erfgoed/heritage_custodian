@@ -1,0 +1,170 @@
+# Meta Bridge Mapping: national Art.12 ICH inventory → UNESCO international Arts.16-18 lists
+#
+# Reconciles national-inventory entries (DUK Bundesweites Verzeichnis, KIEN
+# Inventaris Immaterieel Erfgoed Nederland) to the UNESCO international ICH
+# lists (fr_idf_par_o_unesco/ich/) WHERE nominated/inscribed. Per
+# KOS-REGISTER-OVERLAP-TAXONOMY-001, a national Art.12 inventory and the
+# international Arts.16-18 lists are DIFFERENT governance levels of the same
+# convention, linked by the nomination workflow; they are NOT duplicate records.
+# The national node and the international node are distinct entities (different
+# governing bodies, different admission criteria), connected by a
+# `nominated_to` / `inscribed_on` edge ONLY where the nomination succeeded.
+# National-only entries stay national-only.
+#
+# Version: 1.0.0
+# Last Updated: 2026-07-07
+
+id: https://rootreal.ai/schema/meta_bridge/ich_national_unesco_nomination_crosswalk
+name: ich_national_unesco_nomination_crosswalk_meta_bridge
+title: ICH National Art.12 Inventory → UNESCO International Lists Nomination Crosswalk Meta Bridge
+description: |
+  Bridges national-inventory entries (DUK, KIEN — Article-12 national inventories)
+  to the UNESCO international ICH lists (Arts.16-18) where nominated/inscribed.
+  The national and international nodes are distinct entities connected by a
+  nominated_to/inscribed_on edge only where the nomination succeeded
+  (KOS-REGISTER-OVERLAP-TAXONOMY-001). National-only entries stay national-only.
+  The same pattern applies to the DUK Register Guter Praxisbeispiele (national
+  good-practice) vs the UNESCO Register of Good Safeguarding Practices.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  sssom: https://w3id.org/sssom/
+  schema: http://schema.org/
+  rootreal: https://rootreal.ai/ontology/
+
+imports:
+  - linkml:types
+
+classes:
+  IchNominationCrosswalkMapping:
+    description: |
+      One reconciled crosswalk row: a national-inventory entry (DUK or KIEN)
+      nominated to the UNESCO international ICH lists. The national node and the
+      international node are distinct; the edge is typed nominated_to (proposed)
+      or inscribed_on (inscribed). National-only entries carry no edge. Projects
+      to a parsimony Observation (the nomination/inscription event) + an SSSOM
+      mapping row (skos:relatedMatch + the nomination extension slots).
+    attributes:
+      national_entry_id:
+        description: The national-inventory entry identifier (DUK entry or KIEN page_id).
+        range: string
+        required: true
+      national_entry_title:
+        description: The national-inventory entry title.
+        range: string
+        required: true
+      national_source_ghcid:
+        description: GHCID of the national inventory (DE-NW-BON-I-DUK or NL-GE-ARN-I-KIEN).
+        range: string
+        required: true
+      unesco_ich_id:
+        description: The UNESCO international ICH list entry identifier, where nominated/inscribed.
+        range: string
+      nomination_status:
+        description: The nomination state — nominated_to (proposed) or inscribed_on (inscribed); absent for national-only.
+        range: NominationStatusEnum
+      mapping_predicate:
+        description: SKOS predicate — relatedMatch where nominated; exactMatch is NOT used (distinct nodes).
+        range: CrosswalkPredicateEnum
+        required: true
+      convention_article_national:
+        description: The national convention article (Art.12 for both DUK and KIEN).
+        range: string
+        required: true
+      convention_article_international:
+        description: The international convention article (Art.16 Representative, Art.17 Urgent, Art.18 Good-Practice).
+        range: string
+      attested_in:
+        description: Source citation(s) (provenance — mandatory).
+        range: string
+        multivalued: true
+        required: true
+      confidence:
+        description: Calibrated confidence in (0, 1].
+        range: float
+        required: true
+
+# Slot → canonical predicate mappings (SSSOM + parsimony Observation projection)
+slot_mappings:
+  national_entry_id:
+    target_predicate: "@subject"
+    transform: identity
+  unesco_ich_id:
+    target_predicate: "@object"
+    transform: identity
+    parsimony_slot: indicates
+  mapping_predicate:
+    target_predicate: "@predicate"
+    transform: identity
+  nomination_status:
+    target_predicate: "rootreal:nominationStatus"
+    parsimony_slot: typed_as
+    transform: identity
+  national_source_ghcid:
+    target_predicate: "prov:wasAttributedTo"
+    transform: identity
+  convention_article_national:
+    target_predicate: "rootreal:conventionArticleNational"
+    transform: identity
+  convention_article_international:
+    target_predicate: "rootreal:conventionArticleInternational"
+    transform: identity
+  attested_in:
+    target_predicate: "dcterms:source"
+    parsimony_slot: attested_in
+    transform: identity
+  confidence:
+    target_predicate: "sssom:confidence"
+    transform: identity
+
+# Reconciliation policy: national-only entries stay national-only; nominated
+# entries get the edge, never a merge.
+reconciliation:
+  key: [national_entry_id, unesco_ich_id]
+  merge_across_governance_levels: false
+  note: >-
+    A national entry and an international entry are distinct nodes; the
+    nominated_to/inscribed_on edge connects them ONLY where the nomination
+    succeeded. National-only entries carry no edge and are never merged into an
+    international record.
+
+# SSSOM evidence requirements
+sssom_requirements:
+  minimum_confidence: 0.40
+  required_predicate_ids:
+    - "skos:relatedMatch"
+  mapping_justification: "semapv:ManualMappingCuration"
+  extension_slots:
+    - ext_temporal_scope
+    - ext_societal_context
+
+# TypeDB projection shape (Observation = the nomination/inscription event)
+typedb_projection:
+  entity_type: "ich-nomination-observation"
+  relations:
+    - type: "nominated-to"
+      role_source: "national-entry"
+      role_target: "international-entry"
+      attribute: "nomination-status"
+    - type: "attested-by"
+      role_source: "observation"
+      role_target: "source-custodian"
+      attribute: "convention-article"
+
+enums:
+  NominationStatusEnum:
+    description: The nomination state between a national and international ICH node.
+    permissible_values:
+      nominated_to:
+        description: The national entry was nominated to the international list (proposed).
+      inscribed_on:
+        description: The national entry was inscribed on the international list (succeeded).
+  CrosswalkPredicateEnum:
+    description: SKOS mapping predicates for national→international ICH nomination.
+    permissible_values:
+      relatedMatch:
+        description: The national entry is related to the international entry via nomination (distinct nodes, NOT exactMatch).
+        meaning: skos:relatedMatch

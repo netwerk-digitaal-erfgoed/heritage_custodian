@@ -1,0 +1,65 @@
+id: https://textpast.com/ontology/rr/class/HeadlessCaptureProfile
+name: headless_capture_profile
+title: HeadlessCaptureProfile Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  rml: http://semweb.mmlab.be/ns/rml#
+imports:
+- linkml:types
+- ./DataServiceEndpoint
+- ../slots/has_url
+- ../slots/has_protocol
+- ../slots/has_wait_selector
+- ../slots/has_content_selector
+- ../slots/has_user_agent
+- ../slots/has_navigation_timeout_secs
+- ../slots/has_scroll_to_bottom
+- ../slots/has_rate_limit_delay_ms
+- ../slots/has_proxy
+- ../slots/has_locale
+- ../slots/has_timezone
+default_prefix: rr
+classes:
+  HeadlessCaptureProfile:
+    is_a: DataServiceEndpoint
+    class_uri: rr:HeadlessCaptureProfile
+    description: >-
+      Per-source headless-browser CAPTURE config (navigate / wait-for-render /
+      scroll / user-agent / proxy) — ORTHOGONAL to decode. The decode is
+      dispatched separately: WebExtractionProfile (CSS3 rows) for table sources,
+      the ML extraction pipeline (MlExtractionConfig) for map-canvas /
+      raster-tile sources. Drives HeadlessBrowserService capture via
+      extract_register_page, projected onto RegisterExtractionConfig.
+    slots:
+      - has_url
+      - has_protocol
+      - has_wait_selector
+      - has_content_selector
+      - has_user_agent
+      - has_navigation_timeout_secs
+      - has_scroll_to_bottom
+      - has_rate_limit_delay_ms
+      - has_proxy
+      - has_locale
+      - has_timezone
+    slot_usage:
+      has_url:
+        description: "Target URL the headless browser captures (single-valued for capture)."
+        required: true
+        multivalued: false
+      has_protocol:
+        description: "Access protocol — WEB_SCRAPE for headless-capture sources."
+        required: true
+      has_wait_selector:
+        description: >-
+          CSS selector indicating JS rendering complete (the map canvas /
+          container has mounted).
+      has_proxy:
+        description: >-
+          SOCKS5/HTTP proxy URL for geo-blocked sources (e.g. iq-igp-*). None
+          for unblocked sources. Applied to the BrowserConfig (not the
+          RegisterExtractionConfig) at capture time.
+    comments:
+      - "Orthogonal to WebExtractionProfile (decode). A source consumes this for CAPTURE and a decode profile (or ML) for DECODE."
+      - "GAC: harvest-pipeline-srp.md, data-driven-extension-point-passthrough.md, headless-browser-config-not-database.md, KOS-001, KOS-003"

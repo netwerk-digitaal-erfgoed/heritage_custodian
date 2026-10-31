@@ -1,0 +1,26 @@
+id: https://textpast.com/ontology/rr/enum/GacRuleActionEnum
+name: GacRuleActionEnum
+title: GAC Rule Action Enum
+description: >-
+  What a session did with a GAC rule, recorded in a GacRuleRegistration row
+  (element E2 of the structured session-conclusion plan). Models the
+  promoted / not-promoted classification required by AGENT-SESSION-DOC-001 §0.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  GacRuleActionEnum:
+    description: >-
+      The registration action a session took on a GAC rule. Drives whether the
+      row records a version transition and a sync_status.
+    permissible_values:
+      PROMOTE_NEW:
+        description: A new rule was authored and landed this session (no from_version).
+      EXTEND_EXISTING:
+        description: An existing rule was bumped or extended this session (from_version to to_version).
+      NOT_PROMOTE:
+        description: >-
+          A candidate lesson was deliberately not promoted (a one-off, obvious,
+          duplicate, or local-to-a-plan item). reason is required; nothing to sync.

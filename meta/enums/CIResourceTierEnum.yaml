@@ -1,0 +1,44 @@
+id: https://textpast.com/ontology/rr/enum/CIResourceTierEnum
+name: CIResourceTierEnum
+title: CI Resource Tier Enumeration
+imports:
+  - linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+enums:
+  CIResourceTierEnum:
+    description: >-
+      The enumerated set of RootReal CI cluster tiers. A tier-config instance is
+      keyed by exactly one of these values (CI-TIER-001). Sourced verbatim from
+      the case-statement keys of ci-resource-profiles.sh. The
+      ci-policy.linkml.yaml ResourceProfile.resource_tier slot ranges over this
+      enum so both schemas agree on the set of valid tier names
+      (SCHEMATA-TYPES-001). Shell-facing tier identifiers use the kebab form
+      (e.g. dev-ci-advanced); the enum value is its snake_case equivalent
+      (dev_ci_advanced). The two forms are related by a deterministic
+      kebab->snake translation generated from this enum (never hand-maintained).
+    permissible_values:
+      prod_scale:
+        description: Production, max-scale (largest node pool).
+      prod_growth_ha:
+        description: Production, growth tier with high availability.
+      prod_growth:
+        description: Production, growth tier.
+      prod_dev_low:
+        description: Production, dev-low (reduced pool).
+      prod_pause:
+        description: Production, pause tier (frozen budgets).
+      dev_ci:
+        description: Dev, CI-heavy.
+      dev_ci_advanced:
+        description: Dev, CI-heavy advanced.
+      dev_comfort:
+        description: Dev, comfort tier.
+      dev_standard:
+        description: Dev, standard tier (the default fallback).
+      dev_basic:
+        description: Dev, resource-constrained.
+      dev_minimal:
+        description: Dev, minimal hardware.

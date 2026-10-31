@@ -1,0 +1,44 @@
+id: https://textpast.com/ontology/rr/enum/RemainingItemKindEnum
+name: RemainingItemKindEnum
+title: Remaining Item Kind Enum
+description: >-
+  The kind of a remaining-work item recorded in a session conclusion (element
+  E5 of the structured session-conclusion plan). Distinguishes "do work"
+  follow-ups from "wait then verify" items from "blocked, needs escalation"
+  items, so a reviewer or next agent can triage the Remaining section without
+  re-reading prose.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  RemainingItemKindEnum:
+    description: >-
+      Kind of a RemainingItem in a SessionRemainingWork record. Ordered roughly
+      by actionability.
+    permissible_values:
+      OPEN_PLAN_ITEM:
+        description: >-
+          An open implementation-plan phase or checklist item. References the
+          plan via plan_ref rather than re-listing its items (derive, do not
+          duplicate the Plan MCP SoT).
+      FOLLOWUP_TASK:
+        description: >-
+          A concrete next task not captured in any plan (e.g. extend a guard,
+          add a test). The canonical "do this next" item.
+      VERIFICATION_PENDING:
+        description: >-
+          A convergence/check item — wait for an async system to settle, then
+          verify (e.g. GAC sync pending, Plan MCP indexing pending, an image
+          rollout). Not "do work"; "wait then check".
+      BLOCKER:
+        description: >-
+          Something is blocked and cannot proceed without an external unblock
+          (an operator decision, an upstream fix, a capacity gate). Requires
+          escalation beyond the next session.
+      DEFERRED:
+        description: >-
+          Explicitly deferred — was a non-goal or deliberately punted (with
+          reason). Distinct from OPEN_PLAN_ITEM (still intended) and
+          VERIFICATION_PENDING (still active).

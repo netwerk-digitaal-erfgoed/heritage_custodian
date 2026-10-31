@@ -1,0 +1,78 @@
+id: https://textpast.com/ontology/rr/types/ci_quantity_types
+name: ci_quantity_types
+title: CI Budget Quantity Types (Go-duration, Kubernetes quantity, integer-seconds)
+imports:
+  - linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+description: >-
+  Pattern-validated primitive types for the CI tier-config budgets. Each type is
+  a typeof string with an anchored (^...$) regex calibrated against the full
+  observed value set in ci-resource-profiles.sh so a malformed budget (a typo'd
+  Go duration, a k8s quantity missing the binary 'i' suffix, a negative count)
+  is rejected by linkml-validate in CI BEFORE it reaches a shell or a rendered
+  ConfigMap (SCHEMATA-TYPES-001, CI-TIER-001).
+types:
+  GoDuration:
+    typeof: string
+    uri: xsd:string
+    description: >-
+      A Go time.Duration string as accepted by Tekton/PipelineRun timeouts and
+      Go's time.ParseDuration (e.g. 12h0m0s, 1h30m0s, 2h0m0s, 60s). Rejects
+      forms missing the trailing unit or using non-Go syntax.
+    pattern: '^([0-9]+(ns|us|µs|ms|s|m|h))+$'
+
+  KubernetesMemoryQuantity:
+    typeof: string
+    uri: xsd:string
+    description: >-
+      A Kubernetes memory (or ephemeral-storage) resource quantity, e.g.
+      128Mi, 2Gi, 24Gi, 256Gi, 64Gi. SI suffixes require the binary 'i' form
+      per the Kubernetes resource quantity grammar; a bare '4G' is rejected.
+    pattern: '^[0-9]+(Ki|Mi|Gi|Ti|Pi|Ei)?$'
+
+  KubernetesCPUQuantity:
+    typeof: string
+    uri: xsd:string
+    description: >-
+      A Kubernetes CPU resource quantity: millicores (100m, 250m) or whole
+      cores (1, 6, 20, 36).
+    pattern: '^[0-9]+m?$'
+
+  GitByteQuantity:
+    typeof: string
+    uri: xsd:string
+    description: >-
+      A git byte-quantity as accepted by git config (e.g. pack.windowMemory,
+      core.bigFileThreshold): lowercase-suffix SI forms like 512m, 256m, 1g.
+      Distinct from KubernetesMemoryQuantity (which requires the binary 'i'
+      suffix); git uses the older k/m/g shorthand.
+    pattern: '^[0-9]+[kmg]?$'
+
+  NonNegativeIntegerString:
+    typeof: string
+    uri: xsd:string
+    description: >-
+      A non-negative integer carried as a string (the ConfigMap data form) for
+      durations expressed in bare seconds (600, 1200), counts (backoff_limit,
+      delete_limit), percents (80), and attempt counts. Distinct from
+      GoDuration because these values carry no unit suffix.
+    pattern: '^[0-9]+$'
+
+  ContainerImageRef:
+    typeof: string
+    uri: xsd:string
+    description: >-
+      A container image reference of the form registry/repository:tag, e.g.
+      harbor.rootreal.ai/rootreal/ci/rust:1.99-bookworm-1.
+    pattern: '^[a-z0-9.-]+([/.][a-z0-9._-]+)+:[a-zA-Z0-9._-]+$'
+
+  CronSchedule:
+    typeof: string
+    uri: xsd:string
+    description: >-
+      A 5-field cron schedule (standard Vixie-cron), e.g. '*/2 * * * *'. Kept
+      as a free string because cron grammar validation is out of scope for the
+      quantity-type layer; the value is operator-authored and low-churn.

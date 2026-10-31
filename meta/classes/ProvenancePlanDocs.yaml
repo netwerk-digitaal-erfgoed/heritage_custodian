@@ -1,0 +1,25 @@
+id: https://textpast.com/ontology/rr/class/ProvenancePlanDocs
+name: ProvenancePlanDocs
+title: Provenance Plan Docs
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/session_provenance_slots
+default_range: string
+
+classes:
+  ProvenancePlanDocs:
+    class_uri: rr:ProvenancePlanDocs
+    description: >-
+      The plan linkages a mined session carries — the rrp:pl: Concept PIDs (the
+      plan's durable, hash-independent identity) + the docs/plan/ slugs referenced
+      this session. Composes into SessionProvenance as its `plan_docs` sub-record
+      (FU3 part a).
+    slots:
+      - concept_pids
+      - plan_slugs
+    comments:
+      - "concept_pids are the rrp:pl: PIDs (hash-independent); plan_slugs are the docs/plan/<slug>/checklist.md handles."

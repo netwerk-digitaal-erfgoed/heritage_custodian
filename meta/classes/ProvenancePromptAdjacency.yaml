@@ -1,0 +1,26 @@
+id: https://textpast.com/ontology/rr/class/ProvenancePromptAdjacency
+name: ProvenancePromptAdjacency
+title: Provenance Prompt Adjacency
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/session_provenance_slots
+default_range: string
+
+classes:
+  ProvenancePromptAdjacency:
+    class_uri: rr:ProvenancePromptAdjacency
+    description: >-
+      The prev/next prompt adjacency of a mined session in its prompt chain.
+      previous_prompt is computed by the miner (from origin/main mtimes);
+      succeeding_prompt is a CROSS-SESSION join the archive performs (None at
+      capture time for the chain's last session). Composes into SessionProvenance
+      as its `prompt_prev_next` sub-record (FU3 part a).
+    slots:
+      - previous_prompt
+      - succeeding_prompt
+    comments:
+      - "succeeding_prompt is None at capture time for the last session in a chain — the archive fills it when a successor session is mined (the cross-session join)."

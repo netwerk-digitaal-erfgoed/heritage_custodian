@@ -1,0 +1,100 @@
+id: https://textpast.com/ontology/rr/slots/closeability_slots
+name: closeability_slots
+title: Closeability Audit Slots
+description: >-
+  Slots for the SessionCloseabilityAudit class and its category entries
+  (element E12 of the structured session conclusion, added 2026-09-22 at
+  operator direction): the "is this session fully closeable?" verdict made
+  machine-checkable — one boolean verdict + one blocker line + the ten
+  closure-surface categories, each with a pass/fail/not_applicable status and
+  evidence. The validator enforces the branch under
+  require_closeability_audit (profile `full`) so a session cannot close
+  without explicitly auditing every closure surface (AGENT-INSTRUCTION-
+  ENFORCEMENT-001: a hook/floor, not prose). Slots defined here and imported
+  by the class files (CLASS-FILES-001 — class files MUST NOT define slots
+  inline); snake_case noun-phrase names (LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  closeable:
+    slot_uri: rr:closeable
+    description: >-
+      True iff EVERY audited closure surface is closed (pass or a justified
+      not_applicable) and the session owes nothing further before its close —
+      the explicit answer to "can we close this session?". False REQUIRES a
+      `blocker` naming what keeps it open. Consistency is validator-enforced:
+      any category with status=fail forces closeable=false (a fail masked
+      under closeable=true is the masked-defect class,
+      STATUS-PROPAGATION-NO-MASKING-001).
+    range: boolean
+    required: true
+
+  blocker:
+    slot_uri: rr:blocker
+    description: >-
+      The one-line reason the session is NOT fully closeable (required when
+      closeable=false): the open leg + its owning surface (e.g. "rollout legs
+      open in #360449; cluster image pending"). Empty/absent when closeable.
+    range: string
+
+  categories:
+    slot_uri: rr:categories
+    description: >-
+      The ten closure-surface audit entries (CloseabilityCategoryEnum). All
+      ten MUST be present for records generated on/after 2026-09-24 (each
+      exactly once) — a missing category is an unaudited surface, which the
+      validator FAILs (terminal_mark_applied, the tenth, is grandfathered
+      for pre-amendment records — the validator gates on generated_at); an
+      absent precondition is answered not_applicable, never omitted.
+    range: SessionCloseabilityCategoryEntry
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: true
+
+  # ── SessionCloseabilityCategoryEntry slots ──
+
+  category:
+    slot_uri: rr:category
+    description: >-
+      The closure surface being audited — one of the nine
+      CloseabilityCategoryEnum values (the operator's 2026-09-22 directive
+      questions).
+    range: CloseabilityCategoryEnum
+    required: true
+
+  status:
+    slot_uri: rr:status
+    description: >-
+      The verdict on this surface — pass, fail, or not_applicable
+      (CloseabilityStatusEnum).
+    range: CloseabilityStatusEnum
+    required: true
+
+  evidence:
+    slot_uri: rr:evidence
+    description: >-
+      The verifiable anchor backing the status: the docs/prompt/ paths
+      assigned, the launch/disposition state per prompt, the GAC rule paths +
+      projection state, the Forgejo issue numbers captured/closed, the Plan
+      MCP read-back, the prompt-header shas, the operator-comment citations —
+      or, for not_applicable, the positive statement of absence ("zero
+      AUTHORED prompts this session"). REQUIRED for every entry (a bare
+      status is an unaudited assertion).
+    range: string
+    required: true
+
+  remediation:
+    slot_uri: rr:remediation
+    description: >-
+      REQUIRED when status=fail: the surface that owns the open leg — a
+      docs/prompt/ handoff path, a Forgejo #NNN, a blocked-trigger id, or a
+      named next action with its owner. A fail without remediation is an
+      undecided leftover (the exact state this branch exists to prevent).
+    range: string

@@ -1,0 +1,113 @@
+id: https://textpast.com/ontology/rr/slots/session_hazard_slots
+name: session_hazard_slots
+title: Session Hazard Slots
+description: >-
+  Centralized slots for the SessionHazard class (element E6 of the structured
+  session-conclusion plan). All slots are defined here and imported by the class
+  file — class files MUST NOT define slots inline (GAC:
+  linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
+  verb-first / noun-singular and ontology-neutral (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001). The
+  severity slot reuses the SessionHazardSeverity enum; the status vocabulary
+  mirrors gac ingest_violation lifecycle so a hazard can graduate to a rule.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  hazard_id:
+    slot_uri: rr:hazardId
+    range: string
+    description: >-
+      A short stable identifier for the hazard within this session (e.g.
+      "HZ-1", "HZ-stale-lock-churn"). Used to cross-reference the hazard from
+      prose and to deduplicate across sessions. REQUIRED.
+    identifier: true
+    required: true
+
+  hazard_type:
+    slot_uri: rr:hazardType
+    range: string
+    description: >-
+      The category of latent condition. Free-form but SHOULD use an established
+      label when one fits (STALE_BASE_REGEN, SILENT_REVERT, SILENT_NO_OP,
+      HOT_TRUNK_RACE, REMEDIATION_FOOTGUN, GUARD_PRECONDITION_GAP,
+      PROCESS_TRAP, CROSS_CRATE_BLAST_RADIUS, ADVISORY_GUARD_FIRE,
+      AMBIENT_DRIFT) so hazards aggregate by type. The advisory-tier labels
+      (ADVISORY_GUARD_FIRE, AMBIENT_DRIFT) capture non-blocking observations —
+      an advisory guard that fired on legitimate content, pre-existing debt
+      surfaced but not in the changeset — recorded at severity INFO/LOW so a
+      24/7 agent's machine-ingested SessionConclusion carries them (see GAC:
+      end-of-session-advisory-reporting.md).
+    required: true
+
+  severity:
+    slot_uri: rr:hasSeverity
+    description: >-
+      The blast radius if the hazard fires unmitigated (NOT whether it fired
+      this session). Reuses SessionHazardSeverity (critical..info), aligned to
+      gac ingest_violation + CODE-XXX so a hazard can be promoted without
+      re-grading. REQUIRED.
+    range: SessionHazardSeverity
+    required: true
+
+  surface:
+    slot_uri: rr:hasSurface
+    range: string
+    description: >-
+      Where the hazard manifested or would manifest — a file path, process,
+      tool, or workflow step (e.g. "cargo hakari generate in the shared
+      checkout", "rr-commit-paths.sh false no-op"). Concrete, not abstract.
+    required: true
+
+  root_cause:
+    slot_uri: rr:hasRootCause
+    range: string
+    description: >-
+      The mechanism that makes the condition hazardous — the one sentence a
+      future agent needs to avoid it. Factual, not blameful; cite the
+      observable (e.g. "regen reads the working-tree dep graph, which lags
+      origin/main by hundreds of commits in the shared checkout").
+    required: true
+
+  mitigation:
+    slot_uri: rr:hasMitigation
+    range: string
+    description: >-
+      What was done this session AND/OR what should always be done. The durable
+      control — ideally a guard script, a fresh-origin-worktree step, or a GAC
+      rule cross-ref — not a one-off workaround. REQUIRED.
+    required: true
+
+  status:
+    slot_uri: rr:hasHazardStatus
+    range: string
+    description: >-
+      The hazard's disposition. OBSERVED = seen this session, not yet
+      durably controlled; MITIGATED = a durable control now exists (guard/rule)
+      or landed this session; ESCALATED = needs human/operator decision or a
+      follow-up session (cross-ref remaining). REQUIRED.
+    required: true
+
+  evidence_ref:
+    slot_uri: rr:hasEvidence
+    range: string
+    description: >-
+      A durable anchor proving the hazard is real — a commit SHA, a file:line,
+      a journal/log excerpt, or a tool-output artifact. "I think this could
+      happen" without evidence is NOT a hazard record (it is a speculation;
+      raise it as a question instead).
+    multivalued: true
+
+  related_rule:
+    slot_uri: rr:relatedRule
+    range: string
+    description: >-
+      The GAC rule id (e.g. AGENT-TRUNK-LAND-001, WORKSTATION-DISK-001) that
+      this hazard bears on — either the rule that should have prevented it, or
+      the rule this session created/strengthened to control it. Multivalued.
+    multivalued: true

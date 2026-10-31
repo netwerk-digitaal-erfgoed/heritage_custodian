@@ -1,0 +1,407 @@
+id: https://textpast.com/ontology/rr/slots/session_conclusion_slots
+name: session_conclusion_slots
+title: Session Conclusion Umbrella Slots
+description: >-
+  Centralized branch slots for the SessionConclusion umbrella class (Phase 5 of
+  the structured session-conclusion plan). All slots are defined here and
+  imported by the class file — class files MUST NOT define slots inline (GAC:
+  linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names
+  are verb-first / noun-singular and ontology-neutral (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+  The umbrella's scalar header slots (session_ref, generated_at, landed_sha) are
+  REUSED from session_dod_slots rather than redefined here, so there is exactly
+  one definition of each across the merged meta module.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  landing_status:
+    slot_uri: rr:hasLandingStatus
+    description: >-
+      How this session's work was (or was not) published to origin/main at
+      close (plan successor-by-construction rrp:pl:66jcz1k1t Surface 2.4). The
+      deferred-WITH-successor vs deferred-NO-successor distinction is the
+      load-bearing one: a deferred landing with no successor artifact is
+      "done but silent" and the validator forces a non-GREEN outcome for it
+      (STATUS-PROPAGATION-NO-MASKING-001). Optional — an absent value keeps
+      today's behavior (landing is judged by landed_sha + the DoD as before).
+    range: SessionLandingStatusEnum
+    required: false
+
+  dod:
+    slot_uri: rr:hasDoD
+    description: >-
+      The Definition-of-Done verification record (SessionDoDRecord) that backs
+      this session's completion claims. REQUIRED — the DoD branch is the one
+      mandatory close artifact (AGENT-SESSION-DOD-VERIFICATION-001).
+    range: SessionDoDRecord
+    inlined: true
+    required: true
+
+  prompts:
+    slot_uri: rr:citesPrompt
+    description: >-
+      The docs/prompt/ references cited this session (PromptReference, element
+      E1). Empty array allowed for a session that cited no prompt.
+    range: PromptReference
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  gac_rules:
+    slot_uri: rr:registersGacRule
+    description: >-
+      The GAC rule promotions / not-promoted rows for this session
+      (GacRuleRegistration, element E2). Empty array allowed.
+    range: GacRuleRegistration
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  plan_updates:
+    slot_uri: rr:updatesPlan
+    description: >-
+      The plan-checklist deltas applied this session (PlanChecklistUpdate,
+      element E3). Empty array allowed for a session that touched no plans. One
+      entry per plan.
+    range: PlanChecklistUpdate
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  swarm_interactions:
+    slot_uri: rr:swarmInteraction
+    description: >-
+      The Swarm interaction report for this session (SwarmSessionInteraction,
+      element E4). Omit entirely if Swarm was not used.
+    range: SwarmSessionInteraction
+    inlined: true
+
+  remaining:
+    slot_uri: rr:hasRemaining
+    description: >-
+      The structured Remaining / follow-up record (SessionRemainingWork, element
+      E5) — the triageable form of the prose "Remaining" section. Omit only if
+      the session genuinely completed everything (then the absence should be
+      stated in the summary).
+    range: SessionRemainingWork
+    inlined: true
+
+  notes_url:
+    slot_uri: rr:notesUrl
+    description: >-
+      Repo-relative docs/log/ done-log path if one was written for this session
+      (DOC-DONE-LOG-001). Optional.
+    range: string
+
+  hazards:
+    slot_uri: rr:hasHazards
+    description: >-
+      The structured session-hazard records (SessionHazard, element E6) — latent
+      conditions OBSERVED this session that will bite a future agent if
+      unrecorded (stale-base regen, silent no-op, hot-trunk race, remediation
+      footgun, guard precondition gap, cross-crate blast radius). Every session
+      MUST scan for hazards and report them here (GAC:
+      agent-session-hazard-reporting.md, AGENT-SESSION-HAZARD-001); an empty
+      array is valid and encouraged when the scan found none — the scan itself
+      is the value. Reuses the SessionHazard class's own slots (defined in
+      session_hazard_slots.yaml); this slot only binds the multivalued branch.
+    range: SessionHazard
+    multivalued: true
+    inlined: true
+
+  issue_observations:
+    slot_uri: rr:observesIssue
+    description: >-
+      Issues this session DETECTED with their ownership-triage record
+      (SessionIssueObservation, element E7, operator directive 2026-09-07).
+      Every detected issue MUST be triaged for ownership across Swarm MCP
+      (blackboard + live agents) and Forgejo BEFORE reporting or escalating —
+      an owned/tracked issue gets a dated corroborating data point, never a
+      duplicate escalation. Empty array allowed (nothing detected).
+    range: SessionIssueObservation
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  issue_dispositions:
+    slot_uri: rr:disposesIssue
+    description: >-
+      The respond-or-close disposition for every Forgejo issue this session
+      ADDRESSED — commented on, closed, filed, or landed the fix for
+      (SessionIssueDisposition; plan forgejo-issue-lifecycle item 3.4, GAC
+      AGENT-ISSUE-RESPONSE-CLOSE-001). Each entry needs the issue ref, the
+      action (responded / closed_with_evidence / left_open_valid / filed),
+      and evidence naming what was done. Empty array allowed (nothing
+      addressed); an addressed issue with no disposition is an open loop.
+    range: SessionIssueDisposition
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: false
+
+  settled_residual_sweep:
+    slot_uri: rr:hasSettledResidualSweep
+    description: >-
+      The settling-session sibling-vehicle conclusion sweep (plan
+      bridge-blockedtrigger-settled-gate-sibling-vehicle-conclusion, cure for
+      the 2026-10-24 duplicate-spawn occurrence 1): one entry per
+      residual/dead-letter fingerprint THIS session settled (a discharged
+      blocked-trigger ULID, a closed dead-letter digest #NNN, an evidence
+      path whose landing discharged the obligation), recording the corpus
+      grep that found OTHER active prompts citing the fingerprint and the
+      prompt_template_conclude_prompt receipts that concluded them (Session-
+      SettledResidualSweep). The close-out leg of the four-surface consumer
+      scan (AGENT-RESIDUAL-SURFACE-BINDING-001 §2b): a settled residual's
+      citing siblings are frozen premises that re-fire as duplicate
+      remediation spawns unless the settling session concludes them. Absent
+      = the session settled nothing; the validator ADVISES (WARN, never
+      blocks) when the record carries a settling signature but no branch.
+    range: SessionSettledResidualSweep
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: false
+
+  hidden_blockers:
+    slot_uri: rr:hasHiddenBlocker
+    description: >-
+      The pre-existing breakages the session tripped over, each with its
+      durable fix or forward tracker (SessionHiddenBlocker,
+      HIDDEN-BLOCKER-DURABLE-SOLUTION-001, operator directive 2026-10-08).
+      The explicit empty array ([] = none encountered) is the compliance
+      signal — the question "did any pre-existing breakage get worked
+      around?" must be answered on EVERY close, never silently skipped; the
+      validator hard-fails a missing branch for records generated
+      on/after 2026-10-09T00:00Z. Each entry cites a landed commit/rule
+      path OR a forward tracker (#NNN / plan / docs/prompt) so the next
+      session finds the durable replacement instead of re-discovering the
+      breakage. ALWAYS rendered (like completion/outcome): a worked-around
+      blocker buried in prose is lost to the next close.
+    range: SessionHiddenBlocker
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: false
+
+  structural_causes:
+    slot_uri: rr:hasStructuralCause
+    description: >-
+      The structural causes the session's report names, each with the
+      docs/prompt vehicle that investigates and remediates it
+      (SessionStructuralCause, STRUCTURAL-CAUSE-PROMPT-001, operator
+      directive 2026-10-18). The explicit empty array ([] = none named) is
+      the compliance signal: "which mechanisms behind the problems this
+      report describes are still unchanged, and what chases each?" is
+      answered on EVERY close. The validator hard-fails a missing branch for
+      records generated on/after 2026-10-20T00:00Z (warns before), and fails
+      any entry whose vehicle is a tracker (#NNN, finding, owner name)
+      instead of a prompt or a landed sha. ALWAYS rendered: a structural
+      cause buried in prose is the #412558 class (filed as an issue, driven
+      by nobody).
+    range: SessionStructuralCause
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: false
+
+  ambient_notes:
+    slot_uri: rr:hasAmbientNote
+    description: >-
+      The structured ambient-note records (AmbientNote) — observations this
+      session surfaced in its environment/state but did NOT chase (out of scope,
+      not its task, owner is another session/component): an ambient dependency
+      alert (Vault degraded, observed via the session-start digest or a resolver
+      fallback), a stale Swarm finding persisting past recovery, ambient
+      worktree/checkout drift, an observed-but-uninvestigated anomaly, notable
+      peer/cluster activity. DISTINCT FROM `hazards` (a latent condition IN THIS
+      SESSION'S OWN work that will bite a future agent): an AmbientNote is about
+      the AMBIENT environment the session OBSERVED but does NOT own — the
+      session's own work is unaffected (or survived via a fallback). Carrying it
+      structurally (vs ad-hoc chat prose) makes the observation visible to the
+      next session's structured ingest + reconcilable via the dedup_key; the
+      disposition names the owner so the note is actionable (GAC:
+      agent-session-ambient-note.md, AGENT-SESSION-AMBIENT-NOTE-001). Every
+      session SHOULD scan for ambient observations + report them here; an empty
+      array (or absent branch) is valid when the session observed nothing ambient
+      worth recording. Reuses the AmbientNote class's own slots (defined in
+      ambient_note_slots.yaml); this slot only binds the multivalued branch.
+    range: AmbientNote
+    multivalued: true
+    inlined: true
+
+  scripts:
+    slot_uri: rr:citesScript
+    description: >-
+      The scripts/temp/*.sh artifacts authored or cited this session
+      (ScriptMetadata, element E7). Captures the bash-script metadata
+      (kind, privilege tier, idempotency, purpose, source prompt) so the
+      operator can triage the session's landed scripts without opening each
+      file. Implements AGENT-TEMP-SCRIPT-STORAGE-001 (v1.3.0) in machine-
+      checkable form, mirroring how `prompts` (E1) implements the prompt-cite
+      rule. Empty array allowed for a session that authored no scripts.
+    range: ScriptMetadata
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  provenance:
+    slot_uri: rr:hasProvenance
+    description: >-
+      The mined provenance record (SessionProvenance) — the six linkages an
+      archived / superseded session must carry (git commits validated against the
+      repo, GAC rules authored, plan concept PIDs + slugs, the prompt chain + its
+      prev/next adjacency, the operator, the workstation), keyed by the pi session
+      UUID. Populated by projecting a pi-session-provenance.py
+      `<uuid>.provenance.yaml` sidecar (the CAPTURE layer) through the renderer's
+      data-source wiring (the CLI `--provenance` arg or sibling discovery →
+      crates/hub/agent/session-conclusion/service/src/provenance.rs). Empty /
+      absent is valid: the branch is optional, so a session that was not yet mined
+      simply omits it and the renderer emits an empty section (the empty-branch
+      policy). Intentionally NOT modelled in the instance-hypergraph ingest (like
+      prompts/gac_rules/plan_updates/swarm_interactions/remaining) — provenance is
+      a LinkML-only branch at the schema layer, consumed by the renderer + the
+      Archive MCP LDES publisher (FU3 part a; the foundation of the
+      capture→SessionConclusion→Archive-LDES loop). NOT profile-gated: like
+      hazards/scripts/completion, the provenance branch ALWAYS renders when
+      present (the SessionConclusionProfile.emits_branch default).
+    range: SessionProvenance
+    inlined: true
+
+  completion:
+    slot_uri: rr:hasCompletionAssessment
+    description: >-
+      The "Complete? Can we archive?" verdict (SessionCompletionAssessment,
+      element E8) — a load-bearing decision record that states, for the plan in
+      scope, whether its work is complete (plan_completion) and whether the plan
+      may be archived (archive_readiness). ALWAYS rendered (not profile-gated),
+      like `hazards`/`scripts`: an archive-readiness verdict buried in prose is
+      lost to the operator and to a machine consumer. REQUIRED when a plan is in
+      scope; for a plan-less session emit plan_completion: not_assessed +
+      archive_readiness: not_applicable (the section never silently omits).
+      Complements `remaining` (E5, the itemized open-work list) — this is the
+      roll-up verdict that summarizes it and answers the operator's two closing
+      questions directly. Derived from authoritative plan state (Plan MCP),
+      reconciled against `origin/main` when the two disagree
+      (GOV-AGENT-PLAN-001 v1.6.0).
+    range: SessionCompletionAssessment
+    inlined: true
+
+  outcome:
+    slot_uri: rr:hasOutcomeAssessment
+    description: >-
+      The "Did this session run cleanly, or does it need operator attention?"
+      verdict (SessionOutcomeAssessment, element E9) — a load-bearing decision
+      record for an UNATTENDED (24/7 cluster / CI/CD) session: whether the next
+      launch may proceed automatically (GREEN) or must be HELD for operator
+      review (ORANGE/RED) + whether the operator must be notified. ALWAYS
+      rendered (not profile-gated), like `completion`/`hazards`/`scripts`: an
+      outcome verdict buried in prose is LOST to the GitOps gate consumer + the
+      machine-ingested hypergraph — the whole point of the autonomous-agent
+      session-outcome gate. DISTINCT from `completion` (E8, plan-complete /
+      archive-ready): outcome grades the SESSION's operational health,
+      orthogonal to plan completeness (a session may be complete yet RED, or
+      GREEN yet plan-incomplete). REQUIRED for autonomous profiles
+      (autonomous_24x7/plan_agent/ci — profile.require_outcome_nonempty);
+      advisory for interactive (empty-allowed). The GitOps session-outcome gate
+      keys off outcome.outcome_signal; an absent/ambiguous outcome for an
+      autonomous profile defaults to HOLD (STATUS-PROPAGATION-NO-MASKING-001;
+      PagerDuty 'if unsure, treat as the higher level').
+    range: SessionOutcomeAssessment
+    inlined: true
+
+  close_questions:
+    slot_uri: rr:hasCloseQuestions
+    description: >-
+      The operator's verbatim 2026-09-27 closing questions, answered
+      structurally (SessionCloseQuestions, element E13): all_tasks_complete /
+      all_prompts_launched / session_closable + the derived tab_mark prefix
+      class + open_items/unlaunched_prompts when an answer is false.
+      "Did we complete all tasks and launch all prompts? Can we close this
+      session?" is asked at EVERY end-of-session report/conclusion/dispatch —
+      never prose-only. ALWAYS rendered (not profile-gated), like
+      completion/outcome/terminal_obligations/closeability_audit;
+      validator-enforced under profile.require_close_questions (profile
+      `full`; forward-only from 2026-09-27). The tab-mark surface: the
+      answers select the SessionTabMarkEnum prefix, the terminal-mark
+      classifier derives the same kind independently, and a divergence is a
+      masked-defect FAIL (STATUS-PROPAGATION-NO-MASKING-001). Distinct from
+      `completion` (E8, the plan), `outcome` (E9, session health), and
+      `closeability_audit` (E12, the ten-category summary): E13 is the
+      three-question verdict composed FROM them.
+    range: SessionCloseQuestions
+    inlined: true
+
+  closeability_audit:
+    slot_uri: rr:hasCloseabilityAudit
+    description: >-
+      The "can we close this session?" verdict (SessionCloseabilityAudit,
+      element E12 — 2026-09-22 operator direction): one boolean `closeable` +
+      a blocker line + the ten closure-surface categories (the nine the
+      operator enumerated 2026-09-22 — residuals-assigned-prompts,
+      authored-prompts-launched, gac-lessons-captured,
+      forgejo-issues-captured, forgejo-issues-closed,
+      plan-checklist-updated, plan-archived-when-complete,
+      prompt-status-headers-updated, operator-comments-addressed — plus
+      terminal-mark-applied, added 2026-09-23 under
+      AGENT-SPAWN-VISIBILITY-001 clause 15: the terminal mark is part of
+      EVERY close declaration, so a prose close with no mark is an
+      INCOMPLETE conclusion; grandfathered for records generated before
+      2026-09-24). ALWAYS rendered (not profile-gated), like
+      completion/outcome/terminal_obligations — the closeability verdict is a
+      load-bearing close signal the operator + the autonomous gate consume;
+      validator-enforced under profile.require_closeability_audit (profile
+      `full`). The SUMMARY layer over the record's own branches: each
+      category cites remaining[]/
+      issue_observations/dispositions/gac_rules/completion/
+      handoff_spawn_decision/terminal_obligations evidence rather than
+      re-deriving it, and the verdict is consistent with them (any category
+      fail forces closeable=false — a masked fail is the masked-defect
+      class, STATUS-PROPAGATION-NO-MASKING-001). Distinct from `completion`
+      (E8, plan-complete/archive-ready) and `outcome` (E9, session health):
+      closeability grades whether the CLOSE ITSELF owes nothing — the
+      post-landing, pre-quit question.
+    range: SessionCloseabilityAudit
+    inlined: true
+
+  handoff_spawn_decision:
+    slot_uri: rr:hasHandoffSpawnDecision
+    description: >-
+      The spawn-or-arm-or-explain decision for the session's forward handoff
+      (SessionHandoffSpawnDecision, element E11, 2026-08-26 operator directive
+      after the cluster_agent window close): for every AUTHORED prompts[] entry,
+      the record MUST state whether the successor was spawned now, armed via an
+      auto-spawn trigger (with its reference), deferred to the quit-time
+      green-respawn gate, or genuinely requires the operator (naming the gate)
+      — a landed successor prompt with no recorded spawn reasoning is an
+      undecided leftover. Profile-gated (emit_handoff_spawn_decision; full /
+      plan_agent / autonomous_24x7), unlike the always-rendered decision
+      branches. Added to this slots module 2026-09-22 for #361193: the umbrella
+      class listed the slot but no definition existed here, so the offline
+      introspector treated the branch as a range-less scalar leaf instead of
+      recursing into the class shape.
+    range: SessionHandoffSpawnDecision
+    inlined: true
+
+  terminal_obligations:
+    slot_uri: rr:hasTerminalObligations
+    description: >-
+      The two mandatory session-close obligations made machine-checkable
+      (TerminalObligationsAck, element E10, 2026-08-23 operator direction):
+      gac_lessons_drawn (did this session draw/verify its lessons in the GAC
+      MCP hypergraph?) and plan_closeout_reviewed (did it review plan
+      completeness + state an archive disposition?). Two REQUIRED booleans the
+      validator enforces under require_terminal_obligations (profile `full`) —
+      "always raised", never silently skipped. ALWAYS rendered (not
+      profile-gated), like completion/outcome/closeability_audit: an obligation
+      buried in prose is lost to the validator. Added to this slots module
+      2026-09-22 for #361193: the umbrella class listed the slot but no
+      definition existed here, so the offline introspector treated the branch
+      as a range-less scalar leaf instead of recursing into the class shape.
+    range: TerminalObligationsAck
+    inlined: true

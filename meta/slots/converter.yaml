@@ -1,0 +1,94 @@
+# ==============================================================================
+# LinkML Slot Definition: converter
+# ==============================================================================
+# The agent or pipeline that produced this thing by a conversion event.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-06, plan readlist-record-instantiation-model
+# item 1.3, against the in-repo RiC-O vocabulary + PREMIS 3.0 / W3C standards):
+#
+# | Ontology | Property                          | Source                            | Mapping | Notes                                                       |
+# |----------|-----------------------------------|-----------------------------------|---------|--------------------------------------------------------------|
+# | **PREMIS**| Event `linkingAgentIdentifier`   | PREMIS DD v3.0, Event entity,     | close   | The agent linked to the conversion Event whose outcome       |
+# |          | of an Event with `eventType`     | Linking Agent Identifier          |         | this thing is (object→event→agent).                          |
+# |          | 'conversion'                      | semantic unit                     |         |                                                              |
+# | **PROV** | `prov:Agent` associated with a   | W3C PROV-O, qualifiedAssociation  | related | prov:Activity (conversion) + prov:Agent + prov:Association.   |
+# |          | prov:Activity via                | (www.w3.org/TR/prov-o/)           |         |                                                              |
+# |          | prov:qualifiedAssociation        |                                   |         |                                                              |
+# | **RiC-O**| `rico:hasOrHadAgent` of the      | RiC-O_1-1.rdf                     | broad   | RiC-O links agents to Record Resources broadly, not to       |
+# |          | activity                          |                                   |         | conversion events specifically.                              |
+#
+# CREATED: 2026-10-06 (plan readlist-record-instantiation-model, item 1.3)
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/converter
+name: converter
+title: Converter
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+default_prefix: rr
+imports:
+  - linkml:types
+slots:
+  converter:
+    name: converter
+    title: Converter
+    slot_uri: rr:converter
+    description: >-
+      The agent or pipeline that produced this thing by a conversion
+      (format-change) event — the PREMIS linking agent of the conversion
+      Event. Carries a stable identity (pipeline + specification version),
+      never a bare 'unknown'.
+    alt_descriptions:
+      nl: >-
+        De agent of pijplijn die dit ding heeft geproduceerd door een
+        conversiegebeurtenis (formaatwijziging).
+      de: >-
+        Der Agent oder die Pipeline, die dieses Ding durch ein
+        Konvertierungsereignis (Formatänderung) erzeugt hat.
+      fr: >-
+        L'agent ou le pipeline qui a produit cette chose par un événement de
+        conversion (changement de format).
+      es: >-
+        El agente o pipeline que produjo esta cosa mediante un evento de
+        conversión (cambio de formato).
+      ar: >-
+        الوكيل أو خط المعالجة الذي أنتج هذا الشيء بواسطة حدث تحويل (تغيير تنسيق).
+      id: >-
+        Agen atau pipeline yang menghasilkan hal ini melalui suatu peristiwa
+        konversi (perubahan format).
+      zh: >-
+        通过转换（格式变更）事件产生此事物的代理或流水线。
+    structured_aliases:
+      - literal_form: converteerder
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Konverter
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: convertisseur
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: convertidor
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: محوّل
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: pengonversi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 转换器
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    range: string
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - premis:linkingAgentIdentifier-conversion  # PREMIS DD v3.0 Event: linking agent of a conversion event
+    related_mappings:
+      - prov:Agent  # W3C PROV-O agent associated with the conversion activity
+    broad_mappings:
+      - rico:hasOrHadAgent  # RiC-O agent link (Record-Resource-scoped)

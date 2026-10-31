@@ -1,0 +1,41 @@
+id: https://textpast.com/ontology/rr/enum/TerminalMarkViaEnum
+name: TerminalMarkViaEnum
+title: Terminal Mark Via Enum
+description: >-
+  The producing tier of a terminal mark — the enforcement ladder of the
+  deterministic assignment (plan terminal-prefix-deterministic-assignment;
+  GAC guard-script-presence-not-enforcement tiering applies: a manual call is
+  the weakest tier, the skill-floor script is the deterministic default, the
+  quit-time classifier and the sweeper are the compensating backstops).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  TerminalMarkViaEnum:
+    description: >-
+      One producing tier of the applied terminal mark. Closed set of four.
+    permissible_values:
+      manual_tool:
+        description: >-
+          The agent called the session_mark_terminal tool itself (the
+          discretionary tier — clause 15's original instruction; correct but
+          unenforced alone).
+      skill_floor:
+        description: >-
+          The session-report close-out script applied it on validation PASS
+          (session-conclusion-terminal-mark.sh → the request queue → the
+          extension applier) — the deterministic floor tier; the manual call
+          remains the override.
+      quit_classifier:
+        description: >-
+          The session_shutdown(quit) hook classified the conclusion artifact
+          / Swarm concluded marker and marked the session at process exit
+          (the compensating tier for a session whose agent never delivered a
+          mid-session mark).
+      sweep_backfill:
+        description: >-
+          The workstation sweeper backfilled the mark offline for a session
+          whose quit hook never ran (SIGKILL, crash — the dead-path
+          backstop).

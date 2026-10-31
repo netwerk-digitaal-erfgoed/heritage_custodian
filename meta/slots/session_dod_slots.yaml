@@ -1,0 +1,111 @@
+id: https://textpast.com/ontology/rr/slots/session_dod_slots
+name: session_dod_slots
+title: Session Definition-of-Done Verification Slots
+description: >-
+  Centralized slots for the agent session Definition-of-Done (DoD) verification
+  schema (classes SessionDoDRecord, SessionDoDVerificationEntry). All slots are
+  defined here and imported by the class files — class files MUST NOT define
+  slots inline (GAC: linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001).
+  Slot names are verb-first / noun-singular and ontology-neutral
+  (linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  # ── SessionDoDRecord slots ──
+
+  session_ref:
+    slot_uri: rr:sessionRef
+    description: >-
+      Stable reference to the session this DoD record closes (e.g. a Swarm
+      agent_id, a docs/prompt/<timestamp>.md path, or an operator session label).
+    range: string
+    required: true
+
+  generated_at:
+    slot_uri: dcterms:created
+    description: >-
+      ISO 8601 UTC timestamp when the DoD record was generated (the session-end
+      summary time).
+    range: string
+    required: true
+
+  landed_sha:
+    slot_uri: prov:wasGeneratedBy
+    description: >-
+      The origin/main commit SHA (full or short) at which the session's work
+      landed. A DoD record for unlanded work MUST set this to the literal
+      "UNLANDED" and explain the blocker in the session summary — silent
+      unlanded work is a process failure (AGENT-SESSION-COMMIT-001).
+    range: string
+    required: true
+
+  verify:
+    slot_uri: rr:verify
+    description: >-
+      The list of Definition-of-Done verification entries that back the session's
+      completion claims. MUST be non-empty for any session that claims completed
+      work; an empty list means "nothing claimed done" and the session summary
+      must say so explicitly.
+    range: SessionDoDVerificationEntry
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: true
+
+  # ── SessionDoDVerificationEntry slots ──
+
+  claim:
+    slot_uri: rr:claim
+    description: >-
+      The completion claim being verified, stated as a single falsifiable
+      sentence (e.g. "a commit introducing a NEW duplicate is blocked even with
+      the legacy bypass"). MUST be falsifiable — "done" or "works" is not a
+      claim.
+    range: string
+    required: true
+
+  method:
+    slot_uri: rr:verificationMethod
+    description: >-
+      The evidence method by which the claim was verified. MUST be one of
+      SessionDoDVerificationMethodEnum; a claim with no method is an
+      unverified self-attestation and is forbidden.
+    range: SessionDoDVerificationMethodEnum
+    required: true
+
+  result:
+    slot_uri: rr:verificationResult
+    description: >-
+      The observed result that proves the claim (e.g. "guard rc=1; audit row
+      outcome=refused_new written"; "9/9 cases pass"; "lint exit 0, no
+      duplicate ids"). Prefer machine-readable signals (exit codes, counts)
+      over prose (PLAN-DOD-001 Rule 5).
+    range: string
+    required: true
+
+  command:
+    slot_uri: rr:verificationCommand
+    description: >-
+      The exact, re-runnable command (or command + env) that produced the
+      result, so a reviewer or future agent can reproduce the verification.
+      Omit only when the method is LIVE_PROOF and no separate command exists
+      (the production behaviour itself is the evidence).
+    range: string
+
+  durable_anchor:
+    slot_uri: rr:durableAnchor
+    description: >-
+      A durable, repo-relative anchor to the verified artifact — a commit SHA,
+      a repo-relative file path, or a Forgejo issue number — never a bare line
+      number (GAC: code-location-citation-durable-anchor.md). This is what makes
+      the verification checkable after the session ends.
+    range: string
+    required: true

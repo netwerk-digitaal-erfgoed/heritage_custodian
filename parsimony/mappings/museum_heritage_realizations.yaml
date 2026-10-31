@@ -1,0 +1,63 @@
+id: https://textpast.com/ontology/rr/parsimony/mappings/museum-heritage-realizations
+name: museum_heritage_realizations
+title: Museum & Heritage Entity Realizations
+description: >-
+  Structured realization notes for how the semantic museum, heritage-element,
+  and safeguarding-organisation hubs are implemented through the engineering
+  custodian classes and slots harvested from the 5 museum/ICH custodians
+  (Museumregister Nederland, KIEN, DDB, DUK, museum-digital). These realizations
+  bridge the source-specific record shapes (Phase 3 schemata) to the parsimony
+  semantic hubs for TypeDB projection (Phase 8). Per
+  KOS-REGISTER-OVERLAP-TAXONOMY-001, the overlap cross-references (institution
+  → ISIL, national → UNESCO) are typed at the meta-bridge layer, not here.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  rootreal: https://rootreal.ai/ontology/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../../../modules/metadata
+  - ../classes/Agent
+  - ../classes/CustodialEntity
+  - ../classes/Holding
+  - ../classes/PlaceContext
+  - ../../../modules/classes/Organization
+comments:
+  - >-
+    REALIZATION AXIS: The semantic Museum hub is concretized through the
+    engineering Organization class (a museum is an organization that holds
+    cultural objects) + the AccreditationBody relationship (the Museumregister
+    keurmerk Q110989587 accredits it). The `recorded_by` slot ties a museum to
+    its source custodian (NL-NH-HLV-N-SMRN for accredited museums; DE-BE-BER-D-DDB
+    for DDB-only museums; DE-BB-POT-D-MD for museum-digital institutions).
+  - >-
+    REALIZATION AXIS: The semantic HeritageElement hub (an intangible-cultural-
+    heritage practice) is concretized through the engineering Activity class (a
+    culture form is a practised activity) + the PlaceContext (where it is
+    practised). The DUK Bundesweites Verzeichnis + KIEN inventory entries are
+    Art.12 national-inventory records of HeritageElements; the UNESCO ich/
+    cross-reference (where nominated) is typed at the meta-bridge layer.
+  - >-
+    REALIZATION AXIS: The semantic SafeguardingOrganisation hub is concretized
+    through the engineering Organization class (a Stichting/Vereniging/Gilde that
+    safeguards a heritage element). These are custodian-of-custodians records
+    (Phase 4.3): each carries its OWN derived GHCID + `recorded_by` provenance
+    linking it to its source custodian (NL-GE-ARN-I-KIEN for KIEN-extracted orgs).
+    Extracted via Phase 6 stochastic-NLP, not a Phase 3 source shape.
+  - >-
+    REALIZATION AXIS: The semantic CulturalObject hub (a tangible artefact) is
+    concretized through the engineering Holding class (an object held by a
+    museum). DDB and museum-digital objects are CulturalObject records; the
+    DDB↔MD dedup is typed at the meta-bridge layer (shared object node, each
+    aggregator retains metadata depth).
+  - >-
+    REALIZATION AXIS: Semantic recorded_by gathers the engineering
+    custodian-attribution pattern: every harvested museum/ICH organisation
+    carries the GHCID of the register that recorded it. This is the
+    custodian-of-custodians provenance (Phase 4.3) — ISIL-uncoded museums in DDB
+    get `recorded_by: DE-BE-BER-D-DDB`; KIEN-extracted Stichtingen get
+    `recorded_by: NL-GE-ARN-I-KIEN`. Never absent; never fabricated.

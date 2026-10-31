@@ -1,0 +1,31 @@
+id: https://textpast.com/ontology/rr/class/ProvenanceGitCommit
+name: ProvenanceGitCommit
+title: Provenance Git Commit
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  prov: http://www.w3.org/ns/prov/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/session_provenance_slots
+default_range: string
+
+classes:
+  ProvenanceGitCommit:
+    class_uri: rr:ProvenanceGitCommit
+    description: >-
+      One git commit a mined session produced — a SHA validated against the repo
+      (`git cat-file -e`), enriched with author + files-changed. Multivalued under
+      SessionProvenance.git_commits (FU3 part a). The validator-authoritative
+      commit SHAs the Archive MCP's 47 git-linkage candidates are missing today.
+    slots:
+      - commit_sha
+      - commit_short
+      - author_name
+      - author_email
+      - committed_at
+      - files_changed
+    comments:
+      - "commit_sha is the full 40-hex SHA, validated to exist in the repo; commit_short is the display short SHA."
+      - "files_changed is the repo-relative path list the commit touched (a multivalued string branch)."

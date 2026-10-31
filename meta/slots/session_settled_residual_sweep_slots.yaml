@@ -1,0 +1,63 @@
+id: https://textpast.com/ontology/rr/slots/session_settled_residual_sweep_slots
+name: session_settled_residual_sweep_slots
+title: Session Settled-Residual Sweep Slots
+description: >-
+  Slots for the SessionSettledResidualSweep class (plan
+  bridge-blockedtrigger-settled-gate-sibling-vehicle-conclusion; the
+  settling-session close-out leg of the four-surface consumer scan,
+  AGENT-RESIDUAL-SURFACE-BINDING-001 §2b). Class files MUST NOT define slots
+  inline (CLASS-FILES-001); this module holds a settled-residual sweep
+  record's fields: the fingerprint settled, how it was settled, the sibling
+  prompts the sweep concluded, and the sweep's grep/conclude receipts.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  settled_fingerprint:
+    slot_uri: rr:namesSettledFingerprint
+    description: >-
+      A fingerprint of the residual/dead-letter THIS session settled: the
+      26-char blocked-trigger ULID it discharged (cleared/retired), the
+      dead-letter digest issue (#NNN) it closed, or the evidence path whose
+      landing discharged the obligation. REQUIRED, one line. Sibling prompts
+      citing this fingerprint (trigger id, issue number, path) are the sweep's
+      grep targets.
+    required: true
+
+  settlement:
+    slot_uri: rr:citesSettlement
+    description: >-
+      HOW the fingerprint was settled, with the durable citation: the tracker
+      closed with its verification evidence, the trigger-clear receipt, the
+      landed sha that discharged the obligation. REQUIRED — the concluded
+      siblings' reason strings ride this settlement.
+    required: true
+
+  sibling_prompts_concluded:
+    slot_uri: rr:concludesSiblingPrompt
+    description: >-
+      The OTHER active prompts the sweep found citing the settled fingerprint
+      and concluded via prompt_template_conclude_prompt — one entry per
+      prompt, naming its rrp:pr: PID or docs/prompt/ path, the disposition,
+      and the reason. May be [] (the sweep ran; no OTHER active citing prompt
+      existed — the explicit empty IS the sweep's answer, never a skipped
+      sweep). Excludes the settling session's own DRIVING prompt (concluded by
+      its own chain path) and prompts already terminal (status != active).
+    required: false
+    multivalued: true
+    inlined: false
+    range: string
+
+  sweep_evidence:
+    slot_uri: rr:citesSweepEvidence
+    description: >-
+      The sweep's receipts: the corpus grep command + hit count over
+      origin/main docs/prompt/*.md, and the per-sibling conclude receipts.
+      REQUIRED — a conclusion claim with no grep receipt is unauditable (the
+      same standard as dod.verify[].durable_anchor).
+    required: true

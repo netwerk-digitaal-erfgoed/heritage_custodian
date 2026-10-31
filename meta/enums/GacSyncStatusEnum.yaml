@@ -1,0 +1,34 @@
+id: https://textpast.com/ontology/rr/enum/GacSyncStatusEnum
+name: GacSyncStatusEnum
+title: GAC Sync Status Enum
+description: >-
+  The projection state of a GAC rule markdown change into the TypeDB hypergraph,
+  as DERIVED (never asserted) by gac_check_sync_status at emit time. Aligned
+  with the GAC access-path clarification (markdown on origin/main is the SoT;
+  the hypergraph converges via GitOps within ~15 min) and gac-degradation-
+  detection.md (a degraded query is recorded, not faked).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  GacSyncStatusEnum:
+    description: >-
+      Sync state recorded in GacRuleRegistration.sync_status. Always derived
+      from a live GAC MCP query at emit time, never asserted by the agent.
+    permissible_values:
+      PROJECTED:
+        description: The TypeDB hypergraph reflects the landed markdown change.
+      PENDING:
+        description: >-
+          Markdown landed; GitOps sync not yet converged (within the ~15 min
+          content-drift window). Non-blocking; re-checks converge.
+      DEGRADED:
+        description: >-
+          GAC MCP could not confirm (cache / fallback / timeout). Recorded as
+          informational only; sync_source names the degraded source.
+      N_A:
+        description: >-
+          Not applicable — the row is NOT_PROMOTE (no markdown change, nothing
+          to sync).

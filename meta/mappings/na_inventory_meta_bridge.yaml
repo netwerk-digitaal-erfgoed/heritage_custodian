@@ -1,0 +1,134 @@
+# Meta Bridge Mapping: Nationaal Archief Inventory cross-source reconciliation
+#
+# The meta-layer JOIN that fuses the three NA inventory source surfaces — EAD
+# finding aids/components/daos, METS structural metadata, and IIIF manifests/
+# canvases — into ONE connected hypergraph (SOURCE-MULTIFILE-META-SINGLE-GRAPH-001).
+# Each source is modelled in its own single-source bundle
+# (schemata/source/custodian/nl_zh_dh_a_na/{ead,mets,iiif}/mappings.yaml); this
+# meta bridge documents how records sharing the connective spine
+# (toegangsnummer → inventarisnummer → mets_uuid) reconcile to one identity.
+#
+# Reconciliation mechanism: records that share mets_uuid and/or inventarisnummer
+# fuse into one connected node in the kos_map hypergraph via the shared
+# identified_by identifiers — NO dedicated "join" meta class is required (the
+# EAD component RecordSetType, the METS/IIIF DigitalInstantiation, and the IIIF
+# Image nodes join on shared identifiers, not via an intermediate class). This
+# settles checklist item k7jw0d1z1 (ArchivalRecordItem.yaml): no new meta class
+# is introduced — the item-level reconciliation is identifier-based.
+#
+# Authority: this is a direct source-schema projection (no SSSOM cross-vocabulary
+# alignment), so no mapping_release / sssom_mapping_ref is carried on the
+# na-inventory output family.
+#
+# Version: 1.0.0
+# Last Updated: 2026-07-06
+
+id: https://rootreal.ai/schema/meta_bridge/na_inventory
+name: na_inventory_meta_bridge
+title: Nationaal Archief Inventory Cross-Source Meta Bridge
+description: |
+  Meta-layer reconciliation of the three Nationaal Archief inventory source
+  surfaces (EAD + METS + IIIF) into one connected kos_map hypergraph.
+
+  The three single-source bundles (ead, mets, iiif) each project to canonical
+  meta classes:
+  - EAD finding aid  -> FindingAid (rico:FindingAid)
+  - EAD component    -> RecordSetType
+  - EAD <dao> / METS object / METS file object / IIIF manifest -> DigitalInstantiation
+  - IIIF canvas      -> Image (schema:ImageObject)
+
+  The records reconcile via the connective spine (toegangsnummer,
+  inventarisnummer, mets_uuid) carried in each record's identified_by: an EAD
+  component, its METS objects, and its IIIF manifests that share inventarisnummer
+  + mets_uuid fuse into one connected subgraph. No dedicated join class is
+  introduced.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  src: https://rootreal.ai/schemas/meta_bridge/na_inventory/
+
+imports:
+  - linkml:types
+
+default_range: string
+
+classes:
+  NaInventoryReconciliation:
+    description: |
+      Declarative reconciliation descriptor for the NA inventory cross-source
+      meta bridge. One instance describes how the three source surfaces fuse
+      into one connected identity graph.
+    attributes:
+      reconciliation_key:
+        description: Primary cross-source join key (mets_uuid).
+        range: ReconciliationKeyEnum
+        required: true
+      spine_identifiers:
+        description: Connective-spine identifiers shared across the three sources.
+        range: string
+        multivalued: true
+      target_meta_classes:
+        description: Canonical meta classes the reconciled records project to.
+        range: TargetMetaClassEnum
+        multivalued: true
+
+enums:
+  ReconciliationKeyEnum:
+    permissible_values:
+      mets_uuid:
+        description: METS object UUID — the primary cross-source reconciliation key.
+      inventarisnummer:
+        description: EAD component inventory number — secondary join key.
+      toegangsnummer:
+        description: Parent finding-aid access number — parent-edge join key.
+  TargetMetaClassEnum:
+    permissible_values:
+      FindingAid:
+        description: EAD finding-aid record (rico:FindingAid).
+      RecordSetType:
+        description: EAD archival component.
+      DigitalInstantiation:
+        description: EAD dao / METS object / METS file object / IIIF manifest.
+      Image:
+        description: IIIF canvas image (schema:ImageObject).
+
+# Cross-source slot reconciliation: how each source's identifiers map onto the
+# shared identified_by slot that fuses the graph. The mets/iiif fields with no
+# generic-slot equivalent (mime_type, rights, dimensions) remain in the source
+# read model / source Turtle and are omitted from the reduced hypergraph
+# projection (DATA-FLOW-001). The IIIF Image service endpoint
+# (`image_service_id`, + the manifest `source_url`) is an EXCEPTION: it projects
+# onto the meta-mapped `has_url` field (`OutputMetaRecord.has_url` ->
+# `HypergraphBatchRecord.has_url` -> the kos_map `url_value` attribute) so the
+# IIIF proxy dynamic-allowlist can resolve curated custodian IIIF hosts per GHCID
+# (`dynamic-allowlist-from-meta-schemata-source-of-truth`,
+# `meta-mapped-typedb-ontology-preferred-over-source-lakehouse`).
+slot_mappings:
+  mets_uuid:
+    target_slot: identified_by
+    transform: identity
+    description: Carried by EAD dao, MetsObject, MetsFileObject, IiifManifest.
+  inventarisnummer:
+    target_slot: identified_by
+    transform: identity
+    description: Carried by EAD component, MetsObject, MetsFileObject, IiifManifest.
+  toegangsnummer:
+    target_slot: identified_by
+    transform: identity
+    description: Carried by all NA inventory records (parent finding-aid edge).
+  manifest_id:
+    target_slot: identified_by
+    transform: identity
+    description: Carried by IiifManifest + IiifCanvas (canvas joins its manifest).
+  file_url:
+    target_slot: identified_by
+    transform: identity
+    description: Carried by MetsFileObject (the file's dereferenceable locator).
+  canvas_id:
+    target_slot: identified_by
+    transform: identity
+    description: Carried by IiifCanvas (the canvas identity).

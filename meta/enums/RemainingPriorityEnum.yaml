@@ -1,0 +1,28 @@
+id: https://textpast.com/ontology/rr/enum/RemainingPriorityEnum
+name: RemainingPriorityEnum
+title: Remaining Priority Enum
+description: >-
+  Priority of a remaining-work item in a session conclusion (element E5).
+  Three-level (high/medium/low) to keep triage simple; a finer granularity would
+  be false precision for a handoff surface.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  RemainingPriorityEnum:
+    description: >-
+      Triage priority for a RemainingItem. A BLOCKER is implicitly high; the
+      field lets a FOLLOWUP_TASK signal urgency relative to other open items.
+    permissible_values:
+      HIGH:
+        description: >-
+          Should be the next session's first pick (a blocker, a safety gap, or
+          a fast follow the plan is blocked on).
+      MEDIUM:
+        description: >-
+          Normal plan-advancing work; pick in dependency order.
+      LOW:
+        description: >-
+          Nice-to-have / cleanup; safe to defer further if capacity is tight.

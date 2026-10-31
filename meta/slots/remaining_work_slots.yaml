@@ -1,0 +1,121 @@
+id: https://textpast.com/ontology/rr/slots/remaining_work_slots
+name: remaining_work_slots
+title: Session Remaining Work Slots
+description: >-
+  Centralized slots for the SessionRemainingWork and RemainingItem classes
+  (element E5 of the structured session-conclusion plan). All slots are defined
+  here and imported by the class files — class files MUST NOT define slots
+  inline (GAC: linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001).
+  Slot names are noun-singular and ontology-neutral (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/RemainingItemKindEnum
+  - ../enums/RemainingPriorityEnum
+
+slots:
+
+  # ── SessionRemainingWork (container) slots ──
+
+  remaining_summary:
+    slot_uri: rr:remainingSummary
+    description: >-
+      A short prose overview of what remains at session close (the human
+      gist before the structured items). Optional but recommended — gives the
+      next agent a one-line orientation before reading the items list.
+    range: string
+
+  items:
+    slot_uri: rr:hasRemainingItem
+    description: >-
+      The structured remaining-work items. MAY be empty if and only if the
+      session genuinely completed everything (then remaining_summary should say
+      so). An empty list with unstated completeness is silent handoff loss.
+    range: RemainingItem
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    required: true
+
+  # ── RemainingItem slots ──
+
+  remaining_description:
+    slot_uri: rr:remainingDescription
+    description: >-
+      The remaining item as a single falsifiable sentence (e.g. "Implement E3
+      PlanChecklistUpdate projection schema"). "Stuff left" or "todo" is not a
+      description — the next agent must be able to tell when it is done.
+    range: string
+    required: true
+
+  kind:
+    slot_uri: rr:remainingKind
+    description: >-
+      The kind of remaining item (OPEN_PLAN_ITEM / FOLLOWUP_TASK /
+      VERIFICATION_PENDING / BLOCKER / DEFERRED). Drives triage: a BLOCKER is
+      escalated, a VERIFICATION_PENDING is waited-on, etc.
+    range: RemainingItemKindEnum
+    required: true
+
+  priority:
+    slot_uri: rr:remainingPriority
+    description: >-
+      Triage priority (HIGH / MEDIUM / LOW). A BLOCKER is implicitly HIGH; the
+      field lets FOLLOWUP_TASK items signal relative urgency.
+    range: RemainingPriorityEnum
+    required: true
+
+  plan_ref:
+    slot_uri: rr:planRef
+    description: >-
+      Reference to the plan/phase this item advances, when kind is OPEN_PLAN_ITEM
+      (e.g. "session_conclusion_structured/phase-3"). References the plan; does
+      NOT re-list its checklist items (the Plan MCP is the SoT — derive, do not
+      duplicate).
+    range: string
+
+  owner:
+    slot_uri: rr:remainingOwner
+    description: >-
+      Who picks it up — a Swarm agent_id, an operator handle, or the literal
+      "next-session" when any next agent may take it (the default for
+      FOLLOWUP_TASK).
+    range: string
+
+  tracking_issue:
+    slot_uri: rr:trackingIssue
+    description: >-
+      Forgejo issue URL if this remaining item is tracked in the issue tracker
+      (e.g. https://git.rootreal.io/textpast/rootreal/issues/NNN). Optional.
+    range: string
+
+  remaining_durable_anchor:
+    slot_uri: rr:remainingDurableAnchor
+    description: >-
+      A durable, repo-relative anchor to where this item lives or was raised —
+      a commit SHA, a repo-relative file path, or an issue number — never a bare
+      line number (GAC: code-location-citation-durable-anchor.md). Lets the next
+      agent jump straight to the relevant artifact.
+    range: string
+    required: true
+
+  continuation_tab_title:
+    slot_uri: rr:continuationTabTitle
+    description: >-
+      The terminal tab title of the LIVE session that continues this item,
+      captured at close time when the successor session is already running in
+      its own tab (the finish/continuation pattern). Governed format
+      INFRA-PI-SESSION-TAB-TITLE-001: pi renders `pi - <sessionName> -
+      <cwdBasename>`; operators refer to tabs by the short session/worktree
+      token (e.g. `tekton-pi-20260818T090245-1848526`). Points the operator at
+      the ATTACHABLE executor — the rr-prompt-duplicate-guard flock proves a
+      re-fire of the driving prompt would be a duplicate collision, so the
+      report must name the surface to switch to instead. Optional — omit when
+      the continuing session is not yet launched at close time (owner stays
+      "next-session" and the driving prompt path is the launch surface).
+    range: string

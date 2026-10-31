@@ -1,0 +1,85 @@
+id: https://textpast.com/ontology/rr/parsimony/class/CryptographicProvenanceEventMinimal
+name: CryptographicProvenanceEventMinimal
+title: Minimal Cryptographic Provenance Subset (Parsimonious Proof)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+default_prefix: rr
+default_range: string
+
+imports:
+  - linkml:types
+
+description: >-
+  The minimal sufficient cryptographic-provenance subset every store must be
+  able to emit even when the full ProofBundle is unavailable — the parsimonious
+  proof for cross-store / cross-domain exchange. Four fields: asset_pid +
+  content_id + iscc (optional) + captured_at. Distinct from the heritage
+  ProvenanceEvent (acquisition). Plan provenance-cryptography-services Phase 8
+  item k0j8gfk8d; GAC ARCH-PROVENANCE-METALAYER-001.
+
+classes:
+  CryptographicProvenanceEventMinimal:
+    class_uri: rr:CryptographicProvenanceEventMinimal
+    description: >-
+      The four-field parsimonious provenance projection of a ProofBundle — the
+      minimal proof every data-plane store must emit (the scalar summary in
+      provenance-core::metadata::ProvenanceSummary).
+    broad_mappings:
+      - prov:Activity
+    slots:
+      - asset_pid
+      - content_id
+      - iscc_fingerprint
+      - captured_at
+    slot_usage:
+      asset_pid:
+        required: true
+      content_id:
+        required: true
+      captured_at:
+        required: true
+
+slots:
+  asset_pid:
+    slot_uri: rr:asset_pid
+    title: Asset PID
+    identifier: true
+    description: >-
+      The stable opaque asset PID (Uuid tier; PID-PATTERNS-001).
+    range: uriorcurie
+    examples:
+      - value: urn:uuid:11111111-1111-1111-1111-111111111111
+    broad_mappings:
+      - prov:wasAttributedTo
+  content_id:
+    slot_uri: rr:content_id
+    title: Content Identifier
+    description: >-
+      The sha256:<64-hex> content identifier (the content tier).
+    range: string
+    pattern: "^sha256:[0-9a-f]{64}$"
+    examples:
+      - value: sha256:3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a
+    close_mappings:
+      - prov:atLocation
+  iscc_fingerprint:
+    slot_uri: rr:iscc_fingerprint
+    title: ISCC Fingerprint
+    description: >-
+      The optional ISO 24138 ISCC similarity fingerprint (the content tier).
+    range: string
+    pattern: "^ISCC:[A-Z0-9*~$]+$"
+    examples:
+      - value: ISCC:KACZHKQEDJ7VAQC2
+  captured_at:
+    slot_uri: rr:captured_at
+    title: Captured At
+    description: >-
+      When the proof was captured (RFC 3339, UTC; canonical TimestampService).
+    range: datetime
+    close_mappings:
+      - prov:startedAtTime
+      - schema:dateCreated

@@ -1,0 +1,137 @@
+# Meta Bridge Mapping: DDB ↔ museum-digital object-dedup coordination
+#
+# Reconciles cultural-object records that appear in BOTH DDB (national, 35M
+# objects) and museum-digital (regional instances sync to global). Per
+# KOS-REGISTER-OVERLAP-TAXONOMY-001, both are type-D object aggregators with
+# overlapping object space (regional vs national); the dedup is a typed SSSOM
+# cross-reference at the object node, NOT a register merge. A DDB object and a
+# museum-digital object that depict the same physical artefact reconcile to ONE
+# shared object node; each aggregator's metadata depth is retained independently.
+#
+# Version: 1.0.0
+# Last Updated: 2026-07-07
+
+id: https://rootreal.ai/schema/meta_bridge/ddb_md_object_dedup_crosswalk
+name: ddb_md_object_dedup_crosswalk_meta_bridge
+title: DDB ↔ museum-digital Object-Dedup Coordination Meta Bridge
+description: |
+  Reconciles cultural-object records that appear in both DDB and museum-digital
+  (overlapping object space — regional vs national aggregation). The dedup is a
+  typed SSSOM cross-reference at the object node; each aggregator's metadata
+  depth is retained independently. Objects in only one aggregator stay
+  single-source records with recorded_by provenance.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  sssom: https://w3id.org/sssom/
+  schema: http://schema.org/
+  rootreal: https://rootreal.ai/ontology/
+
+imports:
+  - linkml:types
+
+classes:
+  DdbMdObjectDedupMapping:
+    description: |
+      One reconciled crosswalk row: a DDB object and a museum-digital object that
+      depict the same physical artefact, reconciled to a shared object node. Each
+      aggregator's metadata (title, description, institution, images) is retained
+      independently. Projects to a parsimony Holding (the object) + an SSSOM
+      mapping row (skos:closeMatch for the same artefact; skos:relatedMatch for
+      related-but-distinct objects).
+    attributes:
+      ddb_item_id:
+        description: The DDB persistent item identifier.
+        range: string
+      md_object_id:
+        description: The museum-digital object id.
+        range: integer
+      shared_object_label:
+        description: The reconciled object label (preferred title across sources).
+        range: string
+        required: true
+      contributing_institution:
+        description: The owning institution (reconciles to ISIL/DE via the institution crosswalk).
+        range: string
+      mapping_predicate:
+        description: SKOS predicate — closeMatch for the same artefact; relatedMatch for related-but-distinct.
+        range: CrosswalkPredicateEnum
+        required: true
+      dedup_confidence:
+        description: Confidence that the two records depict the same artefact (title + institution + inventory-number match).
+        range: float
+        required: true
+      attested_in:
+        description: Source citation(s) (provenance — mandatory).
+        range: string
+        multivalued: true
+        required: true
+
+slot_mappings:
+  ddb_item_id:
+    target_predicate: "@subject"
+    transform: identity
+  md_object_id:
+    target_predicate: "@object"
+    transform: identity
+    parsimony_slot: identified_by
+  mapping_predicate:
+    target_predicate: "@predicate"
+    transform: identity
+  shared_object_label:
+    target_predicate: "rdfs:label"
+    parsimony_slot: has_name
+    transform: identity
+  contributing_institution:
+    target_predicate: "schema:provider"
+    parsimony_slot: held_by
+    transform: identity
+  dedup_confidence:
+    target_predicate: "sssom:confidence"
+    transform: identity
+  attested_in:
+    target_predicate: "dcterms:source"
+    parsimony_slot: attested_in
+    transform: identity
+
+reconciliation:
+  key: [ddb_item_id, md_object_id]
+  merge_across_aggregators: false
+  note: >-
+    A DDB object and a museum-digital object that depict the same artefact
+    reconcile to ONE shared object node; each aggregator's metadata depth is
+    retained independently. Objects in only one aggregator stay single-source
+    records — never fabricated as a cross-reference.
+
+sssom_requirements:
+  minimum_confidence: 0.60
+  required_predicate_ids:
+    - "skos:closeMatch"
+    - "skos:relatedMatch"
+  mapping_justification: "semapv:ManualMappingCuration"
+  extension_slots:
+    - ext_spatial_scope
+
+typedb_projection:
+  entity_type: "cultural-object"
+  relations:
+    - type: "depicted-in"
+      role_source: "cultural-object"
+      role_target: "aggregator-record"
+    - type: "held-by"
+      role_source: "cultural-object"
+      role_target: "institution"
+
+enums:
+  CrosswalkPredicateEnum:
+    description: SKOS mapping predicates for DDB↔MD object dedup.
+    permissible_values:
+      closeMatch:
+        description: The two records depict the same physical artefact.
+        meaning: skos:closeMatch
+      relatedMatch:
+        description: The two records are related but distinct objects.
+        meaning: skos:relatedMatch

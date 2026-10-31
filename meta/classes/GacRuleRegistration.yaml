@@ -1,0 +1,60 @@
+id: https://textpast.com/ontology/rr/class/GacRuleRegistration
+name: GacRuleRegistration
+title: GAC Rule Registration Entry
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/GacRuleActionEnum
+  - ../enums/GacSyncStatusEnum
+  - ../slots/gac_rule_registration_slots
+default_range: string
+
+classes:
+  GacRuleRegistration:
+    class_uri: rr:GacRuleRegistration
+    description: >-
+      One row of the session-close promoted / not-promoted GAC-rule table
+      (element E2 of the structured session-conclusion plan). Binds the rule
+      id, the registration action, the repo-relative path, the version
+      transition, the rationale, an optional tracking issue, and — crucially —
+      a sync_status DERIVED from gac_check_sync_status (never asserted) plus
+      the sync_source that answered the query. Implements AGENT-SESSION-DOC-001
+      §0 (promoted/not-promoted tables) in machine-checkable form.
+    slots:
+      - rule_id
+      - action
+      - rule_path
+      - from_version
+      - to_version
+      - reason
+      - tracking_issue
+      - sync_status
+      - sync_source
+    comments:
+      - "sync_status is DERIVED from gac_check_sync_status(rule_path) — never asserted. sync_source records the MCP source (typedb/cache/fallback/degraded)."
+      - "from_version omitted for PROMOTE_NEW; to_version omitted for NOT_PROMOTE."
+      - "reason is REQUIRED for NOT_PROMOTE too — an unexplained not-promotion is silent knowledge loss."
+      - "A PENDING/DEGRADED sync_status does NOT block the close (markdown on origin/main is the SoT)."
+    examples:
+      - value:
+          rule_id: "INFRA-GAC-DUP-ID-PREVENT-001"
+          action: "EXTEND_EXISTING"
+          rule_path: "crates/hub/api/dev/gac/rules/infrastructure/gac-duplicate-id-prevention.md"
+          from_version: "1.1.0"
+          to_version: "2.0.0"
+          reason: "Implemented baseline-diff + scoped/audited bypass (guard v2.0.0); retired blanket bypass as a safety control."
+          tracking_issue: "https://git.rootreal.io/textpast/rootreal/issues/280"
+          sync_status: "PROJECTED"
+          sync_source: "typedb"
+        description: "A real EXTEND_EXISTING row (GAC-DUP-ID-PREVENT-001 v1.1.0 to v2.0.0)."
+      - value:
+          rule_id: "AGENT-WORKTREE-COMMIT-INCREMENTALLY-001"
+          action: "NOT_PROMOTE"
+          rule_path: "crates/hub/api/dev/gac/rules/agent-worktree-prune-data-loss.md"
+          reason: "Subsumed by AGENT-WORKTREE-PRUNE-LOSS-001 §001a (re-ID'd to resolve the duplicate); no new generalisable lesson beyond the parent rule."
+          sync_status: "N_A"
+          sync_source: "n/a"
+        description: "A NOT_PROMOTE row (candidate considered, deliberately not promoted; reason required; nothing to sync)."

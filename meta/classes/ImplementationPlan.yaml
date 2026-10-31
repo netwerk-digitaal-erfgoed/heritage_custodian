@@ -1,0 +1,62 @@
+id: https://textpast.com/ontology/rr/class/ImplementationPlan
+name: ImplementationPlan
+title: Implementation Plan
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/PlanStatusEnum
+  - ../slots/plan_slots
+default_range: string
+
+# PLAN-SCHEMATA-OVER-HEURISTICS-001 — v0.2 (refined: slots centralized to
+# ../slots/plan_slots per CLASS-FILES-001; PlanStatusEnum defined; concept_pid
+# typed via the RRP grammar gate + pl-kind pinning in slot_usage, R14-safe;
+# plan_id reused from plan_checklist_update_slots; redundant `slug` dropped and
+# `owner` → plan_owner to avoid the rr:remainingOwner collision). Models the
+# ImplementationPlan entity the `plans` TypeDB corpus ingests. Markdown is a
+# SERIALIZATION projected FROM this schemata — never the parser's input of
+# record.
+
+classes:
+  ImplementationPlan:
+    class_uri: rr:ImplementationPlan
+    description: >-
+      A tracked implementation plan under docs/plan/<slug>/. The canonical,
+      schematized representation consumed by the gac/plan ingestion pipeline
+      (crates/hub/api/dev/gac/plan/) into the TypeDB `plans` hypergraph.
+      Replaces heuristic-markdown discovery (filename glob + regex checkbox +
+      prose inference) with declared structure: stable identity (RRP Concept
+      PID), typed status, owner, sections, and provenance. Implements
+      PLAN-SCHEMATA-OVER-HEURISTICS-001 + PLAN-PID-001.
+    slots:
+      - plan_id
+      - concept_pid
+      - title
+      - status
+      - plan_owner
+      - source_path
+      - contains_section
+      - created_at
+      - last_updated
+      - supersedes
+      - archived
+      - advances_domain
+      - supports_kpi
+    slot_usage:
+      plan_id:
+        identifier: true
+      concept_pid:
+        pattern: "^rrp:pl:[^\\s;@]+$"
+      status:
+        range: PlanStatusEnum
+        required: true
+    comments:
+      - "plan_id is the slug (e.g. tekton_kueue_admission) and the Plan MCP plan_id; reused from plan_checklist_update_slots (rr:planId)."
+      - "concept_pid is the RRP rrp:pl: PID (PLAN-PID-001), pinned to the pl kind via slot_usage; the Crockford check symbol is validated by RrpValidator, not this regex."
+      - "status is a typed enum (PlanStatusEnum) — never inferred from prose."
+      - "source_path is the canonical docs/plan/<plan_id>/ dir; ONE canonical checklist artifact (no CHECKLIST.md vs checklist.md case ambiguity)."
+      - "contains_section is the ordered list of PlanSection entities (rrp:se: PIDs)."
+      - "advances_domain / supports_kpi are the goal-layer self-declaration (rrp:pl:vskepfvnx): the plan declares the product domains it advances and the KPIs it feeds; ingestion projects them as plan-advances-domain / kpi-supports-plan edges with author provenance 'plan-frontmatter'."

@@ -1,0 +1,80 @@
+id: https://textpast.com/ontology/rr/slots/plan_checklist_update_slots
+name: plan_checklist_update_slots
+title: Plan Checklist Update Slots
+description: >-
+  Centralized slots for the PlanChecklistUpdate class (element E3 of the
+  structured session-conclusion plan). All slots are defined here and imported
+  by the class file — class files MUST NOT define slots inline (GAC:
+  linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names
+  are noun-singular and ontology-neutral (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+  This element is a PROJECTION of the Plan MCP's authoritative checklist state —
+  it carries only a session delta and MUST NOT duplicate the full checklist
+  (GOV-PLAN-CHECKLIST-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  plan_id:
+    slot_uri: rr:planId
+    description: >-
+      The Plan MCP plan_id this session advanced (e.g. "tekton",
+      "session_conclusion_structured"). MUST appear in plan_list.
+    range: string
+    required: true
+
+  plan_path:
+    slot_uri: rr:planPath
+    description: >-
+      Repo-relative plan directory (e.g. docs/plan/session_conclusion_structured).
+      MUST resolve on origin/main.
+    range: string
+    required: true
+
+  phases_touched:
+    slot_uri: rr:phasesTouched
+    description: >-
+      The phase numbers this session advanced (the delta only — never the full
+      phase list).
+    range: integer
+    multivalued: true
+    required: true
+
+  items_closed:
+    slot_uri: rr:itemsClosed
+    description: >-
+      The item labels closed THIS session (the delta only — never the full
+      checklist). Each MUST correspond to a plan_complete_plan_task call. Labels
+      are used rather than indices because indices are Plan-MCP-internal and
+      shift on re-ordering.
+    range: string
+    multivalued: true
+
+  before_completion_pct:
+    slot_uri: rr:beforeCompletionPct
+    description: >-
+      The plan's plan_get_checklist_items completion percentage at session
+      start (the baseline before this session's deltas).
+    range: float
+    required: true
+
+  after_completion_pct:
+    slot_uri: rr:afterCompletionPct
+    description: >-
+      The plan's plan_get_checklist_items completion percentage at session end.
+      The Phase 6 validator re-queries the live value and flags drift.
+    range: float
+    required: true
+
+  consistency_validated:
+    slot_uri: rr:consistencyValidated
+    description: >-
+      Whether plan_validate_checklist_consistency passed after the updates
+      (the master checklist and the phase files agree). true/false.
+    range: boolean
+    required: true

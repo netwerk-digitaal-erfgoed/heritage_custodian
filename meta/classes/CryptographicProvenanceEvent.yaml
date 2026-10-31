@@ -1,0 +1,129 @@
+id: https://textpast.com/ontology/rr/class/CryptographicProvenanceEvent
+name: CryptographicProvenanceEvent
+title: Cryptographic Provenance Event (ProofBundle)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  oais: https://oots.tech/ecisa/oais/
+  c2pa: https://c2pa.org/vocab/
+  iscc: https://iscc.is/vocab/
+default_prefix: rr
+default_range: string
+
+imports:
+  - linkml:types
+
+description: >-
+  A cryptographic content-provenance event — one captured ProofBundle for a
+  digital asset, aggregating the four-mechanism proof (baseline SHA-256
+  checksum, ISCC similarity fingerprint, C2PA embedded signed manifest, GAMI /
+  OpenTimestamps external anchor). Distinct from the heritage/museum
+  ProvenanceEvent (crm:E8_Acquisition, ownership-transfer provenance): this is
+  cryptographic content provenance. The stable opaque asset PID is the identity;
+  the content-derived identifiers are the content tier (PID-PATTERNS-001). Plan
+  provenance-cryptography-services; GAC ARCH-PROVENANCE-METALAYER-001.
+
+classes:
+  CryptographicProvenanceEvent:
+    class_uri: rr:CryptographicProvenanceEvent
+    description: >-
+      One captured ProofBundle: the cryptographic proof-of-provenance for one
+      version of an asset's bytes, projected onto the symbolic meta schema.
+    broad_mappings:
+      - prov:Activity
+      - prov:Entity
+    close_mappings:
+      - oais:ingest_event
+    slots:
+      - asset_pid
+      - content_id
+      - iscc_fingerprint
+      - c2pa_manifest_id
+      - gami_signature
+      - lakehouse_snapshot_id
+      - captured_at
+    slot_usage:
+      asset_pid:
+        required: true
+      content_id:
+        required: true
+      captured_at:
+        required: true
+
+slots:
+  asset_pid:
+    slot_uri: rr:asset_pid
+    title: Asset PID
+    identifier: true
+    description: >-
+      The stable opaque asset persistent identifier (Uuid tier). Never derived
+      from content; does not change when the bytes change. PID-PATTERNS-001.
+    range: uriorcurie
+    examples:
+      - value: urn:uuid:11111111-1111-1111-1111-111111111111
+        description: A hyphenated Uuid asset PID
+    broad_mappings:
+      - prov:wasAttributedTo
+  content_id:
+    slot_uri: rr:content_id
+    title: Content Identifier
+    description: >-
+      The content-derived identifier for one version of the bytes
+      (sha256:<64-hex>). The content tier — changes when the bytes change.
+    range: string
+    pattern: "^sha256:[0-9a-f]{64}$"
+    examples:
+      - value: sha256:3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a
+        description: A SHA-256 content identifier
+    close_mappings:
+      - iscc:content-code
+  iscc_fingerprint:
+    slot_uri: rr:iscc_fingerprint
+    title: ISCC Fingerprint
+    description: >-
+      The ISO 24138 ISCC similarity-preserving fingerprint. Optional (present
+      once the ISCC service has fingerprinted the asset). The content tier.
+    range: string
+    pattern: "^ISCC:[A-Z0-9*~$]+$"
+    examples:
+      - value: ISCC:KACZHKQEDJ7VAQC2
+        description: An ISCC code
+    exact_mappings:
+      - iscc:iscc
+  c2pa_manifest_id:
+    slot_uri: rr:c2pa_manifest_id
+    title: C2PA Manifest Reference
+    description: >-
+      Opaque reference to the embedded C2PA manifest — the signed, creation/edit
+      lineage that travels with the artifact (the OAIS DIP half of the dual
+      delivery model).
+    range: string
+    close_mappings:
+      - c2pa:Manifest
+  gami_signature:
+    slot_uri: rr:gami_signature
+    title: GAMI Anchor Reference
+    description: >-
+      The GAMI / OpenTimestamps anchor reference (existence-before-date) plus the
+      Ed25519 signature over the batch Merkle root. The external-anchoring half
+      of the dual delivery model.
+    range: string
+  lakehouse_snapshot_id:
+    slot_uri: rr:lakehouse_snapshot_id
+    title: Lakehouse Snapshot Identifier
+    description: >-
+      The lakehouse snapshot (the OAIS AIP / SIP->AIP boundary) this provenance
+      event binds the asset to.
+    range: string
+  captured_at:
+    slot_uri: rr:captured_at
+    title: Captured At
+    description: >-
+      When the ProofBundle was captured, sourced from the canonical
+      TimestampService (RFC 3339, UTC).
+    range: datetime
+    close_mappings:
+      - prov:startedAtTime
+      - schema:dateCreated

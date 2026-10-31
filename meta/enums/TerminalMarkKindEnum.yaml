@@ -1,0 +1,37 @@
+id: https://textpast.com/ontology/rr/enum/TerminalMarkKindEnum
+name: TerminalMarkKindEnum
+title: Terminal Mark Kind Enum
+description: >-
+  The closed set of terminal-mark kinds (the closeability ladder's conclusive
+  rungs; plan terminal-prefix-deterministic-assignment, operator directive
+  2026-09-23). The prefix alone answers "can I close this tab": both
+  concluded kinds are closable verdicts, differing only in whether a
+  successor still owes its launch. The non-conclusive rungs (live `[~]_`/no
+  prefix, and the `[?]_` ended-unvalidated backstop) are NOT recordable here
+  — they are the absence/compensation states this field's PRESENCE
+  certifies against.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  TerminalMarkKindEnum:
+    description: >-
+      One conclusive terminal-mark kind. Closed set of three.
+    permissible_values:
+      concluded:
+        description: >-
+          `[x]_` — closed-complete, no forward work; the operator may close
+          the tab freely.
+      concluded_forward:
+        description: >-
+          `[x>]_` — a successor prompt is authored+landed+materialized and
+          READY to be launched (dispositions gate_at_quit /
+          auto_spawn_armed / operator_manual, or an AUTHORED prompt awaiting
+          its launcher); close only accepting the launch-or-defer decision.
+      concluded_forward_spawned:
+        description: >-
+          `[x>-]_` — §8.5: the successor(s) were ALREADY launched/spawned
+          (disposition spawned_now, incl. a spawn-relay); work continues in
+          its own tab; close freely.

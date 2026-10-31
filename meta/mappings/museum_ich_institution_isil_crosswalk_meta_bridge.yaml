@@ -1,0 +1,164 @@
+# Meta Bridge Mapping: museum/ICH aggregator-institution → ISIL/DE identity reconciliation
+#
+# Reconciles contributing-institution references from the type-D object aggregators
+# (DDB, museum-digital) to the type-L institutional-identity register (ISIL/DE,
+# de_be_ber_l_sbb) at the shared institution node. Per
+# KOS-REGISTER-OVERLAP-TAXONOMY-001, an object aggregator and an identity register
+# are DIFFERENT register classes (WHO vs WHAT); the overlap is a typed SSSOM
+# cross-reference at the institution node, NOT a register duplication.
+#
+#   - DDB (DE-BE-BER-D-DDB) contributing-institution → ISIL/DE node where the
+#     institution holds an ISIL code (via GND/DNB); DDB adds object depth.
+#   - museum-digital (DE-BB-POT-D-MD) institution → ISIL/DE where coded.
+#   - Institutions recorded by NEITHER identity register become new GHCIDs with
+#     `recorded_by: <aggregator-GHCID>` (the custodian-of-custodians value ISIL
+#     does not provide — see 4.3).
+#
+# Version: 1.0.0
+# Last Updated: 2026-07-07
+
+id: https://rootreal.ai/schema/meta_bridge/museum_ich_institution_isil_crosswalk
+name: museum_ich_institution_isil_crosswalk_meta_bridge
+title: Museum/ICH Aggregator-Institution → ISIL/DE Identity Crosswalk Meta Bridge
+description: |
+  Bridges contributing-institution references from the type-D object aggregators
+  (DDB, museum-digital) to the type-L institutional-identity register (ISIL/DE)
+  at the shared institution node. The aggregator does NOT duplicate the identity
+  register; it adds object depth on top of shared institution nodes
+  (KOS-REGISTER-OVERLAP-TAXONOMY-001). Institutions that lack ISIL codes are
+  DDB/MD-only records with their own GHCID + recorded_by provenance.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  sssom: https://w3id.org/sssom/
+  schema: http://schema.org/
+  rootreal: https://rootreal.ai/ontology/
+
+imports:
+  - linkml:types
+
+classes:
+  InstitutionIsilCrosswalkMapping:
+    description: |
+      One reconciled crosswalk row: an aggregator-contributing-institution
+      reference reconciled to an ISIL/DE identity node where the institution
+      holds an ISIL code. Aggregator-only institutions (no ISIL) are retained as
+      distinct records with recorded_by provenance — never silently merged or
+      orphaned. Projects to a parsimony Agent (the institution) + an SSSOM
+      mapping row (skos:closeMatch where ISIL-coded; skos:relatedMatch for
+      aggregator-only).
+    attributes:
+      aggregator_institution_id:
+        description: The aggregator's internal institution identifier (DDB provider_id or MD institution_id).
+        range: string
+        required: true
+      aggregator_institution_name:
+        description: The contributing institution display name.
+        range: string
+        required: true
+      source_ghcid:
+        description: GHCID of the attesting aggregator (DE-BE-BER-D-DDB or DE-BB-POT-D-MD).
+        range: string
+        required: true
+      isil_code:
+        description: The ISIL code (ISO 15511) where the institution holds one; absent for aggregator-only institutions.
+        range: string
+      gnd_id:
+        description: The GND identifier (the reconciliation bridge to ISIL/DE via DNB).
+        range: string
+      mapping_predicate:
+        description: SKOS predicate — closeMatch where ISIL-coded; relatedMatch for aggregator-only.
+        range: CrosswalkPredicateEnum
+        required: true
+      recorded_by:
+        description: The GHCID that recorded this institution (the aggregator, for ISIL-uncoded museums).
+        range: string
+        required: true
+      attested_in:
+        description: Source citation(s) (provenance — mandatory).
+        range: string
+        multivalued: true
+        required: true
+      confidence:
+        description: Calibrated confidence in (0, 1].
+        range: float
+        required: true
+
+# Slot → canonical predicate mappings (SSSOM + parsimony Agent projection)
+slot_mappings:
+  aggregator_institution_id:
+    target_predicate: "@subject"
+    transform: identity
+  isil_code:
+    target_predicate: "@object"
+    transform: identity
+    parsimony_slot: identified_by
+  mapping_predicate:
+    target_predicate: "@predicate"
+    transform: identity
+  source_ghcid:
+    target_predicate: "prov:wasAttributedTo"
+    transform: identity
+  recorded_by:
+    target_predicate: "rootreal:recordedBy"
+    parsimony_slot: recorded_by
+    transform: identity
+  gnd_id:
+    target_predicate: "rootreal:reconciledVia"
+    transform: identity
+  attested_in:
+    target_predicate: "dcterms:source"
+    parsimony_slot: attested_in
+    transform: identity
+  confidence:
+    target_predicate: "sssom:confidence"
+    transform: identity
+
+# Reconciliation policy: one institution = one identity code; aggregator adds depth.
+reconciliation:
+  key: [aggregator_institution_name, isil_code]
+  merge_across_aggregators: true
+  note: >-
+    The same institution referenced by both DDB and museum-digital reconciles to
+    ONE ISIL/DE node (shared institution node); each aggregator's object depth
+    is retained independently. Aggregator-only institutions (no ISIL) stay
+    distinct records with recorded_by provenance — never orphaned.
+
+# SSSOM evidence requirements
+sssom_requirements:
+  minimum_confidence: 0.50
+  required_predicate_ids:
+    - "skos:closeMatch"
+    - "skos:relatedMatch"
+  mapping_justification: "semapv:ManualMappingCuration"
+  extension_slots:
+    - ext_spatial_scope
+    - ext_societal_context
+
+# TypeDB projection shape (Agent = the institution)
+typedb_projection:
+  entity_type: "institution"
+  relations:
+    - type: "identified-by"
+      role_source: "institution"
+      role_target: "isil-code"
+    - type: "recorded-by"
+      role_source: "institution"
+      role_target: "source-custodian"
+    - type: "has-object-depth"
+      role_source: "institution"
+      role_target: "aggregator-record"
+
+enums:
+  CrosswalkPredicateEnum:
+    description: SKOS mapping predicates for aggregator-institution → ISIL reconciliation.
+    permissible_values:
+      closeMatch:
+        description: The aggregator institution holds an ISIL code (shared identity node).
+        meaning: skos:closeMatch
+      relatedMatch:
+        description: The aggregator institution lacks an ISIL code (aggregator-only record).
+        meaning: skos:relatedMatch

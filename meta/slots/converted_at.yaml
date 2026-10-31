@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: converted_at
+# ==============================================================================
+# When this thing was produced by a conversion (format-change) event.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-06, plan readlist-record-instantiation-model
+# item 1.3, against the in-repo RiC-O vocabulary + PREMIS 3.0 / W3C standards):
+#
+# | Ontology | Property                          | File/Line / Source                | Mapping | Notes                                                       |
+# |----------|-----------------------------------|-----------------------------------|---------|--------------------------------------------------------------|
+# | **PREMIS**| Event `eventDateTime` of an      | PREMIS DD v3.0, Event entity,     | close   | eventType 'conversion' (a format conversion event);          |
+# |          | Event with `eventType`            | Event Type / Event Date Time      |         | object→event→agent semantics.                                |
+# |          | 'conversion'                      | semantic units                    |         |                                                              |
+# | **RiC-O**| `rico:hasDerivationDate`          | RiC-O_1-1.rdf:4491-4521           | related | Date of a genetic (derivation) link; RiC-O attaches dates    |
+# |          |                                   |                                   |         | via date-property nodes, not literal timestamps.             |
+# | **DCTerms**| `dcterms:created` (of the       | dcterms.rdf                       | broad   | Creation time of ANY resource — not conversion-specific.     |
+# |          | derivative)                       |                                   |         |                                                              |
+#
+# CREATED: 2026-10-06 (plan readlist-record-instantiation-model, item 1.3)
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/converted_at
+name: converted_at
+title: Converted At
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: rr
+imports:
+  - linkml:types
+slots:
+  converted_at:
+    name: converted_at
+    title: Converted At
+    slot_uri: rr:convertedAt
+    description: >-
+      The date and time at which this thing was produced by a conversion
+      (format-change) event — the PREMIS eventDateTime of the conversion
+      Event whose outcome this thing is.
+    alt_descriptions:
+      nl: >-
+        Het datum- en tijdstip waarop dit ding is geproduceerd door een
+        conversiegebeurtenis (formaatwijziging).
+      de: >-
+        Das Datum und die Uhrzeit, zu der dieses Ding durch ein
+        Konvertierungsereignis (Formatänderung) erzeugt wurde.
+      fr: >-
+        La date et l'heure auxquelles cette chose a été produite par un
+        événement de conversion (changement de format).
+      es: >-
+        La fecha y hora en que esta cosa fue producida por un evento de
+        conversión (cambio de formato).
+      ar: >-
+        التاريخ والوقت الذي أنتج فيه هذا الشيء بواسطة حدث تحويل (تغيير تنسيق).
+      id: >-
+        Tanggal dan waktu ketika hal ini dihasilkan oleh suatu peristiwa
+        konversi (perubahan format).
+      zh: >-
+        此事物通过转换（格式变更）事件产生时的日期和时间。
+    structured_aliases:
+      - literal_form: geconverteerd op
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: konvertiert am
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: converti le
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: convertido el
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: تم التحويل في
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: dikonversi pada
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 转换于
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    range: datetime
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - premis:eventDateTime-conversion  # PREMIS DD v3.0 Event: eventDateTime where eventType = 'conversion'
+    related_mappings:
+      - rico:hasDerivationDate  # RiC-O_1-1.rdf:4491-4521 - genetic-link date
+    broad_mappings:
+      - dcterms:created  # creation time of any resource

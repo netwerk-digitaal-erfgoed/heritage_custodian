@@ -1,0 +1,37 @@
+id: https://textpast.com/ontology/rr/class/SwarmTaskClaim
+name: SwarmTaskClaim
+title: Swarm Task Claim Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/swarm_task_claim_slots
+  - ../slots/completed_at
+classes:
+  SwarmTaskClaim:
+    class_uri: rr:SwarmTaskClaim
+    description: >-
+      Durable ownership claim for an exact Swarm task identity, including
+      generation and lifecycle state for duplicate-work prevention.
+    slots:
+      - task_key
+      - task_fingerprint
+      - task_kind
+      - claim_generation
+      - claim_status
+      - claimed_by_agent_id
+      - claimed_at
+      - completed_at
+    slot_usage:
+      task_key:
+        required: true
+      claim_generation:
+        required: true
+      claim_status:
+        required: true
+      claimed_by_agent_id:
+        required: true
+      claimed_at:
+        required: true

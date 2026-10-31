@@ -1,0 +1,61 @@
+id: https://textpast.com/ontology/rr/class/SwarmSessionInteraction
+name: SwarmSessionInteraction
+title: Swarm Session Interaction Report
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ./SwarmTaskClaim
+  - ./SwarmInteractionEvent
+  - ../enums/SwarmInteractionEventEnum
+  - ../slots/swarm_session_interaction_slots
+default_range: string
+
+classes:
+  SwarmSessionInteraction:
+    class_uri: rr:SwarmSessionInteraction
+    description: >-
+      The Swarm MCP interaction report for one agent session (element E4 of the
+      structured session-conclusion plan): the agent identity, whether the
+      agent_id was persisted, the registration/deregistration window, the files
+      it declared, a DERIVED event timeline (register / declare / heartbeat /
+      message / broadcast / deregister), the count of messages drained, and the
+      final broadcast reference. The task-CLAIM half composes the existing
+      SwarmTaskClaim (do NOT re-model); the interaction TIMELINE half is derived
+      from Swarm MCP provenance and never re-tracked. Composes into the
+      SessionConclusion umbrella (Phase 5) as its `swarm_interactions` branch;
+      omit the branch entirely for a session that did not use Swarm.
+    slots:
+      - agent_id
+      - agent_id_persisted
+      - registered_at
+      - deregistered_at
+      - working_files_declared
+      - task_claim
+      - interaction_events
+      - messages_drained_count
+      - broadcast_summary_ref
+    comments:
+      - "interaction_events is a PROJECTION of swarm_workspace_timeline / swarm_get_* — never a hand-maintained log (derive, do not duplicate)."
+      - "task_claim reuses SwarmTaskClaim; the identity/claim half is not re-modeled here."
+      - "agent_id_persisted=false on a long session is a SWARM-AGENT-ID-PERSIST-001 smell (a resumed session would re-register a new id)."
+    examples:
+      - value:
+          agent_id: "200bd49f-09be-4bc7-ba52-6be8cb77a68a"
+          agent_id_persisted: true
+          registered_at: "2026-06-20T21:56:20Z"
+          deregistered_at: "2026-06-20T23:40:00Z"
+          working_files_declared:
+            - "crates/model/symbolic/schemata/meta/classes/SessionConclusion.yaml"
+          interaction_events:
+            - event: "REGISTER"
+              at: "2026-06-20T21:56:20Z"
+              ref: "archive-event-sha256:34a6c72f"
+            - event: "HEARTBEAT"
+              at: "2026-06-20T23:01:51Z"
+              ref: "archive-event-sha256:d2c64f83"
+          messages_drained_count: 0
+          broadcast_summary_ref: "blackboard:session-conclusion-renderer-done"
+        description: "The Swarm interaction report for the session that authored this very schema."

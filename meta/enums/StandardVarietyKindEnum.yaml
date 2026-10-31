@@ -1,0 +1,60 @@
+id: https://textpast.com/ontology/rr/enum/StandardVarietyKindEnum
+name: standard_variety_kind_enum
+title: Standard Variety Kind Enum
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+- linkml:types
+enums:
+  StandardVarietyKindEnum:
+    description: |
+      Classification of how one variety of a normative standard, act or
+      control framework relates to the work it varies. Each variety is
+      published by its OWN custodian (identified by its GHCID) and is connected
+      to the work it varies by the typed edge named per value below — the
+      custodianship plus the typed edge IS the differentiation (plan
+      grc-iso27001-nis2-kos-integration design.md §9.3).
+    permissible_values:
+      EDITION:
+        description: |
+          A published edition of the work itself, issued by the work's own
+          custodian. Successive editions are connected by `supersede`.
+
+          Examples:
+          - ISO/IEC 27001:2022 (edition 4) supersedes ISO/IEC 27001:2013
+          - Directive (EU) 2022/2555 (NIS2) as published in OJ L 333
+      REGIONAL_ADOPTION:
+        description: |
+          The work republished by a regional or national standards body as its
+          own standard (identically or with a national foreword/annex),
+          connected by `adopt`.
+
+          Examples:
+          - NEN-EN-ISO/IEC 27001:2023 (NEN, Delft) adopts ISO/IEC 27001:2022
+      NATIONAL_TRANSPOSITION:
+        description: |
+          A national legal act that gives effect to the objectives of a
+          supranational legal act (typically an EU directive), connected by
+          `transpose`.
+
+          Examples:
+          - Cyberbeveiligingswet (BWBR0052872, in force 2026-08-15) transposes
+            Directive (EU) 2022/2555 (NIS2)
+      SECTORAL_OVERLAY:
+        description: |
+          A sector- or community-specific baseline that keeps the base
+          framework's structure while selecting, adding or tightening
+          requirements, connected by `overlay`.
+
+          Examples:
+          - BIO2 v1.3 (Baseline Informatiebeveiliging Overheid) overlays
+            ISO/IEC 27001 (Part 1) and the ISO/IEC 27002 control structure
+            (Part 2)
+      DERIVED_CERTIFICATION_SCHEME:
+        description: |
+          A certification scheme whose requirement levels are derived from one
+          or more legal acts or standards, connected by `derive_from`.
+
+          Examples:
+          - NIS2 Supply Chain certification (NIS2-SC10/20/30, Stichting
+            Kwaliteitsinnovatie) derives from NIS2 and ISO/IEC 27001

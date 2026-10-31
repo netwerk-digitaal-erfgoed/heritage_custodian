@@ -1,0 +1,118 @@
+id: https://textpast.com/ontology/rr/slots/prompt_reference_slots
+name: prompt_reference_slots
+title: Prompt Reference Slots
+description: >-
+  Centralized slots for the PromptReference class (E1 of the structured
+  session-conclusion plan). All slots are defined here and imported by the class
+  file — class files MUST NOT define slots inline (GAC:
+  linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
+  verb-first / noun-singular and ontology-neutral (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/PromptPurposeEnum
+  - ../enums/PromptReferenceRoleEnum
+  - ../enums/ClipboardToolEnum
+
+slots:
+
+  prompt_path:
+    slot_uri: rr:promptPath
+    description: >-
+      Verbatim FULL repo-relative path to the docs/prompt/ artifact (timestamp +
+      descriptive suffix, e.g. docs/prompt/20260619T160200Z_gac-dup-id-guard-...md).
+      MUST NOT be truncated with an ellipsis — timestamps are not unique and
+      multiple prompts routinely share one (GAC: agent-session-documentation.md
+      §6, AGENT-SESSION-DOC-001).
+    range: string
+    required: true
+    pattern: "^docs/prompt/.+\\.md$"
+
+  purpose:
+    slot_uri: rr:promptPurpose
+    description: >-
+      Why this prompt was authored. Drawn from PromptPurposeEnum (the existing
+      prompt task-classification vocabulary), never a free string. Applies to a
+      prompt in EITHER role (a DRIVING prompt carries the purpose its authoring
+      session gave it; an AUTHORED prompt carries its forward purpose) — the role
+      dimension is the separate `role` slot below.
+    range: PromptPurposeEnum
+    required: true
+
+  role:
+    slot_uri: rr:promptReferenceRole
+    description: >-
+      The prompt's DIRECTION relative to the citing session — DRIVING (the
+      consumed INPUT that launched/drove this session) or AUTHORED (a forward
+      OUTPUT this session created for a future session). Orthogonal to `purpose`
+      (which captures why the prompt was authored, in either direction). REQUIRED
+      so an operator reading a cited docs/prompt/ path can tell at a glance
+      whether it drove THIS session or is a handoff FOR the next one — the cure
+      for the "Driving prompt (consumed)" vs §6-handoff conflation (GAC:
+      agent-session-prompt-role-driving-vs-authored.md,
+      DRIVING-VS-AUTHORED-PROMPT-001). A session cites at most ONE DRIVING prompt
+      (its launch prompt) and zero-or-more AUTHORED prompts.
+    range: PromptReferenceRoleEnum
+    required: true
+
+  launch_command:
+    slot_uri: rr:launchCommand
+    description: >-
+      The PRIMARY direct-launch command that loads the prompt into a pi session
+      with NO manual paste: `rrpi docs/prompt/<prompt_path>` (equivalents
+      `rr-pi-prompt` / `rootreal-pi docs/prompt/<prompt_path>`). The operator's
+      FIRST copy-paste from a handoff MUST be this launchable command, not the
+      clipboard retrieval pipe (AGENT-SESSION-PROMPT-AUTOINJECT-001;
+      AGENT-SESSION-DOC-001 §6, hardened 2026-07-24: `rrpi` is PRIMARY, the
+      clipboard `retrieval_command` is SECONDARY). REQUIRED for every cited
+      prompt (DRIVING + AUTHORED). DETERMINISTIC from prompt_path alone (no
+      clipboard-tool dependency). Agent-authored: there is NO field-deriving
+      render helper today (the renderer is schema-driven and derives NOTHING —
+      R1; see `crates/hub/agent/session-conclusion/cli/src/main.rs`); the
+      validator `scripts/session-conclusion-validate.sh` enforces the
+      `^(rrpi|rr-pi-prompt|rootreal-pi) docs/prompt/.+\.md$` form.
+    range: string
+    required: true
+    pattern: "^(rrpi|rr-pi-prompt|rootreal-pi) docs/prompt/.+\\.md$"
+
+  retrieval_command:
+    slot_uri: rr:retrievalCommand
+    description: >-
+      SECONDARY (retrieval / non-pi-consumer fallback): the copy-to-clipboard
+      one-liner that reads the prompt from origin/main.
+      MUST be the piped form `git show origin/main:<prompt_path> | <clipboard_tool>[-selection clipboard]`;
+      a bare `git show origin/main:<path>` or `cat <path>` is FORBIDDEN
+      (unpiped it dumps the whole prompt to stdout/the pager where the terminal
+      and chat context truncate it). The pipe to a clipboard tool is the ONLY
+      acceptable retrieval one-liner (AGENT-SESSION-DOC-001 §6). DETERMINISTIC
+      from prompt_path + clipboard_tool. Agent-authored (there is NO
+      field-deriving render helper today; the schema-driven renderer derives
+      NOTHING — R1); the validator `scripts/session-conclusion-validate.sh`
+      enforces the clipboard-piped form (a bare `git show`/`cat` is a hard FAIL).
+    range: string
+    required: true
+
+  clipboard_tool:
+    slot_uri: rr:clipboardTool
+    description: >-
+      The clipboard tool selected for the host OS. Drives the retrieval_command
+      derivation. Closed enum; there is no `auto` — the emitter picks the
+      concrete host tool (default xclip when unknown, with a note).
+    range: ClipboardToolEnum
+    required: true
+
+  materialized_in_checkout:
+    slot_uri: rr:materializedInCheckout
+    description: >-
+      Whether `git checkout origin/main -- <prompt_path>` was run so the
+      operator's shared checkout actually contains the file. A prompt authored
+      in a fresh-origin worktree is on origin/main but ABSENT from the shared
+      checkout the operator reads, so pushed-but-locally-invisible = handoff
+      failure (AGENT-SESSION-DOC-001 §6.3). true/false.
+    range: boolean
+    required: true

@@ -1,0 +1,107 @@
+# ==============================================================================
+# LinkML Slot Definition: overlay
+# ==============================================================================
+# Specialize a base normative framework for a sector or community while
+# keeping its structure.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-27 against
+# https://schema.org/version/latest/schemaorg-current-https.ttl and
+# https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl):
+#
+# | Ontology       | Property             | File/Line              | Mapping | Notes                                                  |
+# |----------------|----------------------|------------------------|---------|--------------------------------------------------------|
+# | **Schema.org** | `schema:isBasedOn`   | schemaorg.ttl:20250    | close   | "A resource from which this work is derived or from    |
+# |                |                      |                        |         | which it is a modification or adaptation."             |
+# | **DCTerms**    | `dcterms:references` | dcterms.ttl:742        | related | An overlay cites the base framework's requirements.    |
+#
+# CREATED: 2026-10-27 (plan grc-iso27001-nis2-kos-integration item 5.4 —
+# standard variety model; instance: BIO2 v1.3 overlays ISO/IEC 27001 and the
+# ISO/IEC 27002 control structure)
+# ==============================================================================
+id: https://textpast.com/ontology/rr/slot/overlay
+name: overlay
+title: Overlay
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: rr
+imports:
+  - linkml:types
+slots:
+  overlay:
+    slot_uri: rr:overlay
+    range: uriorcurie
+    multivalued: true
+    description: >-
+      To specialize a base normative framework for a sector or community by
+      selecting, adding or tightening requirements while keeping the base
+      framework's structure, so that conformity with the overlay can be stated
+      in terms of the base framework.
+    alt_descriptions:
+      nl: >-
+        Het specialiseren van een normatief basiskader voor een sector of
+        gemeenschap door eisen te selecteren, toe te voegen of aan te scherpen
+        met behoud van de structuur van het basiskader, zodat conformiteit met de
+        overlay in termen van het basiskader kan worden uitgedrukt.
+      de: >-
+        Einen normativen Basisrahmen für einen Sektor oder eine Gemeinschaft
+        spezialisieren, indem Anforderungen ausgewählt, ergänzt oder verschärft
+        werden, wobei die Struktur des Basisrahmens erhalten bleibt, sodass die
+        Konformität mit dem Overlay in Begriffen des Basisrahmens ausgedrückt
+        werden kann.
+      fr: >-
+        Spécialiser un cadre normatif de base pour un secteur ou une communauté
+        en sélectionnant, ajoutant ou renforçant des exigences tout en conservant
+        la structure du cadre de base, de sorte que la conformité à la
+        surcouche puisse s'exprimer dans les termes du cadre de base.
+      es: >-
+        Especializar un marco normativo base para un sector o comunidad
+        seleccionando, añadiendo o endureciendo requisitos sin alterar la
+        estructura del marco base, de modo que la conformidad con la
+        superposición pueda expresarse en términos del marco base.
+      ar: >-
+        تخصيص إطار معياري أساسي لقطاع أو مجتمع من خلال اختيار المتطلبات أو
+        إضافتها أو تشديدها مع الحفاظ على بنية الإطار الأساسي، بحيث يمكن التعبير عن
+        المطابقة مع الطبقة المضافة بمصطلحات الإطار الأساسي.
+      id: >-
+        Mengkhususkan suatu kerangka normatif dasar untuk suatu sektor atau
+        komunitas dengan memilih, menambah, atau memperketat persyaratan sambil
+        mempertahankan struktur kerangka dasar, sehingga kesesuaian dengan
+        lapisan tersebut dapat dinyatakan dalam istilah kerangka dasar.
+      zh: >-
+        在保留基础规范框架结构的前提下，通过选择、增加或收紧要求，针对某一行业或群体对该基础框架进行专门化，使对该叠加框架的符合性可以用基础框架的术语加以表述。
+    structured_aliases:
+      - literal_form: overlay
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: überlagern
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: surcouche
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: superponer
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: تراكب
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: melapisi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 叠加
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    close_mappings:
+      - schema:isBasedOn
+    related_mappings:
+      - dcterms:references
+    comments:
+      - "Directional: the subject is the overlay (e.g. BIO2 v1.3), the object the base framework (ISO/IEC 27001, ISO/IEC 27002 control structure)."
+      - "The variety node carrying this edge is typed SECTORAL_OVERLAY in StandardVarietyKindEnum."
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Framework-specialization relation reusable for sector baselines, profiles and control overlays
+      custodian_types: '["*"]'

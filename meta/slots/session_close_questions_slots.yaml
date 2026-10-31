@@ -1,0 +1,97 @@
+id: https://textpast.com/ontology/rr/slots/session_close_questions_slots
+name: session_close_questions_slots
+title: Session Close Questions Slots
+description: >-
+  Centralized slots for the SessionCloseQuestions class (element E13 of the
+  SessionConclusion umbrella — the operator's 2026-09-27 closing questions,
+  asked verbatim at every end-of-session: "did we complete all tasks and
+  launch all prompts? Can we close this session?"). All slots are defined
+  here and imported by the class file — class files MUST NOT define slots
+  inline (GAC: linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001).
+  Slot names are noun-singular / ontology-neutral snake_case (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/SessionTabMarkEnum
+
+slots:
+
+  all_tasks_complete:
+    slot_uri: rr:allTasksComplete
+    description: >-
+      The answer to "did we complete all tasks?" — every plan checklist item
+      this session owed is done (markdown [x] verified on origin/main +
+      swarm_complete_plan_task recorded) AND every task-level obligation the
+      session took on (task claim, file locks, issue responds) is settled or
+      explicitly tracked forward by a NAMED owner. REQUIRED.
+    range: boolean
+    required: true
+
+  all_prompts_launched:
+    slot_uri: rr:allPromptsLaunched
+    description: >-
+      The answer to "did we launch all prompts?" — every prompt this session
+      AUTHORED (handoff/successor/auxiliary/branch) is launched, spawned, or
+      explicitly dispositioned on the E11 ladder (gate_at_quit /
+      auto_spawn_armed / operator_manual with a named genuine gate); a DRIVING
+      prompt consumed to conclusion counts as settled, not as an unlaunched
+      vehicle. REQUIRED.
+    range: boolean
+    required: true
+
+  session_closable:
+    slot_uri: rr:sessionClosable
+    description: >-
+      The answer to "Can we close this session?" — the single decision an
+      operator/automation reads off the close. Consistent BY CONSTRUCTION
+      with the other two answers + E12: true REQUIRES all_tasks_complete AND
+      all_prompts_launched AND closeability_audit.closeable; false MUST name
+      what remains (open_items). The terminal-mark classifier REFUSES a
+      conclusive prefix on session_closable: false. REQUIRED.
+    range: boolean
+    required: true
+
+  tab_mark:
+    slot_uri: rr:tabMark
+    description: >-
+      The tab-title prefix class the answers derive (SessionTabMarkEnum) —
+      the operator's 2026-09-27 "so it is clear which sessions can be closed"
+      surface. MUST be consistent with terminal_obligations.
+      terminal_mark_applied when a close is declared (validator-enforced);
+      the live classifier derives the same kind independently — a divergence
+      is a masked-defect FAIL, never a warning.
+    range: SessionTabMarkEnum
+    required: true
+
+  open_items:
+    slot_uri: rr:openItems
+    description: >-
+      What remains when all_tasks_complete or session_closable is false —
+      each entry names the item AND its settlement (a tracker #NNN, a
+      docs/prompt/ handoff path, a named owning plan, or a non-actionable
+      rationale). REQUIRED-non-empty when any answer is false; omit when
+      everything is complete.
+    range: string
+    multivalued: true
+
+  unlaunched_prompts:
+    slot_uri: rr:unlaunchedPrompts
+    description: >-
+      The AUTHORED prompts not launched at close time, each with its E11
+      disposition + the arm/hold evidence (e.g. "gate_at_quit — the
+      green-respawn gate owns the spawn, ledger verdict LANDED"). Omit when
+      all_prompts_launched is true.
+    range: string
+    multivalued: true
+
+  rationale:
+    slot_uri: rr:closeQuestionsRationale
+    description: >-
+      One line justifying the three answers — the operator reads this first.
+      REQUIRED.
+    range: string
+    required: true

@@ -1,0 +1,71 @@
+id: https://textpast.com/ontology/rr/enum/AmbientNoteCategoryEnum
+name: AmbientNoteCategoryEnum
+title: Ambient Note Category Enum
+description: >-
+  The category of an AmbientNote — the KIND of ambient observation a session
+  surfaced in its end-of-session report but did NOT chase (out of scope / not its
+  task / owner is another session or component). Drives routing + reconciliation
+  (the dedup_key + category let a downstream consumer match a note to a Swarm
+  finding, a Prometheus alert, or a known worktree-drift class).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  AmbientNoteCategoryEnum:
+    description: >-
+      The category of an AmbientNote (an observation noted-but-not-chased at
+      session end).
+    permissible_values:
+      DEPENDENCY_ALERT:
+        description: >-
+          A shared dependency is degraded/unreachable (Vault sealed/unreachable,
+          Forgejo/Harbor/TypeDB/Valkey/Qdrant down) — observed via the
+          session-start digest, a resolver fallback, or a probe. The session's
+          own work may still function via a fallback (dotenv bootstrap, cache)
+          so this is NOT necessarily a live blocker FOR THIS SESSION, but it is
+          an ambient risk for the fleet.
+      STALE_FINDING:
+        description: >-
+          A Swarm blackboard finding, Prometheus alert, or Forgejo issue that is
+          PERSISTING past the recovery of its root cause (e.g. a CRITICAL
+          infra-failure finding still surfaced in the session-start digest 8h
+          after the dependency recovered). The reconciliation gap — nothing
+          auto-resolves the finding when the condition clears.
+      AMBIENT_DRIFT:
+        description: >-
+          Ambient state drift NOT produced by this session — a stale shared
+          checkout, a dirty worktree pool, a lagging mirror, a generated file
+          drifted vs its generator — observed but owned by the git-sync /
+          workspace hygiene layer, not this session's task.
+      OBSERVED_ANOMALY:
+        description: >-
+          An observed-but-uninvestigated anomaly (an unexpected pod restart, a
+          slow API, a metric spike) that did not affect this session's work but
+          is worth recording for the operator/next agent.
+      PEER_ACTIVITY:
+        description: >-
+          Notable peer/cluster activity observed (a fleet of concurrent agents
+          pushing, a rollout in progress, a heavy-contention window) that
+          affected ergonomics (push retries) but is not this session's concern.
+      OUT_OF_SCOPE_REMEDIATION:
+        description: >-
+          An out-of-scope issue/observation the session surfaced while doing
+          OTHER work (a verification, an implementation, a remediation) that it
+          does NOT own and must NOT chase inline (scope creep) but that warrants
+          a NEW prompt-chain/plan to remediate — the canonical trigger for the
+          THIRD docs/prompt variety (sub-session | continuation |
+          out-of-scope-issue-observation/remediation; AGENT-PROMPT-VARIETIES-001).
+          Distinct from OBSERVED_ANOMALY (a noted curiosity with no remediation
+          owner in mind) and from STALE_FINDING / DEPENDENCY_ALERT (those name a
+          condition; this one CARRIES its remediation path): an
+          OUT_OF_SCOPE_REMEDIATION note pairs the observation with a
+          docs/prompt (variety: out-of-scope-issue-observation) in
+          `ambient_note_reference` + a Plan MCP plan id / `rrp:pl:` PID in
+          `ambient_note_remediation_plan`, so the issue is tractable across
+          sessions instead of a recurring re-discovery that dies in chat.
+      OTHER:
+        description: >-
+          An ambient observation that fits none of the above; the observation +
+          disposition fields carry the detail.

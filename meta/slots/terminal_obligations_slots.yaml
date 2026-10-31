@@ -1,0 +1,81 @@
+id: https://textpast.com/ontology/rr/slots/terminal_obligations_slots
+name: terminal_obligations_slots
+title: Terminal Obligations Slots
+description: >-
+  Slots for the TerminalObligationsAck class (element E10 of the structured
+  session conclusion). The operator's mandatory session-close obligations —
+  (1) draw the session's lessons into the GAC MCP hypergraph, (2) review
+  plan completeness + the archive disposition, and (3, clause 15
+  2026-09-23) apply the terminal mark at the close declaration — made
+  machine-checkable: REQUIRED booleans/branch the validator enforces
+  (profile-gated via require_terminal_obligations) so a session cannot
+  close without explicitly asserting whether it discharged each obligation.
+  Slots defined here and imported by the class file (CLASS-FILES-001 —
+  class files MUST NOT define slots inline); snake_case noun-phrase names
+  (LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  gac_lessons_drawn:
+    slot_uri: rr:gacLessonsDrawn
+    description: >-
+      True iff this session drew (or verified the sync of) its reusable lessons
+      into the GAC MCP hypergraph — the AGENT-SESSION-DOC-001 terminal
+      obligation. True requires gac_rules[] non-empty OR a gac_lessons_note
+      stating why no new lesson was warranted (a pure-execution session whose
+      lessons all existed already); false REQUIRES a gac_lessons_note naming the
+      gap. A missing branch is a validator FAIL under
+      require_terminal_obligations — the obligation is "always raised", never
+      silently skipped.
+    range: boolean
+    required: true
+
+  gac_lessons_note:
+    slot_uri: rr:gacLessonsNote
+    description: >-
+      Free-text justification accompanying gac_lessons_drawn — mandatory when
+      false (why the obligation was not discharged), and when true but
+      gac_rules[] is empty (e.g. "verified prior lessons; no new cross-domain
+      rule warranted; done-log carries the narrative").
+    range: string
+
+  plan_closeout_reviewed:
+    slot_uri: rr:planCloseoutReviewed
+    description: >-
+      True iff this session reviewed its plan(s) for completeness AND stated an
+      archive disposition (archive now / keep active / already archived /
+      successor-tracked) — the operator's "did we complete all tasks, can we
+      archive this plan?" closing question. True normally pairs with a
+      non-empty completion (E8) branch; false REQUIRES a gac_lessons_note-style
+      rationale in plan_closeout_note.
+    range: boolean
+    required: true
+
+  plan_closeout_note:
+    slot_uri: rr:planCloseoutNote
+    description: >-
+      Justification accompanying plan_closeout_reviewed=false (the blocker or
+      the reason no plan was in scope). Optional when true (the completion
+      branch carries the substance).
+    range: string
+
+  terminal_mark_applied:
+    slot_uri: rr:hasTerminalMarkApplied
+    description: >-
+      The applied terminal mark at THIS close declaration (clause 15, plan
+      terminal-prefix-deterministic-assignment, operator directive
+      2026-09-23): kind + literal prefix + timestamp + producing tier, as a
+      TerminalMarkApplied branch. REQUIRED for records generated on/after
+      2026-09-24 whenever the closeability category terminal_mark_applied
+      answers pass (a close was declared) — prose "closed" without the mark
+      is an INCOMPLETE conclusion (the 2026-09-22/23 na-ead incident class:
+      the tab read live because nothing machine-checked the mark). Omitted
+      legitimately when no close declaration was made this turn (the
+      category answers not_applicable).
+    range: TerminalMarkApplied

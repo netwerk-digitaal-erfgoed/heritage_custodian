@@ -1,0 +1,48 @@
+id: https://textpast.com/ontology/rr/class/TerminalMarkApplied
+name: TerminalMarkApplied
+title: Terminal Mark Applied
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/terminal_mark_slots
+default_range: string
+
+classes:
+  TerminalMarkApplied:
+    class_uri: rr:TerminalMarkApplied
+    description: >-
+      The machine-checkable record that the session's terminal mark — the
+      `[x]_`/`[x>]_`/`[x>-]_` tab-prefix that answers "can I close this tab"
+      at a glance — was ACTUALLY APPLIED at this close declaration (the
+      deterministic-assignment half of AGENT-SPAWN-VISIBILITY-001 clause 15;
+      plan terminal-prefix-deterministic-assignment, operator directive
+      2026-09-23 — "make sure that the prefixes are applied consistently at
+      end-of-session report/conclusion time"). Composes into
+      TerminalObligationsAck as its `terminal_mark_applied` branch. The
+      kind/prefix pair must agree; the kind is DERIVED from the conclusion's
+      own successor state (the shared session-status-marker classifier), not
+      chosen; the via tier records the enforcement ladder rung that produced
+      it. Absent on a close declaration = an INCOMPLETE conclusion
+      (validator-enforceable for records generated on/after 2026-09-24 —
+      the closeability category terminal_mark_applied cross-checks this
+      field). Sessions that stay open (no close declaration this turn) omit
+      the branch and answer the category not_applicable.
+    slots:
+      - mark
+      - prefix
+      - applied_at
+      - via
+    comments:
+      - "terminal_mark_kind=concluded_forward_spawned pairs with handoff_spawn_disposition spawned_now; concluded_forward with gate_at_quit/auto_spawn_armed/operator_manual or an AUTHORED prompt; concluded with no forward surface."
+      - "A re-close after a re-engagement RE-STAMPS (clause 15 idempotence): the newest applied_at is the close in force."
+      - "The [?]_ ended-unvalidated backstop (a session that ENDED with no validated conclusion) is the compensation state recorded by the tab surface, never a value of this class."
+    examples:
+      - value:
+          mark: concluded_forward
+          prefix: "[x>]_"
+          applied_at: "2026-09-24T10:15:30Z"
+          via: skill_floor
+        description: "The skill-floor script derived concluded_forward from a gate_at_quit disposition after validation PASS."

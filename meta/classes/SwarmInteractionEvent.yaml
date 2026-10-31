@@ -1,0 +1,32 @@
+id: https://textpast.com/ontology/rr/class/SwarmInteractionEvent
+name: SwarmInteractionEvent
+title: Swarm Interaction Event (timeline entry)
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/SwarmInteractionEventEnum
+  - ../slots/swarm_session_interaction_slots
+default_range: string
+
+classes:
+  SwarmInteractionEvent:
+    class_uri: rr:SwarmInteractionEvent
+    description: >-
+      A single entry in a session's Swarm interaction timeline: what kind of
+      event occurred, when, and an optional provenance reference. The timeline
+      is DERIVED from Swarm MCP provenance (swarm_workspace_timeline /
+      swarm_get_*); these entries are a projection, never a re-tracked log.
+      Composed (inlined) by SwarmSessionInteraction.interaction_events.
+    slots:
+      - event
+      - at
+      - ref
+    examples:
+      - value:
+          event: "REGISTER"
+          at: "2026-06-20T21:56:20Z"
+          ref: "archive-event-sha256:34a6c72f"
+        description: "The registration event opening a session's Swarm timeline."

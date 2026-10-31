@@ -1,0 +1,53 @@
+id: https://textpast.com/ontology/rr/class/TerminalObligationsAck
+name: TerminalObligationsAck
+title: Terminal Obligations Acknowledgment
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/terminal_obligations_slots
+  - ../slots/terminal_mark_slots
+default_range: string
+
+classes:
+  TerminalObligationsAck:
+    class_uri: rr:TerminalObligationsAck
+    description: >-
+      The machine-checkable acknowledgment that a session discharged its
+      MANDATORY terminal obligations before closing (element E10, added
+      2026-08-23 at operator direction): (1) draw the session's reusable
+      lessons into the GAC MCP hypergraph (AGENT-SESSION-DOC-001), and (2)
+      review plan completeness + state an archive disposition
+      (PLAN-ARCHIVE-COMPLETENESS-001 — the operator's "did we complete all
+      tasks, can we archive this plan?"). Two REQUIRED booleans make "always
+      raised" enforceable: the validator FAILS a profile-full conclusion that
+      omits the branch or carries a bare boolean without its justification —
+      an obligation that can be silently skipped is not always raised
+      (AGENT-INSTRUCTION-ENFORCEMENT-001: a hook/floor, not prose). The
+      third obligation branch (terminal_mark_applied, clause 15,
+      2026-09-23) records the APPLIED terminal mark — kind/prefix/timestamp/
+      via — so a close declaration without its mark is an INCOMPLETE
+      conclusion (deterministic assignment; plan
+      terminal-prefix-deterministic-assignment). Composes into the
+      SessionConclusion umbrella as its `terminal_obligations` branch;
+      ALWAYS rendered (not profile-gated), like completion/outcome.
+    slots:
+      - gac_lessons_drawn
+      - gac_lessons_note
+      - plan_closeout_reviewed
+      - plan_closeout_note
+      - terminal_mark_applied
+    comments:
+      - "gac_lessons_drawn=true requires gac_rules[] non-empty OR a gac_lessons_note (a pure-execution session may legitimately draw no NEW rule); false REQUIRES a note naming the gap."
+      - "plan_closeout_reviewed=true normally pairs with a non-empty completion (E8) branch carrying the plan_completion/archive_readiness verdict; false REQUIRES plan_closeout_note."
+      - "The branch renders even for plan-less sessions (plan_closeout_reviewed=true + a completion branch with plan_completion: not_assessed)."
+      - "terminal_mark_applied (clause 15): present iff a close was declared this turn; its kind must agree with handoff_spawn_disposition (spawned_now => concluded_forward_spawned; other forward surfaces => concluded_forward; none => concluded); absent + a pass closeability category terminal_mark_applied is a validator FAIL for records generated on/after 2026-09-24."
+    examples:
+      - value:
+          gac_lessons_drawn: true
+          gac_lessons_note: "stalwart key-shape fact extended (0.3.17); no other cross-domain rule warranted"
+          plan_closeout_reviewed: true
+          plan_closeout_note: null
+        description: "A session that extended one GAC rule and reviewed its plan closeout."

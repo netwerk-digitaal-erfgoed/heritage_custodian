@@ -1,0 +1,111 @@
+id: https://textpast.com/ontology/rr/slots/session_issue_disposition_slots
+name: session_issue_disposition_slots
+title: Session Issue Disposition Slots
+description: >-
+  Centralized slots for the SessionIssueDisposition class (plan
+  forgejo-issue-lifecycle item 3.4, GAC AGENT-ISSUE-RESPONSE-CLOSE-001):
+  the respond-or-close disposition record for every Forgejo issue a session
+  ADDRESSED — commented on, closed, filed, or landed the fix for — so the
+  lifecycle obligation is checked at every session end, not just by the
+  issue-lifecycle-reaper CronJob. Class files MUST NOT define slots inline
+  (GAC: linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  issue:
+    slot_uri: rr:issueRef
+    range: string
+    description: >-
+      The Forgejo issue reference the disposition is about ("#350203" or
+      "350203"). REQUIRED.
+    required: true
+
+  action:
+    slot_uri: rr:issueDispositionAction
+    range: string
+    description: >-
+      The respond-or-close disposition. One of: responded (a substantive
+      comment was posted — name it), closed_with_evidence (the issue was
+      closed with an evidence comment naming the verification), left_open_valid
+      (the tracked work is NOT done — the still-valid rationale is recorded),
+      filed (the issue was created this session — its own lifecycle starts
+      here). REQUIRED; enforced by scripts/session-conclusion-validate.sh L2.
+    required: true
+
+  evidence:
+    slot_uri: rr:issueDispositionEvidence
+    range: string
+    description: >-
+      What WAS done, concretely: the comment id/link for a response, the
+      verification a close names (probe/test/deployed image), or the
+      still-valid rationale a keep carries. A close without verification
+      evidence is the GIT-AUTOCLOSE-001 / AGENT-ISSUE-CLOSE-REVERIFY-001
+      hazard. REQUIRED.
+    required: true
+
+  dedup_search:
+    slot_uri: rr:recordsDedupSearch
+    range: string
+    description: >-
+      The dedup-gate outcome behind a FILED issue (GAC-FORGEJO-001 v3): the
+      canonical the gated seam found ('canonical #N'), or the audited
+      --new-class override reason for a genuinely new defect class. Makes the
+      filing auditable — one canonical per defect class is only meaningful if
+      the search verdict is recorded. Required by
+      scripts/session-conclusion-validate.sh L2 (warn tier) when action=filed.
+      Schema-added 2026-10-03 (#355023 parity sweep — the same
+      validator-vs-schema skew class as owner_found and the 2026-09-22
+      auxiliary_session slot: the validator checked a field the renderer
+      could not carry).
+    required: false
+
+  auxiliary_session:
+    slot_uri: rr:hasAuxiliarySession
+    description: >-
+      The assigned auxiliary session for a FILED issue
+      (AUXILIARY-SESSION-ASSIGNMENT-001, operator directive 2026-09-22): a
+      filed issue MUST carry its own dedicated plan + docs/prompt + an armed
+      or spawned auxiliary session at the detecting session's close — the
+      detect→file→plan→prompt→spawn chain closes inside the closeout, never
+      "later". Required by scripts/session-conclusion-validate.sh L2 when
+      action=filed; absent for the other actions. Added 2026-09-22 for
+      #361193's parity sweep: the validator required the block while this
+      schema lacked the slot, so the (newly fail-loud, structurally recursing)
+      renderer dropped it — the same skew class, caught live by the closeout
+      dogfood.
+    range: AuxiliarySessionAssignment
+    inlined: true
+
+  # ── AuxiliarySessionAssignment slots ──
+
+  plan_id:
+    slot_uri: rr:auxiliaryPlanId
+    description: >-
+      The dedicated Plan MCP plan PID (rrp:pl:…) owning the filed issue's
+      remediation.
+    range: string
+    required: true
+
+  prompt_path:
+    slot_uri: rr:auxiliaryPromptPath
+    description: >-
+      The verbatim docs/prompt/<file>.md auxiliary-session prompt driving the
+      plan (PID-minted, landed on origin/main, status: active).
+    range: string
+    required: true
+
+  spawn:
+    slot_uri: rr:auxiliarySpawnState
+    description: >-
+      The auxiliary session's launch state: armed (a durable spawn watch /
+      blocked trigger owns the launch), spawned (the session is live), or
+      operator-gated (a genuine human-only gate — must be named). Enforced by
+      the validator; never an unarmed "later".
+    range: string
+    required: true

@@ -1,0 +1,122 @@
+# ==============================================================================
+# LinkML Class Definition: DocumentRecord
+# ==============================================================================
+# The ABSTRACT archival record (the intellectual unit) — RiC-O Record /
+# RecordResource. Concrete instantiations (docx original, md/pdf derivatives)
+# attach via the instantiated_as slot; the record itself is never a file.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-06, plan readlist-record-instantiation-model
+# item 1.3, against the in-repo RiC-O vocabulary):
+#
+# | Ontology | Class                    | File/Line               | Mapping | Notes                                       |
+# |----------|--------------------------|-------------------------|---------|-----------------------------------------------|
+# | **RiC-O**| `rico:Record`            | RiC-O_1-1.rdf:28538-28595 | close   | A Record Resource produced wholly by         |
+# |          |                          |                         |         | activity of an agent.                        |
+# | **RiC-O**| `rico:RecordResource`    | RiC-O_1-1.rdf:28650-28734 | close   | The superclass (domain of                    |
+# |          |                          |                         |         | hasOrHadInstantiation 6527-6594).            |
+#
+# Includes born-digital and AI-generated born-digital material
+# (RECORD-INSTANTIATION-REGISTRY-001): the "AI-spookflows" request letters are
+# Records exactly as digitized paper is.
+#
+# Serialized form: docs/custodian/<ghcid-slug>/<date>/record.yaml (the
+# human-reviewable registry validated by the schemata-registry validator).
+#
+# CREATED: 2026-10-06 (plan readlist-record-instantiation-model, item 1.3)
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/classes/DocumentRecord
+name: DocumentRecord
+title: Document Record Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  dcterms: http://purl.org/dc/terms/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/has_title
+  - ../slots/has_type
+  - ../slots/has_note
+  - ../slots/has_custodian
+  - ../slots/has_date
+  - ../slots/has_language
+  - ../slots/instantiated_as
+classes:
+  DocumentRecord:
+    class_uri: rr:DocumentRecord
+    description: >-
+      An abstract archival record — the intellectual unit a custodian holds —
+      that exists concretely through one or more instantiations linked via
+      instantiated_as. Covers born-digital and AI-generated born-digital
+      material identically to digitized material.
+    alt_descriptions:
+      nl: >-
+        Een abstract archiefrecord — de intellectuele eenheid die een bewaarder
+        in beheer heeft — dat concreet bestaat door een of meer instanties,
+        gekoppeld via instantiated_as.
+      de: >-
+        Ein abstrakter Archivdatensatz — die intellektuelle Einheit, die ein
+        Verwahrer besitzt — der konkret durch eine oder mehrere Instanziierungen
+        existiert, verknüpft über instantiated_as.
+      fr: >-
+        Un enregistrement d'archives abstrait — l'unité intellectuelle détenue
+        par un dépositaire — qui existe concrètement par une ou plusieurs
+        instantiations liées via instantiated_as.
+      es: >-
+        Un registro archivístico abstracto — la unidad intelectual que custodia
+        un depositario — que existe concretamente a través de una o más
+        instanciaciones vinculadas mediante instantiated_as.
+      ar: >-
+        سجل أرشيفي مجرد — الوحدة الفكرية التي يحتفظ بها أمين الحفظ — يوجد فعليًا من خلال تجسيد أو أكثر مرتبطة عبر instantiated_as.
+      id: >-
+        Catatan arsip abstrak — unit intelektual yang disimpan oleh seorang
+        pemelihara — yang ada secara konkret melalui satu atau lebih instansiasi
+        yang terhubung melalui instantiated_as.
+      zh: >-
+        抽象档案记录——保管者持有的知识单元——通过 instantiated_as 链接的一个或多个实例化具体存在。
+    structured_aliases:
+    - literal_form: documentrecord
+      predicate: EXACT_SYNONYM
+      in_language: nl
+    - literal_form: Dokumentdatensatz
+      predicate: EXACT_SYNONYM
+      in_language: de
+    - literal_form: enregistrement de document
+      predicate: EXACT_SYNONYM
+      in_language: fr
+    - literal_form: registro de documento
+      predicate: EXACT_SYNONYM
+      in_language: es
+    - literal_form: سجل مستند
+      predicate: EXACT_SYNONYM
+      in_language: ar
+    - literal_form: catatan dokumen
+      predicate: EXACT_SYNONYM
+      in_language: id
+    - literal_form: 文档记录
+      predicate: EXACT_SYNONYM
+      in_language: zh
+    slots:
+      - has_title
+      - has_type
+      - has_note
+      - has_custodian
+      - has_date
+      - has_language
+      - instantiated_as
+    slot_usage:
+      has_type:
+        description: >-
+          The record kind, including `born-digital document` for
+          natively-digital and AI-generated material.
+      instantiated_as:
+        description: >-
+          The concrete instantiations of this record (docx original, md/pdf
+          derivatives); Rico hasOrHadInstantiation 6527-6594.
+        range: RecordInstantiation
+        multivalued: true
+    close_mappings:
+      - rico:Record
+      - rico:RecordResource

@@ -1,0 +1,84 @@
+# ==============================================================================
+# LinkML Slot Definition: reports_to
+# ==============================================================================
+# Direct hierarchical reporting relation between two agents (person to
+# manager/coordinator, or unit to unit). Complements `managed_by`/`manage`
+# (the org-unit perspective) with the person-to-person line used in
+# social-network reconstruction (kadaster plan `rrp:pl:j4gavp0f2` item 4.2,
+# `rrp:it:ebkrebxt2` — the `rapporteert-aan` relation).
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology      | Property        | File/Line             | Mapping | Notes                                        |
+# |---------------|-----------------|-----------------------|---------|----------------------------------------------|
+# | **W3C Org**   | `org:reportsTo`  | org.rdf:1046-1075     | exact   | "Indicates that an Agent (person or org) reports to another." Domain/range foaf:Agent — generalizes both person→manager and unit→unit lines. |
+# | **Schema.org**| `schema:parent`  | (Organization)        | related | Organizational-parent for orgs only; no person-to-person semantics. |
+#
+# NOTE: org:reportsTo is deliberately NOT transitive in ORG (a direct reporting
+# line only); transitive chains are computed by consumers (e.g. the
+# social-network dashboard derives manager edges from observed org lines,
+# never inventing them — design-patterns.md §4).
+#
+# CREATED: 2026-09-27
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/reports_to
+name: reports_to
+title: Reports To
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  org: http://www.w3.org/ns/org#
+  schema: https://schema.org/
+
+default_prefix: rr
+
+imports:
+  - linkml:types
+  - ../metadata
+
+slots:
+  reports_to:
+    title: Reports To
+    description: >-
+      Direct hierarchical reporting relation: the subject agent (person or
+      organizational unit) reports to the object agent (their manager,
+      coordinator, or supervising unit). A direct line only — never
+      transitively inferred; derived chains must be recomputed per source.
+    alt_descriptions:
+      nl: >-
+        Directe hiërarchische rapporteerrelatie: de agent (persoon of
+        organisatieonderdeel) rapporteert aan de genoemde agent (manager,
+        coordinator of bovenliggend onderdeel). Alleen de directe lijn — nooit
+        transitief afgeleid.
+      de: >-
+        Direkte hierarchische Berichtsbeziehung: der Agent (Person oder
+        Organisationseinheit) berichtet an den genannten Agenten (Manager,
+        Koordinator oder übergeordnete Einheit). Nur die direkte Linie — nie
+        transitiv abgeleitet.
+      fr: >-
+        Relation hiérarchique directe : l'agent (personne ou unité
+        organisationnelle) rend compte à l'agent indiqué (manager, coordinateur
+        ou unité supérieure). Ligne directe uniquement — jamais dérivée de
+        manière transitive.
+    slot_uri: org:reportsTo
+    range: string  # uriorcurie — persistent id of the managing agent
+    exact_mappings:
+      - org:reportsTo
+    related_mappings:
+      - schema:parent
+    comments:
+      - Person-to-manager and unit-to-unit lines both use this slot (org:reportsTo generalizes foaf:Agent)
+      - Evidence-backed usage: the asserting observation must carry the source where the reporting line was observed
+      - Counterpart of managed_by/manage (which express the org-unit staffing perspective)
+    examples:
+      - value:
+          reports_to: https://textpast.com/ontology/rr/person/jan-productowner
+        description: A product owner reporting to a person hub identified by persistent id.
+    annotations:
+      specificity_score: 0.4
+      specificity_rationale: >-
+        Domain-specific relational slot added for organisational
+        social-network reconstruction (kadaster org analysis).
+      custodian_types: "['*']"

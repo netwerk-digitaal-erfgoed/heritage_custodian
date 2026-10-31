@@ -1,0 +1,205 @@
+# Meta Bridge Mapping: RootReal Extraction/Enrichment → Canonical Ontology
+#
+# Maps the born-digital document-processing pipeline's semantic enrichment
+# claims to canonical linked-data predicates and TypeDB projection entities.
+#
+# Source: harvest-service pipeline/semantic_enrichment.rs
+# Authority: EnrichmentClaimAuthority::RootrealGenerated
+# SSSOM: skos:exactMatch / skos:closeMatch evidence required for projection
+#
+# Version: 1.0.0
+# Last Updated: 2026-05-28
+
+id: https://rootreal.ai/schema/meta_bridge/extraction_enrichment
+name: extraction_enrichment_meta_bridge
+title: Extraction & Enrichment Meta Bridge Mapping
+description: |
+  Bridges RootReal-generated enrichment claims from the born-digital
+  document-processing pipeline to canonical ontology predicates suitable
+  for TypeDB projection and linked-data export.
+
+  Covers three enrichment worker outputs:
+  - Entity name extraction (named entities from document text)
+  - Date pattern detection (ISO 8601 and European date formats)
+  - Place name detection (geographic names from controlled vocabulary)
+
+  When EnrichmentClaimAuthority::CustodianSupplied claims already exist
+  for the same target and class, the provenance_authority module skips
+  or supplements rather than duplicating.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: https://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dcterms: http://purl.org/dc/terms/
+  edm: http://www.europeana.eu/schemas/edm/
+  prov: http://www.w3.org/ns/prov#
+  premis: http://www.loc.gov/premis/rdf/v3/
+  rootreal: https://rootreal.ai/ontology/
+  sssom: https://w3id.org/sssom/
+
+imports:
+  - linkml:types
+
+classes:
+  ExtractionEnrichmentMapping:
+    description: |
+      Root mapping class for the extraction/enrichment meta bridge.
+      Each instance corresponds to one enrichment claim with provenance.
+
+    attributes:
+      evidence_id:
+        description: Durable enrichment evidence identifier
+        range: string
+        required: true
+        pattern: "^semantic-(entity|date|place)-[a-f0-9]+-[0-9]+$"
+
+      target_id:
+        description: Target information-object identifier
+        range: string
+        required: true
+
+      enrichment_class:
+        description: Governed enrichment class (always 'semantic' for this mapping)
+        range: EnrichmentClassEnum
+        required: true
+
+      claim_authority:
+        description: Authority that produced the claim
+        range: ClaimAuthorityEnum
+        required: true
+
+# Slot mappings for each enrichment worker output type
+
+slot_mappings:
+  # === Entity Name Extraction ===
+  entity_name:
+    target_predicate: "schema:name"
+    transform: identity
+    also_maps_to:
+      - predicate: "skos:prefLabel"
+        transform: identity
+      - predicate: "dcterms:title"
+        transform: identity
+        condition: "entity_type == 'organization_name'"
+    sssom_predicate_id: "skos:exactMatch"
+    sssom_confidence_threshold: 0.85
+
+  entity_type:
+    target_predicate: "rootreal:entityType"
+    transform:
+      type: enum_map
+      mapping:
+        named_entity: "schema:Thing"
+        organization_name: "schema:Organization"
+        person_name: "schema:Person"
+        event_name: "schema:Event"
+    sssom_predicate_id: "skos:closeMatch"
+
+  # === Date Pattern Detection ===
+  date_value:
+    target_predicate: "dcterms:date"
+    transform: identity
+    also_maps_to:
+      - predicate: "schema:datePublished"
+        condition: "date_type == 'publication_date'"
+      - predicate: "schema:dateCreated"
+        condition: "date_type == 'creation_date'"
+      - predicate: "schema:dateModified"
+        condition: "date_type == 'modification_date'"
+    sssom_predicate_id: "skos:exactMatch"
+    sssom_confidence_threshold: 0.90
+
+  date_type:
+    target_predicate: "rootreal:dateType"
+    transform:
+      type: enum_map
+      mapping:
+        detected_date: "dcterms:date"
+        publication_date: "schema:datePublished"
+        creation_date: "schema:dateCreated"
+        modification_date: "schema:dateModified"
+
+  # === Place Name Detection ===
+  place_name:
+    target_predicate: "schema:locationCreated"
+    transform: identity
+    also_maps_to:
+      - predicate: "dcterms:spatial"
+        transform: identity
+      - predicate: "edm:currentLocation"
+        transform: identity
+        condition: "place_type == 'current_location'"
+    sssom_predicate_id: "skos:closeMatch"
+    sssom_confidence_threshold: 0.75
+
+  place_type:
+    target_predicate: "rootreal:placeType"
+    transform:
+      type: enum_map
+      mapping:
+        geographic_name: "schema:Place"
+        country: "schema:Country"
+        city: "schema:City"
+        current_location: "edm:currentLocation"
+
+# Provenance mapping for TypeDB projection
+provenance_mapping:
+  source_object_id:
+    target_predicate: "prov:wasDerivedFrom"
+    description: Links enrichment evidence to source information-object
+
+  source_file_digest:
+    target_predicate: "premis:fixity"
+    description: Fixity proof that the enrichment was derived from exact source bytes
+
+  tool_name:
+    target_predicate: "prov:wasGeneratedBy"
+    description: Processing tool/worker that produced the enrichment
+
+  tool_version:
+    target_predicate: "rootreal:toolVersion"
+    description: Version of the enrichment worker
+
+  creation_event_id:
+    target_predicate: "premis:relatedEventIdentifier"
+    description: Preservation event recording evidence creation
+
+# SSSOM evidence requirements
+sssom_requirements:
+  minimum_confidence: 0.70
+  required_predicate_ids:
+    - "skos:exactMatch"
+    - "skos:closeMatch"
+  mapping_justification: "semapv:ManualMappingCuration"
+  author_id: "https://rootreal.ai/agent/semantic-enrichment-worker"
+
+# TypeDB projection shape
+typedb_projection:
+  entity_type: "enrichment-claim"
+  relations:
+    - type: "derived-from"
+      role_source: "evidence"
+      role_target: "source-object"
+      attribute: "confidence"
+    - type: "attested-by"
+      role_source: "claim"
+      role_target: "provenance-event"
+      attribute: "tool-version"
+
+enums:
+  EnrichmentClassEnum:
+    permissible_values:
+      semantic:
+        description: Semantic claims (entities, subjects, places, dates, links)
+      content:
+        description: Content-derived text and structure evidence
+      technical:
+        description: Technical format and extraction-quality evidence
+
+  ClaimAuthorityEnum:
+    permissible_values:
+      custodian_supplied:
+        description: Custodian supplied via data current (skip RootReal mapping)
+      rootreal_generated:
+        description: RootReal generated from original or derivative evidence

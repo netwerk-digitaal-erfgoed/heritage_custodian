@@ -1,0 +1,43 @@
+id: https://textpast.com/ontology/rr/parsimony/mappings/digital-object-realizations
+name: digital_object_realizations
+title: Digital Object Realizations
+description: >-
+  Structured realization notes for how the semantic SourceResource and Holding
+  hubs are implemented for archival digital objects — EAD <dao> references, their
+  referenced METS structural-metadata documents, and IIIF manifests/canvases.
+  Per PARSIMONY-GENERIC-META-EXTENSIBLE-001 this file adds NO new parsimony
+  classes; it explains how the existing generic hubs absorb digital-object
+  semantics that the meta layer distributes across DigitalInstantiation, Image,
+  and premis rights/fixity/storage structures.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../metadata
+  - ../classes/SourceResource
+  - ../classes/Holding
+comments:
+  - >-
+    REALIZATION AXIS: The semantic SourceResource hub absorbs every archival
+    digital object — an EAD <dao>, a METS object keyed on its mets_uuid, and an
+    IIIF manifest/canvas — that the meta layer instantiates as a
+    DigitalInstantiation (crm:E73_Information_Object). The mets_uuid designator is
+    the cross-source reconciliation key that unifies these into one semantic
+    SourceResource node (SOURCE-MULTIFILE-META-SINGLE-GRAPH-001).
+  - >-
+    REALIZATION AXIS: Engineering available_via distributes the several access
+    endpoints of a single digital object — the raw <dao> href, the METS
+    storage location, and the IIIF image-tiling service endpoint — into distinct
+    publication roles that remain unified as one semantic SourceResource.
+  - >-
+    REALIZATION AXIS: The semantic Holding hub realizes the finding-aid-level
+    custodial relationship (held_by the Nationaal Archief); digital objects
+    attach to Holding indirectly through the component SourceResource nodes they
+    designate via inventarisnummer, preserving the toegangsnummer ->
+    inventarisnummer -> mets_uuid spine.
+  - >-
+    REALIZATION AXIS: Engineering typed_as carries the digital object's role
+    (EAD <dao> @role, METS use, IIIF motivation) as a semantic type designation
+    without introducing a role-specific parsimony class.

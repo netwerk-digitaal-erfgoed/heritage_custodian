@@ -1,0 +1,113 @@
+id: https://textpast.com/ontology/rr/slots/ambient_note_slots
+name: ambient_note_slots
+title: Ambient Note Slots
+description: >-
+  Centralized slots for the AmbientNote class (the session-end observation a
+  session surfaced but did NOT chase). All slots are defined here and imported by
+  the class file — class files MUST NOT define slots inline (GAC:
+  linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
+  noun-singular, ontology-neutral, and `ambient_note_`-prefixed to avoid
+  collisions with the many existing meta slots (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001). The
+  instance-hypergraph ingest intentionally does NOT model AmbientNote (like
+  hazards/scripts/provenance) — it is a LinkML-only branch at the schema layer,
+  carried in the SessionConclusion umbrella's structured YAML for the next
+  session's ingest + operator review.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  ambient_note_category:
+    slot_uri: rr:ambientNoteCategory
+    description: >-
+      The category of the ambient observation (AmbientNoteCategoryEnum). Drives
+      routing + reconciliation.
+    range: AmbientNoteCategoryEnum
+    required: true
+
+  ambient_note_severity:
+    slot_uri: rr:ambientNoteSeverity
+    description: >-
+      The routing severity (importance-for-routing), distinct from the category
+      (kind-of-content). Values: `info` | `warning` | `critical` (mirrors the
+      Swarm severity vocabulary). A DEPENDENCY_ALERT that this session survived
+      via a fallback is typically `warning` or `critical` (the fleet risk), not
+      `info`.
+    range: string
+
+  ambient_note_component:
+    slot_uri: rr:ambientNoteComponent
+    description: >-
+      The component/scope the observation is about (e.g. `vault`, `forgejo`,
+      `harbor`, `mcp-gateway`, `git-sync`, `worktree-pool`, `tekton-ci`). Free
+      text but should match a known component name for filtering.
+    range: string
+
+  ambient_note_observation:
+    slot_uri: rr:ambientNoteObservation
+    description: >-
+      What was observed (the factual observation, not the interpretation). E.g.
+      "vault-unreachable; the mcp-auth-env resolver fell back to the dotenv
+      bootstrap" or "3 CRITICAL infra-failure findings still in the
+      session-start digest 8h after the dependency recovered".
+    range: string
+    required: true
+
+  ambient_note_disposition:
+    slot_uri: rr:ambientNoteDisposition
+    description: >-
+      Why the session did NOT chase it + the suggested owner/next-step. E.g. "out
+      of scope — the session's own git pushes landed (dotenv bootstrap suffices);
+      routed to the infra owner via a docs/prompt investigation handoff." This is
+      what makes an AmbientNote actionable rather than a dangling complaint: it
+      names the owner + the disposition.
+    range: string
+
+  ambient_note_dedup_key:
+    slot_uri: rr:ambientNoteDedupKey
+    description: >-
+      A stable dedup/reconciliation key — typically the Swarm finding dedup_key
+      (e.g. `infra-failure:vault`) or a stable identifier a downstream consumer
+      uses to match the note to a finding/alert/issue + resolve it when the
+      condition clears. Optional but recommended for DEPENDENCY_ALERT +
+      STALE_FINDING notes.
+    range: string
+
+  ambient_note_observed_at:
+    slot_uri: prov:generatedAtTime
+    description: >-
+      When the observation was made (RFC3339, UTC). For a STALE_FINDING carried
+      from the session-start digest, this is when the SESSION observed it (not
+      the finding's original post time — that is in the observation text).
+    range: string
+
+  ambient_note_reference:
+    slot_uri: rr:ambientNoteReference
+    description: >-
+      A reference for follow-up — a docs/prompt path, a Forgejo issue (#NNN), a
+      Swarm finding id, or a URL. Optional. For an OUT_OF_SCOPE_REMEDIATION note
+      this is the docs/prompt of variety `out-of-scope-issue-observation` (the
+      THIRD docs/prompt variety, AGENT-PROMPT-VARIETIES-001) spawned to pick the
+      observation up; pair it with `ambient_note_remediation_plan` (the Plan MCP
+      plan that prompt drives) so the note→prompt→plan linkage is structural.
+    range: string
+
+  ambient_note_remediation_plan:
+    slot_uri: rr:ambientNoteRemediationPlan
+    description: >-
+      The Plan MCP plan id (e.g. `prompt_mcp_projection_stale`) or Concept PID
+      (`rrp:pl:...`) of the NEW prompt-chain/plan spawned to remediate an
+      OUT_OF_SCOPE_REMEDIATION observation. Optional (recommended whenever
+      category = OUT_OF_SCOPE_REMEDIATION); pairs with
+      `ambient_note_reference` (the driving docs/prompt) to make the
+      note→prompt→plan linkage machine-queryable. Absent when the note is a pure
+      FYI (DEPENDENCY_ALERT / OBSERVED_ANOMALY / PEER_ACTIVITY with no
+      remediation owner yet).
+    range: string

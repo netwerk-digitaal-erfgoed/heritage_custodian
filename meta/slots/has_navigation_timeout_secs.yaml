@@ -1,0 +1,28 @@
+# ==============================================================================
+# LinkML Slot Definition: has_navigation_timeout_secs
+# ==============================================================================
+# GIS-grade navigation timeout (seconds) for the headless capture flow.
+# KOS Morocco #476 residual 2 — HeadlessCaptureProfile capture knob.
+# CREATED: 2026-07-01
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/has_navigation_timeout_secs
+name: has_navigation_timeout_secs
+title: Has Navigation Timeout Seconds
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+imports:
+- linkml:types
+default_prefix: rr
+slots:
+  has_navigation_timeout_secs:
+    slot_uri: rr:hasNavigationTimeoutSeconds
+    description: >-
+      Navigation + render timeout in seconds. GIS / map-tile sources need a
+      longer budget (e.g. 45s) than the generic 30s default for tile layers to
+      finish rendering before capture.
+    range: integer
+    required: false
+    annotations:
+      custodian_types: '["*"]'

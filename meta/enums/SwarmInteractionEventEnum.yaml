@@ -1,0 +1,43 @@
+id: https://textpast.com/ontology/rr/enum/SwarmInteractionEventEnum
+name: SwarmInteractionEventEnum
+title: Swarm Interaction Event Enum
+description: >-
+  The kind of Swarm MCP coordination event recorded in a session's interaction
+  timeline (element E4 of the structured session-conclusion plan). The timeline
+  is DERIVED from Swarm MCP provenance (swarm_workspace_timeline / swarm_get_*),
+  never re-tracked by the agent (SWARM-SESSION-HANDOFF, swarm-agent-id-persistence).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  SwarmInteractionEventEnum:
+    description: >-
+      Lifecycle and coordination events for one agent's Swarm session, ordered
+      roughly by session phase (register first, deregister last).
+    permissible_values:
+      REGISTER:
+        description: >-
+          The agent registered with Swarm via swarm_register_agent (session
+          start; establishes the agent_id and task identity).
+      DECLARE_WORKING_FILES:
+        description: >-
+          The agent declared or updated its working file locks via
+          swarm_declare_working_files.
+      HEARTBEAT:
+        description: >-
+          The agent emitted a keep-alive via swarm_heartbeat (every ~2 minutes;
+          locks expire without it).
+      MESSAGE:
+        description: >-
+          The agent sent or drained a coordination message (swarm_send_message /
+          swarm_check_messages).
+      BROADCAST:
+        description: >-
+          The agent published an activity/compaction summary to peers via
+          swarm_broadcast_activity or posted to the blackboard.
+      DEREGISTER:
+        description: >-
+          The agent deregistered via swarm_deregister_agent (session end;
+          releases all file locks).

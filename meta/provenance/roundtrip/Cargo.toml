@@ -1,0 +1,39 @@
+[package]
+name = "model-symbolic-schemata-meta-provenance-roundtrip"
+version = "0.1.0"
+edition = { workspace = true }
+authors = ["Simon C. Kemper <textpast@textpast.com>"]
+description = "Round-trip a CryptographicProvenanceEvent through LinkML class → Rust struct → ProofBundle → RDF member (LDES N-Triples) → SSSOM-normalized PROV-OAIS semantic form and back. Proves the symbolic provenance metalayer round-trips without loss across the representation chain. Plan provenance-cryptography-services Phase 8 item pcktgjt74."
+license = "MIT OR Apache-2.0"
+repository = "https://git.rootreal.io/textpast/rootreal"
+keywords = ["provenance", "linkml", "round-trip", "rdf", "sssom"]
+categories = ["data-structures"]
+
+[package.metadata]
+alias = "meta-provenance-roundtrip"
+
+[lib]
+name = "model_symbolic_schemata_meta_provenance_roundtrip"
+
+[dependencies]
+# The canonical Rust provenance form (ProofBundle, ContentId, IsccCode, refs).
+provenance_core = { workspace = true }
+# The LDES N-Triples projection + summary/refs extraction (Phase 8 item g1jt7wkgn).
+ldes_provenance_core = { workspace = true }
+# Uuid asset PID + capture timestamp.
+uuid = { workspace = true }
+chrono = { workspace = true }
+# Serialization of the LinkML-mirroring struct.
+serde = { workspace = true, features = ["derive"] }
+# Hex decode of the sha256 content_id digest in event_to_bundle.
+hex = "0.4"
+workspace-hack = { version = "0.1", path = "../../../../../../../workspace-hack" }
+
+[dev-dependencies]
+serde_json = { workspace = true }
+
+[features]
+default = []
+
+[lints]
+workspace = true

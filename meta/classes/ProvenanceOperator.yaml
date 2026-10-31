@@ -1,0 +1,24 @@
+id: https://textpast.com/ontology/rr/class/ProvenanceOperator
+name: ProvenanceOperator
+title: Provenance Operator
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/session_provenance_slots
+default_range: string
+
+classes:
+  ProvenanceOperator:
+    class_uri: rr:ProvenanceOperator
+    description: >-
+      The operator of a mined session — the most-frequent commit author across
+      the session's landed commits. Composes into SessionProvenance as its
+      `operator` sub-record (FU3 part a).
+    slots:
+      - operator_name
+      - operator_email
+    comments:
+      - "operator_name is the git author name of the most-frequent author; operator_email is optional (a session with no commits carries an empty operator)."

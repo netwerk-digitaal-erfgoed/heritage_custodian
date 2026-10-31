@@ -1,0 +1,112 @@
+id: https://textpast.com/ontology/rr/slots/session_completion_slots
+name: session_completion_slots
+title: Session Completion Assessment Slots
+description: >-
+  Centralized slots for the SessionCompletionAssessment class (element E8 of the
+  SessionConclusion umbrella — the "Complete? Can we archive?" standard section).
+  All slots are defined here and imported by the class file — class files MUST
+  NOT define slots inline (GAC: linkml/general/class-files-no-inline-slots.md,
+  CLASS-FILES-001). Slot names are noun-singular / ontology-neutral snake_case
+  (GAC: linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/PlanCompletionEnum
+  - ../enums/PlanArchiveReadinessEnum
+
+slots:
+
+  plan_ref:
+    slot_uri: rr:planRef
+    description: >-
+      The plan being assessed — the plan_id (e.g. "provenance-cryptography-
+      services") or the docs/plan/<slug>/ path. Omit for a plan-less session
+      (archive_readiness: not_applicable). When present it identifies which
+      plan's completion/archive-readiness this record decides.
+    range: string
+
+  plan_completion:
+    slot_uri: rr:planCompletion
+    description: >-
+      The "Complete?" verdict (PlanCompletionEnum) — whether the plan's work is
+      fully done. Derived from authoritative plan state (Plan MCP), reconciled
+      against `origin/main` when the two disagree (GOV-AGENT-PLAN-001 v1.6.0:
+      Plan MCP can lag deployed code). REQUIRED.
+    range: PlanCompletionEnum
+    required: true
+
+  archive_readiness:
+    slot_uri: rr:archiveReadiness
+    description: >-
+      The "Can we archive?" verdict (PlanArchiveReadinessEnum) — whether the
+      plan may be archived now. The single decision an operator/automation reads
+      off the close. MUST be hold when plan_completion is incomplete; typically
+      not_applicable when plan_completion is not_assessed. REQUIRED.
+    range: PlanArchiveReadinessEnum
+    required: true
+
+  completed_items:
+    slot_uri: rr:completedItems
+    description: >-
+      Count of the plan's checklist items that are done (optional quantitative
+      backing for plan_completion). Omit when not tracked / not_applicable.
+    range: integer
+    minimum_value: 0
+
+  total_items:
+    slot_uri: rr:totalItems
+    description: >-
+      Total count of the plan's checklist items (optional quantitative backing).
+      Omit when not tracked / not_applicable.
+    range: integer
+    minimum_value: 0
+
+  remaining_items:
+    slot_uri: rr:remainingItems
+    description: >-
+      Count of the plan's open checklist items (optional quantitative backing).
+      Omit when not tracked / not_applicable.
+    range: integer
+    minimum_value: 0
+
+  live_owners:
+    slot_uri: rr:liveOwners
+    description: >-
+      Heartbeat-verified live-owner citations for the plan's open items
+      (SessionLiveOwnerCitation) — the alternative satisfaction of the
+      plan-task succession two-outcome rule (PLAN-TASK-SUCCESSION-SWEEP-001,
+      operator directive 2026-09-22): every open item in a touched plan gets
+      a succession docs/prompt/ successor OR a live owner recorded here.
+      Validator-enforced under require_completion_nonempty (profile `full`):
+      plan_completion partial/incomplete with NO succession prompt and NO
+      valid live_owners[] FAILs (an owner citation is valid only when
+      agent_ref + heartbeat_at + owns are present and the heartbeat is
+      fresh against generated_at — an unverifiable owner claim is a masked
+      gap, not a pass). Omit for complete/not_assessed closes.
+    range: SessionLiveOwnerCitation
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  rationale:
+    slot_uri: rr:completionRationale
+    description: >-
+      The phase/item breakdown justifying the verdict — e.g. "Phase 7 relational/
+      vector/multigraph Consume open (3 items); Phase 8 (6), Phase 9 (6), Phase
+      10 (7) all not_started." For hold, MUST name the blocker; for
+      not_applicable, MUST state why no plan was in scope. REQUIRED.
+    range: string
+    required: true
+
+  evidence_refs:
+    slot_uri: rr:completionEvidenceRefs
+    description: >-
+      The evidence backing the verdict — landing SHAs, Plan MCP query results
+      (phase/item statuses), or `git cat-file -e`/`merge-base --is-ancestor`
+      checks proving code-landed-ness (GOV-AGENT-PLAN-001 v1.6.0). Empty array
+      allowed for a not_applicable verdict.
+    range: string
+    multivalued: true

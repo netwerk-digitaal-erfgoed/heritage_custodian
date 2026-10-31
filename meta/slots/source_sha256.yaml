@@ -1,0 +1,93 @@
+# ==============================================================================
+# LinkML Slot Definition: source_sha256
+# ==============================================================================
+# The SHA-256 content digest of the source bytes this thing was derived from.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-06, plan readlist-record-instantiation-model
+# item 1.3, against PREMIS 3.0 / SPDX 3.0 standards):
+#
+# | Ontology | Property / concept              | Source                            | Mapping | Notes                                                       |
+# |----------|----------------------------------|-----------------------------------|---------|--------------------------------------------------------------|
+# | **PREMIS**| fixity `messageDigest` with     | PREMIS DD v3.0, Object entity,    | close   | Object Characteristics / fixity: messageDigestAlgorithm      |
+# |          | `messageDigestAlgorithm`         | Object Characteristics / fixity   |         | 'SHA-256' + messageDigest value.                             |
+# |          | 'SHA-256'                        | semantic units                    |         |                                                              |
+# | **SPDX** | `spdx:Checksum` with             | SPDX 3.0 ontology,                | related | SPDX checksum with algorithm SHA256;                         |
+# |          | `spdx:algorithm = SHA256`        | spdx-3.0.1                        |         | license/provenance oriented.                                 |
+#
+# The slot names the SOURCE digest specifically (vs. a generic digest slot)
+# because a derivative carries both the digest of its own bytes and the
+# digest of the source bytes it was derived from — the latter is the
+# reproducibility key for the conversion.
+#
+# CREATED: 2026-10-06 (plan readlist-record-instantiation-model, item 1.3)
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/source_sha256
+name: source_sha256
+title: Source SHA-256
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+slots:
+  source_sha256:
+    name: source_sha256
+    title: Source SHA-256
+    slot_uri: rr:sourceSha256
+    description: >-
+      The SHA-256 content digest (64 lowercase hex characters) of the source
+      bytes this thing consists of or was derived from — the PREMIS fixity
+      messageDigest with messageDigestAlgorithm SHA-256. For an
+      instantiation, this is the digest of its own stored bytes.
+    alt_descriptions:
+      nl: >-
+        De SHA-256 inhoudscontrolewaarde (64 kleine hexadecimale tekens) van de
+        bronbytes waaruit dit ding bestaat of waarvan het is afgeleid.
+      de: >-
+        Der SHA-256-Inhalts-Digest (64 Kleinbuchstaben-Hexadezimalzeichen) der
+        Quellbytes, aus denen dieses Ding besteht oder von denen es abgeleitet ist.
+      fr: >-
+        Le condensat de contenu SHA-256 (64 caractères hexadécimaux minuscules)
+        des octets sources dont cette chose est constituée ou dérivée.
+      es: >-
+        El resumen de contenido SHA-256 (64 caracteres hexadecimales en
+        minúsculas) de los bytes de origen de los que consta o deriva esta cosa.
+      ar: >-
+        بصمة المحتوى SHA-256 (64 حرفًا سداسيًا عشريًا صغيرًا) للبايتات المصدر التي تتكون منها هذه الأشياء أو اشتُقت منها.
+      id: >-
+        Intisari konten SHA-256 (64 karakter heksadesimal kecil) dari byte sumber
+        yang menjadi bagian atau asal turunan hal ini.
+      zh: >-
+        此事物所构成或衍生自的源字节的 SHA-256 内容摘要（64 个小写十六进制字符）。
+    structured_aliases:
+      - literal_form: bron-sha256
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Quell-SHA-256
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: sha256 source
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: sha256 de origen
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: بصمة المصدر
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: sha256 sumber
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 源 SHA-256
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    range: string
+    pattern: "^[0-9a-f]{64}$"
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - premis:messageDigest-sha256  # PREMIS DD v3.0 Object fixity: messageDigest (algorithm SHA-256)
+    related_mappings:
+      - spdx:Checksum  # SPDX 3.0 checksum (algorithm SHA256)

@@ -1,0 +1,106 @@
+# ==============================================================================
+# LinkML Slot Definition: transpose
+# ==============================================================================
+# Give legal effect within a jurisdiction to the objectives set by another
+# (typically supranational) legal act by adopting implementation measures.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-27 against the ELI ontology v1.5 as
+# served by CELLAR, http://data.europa.eu/eli/ontology -> cellar
+# 917d16b5-28f6-11e8-b5fe-01aa75ed71a1.0001.01/DOC_1; PROV-O from
+# https://www.w3.org/ns/prov.ttl, same date):
+#
+# | Ontology   | Property                        | File/Line          | Mapping  | Notes                                                        |
+# |------------|---------------------------------|--------------------|----------|--------------------------------------------------------------|
+# | **ELI**    | `eli:transposes`                | eli DOC_1:1579     | slot_uri | "Indicates that this legislation (or part of legislation)    |
+# |            |                                 |                    |          | fulfills the objectives set by another legislation, by       |
+# |            |                                 |                    |          | passing appropriate implementation measures."                |
+# | **ELI**    | `eli:ensures_implementation_of` | eli DOC_1:786      | close    | Legal implementation link; broader than transposition.       |
+# | **PROV-O** | `prov:wasDerivedFrom`           | prov.ttl:1098      | broad    | A transposing act is derived from the act it transposes.     |
+#
+# CREATED: 2026-10-27 (plan grc-iso27001-nis2-kos-integration item 5.4 —
+# standard variety model; first instance: Cyberbeveiligingswet transposes NIS2)
+# ==============================================================================
+id: https://textpast.com/ontology/rr/slot/transpose
+name: transpose
+title: Transpose
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  eli: http://data.europa.eu/eli/ontology#
+  prov: http://www.w3.org/ns/prov#
+default_prefix: rr
+imports:
+  - linkml:types
+slots:
+  transpose:
+    slot_uri: eli:transposes
+    range: uriorcurie
+    multivalued: true
+    description: >-
+      To give legal effect, within a jurisdiction, to the objectives set by
+      another legal act — typically a supranational act such as an EU
+      directive — by adopting appropriate national implementation measures.
+    alt_descriptions:
+      nl: >-
+        Het binnen een rechtsgebied rechtsgevolg geven aan de doelstellingen van
+        een andere rechtshandeling — doorgaans een supranationale handeling zoals
+        een EU-richtlijn — door passende nationale uitvoeringsmaatregelen vast te
+        stellen.
+      de: >-
+        Die Ziele eines anderen Rechtsakts — typischerweise eines supranationalen
+        Rechtsakts wie einer EU-Richtlinie — innerhalb einer Rechtsordnung durch
+        geeignete nationale Umsetzungsmaßnahmen rechtswirksam machen.
+      fr: >-
+        Donner effet juridique, dans un ordre juridique, aux objectifs fixés par
+        un autre acte juridique — généralement un acte supranational tel qu'une
+        directive de l'UE — en adoptant des mesures nationales d'exécution
+        appropriées.
+      es: >-
+        Dar efecto jurídico, dentro de una jurisdicción, a los objetivos fijados
+        por otro acto jurídico — normalmente un acto supranacional como una
+        directiva de la UE — mediante la adopción de medidas nacionales de
+        aplicación adecuadas.
+      ar: >-
+        إعطاء أثر قانوني، داخل ولاية قضائية، للأهداف التي يحددها صك قانوني آخر —
+        عادةً صك فوق وطني مثل توجيه الاتحاد الأوروبي — من خلال اعتماد تدابير
+        تنفيذ وطنية مناسبة.
+      id: >-
+        Memberikan akibat hukum, di dalam suatu yurisdiksi, terhadap tujuan yang
+        ditetapkan oleh instrumen hukum lain — biasanya instrumen supranasional
+        seperti arahan UE — dengan menetapkan langkah-langkah pelaksanaan
+        nasional yang sesuai.
+      zh: >-
+        通过制定适当的国内实施措施，在某一法域内使另一法律文件（通常是欧盟指令等超国家法律文件）所设定的目标产生法律效力。
+    structured_aliases:
+      - literal_form: omzetten
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: umsetzen
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: transposer
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: transponer
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: تحويل إلى القانون الوطني
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: mentransposisikan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 转化
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    close_mappings:
+      - eli:ensures_implementation_of
+    broad_mappings:
+      - prov:wasDerivedFrom
+    comments:
+      - "Directional: the subject is the transposing (national) act, the object the transposed (supranational) act."
+      - "The variety node carrying this edge is typed NATIONAL_TRANSPOSITION in StandardVarietyKindEnum."
+    annotations:
+      specificity_score: 0.35
+      specificity_rationale: Legal-instrument relation reusable for any national implementation of a supranational act
+      custodian_types: '["*"]'

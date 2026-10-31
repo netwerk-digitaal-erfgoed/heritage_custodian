@@ -1,0 +1,95 @@
+# ==============================================================================
+# LinkML Slot Definition: derivative_of
+# ==============================================================================
+# The thing this concrete thing is a derivation (copy / format-converted form)
+# of. Null for originals.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-06, plan readlist-record-instantiation-model
+# item 1.3, against the in-repo RiC-O vocabulary + the PREMIS 3.0 data dictionary):
+#
+# | Ontology | Property                          | File/Line               | Mapping | Notes                                                            |
+# |----------|-----------------------------------|-------------------------|---------|-------------------------------------------------------------------|
+# | **PREMIS**| Relationship `is derivation of`  | PREMIS DD v3.0, Object  | close   | Object→Object relationship; the PREMIS relationshipSubType        |
+# |          |                                   | entity, Relationship    |         | vocabulary value 'is derivation of'.                              |
+# |          |                                   | (id.loc.gov/vocabulary/ |         |                                                                  |
+# |          |                                   | preservation/           |         |                                                                  |
+# |          |                                   | relationshipSubType.html)|        |                                                                  |
+# | **RiC-O**| `rico:isCopyOf`                   | RiC-O_1-1.rdf:10743-10769 | related | Genetic link RiC-R012; NOTE RiC-O scopes hasCopy/isCopyOf        |
+# |          |                                   |                         |         | RecordResource→RecordResource, while this slot relates            |
+# |          |                                   |                         |         | instantiations — hence PREMIS is the closer mapping.             |
+# | **PROV** | `prov:wasDerivedFrom`             | prov-o.html             | broad   | W3C PROV-O derivation; entity-level, not format-conversion-scoped.|
+#
+# CREATED: 2026-10-06 (plan readlist-record-instantiation-model, item 1.3)
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/derivative_of
+name: derivative_of
+title: Derivative Of
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  rico: https://www.ica.org/standards/RiC/ontology#
+  prov: http://www.w3.org/ns/prov#
+default_prefix: rr
+imports:
+  - linkml:types
+slots:
+  derivative_of:
+    name: derivative_of
+    title: Derivative Of
+    slot_uri: rr:derivativeOf
+    description: >-
+      References the concrete thing this thing is a derivation of (a copy or
+      format-converted form). Null for originals; when set, is_derivative is
+      true. Instantiation-level derivation follows PREMIS object
+      relationships; the RiC-O genetic link is the archival cousin.
+    alt_descriptions:
+      nl: >-
+        Verwijst naar het concrete ding waarvan dit ding een afleiding is (een kopie
+        of geconverteerde vorm). Null voor originelen.
+      de: >-
+        Verweist auf das konkrete Ding, von dem dieses Ding eine Ableitung ist
+        (eine Kopie oder konvertierte Form). Null für Originale.
+      fr: >-
+        Référence la chose concrète dont cette chose est une dérivation (une copie
+        ou une forme convertie). Null pour les originaux.
+      es: >-
+        Hace referencia a la cosa concreta de la cual esta cosa es una derivación
+        (una copia o forma convertida). Null para los originales.
+      ar: >-
+        يشير إلى الشيء الملموس الذي يُشتق منه هذا الشيء (نسخة أو صيغة محولة). قيمة فارغة للأصول.
+      id: >-
+        Merujuk pada hal konkret yang menjadi sumber turunan hal ini (salinan atau
+        bentuk yang dikonversi). Null untuk yang asli.
+      zh: >-
+        指向此事物所衍生自的具体事物（副本或格式转换形式）。原件为空值。
+    structured_aliases:
+      - literal_form: afleiding van
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Ableitung von
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: dérivation de
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: derivación de
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مشتق من
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: turunan dari
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 衍生自
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    range: uriorcurie
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - premis:relationshipSubType-isDerivationOf  # PREMIS DD v3.0 Object Relationship
+    related_mappings:
+      - rico:isCopyOf  # RiC-O_1-1.rdf:10743-10769 - genetic link RiC-R012 (RecordResource-scoped in RiC-O)
+      - prov:wasDerivedFrom  # W3C PROV-O entity derivation

@@ -1,0 +1,53 @@
+id: https://textpast.com/ontology/rr/enum/ScriptKindEnum
+name: ScriptKindEnum
+title: Script Kind Enum
+description: >-
+  The operational kind of a scripts/temp/*.sh artifact (E7 of the structured
+  session-conclusion plan). Derives the vocabulary from the bash-script
+  convention's own examples (GAC: agent-temp-script-storage.md,
+  AGENT-TEMP-SCRIPT-STORAGE-001) and the ceremony patterns this session produced
+  (B2 vault-snapshot, chains-signer audience flips, Task A custody/shred) so a
+  ScriptMetadata.kind is drawn from the taxonomy the script store already uses,
+  not a parallel one (derive, don't duplicate).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+
+enums:
+  ScriptKindEnum:
+    description: >-
+      The operational kind of a scripts/temp/*.sh artifact (ScriptMetadata.kind).
+      Aligned with agent-temp-script-storage.md (AGENT-TEMP-SCRIPT-STORAGE-001).
+    permissible_values:
+      CEREMONY:
+        description: >-
+          A privileged Vault ceremony — mints a transient root token (operator-
+          driven recovery-key quorum), performs writes under it, revokes at end
+          (the B2 vault-snapshot + the chains audience-flip ceremonies are the
+          canonical cases).
+      RECOVERY:
+        description: >-
+          A multi-step recovery / remediation sequence (e.g. recreate a wiped
+          transit key + roles, as the chains-signer-recreate ceremony does).
+      APPLY:
+        description: A scripted apply / rollout (apply a manifest set + wire kustomization).
+      HANDOFF:
+        description: >-
+          A post-ceremony credential handoff to a downstream process (mint scoped
+          creds + write a credfile + revoke root — the eval-mint-and-handoff case).
+      SHRED:
+        description: >-
+          A destructive-but-categorized local operation (e.g. scrub stale DR
+          files, the Task A custody-and-shred script).
+      DIAGNOSTIC:
+        description: >-
+          A read-only multi-step diagnostic (port-forward + OIDC login + role
+          read; a multi-pipe kubectl/jq probe). v1.3.0 of the convention made
+          diagnostics count as scripts/temp/ artifacts too.
+      VERIFY:
+        description: >-
+          A verification / watch script (e.g. a backoff-aware post-ceremony watch
+          that gates on positive signals — the chains-audience-vault-flip-v2 case).
+      OTHER:
+        description: A script that does not fit the above kinds; describe in `purpose`.

@@ -1,0 +1,280 @@
+id: https://textpast.com/ontology/rr/slots/session_provenance_slots
+name: session_provenance_slots
+title: Session Provenance Slots
+description: >-
+  Centralized slots for the SessionProvenance class and its supporting
+  sub-classes (the provenance branch of the SessionConclusion umbrella, modelling
+  the pi-session-provenance.py miner sidecar — the CAPTURE layer that lets a
+  superseded/archived session carry the six linkages an archived session must
+  hold). All slots are defined here and imported by the class files — class files
+  MUST NOT define slots inline (GAC:
+  linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
+  noun-singular and ontology-neutral (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001). The
+  instance-hypergraph ingest intentionally does NOT model this branch (like
+  prompts/gac_rules/plan_updates/swarm_interactions/remaining) — provenance is a
+  LinkML-only branch at the schema layer, projected from the miner sidecar by the
+  renderer's data-source wiring (crates/hub/agent/session-conclusion/service/src/
+  provenance.rs).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  prov: http://www.w3.org/ns/prov/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: rr
+imports:
+  - linkml:types
+
+slots:
+
+  # ── SessionProvenance (root) slots ──
+
+  pi_session_uuid:
+    slot_uri: rr:piSessionUuid
+    description: >-
+      The pi session UUID the provenance record is keyed by (the line-1 `id` of
+      the session JSONL). The session's canonical identity — the existing
+      umbrella `session_ref` is the Swarm agent id / pod name; this is the real
+      session key the miner emits and the Archive indexes a superseded session
+      under.
+    range: string
+
+  swarm_agent_id:
+    slot_uri: rr:swarmAgentId
+    description: >-
+      The Swarm agent_id most-frequent in the session content (the session's own
+      registration). Optional — present when the session registered with Swarm.
+    range: string
+
+  mined_at:
+    slot_uri: prov:generatedAtTime
+    description: >-
+      When the miner captured this provenance record (RFC3339). Distinct from the
+      session's own `generated_at` (the conclusion timestamp) — this is the
+      capture time of the provenance sidecar.
+    range: string
+
+  mined_from:
+    slot_uri: rr:minedFrom
+    description: >-
+      The repo-relative or absolute path of the session JSONL the miner read.
+      Optional but recommended for reproducibility.
+    range: string
+
+  operator:
+    slot_uri: rr:hasOperator
+    description: >-
+      The session operator (ProvenanceOperator) — the most-frequent commit
+      author across the session's landed commits.
+    range: ProvenanceOperator
+    inlined: true
+
+  workstation:
+    slot_uri: rr:hasWorkstation
+    description: >-
+      The workstation the session ran on (ProvenanceWorkstation) — the resolved
+      own machine_id + hostname, with peer machines seen in-content listed for
+      transparency.
+    range: ProvenanceWorkstation
+    inlined: true
+
+  git_commits:
+    slot_uri: rr:hasGitCommit
+    description: >-
+      The git commits the session produced (ProvenanceGitCommit, multivalued) —
+      SHAs validated against the repo (`git cat-file -e`), enriched with author
+      /operator + files-changed per commit. Empty array allowed for a session
+      that landed no commits.
+    range: ProvenanceGitCommit
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  gac_rules:
+    slot_uri: rr:citesGacRule
+    description: >-
+      The crates/hub/api/dev/gac/rules/*.md paths authored or touched this
+      session (multivalued strings). Empty array allowed.
+    range: string
+    multivalued: true
+
+  plan_docs:
+    slot_uri: rr:hasPlanDocs
+    description: >-
+      The plan linkages (ProvenancePlanDocs) — the rrp:pl: Concept PIDs +
+      docs/plan/ slugs referenced this session.
+    range: ProvenancePlanDocs
+    inlined: true
+
+  prompt_chain:
+    slot_uri: rr:hasPromptChain
+    description: >-
+      The prompt-chain linkages (ProvenancePromptChain) — the rrp:pr: prompt PIDs
+      + the ordered docs/prompt/ paths (ordered by their origin/main mtime, i.e.
+      chain adjacency).
+    range: ProvenancePromptChain
+    inlined: true
+
+  prompt_prev_next:
+    slot_uri: rr:hasPromptAdjacency
+    description: >-
+      The prompt-chain adjacency (ProvenancePromptAdjacency) — the previous /
+      succeeding prompt reference. `previous_prompt` is computed by the miner;
+      `succeeding_prompt` is the cross-session join the archive performs (None at
+      capture time for the last session in a chain). Optional branch.
+    range: ProvenancePromptAdjacency
+    inlined: true
+
+  # ── ProvenanceOperator slots ──
+
+  operator_name:
+    slot_uri: rr:operatorName
+    description: >-
+      The operator's display name (the git author name of the most-frequent
+      commit author).
+    range: string
+
+  operator_email:
+    slot_uri: rr:operatorEmail
+    description: >-
+      The operator's email (the git author email). Optional.
+    range: string
+
+  # ── ProvenanceWorkstation slots ──
+
+  machine_id:
+    slot_uri: rr:machineId
+    description: >-
+      The canonical workstation machine_id (e.g. `gpu3080-kempersc`) — resolved
+      from SWARM_MACHINE_ID / the swarm resolver, the session's own host.
+    range: string
+
+  hostname:
+    slot_uri: rr:hostname
+    description: >-
+      The workstation's human-readable hostname. Optional.
+    range: string
+
+  machine_source:
+    slot_uri: rr:machineSource
+    description: >-
+      How the machine_id was resolved (`env` / `inferred_from_content` /
+      `unknown`) — a transparency field so a consumer knows whether the identity
+      is authoritative or inferred.
+    range: string
+
+  machines_seen_in_content:
+    slot_uri: rr:machinesSeenInContent
+    description: >-
+      Peer machine_ids seen in the session content (multivalued strings) — every
+      machine the session interacted with, for cross-workstation attribution. The
+      own workstation is the `machine_id` above; this lists the rest.
+    range: string
+    multivalued: true
+
+  # ── ProvenanceGitCommit slots ──
+
+  commit_sha:
+    slot_uri: rr:commitSha
+    description: >-
+      The full 40-hex commit SHA (validated against the repo).
+    range: string
+
+  commit_short:
+    slot_uri: rr:commitShort
+    description: >-
+      The short SHA (first 10 chars) for display.
+    range: string
+
+  author_name:
+    slot_uri: rr:authorName
+    description: >-
+      The commit's author name.
+    range: string
+
+  author_email:
+    slot_uri: rr:authorEmail
+    description: >-
+      The commit's author email.
+    range: string
+
+  committed_at:
+    slot_uri: prov:startedAtTime
+    description: >-
+      The commit's commit timestamp (RFC3339, `%cI`).
+    range: string
+
+  files_changed:
+    slot_uri: rr:filesChanged
+    description: >-
+      The repo-relative paths the commit touched (multivalued strings).
+    range: string
+    multivalued: true
+
+  # ── ProvenancePlanDocs slots ──
+
+  concept_pids:
+    slot_uri: rr:conceptPid
+    description: >-
+      The rrp:pl: Concept PIDs of plans referenced this session (multivalued
+      strings). The plan's durable, hash-independent identity.
+    range: string
+    multivalued: true
+
+  plan_slugs:
+    slot_uri: rr:planSlug
+    description: >-
+      The docs/plan/<slug>/checklist.md slugs referenced this session (multivalued
+      strings).
+    range: string
+    multivalued: true
+
+  # ── ProvenancePromptChain slots ──
+
+  prompt_pids:
+    slot_uri: rr:promptPid
+    description: >-
+      The rrp:pr: prompt PIDs cited this session (multivalued strings), in the
+      order they appear in the chain.
+    range: string
+    multivalued: true
+
+  prompt_paths:
+    slot_uri: rr:promptPath
+    description: >-
+      The docs/prompt/*.md paths cited this session (multivalued strings), ordered
+      by their origin/main mtime — i.e. the chain's adjacency order.
+    range: string
+    multivalued: true
+
+  # ── ProvenancePromptAdjacency slots ──
+
+  previous_prompt:
+    slot_uri: rr:previousPrompt
+    description: >-
+      The preceding docs/prompt/ path in the chain (computed by the miner from
+      origin/main mtimes). Optional — absent for the chain's first session.
+    range: string
+
+  succeeding_prompt:
+    slot_uri: rr:succeedingPrompt
+    description: >-
+      The succeeding docs/prompt/ path in the chain — a CROSS-SESSION join the
+      archive performs, not the miner (None at capture time for the last session
+      in a chain). Optional.
+    range: string
+
+  session_tab_title:
+    slot_uri: rr:sessionTabTitle
+    description: >-
+      The concluding session's OWN terminal tab title
+      (INFRA-PI-SESSION-TAB-TITLE-001: pi renders `pi - <sessionName> -
+      <cwdBasename>`; operators refer to tabs by the short session/worktree
+      token, e.g. `tekton-pi-20260818T090245-1848526`). The attachable surface
+      this report was produced in — complements pi_session_uuid (the canonical
+      session identity) with the human-facing locator, so an archived
+      conclusion maps back to the terminal surface an operator can find.
+      Captured by the miner when the sidecar runs on the originating
+      workstation (the session-name extension owns the title); empty-allowed
+      when mined post-hoc from the archive. Optional.
+    range: string

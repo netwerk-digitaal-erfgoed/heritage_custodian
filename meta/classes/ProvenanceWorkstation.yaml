@@ -1,0 +1,28 @@
+id: https://textpast.com/ontology/rr/class/ProvenanceWorkstation
+name: ProvenanceWorkstation
+title: Provenance Workstation
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../slots/session_provenance_slots
+default_range: string
+
+classes:
+  ProvenanceWorkstation:
+    class_uri: rr:ProvenanceWorkstation
+    description: >-
+      The workstation a mined session ran on — the resolved own machine_id +
+      hostname, with peer machines seen in-content listed for cross-workstation
+      attribution. Composes into SessionProvenance as its `workstation` sub-record
+      (FU3 part a).
+    slots:
+      - machine_id
+      - hostname
+      - machine_source
+      - machines_seen_in_content
+    comments:
+      - "machine_id is the canonical workstation identity resolved from SWARM_MACHINE_ID / the swarm resolver; machine_source records how it was resolved (env/inferred/unknown)."
+      - "machines_seen_in_content lists PEER machines; the own workstation is machine_id above."

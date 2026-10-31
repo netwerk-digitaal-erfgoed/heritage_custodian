@@ -1,0 +1,58 @@
+id: https://textpast.com/ontology/rr/class/StochasticEnrichmentVersion
+name: StochasticEnrichmentVersion
+title: Stochastic Enrichment Version
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/StochasticEnrichmentKind
+  - ../slots/stochastic_enrichment_slots
+default_range: string
+
+classes:
+  StochasticEnrichmentVersion:
+    class_uri: rr:StochasticEnrichmentVersion
+    description: >-
+      ONE additive version row of a stochastic enrichment (a transcription, a
+      layout analysis, a semantic image classification, an OCR-where-absent
+      pass) over a heritage subject. Transcriptions, layout analyses and
+      semantic image enrichments are stochastic, endless-versions-by-
+      construction: re-runs, model upgrades, and manual corrections all
+      produce NEW rows — in-place rewrites are FORBIDDEN
+      (DATA-STOCHASTIC-ENRICHMENT-VERSIONING-001). A row is identified by
+      `(version_of_subject, enrichment_kind, produced_at_tz, producer)` and
+      never mutates after landing; the same content re-landed (same
+      content_hash) is idempotent. Queryable surface: "every transcription
+      version of page 12 with its producers, ordered by produced_at_tz".
+    close_mappings:
+      - prov:Entity
+    slots:
+      - version_of_subject
+      - enrichment_kind
+      - produced_at_tz
+      - producer_ghcid
+      - producer_pic_pid
+      - method_provenance
+      - content_pointer
+      - content_hash
+    comments:
+      - "TZ-explicit timestamps are REQUIRED: produced_at_tz without a timezone offset is a validator failure, never a silent UTC assumption."
+      - "Producer attribution is mandatory: exactly one of producer_ghcid (custodian GHCID) or producer_pic_pid (PERSON-in-Context PID) must be non-empty."
+      - "Additive-only: landing a second version of the same subject MUST NOT mutate any prior row; the version history is append-only."
+      - "Idempotent landing: a row whose (subject, kind, produced_at_tz, producer, content_hash) already exists re-lands as a no-op."
+    examples:
+      - value:
+          version_of_subject: "heritage:oclc-287759/page-042"
+          enrichment_kind: TRANSCRIPTION
+          produced_at_tz: "2026-08-23T17:15:00+02:00"
+          producer_ghcid: "at_7_ibk_r_read"
+          producer_pic_pid: null
+          method_provenance: "transkribus:export-pcGts-2013-07-15 (legacy Transkribus transcript)"
+          content_pointer: "heritage/oclc-287759/pages/oclc_287759_42.xml"
+          content_hash: "sha256:<hex-of-canonical-page-document>"
+        description: >-
+          A legacy Transkribus transcription of page 42 of the OCLC 287759
+          corpus, landed as one additive version row.

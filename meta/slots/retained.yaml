@@ -1,0 +1,117 @@
+# ==============================================================================
+# LinkML Slot Definition: retained
+# ==============================================================================
+# The required retention duration (in years) for which a record, object, or
+# data set must be preserved before disposal or permanent archiving.
+#
+# ONTOLOGY ALIGNMENT (verified against data/ontology/):
+#
+# | Ontology       | Property              | File/Line                    | Mapping          | Notes                                                                      |
+# |----------------|-----------------------|------------------------------|------------------|----------------------------------------------------------------------------|
+# | **Schema.org** | `schema:validFor`     | schemaorg.owl:39314-39330    | related_mappings | "validFor" Permit→Duration. Related: validity duration of permits, not records retention.                       |
+# | **DCTerms**    | `dcterms:valid`       | dcterms.rdf:2076-2101        | related_mappings | "Date Valid" date range of validity. Related: dates not duration in years.                                      |
+# | **OWL-Time**   | `time:hasDuration`    | time.ttl:752-759             | related_mappings | "has duration" TemporalEntity→Duration. Related: generic temporal duration, not retention-specific.             |
+# | **Schema.org** | `schema:duration`     | schemaorg.owl:15892-15905    | broad_mappings   | "duration" Event/MediaObject→Duration. Broader: any item duration.                                             |
+# | **Schema.org** | `schema:expires`      | schemaorg.owl:17832-17835    | related_mappings | "expires" CreativeWork→Date. Related: expiration date, not retention period.                                    |
+#
+# CREATED: 2026-02-11
+# UPDATED: 2026-02-11
+# ==============================================================================
+id: https://textpast.com/ontology/rr/slot/retained
+name: retained
+title: Retained
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  schema: https://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  time: http://www.w3.org/2006/time#
+imports:
+  - linkml:types
+default_prefix: rr
+slots:
+  retained:
+    slot_uri: rr:retained
+    description: >-
+      The required retention duration, in years, for which an object, record,
+      or data set must be preserved before it can be destroyed, transferred,
+      or permanently archived. A null value indicates permanent retention
+      with no scheduled disposal.
+    alt_descriptions:
+      nl: >-
+        De vereiste bewaartermijn, in jaren, gedurende welke een object, record
+        of dataset moet worden bewaard voordat het kan worden vernietigd,
+        overgedragen of permanent gearchiveerd.
+      de: >-
+        Die erforderliche Aufbewahrungsdauer in Jahren, für die ein Objekt,
+        Datensatz oder eine Akte aufbewahrt werden muss, bevor es vernichtet,
+        übertragen oder dauerhaft archiviert werden kann.
+      fr: >-
+        La durée de conservation requise, en années, pendant laquelle un objet,
+        un dossier ou un jeu de données doit être préservé avant de pouvoir
+        être détruit, transféré ou archivé de manière permanente.
+      ar: >-
+        مدة الاحتفاظ المطلوبة بالسنوات التي يجب خلالها الحفاظ على كائن أو سجل
+        أو مجموعة بيانات قبل أن يمكن إتلافها أو نقلها أو أرشفتها بشكل دائم.
+      id: >-
+        Durasi retensi yang diperlukan, dalam tahun, selama objek, rekod, atau
+        kumpulan data harus disimpan sebelum dapat dimusnahkan, ditransfer,
+        atau diarsipkan secara permanen.
+      zh: >-
+        以年为单位的要求保留期限，在此期间对象、记录或数据集必须被保存，
+        之后才能销毁、转移或永久归档。
+      es: >-
+        La duración de retención requerida, en años, durante la cual un objeto,
+        registro o conjunto de datos debe preservarse antes de poder ser
+        destruido, transferido o archivado permanentemente.
+    structured_aliases:
+      - literal_form: bewaartermijn
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Aufbewahrungsdauer
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: durée de conservation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: مدة الاحتفاظ
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: masa retensi
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 保留期限
+        predicate: EXACT_SYNONYM
+        in_language: zh
+      - literal_form: período de retención
+        predicate: EXACT_SYNONYM
+        in_language: es
+    range: integer
+    broad_mappings:
+      - schema:duration  # schemaorg.owl:15892-15905 - "duration" Event/MediaObject→Duration
+    related_mappings:
+      - schema:validFor  # schemaorg.owl:39314-39330 - "validFor" Permit→Duration
+      - dcterms:valid  # dcterms.rdf:2076-2101 - "Date Valid" date range of validity
+      - time:hasDuration  # time.ttl:752-759 - "has duration" TemporalEntity→Duration
+      - schema:expires  # schemaorg.owl:17832-17835 - "expires" CreativeWork→Date
+    aliases:
+      - retention_period_year
+    examples:
+      - value: "7"
+        description: Typical retention period for financial records and tax documentation.
+      - value: "10"
+        description: Common retention period for contracts and legal documents.
+      - value: "20"
+        description: Typical retention period for personnel files.
+    annotations:
+      custodian_types: '["*"]'
+    comments:
+      - >-
+        Value is expressed as a whole number of years. Use null or omit this
+        field for records requiring permanent retention (e.g. policy documents,
+        governance records). Conditional retention periods such as "until case
+        closed + 5 years" should be documented in a companion notes field.
+      - >-
+        Common retention periods in heritage and archival contexts include
+        7 years (financial/tax), 10 years (contracts/legal), 20 years
+        (personnel files), and permanent (policy/governance).

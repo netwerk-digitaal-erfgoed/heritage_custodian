@@ -1,0 +1,61 @@
+id: https://textpast.com/ontology/rr/slot/swarm_task_claim_slots
+name: swarm_task_claim_slots
+title: Swarm Task Claim Slots
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/SwarmTaskKindEnum
+  - ../enums/SwarmClaimStatusEnum
+slots:
+  task_key:
+    slot_uri: rr:taskKey
+    description: Canonical exact-match key for Swarm duplicate detection.
+    range: string
+  task_fingerprint:
+    slot_uri: rr:taskFingerprint
+    description: Richer compare string that captures task shape details.
+    range: string
+  task_kind:
+    slot_uri: rr:taskKind
+    description: Structured task taxonomy used during claim evaluation.
+    range: SwarmTaskKindEnum
+  plan_id:
+    slot_uri: rr:planId
+    description: Implementation plan namespace for a plan-backed task.
+    range: string
+  phase_number:
+    slot_uri: rr:phaseNumber
+    description: Phase number within an implementation plan.
+    range: integer
+  item_index:
+    slot_uri: rr:itemIndex
+    description: Checklist item index within a plan phase.
+    range: integer
+  prompt_path:
+    slot_uri: rr:promptPath
+    description: Prompt or handoff artifact path used for exact duplicate checks.
+    range: string
+  non_goals:
+    slot_uri: rr:nonGoals
+    description: Explicit exclusions that keep sibling task slices distinct.
+    range: string
+    multivalued: true
+  claim_generation:
+    slot_uri: rr:claimGeneration
+    description: Monotonic fencing generation for a task claim.
+    range: integer
+  claim_status:
+    slot_uri: rr:claimStatus
+    description: Lifecycle state for the task claim.
+    range: SwarmClaimStatusEnum
+  claimed_by_agent_id:
+    slot_uri: rr:claimedByAgentId
+    description: Agent identifier that owns the claim generation.
+    range: string
+  claimed_at:
+    slot_uri: rr:claimedAt
+    description: Timestamp when the claim generation became active.
+    range: datetime

@@ -1,0 +1,92 @@
+# ==============================================================================
+# LinkML Slot Definition: is_derivative
+# ==============================================================================
+# Whether this concrete thing is a derivation (copy/format-converted form) of
+# another thing, rather than an original.
+#
+# ONTOLOGY ALIGNMENT (verified 2026-10-06, plan readlist-record-instantiation-model
+# item 1.3, against the in-repo RiC-O vocabulary + the PREMIS 3.0 data dictionary):
+#
+# | Ontology | Property / concept                          | Source                            | Mapping | Notes                                                       |
+# |----------|----------------------------------------------|-----------------------------------|---------|-------------------------------------------------------------|
+# | **PREMIS**| Object participating in a Relationship with | PREMIS DD v3.0, Object entity,    | close   | The boolean is the projection of "this object is the       |
+# |          | relationshipType `is derivation of`          | Relationship semantic unit        |         | subject of an 'is derivation of' relationship".            |
+# |          |                                              | (id.loc.gov/vocabulary/preservation/ |      |                                                             |
+# |          |                                              | relationshipType.html)            |         |                                                             |
+# | **RiC-O**| participation in `rico:DerivationRelation`   | RiC-O_1-1.rdf:25300-25386         | related | RiC-O models derivation as a relation class, not a flag.    |
+#
+# PREMIS is the closer alignment: PREMIS objects correspond to instantiations
+# (concrete bitstreams/carriers), and its relationship vocabulary carries the
+# derivation direction natively.
+#
+# CREATED: 2026-10-06 (plan readlist-record-instantiation-model, item 1.3)
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/is_derivative
+name: is_derivative
+title: Is Derivative
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  rico: https://www.ica.org/standards/RiC/ontology#
+default_prefix: rr
+imports:
+  - linkml:types
+slots:
+  is_derivative:
+    name: is_derivative
+    title: Is Derivative
+    slot_uri: rr:isDerivative
+    description: >-
+      States whether this concrete thing is a derivation (a copy or
+      format-converted form) of another thing, rather than an original.
+      When true, the derivation target is carried by derivative_of.
+    alt_descriptions:
+      nl: >-
+        Geeft aan of dit concrete ding een afleiding (kopie of geconverteerde vorm) is
+        van een ander ding, in plaats van een origineel.
+      de: >-
+        Gibt an, ob dieses konkrete Ding eine Ableitung (Kopie oder konvertierte Form)
+        eines anderen Dings ist, rather than ein Original.
+      fr: >-
+        Indique si cette chose concrète est une dérivation (copie ou forme convertie)
+        d'une autre chose, plutôt qu'un original.
+      es: >-
+        Indica si esta cosa concreta es una derivación (copia o forma convertida) de
+        otra cosa, en lugar de un original.
+      ar: >-
+        يحدد ما إذا كان هذا الشيء الملموس اشتقاقًا (نسخة أو صيغة محولة) من شيء آخر، وليس أصليًا.
+      id: >-
+        Menyatakan apakah hal konkret ini merupakan turunan (salinan atau bentuk yang
+        dikonversi) dari hal lain, bukan sebuah original.
+      zh: >-
+        声明此具体事物是否为另一事物的衍生形式（副本或格式转换后的形态），而非原件。
+    structured_aliases:
+      - literal_form: is afleiding
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: ist Ableitung
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: est une dérivation
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: es derivación
+        predicate: EXACT_SYNONYM
+        in_language: es
+      - literal_form: مشتق
+        predicate: EXACT_SYNONYM
+        in_language: ar
+      - literal_form: adalah turunan
+        predicate: EXACT_SYNONYM
+        in_language: id
+      - literal_form: 是衍生件
+        predicate: EXACT_SYNONYM
+        in_language: zh
+    range: boolean
+    annotations:
+      custodian_types: '["*"]'
+    close_mappings:
+      - premis:relationshipType-isDerivationOf  # PREMIS DD v3.0 Relationship: relationshipType 'is derivation of' (subject side)
+    related_mappings:
+      - rico:DerivationRelation  # RiC-O_1-1.rdf:25300-25386 - RiC-O models derivation as a relation class

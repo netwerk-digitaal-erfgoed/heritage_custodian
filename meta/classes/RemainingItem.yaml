@@ -1,0 +1,70 @@
+id: https://textpast.com/ontology/rr/class/RemainingItem
+name: RemainingItem
+title: Remaining Item
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/RemainingItemKindEnum
+  - ../enums/RemainingPriorityEnum
+  - ../slots/remaining_work_slots
+default_range: string
+
+classes:
+  RemainingItem:
+    class_uri: rr:RemainingItem
+    description: >-
+      One remaining-work item from a session close: a falsifiable description,
+      a kind that drives triage (OPEN_PLAN_ITEM / FOLLOWUP_TASK /
+      VERIFICATION_PENDING / BLOCKER / DEFERRED), a priority, an optional plan
+      reference, an optional owner, an optional tracking issue, and a durable
+      anchor. Structured so the next agent can triage the Remaining section
+      without re-reading prose. Composes into SessionRemainingWork.
+    slots:
+      - remaining_description
+      - kind
+      - priority
+      - plan_ref
+      - owner
+      - tracking_issue
+      - remaining_durable_anchor
+      - continuation_tab_title
+    comments:
+      - "remaining_description MUST be falsifiable (the next agent can tell when it is done) — 'todo' is not a description."
+      - "An OPEN_PLAN_ITEM references the plan via plan_ref; it does NOT re-list the plan's items (Plan MCP is the SoT)."
+      - "A BLOCKER is implicitly HIGH priority and should carry a tracking_issue for escalation."
+      - "continuation_tab_title is set ONLY when the continuing session is LIVE at close time (its tab is attachable); otherwise the item is picked up via its plan_ref / driving prompt — never invent a tab title (INFRA-PI-SESSION-TAB-TITLE-001)."
+    examples:
+      - value:
+          remaining_description: "Implement E3 PlanChecklistUpdate projection schema (derive before/after from Plan MCP, never duplicate the SoT)."
+          kind: "OPEN_PLAN_ITEM"
+          priority: "MEDIUM"
+          plan_ref: "session_conclusion_structured/phase-3"
+          owner: "next-session"
+          remaining_durable_anchor: "07a3e60e88:docs/plan/session_conclusion_structured/phase-3-plan-checklist-update-projection.md"
+        description: "An open plan item referencing its phase file, not re-listing items."
+      - value:
+          remaining_description: "Close 3.3(c)/(d) when the war window cools: record the completing-heavy run + the sustained-OPEN streak from the armed predicates."
+          kind: "VERIFICATION_PENDING"
+          priority: "HIGH"
+          plan_ref: "tekton-ci-memory-churn-efficiency/phase-3"
+          owner: "pi-finish-memchurn-2.5-3.3"
+          continuation_tab_title: "tekton-pi-20260818T090245-1848526"
+          remaining_durable_anchor: "docs/plan/tekton-ci-memory-churn-efficiency/findings.md"
+        description: "A remaining item whose continuing session is LIVE in its own tab — the report points the operator at the attachable executor instead of a re-fire that would collide with the prompt flock."
+      - value:
+          remaining_description: "Extend the CI-YAML-010 colon-space detection lane to scan crates/model/symbolic/schemata/meta/**/*.yaml (LinkML enum description scalars are plain scalars and trip the same parser error as .tekton script bodies)."
+          kind: "FOLLOWUP_TASK"
+          priority: "LOW"
+          owner: "next-session"
+          remaining_durable_anchor: "crates/hub/api/dev/gac/rules/ci-yaml-colon-space.md"
+        description: "A concrete follow-up (detection-coverage gap) — raised during this session's E5 work."
+      - value:
+          remaining_description: "Re-verify the session_conclusion_structured plan item_count/completion_pct converge in Plan MCP after its scan cycle (plan_get_checklist_items)."
+          kind: "VERIFICATION_PENDING"
+          priority: "LOW"
+          owner: "next-session"
+          remaining_durable_anchor: "07a3e60e88:docs/plan/session_conclusion_structured/checklist.md"
+        description: "A wait-then-verify item (Plan MCP indexing lag observed this session)."

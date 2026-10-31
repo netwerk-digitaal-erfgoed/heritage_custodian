@@ -1,0 +1,120 @@
+id: https://textpast.com/ontology/rr/slots/swarm_session_interaction_slots
+name: swarm_session_interaction_slots
+title: Swarm Session Interaction Slots
+description: >-
+  Centralized slots for the SwarmSessionInteraction and SwarmInteractionEvent
+  classes (element E4 of the structured session-conclusion plan). All slots are
+  defined here and imported by the class files — class files MUST NOT define
+  slots inline (GAC: linkml/general/class-files-no-inline-slots.md,
+  CLASS-FILES-001). Slot names are noun-singular and ontology-neutral (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+  The task-claim half composes the existing SwarmTaskClaim (do NOT re-model);
+  the interaction timeline is DERIVED from Swarm MCP provenance, never re-tracked.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  dcterms: http://purl.org/dc/terms/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/SwarmInteractionEventEnum
+
+slots:
+
+  # ── SwarmSessionInteraction (container) slots ──
+
+  agent_id:
+    slot_uri: rr:agentId
+    description: >-
+      The Swarm agent_id returned by swarm_register_agent for this session.
+    range: string
+    required: true
+
+  agent_id_persisted:
+    slot_uri: rr:agentIdPersisted
+    description: >-
+      Whether the agent_id was persisted (infrastructure/scripts/swarm-agent-id.sh
+      save) so a resumed session reuses it rather than re-registering
+      (SWARM-AGENT-ID-PERSIST-001). true/false.
+    range: boolean
+    required: true
+
+  registered_at:
+    slot_uri: rr:registeredAt
+    description: >-
+      ISO 8601 UTC timestamp of the swarm_register_agent call.
+    range: string
+    required: true
+
+  deregistered_at:
+    slot_uri: rr:deregisteredAt
+    description: >-
+      ISO 8601 UTC timestamp of swarm_deregister_agent. Omit if the agent is
+      still live at emit time.
+    range: string
+
+  working_files_declared:
+    slot_uri: rr:workingFilesDeclared
+    description: >-
+      Repo-relative paths declared via swarm_declare_working_files over the
+      session (the lock set the agent held).
+    range: string
+    multivalued: true
+
+  task_claim:
+    slot_uri: rr:taskClaim
+    description: >-
+      The Swarm task-claim half (identity + generation + lifecycle), composing
+      the existing SwarmTaskClaim class rather than re-modeling it. Omit for a
+      session with no exact task-key claim.
+    range: SwarmTaskClaim
+    inlined: true
+
+  interaction_events:
+    slot_uri: rr:interactionEvents
+    description: >-
+      The DERIVED timeline of Swarm events for this agent over the session
+      window (from swarm_workspace_timeline / swarm_get_*). Never re-tracked by
+      hand; this projects Swarm MCP provenance.
+    range: SwarmInteractionEvent
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  messages_drained_count:
+    slot_uri: rr:messagesDrainedCount
+    description: >-
+      The count of coordination messages drained via swarm_check_messages over
+      the session.
+    range: integer
+
+  broadcast_summary_ref:
+    slot_uri: rr:broadcastSummaryRef
+    description: >-
+      Reference to the broadcast_activity / blackboard summary emitted at close
+      (the archive event_id or a short digest). Omit if no broadcast was made.
+    range: string
+
+  # ── SwarmInteractionEvent (timeline entry) slots ──
+
+  event:
+    slot_uri: rr:interactionEvent
+    description: >-
+      The kind of Swarm interaction event (REGISTER / DECLARE_WORKING_FILES /
+      HEARTBEAT / MESSAGE / BROADCAST / DEREGISTER).
+    range: SwarmInteractionEventEnum
+    required: true
+
+  at:
+    slot_uri: dcterms:date
+    description: >-
+      ISO 8601 UTC timestamp of the event, as recorded by Swarm MCP provenance.
+    range: string
+    required: true
+
+  ref:
+    slot_uri: rr:eventRef
+    description: >-
+      An optional reference for the event — an archive event_id, a message id,
+      or a short digest — letting the next agent locate it in Swarm provenance.
+    range: string

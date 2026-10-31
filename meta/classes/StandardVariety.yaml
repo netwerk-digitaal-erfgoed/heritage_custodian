@@ -1,0 +1,174 @@
+id: https://textpast.com/ontology/rr/class/StandardVariety
+name: standard_variety
+title: Standard Variety Class
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+  dcterms: http://purl.org/dc/terms/
+  eli: http://data.europa.eu/eli/ontology#
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/StandardScopeTypeEnum
+  - ../enums/StandardVarietyKindEnum
+  - ../slots/adopt
+  - ../slots/derive_from
+  - ../slots/effective_at
+  - ../slots/has_custodian
+  - ../slots/has_edition
+  - ../slots/has_scope
+  - ../slots/has_title
+  - ../slots/has_type
+  - ../slots/identified_by
+  - ../slots/in_jurisdiction
+  - ../slots/overlay
+  - ../slots/supersede
+  - ../slots/transpose
+classes:
+  StandardVariety:
+    class_uri: rr:StandardVariety
+    description: >-
+      One variety of a normative standard, legal act or control framework — an
+      edition, a regional adoption, a national transposition, a sectoral
+      overlay or a derived certification scheme — published by its own
+      custodian and connected to the work it varies by a typed edge
+      (supersede, adopt, transpose, overlay, derive_from). The custodian GHCID
+      together with the typed edge differentiates the varieties: each variety
+      is harvested from its own custodian and the edges connect them across
+      custodian databases.
+    alt_descriptions:
+      nl: >-
+        Eén variant van een normatieve standaard, rechtshandeling of
+        controlekader — een editie, een regionale overname, een nationale
+        omzetting, een sectorale overlay of een afgeleid certificeringsschema —
+        gepubliceerd door een eigen beheerder en via een getypeerde relatie
+        verbonden met het werk waarvan het een variant is.
+      de: >-
+        Eine Variante einer normativen Norm, eines Rechtsakts oder eines
+        Kontrollrahmens — eine Ausgabe, eine regionale Übernahme, eine nationale
+        Umsetzung, ein sektorales Overlay oder ein abgeleitetes
+        Zertifizierungsschema —, veröffentlicht von einer eigenen verwaltenden
+        Stelle und über eine typisierte Beziehung mit dem Werk verbunden, das sie
+        variiert.
+      fr: >-
+        Une variante d'une norme, d'un acte juridique ou d'un cadre de contrôle
+        — une édition, une adoption régionale, une transposition nationale, une
+        surcouche sectorielle ou un schéma de certification dérivé — publiée par
+        son propre dépositaire et reliée à l'œuvre qu'elle décline par une
+        relation typée.
+      es: >-
+        Una variante de una norma, un acto jurídico o un marco de control — una
+        edición, una adopción regional, una transposición nacional, una
+        superposición sectorial o un esquema de certificación derivado —
+        publicada por su propio custodio y vinculada a la obra de la que es
+        variante mediante una relación tipificada.
+      ar: >-
+        نسخة متغيرة من معيار أو صك قانوني أو إطار ضوابط — إصدار أو تبنٍّ إقليمي
+        أو تحويل إلى القانون الوطني أو طبقة قطاعية أو مخطط اعتماد مشتق — تنشرها
+        جهة حافظة خاصة بها وترتبط بالعمل الأصلي بعلاقة محددة النوع.
+      id: >-
+        Satu varian dari standar normatif, instrumen hukum, atau kerangka
+        kendali — sebuah edisi, adopsi regional, transposisi nasional, lapisan
+        sektoral, atau skema sertifikasi turunan — yang diterbitkan oleh
+        kustodiannya sendiri dan dihubungkan ke karya yang divariasikannya
+        melalui relasi bertipe.
+      zh: >-
+        规范性标准、法律文件或控制框架的一个变体——版本、区域采用、国家转化、行业叠加或派生认证方案——由其自身的保管机构发布，并通过类型化关系与其所变体的作品相连。
+    structured_aliases:
+      - literal_form: standaardvariant
+        predicate: EXACT_SYNONYM
+        in_language: nl
+      - literal_form: Normvariante
+        predicate: EXACT_SYNONYM
+        in_language: de
+      - literal_form: variante de norme
+        predicate: EXACT_SYNONYM
+        in_language: fr
+      - literal_form: variante de norma
+        predicate: EXACT_SYNONYM
+        in_language: es
+    close_mappings:
+      - dcterms:Standard
+    related_mappings:
+      - eli:LegalResource
+      - skos:ConceptScheme
+    keywords:
+      - standard variety
+      - edition
+      - regional adoption
+      - national transposition
+      - sectoral overlay
+      - certification scheme
+    slots:
+      - identified_by
+      - has_title
+      - has_type
+      - has_custodian
+      - has_scope
+      - in_jurisdiction
+      - has_edition
+      - effective_at
+      - supersede
+      - adopt
+      - transpose
+      - overlay
+      - derive_from
+    slot_usage:
+      identified_by:
+        required: true
+      has_type:
+        range: StandardVarietyKindEnum
+        multivalued: false
+        required: true
+        description: The variety kind, which also names the edge that connects this variety to the work it varies.
+      has_custodian:
+        required: true
+        description: GHCID of the custodian that publishes this variety (validated by the runtime GHCID validator, custodian/common/ghcid.rs).
+      has_scope:
+        range: StandardScopeTypeEnum
+        multivalued: false
+        required: true
+    comments:
+      - "A variety is harvested from its own custodian (one TypeDB database per custodian dataset, named <ghcid>-<abbrev>); the typed edges resolve across those databases."
+      - "Edge per kind: EDITION→supersede, REGIONAL_ADOPTION→adopt, NATIONAL_TRANSPOSITION→transpose, SECTORAL_OVERLAY→overlay, DERIVED_CERTIFICATION_SCHEME→derive_from."
+    examples:
+      - value:
+          identified_by:
+            - https://wetten.overheid.nl/BWBR0052872
+          has_title: Cyberbeveiligingswet
+          has_type: NATIONAL_TRANSPOSITION
+          has_custodian: NL-ZH-DH-O-KOOP
+          has_scope: NATIONAL
+          in_jurisdiction: NL
+          effective_at: "2026-08-15T00:00:00Z"
+          transpose:
+            - http://data.europa.eu/eli/dir/2022/2555/oj
+        description: >-
+          Flagship instance — the Dutch Cyberbeveiligingswet (BWBR0052872, in
+          force 2026-08-15, published by KOOP) transposes Directive (EU)
+          2022/2555 (NIS2, published by the EU Publications Office).
+      - value:
+          identified_by:
+            - http://data.europa.eu/eli/dir/2022/2555/oj
+          has_title: Directive (EU) 2022/2555 (NIS 2 Directive)
+          has_type: EDITION
+          has_custodian: LU-LU-LUX-O-POEU
+          has_scope: REGIONAL
+          in_jurisdiction: EU
+          effective_at: "2023-01-16T00:00:00Z"
+        description: The transposed act — NIS2 as published in OJ L 333, 27.12.2022.
+      - value:
+          identified_by:
+            - https://www.iso.org/standard/27001
+          has_title: ISO/IEC 27001:2022
+          has_type: EDITION
+          has_custodian: CH-GE-GVA-O-ISO
+          has_scope: GLOBAL
+          has_edition: "2022"
+          supersede: "https://www.iso.org/standard/54534.html"
+        description: ISO/IEC 27001:2022 (edition 4) supersedes ISO/IEC 27001:2013.
+    annotations:
+      specificity_score: 0.45
+      specificity_rationale: Applies to any normative work published in several varieties by distinct custodians
+      custodian_types: '["*"]'

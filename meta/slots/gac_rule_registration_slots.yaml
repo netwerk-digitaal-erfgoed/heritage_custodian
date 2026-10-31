@@ -1,0 +1,100 @@
+id: https://textpast.com/ontology/rr/slots/gac_rule_registration_slots
+name: gac_rule_registration_slots
+title: GAC Rule Registration Slots
+description: >-
+  Centralized slots for the GacRuleRegistration class (element E2 of the
+  structured session-conclusion plan). All slots are defined here and imported
+  by the class file — class files MUST NOT define slots inline (GAC:
+  linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names
+  are noun-singular and ontology-neutral where applicable; the version/identity
+  slots are domain-specific to the GAC registration record (GAC:
+  linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+default_prefix: rr
+imports:
+  - linkml:types
+  - ../enums/GacRuleActionEnum
+  - ../enums/GacSyncStatusEnum
+
+slots:
+
+  rule_id:
+    slot_uri: rr:ruleId
+    description: >-
+      The GAC rule id (the frontmatter id: value, e.g.
+      AGENT-SESSION-DOD-VERIFICATION-001). MUST be unique across the corpus
+      (GAC: GAC-DUP-ID-PREVENT-001).
+    range: string
+    required: true
+
+  action:
+    slot_uri: rr:gacAction
+    description: >-
+      What this session did with the rule (PROMOTE_NEW, EXTEND_EXISTING, or
+      NOT_PROMOTE). Encodes the AGENT-SESSION-DOC-001 §0 promoted/not-promoted
+      classification.
+    range: GacRuleActionEnum
+    required: true
+
+  rule_path:
+    slot_uri: rr:rulePath
+    description: >-
+      Verbatim repo-relative path to the rule markdown under
+      crates/hub/api/dev/gac/rules/ (a durable anchor — never a bare line
+      number). MUST resolve on origin/main (GAC:
+      code-location-citation-durable-anchor.md).
+    range: string
+    required: true
+    pattern: "^crates/hub/api/dev/gac/rules/.+\\.md$"
+
+  from_version:
+    slot_uri: rr:fromVersion
+    description: >-
+      The rule's version before this session (e.g. 1.1.0). Omit for
+      PROMOTE_NEW (there is no prior version).
+    range: string
+
+  to_version:
+    slot_uri: rr:toVersion
+    description: >-
+      The rule's version after this session (e.g. 2.0.0). Omit for NOT_PROMOTE
+      (no markdown change).
+    range: string
+
+  reason:
+    slot_uri: rr:registrationReason
+    description: >-
+      Why the rule was promoted / extended / not promoted — the session table's
+      Notes column. REQUIRED for every action including NOT_PROMOTE (an
+      unexplained not-promotion is silent knowledge loss).
+    range: string
+    required: true
+
+  tracking_issue:
+    slot_uri: rr:trackingIssue
+    description: >-
+      Forgejo issue URL if the rule is contested or tracked (e.g.
+      https://git.rootreal.io/textpast/rootreal/issues/280). Optional.
+    range: string
+
+  sync_status:
+    slot_uri: rr:gacSyncStatus
+    description: >-
+      DERIVED from gac_check_sync_status(rule_path) at emit time — NEVER
+      asserted by the agent. Records whether the markdown change has projected
+      into the TypeDB hypergraph. N/A for NOT_PROMOTE. The session close is
+      non-blocking on PENDING/DEGRADED (markdown on origin/main is the SoT;
+      GAC access-path clarification + gac-sync-source-freshness.md).
+    range: GacSyncStatusEnum
+    required: true
+
+  sync_source:
+    slot_uri: rr:gacSyncSource
+    description: >-
+      The MCP source that answered the sync query (typedb / cache / fallback /
+      degraded). REQUIRED so a DEGRADED sync_status is auditable rather than
+      silently trusted (GAC: gac-degradation-detection.md).
+    range: string
+    required: true

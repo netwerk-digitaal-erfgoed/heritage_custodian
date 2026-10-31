@@ -1,0 +1,30 @@
+# ==============================================================================
+# LinkML Slot Definition: has_proxy
+# ==============================================================================
+# Geoblock proxy URL for geo-blocked headless-capture sources.
+# KOS Morocco #476 residual 2 — HeadlessCaptureProfile capture knob.
+# CREATED: 2026-07-01
+# ==============================================================================
+
+id: https://textpast.com/ontology/rr/slot/has_proxy
+name: has_proxy
+title: Has Proxy
+prefixes:
+  linkml: https://w3id.org/linkml/
+  rr: https://textpast.com/ontology/rr/
+imports:
+- linkml:types
+default_prefix: rr
+slots:
+  has_proxy:
+    slot_uri: rr:hasProxy
+    description: >-
+      SOCKS5 / HTTP proxy URL for geo-blocked capture sources (e.g. the Iraqi
+      IGP portal igp.ur.gov.iq, which drops European IPs). Applied to the
+      BrowserConfig (not the RegisterExtractionConfig) at capture time. None =
+      no proxy (direct egress). See docs/plan/archive/iraq/source-analysis.md
+      for the IGP geoblock evidence.
+    range: string
+    required: false
+    annotations:
+      custodian_types: '["*"]'
