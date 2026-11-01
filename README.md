@@ -9,11 +9,15 @@ custody work around it, from acquisition and accession to access and
 preservation.
 
 Because the model is LinkML, it converts to more than one database
-family. The standard LinkML generators produce RDF, OWL and SHACL for
-triplestores. The same source compiles to property-graph models (Neo4j
-among the targets), and to meta schemata for a hypergraph database such
-as TypeDB, where a class
-becomes an entity type and a slot becomes a relation or attribute type.
+family. Triplestores and property-graph databases are both multigraphs:
+either can hold several edges between the same pair of nodes. The
+difference is where properties live, attached directly to nodes and edges
+in a property graph, expressed as further triples in RDF. The standard
+LinkML generators emit RDF, OWL and SHACL for the triplestore side, and
+the same source compiles to property-graph models for databases such as
+Neo4j. A third family is the hypergraph: the schemata project to meta
+schemata for TypeDB, where a class becomes an entity type and a slot a
+relation or attribute type.
 
 ## What is published here
 
