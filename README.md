@@ -1,46 +1,62 @@
 # Heritage Custodian Schemata
 
-This directory contains non-code schema, ontology, mapping, and transform artefacts.
+Data custodians in the heritage field, archives and museums among them,
+manage, maintain and offer linked data about their collections. Before
+records from different custodian systems can be mapped and processed
+together, they need a shared model. This repository publishes that model
+as LinkML schemata: the vocabulary that describes held material and the
+custody work around it, from acquisition and accession to access and
+preservation.
 
-## Canonical Upstream
+Because the model is LinkML, it converts to more than one database
+family. The standard LinkML generators produce RDF, OWL and SHACL for
+triplestores. The same
+source compiles to property-graph models for multigraph databases, and to
+meta schemata for a hypergraph database such as TypeDB, where a class
+becomes an entity type and a slot becomes a relation or attribute type.
 
-The canonical upstream is the RootReal Forgejo monorepo maintained by TextPast:
+## What is published here
 
-- Repo: `https://git.rootreal.io/textpast/rootreal`
-- Schemata subtree: `crates/model/symbolic/schemata/`
+- `meta/`, the full model: classes, slots, enumerations, types, profiles,
+  mappings and provenance records. Class definitions carry references to
+  established standards in the field, among them CIDOC CRM, Records in
+  Contexts (RiC-O) and Wikidata, and the mappings directory holds
+  crosswalks for source registers such as ISO 20275 legal forms and ISIL
+  institution codes.
+- `parsimony/`, a deliberately small core built with a parsimony method:
+  CustodialEntity, Holding, Agent, Activity and a short tail of
+  supporting terms, each documented with the way it maps into the full
+  model.
+- `LICENSE.md`, the EUPL v1.2 licence text.
 
-Only the files below are exported to the public GitHub projection:
+Start in `parsimony/` for the shape of the model; reach for `meta/` when
+you need the detail.
 
-- `README.md`
-- `LICENSE.md`
-- `meta/`
-- `parsimony/`
+## Upstream
 
-## Published Projection
+Development does not happen on GitHub. The canonical source is the
+RootReal monorepo, https://git.rootreal.io/textpast/rootreal, under
+`crates/model/symbolic/schemata/`. A Tekton pipeline publishes `meta/`,
+`parsimony/` and the top-level files to this repository whenever the
+schemata tree changes on the canonical `main`. The projection is one-way;
+when the two copies disagree, the Forgejo side is the one that counts.
 
-The public GitHub repository below is a synchronized projection of the two
-schema families below:
+## CI and review
 
-- `https://github.com/netwerk-digitaal-erfgoed/heritage_custodian`
+Pull requests are welcome here. A bot forwards each one to a linked pull
+request in the Forgejo monorepo and comments on the GitHub request with
+the link. Review and merge happen on the Forgejo side, and
+so does CI: the pipelines run on RootReal's Tekton cluster at
+https://ci.rootreal.io, not on GitHub Actions, which plays no part in
+this repository's workflow. A merged change comes back to GitHub on the
+next publish.
 
-- `meta/`
-- `parsimony/`
+CONTRIBUTING.md spells out the practical rules: what belongs in a change,
+how imports and file names are treated, and what a useful description
+contains.
 
-This GitHub repository exists to make these schemata easier to find, share,
-and review with external partners. Accepted changes are integrated in Forgejo
-first and then synchronized back to GitHub.
+## Licence
 
-## CI And Review
-
-GitHub pull requests are welcome on the public projection repository, but CI for
-those contributions runs in RootReal's external Woodpecker infrastructure rather
-than in GitHub Actions. GitHub receives the resulting external status updates;
-GitHub Actions is not part of the intended workflow for this projection repo.
-
-## Licensing
-
-The published projection and the exported schemata in `meta/` and `parsimony/`
-are licensed under EUPL v1.2.
-
-- Repository license file: `LICENSE.md`
-- Official Dutch text: `https://eupl.eu/1.2/nl/`
+The published schemata and this projection are licensed under the EUPL,
+version 1.2. The licence file is `LICENSE.md`; the official texts,
+including the Dutch one, live at https://eupl.eu/1.2/nl/.

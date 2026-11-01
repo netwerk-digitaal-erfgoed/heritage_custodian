@@ -1,46 +1,31 @@
 # Contributing
 
-## Canonical Upstream
+This repository is a public projection. The canonical source lives in the
+RootReal Forgejo monorepo, https://git.rootreal.io/textpast/rootreal,
+under `crates/model/symbolic/schemata/`; what you see on GitHub is
+published from there. Contributions are welcome here all the same, and the
+flow below carries them into the canonical repo.
 
-The canonical upstream repository is:
+## Opening a pull request
 
-- `https://git.rootreal.io/textpast/rootreal`
+Open the request against `main`, and keep the change inside the published
+set: `meta/`, `parsimony/`, or top-level collaboration files such as
+`README.md` and this one. A bot forwards your request to a linked pull
+request in Forgejo and leaves a comment on yours with the link. Review and
+CI happen on that side, on RootReal's Tekton cluster rather than on
+GitHub Actions. TextPast and NDE maintainers review the change, and the
+merge happens in Forgejo; the next publish then brings it back to
+GitHub.
 
-This GitHub repository is a public collaboration surface for the exported
-schemata, not the authoritative source of record.
+Please do not push straight to `main`; the sync automation owns that
+branch, and a direct push would be overwritten on the next publish.
 
-The preferred external collaboration surface is:
+## What makes a change easy to review
 
-- `https://github.com/netwerk-digitaal-erfgoed/heritage_custodian`
-
-An additional synchronized GitHub projection may exist under the maintainer
-profile for operational bootstrap or backup visibility, but Forgejo remains the
-only authoritative upstream.
-
-## What To Change Here
-
-Changes in this repository should stay within:
-
-- `meta/`
-- `parsimony/`
-- top-level collaboration files such as `README.md` and `.github/`
-
-## Review And Merge Flow
-
-1. Open a GitHub pull request.
-2. The forwarding automation may create or update a linked Forgejo pull request.
-3. TextPast or NDE maintainers review the proposed change in the canonical repo.
-4. The authoritative merge happens in Forgejo.
-5. The merged result is synchronized back to GitHub.
-
-## What To Expect
-
-- GitHub pull requests may be linked to a Forgejo review before final merge.
-- GitHub `main` is maintained by synchronization from Forgejo.
-- Please avoid direct pushes to `main` unless you are operating the sync flow.
-
-## Practical Guidance
-
-- Preserve existing relative imports inside `meta/` and `parsimony/`.
-- Keep schema file names stable unless a coordinated rename is required.
-- Explain ontology intent and compatibility impact clearly in the pull request.
+The schema files import each other by relative path, so keep imports
+working when you split or move a file. Names are load-bearing in the
+toolchain built around these schemata: treat a rename as a breaking
+change and say in the request what moved, and why. Beyond the mechanics,
+write a few sentences on what the ontology is meant to express. When you
+change an existing term, note the compatibility impact; ranges,
+permissible values and slot owners all have downstream consumers.
