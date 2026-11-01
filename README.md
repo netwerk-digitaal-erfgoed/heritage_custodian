@@ -10,9 +10,9 @@ preservation.
 
 Because the model is LinkML, it converts to more than one database
 family. The standard LinkML generators produce RDF, OWL and SHACL for
-triplestores. The same
-source compiles to property-graph models for multigraph databases, and to
-meta schemata for a hypergraph database such as TypeDB, where a class
+triplestores. The same source compiles to property-graph models (Neo4j
+among the targets), and to meta schemata for a hypergraph database such
+as TypeDB, where a class
 becomes an entity type and a slot becomes a relation or attribute type.
 
 ## What is published here
@@ -46,10 +46,9 @@ when the two copies disagree, the Forgejo side is the one that counts.
 Pull requests are welcome here. A bot forwards each one to a linked pull
 request in the Forgejo monorepo and comments on the GitHub request with
 the link. Review and merge happen on the Forgejo side, and
-so does CI: the pipelines run on RootReal's Tekton cluster at
-https://ci.rootreal.io, not on GitHub Actions, which plays no part in
-this repository's workflow. A merged change comes back to GitHub on the
-next publish.
+so does CI: the pipelines run on RootReal's Tekton cluster, not on
+GitHub Actions, which plays no part in this repository's workflow. A
+merged change comes back to GitHub on the next publish.
 
 CONTRIBUTING.md spells out the practical rules: what belongs in a change,
 how imports and file names are treated, and what a useful description
