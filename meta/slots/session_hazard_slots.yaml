@@ -3,8 +3,7 @@ name: session_hazard_slots
 title: Session Hazard Slots
 description: >-
   Centralized slots for the SessionHazard class (element E6 of the structured
-  session-conclusion plan). All slots are defined here and imported by the class
-  file — class files MUST NOT define slots inline (GAC:
+  session-conclusion plan). All slots are defined here and imported by the class file: class files MUST NOT define slots inline (GAC:
   linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
   verb-first / noun-singular and ontology-neutral (GAC:
   linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001). The
@@ -38,9 +37,8 @@ slots:
       HOT_TRUNK_RACE, REMEDIATION_FOOTGUN, GUARD_PRECONDITION_GAP,
       PROCESS_TRAP, CROSS_CRATE_BLAST_RADIUS, ADVISORY_GUARD_FIRE,
       AMBIENT_DRIFT) so hazards aggregate by type. The advisory-tier labels
-      (ADVISORY_GUARD_FIRE, AMBIENT_DRIFT) capture non-blocking observations —
-      an advisory guard that fired on legitimate content, pre-existing debt
-      surfaced but not in the changeset — recorded at severity INFO/LOW so a
+      (ADVISORY_GUARD_FIRE, AMBIENT_DRIFT) capture non-blocking observations: an advisory guard that fired on legitimate content, pre-existing debt
+      surfaced but not in the changeset, recorded at severity INFO/LOW so a
       24/7 agent's machine-ingested SessionConclusion carries them (see GAC:
       end-of-session-advisory-reporting.md).
     required: true
@@ -59,7 +57,7 @@ slots:
     slot_uri: rr:hasSurface
     range: string
     description: >-
-      Where the hazard manifested or would manifest — a file path, process,
+      Where the hazard manifested or would manifest, a file path, process,
       tool, or workflow step (e.g. "cargo hakari generate in the shared
       checkout", "rr-commit-paths.sh false no-op"). Concrete, not abstract.
     required: true
@@ -68,7 +66,7 @@ slots:
     slot_uri: rr:hasRootCause
     range: string
     description: >-
-      The mechanism that makes the condition hazardous — the one sentence a
+      The mechanism that makes the condition hazardous, the one sentence a
       future agent needs to avoid it. Factual, not blameful; cite the
       observable (e.g. "regen reads the working-tree dep graph, which lags
       origin/main by hundreds of commits in the shared checkout").
@@ -78,9 +76,7 @@ slots:
     slot_uri: rr:hasMitigation
     range: string
     description: >-
-      What was done this session AND/OR what should always be done. The durable
-      control — ideally a guard script, a fresh-origin-worktree step, or a GAC
-      rule cross-ref — not a one-off workaround. REQUIRED.
+      What was done this session AND/OR what should always be done. The durable control: ideally a guard script, a fresh-origin-worktree step, or a GAC rule cross-ref, not a one-off workaround. REQUIRED.
     required: true
 
   status:
@@ -97,7 +93,7 @@ slots:
     slot_uri: rr:hasEvidence
     range: string
     description: >-
-      A durable anchor proving the hazard is real — a commit SHA, a file:line,
+      A durable anchor proving the hazard is real, a commit SHA, a file:line,
       a journal/log excerpt, or a tool-output artifact. "I think this could
       happen" without evidence is NOT a hazard record (it is a speculation;
       raise it as a question instead).
@@ -108,6 +104,6 @@ slots:
     range: string
     description: >-
       The GAC rule id (e.g. AGENT-TRUNK-LAND-001, WORKSTATION-DISK-001) that
-      this hazard bears on — either the rule that should have prevented it, or
+      this hazard bears on: either the rule that should have prevented it, or
       the rule this session created/strengthened to control it. Multivalued.
     multivalued: true

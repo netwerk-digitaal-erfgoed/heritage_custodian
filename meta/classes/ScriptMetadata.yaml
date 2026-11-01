@@ -16,7 +16,7 @@ classes:
   ScriptMetadata:
     class_uri: rr:ScriptMetadata
     description: >-
-      A structured reference to a scripts/temp/*.sh artifact cited in a session
+      A structured reference to a `scripts/temp/*.sh` artifact cited in a session
       conclusion (element E7 of the structured session-conclusion plan). Captures
       the bash-script metadata the operator needs to triage a session's landed
       scripts without opening each file: its operational kind, its privilege
@@ -35,11 +35,11 @@ classes:
       - prerequisite_summary
       - materialized_in_checkout
     comments:
-      - "script_path MUST be the verbatim full path — never truncated with an ellipsis (timestamps are not unique), exactly as for prompt_path."
+      - "script_path MUST be the verbatim full path, never truncated with an ellipsis (timestamps are not unique), exactly as for prompt_path."
       - "privilege_tier is the load-bearing field for the operator triage: QUORUM/OPERATOR need their hands; AGENT/GITOPS don't."
       - "idempotent=true means re-runnable (safe); the ceremony scripts (vault write upserts) are all idempotent."
       - "source_prompt_path mirrors the script header's mandatory source-prompt citation (AGENT-TEMP-SCRIPT-STORAGE-001); omit only when there is no source prompt."
-      - "materialized_in_checkout=false means the operator cannot `bash <path>` they cannot `ls` — a handoff failure."
+      - "materialized_in_checkout=false means the operator cannot `bash <path>` they cannot `ls`, a handoff failure."
     examples:
       - value:
           script_path: "scripts/temp/20260627T011245Z-vault-358-b2-ceremony.sh"
@@ -50,7 +50,7 @@ classes:
           source_prompt_path: "docs/prompt/20260626T165835Z_vault-358-followups-result-and-b2-snapshot-spec.md"
           prerequisite_summary: "port-forward up; operator-driven gpg decrypts (the quorum)."
           materialized_in_checkout: true
-        description: "The B2 vault-snapshot ceremony — one quorum, idempotent, operator-gated."
+        description: "The B2 vault-snapshot ceremony: one quorum, idempotent, operator-gated."
       - value:
           script_path: "scripts/temp/20260627T131515Z-chains-audience-vault-flip-v2.sh"
           kind: "CEREMONY"
@@ -60,7 +60,7 @@ classes:
           source_prompt_path: "docs/prompt/20260627T015209Z_access-audience-plan-implementation-handoff.md"
           prerequisite_summary: "access_audience Phase 1 (apiserver --api-audiences includes 'vault') must land first, else the watch never clears."
           materialized_in_checkout: true
-        description: "The v2 chains audience-flip ceremony — fixes the v1 3m-watch false-negative; idempotent role upsert."
+        description: "The v2 chains audience-flip ceremony fixes the v1 3m-watch false-negative; idempotent role upsert."
       - value:
           script_path: "scripts/temp/20260627T082220Z-vault-358-task-a-custody-and-shred.sh"
           kind: "SHRED"
@@ -70,4 +70,4 @@ classes:
           source_prompt_path: "docs/prompt/20260626T165835Z_vault-358-followups-result-and-b2-snapshot-spec.md"
           prerequisite_summary: "Destructive — confirm the transit-vault-20251125 file is PGP-escrowed before shredding (DEFCON-1)."
           materialized_in_checkout: true
-        description: "Task A custody + shred — operator-destructive, NOT idempotent, no quorum."
+        description: "Task A custody + shred: operator-destructive, NOT idempotent, no quorum."

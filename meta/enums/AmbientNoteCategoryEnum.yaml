@@ -2,7 +2,7 @@ id: https://textpast.com/ontology/rr/enum/AmbientNoteCategoryEnum
 name: AmbientNoteCategoryEnum
 title: Ambient Note Category Enum
 description: >-
-  The category of an AmbientNote — the KIND of ambient observation a session
+  The category of an AmbientNote, the KIND of ambient observation a session
   surfaced in its end-of-session report but did NOT chase (out of scope / not its
   task / owner is another session or component). Drives routing + reconciliation
   (the dedup_key + category let a downstream consumer match a note to a Swarm
@@ -21,7 +21,7 @@ enums:
       DEPENDENCY_ALERT:
         description: >-
           A shared dependency is degraded/unreachable (Vault sealed/unreachable,
-          Forgejo/Harbor/TypeDB/Valkey/Qdrant down) — observed via the
+          Forgejo/Harbor/TypeDB/Valkey/Qdrant down), observed via the
           session-start digest, a resolver fallback, or a probe. The session's
           own work may still function via a fallback (dotenv bootstrap, cache)
           so this is NOT necessarily a live blocker FOR THIS SESSION, but it is
@@ -31,13 +31,13 @@ enums:
           A Swarm blackboard finding, Prometheus alert, or Forgejo issue that is
           PERSISTING past the recovery of its root cause (e.g. a CRITICAL
           infra-failure finding still surfaced in the session-start digest 8h
-          after the dependency recovered). The reconciliation gap — nothing
+          after the dependency recovered). The reconciliation gap: nothing
           auto-resolves the finding when the condition clears.
       AMBIENT_DRIFT:
         description: >-
-          Ambient state drift NOT produced by this session — a stale shared
+          Ambient state drift NOT produced by this session, a stale shared
           checkout, a dirty worktree pool, a lagging mirror, a generated file
-          drifted vs its generator — observed but owned by the git-sync /
+          drifted vs its generator, observed but owned by the git-sync /
           workspace hygiene layer, not this session's task.
       OBSERVED_ANOMALY:
         description: >-
@@ -54,7 +54,7 @@ enums:
           An out-of-scope issue/observation the session surfaced while doing
           OTHER work (a verification, an implementation, a remediation) that it
           does NOT own and must NOT chase inline (scope creep) but that warrants
-          a NEW prompt-chain/plan to remediate — the canonical trigger for the
+          a NEW prompt-chain/plan to remediate, the canonical trigger for the
           THIRD docs/prompt variety (sub-session | continuation |
           out-of-scope-issue-observation/remediation; AGENT-PROMPT-VARIETIES-001).
           Distinct from OBSERVED_ANOMALY (a noted curiosity with no remediation

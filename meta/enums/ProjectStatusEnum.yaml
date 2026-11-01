@@ -48,13 +48,10 @@ enums:
       
       Status Transitions:
       ```
-      PROPOSED → APPROVED → IN_PROGRESS → COMPLETED
-                    ↓              ↓
-                  (rejected)    ON_HOLD → IN_PROGRESS
-                                   ↓
-                              DISCONTINUED
-                              
-      IN_PROGRESS → EXTENDED → COMPLETED
+      PROPOSED, then APPROVED, then IN_PROGRESS, then COMPLETED. From
+      APPROVED the project may instead be rejected. IN_PROGRESS may go
+      ON_HOLD, which returns to IN_PROGRESS or goes DISCONTINUED.
+      IN_PROGRESS may also be EXTENDED, which then COMPLETES.
       ```
     
     permissible_values:

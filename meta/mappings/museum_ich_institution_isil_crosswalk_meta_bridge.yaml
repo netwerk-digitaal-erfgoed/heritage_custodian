@@ -19,7 +19,7 @@
 
 id: https://rootreal.ai/schema/meta_bridge/museum_ich_institution_isil_crosswalk
 name: museum_ich_institution_isil_crosswalk_meta_bridge
-title: Museum/ICH Aggregator-Institution → ISIL/DE Identity Crosswalk Meta Bridge
+title: Museum/ICH Aggregator-Institution to ISIL/DE Identity Crosswalk Meta Bridge
 description: |
   Bridges contributing-institution references from the type-D object aggregators
   (DDB, museum-digital) to the type-L institutional-identity register (ISIL/DE)
@@ -46,7 +46,7 @@ classes:
       One reconciled crosswalk row: an aggregator-contributing-institution
       reference reconciled to an ISIL/DE identity node where the institution
       holds an ISIL code. Aggregator-only institutions (no ISIL) are retained as
-      distinct records with recorded_by provenance — never silently merged or
+      distinct records with recorded_by provenance, never silently merged or
       orphaned. Projects to a parsimony Agent (the institution) + an SSSOM
       mapping row (skos:closeMatch where ISIL-coded; skos:relatedMatch for
       aggregator-only).
@@ -70,7 +70,7 @@ classes:
         description: The GND identifier (the reconciliation bridge to ISIL/DE via DNB).
         range: string
       mapping_predicate:
-        description: SKOS predicate — closeMatch where ISIL-coded; relatedMatch for aggregator-only.
+        description: SKOS predicate, closeMatch where ISIL-coded; relatedMatch for aggregator-only.
         range: CrosswalkPredicateEnum
         required: true
       recorded_by:
@@ -78,7 +78,7 @@ classes:
         range: string
         required: true
       attested_in:
-        description: Source citation(s) (provenance — mandatory).
+        description: Source citation(s) (provenance; mandatory).
         range: string
         multivalued: true
         required: true
@@ -154,7 +154,7 @@ typedb_projection:
 
 enums:
   CrosswalkPredicateEnum:
-    description: SKOS mapping predicates for aggregator-institution → ISIL reconciliation.
+    description: SKOS mapping predicates for aggregator-institution to ISIL reconciliation.
     permissible_values:
       closeMatch:
         description: The aggregator institution holds an ISIL code (shared identity node).

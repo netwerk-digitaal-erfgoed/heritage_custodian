@@ -2,14 +2,14 @@ id: https://textpast.com/ontology/rr/slots/stochastic_enrichment_slots
 name: stochastic_enrichment_slots
 title: Stochastic Enrichment Versioning Slots
 description: >-
-  Slots for the StochasticEnrichmentVersion class — the additive version-row
+  Slots for the StochasticEnrichmentVersion class, the additive version-row
   model for stochastic enrichments (transcriptions, layout analyses, semantic
   image enrichments) of plan `oclc-287759-heritage-ingestion` item 3.5 and GAC
   rule DATA-STOCHASTIC-ENRICHMENT-VERSIONING-001. Every version row carries a
   timestamp with EXPLICIT timezone and the producing GHCID (or
   PERSON-in-Context PIC PID); rows are ADDITIVE, in-place rewrites are
-  forbidden. Slots defined here and imported by the class file (CLASS-FILES-001
-  — class files MUST NOT define slots inline); snake_case noun-phrase names
+  forbidden. Slots defined here and imported by the class file (CLASS-FILES-001,
+  class files MUST NOT define slots inline); snake_case noun-phrase names
   (LINKML-NAMING-001).
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -24,7 +24,7 @@ slots:
     slot_uri: rr:versionOfSubject
     description: >-
       PID of the subject this stochastic version describes (a page image, a
-      page, a volume) — the `(subject PID, enrichment kind, version row)`
+      page, a volume), the `(subject PID, enrichment kind, version row)`
       triple's first element. Stable across versions of the same subject.
     range: string
     required: true
@@ -41,7 +41,7 @@ slots:
   produced_at_tz:
     slot_uri: rr:producedAtTz
     description: >-
-      When this version was produced — an xsd:dateTime whose timezone offset
+      When this version was produced, an xsd:dateTime whose timezone offset
       is EXPLICIT (a naive timestamp without a timezone is a data-quality
       failure, never a default-to-UTC guess; DATA-STOCHASTIC-ENRICHMENT-
       VERSIONING-001). The TZ-explicit value is what orders versions of the
@@ -54,8 +54,7 @@ slots:
     description: >-
       GHCID of the custodian/organization that produced this version (e.g.
       at_7_ibk_r_read for a Transkribus transcription). Exactly one of
-      producer_ghcid / producer_pic_pid must be present — producer
-      attribution is mandatory, never blank.
+      producer_ghcid / producer_pic_pid must be present: producer attribution is mandatory, never blank.
     range: string
 
   producer_pic_pid:
@@ -70,7 +69,7 @@ slots:
     slot_uri: rr:methodProvenance
     description: >-
       Model/method provenance of the producing process (model identifier and
-      version, engine parameters, or "manual") — what produced the content,
+      version, engine parameters, or "manual"): what produced the content,
       as distinct from who (producer_ghcid/producer_pic_pid).
     range: string
     required: true
@@ -79,7 +78,7 @@ slots:
     slot_uri: rr:contentPointer
     description: >-
       Pointer to where the version's content lives (a custody blob reference,
-      a graph node, a file digest in the archive) — the row never carries the
+      a graph node, a file digest in the archive), the row never carries the
       content inline, only the pointer plus its hash.
     range: string
     required: true

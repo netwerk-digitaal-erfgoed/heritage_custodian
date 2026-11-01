@@ -50,9 +50,10 @@ enums:
       
       Status Transitions:
       ```
-      ANNOUNCED → OPEN → CLOSING_SOON → CLOSED → UNDER_REVIEW → RESULTS_PUBLISHED
-                    ↓                       ↓
-                 CANCELLED               REOPENED → OPEN
+      ANNOUNCED, then OPEN, then CLOSING_SOON, then CLOSED, then
+      UNDER_REVIEW, then RESULTS_PUBLISHED. From OPEN or CLOSING_SOON the
+      call may instead go CANCELLED; from CLOSED it may be REOPENED, which
+      returns to OPEN.
       ```
     
     permissible_values:

@@ -22,57 +22,44 @@ enums:
   RecordsLifecycleStageEnum:
     description: |
       Three-tier records lifecycle indicating current position of an organizational document.
-      
-      LIFECYCLE MODEL:
-      
-      ```
-      ┌─────────────────────────────────────────────────────────────────────┐
-      │  ACTIVE (CustodianAdministration)                                   │
-      │  - Records in current use for organizational operations             │
-      │  - Actively referenced, updated, or legally required                │
-      │  - Managed by originating department                                │
-      │  - Retention period has NOT expired                                 │
-      └─────────────────────────────────────────────────────────────────────┘
-                                     ↓
-                          (Retention period ends,
-                           no longer active use,
-                           transferred to records management)
-                                     ↓
-      ┌─────────────────────────────────────────────────────────────────────┐
-      │  INACTIVE (CustodianArchive)                                        │
-      │  - Records no longer in active use but retained                     │
-      │  - Subject to retention schedule                                    │
-      │  - May be accessed for reference, legal, audit purposes             │
-      │  - Managed by records management/archive                            │
-      │  - Awaiting disposal or heritage transfer                           │
-      └─────────────────────────────────────────────────────────────────────┘
-                                     ↓
-                          (Historical significance recognized,
-                           selected for permanent preservation)
-                                     ↓
-      ┌─────────────────────────────────────────────────────────────────────┐
-      │  HERITAGE (CustodianCollection)                                     │
-      │  - Records of enduring historical or cultural value                 │
-      │  - Permanent preservation                                           │
-      │  - Part of institutional heritage collection                        │
-      │  - May be made accessible to researchers                            │
-      └─────────────────────────────────────────────────────────────────────┘
-      ```
-      
+
+      LIFECYCLE MODEL, in order:
+
+      1. ACTIVE (CustodianAdministration): records in current use for
+      organizational operations. Actively referenced, updated, or legally
+      required; Managed by the originating department; Retention period
+      has NOT expired.
+
+      2. INACTIVE (CustodianArchive): records no longer in active use but
+      retained. Subject to a retention schedule; may be accessed for
+      reference, legal, or audit purposes; Managed by records management
+      or the archive; awaiting disposal or heritage transfer.
+
+      3. HERITAGE (CustodianCollection): records of enduring historical or
+      cultural value. Permanent preservation; part of the institutional
+      heritage collection; may be made accessible to researchers.
+
+      Transition from ACTIVE to INACTIVE: the Retention period ends,
+      active use stops, and the records are transferred to records
+      management.
+
+      Transition from INACTIVE to HERITAGE: historical significance is
+      recognized and the records are selected for permanent preservation.
+
       RiC-O ALIGNMENT:
-      
+
       - Maps to rico:hasRecordState conceptually
       - Links document instances to CustodianAdministration, CustodianArchive, or CustodianCollection
-      
+
       Examples BY DOCUMENT TYPE:
-      
+
       | Document | ACTIVE | INACTIVE | HERITAGE |
       |----------|--------|----------|----------|
       | Financial Statement | Current year | Prior years (7-year retention) | Founding era financials |
       | Articles of Association | Current version | Prior versions | Original founding articles |
       | Employment Records | Current employees | Terminated (retention period) | Notable historical figures |
       | Board Minutes | Current year | Prior years | Founding board meetings |
-      
+
     permissible_values:
       ACTIVE:
         description: |
@@ -171,14 +158,14 @@ enums:
           no Custodian to have Administration at that point.
           
           Transition:
-          PRE_EXISTENCE → ACTIVE (upon organization registration)
+          PRE_EXISTENCE becomes ACTIVE upon organization registration
           
           Note: This stage resolves the ontological paradox of founding
           documents that predate the entity they document.
         meaning: prov:Entity
     
     comments:
-      - "Three-tier lifecycle: ACTIVE → INACTIVE → HERITAGE"
+      - "Three-tier lifecycle: ACTIVE, then INACTIVE, then HERITAGE"
       - "PRE_EXISTENCE handles founding documents that predate the organization"
       - "Maps to CustodianAdministration, CustodianArchive, CustodianCollection respectively"
       - "RiC-O rico:hasRecordState conceptual alignment"

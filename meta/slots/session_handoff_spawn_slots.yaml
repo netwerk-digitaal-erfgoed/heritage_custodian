@@ -2,12 +2,11 @@ id: https://textpast.com/ontology/rr/slots/session_handoff_spawn_slots
 name: session_handoff_spawn_slots
 title: Session Handoff Spawn Decision Slots
 description: >-
-  Centralized slots for the SessionHandoffSpawnDecision class — the
+  Centralized slots for the SessionHandoffSpawnDecision class, the
   spawn-or-arm-or-explain section that closes every SessionConclusion (the
   LAST branch of the umbrella, per the 2026-08-26 operator directive: "add a
   section in the end of session conclusion/report that explains why a handoff
-  was or was not spawned"). External best practice: a handoff is a CONTRACT —
-  trigger conditions, source, target, context payload, idempotency, and
+  was or was not spawned"). External best practice: a handoff is a CONTRACT: trigger conditions, source, target, context payload, idempotency, and
   failure-recovery documented machine-readably (AWS Well-Architected Agentic
   AI Lens AGENTOPS01-BP02; OpenAI Agents orchestration "Handoffs" pattern).
   All slots defined here and imported by the class file (CLASS-FILES-001).
@@ -25,11 +24,10 @@ slots:
   handoff_ref:
     slot_uri: rr:handoffRef
     description: >-
-      The handoff artifact this decision is about — the verbatim repo-relative
+      The handoff artifact this decision is about, the verbatim repo-relative
       `docs/prompt/<file>.md` path of the AUTHORED successor/auxiliary prompt.
       REQUIRED for every disposition except `none`. MULTI-VEHICLE (#362959):
-      this is ONE of the close's forward vehicles, not necessarily the only
-      one — every AUTHORED prompts[] entry is also a vehicle, and under
+      this is ONE of the close's forward vehicles, not necessarily the only one: every AUTHORED prompts[] entry is also a vehicle, and under
       disposition gate_at_quit the green-respawn gate evaluates and spawns
       every P1–P6-eligible vehicle (this one via the P2d conclusion-decision
       edge). Typical dual-vehicle shape: AUTHORED re-land vehicles owned by
@@ -39,7 +37,7 @@ slots:
   handoff_spawn_disposition:
     slot_uri: rr:handoffSpawnDisposition
     description: >-
-      The spawn disposition (HandoffSpawnDispositionEnum) — spawned_now,
+      The spawn disposition (HandoffSpawnDispositionEnum): spawned_now,
       auto_spawn_armed, operator_manual, or none. REQUIRED. This is the single
       field every spawner (green-respawn P1, the operator, the Condition
       Watcher resume) reads first: it answers "why is (or is not) a successor
@@ -50,7 +48,7 @@ slots:
   handoff_spawn_mechanism:
     slot_uri: rr:handoffSpawnMechanism
     description: >-
-      HOW the spawn happens or would happen — e.g. "green-respawn-on-quit
+      HOW the spawn happens or would happen, e.g. "green-respawn-on-quit
       P1–P6 (validated-GREEN only)", "blocked-trigger <id> spawn_agent
       resume", "manual rrpi <path> (operator one-liner)". Omit when identical
       to the disposition's obvious reading.
@@ -70,7 +68,7 @@ slots:
     slot_uri: rr:handoffSpawnTriggerRef
     description: >-
       The durable watcher reference proving an auto_spawn_armed disposition is
-      REALLY armed — the blocked-trigger id (26-char ULID), Condition Watcher
+      REALLY armed, the blocked-trigger id (26-char ULID), Condition Watcher
       schedule name, or wake target. REQUIRED iff disposition is
       auto_spawn_armed (an "armed" claim with no reference is an
       unverifiable self-attestation).
@@ -91,11 +89,11 @@ slots:
   handoff_spawn_rationale:
     slot_uri: rr:handoffSpawnRationale
     description: >-
-      WHY this disposition was chosen — the answer to "was this not spawned
+      WHY this disposition was chosen, the answer to "was this not spawned
       automatically?". MUST name the gate for operator_manual (the human-only
       step or the missing catalog predicate); MUST state the release condition
       for auto_spawn_armed. REQUIRED. A handoff that is neither spawned, armed,
-      nor explained is an undecided leftover — the exact failure the
+      nor explained is an undecided leftover, the exact failure the
       spawn-or-arm-or-explain contract forbids.
     range: string
     required: true
@@ -104,14 +102,14 @@ slots:
     slot_uri: rr:handoffLaunchCommand
     description: >-
       The exact rrpi launch command that starts the successor on the handoff
-      artifact — `rrpi spawn <docs/prompt/path>` (a new tmux tab on the shared
+      artifact: `rrpi spawn <docs/prompt/path>` (a new tmux tab on the shared
       rootreal-agents surface, the green-respawn spawn form) or
       `rrpi <docs/prompt/path>` (in-place). REQUIRED whenever handoff_ref is
       present (the 2026-09-01 operator directive: a conclusion whose plan
       STAYS ACTIVE is followed by the authored successor prompt AND its
-      launch command AND — when the outcome light is green — the automatic
+      launch command AND (when the outcome light is green) the automatic
       spawn; handoff-as-contract: a receiver must never re-derive the launch
-      surface — AWS Agentic AI Lens AGENTOPS01-BP02 "a handoff is a data
+      surface (AWS Agentic AI Lens AGENTOPS01-BP02) "a handoff is a data
       contract before it is a workflow step").
     range: string
 
@@ -119,12 +117,12 @@ slots:
     slot_uri: rr:spawnDispatchStatus
     description: >-
       The up-front dispatch status (SpawnDispatchStatusEnum) the session's
-      FINAL SUMMARY and this record MUST state BEFORE any launch command —
+      FINAL SUMMARY and this record MUST state BEFORE any launch command;
       landed / armed_blocked_watch / gate_pending / manual_pending /
       not_dispatched (operator directive 2026-09-28,
       AGENT-HANDOFF-AUTOSPAWN-STATUS-FIRST-001). The dated defect: a close
       whose spawn was armed-but-blocked led its summary with the manual
-      `rrpi docs/prompt/<file>` line (the §6 revival fallback) — the operator
+      `rrpi docs/prompt/<file>` line (the §6 revival fallback), the operator
       read "you must launch this" although a persistent watch owned the
       auto-spawn. REQUIRED (validator L2, effective 2026-09-28) whenever the
       disposition is spawned_now or auto_spawn_armed; under any status other
@@ -135,7 +133,7 @@ slots:
   spawn_watch_ref:
     slot_uri: rr:spawnWatchRef
     description: >-
-      The durable reference of the retry machinery owning an armed spawn —
+      The durable reference of the retry machinery owning an armed spawn:
       the rr-spawn-wait marker/log id (e.g. wait-680606743), the blocked-trigger
       ULID, or the Condition Watcher schedule name. REQUIRED (validator L2,
       effective 2026-09-28) when spawn_dispatch_status is armed_blocked_watch:
@@ -147,7 +145,7 @@ slots:
   handoff_spawn_evidence_refs:
     slot_uri: rr:handoffSpawnEvidenceRefs
     description: >-
-      Evidence backing the disposition — the spawned session's agent_id/tab,
+      Evidence backing the disposition, the spawned session's agent_id/tab,
       the trigger registration receipt, the issue that owns the unmet
       precondition.
     range: string

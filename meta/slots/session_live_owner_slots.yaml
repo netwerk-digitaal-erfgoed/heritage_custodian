@@ -2,7 +2,7 @@ id: https://textpast.com/ontology/rr/slots/session_live_owner_slots
 name: session_live_owner_slots
 title: Session Live-Owner Citation Slots
 description: >-
-  Slots for the SessionLiveOwnerCitation class — the heartbeat-verified
+  Slots for the SessionLiveOwnerCitation class, the heartbeat-verified
   live-owner half of the plan-task succession two-outcome rule
   (PLAN-TASK-SUCCESSION-SWEEP-001, operator directive 2026-09-22): every open
   item in a touched plan gets either a succession docs/prompt/ successor OR a
@@ -12,8 +12,7 @@ description: >-
   validator (session-conclusion-validate L2, plan item rrp:it:zzg89k53w): a
   profile-full record whose plan_completion is partial/incomplete while
   naming NO succession prompt and NO valid live-owner citations FAILs. Slots
-  defined here and imported by the class file (CLASS-FILES-001 — class files
-  MUST NOT define slots inline); snake_case noun-phrase names
+  defined here and imported by the class file (CLASS-FILES-001: class files MUST NOT define slots inline); snake_case noun-phrase names
   (LINKML-NAMING-001).
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -27,11 +26,10 @@ slots:
   agent_ref:
     slot_uri: rr:agentRef
     description: >-
-      The owning agent — the Swarm agent id, the agent_name, or the
+      The owning agent, the Swarm agent id, the agent_name, or the
       `swarm:<agent_id>` session_ref form. REQUIRED. A concluded/dead session
       is NOT an owner: the citation is only valid when heartbeat_at was fresh
-      at sweep time (the sweep's own anti-pattern table — "citing a
-      concluded/dead session as the owner").
+      at sweep time (the sweep's own anti-pattern table, "citing a concluded/dead session as the owner").
     range: string
     required: true
 
@@ -41,8 +39,7 @@ slots:
       The RFC3339 timestamp of the owner's LAST heartbeat as observed at
       sweep time (swarm_list_agents / the registration's last_heartbeat).
       REQUIRED. The validator bounds it against the record's generated_at
-      (freshness): a heartbeat more than one hour older than generated_at is
-      NOT a live owner — Swarm agents heartbeat every 120s, so an hour-stale
+      (freshness): a heartbeat more than one hour older than generated_at is NOT a live owner, Swarm agents heartbeat every 120s, so an hour-stale
       heartbeat means the agent stopped; a future heartbeat beyond clock
       skew is an unanchored self-attestation.
     range: datetime
@@ -51,10 +48,10 @@ slots:
   owns:
     slot_uri: rr:owns
     description: >-
-      WHAT the owner owns — the plan ref and/or the specific open-item
+      WHAT the owner owns, the plan ref and/or the specific open-item
       `rrp:it:` PIDs (e.g. "rrpi-spawn-at-conclusion-and-websearch-fallback
-      items rrp:it:2.1-*, driving prompt rrp:pr:52aa2fq6$") or the active
-      prompt path. REQUIRED — an owner citation that does not name the owned
+      items `rrp:it:2.1-*`, driving prompt rrp:pr:52aa2fq6$") or the active
+      prompt path. REQUIRED, an owner citation that does not name the owned
       scope is an unscoped claim the succession floor cannot trust.
     range: string
     required: true
@@ -62,7 +59,7 @@ slots:
   note:
     slot_uri: rr:liveOwnerNote
     description: >-
-      Optional context — the coordination evidence (the Swarm message
+      Optional context, the coordination evidence (the Swarm message
       exchange, the split proposal ack) or the ownership caveat. Omit when
       the three required slots carry the full claim.
     range: string

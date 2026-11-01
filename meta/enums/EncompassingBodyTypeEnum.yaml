@@ -31,28 +31,18 @@ enums:
       
       Decision Tree for Classification:
       ```
-      Is the relationship defined in legal documents (statutes, laws, articles)?
-        YES → UMBRELLA (legal parent-child)
-        NO  → Continue...
-      
-      Is it a member-OWNED organization with member governance?
-        YES → COOPERATIVE (OCLC, credit unions)
-        NO  → Continue...
-      
-      Is it a value-driven movement with open participation?
-        YES → SOCIAL_MOVEMENT (Wikimedia, Creative Commons)
-        NO  → Continue...
-      
-      Does the body provide GRANTS or FUNDING to heritage custodians?
-        YES → FUNDING_BODY (Mondriaan Fund, ERC, Creative Europe)
-        NO  → Continue...
-      
-      Does the body provide centralized services TO members?
-        YES → NETWORK (service provider)
-        NO  → Continue...
-      
-      Do members provide services TO EACH OTHER (peer-to-peer)?
-        YES → CONSORTIUM (mutual assistance)
+      1. Is the relationship defined in legal documents (statutes, laws, articles)?
+         YES: UMBRELLA (legal parent-child). NO, Continue.
+      2. Is it a member-OWNED organization with member governance?
+         YES: COOPERATIVE (OCLC, credit unions). NO, Continue.
+      3. Is it a value-driven movement with open participation?
+         YES: SOCIAL_MOVEMENT (Wikimedia, Creative Commons). NO, Continue.
+      4. Does the body provide GRANTS or FUNDING to heritage custodians?
+         YES: FUNDING_BODY (Mondriaan Fund, ERC, Creative Europe). NO, Continue.
+      5. Does the body provide centralized services TO members?
+         YES: NETWORK (service provider). NO, Continue.
+      6. Do members provide services TO EACH OTHER (peer-to-peer)?
+         YES: CONSORTIUM (mutual assistance)
       ```
       
       CRITICAL: Data Openness Correlation:
@@ -131,7 +121,7 @@ enums:
           - Mutual assistance (members help each other, not centralized services)
           - Peer-to-peer (equal participation, shared responsibility)
           - Temporary agreements (memoranda of understanding, not permanent structure)
-          - Coordination only (facilitates collaboration, no authority)
+          - Coordination only (coordinates collaboration, no authority)
           
           Examples:
           - Library consortia for shared cataloging
@@ -141,8 +131,8 @@ enums:
           - Digitization consortia (collaborative projects)
           
           Distinction from NETWORK:
-          - CONSORTIUM: Peer-to-peer mutual assistance (members → members)
-          - NETWORK: Centralized service provision (network → members)
+          - CONSORTIUM: Peer-to-peer mutual assistance (member to member)
+          - NETWORK: Centralized service provision (network to members)
           
           Distinction from COOPERATIVE:
           - CONSORTIUM: Temporary agreement, no ownership
@@ -287,7 +277,7 @@ enums:
           - May be government agency, foundation, or EU institution
           
           Relationship Model:
-          - Funder → (provides grant) → Custodian
+          - Funder provides a grant to Custodian
           - Uses `schema:funder` / `schema:sponsor` properties
           - Funds specific projects or operational costs
           - Time-limited funding relationships (grant periods)
@@ -318,7 +308,7 @@ enums:
           - Ministries may BOTH fund AND govern (use UMBRELLA for that)
           
           Distinction from NETWORK:
-          - FUNDING_BODY: One-way financial relationship (funder → recipient)
+          - FUNDING_BODY: One-way financial relationship (funder to recipient)
           - NETWORK: Ongoing service provision relationship
           
           Ontology Mappings:

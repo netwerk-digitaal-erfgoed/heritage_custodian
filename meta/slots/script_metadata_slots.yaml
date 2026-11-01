@@ -3,8 +3,7 @@ name: script_metadata_slots
 title: Script Metadata Slots
 description: >-
   Centralized slots for the ScriptMetadata class (E7 of the structured
-  session-conclusion plan). All slots are defined here and imported by the class
-  file — class files MUST NOT define slots inline (GAC:
+  session-conclusion plan). All slots are defined here and imported by the class file: class files MUST NOT define slots inline (GAC:
   linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
   verb-first / noun-singular and ontology-neutral (GAC:
   linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
@@ -24,9 +23,9 @@ slots:
     slot_uri: rr:scriptPath
     range: string
     description: >-
-      Verbatim FULL repo-relative path to the scripts/temp/*.sh artifact
+      Verbatim FULL repo-relative path to the `scripts/temp/*.sh` artifact
       ({YYYYMMDDTHHMMSS}Z-{identifier}.sh per AGENT-TEMP-SCRIPT-STORAGE-001).
-      MUST NOT be truncated with an ellipsis — the timestamp portion is not
+      MUST NOT be truncated with an ellipsis, the timestamp portion is not
       unique (multiple scripts can share one) and the descriptive suffix
       disambiguates, exactly as for docs/prompt/ paths
       (agent-session-documentation.md §6).
@@ -60,7 +59,7 @@ slots:
       Whether the script is safe to re-run (idempotent upserts; a re-run after a
       partial failure converges to the declared state). The ceremony scripts in
       this session are all idempotent (`vault write` is an idempotent upsert; the
-      chains flip is read→reconstruct→write). false means re-running may double-
+      chains flip is a read-reconstruct-write cycle). false means re-running may double-
       apply or compound; the operator must treat it as one-shot.
     range: boolean
     required: true

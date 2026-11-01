@@ -5,7 +5,7 @@ description: >-
   Centralized slots for the SessionIssueDisposition class (plan
   forgejo-issue-lifecycle item 3.4, GAC AGENT-ISSUE-RESPONSE-CLOSE-001):
   the respond-or-close disposition record for every Forgejo issue a session
-  ADDRESSED — commented on, closed, filed, or landed the fix for — so the
+  ADDRESSED (commented on, closed, filed, or landed the fix for) so the
   lifecycle obligation is checked at every session end, not just by the
   issue-lifecycle-reaper CronJob. Class files MUST NOT define slots inline
   (GAC: linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001).
@@ -31,11 +31,10 @@ slots:
     range: string
     description: >-
       The respond-or-close disposition. One of: responded (a substantive
-      comment was posted — name it), closed_with_evidence (the issue was
+      comment was posted, name it), closed_with_evidence (the issue was
       closed with an evidence comment naming the verification), left_open_valid
-      (the tracked work is NOT done — the still-valid rationale is recorded),
-      filed (the issue was created this session — its own lifecycle starts
-      here). REQUIRED; enforced by scripts/session-conclusion-validate.sh L2.
+      (the tracked work is NOT done, the still-valid rationale is recorded),
+      filed (the issue was created this session, its own lifecycle starts here). REQUIRED; enforced by scripts/session-conclusion-validate.sh L2.
     required: true
 
   evidence:
@@ -55,11 +54,10 @@ slots:
     description: >-
       The dedup-gate outcome behind a FILED issue (GAC-FORGEJO-001 v3): the
       canonical the gated seam found ('canonical #N'), or the audited
-      --new-class override reason for a genuinely new defect class. Makes the
-      filing auditable — one canonical per defect class is only meaningful if
+      --new-class override reason for a genuinely new defect class. Makes the filing auditable: one canonical per defect class is only meaningful if
       the search verdict is recorded. Required by
       scripts/session-conclusion-validate.sh L2 (warn tier) when action=filed.
-      Schema-added 2026-10-03 (#355023 parity sweep — the same
+      Schema-added 2026-10-03 (#355023 parity sweep, the same
       validator-vs-schema skew class as owner_found and the 2026-09-22
       auxiliary_session slot: the validator checked a field the renderer
       could not carry).
@@ -71,13 +69,12 @@ slots:
       The assigned auxiliary session for a FILED issue
       (AUXILIARY-SESSION-ASSIGNMENT-001, operator directive 2026-09-22): a
       filed issue MUST carry its own dedicated plan + docs/prompt + an armed
-      or spawned auxiliary session at the detecting session's close — the
-      detect→file→plan→prompt→spawn chain closes inside the closeout, never
+      or spawned auxiliary session at the detecting session's close, the detect-file-plan-prompt-spawn chain closes inside the closeout, never
       "later". Required by scripts/session-conclusion-validate.sh L2 when
       action=filed; absent for the other actions. Added 2026-09-22 for
       #361193's parity sweep: the validator required the block while this
       schema lacked the slot, so the (newly fail-loud, structurally recursing)
-      renderer dropped it — the same skew class, caught live by the closeout
+      renderer dropped it, the same skew class, caught live by the closeout
       dogfood.
     range: AuxiliarySessionAssignment
     inlined: true
@@ -105,7 +102,7 @@ slots:
     description: >-
       The auxiliary session's launch state: armed (a durable spawn watch /
       blocked trigger owns the launch), spawned (the session is live), or
-      operator-gated (a genuine human-only gate — must be named). Enforced by
+      operator-gated (a genuine human-only gate, must be named). Enforced by
       the validator; never an unarmed "later".
     range: string
     required: true

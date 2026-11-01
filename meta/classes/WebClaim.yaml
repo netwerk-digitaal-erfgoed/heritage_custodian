@@ -70,7 +70,7 @@ classes:
     comments:
     - Requires XPath provenance - claims without it are fabricated.
     - Archived HTML files are Playwright-rendered (NOT WARC format).
-    - Follows 4-stage GLAM-NER pipeline: recognition → layout → resolution → linking.
+    - Follows 4-stage GLAM-NER pipeline: recognition, then layout, then resolution, then linking.
     - 'Preserved from prior description: Single verifiable assertion extracted from a web page with XPath provenance, enabling source verification and audit trails.'
     broad_mappings:
     - prov:Entity
@@ -218,7 +218,7 @@ classes:
 
       Preserved from prior description (commit 2c9d3598):
 
-      "A single verifiable claim extracted from a web page.\n\nCORE PRINCIPLE: XPATH OR REMOVE\n\nEvery claim extracted from a webpage MUST have:\n1. `has_provenance_path` - XPath object pointing to exact element in archived HTML\n2. `html_file` - path to the archived HTML (Playwright-rendered, NOT WARC)\n\nThe XPath object contains:\n- `expression` - the XPath string\n- `match_score` - quality of match (0.0-1.0)\n- `matched_text` - actual text found (for verification)\n\nClaims without these fields are FABRICATED and must be REMOVED.\n\nARCHIVE FORMAT: PLAYWRIGHT-RENDERED HTML\n\nWe use Playwright (headless browser) to:\n1. Navigate to the target URL\n2. Wait for JavaScript to fully render\n3. Save the complete DOM as an HTML file\n\nThis differs from WARC archives which capture raw HTTP responses.\nPlaywright rendering captures the final DOM state including:\n- JavaScript-rendered content\n- Dynamically loaded elements\n- Client-side state\n\n**WHY NOT CONFIDENCE\
+      "A single verifiable claim extracted from a web page.\n\nCORE PRINCIPLE: XPATH OR REMOVE\n\nEvery claim extracted from a webpage MUST have:\n1. `has_provenance_path` - XPath object pointing to exact element in archived HTML\n2. `html_file` - path to the archived HTML (Playwright-rendered, NOT WARC)\n\nThe XPath object contains:\n- `expression` - the XPath string\n- `match_score` - quality of match (0.0-1.0)\n- `matched_text` - actual text found (for verification)\n\nClaims without these fields are FABRICATED and must be REMOVED.\n\nARCHIVE FORMAT: PLAYWRIGHT-RENDERED HTML\n\nWe use Playwright (headless browser) to:\n1. Navigate to the target URL\n2. Wait for JavaScript to fully render\n3. Save the complete DOM as an HTML file\n\nThis differs from WARC archives which capture raw HTTP responses.\nPlaywright rendering captures the final DOM state including:\n- JavaScript-rendered content\n- Dynamically loaded elements\n- Client-side state\n\nWHY NOT CONFIDENCE\
     annotations:
       specificity_score: 0.1
       specificity_rationale: Generic utility class/slot created during migration

@@ -4,13 +4,12 @@ title: Prompt Lifecycle Slots
 description: >-
   Centralized slots for the PromptLifecycleRecord class (plan
   prompt_corpus_lifecycle_compliance rrp:pl:s6hc8gg5a item 3). All slots are
-  defined here and imported by the class file — class files MUST NOT define
-  slots inline (GAC: linkml/general/class-files-no-inline-slots.md,
+  defined here and imported by the class file: class files MUST NOT define slots inline (GAC: linkml/general/class-files-no-inline-slots.md,
   CLASS-FILES-001). Slot names are verb-first / noun-singular and
   ontology-neutral (GAC: linkml/naming/slot-naming-convention-current-style.md,
   LINKML-NAMING-001). The slots mirror the corpus frontmatter keys the
   ingester's first-key-wins parser reads
-  (crates/hub/api/dev/gac/prompt/src/frontmatter.rs) — the contract describes
+  (crates/hub/api/dev/gac/prompt/src/frontmatter.rs), the contract describes
   the EXISTING tuple, it does not invent a parallel one.
 prefixes:
   linkml: https://w3id.org/rr/ontology/linkml/
@@ -26,7 +25,7 @@ slots:
     slot_uri: rr:promptLifecycleStatus
     description: >-
       The prompt's lifecycle state, from PromptLifecycleStatusEnum ONLY (the
-      canonical 6-value vocabulary — R3). Maps the corpus frontmatter `status:`
+      canonical 6-value vocabulary (R3)). Maps the corpus frontmatter `status:`
       key. Prose values are forbidden; historical prose reconciles via the
       enum's alias annotations into this slot, with the original preserved in
       status_note.
@@ -38,7 +37,7 @@ slots:
     description: >-
       ISO-8601 date-time of the terminal transition (maps frontmatter
       `concluded_at:`). REQUIRED when lifecycle_status is a disposition status
-      (completed|dismissed) — a terminal status without it is a half-transition
+      (completed|dismissed), a terminal status without it is a half-transition
       (PROMPT-TERMINAL-AUTHORING-001 R1). FORBIDDEN while non-terminal (a
       non-terminal prompt with a conclusion timestamp is incoherent). Derived
       values carry provenance (the backfill manifest); NEVER backdated silently
@@ -49,7 +48,7 @@ slots:
   completed:
     slot_uri: rr:promptCompleted
     description: >-
-      true iff the driven work finished (success) — the disposition boolean for
+      true iff the driven work finished (success), the disposition boolean for
       lifecycle_status=completed. Mutually exclusive with dismissed (XOR).
       Required-true when lifecycle_status=completed; absent/false otherwise.
     range: boolean
@@ -57,7 +56,7 @@ slots:
   dismissed:
     slot_uri: rr:promptDismissed
     description: >-
-      true iff the prompt is deemed irrelevant — the disposition boolean for
+      true iff the prompt is deemed irrelevant, the disposition boolean for
       lifecycle_status=dismissed. Mutually exclusive with completed (XOR).
       Required-true when lifecycle_status=dismissed; absent/false otherwise.
     range: boolean
@@ -66,7 +65,7 @@ slots:
     slot_uri: rr:promptStatusNote
     description: >-
       The ORIGINAL status value, verbatim, when a non-canonical value (alias or
-      YAML folded prose) was normalized to lifecycle_status — the
+      YAML folded prose) was normalized to lifecycle_status, the
       nuance-preserving companion of the alias table (plan item 2: "a
       body-prose note when nuance is lost"). Optional; ABSENT when the
       canonical value was authored directly.
@@ -75,11 +74,11 @@ slots:
   prompt_pid:
     slot_uri: rr:promptPid
     description: >-
-      The machine-zone Concept PID (`rrp:pr:<local>`) minted from the file —
+      The machine-zone Concept PID (`rrp:pr:<local>`) minted from the file;
       maps the frontmatter `id:` key and the `<!-- Prompt PID: ... -->` marker.
       Shape (coarse lint-level check; the authoritative validator is the
-      pid-core codec — crates/hub/api/dev/pid-core/src/codec.rs): payload of
+      pid-core codec, crates/hub/api/dev/pid-core/src/codec.rs): payload of
       >=5 base32 symbols (Crockford subset, case-insensitive) plus at most one
-      trailing check symbol from the mod-37 check alphabet (*~$=U/u).
+      trailing check symbol from the mod-37 check alphabet (`*~$=U/u`).
     range: string
     pattern: "^rrp:pr:[0-9A-Za-z]{5,}[*~$=Uu]?$"

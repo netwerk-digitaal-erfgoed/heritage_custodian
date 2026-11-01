@@ -16,7 +16,7 @@ name: ddb_md_object_dedup_crosswalk_meta_bridge
 title: DDB ↔ museum-digital Object-Dedup Coordination Meta Bridge
 description: |
   Reconciles cultural-object records that appear in both DDB and museum-digital
-  (overlapping object space — regional vs national aggregation). The dedup is a
+  (the aggregators overlap in object space: regional vs national aggregation). The dedup is a
   typed SSSOM cross-reference at the object node; each aggregator's metadata
   depth is retained independently. Objects in only one aggregator stay
   single-source records with recorded_by provenance.
@@ -57,7 +57,7 @@ classes:
         description: The owning institution (reconciles to ISIL/DE via the institution crosswalk).
         range: string
       mapping_predicate:
-        description: SKOS predicate — closeMatch for the same artefact; relatedMatch for related-but-distinct.
+        description: SKOS predicate; closeMatch for the same artefact, relatedMatch for related-but-distinct.
         range: CrosswalkPredicateEnum
         required: true
       dedup_confidence:
@@ -65,7 +65,7 @@ classes:
         range: float
         required: true
       attested_in:
-        description: Source citation(s) (provenance — mandatory).
+        description: Source citation(s) (provenance; mandatory).
         range: string
         multivalued: true
         required: true

@@ -8,16 +8,16 @@ description: >-
   machine-checkable core of the spawn-or-arm-or-explain contract
   (AGENT-SESSION-DOC-001 / auto-respawn-on-verified-green.md): a closing session
   that authored a handoff MUST record ONE of these and justify it in
-  `handoff_spawn_rationale` — never leave the spawn decision implicit.
-  ALL-ELIGIBLE-VEHICLES RULE (2026-09-24 operator directive, #362959 —
+  `handoff_spawn_rationale`, never leave the spawn decision implicit.
+  ALL-ELIGIBLE-VEHICLES RULE (2026-09-24 operator directive, #362959:
   "auto-spawn/launch of ALL prompts first"): a close may carry SEVERAL
   forward vehicles (every AUTHORED prompts[] entry AND
   handoff_spawn_decision.handoff_ref); the enum value governs the whole
   record, and under `gate_at_quit` (the quit-time gate decides) the
-  green-respawn gate spawns EVERY P1–P6-eligible vehicle — never only the
+  green-respawn gate spawns EVERY P1–P6-eligible vehicle, never only the
   first, never only the AUTHORED ones. A vehicle owned by a live watcher
   (P4c) or already running (P6) is skipped by design (no double-spawn); an
-  unspawnable vehicle on a GREEN close must surface its arm/hold — the
+  unspawnable vehicle on a GREEN close must surface its arm/hold, the
   close may not read silently GREEN over a stranded vehicle.
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -34,12 +34,12 @@ enums:
         description: >-
           The successor session was spawned as part of the close (green-respawn
           P1–P6 on a validated-GREEN record, or an explicit
-          create_agent_session/rrpi spawn call) — a tab exists and the handoff
+          create_agent_session/rrpi spawn call), a tab exists and the handoff
           is being consumed. MULTI-VEHICLE (#362959): a close may spawn
-          SEVERAL vehicles — every P1–P6-eligible AUTHORED prompts[] entry
-          AND the handoff_ref chain head — so this value asserts that every
-          ELIGIBLE vehicle was launched (the ineligible ones — watcher-owned
-          or already-live — are named in the rationale, never silently
+          SEVERAL vehicles (every P1–P6-eligible AUTHORED prompts[] entry
+          AND the handoff_ref chain head), so this value asserts that every
+          ELIGIBLE vehicle was launched (the ineligible ones (watcher-owned
+          or already-live) are named in the rationale, never silently
           dropped).
       auto_spawn_armed:
         description: >-
@@ -56,6 +56,6 @@ enums:
           `handoff_spawn_unmet_preconditions` and cite its Forgejo issue).
       none:
         description: >-
-          No handoff exists — the session concluded with nothing forward-looking
+          No handoff exists, the session concluded with nothing forward-looking
           (no AUTHORED prompts[] entry, no remaining[] handoff). A record that
           carries an AUTHORED prompt MUST NOT use this value.

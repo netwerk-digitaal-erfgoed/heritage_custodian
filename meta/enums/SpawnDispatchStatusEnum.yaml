@@ -2,14 +2,14 @@ id: https://textpast.com/ontology/rr/enums/SpawnDispatchStatusEnum
 name: SpawnDispatchStatusEnum
 title: Spawn Dispatch Status Enum (status-first handoff reporting)
 description: >-
-  The up-front, machine-readable status of a handoff's spawn dispatch — the
+  The up-front, machine-readable status of a handoff's spawn dispatch, the
   field a session summary MUST lead with before any launch command (operator
   directive 2026-09-28, AGENT-HANDOFF-AUTOSPAWN-STATUS-FIRST-001, after the
   2026-09-27 kos-catalog handoff close: the summary led with the manual
   `rrpi docs/prompt/<file>` line while a persistent spawn watch had the
-  successor AUTO-SPAWN in flight — the operator read "you must launch this").
+  successor AUTO-SPAWN in flight, the operator read "you must launch this").
   Distinct from HandoffSpawnDispositionEnum (the DECISION taxonomy the
-  spawner keys on): this enum is the COMMUNICATION contract — what the
+  spawner keys on): this enum is the COMMUNICATION contract: what the
   operator is told FIRST. The `rrpi …` command stays in the record solely as
   the AGENT-SESSION-DOC-001 §6 revival/retrieval fallback, never the implied
   next step, whenever this status is anything other than manual_pending.
@@ -25,26 +25,25 @@ enums:
       landed:
         description: >-
           The successor session is spawned and running (tab on the shared
-          rootreal-agents surface) — summary line: "AUTO-SPAWN LANDED (tab
+          rootreal-agents surface): summary line: "AUTO-SPAWN LANDED (tab
           <name>), no operator action".
       armed_blocked_watch:
         description: >-
           The spawn is dispatched and owned by a persistent retry watch
           (rr-spawn-wait / blocked-trigger / Condition Watcher) while a
-          transient host condition blocks the tab landing — summary line:
+          transient host condition blocks the tab landing: summary line:
           "AUTO-SPAWN ARMED (watch <marker/trigger ref>, <horizon>), no
           operator action". REQUIRES spawn_watch_ref.
       gate_pending:
         description: >-
           The quit/conclusion-delivery green-respawn gate owns the spawn
-          (fires on a validated-GREEN record) — summary line: "AUTO-SPAWN at
+          (fires on a validated-GREEN record): summary line: "AUTO-SPAWN at
           close (green-respawn gate), no operator action".
       manual_pending:
         description: >-
           A genuine human-only gate holds the launch (operator_manual
-          disposition naming the gate) — the ONLY status under which the
+          disposition naming the gate), the ONLY status under which the
           rrpi command IS the operator's next step.
       not_dispatched:
         description: >-
-          No spawn was dispatched (disposition none / no AUTHORED handoff) —
-          nothing forward-looking to report.
+          No spawn was dispatched (disposition none / no AUTHORED handoff): nothing forward-looking to report.

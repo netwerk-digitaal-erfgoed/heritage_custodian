@@ -5,14 +5,13 @@ description: >-
   Slots for the TerminalMarkApplied class (the deterministic-assignment half
   of AGENT-SPAWN-VISIBILITY-001 clause 15; plan
   terminal-prefix-deterministic-assignment, operator directive 2026-09-23).
-  The machine-checkable record that the session's terminal mark — the
-  `[x]_`/`[x>]_`/`[x>-]_` tab-prefix that answers "can I close this tab" at a
-  glance — was ACTUALLY APPLIED at the close declaration, with its kind,
+  The machine-checkable record that the session's terminal mark, the
+  `[x]_`/`[x>]_`/`[x>-]_` tab-prefix that answers "can I close this tab" at a glance, was ACTUALLY APPLIED at the close declaration, with its kind,
   literal prefix, timestamp, and the producing tier (the skill-floor script,
   the agent tool call, the quit-time classifier, or the sweeper backfill).
   Prose "this session is closed" without a mark is an INCOMPLETE conclusion
   (the 2026-09-22/23 na-ead incident: four re-engagements, a prose close, no
-  mark — the tab read live); these slots make the mark's presence a
+  mark, the tab read live); these slots make the mark's presence a
   validator-enforceable field of terminal_obligations.
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -28,11 +27,9 @@ slots:
     description: >-
       The mark kind actually applied: concluded (`[x]_` closed-complete),
       concluded_forward (`[x>]_` a successor prompt is READY to be launched),
-      or concluded_forward_spawned (`[x>-]_` §8.5 — the successor was already
+      or concluded_forward_spawned (`[x>-]_` §8.5, the successor was already
       launched/spawned). The kind MUST be consistent with the conclusion's
-      own successor state (handoff_spawn_disposition spawned_now ⇒
-      concluded_forward_spawned; any other forward surface ⇒
-      concluded_forward; no forward surface ⇒ concluded) — the derivation is
+      own successor state (handoff_spawn_disposition spawned_now gives concluded_forward_spawned; any other forward surface gives concluded_forward; no forward surface gives concluded), the derivation is
       the shared session-status-marker classifier, not a free choice.
     range: TerminalMarkKindEnum
     required: true
@@ -41,7 +38,7 @@ slots:
     slot_uri: rr:terminalMarkPrefix
     description: >-
       The literal prefix as it appears on the session name / tab title
-      (`[x]_`, `[x>]_`, `[x>-]_`) — redundant with the kind by construction
+      (`[x]_`, `[x>]_`, `[x>-]_`), redundant with the kind by construction
       (kept literal so an auditor reads the exact glyph without re-deriving
       the mapping; the validator checks the pair agree).
     range: string
@@ -54,16 +51,16 @@ slots:
       when the mark request is written; the agent tool call / quit-time
       classifier equivalents carry their own). The pair (kind, applied_at)
       answers the clause-15 re-engagement rule: a re-close after a
-      re-engagement RE-STAMPS — the newest stamp is the close in force.
+      re-engagement RE-STAMPS, the newest stamp is the close in force.
     range: datetime
     required: true
 
   via:
     slot_uri: rr:terminalMarkVia
     description: >-
-      The producing tier (the enforcement ladder, weakest→strongest):
-      manual_tool (the agent's session_mark_terminal call — discretionary),
-      skill_floor (the session-report close-out script — the deterministic
+      The producing tier (the enforcement ladder, from weakest to strongest):
+      manual_tool (the agent's session_mark_terminal call, discretionary),
+      skill_floor (the session-report close-out script, the deterministic
       floor), quit_classifier (the session_shutdown hook), sweep_backfill
       (the workstation sweeper). The floor tiers exist because prose-only
       instruction does not enforce (agent-instruction-enforcement-tiers).

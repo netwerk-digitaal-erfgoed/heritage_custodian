@@ -19,8 +19,8 @@ classes:
     description: >-
       An observation a session surfaces in its end-of-session report that it did
       NOT chase (out of scope, not its task, or the owner is another
-      session/component) but that is worth recording for the next agent/operator
-      — e.g. an ambient dependency alert (Vault degraded, observed via the
+      session/component) but that is worth recording for the next agent/operator,
+      e.g. an ambient dependency alert (Vault degraded, observed via the
       session-start digest or a resolver fallback), a stale Swarm finding
       persisting past recovery, ambient worktree/checkout drift, an
       observed-but-uninvestigated anomaly, notable peer/cluster activity.
@@ -28,7 +28,7 @@ classes:
       DISTINCT FROM SessionHazard: a SessionHazard is a latent condition IN THIS
       SESSION'S OWN WORK that will bite a future agent (stale-base regen,
       silent no-op, a guard gap the session hit). An AmbientNote is about the
-      AMBIENT environment/state the session OBSERVED but does NOT own — the
+      AMBIENT environment/state the session OBSERVED but does NOT own, the
       session's own work is unaffected (or survived via a fallback); the note
       routes the observation to its owner. Hazards the session owns; ambient
       notes the session witnesses.
@@ -57,7 +57,7 @@ classes:
       - "Only `ambient_note_category` and `ambient_note_observation` are required; every other slot may be absent."
       - "`ambient_note_severity` uses the Swarm vocabulary (info|warning|critical); a DEPENDENCY_ALERT the session survived via fallback is still warning/critical for the FLEET, not info."
       - "`ambient_note_dedup_key` is recommended for DEPENDENCY_ALERT + STALE_FINDING so a consumer can reconcile (e.g. match `infra-failure:vault` to the Swarm finding + resolve it on recovery)."
-      - "An AmbientNote is NOT a license to skip work the session OWNS — it is for observations the session does not own. Owned hazards go in `hazards`; owned remaining-work goes in `remaining`."
+      - "An AmbientNote is NOT a license to skip work the session OWNS; it is for observations the session does not own. Owned hazards go in `hazards`; owned remaining-work goes in `remaining`."
     examples:
       - value:
           ambient_note_category: STALE_FINDING
@@ -68,7 +68,7 @@ classes:
           ambient_note_dedup_key: infra-failure:vault
           ambient_note_observed_at: "2026-07-23T07:39:00Z"
           ambient_note_reference: "docs/prompt/20260723T074500Z_vault-critical-findings-stale-restart-investigation.md"
-        description: "A STALE_FINDING ambient note — the canonical instance that motivated this class (the 2026-07-23 Vault findings persisting past recovery)."
+        description: "A STALE_FINDING ambient note, the canonical instance that motivated this class (the 2026-07-23 Vault findings persisting past recovery)."
       - value:
           ambient_note_category: OUT_OF_SCOPE_REMEDIATION
           ambient_note_severity: warning
@@ -79,4 +79,4 @@ classes:
           ambient_note_observed_at: "2026-07-24T15:40:00Z"
           ambient_note_reference: "docs/prompt/20260724T144600Z_prompt-instance-projection-stale-typedb-rename-consumer-audit.md"
           ambient_note_remediation_plan: "prompt_projection_typedb_rename_audit"
-        description: "An OUT_OF_SCOPE_REMEDIATION ambient note — the canonical instance (the 2026-07-24 prompt-instance projection staleness surfaced while concluding rrp:pr:zf6fs30g0; routed to plan rrp:pl:8zgyhnt76 / prompt rrp:pr:w3p43pkmg)."
+        description: "An OUT_OF_SCOPE_REMEDIATION ambient note, the canonical instance (the 2026-07-24 prompt-instance projection staleness surfaced while concluding rrp:pr:zf6fs30g0; routed to plan rrp:pl:8zgyhnt76 / prompt rrp:pr:w3p43pkmg)."

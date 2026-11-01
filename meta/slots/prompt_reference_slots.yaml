@@ -3,8 +3,7 @@ name: prompt_reference_slots
 title: Prompt Reference Slots
 description: >-
   Centralized slots for the PromptReference class (E1 of the structured
-  session-conclusion plan). All slots are defined here and imported by the class
-  file — class files MUST NOT define slots inline (GAC:
+  session-conclusion plan). All slots are defined here and imported by the class file: class files MUST NOT define slots inline (GAC:
   linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
   verb-first / noun-singular and ontology-neutral (GAC:
   linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
@@ -26,7 +25,7 @@ slots:
     description: >-
       Verbatim FULL repo-relative path to the docs/prompt/ artifact (timestamp +
       descriptive suffix, e.g. docs/prompt/20260619T160200Z_gac-dup-id-guard-...md).
-      MUST NOT be truncated with an ellipsis — timestamps are not unique and
+      MUST NOT be truncated with an ellipsis: timestamps are not unique and
       multiple prompts routinely share one (GAC: agent-session-documentation.md
       §6, AGENT-SESSION-DOC-001).
     range: string
@@ -39,7 +38,7 @@ slots:
       Why this prompt was authored. Drawn from PromptPurposeEnum (the existing
       prompt task-classification vocabulary), never a free string. Applies to a
       prompt in EITHER role (a DRIVING prompt carries the purpose its authoring
-      session gave it; an AUTHORED prompt carries its forward purpose) — the role
+      session gave it; an AUTHORED prompt carries its forward purpose), the role
       dimension is the separate `role` slot below.
     range: PromptPurposeEnum
     required: true
@@ -47,12 +46,11 @@ slots:
   role:
     slot_uri: rr:promptReferenceRole
     description: >-
-      The prompt's DIRECTION relative to the citing session — DRIVING (the
-      consumed INPUT that launched/drove this session) or AUTHORED (a forward
+      The prompt's DIRECTION relative to the citing session: DRIVING (the consumed INPUT that launched/drove this session) or AUTHORED (a forward
       OUTPUT this session created for a future session). Orthogonal to `purpose`
       (which captures why the prompt was authored, in either direction). REQUIRED
       so an operator reading a cited docs/prompt/ path can tell at a glance
-      whether it drove THIS session or is a handoff FOR the next one — the cure
+      whether it drove THIS session or is a handoff FOR the next one, the cure
       for the "Driving prompt (consumed)" vs §6-handoff conflation (GAC:
       agent-session-prompt-role-driving-vs-authored.md,
       DRIVING-VS-AUTHORED-PROMPT-001). A session cites at most ONE DRIVING prompt
@@ -72,8 +70,7 @@ slots:
       clipboard `retrieval_command` is SECONDARY). REQUIRED for every cited
       prompt (DRIVING + AUTHORED). DETERMINISTIC from prompt_path alone (no
       clipboard-tool dependency). Agent-authored: there is NO field-deriving
-      render helper today (the renderer is schema-driven and derives NOTHING —
-      R1; see `crates/hub/agent/session-conclusion/cli/src/main.rs`); the
+      render helper today (the renderer is schema-driven and derives NOTHING, R1; see `crates/hub/agent/session-conclusion/cli/src/main.rs`); the
       validator `scripts/session-conclusion-validate.sh` enforces the
       `^(rrpi|rr-pi-prompt|rootreal-pi) docs/prompt/.+\.md$` form.
     range: string
@@ -91,8 +88,7 @@ slots:
       and chat context truncate it). The pipe to a clipboard tool is the ONLY
       acceptable retrieval one-liner (AGENT-SESSION-DOC-001 §6). DETERMINISTIC
       from prompt_path + clipboard_tool. Agent-authored (there is NO
-      field-deriving render helper today; the schema-driven renderer derives
-      NOTHING — R1); the validator `scripts/session-conclusion-validate.sh`
+      field-deriving render helper today; the schema-driven renderer derives NOTHING, R1); the validator `scripts/session-conclusion-validate.sh`
       enforces the clipboard-piped form (a bare `git show`/`cat` is a hard FAIL).
     range: string
     required: true
@@ -101,7 +97,7 @@ slots:
     slot_uri: rr:clipboardTool
     description: >-
       The clipboard tool selected for the host OS. Drives the retrieval_command
-      derivation. Closed enum; there is no `auto` — the emitter picks the
+      derivation. Closed enum; there is no `auto`, the emitter picks the
       concrete host tool (default xclip when unknown, with a note).
     range: ClipboardToolEnum
     required: true

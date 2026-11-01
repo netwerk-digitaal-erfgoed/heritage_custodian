@@ -1,6 +1,6 @@
 # Meta Bridge Mapping: multi-source FACS→emotion crosswalk → canonical deliverable
 #
-# Reconciles the per-source, context-qualified facial-action → emotion Observations
+# Reconciles the per-source, context-qualified facial-action to emotion Observations
 # from MULTIPLE custodian source bundles into the canonical RootReal crosswalk
 # deliverable (an SSSOM MappingSet projected to the TypeDB hypergraph).
 #
@@ -20,11 +20,11 @@
 
 id: https://rootreal.ai/schema/meta_bridge/facs_emotion_crosswalk
 name: facs_emotion_crosswalk_meta_bridge
-title: FACS→Emotion Crosswalk Meta Bridge Mapping
+title: FACS to Emotion Crosswalk Meta Bridge Mapping
 description: |
-  Bridges context-qualified facial-action → emotion Observations from multiple
+  Bridges context-qualified facial-action to emotion Observations from multiple
   custodian source bundles to canonical SSSOM mapping rows and the parsimony/meta
-  Observation pattern for TypeDB projection. Facial-expression → emotion inference
+  Observation pattern for TypeDB projection. Facial expression to emotion inference
   is culture-specific (Jack et al. 2012 refutes universality), so culture_context,
   source authority, and attested_in provenance are mandatory and preserved per row.
 
@@ -47,8 +47,7 @@ classes:
     description: |
       One reconciled crosswalk row: a FACS Action Unit associated with an MFOEM
       emotion class within a named cultural context, attested by a specific source
-      custodian. Projects to a parsimony Observation (indicates → emotion;
-      attested_in → source; situated_in_time → period; typed_as → culture context).
+      custodian. Projects to a parsimony Observation (indicates maps to emotion; attested_in to source; situated_in_time to period; typed_as to culture context).
     attributes:
       subject_au:
         description: FACS Action Unit CURIE (e.g. facs:AU6).
@@ -73,7 +72,7 @@ classes:
         range: string
         required: true
       attested_in:
-        description: Source/study citation(s) (provenance — mandatory).
+        description: Source/study citation(s) (provenance; mandatory).
         range: string
         multivalued: true
         required: true
@@ -159,7 +158,7 @@ typedb_projection:
 
 enums:
   CrosswalkPredicateEnum:
-    description: SKOS mapping predicates permitted for AU→emotion crosswalk rows.
+    description: SKOS mapping predicates permitted for AU to emotion crosswalk rows.
     permissible_values:
       relatedMatch:
         description: Associative match (default; an AU participates in, not equals, the emotion).

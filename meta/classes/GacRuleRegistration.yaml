@@ -19,7 +19,7 @@ classes:
       One row of the session-close promoted / not-promoted GAC-rule table
       (element E2 of the structured session-conclusion plan). Binds the rule
       id, the registration action, the repo-relative path, the version
-      transition, the rationale, an optional tracking issue, and — crucially —
+      transition, the rationale, an optional tracking issue, and, crucially,
       a sync_status DERIVED from gac_check_sync_status (never asserted) plus
       the sync_source that answered the query. Implements AGENT-SESSION-DOC-001
       §0 (promoted/not-promoted tables) in machine-checkable form.
@@ -34,9 +34,9 @@ classes:
       - sync_status
       - sync_source
     comments:
-      - "sync_status is DERIVED from gac_check_sync_status(rule_path) — never asserted. sync_source records the MCP source (typedb/cache/fallback/degraded)."
+      - "sync_status is DERIVED from gac_check_sync_status(rule_path), never asserted. sync_source records the MCP source (typedb/cache/fallback/degraded)."
       - "from_version omitted for PROMOTE_NEW; to_version omitted for NOT_PROMOTE."
-      - "reason is REQUIRED for NOT_PROMOTE too — an unexplained not-promotion is silent knowledge loss."
+      - "reason is REQUIRED for NOT_PROMOTE too, an unexplained not-promotion is silent knowledge loss."
       - "A PENDING/DEGRADED sync_status does NOT block the close (markdown on origin/main is the SoT)."
     examples:
       - value:

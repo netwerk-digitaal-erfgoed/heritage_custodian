@@ -4,18 +4,18 @@ title: Plan Domain Slots
 description: >-
   Centralized slots for the plan-document domain classes (ImplementationPlan,
   PlanSection, PlanChecklistItem) governed by PLAN-SCHEMATA-OVER-HEURISTICS-001.
-  All plan/section/item slots are defined HERE and imported by the class files —
+  All plan/section/item slots are defined HERE and imported by the class files;
   class files MUST NOT define slots inline (GAC:
   linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
   verb-first / noun-singular and ontology-neutral (GAC:
   linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
 
   These are the structured fields the gac/plan ingestion pipeline
-  (crates/hub/api/dev/gac/plan/) reads DIRECTLY — replacing heuristic-markdown
+  (crates/hub/api/dev/gac/plan/) reads DIRECTLY, replacing heuristic-markdown
   parsing (filename glob + regex checkbox + prose inference). The concept_pid
   fields bind each entity to its RRP Concept PID (PLAN-PID-001), the stable
   identity the TypeDB `plans` hypergraph keys on. NOTE: this file is distinct
-  from the generic ontology slot `plan` (meta/slots/plan.yaml — the act of
+  from the generic ontology slot `plan` (meta/slots/plan.yaml, the act of
   planning); these are the implementation-plan-document domain slots. The shared
   `plan_id` slot is reused from plan_checklist_update_slots / swarm_task_claim_slots
   (rr:planId) rather than redefined here.
@@ -34,7 +34,7 @@ slots:
   concept_pid:
     slot_uri: rr:conceptPid
     description: >-
-      RRP Concept PID — the stable, cross-rename identity (PLAN-PID-001) that
+      RRP Concept PID, the stable, cross-rename identity (PLAN-PID-001) that
       binds a markdown entity to its TypeDB `plans` hypergraph node: rrp:pl:
       (plan), rrp:se: (section/phase), rrp:it: (item). Identity is this PID, NOT
       the description text. This slot carries a GRAMMAR GATE ONLY (the
@@ -42,10 +42,9 @@ slots:
       Crockford base32 alphabet and mod-37 check symbol are validated
       AUTHORITATIVELY by the project's RrpValidator
       (crates/hub/api/dev/gac/plan-pid/core/src/validator.rs). DO NOT narrow
-      this regex to a restrictive alphabet — it manufactures false 'corrupted
+      this regex to a restrictive alphabet; it manufactures false 'corrupted
       PID' defects on valid check symbols (AGENT-INCIDENT-REDIAGNOSIS-001 R14,
-      2026-06-29: $, *, ~ are legitimate check symbols a [a-z0-9] regex silently
-      dropped).
+      2026-06-29: `$`, `*`, `~` are legitimate check symbols a [a-z0-9] regex silently dropped).
     range: string
     pattern: "^rrp:(pl|se|it):[^\\s;@]+$"
     required: true
@@ -63,7 +62,7 @@ slots:
     slot_uri: rr:itemDescription
     description: >-
       Human-readable item description. NOT a key (identity is concept_pid) and
-      not stable across rewording — part of the version-PID canonical recipe
+      not stable across rewording, part of the version-PID canonical recipe
       (PLAN-PID-001: canonical_item_bytes hashes `desc`).
     range: string
     required: true
@@ -72,7 +71,7 @@ slots:
     slot_uri: rr:planOrder
     description: >-
       Explicit ordinal within the parent (a section within a plan; an item within
-      a section). Declared — NEVER inferred from document position (the heuristic
+      a section). Declared, NEVER inferred from document position (the heuristic
       failure mode this schemata replaces).
     range: integer
     required: true
@@ -80,7 +79,7 @@ slots:
   status:
     slot_uri: rr:planStatus
     description: >-
-      Lifecycle / progress status, read from a typed field — never inferred from
+      Lifecycle / progress status, read from a typed field, never inferred from
       prose or checkbox glyphs. Range is pinned per class via slot_usage:
       PlanStatusEnum for a plan, ItemStatusEnum for an item. This is the
       structural cure for the GOV-PLAN-CHECKLIST-001 `[ ] (partial)` split-brain.
@@ -93,7 +92,7 @@ slots:
     slot_uri: rr:planSourcePath
     description: >-
       Repo-relative canonical source directory (docs/plan/<plan_id>/). MUST
-      resolve on origin/main. One canonical checklist artifact beneath it — no
+      resolve on origin/main. One canonical checklist artifact beneath it: no
       CHECKLIST.md vs checklist.md case ambiguity (the
       PLAN-SCHEMATA-OVER-HEURISTICS-001 incident root cause).
     range: string
@@ -103,7 +102,7 @@ slots:
     slot_uri: rr:planOwner
     description: >-
       Owning operator, agent, or stream accountable for the plan. (Distinct from
-      the remaining-work `owner` slot rr:remainingOwner — this is the plan's
+      the remaining-work `owner` slot rr:remainingOwner, this is the plan's
       custodian, not the next picker-upper.)
     range: string
 
@@ -151,7 +150,7 @@ slots:
       rrp:pl:vskepfvnx): the product-domain ids (docs/domains/<id>.md file
       stems) this plan ADVANCES. Authored at plan-creation time (shift-left),
       projected by ingestion/sync as `plan-advances-domain` edges (author
-      provenance `plan-frontmatter`) — the plan-side twin of the domain
+      provenance `plan-frontmatter`), the plan-side twin of the domain
       document's `advanced-by-plan` machine zone, so a plan is born
       strategy-visible instead of waiting for a separate domain-doc edit.
     range: string
@@ -162,7 +161,7 @@ slots:
     description: >-
       Goal-layer self-declaration (rrp:pl:vskepfvnx): the KPI ids
       (docs/kpi/<id>.md file stems) this plan's progress feeds. Projected as
-      `kpi-supports-plan` edges (author provenance `plan-frontmatter`) — the
+      `kpi-supports-plan` edges (author provenance `plan-frontmatter`), the
       plan-side twin of the KPI document's `supports-plan` machine zone.
     range: string
     multivalued: true
@@ -220,7 +219,7 @@ slots:
   depends_on:
     slot_uri: rr:dependsOn
     description: >-
-      concept_pid(s) of items this one depends on — the dependency graph the
+      concept_pid(s) of items this one depends on, the dependency graph the
       heuristic markdown cannot express (the metagraph "encode WHY" principle).
     range: string
     multivalued: true
@@ -229,7 +228,7 @@ slots:
     slot_uri: rr:itemEvidence
     description: >-
       Durable anchor(s) proving completion (commit SHA / Forgejo issue / live-
-      state check). Provenance, not identity — NOT part of the version-PID
+      state check). Provenance, not identity, NOT part of the version-PID
       canonical recipe.
     range: string
     multivalued: true
@@ -244,5 +243,5 @@ slots:
     description: >-
       Free-form notes on the item. Part of the version-PID canonical recipe
       (PLAN-PID-001: canonical_item_bytes hashes concept + desc + status +
-      notes) — changing notes changes the version PID. Optional.
+      notes); changing notes changes the version PID. Optional.
     range: string

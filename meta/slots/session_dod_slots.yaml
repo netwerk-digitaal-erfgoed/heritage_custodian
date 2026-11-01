@@ -4,7 +4,7 @@ title: Session Definition-of-Done Verification Slots
 description: >-
   Centralized slots for the agent session Definition-of-Done (DoD) verification
   schema (classes SessionDoDRecord, SessionDoDVerificationEntry). All slots are
-  defined here and imported by the class files — class files MUST NOT define
+  defined here and imported by the class files: class files MUST NOT define
   slots inline (GAC: linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001).
   Slot names are verb-first / noun-singular and ontology-neutral
   (linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
@@ -42,8 +42,7 @@ slots:
     description: >-
       The origin/main commit SHA (full or short) at which the session's work
       landed. A DoD record for unlanded work MUST set this to the literal
-      "UNLANDED" and explain the blocker in the session summary — silent
-      unlanded work is a process failure (AGENT-SESSION-COMMIT-001).
+      "UNLANDED" and explain the blocker in the session summary: silent unlanded work is a process failure (AGENT-SESSION-COMMIT-001).
     range: string
     required: true
 
@@ -67,8 +66,7 @@ slots:
     description: >-
       The completion claim being verified, stated as a single falsifiable
       sentence (e.g. "a commit introducing a NEW duplicate is blocked even with
-      the legacy bypass"). MUST be falsifiable — "done" or "works" is not a
-      claim.
+      the legacy bypass"). MUST be falsifiable: "done" or "works" is not a claim.
     range: string
     required: true
 
@@ -103,9 +101,8 @@ slots:
   durable_anchor:
     slot_uri: rr:durableAnchor
     description: >-
-      A durable, repo-relative anchor to the verified artifact — a commit SHA,
-      a repo-relative file path, or a Forgejo issue number — never a bare line
-      number (GAC: code-location-citation-durable-anchor.md). This is what makes
+      A durable, repo-relative anchor to the verified artifact, a commit SHA,
+      a repo-relative file path, or a Forgejo issue number, never a bare line number (GAC: code-location-citation-durable-anchor.md). This is what makes
       the verification checkable after the session ends.
     range: string
     required: true

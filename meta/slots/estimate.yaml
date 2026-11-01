@@ -102,15 +102,12 @@ slots:
       - Replaces specific confidence slots like digital_confidence.
       - 'RiC-O naming: estimatesOrEstimated indicates estimation relationship.'
       - >-
-        This relationship may be historical — estimations may be updated over
-        time. Used to link profiles or entities to confidence assessments about
+        This relationship may be historical: estimations may be updated over time. Used to link profiles or entities to confidence assessments about
         specific attributes (e.g., digital proficiency confidence).
       - >-
-        Pattern: LinkedInProfile └── estimates_or_estimated → DigitalConfidence
-        ├── has_or_had_score: 0.8 └── has_or_had_type: PROFICIENCY_LEVEL
+        Pattern: LinkedInProfile links via estimates_or_estimated to DigitalConfidence (has_or_had_score: 0.8, has_or_had_type: PROFICIENCY_LEVEL)
       - >-
-        Migrated from digital_confidence → estimates_or_estimated +
-        DigitalConfidence (per slot_fixes.yaml).
+        Migrated from digital_confidence to estimates_or_estimated + DigitalConfidence (per slot_fixes.yaml).
     examples:
       - value:
           has_or_had_score: 0.85

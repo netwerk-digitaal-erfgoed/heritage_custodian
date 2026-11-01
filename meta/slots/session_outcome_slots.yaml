@@ -3,9 +3,8 @@ name: session_outcome_slots
 title: Session Outcome Assessment Slots
 description: >-
   Centralized slots for the SessionOutcomeAssessment class (element E9 of the
-  SessionConclusion umbrella — the session-OUTCOME signal: GREEN/ORANGE/RED for
-  the next-launch decision). All slots are defined here and imported by the class
-  file — class files MUST NOT define slots inline (GAC:
+  SessionConclusion umbrella, the session-OUTCOME signal: GREEN/ORANGE/RED for
+  the next-launch decision). All slots are defined here and imported by the class file: class files MUST NOT define slots inline (GAC:
   linkml/general/class-files-no-inline-slots.md, CLASS-FILES-001). Slot names are
   noun-singular / ontology-neutral snake_case (GAC:
   linkml/naming/slot-naming-convention-current-style.md, LINKML-NAMING-001).
@@ -23,7 +22,7 @@ slots:
   outcome_signal:
     slot_uri: rr:outcomeSignal
     description: >-
-      The operational-health verdict (SessionOutcomeSignalEnum) — GREEN (auto-
+      The operational-health verdict (SessionOutcomeSignalEnum): GREEN (auto-
       launch the next session), ORANGE (hold + soft-notify), or RED (hold +
       hard-notify + operator decision required). ORTHOGONAL to
       SessionCompletionAssessment.plan_completion (plan-complete) and to
@@ -38,8 +37,7 @@ slots:
       Whether an operator decision is required before the next session may
       launch. The action half of the verdict (the SRE "priority is a decision
       made by the responder" to outcome_signal's severity). RED/ORANGE REQUIRE
-      true; GREEN FORBIDS true (a GREEN with operator_decision_required is a
-      masked RED — STATUS-PROPAGATION-NO-MASKING-001; the validator FAILs it).
+      true; GREEN FORBIDS true (a GREEN with operator_decision_required is a masked RED (STATUS-PROPAGATION-NO-MASKING-001; the validator FAILs it)).
       REQUIRED.
     range: boolean
     required: true
@@ -48,7 +46,7 @@ slots:
     slot_uri: rr:outcomeCriteria
     description: >-
       The auditable taxonomy of WHY the outcome is ORANGE/RED
-      (SessionOutcomeCriterionEnum, multivalued) — which operator-attention
+      (SessionOutcomeCriterionEnum, multivalued), which operator-attention
       categories triggered it (complication / design_pattern_choice / issue /
       bug / ops_shortcoming / failure / security_risk / plan_deviation). REQUIRED
       non-empty for RED; GREEN forbids any entry. An enum (not free text) so the
@@ -59,7 +57,7 @@ slots:
   rationale:
     slot_uri: rr:outcomeRationale
     description: >-
-      The plain-text justification of the verdict — what concretely happened this
+      The plain-text justification of the verdict: what concretely happened this
       session that produced the signal. For RED/ORANGE MUST name the trigger(s)
       (cross-referencing criteria[]); for GREEN MAY state "no operator-required
       decision arose." REQUIRED.
@@ -69,7 +67,7 @@ slots:
   evidence_refs:
     slot_uri: rr:outcomeEvidenceRefs
     description: >-
-      The evidence backing the verdict — landed SHAs, failing CI lanes, filed
+      The evidence backing the verdict: landed SHAs, failing CI lanes, filed
       Forgejo issues (#NNN), Swarm finding dedup_keys, security-advisory refs.
       Empty array allowed for a clean GREEN; expected non-empty for RED.
     range: string

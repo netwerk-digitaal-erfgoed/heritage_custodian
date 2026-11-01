@@ -2,7 +2,7 @@ id: https://textpast.com/ontology/rr/enum/ScriptKindEnum
 name: ScriptKindEnum
 title: Script Kind Enum
 description: >-
-  The operational kind of a scripts/temp/*.sh artifact (E7 of the structured
+  The operational kind of a `scripts/temp/*.sh` artifact (E7 of the structured
   session-conclusion plan). Derives the vocabulary from the bash-script
   convention's own examples (GAC: agent-temp-script-storage.md,
   AGENT-TEMP-SCRIPT-STORAGE-001) and the ceremony patterns this session produced
@@ -17,12 +17,12 @@ default_prefix: rr
 enums:
   ScriptKindEnum:
     description: >-
-      The operational kind of a scripts/temp/*.sh artifact (ScriptMetadata.kind).
+      The operational kind of a `scripts/temp/*.sh` artifact (ScriptMetadata.kind).
       Aligned with agent-temp-script-storage.md (AGENT-TEMP-SCRIPT-STORAGE-001).
     permissible_values:
       CEREMONY:
         description: >-
-          A privileged Vault ceremony — mints a transient root token (operator-
+          A privileged Vault ceremony: mints a transient root token (operator-
           driven recovery-key quorum), performs writes under it, revokes at end
           (the B2 vault-snapshot + the chains audience-flip ceremonies are the
           canonical cases).
@@ -35,7 +35,7 @@ enums:
       HANDOFF:
         description: >-
           A post-ceremony credential handoff to a downstream process (mint scoped
-          creds + write a credfile + revoke root — the eval-mint-and-handoff case).
+          creds + write a credfile + revoke root, the eval-mint-and-handoff case).
       SHRED:
         description: >-
           A destructive-but-categorized local operation (e.g. scrub stale DR
@@ -48,6 +48,6 @@ enums:
       VERIFY:
         description: >-
           A verification / watch script (e.g. a backoff-aware post-ceremony watch
-          that gates on positive signals — the chains-audience-vault-flip-v2 case).
+          that gates on positive signals, the chains-audience-vault-flip-v2 case).
       OTHER:
         description: A script that does not fit the above kinds; describe in `purpose`.

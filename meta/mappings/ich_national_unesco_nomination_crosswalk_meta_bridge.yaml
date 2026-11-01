@@ -16,9 +16,9 @@
 
 id: https://rootreal.ai/schema/meta_bridge/ich_national_unesco_nomination_crosswalk
 name: ich_national_unesco_nomination_crosswalk_meta_bridge
-title: ICH National Art.12 Inventory → UNESCO International Lists Nomination Crosswalk Meta Bridge
+title: ICH National Art.12 Inventory to UNESCO International Lists Nomination Crosswalk Meta Bridge
 description: |
-  Bridges national-inventory entries (DUK, KIEN — Article-12 national inventories)
+  Bridges national-inventory entries (DUK, KIEN, Article-12 national inventories)
   to the UNESCO international ICH lists (Arts.16-18) where nominated/inscribed.
   The national and international nodes are distinct entities connected by a
   nominated_to/inscribed_on edge only where the nomination succeeded
@@ -64,10 +64,10 @@ classes:
         description: The UNESCO international ICH list entry identifier, where nominated/inscribed.
         range: string
       nomination_status:
-        description: The nomination state — nominated_to (proposed) or inscribed_on (inscribed); absent for national-only.
+        description: The nomination state, nominated_to (proposed) or inscribed_on (inscribed); absent for national-only.
         range: NominationStatusEnum
       mapping_predicate:
-        description: SKOS predicate — relatedMatch where nominated; exactMatch is NOT used (distinct nodes).
+        description: SKOS predicate, relatedMatch where nominated; exactMatch is NOT used (distinct nodes).
         range: CrosswalkPredicateEnum
         required: true
       convention_article_national:
@@ -78,7 +78,7 @@ classes:
         description: The international convention article (Art.16 Representative, Art.17 Urgent, Art.18 Good-Practice).
         range: string
       attested_in:
-        description: Source citation(s) (provenance — mandatory).
+        description: Source citation(s) (provenance; mandatory).
         range: string
         multivalued: true
         required: true
@@ -163,7 +163,7 @@ enums:
       inscribed_on:
         description: The national entry was inscribed on the international list (succeeded).
   CrosswalkPredicateEnum:
-    description: SKOS mapping predicates for national→international ICH nomination.
+    description: SKOS mapping predicates for national-to-international ICH nomination.
     permissible_values:
       relatedMatch:
         description: The national entry is related to the international entry via nomination (distinct nodes, NOT exactMatch).
