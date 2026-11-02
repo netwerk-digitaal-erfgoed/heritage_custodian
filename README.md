@@ -12,7 +12,7 @@ several kinds of databases from the same source files.
 
 ## What is published here
 
-- meta/ holds the complete model, including classes, slots,
+- meta/ holds the complete model. It includes classes, slots,
 enumerations, types, profiles, mappings and provenance records. Class
 definitions link to existing standards like CIDOC CRM, Records in
 Contexts (RiC-O) and Wikidata. The mappings directory also provides
@@ -24,15 +24,11 @@ terms, along with documentation showing how each one maps to the full
 model.
 - LICENSE.md contains the EUPL v1.2 licence text.
 
-If you are new to the project, parsimony/ is the easiest place to get
-a feel for the overall structure before digging into the full
-specification in meta/.
-
 ## Upstream
 
 Active development happens in the RootReal monorepo on Forgejo
 (https://git.rootreal.io/textpast/rootreal) under
-crates/model/symbolic/schemata/, rather than here on GitHub. Whenever
+crates/model/symbolic/schemata/. Whenever
 that directory changes on main, a Tekton pipeline copies meta/,
 parsimony/ and the top-level files over to this repository. This sync
 only runs one way, so if the two repositories ever disagree, the Forgejo
