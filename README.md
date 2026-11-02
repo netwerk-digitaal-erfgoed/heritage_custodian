@@ -1,65 +1,57 @@
 # Heritage Custodian Schemata
 
-Data custodians in the heritage field, archives and museums among them,
-manage, maintain and offer linked data about their collections. Before
-records from different custodian systems can be mapped and processed
-together, they need a shared model. This repository publishes that model
-as LinkML schemata: the vocabulary that describes held material and the
-custody work around it, from acquisition and accession to access and
-preservation.
+Archives, museums and other heritage institutions primarily publish linked data
+about their collections. Other than basic information on provenance, the data
+about heritage custodianship often remains obscure. This repository contains a
+model for capturing the work involved in looking after collections, 
+including acquisition, accessioning, preservation and access. It also expresses
+the ever-changing shape of heritage organisations, their teams and their infrastructure.
 
-Because the model is LinkML, it converts to more than one database
-family. Triplestores and property-graph databases are both multigraphs:
-either can hold several edges between the same pair of nodes. The
-difference is where properties live, attached directly to nodes and edges
-in a property graph, expressed as further triples in RDF. The standard
-LinkML generators emit RDF, OWL and SHACL for the triplestore side, and
-the same source compiles to property-graph models for databases such as
-Neo4j. A third family is the hypergraph: the schemata project to meta
-schemata for TypeDB, where a class becomes an entity type and a slot a
-relation or attribute type.
+The model is written in LinkML. These LinkML schemata can be mapped to
+several kinds of databases from the same source files. 
 
 ## What is published here
 
-- `meta/`, the full model: classes, slots, enumerations, types, profiles,
-  mappings and provenance records. Class definitions carry references to
-  established standards in the field, among them CIDOC CRM, Records in
-  Contexts (RiC-O) and Wikidata, and the mappings directory holds
-  crosswalks for source registers such as ISO 20275 legal forms and ISIL
-  institution codes.
-- `parsimony/`, a deliberately small core built with a parsimony method:
-  CustodialEntity, Holding, Agent, Activity and a short tail of
-  supporting terms, each documented with the way it maps into the full
-  model.
-- `LICENSE.md`, the EUPL v1.2 licence text.
+- meta/ holds the complete model, including classes, slots,
+enumerations, types, profiles, mappings and provenance records. Class
+definitions link to existing standards like CIDOC CRM, Records in
+Contexts (RiC-O) and Wikidata. The mappings directory also provides
+crosswalks for external registers such as ISO 20275 legal forms and
+ISIL institution codes.
+- parsimony/ contains a smaller core model built around
+CustodialEntity, Holding, Agent, Activity and a few supporting
+terms, along with documentation showing how each one maps to the full
+model.
+- LICENSE.md contains the EUPL v1.2 licence text.
 
-Start in `parsimony/` for the shape of the model; reach for `meta/` when
-you need the detail.
+If you are new to the project, parsimony/ is the easiest place to get
+a feel for the overall structure before digging into the full
+specification in meta/.
 
 ## Upstream
 
-Development does not happen on GitHub. The canonical source is the
-RootReal monorepo, https://git.rootreal.io/textpast/rootreal, under
-`crates/model/symbolic/schemata/`. A Tekton pipeline publishes `meta/`,
-`parsimony/` and the top-level files to this repository whenever the
-schemata tree changes on the canonical `main`. The projection is one-way;
-when the two copies disagree, the Forgejo side is the one that counts.
+Active development happens in the RootReal monorepo on Forgejo
+(https://git.rootreal.io/textpast/rootreal) under
+crates/model/symbolic/schemata/, rather than here on GitHub. Whenever
+that directory changes on main, a Tekton pipeline copies meta/,
+parsimony/ and the top-level files over to this repository. This sync
+only runs one way, so if the two repositories ever disagree, the Forgejo
+monorepo is the source of truth.
 
 ## CI and review
 
-Pull requests are welcome here. A bot forwards each one to a linked pull
-request in the Forgejo monorepo and comments on the GitHub request with
-the link. Review and merge happen on the Forgejo side, and
-so does CI: the pipelines run on RootReal's Tekton cluster, not on
-GitHub Actions, which plays no part in this repository's workflow. A
-merged change comes back to GitHub on the next publish.
+You can still open pull requests here on GitHub. A bot forwards each PR
+to the Forgejo monorepo and leaves a comment on the GitHub thread with a
+link to the upstream request. Code review, merging and CI all run on
+Forgejo through RootReal's Tekton cluster (GitHub Actions is not used).
+Once a change is merged upstream, it shows up here on the next publish
+run.
 
-CONTRIBUTING.md spells out the practical rules: what belongs in a change,
-how imports and file names are treated, and what a useful description
-contains.
+See CONTRIBUTING.md for details on how to scope changes, how file
+names and imports work and what to include in a PR description.
 
 ## Licence
 
-The published schemata and this projection are licensed under the EUPL,
-version 1.2. The licence file is `LICENSE.md`; the official texts,
-including the Dutch one, live at https://eupl.eu/1.2/nl/.
+The schemata and this repository are licensed under the EUPL v1.2. The
+full text is in LICENSE.md, and the official versions in other
+languages (including Dutch) are available at https://eupl.eu/1.2/nl/.
