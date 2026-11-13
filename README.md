@@ -7,8 +7,14 @@ model for capturing the work involved in looking after collections,
 including acquisition, accessioning, preservation and access. It also expresses
 the ever-changing shape of heritage organisations, their teams and their infrastructure.
 
-The model is written in LinkML. These LinkML schemata can be mapped to
-several kinds of databases from the same source files. 
+The model is written with LinkML to allow conversions from our data lakehouse to
+property-, multi- and hypergraphs via the Open Source and Source Available RootReal ecosystem. Automated updates
+of infrastructural and organisational data are retrieved from public policy documents,
+endpoints, vacancies and the like. Schema dashboards allow authenticated users to manually
+edit the LinkML schemata of heritage custodians to which they are affiliated.
+Changes to the schemata alter how data flows through the databases connected to the application.
+Linked Data fragments are used to direct event streams with a hypergaph (TypeDB)
+acting as Single Source of Truth (SSoT).
 
 ## What is published here
 
