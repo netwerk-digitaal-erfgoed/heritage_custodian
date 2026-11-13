@@ -8,7 +8,7 @@ including acquisition, accessioning, preservation and access. It also expresses
 the ever-changing shape of heritage organisations, their teams and their infrastructure.
 
 The model is written with LinkML to allow conversions from our data lakehouse to
-property-, multi- and hypergraphs via the Open Source and Source Available RootReal ecosystem. Automated updates
+property-, multi- and hypergraphs via the open-source and source-available RootReal ecosystem. Automated updates
 of infrastructural and organisational data are retrieved from public policy documents,
 endpoints, vacancies and the like. Schema dashboards allow authenticated users to manually
 edit the LinkML schemata of heritage custodians to which they are affiliated.
